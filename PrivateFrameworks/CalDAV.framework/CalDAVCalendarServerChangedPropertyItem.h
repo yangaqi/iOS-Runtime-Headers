@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSMutableSet, NSString;
-
 @interface CalDAVCalendarServerChangedPropertyItem : CoreDAVItem {
     NSMutableSet *_changedParameters;
     NSString *_nameAttribute;
     NSString *_typeAttribute;
 }
 
-@property(retain) NSMutableSet * changedParameters;
-@property(retain) NSString * nameAttribute;
-@property(retain) NSString * typeAttribute;
+@property (nonatomic, retain) NSMutableSet *changedParameters;
+@property (nonatomic, retain) NSString *nameAttribute;
+@property (nonatomic, retain) NSString *typeAttribute;
 
+- (void).cxx_destruct;
 - (void)addChangedParameter:(id)arg1;
 - (id)changedParameters;
 - (id)copyParseRules;
-- (void)dealloc;
 - (id)initWithNameSpace:(id)arg1 andName:(id)arg2;
 - (id)nameAttribute;
 - (void)parserFoundAttributes:(id)arg1;

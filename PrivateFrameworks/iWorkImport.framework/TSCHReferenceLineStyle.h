@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCHReferenceLineStyle : TSCHBaseStyle {
-}
+@interface TSCHReferenceLineStyle : TSCHBaseStyle
 
 + (float)defaultFloatValueForProperty:(int)arg1;
 + (int)defaultIntValueForProperty:(int)arg1;
@@ -13,6 +12,7 @@
 + (id)identifierForRoleIndex:(unsigned int)arg1 ordinal:(unsigned int)arg2;
 + (id)imageFillProperties;
 + (int)muxDefaultPropertyForSpecificProperty:(int)arg1;
++ (id)overrideMapFromChartStyle:(id)arg1 seriesStyle:(id)arg2 paragraphStyles:(id)arg3 valueAxisStyle:(id)arg4;
 + (id)presetStyleDescriptorForOrdinal:(unsigned int)arg1;
 + (id)properties;
 

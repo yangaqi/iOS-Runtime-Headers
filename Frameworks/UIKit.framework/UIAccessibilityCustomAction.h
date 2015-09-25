@@ -2,25 +2,23 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIImage;
-
 @interface UIAccessibilityCustomAction : NSObject {
     NSString *_name;
     SEL _selector;
-    id _weakTarget;
+    id _target;
 }
 
-@property(getter=_image,setter=_setImage:,retain) UIImage * image;
-@property(copy) NSString * name;
-@property SEL selector;
-@property id target;
+@property (getter=_image, setter=_setImage:, nonatomic, retain) UIImage *image;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic) SEL selector;
+@property (getter=_shortName, setter=_setShortName:, nonatomic, retain) NSString *shortName;
+@property (nonatomic) BOOL shouldSuppressActionHint;
+@property (nonatomic) id target;
 
-- (id)_accessibilityCustomActionIdentifier;
-- (BOOL)_accessibilityMatchesCustomActionIdentifier:(id)arg1;
-- (id)_image;
-- (void)_setImage:(id)arg1;
-- (void)dealloc;
-- (id)description;
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
+- (void).cxx_destruct;
+- (id)init;
 - (id)initWithName:(id)arg1 target:(id)arg2 selector:(SEL)arg3;
 - (id)name;
 - (SEL)selector;
@@ -28,5 +26,17 @@
 - (void)setSelector:(SEL)arg1;
 - (void)setTarget:(id)arg1;
 - (id)target;
+
+// Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
+
+- (id)_accessibilityCustomActionIdentifier;
+- (BOOL)_accessibilityMatchesCustomActionIdentifier:(id)arg1;
+- (id)_image;
+- (void)_setImage:(id)arg1;
+- (void)_setShortName:(id)arg1;
+- (id)_shortName;
+- (id)description;
+- (void)setShouldSuppressActionHint:(BOOL)arg1;
+- (BOOL)shouldSuppressActionHint;
 
 @end

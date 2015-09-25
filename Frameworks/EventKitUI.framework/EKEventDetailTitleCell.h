@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class EKTextViewWithLabelTextMetrics, NSMutableArray, NSObject<EKEventDetailTitleCellDelegate>, UIButton, UIImage, UIImageView, UILabel;
-
 @interface EKEventDetailTitleCell : EKEventDetailCell {
     NSMutableArray *_dateTimeViews;
     NSObject<EKEventDetailTitleCellDelegate> *_delegate;
@@ -21,10 +19,14 @@
     unsigned int _visibleItems;
 }
 
-@property NSObject<EKEventDetailTitleCellDelegate> * delegate;
+@property (nonatomic) NSObject<EKEventDetailTitleCellDelegate> *delegate;
 
++ (void)_geocodeEventIfNeeded:(id)arg1;
 + (void)_invalidateCachedFonts;
++ (id)_largeTitleFont;
 + (id)_locationFont;
++ (id)_locationStringForStructuredLocation:(id)arg1;
++ (id)_mapsURLForLocationOnEvent:(id)arg1;
 + (void)_registerForInvalidation;
 + (id)_titleFont;
 
@@ -38,9 +40,11 @@
 - (id)_statusView;
 - (id)_titleView;
 - (id)_travelTimeView;
+- (BOOL)_useLargeFonts;
 - (void)dealloc;
 - (id)delegate;
 - (void)editButtonTapped;
+- (id)initWithEvent:(id)arg1 editable:(BOOL)arg2 style:(int)arg3;
 - (void)layoutForWidth:(float)arg1 position:(int)arg2;
 - (void)setColor:(id)arg1;
 - (void)setDelegate:(id)arg1;

@@ -2,22 +2,21 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@class CLLocation, NSString;
-
 @interface PKPaymentDeviceProvisioningData : NSObject <NSSecureCoding> {
     NSString *_deviceName;
     CLLocation *_location;
     NSString *_phoneNumber;
+    NSString *_signedPhoneNumber;
+    NSString *_signedPhoneNumberVersion;
 }
 
-@property(copy) NSString * deviceName;
-@property(readonly) NSString * extensiveLatitude;
-@property(readonly) NSString * extensiveLongitude;
-@property(copy) CLLocation * location;
-@property(copy) NSString * phoneNumber;
-@property(readonly) NSString * phoneNumberSuffix;
-@property(readonly) NSString * sanitizedLatitude;
-@property(readonly) NSString * sanitizedLongitude;
+@property (nonatomic, copy) NSString *deviceName;
+@property (nonatomic, readonly) NSString *extensiveLatitude;
+@property (nonatomic, readonly) NSString *extensiveLongitude;
+@property (nonatomic, copy) CLLocation *location;
+@property (nonatomic, copy) NSString *phoneNumber;
+@property (nonatomic, copy) NSString *signedPhoneNumber;
+@property (nonatomic, copy) NSString *signedPhoneNumberVersion;
 
 + (BOOL)supportsSecureCoding;
 
@@ -30,11 +29,12 @@
 - (id)initWithCoder:(id)arg1;
 - (id)location;
 - (id)phoneNumber;
-- (id)phoneNumberSuffix;
-- (id)sanitizedLatitude;
-- (id)sanitizedLongitude;
 - (void)setDeviceName:(id)arg1;
 - (void)setLocation:(id)arg1;
 - (void)setPhoneNumber:(id)arg1;
+- (void)setSignedPhoneNumber:(id)arg1;
+- (void)setSignedPhoneNumberVersion:(id)arg1;
+- (id)signedPhoneNumber;
+- (id)signedPhoneNumberVersion;
 
 @end

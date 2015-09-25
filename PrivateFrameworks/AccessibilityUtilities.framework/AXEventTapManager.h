@@ -2,68 +2,57 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSMutableArray, NSMutableSet, NSRecursiveLock;
-
 @interface AXEventTapManager : NSObject {
     NSMutableArray *_addedEventTapPairs;
     NSRecursiveLock *_eventTapLock;
     NSMutableArray *_eventTaps;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _installationEventRepPost;
-
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _installationGSCallback;
-
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _installationHIDCallback;
-
+    id /* block */ _installationEventRepPost;
+    id /* block */ _installationGSCallback;
+    id /* block */ _installationHIDCallback;
     struct __IOHIDEventSystemClient { } *_ioSystemPostBackClient;
     BOOL _isEnumeratingEventTaps;
     NSMutableSet *_removedEventTapIdentifiers;
     BOOL _shouldReorderEventTaps;
 }
 
-@property(copy) id installationEventRepPost;
-@property(copy) id installationGSCallback;
-@property(copy) id installationHIDCallback;
+@property (nonatomic, copy) id /* block */ installationEventRepPost;
+@property (nonatomic, copy) id /* block */ installationGSCallback;
+@property (nonatomic, copy) id /* block */ installationHIDCallback;
 
 + (id)sharedManager;
 
 - (id)_copyCurrentEventTapPairs;
-- (void)_enumerateEventTapPairsUsingBlock:(id)arg1;
-- (void)_installEventTap:(id)arg1;
-- (void)_installHIDFilter:(id)arg1;
+- (void)_enumerateEventTapPairsUsingBlock:(id /* block */)arg1;
+- (id)_installEventTap:(id /* block */)arg1 identifier:(id)arg2 type:(int)arg3 skipDeviceMatching:(BOOL)arg4 wantsDigitizerEvents:(BOOL)arg5 wantsKeyboardEvents:(BOOL)arg6 wantsATVRemoteEvents:(BOOL)arg7 wantsLisaEvents:(BOOL)arg8 matchingServiceHandler:(id /* block */)arg9;
+- (void)_installEventTap:(id)arg1 skipDeviceMatching:(BOOL)arg2 wantsDigitizerEvents:(BOOL)arg3 wantsKeyboardEvents:(BOOL)arg4 wantsATVRemoteEvents:(BOOL)arg5 wantsLisaEvents:(BOOL)arg6;
+- (void)_installHIDFilter:(id)arg1 skipDeviceMatching:(BOOL)arg2 wantsDigitizerEvents:(BOOL)arg3 wantsKeyboardEvents:(BOOL)arg4 wantsATVRemoteEvents:(BOOL)arg5 wantsLisaEvents:(BOOL)arg6;
 - (void)_installSystemEventTap:(id)arg1;
+- (void)_passivelyPeakAtHIDEventWithTarget:(void*)arg1 tapPair:(id)arg2 sender:(void*)arg3 event:(struct __IOHIDEvent { }*)arg4 axEventRep:(id)arg5 didHandle:(BOOL)arg6;
 - (BOOL)_processGSEvent:(struct { int x1; int x2; struct CGPoint { float x_3_1_1; float x_3_1_2; } x3; struct CGPoint { float x_4_1_1; float x_4_1_2; } x4; unsigned int x5; unsigned long long x6; void *x7; int x8; int x9; unsigned int x10; unsigned long long x11; unsigned char x12[0]; }*)arg1;
 - (BOOL)_processHIDEvent:(struct __IOHIDEvent { }*)arg1 taskPort:(unsigned int)arg2 bundleId:(id)arg3;
 - (void)_removeHIDEventTapFilter:(id)arg1;
 - (void)_reorderEventTaps;
+- (void)_runMatchingServiceHandler:(id)arg1;
 - (void)_setEventTapPriority:(id)arg1 priority:(int)arg2;
 - (void)_setGSEventTapCallback:(void*)arg1;
 - (void)_setHIDEventTapCallback:(void*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)init;
-- (id)installEventTap:(id)arg1 identifier:(id)arg2 type:(int)arg3;
-- (id)installationEventRepPost;
-- (id)installationGSCallback;
-- (id)installationHIDCallback;
+- (id)installEventTap:(id /* block */)arg1 identifier:(id)arg2 type:(int)arg3;
+- (id)installEventTap:(id /* block */)arg1 identifier:(id)arg2 type:(int)arg3 skipDeviceMatching:(BOOL)arg4 wantsDigitizerEvents:(BOOL)arg5 wantsKeyboardEvents:(BOOL)arg6 wantsATVRemoteEvents:(BOOL)arg7 wantsLisaEvents:(BOOL)arg8;
+- (id)installKeyboardEventTap:(id /* block */)arg1 identifier:(id)arg2 matchingServiceHandler:(id /* block */)arg3;
+- (id /* block */)installationEventRepPost;
+- (id /* block */)installationGSCallback;
+- (id /* block */)installationHIDCallback;
 - (void)removeEventTap:(id)arg1;
-- (void)sendEvent:(id)arg1 afterTap:(id)arg2 useGSEvent:(BOOL)arg3 namedTaps:(id)arg4;
+- (void)runMatchingServiceHandlerForEventTap:(id)arg1;
+- (void)sendEvent:(id)arg1 afterTap:(id)arg2 useGSEvent:(BOOL)arg3 namedTaps:(id)arg4 options:(unsigned int)arg5;
+- (void)sendHIDSystemEvent:(id)arg1 repostCreatorHIDEvent:(BOOL)arg2 senderID:(unsigned long long)arg3;
 - (void)sendHIDSystemEvent:(id)arg1 senderID:(unsigned long long)arg2;
 - (void)setEventTapPriority:(id)arg1 priority:(int)arg2;
-- (void)setInstallationEventRepPost:(id)arg1;
-- (void)setInstallationGSCallback:(id)arg1;
-- (void)setInstallationHIDCallback:(id)arg1;
+- (void)setInstallationEventRepPost:(id /* block */)arg1;
+- (void)setInstallationGSCallback:(id /* block */)arg1;
+- (void)setInstallationHIDCallback:(id /* block */)arg1;
 
 @end

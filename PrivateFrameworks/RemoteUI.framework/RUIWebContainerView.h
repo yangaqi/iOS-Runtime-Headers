@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
  */
 
-@class <RUIWebContainerViewDelegate>, NSString, UIWebView;
-
 @interface RUIWebContainerView : UIView <UIWebViewDelegate> {
     <RUIWebContainerViewDelegate> *_delegate;
     BOOL _highlighted;
@@ -11,13 +9,13 @@
     UIWebView *_webView;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <RUIWebContainerViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(getter=isHighlighted) BOOL highlighted;
-@property(readonly) Class superclass;
-@property(readonly) UIWebView * webView;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RUIWebContainerViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UIWebView *webView;
 
 - (void).cxx_destruct;
 - (void)_setHighlightedNow;
@@ -29,6 +27,7 @@
 - (void)setDelegate:(id)arg1;
 - (void)setHighlighted:(BOOL)arg1;
 - (void)setUserStyleSheet:(id)arg1;
+- (BOOL)uiWebView:(id)arg1 previewIsAllowedForPosition:(struct CGPoint { float x1; float x2; })arg2;
 - (id)webView;
 - (BOOL)webView:(id)arg1 shouldStartLoadWithRequest:(id)arg2 navigationType:(int)arg3;
 - (void)webViewDidFinishLoad:(id)arg1;

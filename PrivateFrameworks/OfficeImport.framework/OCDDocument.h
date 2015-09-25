@@ -2,28 +2,29 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSData, NSMutableArray, OADBlipCollection, OADGraphicStyleCache, OADTextListStyle, OCDReader, OCDSummary, OCDWriter, OITSUPointerKeyDictionary;
-
 @interface OCDDocument : NSObject {
     OADBlipCollection *mBlips;
     NSMutableArray *mCharts;
     OADTextListStyle *mDefaultTextStyle;
+    OADTheme *mDocumentTheme;
     OITSUPointerKeyDictionary *mDualDrawableMap;
     NSData *mEncryptionInfo;
     OADGraphicStyleCache *mGraphicStyleCache;
     OCDReader *mReader;
     OCDSummary *mSummary;
+    OADTableStyleCollection *mTableStyles;
     OCDWriter *mWriter;
 }
 
-@property(readonly) OADBlipCollection * blips;
-@property(readonly) NSMutableArray * charts;
-@property(readonly) OADTextListStyle * defaultTextStyle;
-@property(readonly) OITSUPointerKeyDictionary * dualDrawableMap;
-@property(retain) OADGraphicStyleCache * graphicStyleCache;
-@property(retain) OCDReader * reader;
-@property(readonly) OCDSummary * summary;
-@property(retain) OCDWriter * writer;
+@property (nonatomic, readonly) OADBlipCollection *blips;
+@property (nonatomic, readonly) NSMutableArray *charts;
+@property (nonatomic, readonly) OADTextListStyle *defaultTextStyle;
+@property (nonatomic, readonly) OITSUPointerKeyDictionary *dualDrawableMap;
+@property (nonatomic, retain) OADGraphicStyleCache *graphicStyleCache;
+@property (nonatomic, retain) OCDReader *reader;
+@property (nonatomic, readonly) OCDSummary *summary;
+@property (nonatomic, readonly) OADTableStyleCollection *tableStyles;
+@property (nonatomic, retain) OCDWriter *writer;
 
 - (id)blips;
 - (id)charts;
@@ -35,11 +36,16 @@
 - (id)init;
 - (bool)isFromBinaryFile;
 - (id)reader;
+- (void)removeUnnecessaryOverrides;
 - (void)setEncryptionInfo:(id)arg1;
 - (void)setGraphicStyleCache:(id)arg1;
 - (void)setReader:(id)arg1;
+- (void)setTheme:(id)arg1;
+- (void)setUpPropertyHierarchyPreservingEffectiveValues;
 - (void)setWriter:(id)arg1;
 - (id)summary;
+- (id)tableStyles;
+- (id)theme;
 - (id)writer;
 
 @end

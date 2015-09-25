@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CompassUI.framework/CompassUI
  */
 
-@class CAShapeLayer, CalibrationBallView, CompassBackgroundView, NSMutableArray, UIButton, UILabel;
-
 @interface CalibrationViewController : UIViewController {
     double _angleOfAwesome;
     double _angleToRim;
@@ -35,6 +33,7 @@
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (double)_correctedAngleForCurrentOrientation:(double)arg1;
+- (void)_updateSizes;
 - (void)addConstraints;
 - (void)cancel;
 - (BOOL)circleIsCompleted;
@@ -59,5 +58,6 @@
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
+- (void)viewWillLayoutSubviews;
 
 @end

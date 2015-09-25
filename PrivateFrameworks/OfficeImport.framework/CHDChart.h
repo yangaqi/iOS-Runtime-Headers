@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDDefaultTextProperties, CHDLegend, CHDPlotArea, CHDTitle, CHDView3D, EDSheet, EDWorkbook, NSMutableArray, NSString, OADGraphicProperties;
-
 @interface CHDChart : OADGraphic <OADDrawableContainer> {
     bool mAutoTitleDeleted;
     OADGraphicProperties *mBackWallGraphicProperties;
@@ -38,18 +36,18 @@
     CHDView3D *mView3D;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)binaryEffects:(BOOL)arg1;
 
-- (id).cxx_construct;
 - (void)addChild:(id)arg1;
 - (void)addChildren:(id)arg1;
 - (id)backWallGraphicProperties;
 - (unsigned int)categoryCount;
+- (void)changeParentTextListStylePreservingEffectiveValues:(id)arg1;
 - (id)chartAreaGraphicProperties;
 - (id)childAtIndex:(unsigned int)arg1;
 - (unsigned int)childCount;
@@ -64,6 +62,7 @@
 - (id)defaultTextFont;
 - (id)defaultTextProperties;
 - (id)defaultThemeFont;
+- (id)description;
 - (int)direction;
 - (int)displayBlankAs;
 - (id)externalData;
@@ -84,6 +83,7 @@
 - (id)mainType;
 - (id)plotArea;
 - (id)processors;
+- (void)removeChild:(id)arg1;
 - (void)replaceChild:(id)arg1 with:(id)arg2;
 - (unsigned int)seriesCount;
 - (void)setAutoTitleDeleted:(bool)arg1;

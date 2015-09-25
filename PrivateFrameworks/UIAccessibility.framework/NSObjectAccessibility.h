@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
  */
 
-@interface NSObjectAccessibility : __NSObjectAccessibility_super {
-}
+@interface NSObjectAccessibility : __NSObjectAccessibility_super
 
-+ (Class)safeCategoryTargetClass;
++ (Class)safeCategoryBaseClass;
 + (id)safeCategoryTargetClassName;
 
 - (id)accessibilityElementAtIndex:(int)arg1;

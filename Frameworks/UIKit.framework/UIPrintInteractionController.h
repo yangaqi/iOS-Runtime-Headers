@@ -2,21 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <UIPrintInteractionControllerDelegate>, NSArray, PKPrinter, UIPrintFormatter, UIPrintInfo, UIPrintPageRenderer, UIPrintPaper;
-
 @interface UIPrintInteractionController : NSObject {
     unsigned int _backgroundTaskIdentifier;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completionHandler;
-
+    id /* block */ _completionHandler;
     <UIPrintInteractionControllerDelegate> *_delegate;
     BOOL _hidesNumberOfCopies;
+    NSObject<OS_dispatch_queue> *_previewQueue;
     <UIPrintInteractionControllerDelegate> *_printActivityDelegate;
     UIPrintFormatter *_printFormatter;
     UIPrintInfo *_printInfo;
@@ -27,23 +18,24 @@
     NSArray *_printingItems;
     BOOL _showsPageRange;
     BOOL _showsPaperSelectionForLoadedPapers;
+    id _temporaryRetainCycle;
 }
 
-@property <UIPrintInteractionControllerDelegate> * delegate;
-@property(readonly) int pageCount;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } pageRange;
-@property(retain) UIPrintPaper * paper;
-@property <UIPrintInteractionControllerDelegate> * printActivityDelegate;
-@property(retain) UIPrintFormatter * printFormatter;
-@property(retain) UIPrintInfo * printInfo;
-@property(retain) UIPrintPageRenderer * printPageRenderer;
-@property(readonly) UIPrintPaper * printPaper;
-@property(retain) PKPrinter * printer;
-@property(copy) id printingItem;
-@property(copy) NSArray * printingItems;
-@property BOOL showsNumberOfCopies;
-@property BOOL showsPageRange;
-@property BOOL showsPaperSelectionForLoadedPapers;
+@property (nonatomic) <UIPrintInteractionControllerDelegate> *delegate;
+@property (nonatomic, readonly) int pageCount;
+@property (nonatomic, retain) NSArray *pageRanges;
+@property (nonatomic, retain) UIPrintPaper *paper;
+@property (nonatomic) <UIPrintInteractionControllerDelegate> *printActivityDelegate;
+@property (nonatomic, retain) UIPrintFormatter *printFormatter;
+@property (nonatomic, retain) UIPrintInfo *printInfo;
+@property (nonatomic, retain) UIPrintPageRenderer *printPageRenderer;
+@property (nonatomic, readonly) UIPrintPaper *printPaper;
+@property (nonatomic, retain) PKPrinter *printer;
+@property (nonatomic, copy) id printingItem;
+@property (nonatomic, copy) NSArray *printingItems;
+@property (nonatomic) BOOL showsNumberOfCopies;
+@property (nonatomic) BOOL showsPageRange;
+@property (nonatomic) BOOL showsPaperSelectionForLoadedPapers;
 
 + (BOOL)canPrintData:(id)arg1;
 + (BOOL)canPrintURL:(id)arg1;
@@ -51,17 +43,30 @@
 + (id)printableUTIs;
 + (id)sharedPrintController;
 
+- (void).cxx_destruct;
+- (BOOL)_canPrintPDFData:(id)arg1;
+- (BOOL)_canPrintPDFURL:(id)arg1;
+- (BOOL)_canShowColor;
 - (BOOL)_canShowCopies;
 - (BOOL)_canShowDuplex;
 - (BOOL)_canShowPageRange;
 - (BOOL)_canShowPaperList;
+- (BOOL)_canShowPreview;
+- (BOOL)_canShowPunch;
+- (BOOL)_canShowStaple;
+- (void)_cancelAllPreviewGeneration;
 - (void)_cancelManualPrintPage;
 - (void)_cleanPrintState;
 - (id)_currentPrintInfo;
 - (void)_enableManualPrintPage:(BOOL)arg1;
 - (void)_endPrintJob:(BOOL)arg1 error:(id)arg2;
+- (void)_ensurePDFIsUnlockedFirstAttempt:(BOOL)arg1 completionHandler:(id /* block */)arg2;
+- (void)_generatePrintPreview:(id /* block */)arg1;
+- (id)_getChosenPaperFromDelegateForPaperList:(id)arg1;
+- (float)_getCutLengthFromDelegateForPaper:(id)arg1;
 - (id)_init;
 - (void)_manualPrintPage;
+- (struct CGContext { }*)_newSaveContext:(id)arg1 withMediaRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (id)_paperForContentType:(int)arg1;
 - (id)_paperForPDFItem:(id)arg1 withDuplexMode:(int)arg2;
 - (void)_preparePrintInfo;
@@ -72,9 +77,12 @@
 - (void)_printPanelDidDismiss;
 - (void)_printPanelDidPresent;
 - (void)_printPanelWillDismiss:(BOOL)arg1;
+- (struct CGSize { float x1; float x2; })_printablePDFDataSize:(id)arg1;
+- (struct CGSize { float x1; float x2; })_printablePDFURLSize:(id)arg1;
 - (void)_setPrintInfoState:(int)arg1;
-- (BOOL)_setupPrintPanel:(id)arg1;
+- (BOOL)_setupPrintPanel:(id /* block */)arg1;
 - (void)_startPrinting;
+- (void)_updateCutterBehavior;
 - (void)_updatePageCount;
 - (void)_updatePrintPaper;
 - (void)dealloc;
@@ -82,23 +90,23 @@
 - (void)dismissAnimated:(BOOL)arg1;
 - (id)init;
 - (int)pageCount;
-- (struct _NSRange { unsigned int x1; unsigned int x2; })pageRange;
+- (id)pageRanges;
 - (id)paper;
-- (BOOL)presentAnimated:(BOOL)arg1 completionHandler:(id)arg2;
-- (BOOL)presentFromBarButtonItem:(id)arg1 animated:(BOOL)arg2 completionHandler:(id)arg3;
-- (BOOL)presentFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inView:(id)arg2 animated:(BOOL)arg3 completionHandler:(id)arg4;
+- (BOOL)presentAnimated:(BOOL)arg1 completionHandler:(id /* block */)arg2;
+- (BOOL)presentFromBarButtonItem:(id)arg1 animated:(BOOL)arg2 completionHandler:(id /* block */)arg3;
+- (BOOL)presentFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inView:(id)arg2 animated:(BOOL)arg3 completionHandler:(id /* block */)arg4;
 - (id)printActivityDelegate;
 - (id)printFormatter;
 - (id)printInfo;
 - (id)printPageRenderer;
 - (id)printPaper;
-- (BOOL)printToPrinter:(id)arg1 completionHandler:(id)arg2;
+- (BOOL)printToPrinter:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)printer;
 - (id)printingItem;
 - (id)printingItems;
-- (oneway void)release;
+- (BOOL)savePDFToURL:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)setDelegate:(id)arg1;
-- (void)setPageRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+- (void)setPageRanges:(id)arg1;
 - (void)setPaper:(id)arg1;
 - (void)setPrintActivityDelegate:(id)arg1;
 - (void)setPrintFormatter:(id)arg1;

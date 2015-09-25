@@ -2,17 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString, NSURL;
+@interface SAMicroblogTwitterPostAuthor : SADomainObject
 
-@interface SAMicroblogTwitterPostAuthor : SADomainObject {
-}
-
-@property int followersCount;
-@property(copy) NSString * fullName;
-@property(copy) NSURL * profileImageUrl;
-@property(copy) NSString * screenName;
-@property(copy) NSNumber * userId;
-@property BOOL verified;
+@property (nonatomic) int followersCount;
+@property (nonatomic, copy) NSString *fullName;
+@property (nonatomic, copy) NSURL *profileImageUrl;
+@property (nonatomic, copy) NSString *screenName;
+@property (nonatomic, copy) NSNumber *userId;
+@property (nonatomic) BOOL verified;
 
 + (id)twitterPostAuthor;
 + (id)twitterPostAuthorWithDictionary:(id)arg1 context:(id)arg2;
@@ -29,7 +26,6 @@
 - (void)setScreenName:(id)arg1;
 - (void)setUserId:(id)arg1;
 - (void)setVerified:(BOOL)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 - (id)userId;
 - (BOOL)verified;
 

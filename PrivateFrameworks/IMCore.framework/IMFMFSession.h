@@ -2,23 +2,21 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@class FMFDevice, FMFSession, NSString;
-
 @interface IMFMFSession : NSObject <FMFSessionDelegate> {
     FMFDevice *_activeDevice;
     NSString *_establishingAccountID;
     FMFSession *_session;
 }
 
-@property(retain) FMFDevice * activeDevice;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) BOOL disableLocationSharing;
-@property(retain) NSString * establishingAccountID;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL restrictLocationSharing;
-@property(retain) FMFSession * session;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) FMFDevice *activeDevice;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL disableLocationSharing;
+@property (nonatomic, retain) NSString *establishingAccountID;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL restrictLocationSharing;
+@property (nonatomic, retain) FMFSession *session;
+@property (readonly) Class superclass;
 
 + (id)sharedInstance;
 
@@ -27,6 +25,8 @@
 - (id)_callerIDForChat:(id)arg1;
 - (void)_postNotification:(id)arg1 object:(id)arg2 userInfo:(id)arg3;
 - (void)_postRelationshipStatusDidChangeNotificationWithHandle:(id)arg1;
+- (void)_startSharingWithFMFHandles:(id)arg1 inChat:(id)arg2 untilDate:(id)arg3;
+- (void)_stopSharingWithFMFHandles:(id)arg1 inChat:(id)arg2;
 - (void)_updateActiveDevice;
 - (id)activeDevice;
 - (BOOL)allChatParticipantsFollowingMyLocation:(id)arg1;
@@ -68,9 +68,11 @@
 - (void)setEstablishingAccountID:(id)arg1;
 - (void)setSession:(id)arg1;
 - (void)startSharingWithChat:(id)arg1 untilDate:(id)arg2;
+- (void)startSharingWithHandle:(id)arg1 inChat:(id)arg2 untilDate:(id)arg3;
 - (void)startTrackingLocationForChat:(id)arg1;
 - (void)startTrackingLocationForHandle:(id)arg1;
 - (void)stopSharingWithChat:(id)arg1;
+- (void)stopSharingWithHandle:(id)arg1 inChat:(id)arg2;
 - (void)stopTrackingLocationForChat:(id)arg1;
 - (void)stopTrackingLocationForHandle:(id)arg1;
 - (id)timedOfferExpirationForChat:(id)arg1;

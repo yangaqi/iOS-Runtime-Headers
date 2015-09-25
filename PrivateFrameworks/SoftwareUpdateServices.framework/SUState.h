@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SoftwareUpdateServices.framework/SoftwareUpdateServices
  */
 
-@class NSDate, NSString, SUDescriptor, SUDownload;
-
 @interface SUState : NSObject <NSKeyedUnarchiverDelegate> {
     BOOL _autodownloadNeedsOneTimeRetry;
+    _SUAutoInstallOperationModel *_lastAutoInstallOperationModel;
     SUDownload *_lastDownload;
     NSString *_lastProductBuild;
     NSString *_lastProductType;
@@ -16,23 +15,26 @@
     NSDate *_scheduledAutodownloadPolicyChangeTime;
     NSDate *_scheduledAutodownloadWifiPeriodEndTime;
     NSDate *_scheduledManualDownloadWifiPeriodEndTime;
+    BOOL _stashbagPersisted;
 }
 
-@property BOOL autodownloadNeedsOneTimeRetry;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) SUDownload * lastDownload;
-@property(retain) NSString * lastProductBuild;
-@property(retain) NSString * lastProductType;
-@property(retain) NSString * lastProductVersion;
-@property(retain) NSString * lastReleaseType;
-@property(copy) SUDescriptor * lastScannedDescriptor;
-@property(retain) NSDate * lastScannedDescriptorTime;
-@property(retain) NSDate * scheduledAutodownloadPolicyChangeTime;
-@property(retain) NSDate * scheduledAutodownloadWifiPeriodEndTime;
-@property(retain) NSDate * scheduledManualDownloadWifiPeriodEndTime;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL autodownloadNeedsOneTimeRetry;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) _SUAutoInstallOperationModel *lastAutoInstallOperationModel;
+@property (nonatomic, copy) SUDownload *lastDownload;
+@property (nonatomic, retain) NSString *lastProductBuild;
+@property (nonatomic, retain) NSString *lastProductType;
+@property (nonatomic, retain) NSString *lastProductVersion;
+@property (nonatomic, retain) NSString *lastReleaseType;
+@property (nonatomic, copy) SUDescriptor *lastScannedDescriptor;
+@property (nonatomic, retain) NSDate *lastScannedDescriptorTime;
+@property (nonatomic, retain) NSDate *scheduledAutodownloadPolicyChangeTime;
+@property (nonatomic, retain) NSDate *scheduledAutodownloadWifiPeriodEndTime;
+@property (nonatomic, retain) NSDate *scheduledManualDownloadWifiPeriodEndTime;
+@property (nonatomic) BOOL stashbagPersisted;
+@property (readonly) Class superclass;
 
 + (id)currentState;
 + (id)statePath;
@@ -42,6 +44,7 @@
 - (void)dealloc;
 - (id)description;
 - (id)init;
+- (id)lastAutoInstallOperationModel;
 - (id)lastDownload;
 - (id)lastProductBuild;
 - (id)lastProductType;
@@ -57,6 +60,7 @@
 - (id)scheduledAutodownloadWifiPeriodEndTime;
 - (id)scheduledManualDownloadWifiPeriodEndTime;
 - (void)setAutodownloadNeedsOneTimeRetry:(BOOL)arg1;
+- (void)setLastAutoInstallOperationModel:(id)arg1;
 - (void)setLastDownload:(id)arg1;
 - (void)setLastProductBuild:(id)arg1;
 - (void)setLastProductType:(id)arg1;
@@ -67,6 +71,8 @@
 - (void)setScheduledAutodownloadPolicyChangeTime:(id)arg1;
 - (void)setScheduledAutodownloadWifiPeriodEndTime:(id)arg1;
 - (void)setScheduledManualDownloadWifiPeriodEndTime:(id)arg1;
+- (void)setStashbagPersisted:(BOOL)arg1;
+- (BOOL)stashbagPersisted;
 - (Class)unarchiver:(id)arg1 cannotDecodeObjectOfClassName:(id)arg2 originalClasses:(id)arg3;
 
 @end

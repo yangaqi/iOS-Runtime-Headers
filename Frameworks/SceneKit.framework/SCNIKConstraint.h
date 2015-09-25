@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
  */
 
-@class NSMutableDictionary, SCNNode;
-
 @interface SCNIKConstraint : SCNConstraint {
     SCNNode *_chainRootNode;
     struct SCNVector3 { 
@@ -12,13 +10,11 @@
         float z; 
     } _ikTarget;
     NSMutableDictionary *_jointsPerNode;
-    id _reserved;
 }
 
-@property(readonly) SCNNode * chainRootNode;
-@property struct SCNVector3 { float x1; float x2; float x3; } targetPosition;
+@property (nonatomic, readonly) SCNNode *chainRootNode;
+@property (nonatomic) struct SCNVector3 { float x1; float x2; float x3; } targetPosition;
 
-+ (id)SCNJSExportProtocol;
 + (id)inverseKinematicsConstraintWithChainRootNode:(id)arg1;
 + (BOOL)supportsSecureCoding;
 
@@ -30,6 +26,7 @@
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
+- (id)initWithChainRootNode:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)jointForNode:(id)arg1;
 - (float)maxAllowedRotationAngleForJoint:(id)arg1;

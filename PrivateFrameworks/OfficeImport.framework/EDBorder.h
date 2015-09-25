@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDColorReference, EDResources;
-
 @interface EDBorder : NSObject {
     EDColorReference *mColorReference;
     int mDiagonalType;
@@ -20,6 +18,7 @@
 - (id)color;
 - (id)colorReference;
 - (void)dealloc;
+- (id)description;
 - (int)diagonalType;
 - (unsigned int)hash;
 - (id)initWithResources:(id)arg1;

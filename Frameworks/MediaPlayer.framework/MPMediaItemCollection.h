@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPMediaItem, MPMediaQuery, NSArray;
-
 @interface MPMediaItemCollection : MPMediaEntity {
     unsigned int _containedMediaTypes;
     BOOL _initializedContainedMediaTypes;
@@ -13,11 +11,13 @@
     MPMediaItem *_representativeItem;
 }
 
-@property(readonly) unsigned int count;
-@property(readonly) int groupingType;
-@property(readonly) NSArray * items;
-@property(readonly) unsigned int mediaTypes;
-@property(readonly) MPMediaItem * representativeItem;
+@property (nonatomic, readonly) unsigned int count;
+@property (nonatomic, readonly) int groupingType;
+@property (nonatomic, readonly) NSArray *items;
+@property (nonatomic, readonly) unsigned int mediaTypes;
+@property (nonatomic, readonly) MPMediaItem *representativeItem;
+
+// Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
 
 + (id)collectionWithItems:(id)arg1;
 + (id)representativePersistentIDPropertyForGroupingType:(int)arg1;
@@ -28,13 +28,12 @@
 - (void).cxx_destruct;
 - (BOOL)MPSD_hasDownloadableItem;
 - (BOOL)MPSD_hasDownloadingItem;
-- (id)__albumArtistArtworkCatalog;
-- (id)__artistArtworkCatalog;
+- (id)albumArtistArtworkCatalog;
+- (id)artistArtworkCatalog;
 - (id)artworkCatalog;
 - (unsigned int)count;
 - (void)encodeWithCoder:(id)arg1;
 - (int)groupingType;
-- (BOOL)hasDeletableContent;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithItems:(id)arg1;
@@ -45,5 +44,15 @@
 - (unsigned int)mediaTypes;
 - (id)multiverseIdentifier;
 - (id)representativeItem;
+- (BOOL)setValue:(id)arg1 forProperty:(id)arg2;
+- (void)setValue:(id)arg1 forProperty:(id)arg2 withCompletionBlock:(id /* block */)arg3;
+
+// Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
+
++ (void)registerSupportedCustomProperties;
+
+// Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
+
+- (id)MPU_contentItemIdentifierCollection;
 
 @end

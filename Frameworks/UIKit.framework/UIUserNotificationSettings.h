@@ -2,25 +2,23 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSSet;
-
 @interface UIUserNotificationSettings : NSObject <NSCopying, NSSecureCoding> {
     NSSet *_categories;
     unsigned int _types;
 }
 
-@property(copy,readonly) NSSet * categories;
-@property(readonly) unsigned int types;
+@property (nonatomic, readonly, copy) NSSet *categories;
+@property (nonatomic, readonly) unsigned int types;
 
 + (id)settingsForRegisteredSettings:(id)arg1 requestedSettings:(id)arg2;
 + (id)settingsForTypes:(unsigned int)arg1 categories:(id)arg2;
 + (id)settingsForUserNotificationTypes:(unsigned int)arg1 userNotificationActionSettings:(id)arg2;
 + (BOOL)supportsSecureCoding;
 
+- (void).cxx_destruct;
 - (unsigned int)allowedUserNotificationTypes;
 - (id)categories;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)hash;

@@ -2,19 +2,23 @@
    Image: /System/Library/PrivateFrameworks/Parsec.framework/Parsec
  */
 
-@class NSArray, NSString;
-
 @interface PRSRenderFeedback : PRSFeedback {
     NSString *_fbq;
     NSArray *_hidden;
+    NSArray *_hidden_ext;
     NSArray *_results;
+    NSArray *_sections;
     int _trigger_timestamp;
+    NSString *_web_fbq;
 }
 
-@property(retain) NSString * fbq;
-@property(retain) NSArray * hidden;
-@property(retain) NSArray * results;
-@property int trigger_timestamp;
+@property (nonatomic, retain) NSString *fbq;
+@property (nonatomic, retain) NSArray *hidden;
+@property (nonatomic, retain) NSArray *hidden_ext;
+@property (nonatomic, retain) NSArray *results;
+@property (nonatomic, retain) NSArray *sections;
+@property (nonatomic) int trigger_timestamp;
+@property (nonatomic, retain) NSString *web_fbq;
 
 + (BOOL)supportsSecureCoding;
 
@@ -22,17 +26,23 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)fbq;
 - (id)hidden;
+- (id)hidden_ext;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFeedback:(id)arg1;
 - (id)initWithInput:(id)arg1 timestamp:(int)arg2;
 - (id)plist;
 - (id)results;
+- (id)sections;
 - (void)setFbq:(id)arg1;
 - (void)setHidden:(id)arg1;
+- (void)setHidden_ext:(id)arg1;
 - (void)setResults:(id)arg1;
+- (void)setSections:(id)arg1;
 - (void)setTrigger_timestamp:(int)arg1;
+- (void)setWeb_fbq:(id)arg1;
 - (int)trigger_timestamp;
-- (id)type;
+- (id)typeString;
 - (void)validate;
+- (id)web_fbq;
 
 @end

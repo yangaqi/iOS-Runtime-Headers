@@ -2,13 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UITextInputDelegate>, <UITextInputTokenizer>, <UITextViewDelegate>, MPUTextContainerContentSizeUpdater, NSAttributedString, NSDictionary, NSLayoutManager, NSString, NSTextContainer, NSTextStorage, UIAutoscroll, UIColor, UIFont, UIImage, UILabel, UITextInputController, UITextInputTraits, UITextInteractionAssistant, UITextPosition, UITextRange, UIView, _UICharacterStreamingManager, _UISiriStreamingManager, _UITextContainerView, _UITextViewRestorableScrollPosition;
-
-@interface UITextView : UIScrollView <ABText, MPUAutoupdatingTextContainer, UIKeyboardInput, UITextAutoscrolling, UITextInput, UITextInputControllerDelegate, UITextInputTraits_Private, UITextLinkInteraction, _UILayoutBaselineUpdating, _UIMultilineTextContentSizing> {
+@interface UITextView : UIScrollView <ABText, MPUAutoupdatingTextContainer, SPUISearchText, UIKeyboardInput, UIPreviewItemDelegate, UITextAutoscrolling, UITextInput, UITextInputControllerDelegate, UITextInputTraits_Private, UITextLinkInteraction, _UILayoutBaselineUpdating, _UIMultilineTextContentSizing> {
     UIAutoscroll *_autoscroll;
     _UICharacterStreamingManager *_characterStreamingManager;
     BOOL _clearsOnInsertion;
     _UITextContainerView *_containerView;
+    int _contentSizeUpdateSeqNo;
     unsigned int _dataDetectorTypes;
     float _firstBaselineOffsetFromTop;
     UIView *_inputAccessoryView;
@@ -19,14 +18,13 @@
     float _lastBaselineOffsetFromBottom;
     NSLayoutManager *_layoutManager;
     id _linkInteractionItem;
+    float _offsetFromScrollPosition;
     UILabel *_placeholderLabel;
     float _preferredMaxLayoutWidth;
     id _private;
+    _UITextViewRestorableScrollPosition *_scrollPosition;
+    unsigned int _scrollPositionDontRecordCount;
     _UITextViewRestorableScrollPosition *_scrollTarget;
-    struct CGPoint { 
-        float x; 
-        float y; 
-    } _scrollTargetOffset;
     int _siriAnimationStyle;
     NSDictionary *_siriParameters;
     _UISiriStreamingManager *_streamingManager;
@@ -38,6 +36,7 @@
         unsigned int needsScrollToSelectionAfterLayout : 1; 
         unsigned int isInteractingWithLink : 1; 
         unsigned int linkInteractionIsLongPress : 1; 
+        unsigned int linkInteractionIsPreview : 1; 
         unsigned int editable : 1; 
         unsigned int reentrancyGuard : 1; 
         unsigned int usesExplicitPreferredMaxLayoutWidth : 1; 
@@ -49,97 +48,101 @@
     } _tvFlags;
 }
 
-@property(setter=MPU_setAutomaticallyUpdatesTextStyleFontsToPreferredTextStyleFonts:) BOOL MPU_automaticallyUpdatesTextStyleFontsToPreferredTextStyleFonts;
-@property(readonly) MPUTextContainerContentSizeUpdater * MPU_contentSizeUpdater;
-@property(setter=_setDrawsDebugBaselines:) BOOL _drawsDebugBaselines;
-@property(copy) NSString * ab_text;
-@property(copy) NSDictionary * ab_textAttributes;
-@property BOOL acceptsEmoji;
-@property BOOL acceptsFloatingKeyboard;
-@property BOOL acceptsSplitKeyboard;
-@property BOOL allowsEditingTextAttributes;
-@property(copy) NSAttributedString * attributedText;
-@property int autocapitalizationType;
-@property(copy) NSString * autocorrectionContext;
-@property int autocorrectionType;
-@property(readonly) UITextPosition * beginningOfDocument;
-@property BOOL clearsOnInsertion;
-@property BOOL contentsIsSingleValue;
-@property unsigned int dataDetectorTypes;
-@property(copy,readonly) NSString * debugDescription;
-@property BOOL deferBecomingResponder;
-@property <UITextViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property BOOL disablePrediction;
-@property BOOL displaySecureTextUsingPlainText;
-@property(getter=isEditable) BOOL editable;
-@property int emptyContentReturnKeyType;
-@property BOOL enablesReturnKeyAutomatically;
-@property BOOL enablesReturnKeyOnNonWhiteSpaceContent;
-@property(readonly) UITextPosition * endOfDocument;
-@property(retain) UIFont * font;
-@property BOOL forceEnableDictation;
-@property(readonly) unsigned int hash;
-@property(retain) UIView * inputAccessoryView;
-@property <UITextInputDelegate> * inputDelegate;
-@property(retain) UIView * inputView;
-@property(retain) UIColor * insertionPointColor;
-@property unsigned int insertionPointWidth;
-@property BOOL isSingleLineDocument;
-@property int keyboardAppearance;
-@property int keyboardType;
-@property(readonly) NSLayoutManager * layoutManager;
-@property BOOL learnsCorrections;
-@property(copy) NSDictionary * linkTextAttributes;
-@property(readonly) UITextRange * markedTextRange;
-@property(copy) NSDictionary * markedTextStyle;
-@property(copy) NSString * responseContext;
-@property BOOL returnKeyGoesToNextResponder;
-@property int returnKeyType;
-@property(getter=isSecureTextEntry) BOOL secureTextEntry;
-@property(getter=isSelectable) BOOL selectable;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } selectedRange;
-@property(copy) UITextRange * selectedTextRange;
-@property int selectionAffinity;
-@property(retain) UIColor * selectionBarColor;
-@property(retain) UIImage * selectionDragDotImage;
-@property(retain) UIColor * selectionHighlightColor;
-@property int shortcutConversionType;
-@property int spellCheckingType;
-@property(readonly) Class superclass;
-@property BOOL suppressReturnKeyStyling;
-@property(copy) NSString * text;
-@property int textAlignment;
-@property(retain) UIColor * textColor;
-@property(readonly) NSTextContainer * textContainer;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textContainerInset;
-@property(readonly) UIView * textInputView;
-@property int textLoupeVisibility;
-@property int textSelectionBehavior;
-@property(retain,readonly) NSTextStorage * textStorage;
-@property id textSuggestionDelegate;
-@property struct __CFCharacterSet { }* textTrimmingSet;
-@property(readonly) <UITextInputTokenizer> * tokenizer;
-@property(copy) NSDictionary * typingAttributes;
-@property BOOL useInterfaceLanguageForLocalization;
+@property (setter=MPU_setAutomaticallyUpdatesTextStyleFontsToPreferredTextStyleFonts:, nonatomic) BOOL MPU_automaticallyUpdatesTextStyleFontsToPreferredTextStyleFonts;
+@property (nonatomic, readonly) MPUTextContainerContentSizeUpdater *MPU_contentSizeUpdater;
+@property (setter=_setDrawsDebugBaselines:, nonatomic) BOOL _drawsDebugBaselines;
+@property (nonatomic, copy) NSString *ab_text;
+@property (nonatomic, copy) NSDictionary *ab_textAttributes;
+@property (nonatomic) BOOL acceptsEmoji;
+@property (nonatomic) BOOL acceptsFloatingKeyboard;
+@property (nonatomic) BOOL acceptsSplitKeyboard;
+@property (nonatomic) BOOL allowsEditingTextAttributes;
+@property (nonatomic, copy) NSAttributedString *attributedText;
+@property (copy) NSAttributedString *attributedText;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic, copy) NSString *autocorrectionContext;
+@property (nonatomic) int autocorrectionType;
+@property (nonatomic, readonly) UITextPosition *beginningOfDocument;
+@property (nonatomic) BOOL clearsOnInsertion;
+@property (nonatomic) BOOL contentsIsSingleValue;
+@property (nonatomic) unsigned int dataDetectorTypes;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) BOOL deferBecomingResponder;
+@property (nonatomic) <UITextViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL disablePrediction;
+@property (nonatomic) BOOL displaySecureTextUsingPlainText;
+@property (getter=isEditable, nonatomic) BOOL editable;
+@property (nonatomic) int emptyContentReturnKeyType;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (nonatomic) BOOL enablesReturnKeyOnNonWhiteSpaceContent;
+@property (nonatomic, readonly) UITextPosition *endOfDocument;
+@property (nonatomic, retain) UIFont *font;
+@property (nonatomic) BOOL forceEnableDictation;
+@property (readonly) unsigned int hash;
+@property (retain) UIView *inputAccessoryView;
+@property (nonatomic) <UITextInputDelegate> *inputDelegate;
+@property (retain) UIView *inputView;
+@property (nonatomic, retain) UIColor *insertionPointColor;
+@property (nonatomic) unsigned int insertionPointWidth;
+@property (nonatomic) BOOL isCarPlayIdiom;
+@property (nonatomic) BOOL isSingleLineDocument;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, readonly) NSLayoutManager *layoutManager;
+@property (nonatomic) BOOL learnsCorrections;
+@property (nonatomic, copy) NSDictionary *linkTextAttributes;
+@property (nonatomic, readonly) UITextRange *markedTextRange;
+@property (nonatomic, copy) NSDictionary *markedTextStyle;
+@property unsigned int numberOfLines;
+@property (nonatomic, copy) NSString *recentInputIdentifier;
+@property (nonatomic, copy) NSString *responseContext;
+@property (nonatomic) BOOL returnKeyGoesToNextResponder;
+@property (nonatomic) int returnKeyType;
+@property (getter=isSecureTextEntry, nonatomic) BOOL secureTextEntry;
+@property (getter=isSelectable, nonatomic) BOOL selectable;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } selectedRange;
+@property (copy) UITextRange *selectedTextRange;
+@property (nonatomic) int selectionAffinity;
+@property (nonatomic, retain) UIColor *selectionBarColor;
+@property (nonatomic, retain) UIImage *selectionDragDotImage;
+@property (nonatomic, retain) UIColor *selectionHighlightColor;
+@property (nonatomic) int shortcutConversionType;
+@property (nonatomic) int spellCheckingType;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL suppressReturnKeyStyling;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) int textAlignment;
+@property (nonatomic, retain) UIColor *textColor;
+@property (nonatomic, readonly) NSTextContainer *textContainer;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textContainerInset;
+@property (nonatomic, readonly) UIView *textInputView;
+@property (nonatomic) int textLoupeVisibility;
+@property (nonatomic) int textSelectionBehavior;
+@property (nonatomic, readonly) NSTextStorage *textStorage;
+@property (nonatomic) id textSuggestionDelegate;
+@property (nonatomic) struct __CFCharacterSet { }*textTrimmingSet;
+@property (nonatomic, readonly) <UITextInputTokenizer> *tokenizer;
+@property (nonatomic, copy) NSDictionary *typingAttributes;
+@property (nonatomic) BOOL useInterfaceLanguageForLocalization;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (id)_bestInterpretationForDictationResult:(id)arg1;
 + (BOOL)_isCompatibilityTextView;
 + (id)_sharedHighlightView;
-+ (id)pkui_plainNonInteractiveTextView;
 
-- (BOOL)MPU_automaticallyUpdatesTextStyleFontsToPreferredTextStyleFonts;
-- (id)MPU_contentSizeUpdater;
-- (void)MPU_setAutomaticallyUpdatesTextStyleFontsToPreferredTextStyleFonts:(BOOL)arg1;
+- (void).cxx_destruct;
 - (void)_addShortcut:(id)arg1;
 - (void)_baselineOffsetDidChange;
 - (float)_baselineOffsetFromBottom;
 - (void)_cancelDataDetectors;
-- (struct CGPoint { float x1; float x2; })_closeQuoteAnchor;
 - (void)_commonInitWithTextContainer:(id)arg1 isDecoding:(BOOL)arg2 isEditable:(BOOL)arg3 isSelectable:(BOOL)arg4;
+- (struct CGSize { float x1; float x2; })_containerSizeForBoundsSize:(struct CGSize { float x1; float x2; })arg1 allowingOverflow:(BOOL)arg2;
 - (id)_containerView;
 - (struct CGPoint { float x1; float x2; })_contentOffsetForScrollToVisible:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (float)_currentPreferredMaxLayoutWidth;
+- (id)_dataForPreviewItemController:(id)arg1 atPosition:(struct CGPoint { float x1; float x2; })arg2 type:(int*)arg3;
 - (void)_define:(id)arg1;
 - (void)_deleteBackwardAndNotify:(BOOL)arg1;
 - (void)_didFinishSpeechRecognition;
@@ -152,67 +155,85 @@
 - (void)_finishHandlingInteraction:(id)arg1;
 - (float)_firstBaselineOffsetFromTop;
 - (struct CGPoint { float x1; float x2; })_firstGlyphBaselineLeftPointWithLayoutManager:(id)arg1;
+- (BOOL)_getCloseQuoteAnchor:(struct CGPoint { float x1; float x2; }*)arg1;
+- (BOOL)_getOpenQuoteAnchor:(struct CGPoint { float x1; float x2; }*)arg1;
 - (void)_highlightLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)_insertAttributedTextWithoutClosingTyping:(id)arg1;
 - (id)_interactableItemAtPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (BOOL)_interactionShouldBeginFromPreviewItemController:(id)arg1 forPosition:(struct CGPoint { float x1; float x2; })arg2;
+- (void)_interactionStartedFromPreviewItemController:(id)arg1;
+- (void)_interactionStoppedFromPreviewItemController:(id)arg1;
 - (struct CGSize { float x1; float x2; })_intrinsicSizeWithinSize:(struct CGSize { float x1; float x2; })arg1;
+- (BOOL)_isDisplayingLookupViewController;
 - (BOOL)_isDisplayingReferenceLibraryViewController;
+- (BOOL)_isDisplayingShareViewController;
 - (BOOL)_isDisplayingShortcutViewController;
 - (BOOL)_isInteractiveTextSelectionDisabled;
 - (void)_keyboardDidShow:(id)arg1;
 - (struct CGPoint { float x1; float x2; })_lastGlyphBaselineRightPointWithLayoutManager:(id)arg1;
 - (id)_layoutDebuggingTitle;
 - (void)_layoutPlaceholder;
+- (void)_lookup:(struct CGPoint { float x1; float x2; })arg1;
 - (BOOL)_mightHaveSelection;
 - (BOOL)_needsDoubleUpdateConstraintsPass;
 - (void)_observedTextViewDidChange:(id)arg1;
-- (struct CGPoint { float x1; float x2; })_openQuoteAnchor;
-- (void)_performLayoutCalculation:(id)arg1 inSize:(struct CGSize { float x1; float x2; })arg2;
+- (BOOL)_ownsInputAccessoryView;
+- (void)_performLayoutCalculation:(id /* block */)arg1 inSize:(struct CGSize { float x1; float x2; })arg2;
 - (void)_populateArchivedSubviews:(id)arg1;
 - (float)_preferredMaxLayoutWidth;
 - (void)_prepareForFirstIntrinsicContentSizeCalculation;
 - (void)_prepareForSecondIntrinsicContentSizeCalculationWithLayoutEngineBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_presentationRectForLinkAtRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+- (id)_presentationRectsForLinkAtRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 withMargin:(float)arg2;
+- (id)_presentationRectsForPreviewItemController:(id)arg1;
 - (Class)_printFormatterClass;
 - (void)_promptForReplace:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_rectForScrollToVisible:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)_registerUndoOperationForReplacementWithActionName:(id)arg1 replacementText:(id)arg2;
 - (void)_resetDataDetectorsResults;
 - (void)_resetLinkInteraction;
+- (void)_resetToBeginningOfDoublePass;
 - (void)_resetUsesExplicitPreferredMaxLayoutWidth;
 - (id)_restorableScrollPosition;
+- (id)_restorableScrollPositionForStateRestoration;
+- (BOOL)_restoreFirstResponder;
 - (void)_restoreScrollPosition:(id)arg1 animated:(BOOL)arg2;
 - (void)_resyncContainerFrameForNonAutolayout;
+- (void)_resyncContainerFrameForNonAutolayoutDeferringSizeToFit:(BOOL)arg1;
 - (void)_scrollRangeToVisible:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 animated:(BOOL)arg2;
 - (void)_scrollSelectionToVisibleInContainingScrollView;
 - (void)_scrollSelectionToVisibleInContainingScrollView:(BOOL)arg1;
+- (void)_scrollToSelectionIfNeeded;
 - (void)_scrollViewAnimationEnded:(id)arg1 finished:(BOOL)arg2;
 - (void)_selectionMayChange:(id)arg1;
+- (void)_setContentOffsetWithoutRecordingScrollPosition:(struct CGPoint { float x1; float x2; })arg1;
 - (void)_setDictationResult:(id)arg1 withCorrectionIdentifier:(id)arg2;
 - (void)_setDrawsDebugBaselines:(BOOL)arg1;
+- (void)_setFrameOrBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 fromOldRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 settingAction:(id /* block */)arg3;
 - (void)_setInSecondConstraintsPass:(BOOL)arg1;
 - (void)_setInteractiveTextSelectionDisabled:(BOOL)arg1;
 - (void)_setPreferredMaxLayoutWidth:(float)arg1;
-- (void)_setScrollTarget:(id)arg1;
 - (void)_setWhitelistedTypingAttributes:(id)arg1;
+- (void)_share:(id)arg1;
 - (BOOL)_shouldScrollEnclosingScrollView;
 - (BOOL)_shouldStartDataDetectors;
 - (void)_showTextStyleOptions:(id)arg1;
 - (void)_startDataDetectors;
 - (void)_streamingManagerDidCommitFinalResults;
+- (void)_textContainerSizeDidChange:(id)arg1;
 - (id)_textInputTraits;
 - (id)_textInputViewForAddingGestureRecognizers;
 - (void)_textStorageDidProcessEditing:(id)arg1;
 - (unsigned int)_totalNumberOfTextViewsInLayoutManager;
 - (void)_transliterateChinese:(id)arg1;
 - (void)_updateBaselineInformationDependentOnBounds;
+- (void)_updateContainerTileAndSizingFlags;
 - (void)_updateContentSize;
 - (void)_updatePlaceholderVisibility;
+- (void)_updateTextContainerSizeAndSizeToFit;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })_visibleRangeWithLayout:(BOOL)arg1;
 - (BOOL)_wantsBaselineUpdatingFollowingConstraintsPass;
 - (id)_whitelistedTypingAttributes;
-- (id)ab_text;
-- (id)ab_textAttributes;
 - (void)addTextAlternativesDisplayStyleToRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (BOOL)allowsEditingTextAttributes;
 - (id)attributedPlaceholder;
@@ -220,9 +241,12 @@
 - (id)automaticallySelectedOverlay;
 - (int)baseWritingDirectionForPosition:(id)arg1 inDirection:(int)arg2;
 - (BOOL)becomeFirstResponder;
+- (BOOL)becomesEditableWithGestures;
+- (void)beginFloatingCursorAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)beginSelectionChange;
 - (id)beginningOfDocument;
 - (BOOL)canBecomeFirstResponder;
+- (BOOL)canBecomeFocused;
 - (BOOL)canPerformAction:(SEL)arg1 withSender:(id)arg2;
 - (BOOL)canResignFirstResponder;
 - (void)cancelAutoscroll;
@@ -237,7 +261,6 @@
 - (void)copy:(id)arg1;
 - (void)cut:(id)arg1;
 - (unsigned int)dataDetectorTypes;
-- (id)dd_newOperation;
 - (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (void)decreaseSize:(id)arg1;
@@ -246,6 +269,7 @@
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 forViewPrintFormatter:(id)arg2;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)endFloatingCursor;
 - (id)endOfDocument;
 - (void)endSelectionChange;
 - (id)extractWordArrayFromTokensArray:(id)arg1;
@@ -296,8 +320,6 @@
 - (BOOL)mightHaveLinks;
 - (int)offsetFromPosition:(id)arg1 toPosition:(id)arg2;
 - (void)paste:(id)arg1;
-- (struct CGSize { float x1; float x2; })pkui_frameSizeForTextSize:(struct CGSize { float x1; float x2; })arg1;
-- (struct CGSize { float x1; float x2; })pkui_textSizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (id)positionFromPosition:(id)arg1 inDirection:(int)arg2 offset:(int)arg3;
 - (id)positionFromPosition:(id)arg1 offset:(int)arg2;
 - (id)positionWithinRange:(id)arg1 farthestInDirection:(int)arg2;
@@ -318,8 +340,6 @@
 - (int)selectionAffinity;
 - (id)selectionRectsForRange:(id)arg1;
 - (id)selectionView;
-- (void)setAb_text:(id)arg1;
-- (void)setAb_textAttributes:(id)arg1;
 - (void)setAllowsEditingTextAttributes:(BOOL)arg1;
 - (void)setAttributedPlaceholder:(id)arg1;
 - (void)setAttributedText:(id)arg1;
@@ -327,6 +347,8 @@
 - (void)setBecomesEditableWithGestures:(BOOL)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setClearsOnInsertion:(BOOL)arg1;
+- (void)setContentMode:(int)arg1;
+- (void)setContentOffset:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setContentToHTMLString:(id)arg1;
 - (void)setContinuousSpellCheckingEnabled:(BOOL)arg1;
 - (void)setDataDetectorTypes:(unsigned int)arg1;
@@ -351,6 +373,7 @@
 - (void)setTextAlignment:(int)arg1;
 - (void)setTextColor:(id)arg1;
 - (void)setTextContainerInset:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
+- (void)setTiledViewsDrawAsynchronously:(BOOL)arg1;
 - (void)setTypingAttributes:(id)arg1;
 - (void)setUsesTiledViews:(BOOL)arg1;
 - (BOOL)shouldPresentSheetsInAWindowLayeredAboveTheKeyboard;
@@ -373,15 +396,18 @@
 - (id)textRangeFromPosition:(id)arg1 toPosition:(id)arg2;
 - (id)textStorage;
 - (id)textStylingAtPosition:(id)arg1 inDirection:(int)arg2;
+- (BOOL)tiledViewsDrawAsynchronously;
 - (void)tintColorDidChange;
 - (void)toggleBoldface:(id)arg1;
 - (void)toggleItalics:(id)arg1;
 - (void)toggleUnderline:(id)arg1;
 - (id)tokenizer;
+- (void)traitCollectionDidChange:(id)arg1;
 - (id)typingAttributes;
 - (id)undoManager;
 - (void)unmarkText;
 - (void)updateConstraints;
+- (void)updateFloatingCursorAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)updateInteractionWithLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)updateSelection;
 - (BOOL)usesTiledViews;
@@ -391,5 +417,41 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })visibleTextRect;
 - (id)webView;
 - (BOOL)willInteractWithLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
+
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
+
+- (void)_cnui_applyContactStyle;
+- (id)ab_text;
+- (id)ab_textAttributes;
+- (void)setAb_text:(id)arg1;
+- (void)setAb_textAttributes:(id)arg1;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
++ (id)pkui_plainNonInteractiveTextView;
+
+- (struct CGSize { float x1; float x2; })pkui_frameSizeForTextSize:(struct CGSize { float x1; float x2; })arg1;
+- (struct CGSize { float x1; float x2; })pkui_textSizeThatFits:(struct CGSize { float x1; float x2; })arg1;
+
+// Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
+
+- (id)dd_newOperation;
+
+// Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
+
+- (BOOL)MPU_automaticallyUpdatesTextStyleFontsToPreferredTextStyleFonts;
+- (id)MPU_contentSizeUpdater;
+- (void)MPU_setAutomaticallyUpdatesTextStyleFontsToPreferredTextStyleFonts:(BOOL)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeFromTextRange:(id)arg1;
+- (void)scrollRangeToVisible:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 consideringInsets:(BOOL)arg2 animated:(BOOL)arg3;
+- (id)selectedRanges;
+
+// Image: /System/Library/PrivateFrameworks/SpotlightUI.framework/SpotlightUI
+
+- (unsigned int)numberOfLines;
+- (void)setNumberOfLines:(unsigned int)arg1;
 
 @end

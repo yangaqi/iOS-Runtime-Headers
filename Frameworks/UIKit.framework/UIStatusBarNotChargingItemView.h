@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIStatusBarNotChargingItemView : UIStatusBarItemView {
     NSString *_notChargingString;
 }
 
+- (void).cxx_destruct;
 - (id)contentsImage;
-- (void)dealloc;
 - (BOOL)updateForNewData:(id)arg1 actions:(int)arg2;
 
 @end

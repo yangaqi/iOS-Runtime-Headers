@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKAttachmentViewController, CKConversation, CKTranscriptManagementNameField, CKTranscriptManagementView, FMFMapViewController, NSString;
-
 @interface CKTranscriptManagementController : CKViewController <CKAttachmentViewControllerDelegate, CKTranscriptManagementNameFieldDelegate, FMFMapViewControllerDelegate, UIGestureRecognizerDelegate> {
     CKAttachmentViewController *_attachmentsController;
     CKConversation *_conversation;
@@ -15,18 +13,18 @@
     BOOL _removeMapViewAfterScrollAnimation;
 }
 
-@property(retain) CKAttachmentViewController * attachmentsController;
-@property(retain) CKConversation * conversation;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(getter=isInitialLoad) BOOL initialLoad;
-@property(retain) CKTranscriptManagementView * managementView;
-@property(retain) FMFMapViewController * mapController;
-@property BOOL mapHidden;
-@property(retain) CKTranscriptManagementNameField * nameField;
-@property BOOL removeMapViewAfterScrollAnimation;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) CKAttachmentViewController *attachmentsController;
+@property (nonatomic, retain) CKConversation *conversation;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isInitialLoad, nonatomic) BOOL initialLoad;
+@property (nonatomic, retain) CKTranscriptManagementView *managementView;
+@property (nonatomic, retain) FMFMapViewController *mapController;
+@property (nonatomic) BOOL mapHidden;
+@property (nonatomic, retain) CKTranscriptManagementNameField *nameField;
+@property (nonatomic) BOOL removeMapViewAfterScrollAnimation;
+@property (readonly) Class superclass;
 
 - (BOOL)_conversationHasLeft;
 - (void)_conversationJoinStateDidChange:(id)arg1;
@@ -48,6 +46,7 @@
 - (void)attachmentsController:(id)arg1 collectionViewWillBeginDragging:(id)arg2;
 - (id)conversation;
 - (void)dealloc;
+- (id)fmfMapHandles:(id)arg1;
 - (void)fmfMapViewController:(id)arg1 didDeselectHandle:(id)arg2;
 - (void)fmfMapViewController:(id)arg1 didSelectHandle:(id)arg2;
 - (void)fmfMapViewController:(id)arg1 regionDidChangeAnimated:(BOOL)arg2;
@@ -77,5 +76,6 @@
 - (void)viewWillDisappear:(BOOL)arg1;
 - (void)viewWillLayoutSubviews;
 - (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
+- (void)willMoveToParentViewController:(id)arg1;
 
 @end

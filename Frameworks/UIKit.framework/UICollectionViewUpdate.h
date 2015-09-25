@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSMutableIndexSet, UICollectionView, UICollectionViewData;
-
 @interface UICollectionViewUpdate : NSObject {
     id *_animatedFooters;
     id *_animatedHeaders;
@@ -48,6 +46,7 @@
     NSMutableArray *_viewAnimations;
 }
 
+- (void).cxx_destruct;
 - (void)_computeGaps;
 - (void)_computeItemUpdates;
 - (void)_computeSectionUpdates;

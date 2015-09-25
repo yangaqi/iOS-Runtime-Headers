@@ -2,18 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-@class <CNFRegAccountAuthorizationDelegate>, NSString;
-
 @interface CNFRegAccountAuthorizationController : CNFRegAccountWebViewController {
     NSString *_authID;
     NSString *_authToken;
     <CNFRegAccountAuthorizationDelegate> *_delegate;
 }
 
-@property(copy) NSString * authID;
-@property(copy) NSString * authToken;
-@property <CNFRegAccountAuthorizationDelegate> * delegate;
+@property (nonatomic, copy) NSString *authID;
+@property (nonatomic, copy) NSString *authToken;
+@property (nonatomic) <CNFRegAccountAuthorizationDelegate> *delegate;
 
+- (void).cxx_destruct;
 - (id)authID;
 - (id)authIdHeaderValue;
 - (id)authToken;

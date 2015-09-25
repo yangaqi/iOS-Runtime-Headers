@@ -2,16 +2,16 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAsset, AVMediaSelectionOption, NSArray, NSDictionary;
-
 @interface AVAssetMediaSelectionGroup : AVMediaSelectionGroup {
     AVAsset *_asset;
     AVMediaSelectionOption *_defaultOption;
     NSDictionary *_dictionary;
+    NSArray *_groupMediaCharacteristics;
     BOOL _isStreamingGroup;
     NSArray *_options;
 }
 
+- (id)_groupMediaCharacteristics;
 - (BOOL)_isStreamingGroup;
 - (id)_optionWithID:(id)arg1 displaysNonForcedSubtitles:(BOOL)arg2;
 - (id)_optionWithID:(id)arg1 identifier:(id)arg2 source:(id)arg3 displaysNonForcedSubtitles:(BOOL)arg4;

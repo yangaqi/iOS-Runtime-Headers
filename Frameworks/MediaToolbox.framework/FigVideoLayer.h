@@ -2,13 +2,14 @@
    Image: /System/Library/Frameworks/MediaToolbox.framework/MediaToolbox
  */
 
-@class FigVideoLayerInternal;
-
-@interface FigVideoLayer : CALayer {
+@interface FigVideoLayer : FigBaseCALayer {
     FigVideoLayerInternal *_videoLayer;
 }
 
++ (id)defaultActionForKey:(id)arg1;
+
 - (void)_sendVideoLayerIsBeingServicedNotification;
+- (id)actionForKey:(id)arg1;
 - (void)dealloc;
 - (void)finalize;
 - (id)init;

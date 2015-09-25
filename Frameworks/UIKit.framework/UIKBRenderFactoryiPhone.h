@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKBRenderFactoryiPhone : UIKBRenderFactory {
-}
+@interface UIKBRenderFactoryiPhone : UIKBRenderFactory
 
 - (void)_customizeGeometry:(id)arg1 forKey:(id)arg2 contents:(id)arg3;
 - (void)_customizePopupTraits:(id)arg1 forKey:(id)arg2 onKeyplane:(id)arg3;
@@ -21,10 +20,12 @@
 - (float)deleteKeyFontSize;
 - (id)deleteKeyImageName;
 - (struct CGPoint { float x1; float x2; })deleteKeyOffset;
+- (id)deleteOnKeyImageName;
 - (id)dictationKeyImageName;
 - (struct CGPoint { float x1; float x2; })dictationKeyOffset;
 - (struct CGPoint { float x1; float x2; })dismissKeyOffset;
 - (float)dualStringBottomAdditionalOffsetForDisplayContents:(id)arg1;
+- (id)globalEmojiKeyImageName;
 - (id)globalKeyImageName;
 - (float)hintNoneKeyFontSize;
 - (struct CGPoint { float x1; float x2; })internationalKeyOffset;

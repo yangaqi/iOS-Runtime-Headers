@@ -2,13 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIWebDocumentView;
-
 @interface UIWebRotatingAlertController : _UIRotatingAlertController {
     BOOL _wasDeferringCallbacks;
     UIWebDocumentView *_webBrowserView;
 }
 
+- (void).cxx_destruct;
 - (void)_disableWebView;
 - (void)_enableWebView;
 - (void)dealloc;

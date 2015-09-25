@@ -3,8 +3,15 @@
  */
 
 @interface PKPaymentDeleteRequest : PKPaymentWebServiceRequest {
+    PKPaymentPass *_pass;
 }
 
-+ (id)requestWithServiceURL:(id)arg1 pass:(id)arg2 account:(id)arg3;
+@property (nonatomic, retain) PKPaymentPass *pass;
+
+- (id)_urlRequestWithServiceURL:(id)arg1 account:(id)arg2;
+- (void)dealloc;
+- (id)initWithPaymentPass:(id)arg1;
+- (id)pass;
+- (void)setPass:(id)arg1;
 
 @end

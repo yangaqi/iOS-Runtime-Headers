@@ -2,35 +2,28 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray, NSObject<OS_dispatch_group>, NSString;
-
 @interface CKDFetchRecordVersionsOperation : CKDDatabaseOperation {
     NSArray *_desiredKeys;
     NSObject<OS_dispatch_group> *_fetchVersionsGroup;
     BOOL _isDeleted;
     NSString *_minimumVersionETag;
     NSArray *_recordIDs;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _recordVersionFetchedBlock;
-
+    id /* block */ _recordVersionFetchedBlock;
+    BOOL _shouldFetchAssetContent;
 }
 
-@property(retain) NSArray * desiredKeys;
-@property(retain) NSObject<OS_dispatch_group> * fetchVersionsGroup;
-@property BOOL isDeleted;
-@property(retain) NSString * minimumVersionETag;
-@property(retain) NSArray * recordIDs;
-@property(copy) id recordVersionFetchedBlock;
+@property (nonatomic, retain) NSArray *desiredKeys;
+@property (nonatomic, retain) NSObject<OS_dispatch_group> *fetchVersionsGroup;
+@property (nonatomic) BOOL isDeleted;
+@property (nonatomic, retain) NSString *minimumVersionETag;
+@property (nonatomic, retain) NSArray *recordIDs;
+@property (nonatomic, copy) id /* block */ recordVersionFetchedBlock;
+@property (nonatomic) BOOL shouldFetchAssetContent;
 
 - (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleRecordVersionsFecthedForID:(id)arg1 isDeleted:(BOOL)arg2 versions:(id)arg3 responseCode:(id)arg4;
+- (unsigned long long)activityStart;
 - (id)desiredKeys;
 - (id)fetchVersionsGroup;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
@@ -38,12 +31,14 @@
 - (void)main;
 - (id)minimumVersionETag;
 - (id)recordIDs;
-- (id)recordVersionFetchedBlock;
+- (id /* block */)recordVersionFetchedBlock;
 - (void)setDesiredKeys:(id)arg1;
 - (void)setFetchVersionsGroup:(id)arg1;
 - (void)setIsDeleted:(BOOL)arg1;
 - (void)setMinimumVersionETag:(id)arg1;
 - (void)setRecordIDs:(id)arg1;
-- (void)setRecordVersionFetchedBlock:(id)arg1;
+- (void)setRecordVersionFetchedBlock:(id /* block */)arg1;
+- (void)setShouldFetchAssetContent:(BOOL)arg1;
+- (BOOL)shouldFetchAssetContent;
 
 @end

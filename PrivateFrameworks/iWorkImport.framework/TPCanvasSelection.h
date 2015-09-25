@@ -2,32 +2,25 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSSet, NSString;
-
 @interface TPCanvasSelection : TSWPSelection <TSDCanvasSelection> {
     NSSet *mAdditionalInfos;
     NSSet *mExcludedInfos;
     NSSet *mInfos;
 }
 
-@property(readonly) int canvasSelectionKind;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) unsigned int infoCount;
-@property(readonly) NSSet * infos;
-@property(readonly) BOOL isEmpty;
-@property(readonly) NSSet * rawAdditionalInfos;
-@property(readonly) NSSet * rawExcludedInfos;
-@property(readonly) NSSet * rawInfos;
-@property(readonly) Class superclass;
-@property(readonly) unsigned int unlockedInfoCount;
-@property(readonly) NSSet * unlockedInfos;
+@property (nonatomic, readonly) int canvasSelectionKind;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int infoCount;
+@property (nonatomic, readonly) NSSet *infos;
+@property (nonatomic, readonly) BOOL isEmpty;
+@property (nonatomic, readonly) NSSet *rawAdditionalInfos;
+@property (nonatomic, readonly) NSSet *rawExcludedInfos;
+@property (nonatomic, readonly) NSSet *rawInfos;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) unsigned int unlockedInfoCount;
+@property (nonatomic, readonly) NSSet *unlockedInfos;
 
 + (Class)archivedSelectionClass;
 + (id)canvasSelectionFromCanvasSelection:(id)arg1 withToggledInfo:(id)arg2;
@@ -42,12 +35,13 @@
 - (id)copyExcludingInfo:(id)arg1;
 - (id)copyIncludingInfo:(id)arg1;
 - (id)copyWithNewRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+- (id)copyWithNewStyleInsertionBehavior:(int)arg1 newCaretAffinity:(int)arg2;
 - (id)copyWithNewType:(int)arg1;
 - (id)copyWithNewType:(int)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (id)copyWithNewType:(int)arg1 smartFieldRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (id)copyWithNewVisualRanges:(const struct TSWPRangeVector { struct _NSRange {} *x1; struct _NSRange {} *x2; struct __compressed_pair<_NSRange *, std::__1::allocator<_NSRange> > { struct _NSRange {} *x_3_1_1; } x3; }*)arg1;
 - (id)copyWithNewVisualTypeRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 head:(unsigned int)arg2 tail:(unsigned int)arg3;
-- (id)copyWithVisualRanges:(const struct TSWPRangeVector { struct _NSRange {} *x1; struct _NSRange {} *x2; struct __compressed_pair<_NSRange *, std::__1::allocator<_NSRange> > { struct _NSRange {} *x_3_1_1; } x3; }*)arg1 startChar:(unsigned int)arg2 endChar:(unsigned int)arg3 rightToLeft:(BOOL)arg4 sameLine:(BOOL)arg5;
+- (id)copyWithVisualRanges:(const struct TSWPRangeVector { struct _NSRange {} *x1; struct _NSRange {} *x2; struct __compressed_pair<_NSRange *, std::__1::allocator<_NSRange> > { struct _NSRange {} *x_3_1_1; } x3; }*)arg1 headChar:(unsigned int)arg2 tailChar:(unsigned int)arg3 rightToLeft:(BOOL)arg4 sameLine:(BOOL)arg5;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (unsigned int)infoCount;

@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/MobileContainerManager.framework/MobileContainerManager
  */
 
-@class NSDictionary, NSString, NSURL, NSUUID, NSXPCConnection;
-
 @interface MCMContainer : NSObject {
     int _containerClass;
     NSString *_identifier;
+    struct container_object { } *_thisContainer;
     NSUUID *_uuid;
-    NSXPCConnection *_xpcConnection;
 }
 
-@property(readonly) int containerClass;
-@property(readonly) NSString * identifier;
-@property(readonly) NSDictionary * info;
-@property(getter=isTemporary,readonly) BOOL temporary;
-@property(readonly) NSURL * url;
-@property(readonly) NSUUID * uuid;
+@property (nonatomic, readonly) int containerClass;
+@property (nonatomic, readonly) NSString *identifier;
+@property (nonatomic, readonly) NSDictionary *info;
+@property (getter=isTemporary, nonatomic, readonly) BOOL temporary;
+@property (nonatomic, readonly) NSURL *url;
+@property (nonatomic, readonly) NSUUID *uuid;
 
 + (id)containerWithIdentifier:(id)arg1 createIfNecessary:(BOOL)arg2 existed:(BOOL*)arg3 error:(id*)arg4;
 + (id)containerWithIdentifier:(id)arg1 error:(id*)arg2;
@@ -25,13 +23,11 @@
 - (void).cxx_destruct;
 - (void)_errorOccurred;
 - (int)_getContainerClass;
-- (id)_getMetadataInfoFromServer;
-- (void)_invalidateObject;
-- (BOOL)_setupXpcCnnection;
 - (int)containerClass;
 - (void)dealloc;
 - (id)description;
-- (void)destroyContainerWithCompletion:(id)arg1;
+- (id)destroyContainerWithCompletion:(id /* block */)arg1;
+- (struct container_object { }*)getLowLevelContainerObject;
 - (unsigned int)hash;
 - (id)identifier;
 - (id)info;

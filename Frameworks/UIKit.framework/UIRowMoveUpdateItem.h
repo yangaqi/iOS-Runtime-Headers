@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSIndexPath;
-
 @interface UIRowMoveUpdateItem : UIUpdateItem {
     NSIndexPath *_newIndexPath;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithOldIndexPath:(id)arg1 newIndexPath:(id)arg2;
 - (id)newIndexPath;
 

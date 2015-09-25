@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
  */
 
-@class CLLocation, CLPlacemark, NSString;
-
 @interface CalLocation : NSObject <NSSecureCoding> {
     NSString *_abURLString;
     NSString *_address;
     NSString *_displayName;
     BOOL _isCurrentLocation;
     CLLocation *_location;
+    NSData *_mapKitHandle;
     CLPlacemark *_placemark;
     double _radius;
     NSString *_routeType;
@@ -17,15 +16,16 @@
     int _type;
 }
 
-@property(copy) NSString * abURLString;
-@property(copy) NSString * address;
-@property(copy) NSString * displayName;
-@property(readonly) BOOL isCurrentLocation;
-@property(copy) CLLocation * location;
-@property(retain) CLPlacemark * placemark;
-@property double radius;
-@property(copy) NSString * routeType;
-@property(copy) NSString * title;
+@property (copy) NSString *abURLString;
+@property (copy) NSString *address;
+@property (copy) NSString *displayName;
+@property (nonatomic, readonly) BOOL isCurrentLocation;
+@property (nonatomic, copy) CLLocation *location;
+@property (copy) NSData *mapKitHandle;
+@property (retain) CLPlacemark *placemark;
+@property (nonatomic) double radius;
+@property (copy) NSString *routeType;
+@property (copy) NSString *title;
 @property int type;
 
 + (id)coordinatesFromGeoURLString:(id)arg1;
@@ -50,6 +50,7 @@
 - (BOOL)isCurrentLocation;
 - (BOOL)isEqual:(id)arg1;
 - (id)location;
+- (id)mapKitHandle;
 - (id)placemark;
 - (double)radius;
 - (id)routeType;
@@ -57,6 +58,7 @@
 - (void)setAddress:(id)arg1;
 - (void)setDisplayName:(id)arg1;
 - (void)setLocation:(id)arg1;
+- (void)setMapKitHandle:(id)arg1;
 - (void)setPlacemark:(id)arg1;
 - (void)setRadius:(double)arg1;
 - (void)setRouteType:(id)arg1;

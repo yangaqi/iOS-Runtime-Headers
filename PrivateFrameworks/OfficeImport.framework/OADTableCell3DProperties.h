@@ -2,7 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface OADTableCell3DProperties : NSObject {
-}
+@interface OADTableCell3DProperties : NSObject
+
+- (id)description;
 
 @end

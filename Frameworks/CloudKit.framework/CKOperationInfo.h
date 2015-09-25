@@ -2,36 +2,40 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@class CKContainerSetupInfo, NSString;
-
 @interface CKOperationInfo : NSObject <NSSecureCoding> {
+    BOOL _allowsBackgroundNetworking;
     BOOL _allowsCellularAccess;
+    NSString *_authPromptReason;
     NSString *_deviceIdentifier;
     NSString *_operationID;
     id _parentOperation;
     NSString *_parentSectionID;
+    BOOL _preferAnonymousRequests;
     int _qualityOfService;
     CKContainerSetupInfo *_setupInfo;
     NSString *_sourceApplicationBundleIdentifier;
     NSString *_sourceApplicationSecondaryIdentifier;
-    int _usesBackgroundSessionOverride;
 }
 
-@property BOOL allowsCellularAccess;
-@property(retain) NSString * deviceIdentifier;
-@property(retain) NSString * operationID;
-@property id parentOperation;
-@property(retain) NSString * parentSectionID;
-@property int qualityOfService;
-@property(retain) CKContainerSetupInfo * setupInfo;
-@property(retain) NSString * sourceApplicationBundleIdentifier;
-@property(retain) NSString * sourceApplicationSecondaryIdentifier;
-@property int usesBackgroundSessionOverride;
+@property (nonatomic) BOOL allowsBackgroundNetworking;
+@property (nonatomic) BOOL allowsCellularAccess;
+@property (nonatomic, retain) NSString *authPromptReason;
+@property (nonatomic, retain) NSString *deviceIdentifier;
+@property (nonatomic, retain) NSString *operationID;
+@property (nonatomic) id parentOperation;
+@property (nonatomic, retain) NSString *parentSectionID;
+@property (nonatomic) BOOL preferAnonymousRequests;
+@property (nonatomic) int qualityOfService;
+@property (nonatomic, retain) CKContainerSetupInfo *setupInfo;
+@property (nonatomic, retain) NSString *sourceApplicationBundleIdentifier;
+@property (nonatomic, retain) NSString *sourceApplicationSecondaryIdentifier;
 
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (BOOL)allowsBackgroundNetworking;
 - (BOOL)allowsCellularAccess;
+- (id)authPromptReason;
 - (id)deviceIdentifier;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
@@ -39,20 +43,22 @@
 - (id)operationID;
 - (id)parentOperation;
 - (id)parentSectionID;
+- (BOOL)preferAnonymousRequests;
 - (int)qualityOfService;
+- (void)setAllowsBackgroundNetworking:(BOOL)arg1;
 - (void)setAllowsCellularAccess:(BOOL)arg1;
+- (void)setAuthPromptReason:(id)arg1;
 - (void)setDeviceIdentifier:(id)arg1;
 - (void)setOperationID:(id)arg1;
 - (void)setParentOperation:(id)arg1;
 - (void)setParentSectionID:(id)arg1;
+- (void)setPreferAnonymousRequests:(BOOL)arg1;
 - (void)setQualityOfService:(int)arg1;
 - (void)setSetupInfo:(id)arg1;
 - (void)setSourceApplicationBundleIdentifier:(id)arg1;
 - (void)setSourceApplicationSecondaryIdentifier:(id)arg1;
-- (void)setUsesBackgroundSessionOverride:(int)arg1;
 - (id)setupInfo;
 - (id)sourceApplicationBundleIdentifier;
 - (id)sourceApplicationSecondaryIdentifier;
-- (int)usesBackgroundSessionOverride;
 
 @end

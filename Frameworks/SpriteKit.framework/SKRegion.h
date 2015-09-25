@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@class PKRegion;
-
 @interface SKRegion : NSObject <NSCoding, NSCopying> {
     PKRegion *_region;
 }
 
-@property(readonly) struct CGPath { }* path;
+@property (nonatomic, readonly) const struct CGPath { }*path;
 
 + (id)infiniteRegion;
 
@@ -22,7 +20,7 @@
 - (id)initWithRadius:(float)arg1;
 - (id)initWithSize:(struct CGSize { float x1; float x2; })arg1;
 - (id)inverseRegion;
-- (struct CGPath { }*)path;
+- (const struct CGPath { }*)path;
 - (id)regionByDifferenceFromRegion:(id)arg1;
 - (id)regionByIntersectionWithRegion:(id)arg1;
 - (id)regionByUnionWithRegion:(id)arg1;

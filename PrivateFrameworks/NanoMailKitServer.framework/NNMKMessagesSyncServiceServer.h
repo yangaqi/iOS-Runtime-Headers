@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/NanoMailKitServer.framework/NanoMailKitServer
  */
 
-@class <NNMKMessagesSyncServiceServerDelegate>;
-
 @interface NNMKMessagesSyncServiceServer : NNMKSyncServiceEndpoint {
     <NNMKMessagesSyncServiceServerDelegate> *_delegate;
 }
 
-@property <NNMKMessagesSyncServiceServerDelegate> * delegate;
+@property (nonatomic) <NNMKMessagesSyncServiceServerDelegate> *delegate;
 
 - (void).cxx_destruct;
 - (id)addMessages:(id)arg1 notificationPriority:(BOOL)arg2;
+- (void)connectivityChanged;
 - (id)delegate;
 - (id)deleteMessages:(id)arg1 notificationPriority:(BOOL)arg2;
 - (void)failedSendingProtobufWithIDSIdentifier:(id)arg1 errorCode:(int)arg2;
@@ -21,6 +20,7 @@
 - (id)sendMoreMessages:(id)arg1;
 - (id)sendMoreMessagesForConversation:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)spaceBecameAvailable;
 - (void)successfullySentProtobufWithIDSIdentifier:(id)arg1;
 - (id)updateMessagesStatus:(id)arg1 notificationPriority:(BOOL)arg2;
 

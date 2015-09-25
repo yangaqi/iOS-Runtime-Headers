@@ -2,22 +2,22 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKPlaceSharedAttributionDelegate>, NSAttributedString, NSString;
-
-@interface MKSharedAttributionViewController : UITableViewController <MKStackingViewControllerPreferredSizeUse> {
+@interface MKSharedAttributionViewController : UITableViewController <MKHideableBottomSeparator, MKStackingViewControllerPreferredSizeUse> {
     NSAttributedString *_attribution;
     <MKPlaceSharedAttributionDelegate> *_delegate;
     BOOL _isSelectable;
+    BOOL _viewShouldHideBottommostSeparator;
 }
 
-@property(copy) NSAttributedString * attribution;
-@property(copy,readonly) NSString * debugDescription;
-@property <MKPlaceSharedAttributionDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property BOOL isSelectable;
-@property(readonly) BOOL requiresPreferredContentSizeInStackingView;
-@property(readonly) Class superclass;
+@property (nonatomic, copy) NSAttributedString *attribution;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MKPlaceSharedAttributionDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isSelectable;
+@property (nonatomic, readonly) BOOL requiresPreferredContentSizeInStackingView;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL viewShouldHideBottommostSeparator;
 
 - (void).cxx_destruct;
 - (id)attribution;
@@ -31,11 +31,13 @@
 - (void)setAttribution:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setIsSelectable:(BOOL)arg1;
+- (void)setViewShouldHideBottommostSeparator:(BOOL)arg1;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
+- (BOOL)viewShouldHideBottommostSeparator;
 
 @end

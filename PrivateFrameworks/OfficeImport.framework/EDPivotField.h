@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection;
-
 @interface EDPivotField : NSObject {
     int mAxis;
     bool mCompact;
@@ -23,6 +21,7 @@
 - (bool)compact;
 - (bool)dataField;
 - (void)dealloc;
+- (id)description;
 - (id)init;
 - (bool)insertBlankRow;
 - (unsigned long)numFmtId;

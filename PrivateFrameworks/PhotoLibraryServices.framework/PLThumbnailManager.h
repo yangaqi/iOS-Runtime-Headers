@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class <PLThumbPersistenceManager>, NSArray, NSDictionary, NSIndexSet, NSLock, NSMutableArray, NSMutableDictionary, NSMutableSet, PLLargeImageLoader, PLPhotoLibrary;
-
 @interface PLThumbnailManager : NSObject {
     NSMutableArray *_alreadyFailedAssetObjectIDsForRebuild;
     NSArray *_changedPhotos;
@@ -25,19 +23,22 @@
     struct _FigCascadeContext { } *_unicornContextPortrait;
 }
 
-@property(retain) id observerToken;
-@property PLPhotoLibrary * photoLibrary;
-@property(retain,readonly) NSMutableDictionary * thumbManagersByFormat;
+@property (nonatomic, retain) id observerToken;
+@property (nonatomic) PLPhotoLibrary *photoLibrary;
+@property (nonatomic, readonly, retain) NSMutableDictionary *thumbManagersByFormat;
 
 + (id)_allPossibleThumbnailFormats;
++ (void)_removeThumbnailTablesUnsupportedOnly:(BOOL)arg1;
++ (BOOL)_thumbnailChangeContainsOnlyTableDeprecationsFromVersion:(int)arg1 toVersion:(int)arg2 fromFormat:(int)arg3 toFormat:(int)arg4;
 + (void)addRebuildThumbnailsRequest;
 + (id)cameraPreviewWellAssetUUID;
 + (id)cameraPreviewWellImageQueue;
 + (id)defaultThumbnailsDirectory;
 + (id)defaultThumbnailsDirectoryV2;
 + (void)handleRebuildThumbnailRequestPersistentFailure;
++ (BOOL)hasDeprecationsOnly;
 + (BOOL)hasExceededRebuildThumbnailRequestLimit;
-+ (BOOL)hasObsoleteThumbnailTables;
++ (BOOL)hasObsoleteThumbnailFormats;
 + (BOOL)hasRebuildThumbnailsRequest;
 + (BOOL)isMissingThumbnailTables;
 + (BOOL)isRebuildingThumbnails;
@@ -67,7 +68,7 @@
 - (id)_tableDescriptions;
 - (id)_thumbManagerForFormat:(int*)arg1;
 - (void)_unicorn_setThumbnailsForPhoto:(id)arg1 withImage:(id)arg2;
-- (void)assetsdImageForPhoto:(id)arg1 withFormat:(int)arg2 allowPlaceholder:(BOOL)arg3 wantURLOnly:(BOOL)arg4 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg5 networkAccessAllowed:(BOOL)arg6 networkAccessForced:(BOOL)arg7 trackCPLDownload:(BOOL)arg8 completion:(id)arg9;
+- (void)assetsdImageForPhoto:(id)arg1 withFormat:(int)arg2 allowPlaceholder:(BOOL)arg3 wantURLOnly:(BOOL)arg4 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg5 networkAccessAllowed:(BOOL)arg6 networkAccessForced:(BOOL)arg7 trackCPLDownload:(BOOL)arg8 completion:(id /* block */)arg9;
 - (id)beginThumbnailSafePropertyUpdatesOnAsset:(id)arg1;
 - (void)clearPhotoLibrary;
 - (id)compactImageTables;
@@ -75,8 +76,9 @@
 - (id)dataForPhoto:(id)arg1 format:(int)arg2 allowPlaceholder:(BOOL)arg3 width:(int*)arg4 height:(int*)arg5 bytesPerRow:(int*)arg6 dataWidth:(int*)arg7 dataHeight:(int*)arg8 imageDataOffset:(int*)arg9;
 - (void)dealloc;
 - (void)deleteThumbnailsWithIdentifier:(id)arg1 orIndex:(unsigned int)arg2 uuid:(id)arg3;
+- (void)discardCachedThumbnailDownscalerContexts;
 - (void)endThumbnailSafePropertyUpdatesOnAsset:(id)arg1 withToken:(id)arg2;
-- (void)imageForPhoto:(id)arg1 withFormat:(int)arg2 allowPlaceholder:(BOOL)arg3 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg4 networkAccessAllowed:(BOOL)arg5 networkAccessForced:(BOOL)arg6 trackCPLDownload:(BOOL)arg7 completion:(id)arg8 sync:(BOOL)arg9;
+- (void)imageForPhoto:(id)arg1 withFormat:(int)arg2 allowPlaceholder:(BOOL)arg3 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg4 networkAccessAllowed:(BOOL)arg5 networkAccessForced:(BOOL)arg6 trackCPLDownload:(BOOL)arg7 completion:(id /* block */)arg8 sync:(BOOL)arg9;
 - (id)initWithWeakPhotoLibrary:(id)arg1;
 - (id)newImageDataForPhoto:(id)arg1 withFormat:(int)arg2 allowPlaceholder:(BOOL)arg3 wantURLOnly:(BOOL)arg4 networkAccessAllowed:(BOOL)arg5 networkAccessForced:(BOOL)arg6 trackCPLDownload:(BOOL)arg7 outImageDataInfo:(id*)arg8 outCPLDownloadContext:(id*)arg9;
 - (id)newImageForPhoto:(id)arg1 withFormat:(int)arg2 allowPlaceholder:(BOOL)arg3 optimalSourcePixelSize:(struct CGSize { float x1; float x2; })arg4 networkAccessAllowed:(BOOL)arg5 networkAccessForced:(BOOL)arg6 trackCPLDownload:(BOOL)arg7 outImageProperties:(const struct __CFDictionary {}**)arg8 outImageDataInfo:(id*)arg9 outCPLDownloadContext:(id*)arg10;

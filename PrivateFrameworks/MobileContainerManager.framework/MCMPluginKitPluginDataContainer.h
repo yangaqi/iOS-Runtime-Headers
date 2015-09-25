@@ -2,7 +2,8 @@
    Image: /System/Library/PrivateFrameworks/MobileContainerManager.framework/MobileContainerManager
  */
 
-@interface MCMPluginKitPluginDataContainer : MCMContainer {
-}
+@interface MCMPluginKitPluginDataContainer : MCMContainer
+
+- (BOOL)wipeAllMyContainerContent:(id*)arg1;
 
 @end

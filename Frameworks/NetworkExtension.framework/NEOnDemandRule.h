@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
  */
 
-@class NSArray, NSURL;
-
 @interface NEOnDemandRule : NSObject <NEConfigurationLegacySupport, NEConfigurationValidating, NEPrettyDescription, NSCopying, NSSecureCoding> {
     NSArray *_DNSSearchDomainMatch;
     NSArray *_DNSServerAddressMatch;
@@ -13,12 +11,12 @@
     NSURL *_probeURL;
 }
 
-@property(copy) NSArray * DNSSearchDomainMatch;
-@property(copy) NSArray * DNSServerAddressMatch;
-@property(copy) NSArray * SSIDMatch;
-@property(readonly) int action;
+@property (copy) NSArray *DNSSearchDomainMatch;
+@property (copy) NSArray *DNSServerAddressMatch;
+@property (copy) NSArray *SSIDMatch;
+@property (readonly) int action;
 @property int interfaceTypeMatch;
-@property(copy) NSURL * probeURL;
+@property (copy) NSURL *probeURL;
 
 + (id)createOnDemandRulesFromLegacyDictionary:(id)arg1;
 + (BOOL)supportsSecureCoding;
@@ -32,7 +30,7 @@
 - (id)copyLegacyDictionary;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
-- (id)descriptionWithIndent:(int)arg1;
+- (id)descriptionWithIndent:(int)arg1 options:(unsigned int)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initFromLegacyDictionary:(id)arg1;
 - (id)initWithAction:(int)arg1;

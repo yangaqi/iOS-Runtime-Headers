@@ -2,22 +2,23 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class MKMapView, NSString, UITableViewCell, UIView;
-
 @interface EKEventMapDetailItem : EKEventDetailItem <MKMapViewDelegate> {
     UITableViewCell *_cell;
     UIView *_loadingView;
+    CLLocation *_location;
     MKMapView *_mapView;
+    UITableViewCell *_oldCell;
     UIView *_overlayView;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (float)_mapHeight;
+- (id)_mapRelatedViewConstraintsForMapRelatedView:(id)arg1 inCell:(id)arg2;
 - (void)_setAnnotationForEventLocation;
 - (id)cellForSubitemAtIndex:(unsigned int)arg1;
 - (BOOL)configureWithCalendar:(id)arg1 preview:(BOOL)arg2;
@@ -27,5 +28,6 @@
 - (void)eventViewController:(id)arg1 didUnhighlightSubitem:(unsigned int)arg2;
 - (void)mapViewDidFinishRenderingMap:(id)arg1 fullyRendered:(BOOL)arg2;
 - (void)mapViewWillStartRenderingMap:(id)arg1;
+- (void)reset;
 
 @end

@@ -2,23 +2,18 @@
    Image: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
  */
 
-@class NSArray, NSDictionary, NSString;
+@interface MBApp : MBContainer
 
-@interface MBApp : MBContainer {
-    NSDictionary *_entitlements;
-    NSArray *_groups;
-    NSArray *_plugins;
-}
-
-@property(retain) NSString * bundleDir;
-@property(readonly) NSString * bundleID;
-@property(readonly) NSString * bundleVersion;
-@property(readonly) NSArray * containers;
-@property(retain) NSDictionary * entitlements;
-@property(retain) NSArray * groups;
-@property(readonly) BOOL isPlaceholder;
-@property(readonly) BOOL isSystemApp;
-@property(retain) NSArray * plugins;
+@property (nonatomic, retain) NSString *bundleDir;
+@property (nonatomic, readonly) NSString *bundleID;
+@property (nonatomic, readonly) NSString *bundleVersion;
+@property (nonatomic, readonly) NSArray *containers;
+@property (nonatomic, readonly) NSDictionary *entitlements;
+@property (nonatomic, readonly) NSString *entitlementsRelativePath;
+@property (nonatomic, readonly) NSArray *groups;
+@property (nonatomic, readonly) BOOL isPlaceholder;
+@property (nonatomic, readonly) BOOL isSystemApp;
+@property (nonatomic, readonly) NSArray *plugins;
 
 + (id)appWithBundleID:(id)arg1;
 + (id)appWithPropertyList:(id)arg1;
@@ -32,14 +27,12 @@
 - (id)containers;
 - (id)domain;
 - (id)entitlements;
+- (id)entitlementsRelativePath;
 - (id)groups;
 - (BOOL)isPlaceholder;
 - (BOOL)isSystemApp;
 - (id)placeholderDomainWithCache:(id)arg1;
 - (id)plugins;
 - (void)setBundleDir:(id)arg1;
-- (void)setEntitlements:(id)arg1;
-- (void)setGroups:(id)arg1;
-- (void)setPlugins:(id)arg1;
 
 @end

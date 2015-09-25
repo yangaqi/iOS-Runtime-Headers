@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableDictionary, NSString, PUAbstractNavigationBanner, UIBarButtonItem, UIImageView, UINavigationBar, UIView;
-
 @interface UINavigationItem : NSObject <NSCoding> {
     float __idealCustomTitleWidth;
     UINavigationBar *__owningNavigationBar;
@@ -37,38 +35,43 @@
     UIView *_titleView;
 }
 
-@property(setter=_setAbbreviatedBackButtonTitles:,copy) NSArray * _abbreviatedBackButtonTitles;
-@property(readonly) NSMutableDictionary * _backgroundImages;
-@property(getter=_isBarStyleIndependent,setter=_setBarStyleIndependent:) BOOL _barStyleIndependent;
-@property(setter=_setFontScaleAdjustment:) float _fontScaleAdjustment;
-@property(setter=_setIdealCustomTitleWidth:) float _idealCustomTitleWidth;
-@property(setter=_setIndependentBarStyle:) int _independentBarStyle;
-@property(setter=_setLeftFlexibleSpaceCount:) unsigned int _leftFlexibleSpaceCount;
-@property(setter=_setLeftItemSpaceList:,copy) NSArray * _leftItemSpaceList;
-@property(getter=_owningNavigationBar,setter=_setOwningNavigationBar:) UINavigationBar * _owningNavigationBar;
-@property(setter=_setPendingTitle:,copy) NSString * _pendingTitle;
-@property(setter=_setRightFlexibleSpaceCount:) unsigned int _rightFlexibleSpaceCount;
-@property(setter=_setRightItemSpaceList:,copy) NSArray * _rightItemSpaceList;
-@property float _titleViewWidthForAnimations;
-@property(retain) UIBarButtonItem * backBarButtonItem;
-@property BOOL hidesBackButton;
-@property(retain) UIBarButtonItem * leftBarButtonItem;
-@property(copy) NSArray * leftBarButtonItems;
-@property BOOL leftItemsSupplementBackButton;
-@property(copy) NSString * prompt;
-@property(setter=pu_setBanner:,retain) PUAbstractNavigationBanner * pu_banner;
-@property(retain) UIBarButtonItem * rightBarButtonItem;
-@property(copy) NSArray * rightBarButtonItems;
-@property(copy) NSString * title;
-@property(retain) UIView * titleView;
+@property (setter=_setAbbreviatedBackButtonTitles:, nonatomic, copy) NSArray *_abbreviatedBackButtonTitles;
+@property (nonatomic, readonly) NSMutableDictionary *_backgroundImages;
+@property (getter=_isBarStyleIndependent, setter=_setBarStyleIndependent:, nonatomic) BOOL _barStyleIndependent;
+@property (setter=_setFontScaleAdjustment:, nonatomic) float _fontScaleAdjustment;
+@property (setter=_setIdealCustomTitleWidth:, nonatomic) float _idealCustomTitleWidth;
+@property (setter=_setIndependentBarStyle:, nonatomic) int _independentBarStyle;
+@property (setter=_setLeftFlexibleSpaceCount:, nonatomic) unsigned int _leftFlexibleSpaceCount;
+@property (setter=_setLeftItemSpaceList:, nonatomic, copy) NSArray *_leftItemSpaceList;
+@property (getter=_owningNavigationBar, setter=_setOwningNavigationBar:, nonatomic) UINavigationBar *_owningNavigationBar;
+@property (setter=_setPendingTitle:, nonatomic, copy) NSString *_pendingTitle;
+@property (setter=_setRightFlexibleSpaceCount:, nonatomic) unsigned int _rightFlexibleSpaceCount;
+@property (setter=_setRightItemSpaceList:, nonatomic, copy) NSArray *_rightItemSpaceList;
+@property (nonatomic) float _titleViewWidthForAnimations;
+@property (nonatomic, retain) UIBarButtonItem *backBarButtonItem;
+@property (nonatomic) BOOL hidesBackButton;
+@property (nonatomic, retain) UIBarButtonItem *leftBarButtonItem;
+@property (nonatomic, copy) NSArray *leftBarButtonItems;
+@property (nonatomic) BOOL leftItemsSupplementBackButton;
+@property (setter=music_setTitleViewAlpha:, nonatomic) float music_titleViewAlpha;
+@property (nonatomic, copy) NSString *prompt;
+@property (setter=pu_setBanner:, nonatomic, retain) PUAbstractNavigationBanner *pu_banner;
+@property (nonatomic, retain) UIBarButtonItem *rightBarButtonItem;
+@property (nonatomic, copy) NSArray *rightBarButtonItems;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, retain) UIView *titleView;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (id)defaultFont;
 
+- (void).cxx_destruct;
 - (id)_abbreviatedBackButtonTitles;
 - (BOOL)_accumulateViewsFromItems:(id)arg1 isLeft:(BOOL)arg2 refreshViews:(BOOL)arg3;
 - (void)_addDefaultTitleViewToNavigationBarIfNecessary;
 - (id)_automationID;
 - (id)_backgroundImages;
+- (id)_barButtonForBackButtonIndicator;
 - (id)_buttonForBackButtonIndicator;
 - (void)_cleanupFrozenTitleView;
 - (id)_customLeftView;
@@ -140,7 +143,6 @@
 - (id)backBarButtonItem;
 - (id)backButtonTitle;
 - (id)backButtonView;
-- (id)context;
 - (id)currentBackButtonTitle;
 - (id)customLeftItem;
 - (id)customLeftView;
@@ -150,8 +152,6 @@
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)existingBackButtonView;
-- (void)fadeInTitleView;
-- (void)fadeOutTitleView;
 - (BOOL)hidesBackButton;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
@@ -159,19 +159,12 @@
 - (id)leftBarButtonItem;
 - (id)leftBarButtonItems;
 - (BOOL)leftItemsSupplementBackButton;
-- (void)mergeValuesFromItem:(id)arg1;
 - (id)navigationBar;
 - (id)prompt;
-- (id)pu_banner;
-- (void)pu_setBanner:(id)arg1;
-- (void)rc_copyPropertiesFromItem:(id)arg1;
-- (void)rc_copyPropertiesFromItem:(id)arg1 animated:(BOOL)arg2;
-- (void)resetAllValues;
 - (id)rightBarButtonItem;
 - (id)rightBarButtonItems;
 - (void)setBackBarButtonItem:(id)arg1;
 - (void)setBackButtonTitle:(id)arg1;
-- (void)setContext:(id)arg1;
 - (void)setCustomLeftItem:(id)arg1;
 - (void)setCustomLeftItem:(id)arg1 animated:(BOOL)arg2;
 - (void)setCustomLeftView:(id)arg1;
@@ -195,10 +188,8 @@
 - (void)setRightBarButtonItem:(id)arg1 animated:(BOOL)arg2;
 - (void)setRightBarButtonItems:(id)arg1;
 - (void)setRightBarButtonItems:(id)arg1 animated:(BOOL)arg2;
-- (void)setTag:(int)arg1;
 - (void)setTitle:(id)arg1;
 - (void)setTitleView:(id)arg1;
-- (void)setTitleView:(id)arg1 animated:(BOOL)arg2;
 - (void)set_customLeftView:(id)arg1;
 - (void)set_customLeftViews:(id)arg1;
 - (void)set_customRightView:(id)arg1;
@@ -208,9 +199,31 @@
 - (void)set_rightBarButtonItem:(id)arg1;
 - (void)set_rightBarButtonItems:(id)arg1;
 - (void)set_titleViewWidthForAnimations:(float)arg1;
-- (int)tag;
 - (id)title;
 - (id)titleView;
 - (void)updateNavigationBarButtonsAnimated:(BOOL)arg1;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (id)pu_banner;
+- (void)pu_setBanner:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/FuseUI.framework/FuseUI
+
+- (void)music_setTitleViewAlpha:(float)arg1;
+- (float)music_titleViewAlpha;
+
+// Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
+
+- (void)rc_copyPropertiesFromItem:(id)arg1;
+- (void)rc_copyPropertiesFromItem:(id)arg1 animated:(BOOL)arg2;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
+- (void)fadeInTitleView;
+- (void)fadeOutTitleView;
+- (void)mergeValuesFromItem:(id)arg1;
+- (void)resetAllValues;
+- (void)setTitleView:(id)arg1 animated:(BOOL)arg2;
 
 @end

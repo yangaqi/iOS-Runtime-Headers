@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSArray, NSLock, NSMapTable, NSString, VKGenericShieldGenerator, VKResourceManager;
-
 @interface VKShieldManager : NSObject <GEOResourceManifestTileGroupObserver> {
     struct _GEOGenericContainer<md::ShieldCacheKey, VKShieldArtwork *, std::__1::hash<md::ShieldCacheKey>, std::__1::equal_to<md::ShieldCacheKey>, geo::GEOGenericContainerWeakReferenceTag, 0, 0, geo::GEOGenericContainerLockingTag, detail::_default_pointer_type> { 
         struct mutex { 
@@ -102,15 +100,15 @@
     VKGenericShieldGenerator *_genericShieldGenerator;
     NSMapTable *_indexes;
     NSLock *_indexesLock;
+    GEOResourceManifestConfiguration *_manifestConfiguration;
     NSArray *_nonRegionalResourceNames;
     VKResourceManager *_resourceManager;
-    unsigned int _tileGroupIdentifier;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedManager;
 
@@ -121,12 +119,12 @@
 - (id)_indexForName:(id)arg1;
 - (id)_nonRegionalIndexesAndPacks;
 - (id)artworkForShieldName:(id)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 resourceNames:(id)arg4 size:(int)arg5 idiom:(int)arg6 numberOfLines:(unsigned int)arg7 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg8;
-- (id)artworkForShieldType:(long long)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 resourceNames:(id)arg4 style:(id)arg5 size:(int)arg6 idiom:(int)arg7 numberOfLines:(unsigned int)arg8 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg9 featureType:(unsigned int)arg10;
-- (id)artworkForShieldType:(long long)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 size:(int)arg4 idiom:(int)arg5 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg6 featureType:(unsigned int)arg7;
-- (id)artworkForShieldType:(long long)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 size:(int)arg4 idiom:(int)arg5 mapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg6 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg7 featureType:(unsigned int)arg8;
+- (id)artworkForShieldType:(long long)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 resourceNames:(id)arg4 style:(struct shared_ptr<gss::GenericShieldDrawStyle> { struct GenericShieldDrawStyle {} *x1; struct __shared_weak_count {} *x2; })arg5 size:(int)arg6 idiom:(int)arg7 numberOfLines:(unsigned int)arg8 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg9 featureType:(unsigned int)arg10 variant:(unsigned int)arg11;
+- (id)artworkForShieldType:(long long)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 size:(int)arg4 idiom:(int)arg5 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg6 featureType:(unsigned int)arg7 variant:(unsigned int)arg8;
+- (id)artworkForShieldType:(long long)arg1 textLength:(unsigned int)arg2 contentScale:(float)arg3 size:(int)arg4 idiom:(int)arg5 mapRect:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg6 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg7 featureType:(unsigned int)arg8 variant:(unsigned int)arg9;
 - (void)dealloc;
-- (id)imageForShieldType:(long long)arg1 shieldText:(id)arg2 contentScale:(float)arg3 size:(int)arg4 idiom:(int)arg5 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg6 featureType:(unsigned int)arg7;
-- (id)initWithTileGroupIdentifier:(unsigned int)arg1 resourceManager:(id)arg2;
+- (id)imageForShieldType:(long long)arg1 shieldText:(id)arg2 contentScale:(float)arg3 size:(int)arg4 idiom:(int)arg5 colors:(struct { struct Matrix<float, 4, 1> { float x_1_1_1[4]; } x1; }*)arg6 featureType:(unsigned int)arg7 variant:(unsigned int)arg8;
+- (id)initWithConfiguration:(id)arg1 resourceManager:(id)arg2;
 - (void)purge;
 - (void)resourceManifestManagerDidChangeActiveTileGroup:(id)arg1;
 - (void)resourceManifestManagerWillChangeActiveTileGroup:(id)arg1;

@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIOfferViewDelegate>, NSMapTable, NSMutableArray, NSString;
-
 @interface SKUIOfferView : SKUIViewReuseView <SKUIItemOfferButtonDelegate, SKUIViewElementView> {
     unsigned int _alignment;
     NSMapTable *_buttonElements;
+    NSMapTable *_buyButtonDescriptorToButton;
     struct UIEdgeInsets { 
         float top; 
         float left; 
@@ -21,13 +20,13 @@
     NSMutableArray *_offerButtonViews;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <SKUIOfferViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property int metadataPosition;
-@property(getter=isShowingConfirmation,readonly) BOOL showingConfirmation;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIOfferViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int metadataPosition;
+@property (getter=isShowingConfirmation, nonatomic, readonly) BOOL showingConfirmation;
+@property (readonly) Class superclass;
 
 + (id)_attributedStringForButton:(id)arg1 context:(id)arg2;
 + (id)_attributedStringForLabel:(id)arg1 context:(id)arg2;
@@ -41,7 +40,7 @@
 - (void)_cancelConfirmationAction:(id)arg1;
 - (void)_positionNoticeForItemOfferButton:(id)arg1;
 - (void)_sendWillAnimate;
-- (BOOL)_shouldHideNotices:(id)arg1 context:(id)arg2;
+- (BOOL)_shouldHideNoticesWithBuyButtonDescriptor:(id)arg1 context:(id)arg2;
 - (void)_showConfirmationAction:(id)arg1;
 - (id)delegate;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface CFPDDataBuffer : NSObject {
-}
+@interface CFPDDataBuffer : NSObject
 
 + (id)newBufferFromCFData:(struct __CFData { }*)arg1;
 + (id)newBufferFromFile:(int)arg1 allowMappingIfSafe:(BOOL)arg2;
@@ -16,6 +15,7 @@
 - (id)copyXPCData;
 - (void)endAccessing;
 - (unsigned long)length;
+- (BOOL)purgable;
 - (BOOL)validatePlist;
 
 @end

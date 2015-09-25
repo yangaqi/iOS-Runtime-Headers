@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKModalTranscriptController, NSString;
-
 @interface CKSMSComposeViewServiceController : UINavigationController <CKSMSComposeViewServiceProtocol, CKTranscriptComposeDelegate> {
     BOOL _canEditRecipients;
     BOOL _disableCameraAttachments;
@@ -13,24 +11,24 @@
     BOOL _supportsMessageInspection;
 }
 
-@property BOOL canEditRecipients;
-@property(copy,readonly) NSString * debugDescription;
-@property id delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) CKModalTranscriptController * modalTranscriptController;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL canEditRecipients;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CKModalTranscriptController *modalTranscriptController;
+@property (readonly) Class superclass;
 
 + (id)_exportedInterface;
 + (BOOL)_isSecureForRemoteViewService;
 + (id)_remoteViewControllerInterface;
 
 - (void)_forceMMSIfNecessary;
+- (void)_insertAttachmentWithURL:(id)arg1 andDescription:(id)arg2 preview:(id)arg3 isFullyRealized:(BOOL)arg4 appendedVideoURL:(id)arg5 appendedBundleURL:(id)arg6;
+- (void)_insertFileURL:(id)arg1 filename:(id)arg2 transcoderUserInfo:(id)arg3 preview:(id)arg4 isFullyRealized:(BOOL)arg5 appendedVideoURL:(id)arg6;
 - (void)_willAppearInRemoteViewController;
 - (BOOL)canEditRecipients;
 - (void)dealloc;
 - (void)didCancelComposition:(id)arg1;
-- (void)didRotateFromInterfaceOrientation:(int)arg1;
 - (void)disableCameraAttachments;
 - (void)forceCancelComposition;
 - (void)forceMMS;
@@ -39,6 +37,7 @@
 - (void)insertData:(id)arg1 MIMEType:(id)arg2 exportedFilename:(id)arg3;
 - (void)insertFileURL:(id)arg1 filename:(id)arg2 transcoderUserInfo:(id)arg3;
 - (void)insertFilename:(id)arg1 MIMEType:(id)arg2 exportedFilename:(id)arg3 options:(id)arg4;
+- (void)insertRemoteItemForSending:(id)arg1;
 - (id)modalTranscriptController;
 - (void)setCanEditRecipients:(BOOL)arg1;
 - (void)setModalTranscriptController:(id)arg1;
@@ -54,7 +53,5 @@
 - (void)transcriptController:(id)arg1 willSendComposition:(id)arg2 inConversation:(id)arg3;
 - (void)transcriptControllerDidReportSpam:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
-- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 
 @end

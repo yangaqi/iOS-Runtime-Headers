@@ -2,37 +2,37 @@
    Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
  */
 
-@class HMDHome, HMMessageDispatcher, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, NSUUID;
-
 @interface HMDActionSet : NSObject <HMMessageReceiver, NSSecureCoding> {
     NSMutableArray *_currentActions;
     BOOL _executionInProgress;
     HMDHome *_home;
     HMMessageDispatcher *_msgDispatcher;
     NSString *_name;
+    NSString *_type;
     NSUUID *_uuid;
     NSObject<OS_dispatch_queue> *_workQueue;
 }
 
-@property(readonly) NSArray * actions;
-@property(retain) NSMutableArray * currentActions;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL executionInProgress;
-@property(readonly) unsigned int hash;
-@property HMDHome * home;
-@property(readonly) NSObject<OS_dispatch_queue> * messageReceiveQueue;
-@property(readonly) NSUUID * messageTargetUUID;
-@property(retain) HMMessageDispatcher * msgDispatcher;
-@property(retain) NSString * name;
-@property(readonly) Class superclass;
-@property(readonly) NSUUID * uuid;
-@property(retain) NSObject<OS_dispatch_queue> * workQueue;
+@property (nonatomic, readonly) NSArray *actions;
+@property (nonatomic, retain) NSMutableArray *currentActions;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL executionInProgress;
+@property (readonly) unsigned int hash;
+@property (nonatomic) HMDHome *home;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *messageReceiveQueue;
+@property (nonatomic, readonly) NSUUID *messageTargetUUID;
+@property (nonatomic, retain) HMMessageDispatcher *msgDispatcher;
+@property (nonatomic, retain) NSString *name;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSString *type;
+@property (nonatomic, readonly) NSUUID *uuid;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *workQueue;
 
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (void)_execute:(id)arg1 writeRequestTuples:(id)arg2;
+- (void)_execute:(id /* block */)arg1 writeRequestTuples:(id)arg2;
 - (id)_generateOverallError:(id)arg1;
 - (void)_handleAddActionRequest:(id)arg1;
 - (void)_handleRemoveActionRequest:(id)arg1;
@@ -42,7 +42,10 @@
 - (void)_removeAction:(id)arg1 message:(id)arg2;
 - (id)actionWithUUID:(id)arg1;
 - (id)actions;
+- (id)allCharacteristicsInActionsForServices:(id)arg1;
+- (id)assistantUniqueIdentifier;
 - (void)configure:(id)arg1 queue:(id)arg2;
+- (BOOL)containsAccessoryWithUUID:(id)arg1;
 - (id)currentActions;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
@@ -52,12 +55,11 @@
 - (void)fixupActionsForReplacementAccessory:(id)arg1;
 - (id)home;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithName:(id)arg1 uuid:(id)arg2 home:(id)arg3 queue:(id)arg4;
+- (id)initWithName:(id)arg1 uuid:(id)arg2 type:(id)arg3 home:(id)arg4 queue:(id)arg5;
 - (id)messageReceiveQueue;
 - (id)messageTargetUUID;
 - (id)msgDispatcher;
 - (id)name;
-- (void)prepareMessageForRemoteExecuteActionSet:(id)arg1;
 - (void)removeAccessory:(id)arg1;
 - (void)removeActionForCharacteristic:(id)arg1;
 - (void)removeService:(id)arg1;
@@ -66,7 +68,10 @@
 - (void)setHome:(id)arg1;
 - (void)setMsgDispatcher:(id)arg1;
 - (void)setName:(id)arg1;
+- (void)setType:(id)arg1;
 - (void)setWorkQueue:(id)arg1;
+- (id)type;
+- (id)url;
 - (id)uuid;
 - (id)workQueue;
 

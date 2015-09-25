@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, OADBulletColor, OADBulletFont, OADBulletProperties, OADBulletSize, OADTextSpacing;
-
 @interface OADParagraphProperties : OADCharacterProperties {
     OADTextSpacing *mAfterSpacing;
     unsigned char mAlign;
@@ -13,46 +11,45 @@
     OADBulletFont *mBulletFont;
     OADBulletProperties *mBulletProperties;
     OADBulletSize *mBulletSize;
-    double mDefaultTab;
+    float mDefaultTab;
     unsigned char mFontAlign;
-    unsigned int mHasAlign : 1;
-    unsigned int mHasBulletCharSet : 1;
-    unsigned int mHasDefaultTab : 1;
-    unsigned int mHasFontAlign : 1;
-    unsigned int mHasIndent : 1;
-    unsigned int mHasIsHangingPunctuation : 1;
-    unsigned int mHasIsLatinLineBreak : 1;
-    unsigned int mHasLeftMargin : 1;
-    unsigned int mHasLevel : 1;
-    unsigned int mHasRightMargin : 1;
-    unsigned int mHasTabStops : 1;
-    unsigned int mHasWrap : 1;
-    double mIndent;
-    unsigned int mIsHangingPunctuation : 1;
-    unsigned int mIsLatinLineBreak : 1;
-    double mLeftMargin;
+    unsigned int mHasAlign;
+    unsigned int mHasBulletCharSet;
+    unsigned int mHasDefaultTab;
+    unsigned int mHasFontAlign;
+    unsigned int mHasIndent;
+    unsigned int mHasIsHangingPunctuation;
+    unsigned int mHasIsLatinLineBreak;
+    unsigned int mHasLeftMargin;
+    unsigned int mHasLevel;
+    unsigned int mHasRightMargin;
+    unsigned int mHasWrap;
+    float mIndent;
+    unsigned int mIsHangingPunctuation;
+    unsigned int mIsLatinLineBreak;
+    float mLeftMargin;
     int mLevel;
     OADTextSpacing *mLineSpacing;
-    double mRightMargin;
-    NSMutableArray *mTabStops;
+    float mRightMargin;
+    NSArray *mTabStops;
     unsigned char mWrap;
 }
 
 + (id)defaultProperties;
 
-- (id)addTabStop;
 - (id)afterSpacing;
-- (int)align;
+- (unsigned char)align;
 - (id)beforeSpacing;
 - (int)bulletCharSet;
 - (id)bulletColor;
 - (id)bulletFont;
 - (id)bulletProperties;
 - (id)bulletSize;
-- (void)clearTabStops;
 - (void)dealloc;
-- (double)defaultTab;
-- (int)fontAlign;
+- (float)defaultTab;
+- (id)description;
+- (void)fixPropertiesForChangingParentPreservingEffectiveValues:(id)arg1;
+- (unsigned char)fontAlign;
 - (BOOL)hasAfterSpacing;
 - (BOOL)hasAlign;
 - (BOOL)hasBeforeSpacing;
@@ -73,41 +70,40 @@
 - (BOOL)hasTabStops;
 - (BOOL)hasWrap;
 - (unsigned int)hash;
-- (double)indent;
+- (float)indent;
 - (id)init;
 - (id)initWithDefaults;
+- (BOOL)isAnythingOverridden;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isHangingPunctuation;
 - (BOOL)isLatinLineBreak;
-- (double)leftMargin;
+- (float)leftMargin;
 - (int)level;
 - (id)lineSpacing;
 - (double)nonOveridenLeftMargin;
-- (void)overrideWithCharacterProperties:(id)arg1;
 - (void)overrideWithProperties:(id)arg1;
 - (void)removeUnnecessaryOverrides;
-- (double)rightMargin;
+- (float)rightMargin;
 - (void)setAfterSpacing:(id)arg1;
-- (void)setAlign:(int)arg1;
+- (void)setAlign:(unsigned char)arg1;
 - (void)setBeforeSpacing:(id)arg1;
 - (void)setBulletCharSet:(int)arg1;
 - (void)setBulletColor:(id)arg1;
 - (void)setBulletFont:(id)arg1;
 - (void)setBulletProperties:(id)arg1;
 - (void)setBulletSize:(id)arg1;
-- (void)setDefaultTab:(double)arg1;
-- (void)setFontAlign:(int)arg1;
-- (void)setIndent:(double)arg1;
+- (void)setDefaultTab:(float)arg1;
+- (void)setFontAlign:(unsigned char)arg1;
+- (void)setIndent:(float)arg1;
 - (void)setIsHangingPunctuation:(BOOL)arg1;
 - (void)setIsLatinLineBreak:(BOOL)arg1;
-- (void)setLeftMargin:(double)arg1;
+- (void)setLeftMargin:(float)arg1;
 - (void)setLevel:(int)arg1;
 - (void)setLineSpacing:(id)arg1;
-- (void)setRightMargin:(double)arg1;
-- (void)setWrap:(int)arg1;
-- (id)tabStopAtIndex:(unsigned int)arg1;
-- (unsigned int)tabStopCount;
+- (void)setRightMargin:(float)arg1;
+- (void)setTabStops:(id)arg1;
+- (void)setWrap:(unsigned char)arg1;
 - (id)tabStops;
-- (int)wrap;
+- (unsigned char)wrap;
 
 @end

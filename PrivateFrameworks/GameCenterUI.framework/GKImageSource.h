@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
  */
 
-@class GKImageBrush, GKThreadsafeCache, NSString, UIImage;
-
 @interface GKImageSource : NSObject {
     GKThreadsafeCache *_cache;
     UIImage *_defaultImage;
@@ -13,20 +11,22 @@
     BOOL _shouldRenderDefaultImageWithBrush;
 }
 
-@property(retain) GKThreadsafeCache * cache;
-@property(retain) UIImage * defaultImage;
-@property(readonly) GKImageBrush * imageBrush;
-@property(readonly) NSString * name;
-@property(retain) UIImage * renderedDefaultImage;
-@property BOOL shouldRenderDefaultImageWithBrush;
+@property (nonatomic, retain) GKThreadsafeCache *cache;
+@property (nonatomic, retain) UIImage *defaultImage;
+@property (nonatomic, retain) GKImageBrush *imageBrush;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) UIImage *renderedDefaultImage;
+@property (nonatomic) BOOL shouldRenderDefaultImageWithBrush;
 
 + (id)cacheDirectoryForImageID:(id)arg1;
 + (void)clearCache;
 + (id)sharedCache;
 + (id)syncQueue;
 
+- (void)_storeImage:(id)arg1 cacheKey:(id)arg2 path:(id)arg3 context:(id)arg4;
 - (id)cache;
 - (unsigned int)cacheCostForImage:(id)arg1;
+- (void)cacheImageFromContext:(id)arg1 forIdentifier:(id)arg2;
 - (id)cachedImageForIdentifier:(id)arg1;
 - (id)cachedImageForKey:(id)arg1;
 - (void)clearCachedImageForIdentifier:(id)arg1;
@@ -51,6 +51,8 @@
 - (id)renderedTestImage;
 - (void)setCache:(id)arg1;
 - (void)setDefaultImage:(id)arg1;
+- (void)setImageBrush:(id)arg1;
+- (void)setName:(id)arg1;
 - (void)setRenderedDefaultImage:(id)arg1;
 - (void)setShouldRenderDefaultImageWithBrush:(BOOL)arg1;
 - (BOOL)shouldRenderDefaultImageWithBrush;

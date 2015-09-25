@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFComposeRecipientTextViewDelegate>, <MFDraggableItem>, NSArray, NSMutableArray, NSMutableDictionary, NSString, NSTimer, UIButton, UIColor, UIFont, UITextView, UIView, _MFAtomTextAttachment, _MFAtomTextView;
-
 @interface MFComposeRecipientTextView : MFComposeHeaderView <MFComposeRecipientAtomDelegate, MFMultiDragDestination, MFMultiDragSource, NSLayoutManagerDelegate, UITextViewDelegate> {
     UIButton *_addButton;
     BOOL _allowsDragAndDrop;
@@ -26,8 +24,6 @@
     UIColor *_inactiveTextColor;
     UITextView *_inactiveTextView;
     BOOL _indicatesUnsafeRecipientsWhenCollapsed;
-    double _inputDelay;
-    NSTimer *_inputDelayTimer;
     BOOL _isTextFieldCollapsed;
     int _maxRecipients;
     BOOL _notifyDelegateOfSizeChange;
@@ -41,32 +37,31 @@
     BOOL _textViewExclusionPathsAreValid;
 }
 
-@property(readonly) UIButton * addButton;
-@property(copy) NSArray * addresses;
-@property BOOL allowsDragAndDrop;
-@property(readonly) UIView * atomContainerView;
-@property(retain) UIFont * baseFont;
-@property(copy,readonly) NSString * debugDescription;
-@property <MFComposeRecipientTextViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) BOOL didIgnoreFirstResponderResign;
-@property BOOL editable;
-@property BOOL expanded;
-@property(readonly) unsigned int hash;
-@property int hideLastAtomComma;
-@property(retain) UIColor * inactiveTextColor;
-@property BOOL indicatesUnsafeRecipientsWhenCollapsed;
-@property double inputDelay;
-@property int maxRecipients;
-@property(readonly) unsigned int numberOfRowsOfTextInField;
-@property(readonly) float offsetForRowWithTextField;
-@property(retain) _MFAtomTextAttachment * placeholderAttachment;
-@property(copy) NSArray * recipients;
-@property(getter=isSeparatorHidden) BOOL separatorHidden;
-@property(readonly) Class superclass;
-@property(readonly) NSString * text;
-@property(readonly) UITextView * textView;
-@property(copy,readonly) NSArray * uncommentedAddresses;
+@property (nonatomic, readonly) UIButton *addButton;
+@property (nonatomic, copy) NSArray *addresses;
+@property (nonatomic) BOOL allowsDragAndDrop;
+@property (nonatomic, readonly) UIView *atomContainerView;
+@property (nonatomic, retain) UIFont *baseFont;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MFComposeRecipientTextViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL didIgnoreFirstResponderResign;
+@property (nonatomic) BOOL editable;
+@property (nonatomic) BOOL expanded;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int hideLastAtomComma;
+@property (nonatomic, retain) UIColor *inactiveTextColor;
+@property (nonatomic) BOOL indicatesUnsafeRecipientsWhenCollapsed;
+@property (nonatomic) int maxRecipients;
+@property (nonatomic, readonly) unsigned int numberOfRowsOfTextInField;
+@property (nonatomic, readonly) float offsetForRowWithTextField;
+@property (nonatomic, retain) _MFAtomTextAttachment *placeholderAttachment;
+@property (nonatomic, copy) NSArray *recipients;
+@property (getter=isSeparatorHidden, nonatomic) BOOL separatorHidden;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) NSString *text;
+@property (nonatomic, readonly) UITextView *textView;
+@property (nonatomic, readonly, copy) NSArray *uncommentedAddresses;
 
 + (id)defaultFont;
 
@@ -76,9 +71,9 @@
 - (id)_atomAttachmentForRecipient:(id)arg1;
 - (unsigned int)_atomPresentationOptionsForRecipient:(id)arg1;
 - (id)_atomViewAtCharacterIndex:(unsigned int)arg1;
-- (id)_baseAttributes;
 - (void)_beginAtomViewAnimations;
 - (BOOL)_canAddAdditionalAtoms;
+- (BOOL)_delegateRespondsToSizeChange;
 - (void)_didRemoveRecipient:(id)arg1;
 - (BOOL)_hasUnsafeRecipients;
 - (void)_insertAtomAttachment:(id)arg1 andReplaceCharactersInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
@@ -88,12 +83,11 @@
 - (BOOL)_isAddButtonVisible;
 - (BOOL)_isTextViewCollapsed;
 - (void)_longPressGestureRecognized:(id)arg1;
+- (void)_notifyDelegateOfNewSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)_notifyDelegateOfSizeChange;
-- (void)_notifyDelegateOfTextChange:(id)arg1;
 - (id)_placeholderAttachmentForRecipient:(id)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })_placeholderAttachmentRange;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })_rangeForComposeRecipientAtom:(id)arg1;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_recipientViewEdgeInsets;
 - (void)_recomputeTextContainerExclusionPaths;
 - (void)_removeAddressAtomSubview:(id)arg1;
 - (void)_removeAllRecipients;
@@ -152,9 +146,9 @@
 - (id)inactiveTextColor;
 - (BOOL)indicatesUnsafeRecipientsWhenCollapsed;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (double)inputDelay;
 - (void)invalidateAtomPresentationOptions;
 - (void)invalidateAtomPresentationOptionsForRecipient:(id)arg1;
+- (BOOL)isFirstResponder;
 - (BOOL)isSeparatorHidden;
 - (id)itemsForDragAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)layoutManager:(id)arg1 didCompleteLayoutForTextContainer:(id)arg2 atEnd:(BOOL)arg3;
@@ -182,7 +176,6 @@
 - (void)setHideLastAtomComma:(int)arg1;
 - (void)setInactiveTextColor:(id)arg1;
 - (void)setIndicatesUnsafeRecipientsWhenCollapsed:(BOOL)arg1;
-- (void)setInputDelay:(double)arg1;
 - (void)setLabel:(id)arg1;
 - (void)setMaxRecipients:(int)arg1;
 - (void)setPlaceholderAttachment:(id)arg1;

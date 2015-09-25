@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class NSMutableArray, NSString;
-
 @interface SCROBrailleKey : NSObject <NSCoding> {
     id _appToken;
     int _displayMode;

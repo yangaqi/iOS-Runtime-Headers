@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
  */
 
-@class NSMutableArray, UIAlertController;
-
 @interface WebUIAuthenticationManager : NSObject {
     UIAlertController *_alertController;
     NSMutableArray *_authenticationChallenges;
@@ -18,6 +16,7 @@
 - (void)_didResolveChallenge;
 - (void)addAuthenticationChallenge:(id)arg1;
 - (void)addAuthenticationChallenge:(id)arg1 displayPanel:(BOOL)arg2;
+- (void)addAuthenticationChallenge:(id)arg1 displayPanel:(BOOL)arg2 completionHandler:(id /* block */)arg3;
 - (id)authenticationChallenge;
 - (void)cancelAuthentication;
 - (id)delegate;

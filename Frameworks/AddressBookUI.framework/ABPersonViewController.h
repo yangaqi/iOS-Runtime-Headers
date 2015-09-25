@@ -2,13 +2,9 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABPersonEditDelegate>, <ABPersonViewControllerDelegate>, <ABStyleProvider>, ABContactViewController, ABPersonTableViewActionsDelegate, ABPersonTableViewDataSource, ABPersonTableViewSharingDelegate, ABPersonViewControllerHelper, ABUIPerson, AFContextManager, NSArray, NSString, NSTimer, UIFont, UIImage, UIView;
-
 @interface ABPersonViewController : UIViewController <AFContextProvider, UIViewControllerRestoration> {
     ABPersonTableViewActionsDelegate *_actionsDelegate;
     BOOL _allowsContactBlocking;
-    BOOL _allowsOnlyFaceTimeActions;
-    BOOL _allowsOnlyPhoneActions;
     ABContactViewController *_contactViewController;
     ABPersonTableViewDataSource *_dataSource;
     NSTimer *_editAnimationTimer;
@@ -19,54 +15,52 @@
     ABPersonTableViewSharingDelegate *_sharingDelegate;
 }
 
-@property(readonly) ABPersonTableViewActionsDelegate * actionsDelegate;
-@property void* addressBook;
-@property BOOL allowsActions;
-@property BOOL allowsAddToFavorites;
-@property BOOL allowsCancel;
-@property BOOL allowsConferencing;
-@property BOOL allowsContactBlocking;
-@property BOOL allowsDeletion;
-@property BOOL allowsEditing;
-@property BOOL allowsOnlyFaceTimeActions;
-@property BOOL allowsOnlyPhoneActions;
-@property BOOL allowsSettingAsPreferredCardForName;
-@property BOOL allowsSharing;
-@property BOOL allowsSounds;
-@property BOOL allowsVibrations;
-@property BOOL appearsInLinkingPeoplePicker;
-@property(copy) NSString * attribution;
-@property BOOL badgeEmailPropertiesForMailVIP;
-@property(retain) ABContactViewController * contactViewController;
-@property(readonly) AFContextManager * contextManager;
-@property(retain) UIView * customFooterView;
-@property(retain) UIView * customHeaderView;
-@property(retain) UIView * customMessageView;
-@property(readonly) ABPersonTableViewDataSource * dataSource;
-@property void* displayedPerson;
-@property(copy) NSArray * displayedProperties;
-@property(retain) ABUIPerson * displayedUIPerson;
-@property <ABPersonEditDelegate> * editDelegate;
-@property(readonly) ABPersonViewControllerHelper * helper;
-@property(copy) NSString * message;
-@property(copy) NSString * messageDetail;
-@property(retain) UIFont * messageDetailFont;
-@property(retain) UIFont * messageFont;
-@property BOOL observesExternalChanges;
-@property(retain) UIView * personHeaderView;
-@property <ABPersonViewControllerDelegate> * personViewDelegate;
-@property(retain) UIImage * shareLocationSnapshotImage;
-@property(copy) NSString * shareLocationURL;
-@property(copy) NSString * shareMessageBody;
-@property BOOL shareMessageBodyIsHTML;
-@property(copy) NSString * shareMessageSubject;
-@property(readonly) ABPersonTableViewSharingDelegate * sharingDelegate;
-@property BOOL shouldAlignPersonHeaderViewToImage;
-@property BOOL shouldShowLinkedPeople;
-@property(retain) <ABStyleProvider> * styleProvider;
-@property(readonly) UIView * tableHeaderView;
-@property(copy) id willTweetLocationCallback;
-@property(copy) id willWeiboLocationCallback;
+@property (nonatomic, readonly) ABPersonTableViewActionsDelegate *actionsDelegate;
+@property (nonatomic) const void*addressBook;
+@property (nonatomic) BOOL allowsActions;
+@property (nonatomic) BOOL allowsAddToFavorites;
+@property (nonatomic) BOOL allowsCancel;
+@property (nonatomic) BOOL allowsConferencing;
+@property (nonatomic) BOOL allowsContactBlocking;
+@property (nonatomic) BOOL allowsDeletion;
+@property (nonatomic) BOOL allowsEditing;
+@property (nonatomic) BOOL allowsSettingAsPreferredCardForName;
+@property (nonatomic) BOOL allowsSharing;
+@property (nonatomic) BOOL allowsSounds;
+@property (nonatomic) BOOL allowsVibrations;
+@property (nonatomic) BOOL appearsInLinkingPeoplePicker;
+@property (nonatomic, copy) NSString *attribution;
+@property (nonatomic) BOOL badgeEmailPropertiesForMailVIP;
+@property (nonatomic, retain) ABContactViewController *contactViewController;
+@property (nonatomic, readonly) AFContextManager *contextManager;
+@property (nonatomic, retain) UIView *customFooterView;
+@property (nonatomic, retain) UIView *customHeaderView;
+@property (nonatomic, retain) UIView *customMessageView;
+@property (nonatomic, readonly) ABPersonTableViewDataSource *dataSource;
+@property (nonatomic) const void*displayedPerson;
+@property (nonatomic, copy) NSArray *displayedProperties;
+@property (nonatomic, retain) ABUIPerson *displayedUIPerson;
+@property (nonatomic) <ABPersonEditDelegate> *editDelegate;
+@property (nonatomic, readonly) ABPersonViewControllerHelper *helper;
+@property (nonatomic, copy) NSString *message;
+@property (nonatomic, copy) NSString *messageDetail;
+@property (nonatomic, retain) UIFont *messageDetailFont;
+@property (nonatomic, retain) UIFont *messageFont;
+@property (nonatomic) BOOL observesExternalChanges;
+@property (nonatomic, retain) UIView *personHeaderView;
+@property (nonatomic) <ABPersonViewControllerDelegate> *personViewDelegate;
+@property (nonatomic, retain) UIImage *shareLocationSnapshotImage;
+@property (nonatomic, copy) NSString *shareLocationURL;
+@property (nonatomic, copy) NSString *shareMessageBody;
+@property (nonatomic) BOOL shareMessageBodyIsHTML;
+@property (nonatomic, copy) NSString *shareMessageSubject;
+@property (nonatomic, readonly) ABPersonTableViewSharingDelegate *sharingDelegate;
+@property (nonatomic) BOOL shouldAlignPersonHeaderViewToImage;
+@property (nonatomic) BOOL shouldShowLinkedPeople;
+@property (nonatomic, retain) <ABStyleProvider> *styleProvider;
+@property (nonatomic, readonly) UIView *tableHeaderView;
+@property (nonatomic, copy) id /* block */ willTweetLocationCallback;
+@property (nonatomic, copy) id /* block */ willWeiboLocationCallback;
 
 + (id)viewControllerWithRestorationIdentifierPath:(id)arg1 coder:(id)arg2;
 
@@ -84,7 +78,7 @@
 - (void)addActionWithTitle:(id)arg1 content:(id)arg2 target:(id)arg3 selector:(SEL)arg4 forProperty:(int)arg5 withActionGrouping:(int)arg6 ordering:(int)arg7;
 - (void)addActionWithTitle:(id)arg1 shortTitle:(id)arg2 target:(id)arg3 selector:(SEL)arg4 forProperty:(int)arg5 withActionGrouping:(int)arg6 ordering:(int)arg7;
 - (void)addActionWithTitle:(id)arg1 target:(id)arg2 selector:(SEL)arg3 forProperty:(int)arg4 withActionGrouping:(int)arg5 ordering:(int)arg6;
-- (void*)addressBook;
+- (const void*)addressBook;
 - (void)addressBookChangedLocally:(struct __CFDictionary { }*)arg1;
 - (BOOL)allowContextProvider:(id)arg1;
 - (BOOL)allowsActions;
@@ -94,8 +88,6 @@
 - (BOOL)allowsContactBlocking;
 - (BOOL)allowsDeletion;
 - (BOOL)allowsEditing;
-- (BOOL)allowsOnlyFaceTimeActions;
-- (BOOL)allowsOnlyPhoneActions;
 - (BOOL)allowsSettingAsPreferredCardForName;
 - (BOOL)allowsSharing;
 - (BOOL)allowsSounds;
@@ -116,8 +108,8 @@
 - (id)dataSource;
 - (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
-- (void)dismissViewControllerAnimated:(BOOL)arg1 completion:(id)arg2;
-- (void*)displayedPerson;
+- (void)dismissViewControllerAnimated:(BOOL)arg1 completion:(id /* block */)arg2;
+- (const void*)displayedPerson;
 - (id)displayedProperties;
 - (id)displayedUIPerson;
 - (void)editCancel:(id)arg1;
@@ -161,8 +153,6 @@
 - (void)setAllowsContactBlocking:(BOOL)arg1;
 - (void)setAllowsDeletion:(BOOL)arg1;
 - (void)setAllowsEditing:(BOOL)arg1;
-- (void)setAllowsOnlyFaceTimeActions:(BOOL)arg1;
-- (void)setAllowsOnlyPhoneActions:(BOOL)arg1;
 - (void)setAllowsSettingAsPreferredCardForName:(BOOL)arg1;
 - (void)setAllowsSharing:(BOOL)arg1;
 - (void)setAllowsSounds:(BOOL)arg1;
@@ -203,8 +193,8 @@
 - (void)setShouldShowLinkedPeople:(BOOL)arg1;
 - (void)setShouldShowLinkingUIOnCard:(BOOL)arg1;
 - (void)setStyleProvider:(id)arg1;
-- (void)setWillTweetLocationCallback:(id)arg1;
-- (void)setWillWeiboLocationCallback:(id)arg1;
+- (void)setWillTweetLocationCallback:(id /* block */)arg1;
+- (void)setWillWeiboLocationCallback:(id /* block */)arg1;
 - (void)shareContactByEmail:(id)arg1;
 - (id)shareLocationSnapshotImage;
 - (id)shareLocationURL;
@@ -231,7 +221,7 @@
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
-- (id)willTweetLocationCallback;
-- (id)willWeiboLocationCallback;
+- (id /* block */)willTweetLocationCallback;
+- (id /* block */)willWeiboLocationCallback;
 
 @end

@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
  */
 
-@class NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>;
-
 @interface BWJPEGEncoderNode : BWNode {
     BOOL _croppingEnabled;
+    NSDictionary *_inputColorInfo;
     struct OpaqueVTPixelTransferSession { } *_pixelTransferSession;
     NSObject<OS_dispatch_group> *_thumbnailGenerationGroup;
     NSObject<OS_dispatch_queue> *_thumbnailGenerationQueue;
@@ -22,10 +21,12 @@
 - (void)dealloc;
 - (void)didSelectFormat:(id)arg1 forInput:(id)arg2;
 - (id)init;
+- (id)inputColorInfo;
 - (id)nodeSubType;
 - (id)nodeType;
 - (void)prepareForCurrentConfigurationToBecomeLive;
 - (void)renderSampleBuffer:(struct opaqueCMSampleBuffer { }*)arg1 forInput:(id)arg2;
 - (void)setCroppingEnabled:(BOOL)arg1;
+- (void)setInputColorInfo:(id)arg1;
 
 @end

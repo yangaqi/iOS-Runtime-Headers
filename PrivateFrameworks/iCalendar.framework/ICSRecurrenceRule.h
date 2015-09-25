@@ -2,31 +2,30 @@
    Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
  */
 
-@class ICSDateValue, NSArray, NSMutableDictionary, NSNumber;
-
 @interface ICSRecurrenceRule : NSObject <ICSWriting, NSCoding> {
     int _freq;
     NSMutableDictionary *_parameters;
 }
 
-@property(retain) NSArray * byday;
-@property(retain) NSArray * byhour;
-@property(retain) NSArray * byminute;
-@property(retain) NSArray * bymonth;
-@property(retain) NSArray * bymonthday;
-@property(retain) NSArray * bysecond;
-@property(retain) NSArray * bysetpos;
-@property(retain) NSArray * byweekno;
-@property(retain) NSArray * byyearday;
-@property NSNumber * count;
-@property int freq;
-@property NSNumber * interval;
-@property(retain) ICSDateValue * until;
-@property NSNumber * wkst;
+@property (nonatomic, retain) NSArray *byday;
+@property (nonatomic, retain) NSArray *byhour;
+@property (nonatomic, retain) NSArray *byminute;
+@property (nonatomic, retain) NSArray *bymonth;
+@property (nonatomic, retain) NSArray *bymonthday;
+@property (nonatomic, retain) NSArray *bysecond;
+@property (nonatomic, retain) NSArray *bysetpos;
+@property (nonatomic, retain) NSArray *byweekno;
+@property (nonatomic, retain) NSArray *byyearday;
+@property (nonatomic) NSNumber *count;
+@property (nonatomic) int freq;
+@property (nonatomic) NSNumber *interval;
+@property (nonatomic, retain) ICSDateValue *until;
+@property (nonatomic) NSNumber *wkst;
 
 + (id)recurrenceRuleFromICSCString:(const char *)arg1 withTokenizer:(id)arg2;
 + (id)recurrenceRuleFromICSString:(id)arg1;
 
+- (void).cxx_destruct;
 - (id)ICSStringWithOptions:(unsigned int)arg1;
 - (void)ICSStringWithOptions:(unsigned int)arg1 appendingToString:(id)arg2;
 - (void)_ICSStringWithOptions:(unsigned int)arg1 appendingToString:(id)arg2;
@@ -41,7 +40,6 @@
 - (id)byyearday;
 - (void)cleanUpForStartDate:(id)arg1;
 - (id)count;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (int)freq;
 - (id)initWithCoder:(id)arg1;

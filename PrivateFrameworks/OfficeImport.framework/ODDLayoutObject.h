@@ -2,7 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface ODDLayoutObject : NSObject {
-}
+@interface ODDLayoutObject : NSObject
+
+- (id)description;
 
 @end

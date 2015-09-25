@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CISubtractBlendMode : CIBlendModeFilter {
-}
+@interface CISubtractBlendMode : CIBlendModeFilter
 
-+ (id)_filter_display_name;
 + (id)_kernel;
++ (id)customAttributes;
 
 @end

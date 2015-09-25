@@ -2,21 +2,23 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKAnimatedImage, CKBalloonImageView, NSArray, NSString;
-
 @interface CKImageBalloonView : CKBalloonView <CKAnimationTimerObserver> {
     CKAnimatedImage *_animatedImage;
     NSArray *_frames;
+    UIImageView *_irisBadgeView;
+    BOOL _isIrisAsset;
     CKBalloonImageView *_tailMask;
 }
 
-@property(retain) CKAnimatedImage * animatedImage;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(copy) NSArray * frames;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-@property(retain) CKBalloonImageView * tailMask;
+@property (nonatomic, retain) CKAnimatedImage *animatedImage;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSArray *frames;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIImageView *irisBadgeView;
+@property (nonatomic) BOOL isIrisAsset;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) CKBalloonImageView *tailMask;
 
 - (id)animatedImage;
 - (void)animationTimerFired:(unsigned int)arg1;
@@ -27,6 +29,8 @@
 - (void)didMoveToWindow;
 - (id)frames;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)irisBadgeView;
+- (BOOL)isIrisAsset;
 - (void)layoutSubviews;
 - (BOOL)needsGroupOpacity;
 - (id)overlayColor;
@@ -36,6 +40,8 @@
 - (void)setCanUseOpaqueMask:(BOOL)arg1;
 - (void)setFrames:(id)arg1;
 - (void)setHasTail:(BOOL)arg1;
+- (void)setIrisBadgeView:(id)arg1;
+- (void)setIsIrisAsset:(BOOL)arg1;
 - (void)setTailMask:(id)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1 textAlignmentInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; }*)arg2;
 - (id)tailMask;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray;
-
 @interface OADCustomShapeGeometry : OADShapeGeometry {
     NSMutableArray *mFormulas;
     struct CsRect<int> { int x1[4]; } *mGeometryCoordSpace;
@@ -17,6 +15,7 @@
 - (void)addTextBodyRect:(id)arg1;
 - (void)dealloc;
 - (id)description;
+- (id)equivalentCustomGeometry;
 - (id)formulaAtIndex:(unsigned int)arg1;
 - (unsigned int)formulaCount;
 - (struct CsRect<int> { int x1[4]; })geometryCoordSpace;
@@ -28,5 +27,6 @@
 - (void)setLimo:(struct CsPoint<int> { int x1[2]; })arg1;
 - (id)textBodyRectAtIndex:(unsigned int)arg1;
 - (unsigned int)textBodyRectCount;
+- (int)type;
 
 @end

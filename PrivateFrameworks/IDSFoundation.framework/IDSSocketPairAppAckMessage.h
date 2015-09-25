@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
  */
 
-@class NSString;
-
 @interface IDSSocketPairAppAckMessage : IDSSocketPairMessage {
     unsigned int _offset;
     NSString *_peerResponseIdentifier;
@@ -11,9 +9,9 @@
     unsigned short _streamID;
 }
 
-@property(retain,readonly) NSString * peerResponseIdentifier;
-@property unsigned int sequenceNumber;
-@property(readonly) unsigned short streamID;
+@property (nonatomic, readonly, retain) NSString *peerResponseIdentifier;
+@property (nonatomic) unsigned int sequenceNumber;
+@property (nonatomic) unsigned short streamID;
 
 - (id)_nonHeaderData;
 - (unsigned char)command;
@@ -23,6 +21,7 @@
 - (id)peerResponseIdentifier;
 - (unsigned int)sequenceNumber;
 - (void)setSequenceNumber:(unsigned int)arg1;
+- (void)setStreamID:(unsigned short)arg1;
 - (unsigned short)streamID;
 
 @end

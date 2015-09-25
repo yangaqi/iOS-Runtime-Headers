@@ -2,15 +2,15 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVWeakReference, NSError, NSNumber, NSObject<OS_dispatch_queue>, NSURL;
-
 @interface AVAssetDownloadSessionInternal : NSObject {
     NSURL *URL;
-    struct OpaqueFigAsset { } *asset;
+    AVURLAsset *asset;
+    struct CMBaseObject { } *assetDownloader;
     NSNumber *cachePrimingDownloadTokenNum;
     NSURL *destinationURL;
     unsigned long long downloadToken;
     NSError *error;
+    struct OpaqueFigAsset { } *figAsset;
     struct OpaqueFigPlaybackItem { } *playbackItem;
     struct OpaqueFigPlayer { } *player;
     int priority;

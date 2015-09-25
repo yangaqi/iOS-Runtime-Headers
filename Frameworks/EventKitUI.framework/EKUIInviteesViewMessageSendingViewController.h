@@ -2,27 +2,17 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class EKEvent, NSString;
-
 @interface EKUIInviteesViewMessageSendingViewController : UIViewController <MFMailComposeViewControllerDelegate> {
     EKEvent *_event;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _messageSendingComplete;
-
+    id /* block */ _messageSendingComplete;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) EKEvent * event;
-@property(readonly) unsigned int hash;
-@property(copy) id messageSendingComplete;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) EKEvent *event;
+@property (readonly) unsigned int hash;
+@property (copy) id /* block */ messageSendingComplete;
+@property (readonly) Class superclass;
 
 + (id)_attendeesIgnorningMe:(id)arg1;
 + (id)_recipientEmailAddressesToDisplayNames:(id)arg1;
@@ -31,11 +21,15 @@
 - (void).cxx_destruct;
 - (id)_htmlBodyForMailMessageWithNames:(id)arg1;
 - (id)event;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithEvent:(id)arg1;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (void)loadView;
 - (void)mailComposeController:(id)arg1 didFinishWithResult:(int)arg2 error:(id)arg3;
-- (id)messageSendingComplete;
+- (id /* block */)messageSendingComplete;
+- (BOOL)prefersForcedModalShowViewController;
+- (BOOL)prefersToBePresentedFromApplicationRootViewController;
 - (void)setEvent:(id)arg1;
-- (void)setMessageSendingComplete:(id)arg1;
+- (void)setMessageSendingComplete:(id /* block */)arg1;
 
 @end

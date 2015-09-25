@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, NSURL;
-
 @interface UIWebClipLinkTag : NSObject {
     NSString *_href;
     BOOL _mediaMatchesLandscapeOrientation;
@@ -12,14 +10,14 @@
     NSString *_sizes;
 }
 
-@property(copy) NSString * href;
-@property(readonly) NSURL * hrefURL;
-@property BOOL mediaMatchesLandscapeOrientation;
-@property BOOL mediaMatchesPortraitOrientation;
-@property(copy) NSString * rel;
-@property(copy) NSString * sizes;
+@property (nonatomic, copy) NSString *href;
+@property (nonatomic, readonly) NSURL *hrefURL;
+@property (nonatomic) BOOL mediaMatchesLandscapeOrientation;
+@property (nonatomic) BOOL mediaMatchesPortraitOrientation;
+@property (nonatomic, copy) NSString *rel;
+@property (nonatomic, copy) NSString *sizes;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)href;
 - (id)hrefURL;
 - (BOOL)mediaMatchesLandscapeOrientation;

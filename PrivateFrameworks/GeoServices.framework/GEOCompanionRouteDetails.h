@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOMapItemStorage, NSData, NSMutableArray, NSString;
-
 @interface GEOCompanionRouteDetails : PBCodable <NSCopying> {
     BOOL _canNavigate;
     struct { 
@@ -11,6 +9,7 @@
         unsigned int count; 
         unsigned int size; 
     } _coordinates;
+    GEOTransitDecoderData *_decoderData;
     GEOMapItemStorage *_destination;
     NSString *_destinationName;
     unsigned int _distance;
@@ -18,13 +17,17 @@
         unsigned int distance : 1; 
         unsigned int historicalDuration : 1; 
         unsigned int originalDuration : 1; 
+        unsigned int transportType : 1; 
         unsigned int canNavigate : 1; 
+        unsigned int showTransitSchedules : 1; 
     } _has;
     unsigned int _historicalDuration;
     NSString *_name;
     GEOMapItemStorage *_origin;
     unsigned int _originalDuration;
+    GEOTransitSuggestedRoute *_originalSuggestedRoute;
     NSData *_routeID;
+    BOOL _showTransitSchedules;
     NSMutableArray *_steps;
     struct { 
         unsigned int *list; 
@@ -36,33 +39,42 @@
         unsigned int count; 
         unsigned int size; 
     } _trafficColors;
+    int _transportType;
 }
 
-@property BOOL canNavigate;
-@property(readonly) double* coordinates;
-@property(readonly) unsigned int coordinatesCount;
-@property(retain) GEOMapItemStorage * destination;
-@property(retain) NSString * destinationName;
-@property unsigned int distance;
-@property BOOL hasCanNavigate;
-@property(readonly) BOOL hasDestination;
-@property(readonly) BOOL hasDestinationName;
-@property BOOL hasDistance;
-@property BOOL hasHistoricalDuration;
-@property(readonly) BOOL hasName;
-@property(readonly) BOOL hasOrigin;
-@property BOOL hasOriginalDuration;
-@property(readonly) BOOL hasRouteID;
-@property unsigned int historicalDuration;
-@property(retain) NSString * name;
-@property(retain) GEOMapItemStorage * origin;
-@property unsigned int originalDuration;
-@property(retain) NSData * routeID;
-@property(retain) NSMutableArray * steps;
-@property(readonly) unsigned int* trafficColorOffsets;
-@property(readonly) unsigned int trafficColorOffsetsCount;
-@property(readonly) unsigned int* trafficColors;
-@property(readonly) unsigned int trafficColorsCount;
+@property (nonatomic) BOOL canNavigate;
+@property (nonatomic, readonly) double*coordinates;
+@property (nonatomic, readonly) unsigned int coordinatesCount;
+@property (nonatomic, retain) GEOTransitDecoderData *decoderData;
+@property (nonatomic, retain) GEOMapItemStorage *destination;
+@property (nonatomic, retain) NSString *destinationName;
+@property (nonatomic) unsigned int distance;
+@property (nonatomic) BOOL hasCanNavigate;
+@property (nonatomic, readonly) BOOL hasDecoderData;
+@property (nonatomic, readonly) BOOL hasDestination;
+@property (nonatomic, readonly) BOOL hasDestinationName;
+@property (nonatomic) BOOL hasDistance;
+@property (nonatomic) BOOL hasHistoricalDuration;
+@property (nonatomic, readonly) BOOL hasName;
+@property (nonatomic, readonly) BOOL hasOrigin;
+@property (nonatomic) BOOL hasOriginalDuration;
+@property (nonatomic, readonly) BOOL hasOriginalSuggestedRoute;
+@property (nonatomic, readonly) BOOL hasRouteID;
+@property (nonatomic) BOOL hasShowTransitSchedules;
+@property (nonatomic) BOOL hasTransportType;
+@property (nonatomic) unsigned int historicalDuration;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) GEOMapItemStorage *origin;
+@property (nonatomic) unsigned int originalDuration;
+@property (nonatomic, retain) GEOTransitSuggestedRoute *originalSuggestedRoute;
+@property (nonatomic, retain) NSData *routeID;
+@property (nonatomic) BOOL showTransitSchedules;
+@property (nonatomic, retain) NSMutableArray *steps;
+@property (nonatomic, readonly) unsigned int*trafficColorOffsets;
+@property (nonatomic, readonly) unsigned int trafficColorOffsetsCount;
+@property (nonatomic, readonly) unsigned int*trafficColors;
+@property (nonatomic, readonly) unsigned int trafficColorsCount;
+@property (nonatomic) int transportType;
 
 - (void)addCoordinates:(double)arg1;
 - (void)addStep:(id)arg1;
@@ -79,12 +91,14 @@
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)decoderData;
 - (id)description;
 - (id)destination;
 - (id)destinationName;
 - (id)dictionaryRepresentation;
 - (unsigned int)distance;
 - (BOOL)hasCanNavigate;
+- (BOOL)hasDecoderData;
 - (BOOL)hasDestination;
 - (BOOL)hasDestinationName;
 - (BOOL)hasDistance;
@@ -92,7 +106,10 @@
 - (BOOL)hasName;
 - (BOOL)hasOrigin;
 - (BOOL)hasOriginalDuration;
+- (BOOL)hasOriginalSuggestedRoute;
 - (BOOL)hasRouteID;
+- (BOOL)hasShowTransitSchedules;
+- (BOOL)hasTransportType;
 - (unsigned int)hash;
 - (unsigned int)historicalDuration;
 - (id)initWithRoute:(id)arg1 destinationName:(id)arg2;
@@ -102,10 +119,12 @@
 - (id)name;
 - (id)origin;
 - (unsigned int)originalDuration;
+- (id)originalSuggestedRoute;
 - (BOOL)readFrom:(id)arg1;
 - (id)routeID;
 - (void)setCanNavigate:(BOOL)arg1;
 - (void)setCoordinates:(double*)arg1 count:(unsigned int)arg2;
+- (void)setDecoderData:(id)arg1;
 - (void)setDestination:(id)arg1;
 - (void)setDestinationName:(id)arg1;
 - (void)setDistance:(unsigned int)arg1;
@@ -113,14 +132,20 @@
 - (void)setHasDistance:(BOOL)arg1;
 - (void)setHasHistoricalDuration:(BOOL)arg1;
 - (void)setHasOriginalDuration:(BOOL)arg1;
+- (void)setHasShowTransitSchedules:(BOOL)arg1;
+- (void)setHasTransportType:(BOOL)arg1;
 - (void)setHistoricalDuration:(unsigned int)arg1;
 - (void)setName:(id)arg1;
 - (void)setOrigin:(id)arg1;
 - (void)setOriginalDuration:(unsigned int)arg1;
+- (void)setOriginalSuggestedRoute:(id)arg1;
 - (void)setRouteID:(id)arg1;
+- (void)setShowTransitSchedules:(BOOL)arg1;
 - (void)setSteps:(id)arg1;
 - (void)setTrafficColorOffsets:(unsigned int*)arg1 count:(unsigned int)arg2;
 - (void)setTrafficColors:(unsigned int*)arg1 count:(unsigned int)arg2;
+- (void)setTransportType:(int)arg1;
+- (BOOL)showTransitSchedules;
 - (id)stepAtIndex:(unsigned int)arg1;
 - (id)steps;
 - (unsigned int)stepsCount;
@@ -130,6 +155,7 @@
 - (unsigned int)trafficColorOffsetsCount;
 - (unsigned int*)trafficColors;
 - (unsigned int)trafficColorsCount;
+- (int)transportType;
 - (void)writeTo:(id)arg1;
 
 @end

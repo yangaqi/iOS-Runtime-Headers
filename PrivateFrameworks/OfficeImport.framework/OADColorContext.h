@@ -2,24 +2,25 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class <OADColorPalette>, OADColorMap, OADColorScheme;
-
 @interface OADColorContext : NSObject {
     OADColorMap *mMap;
     <OADColorPalette> *mPalette;
     OADColorScheme *mScheme;
 }
 
-@property(readonly) OADColorMap * map;
-@property(readonly) <OADColorPalette> * palette;
-@property(readonly) OADColorScheme * scheme;
+@property (nonatomic, readonly) OADColorMap *map;
+@property (nonatomic, retain) <OADColorPalette> *palette;
+@property (nonatomic, readonly) OADColorScheme *scheme;
 
 + (id)colorContextWithScheme:(id)arg1 map:(id)arg2 palette:(id)arg3;
 
+- (void)applyThemeOverrides:(id)arg1 colorMapOverride:(id)arg2;
 - (void)dealloc;
 - (id)initWithScheme:(id)arg1 map:(id)arg2 palette:(id)arg3;
+- (BOOL)isEqual:(id)arg1;
 - (id)map;
 - (id)palette;
 - (id)scheme;
+- (void)setPalette:(id)arg1;
 
 @end

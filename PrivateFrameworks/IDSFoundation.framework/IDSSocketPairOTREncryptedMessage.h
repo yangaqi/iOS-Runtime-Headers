@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
  */
 
-@class NSData;
-
 @interface IDSSocketPairOTREncryptedMessage : IDSSocketPairMessage {
     NSData *_data;
     BOOL _encrypted;
@@ -15,24 +13,26 @@
     unsigned char _versionNumber;
 }
 
-@property(retain,readonly) NSData * data;
-@property(readonly) BOOL encrypted;
-@property(readonly) BOOL fileXfer;
-@property(readonly) unsigned short priority;
-@property(readonly) unsigned int sequenceNumber;
-@property(readonly) unsigned short streamID;
-@property(readonly) unsigned char versionNumber;
+@property (nonatomic, readonly, retain) NSData *data;
+@property (nonatomic, readonly) BOOL encrypted;
+@property (nonatomic, readonly) BOOL fileXfer;
+@property (nonatomic, readonly) unsigned short priority;
+@property (nonatomic, readonly) unsigned int sequenceNumber;
+@property (nonatomic) unsigned short streamID;
+@property (nonatomic, readonly) unsigned char versionNumber;
 
 - (id)_nonHeaderData;
 - (unsigned char)command;
 - (id)data;
 - (void)dealloc;
+- (id)description;
 - (BOOL)encrypted;
 - (BOOL)fileXfer;
 - (id)initWithCommand:(unsigned char)arg1 underlyingData:(id)arg2;
 - (id)initWithVersion:(unsigned char)arg1 encrypted:(BOOL)arg2 streamID:(unsigned short)arg3 priority:(unsigned short)arg4 sequenceNumber:(unsigned int)arg5 fileXfer:(BOOL)arg6 data:(id)arg7;
 - (unsigned short)priority;
 - (unsigned int)sequenceNumber;
+- (void)setStreamID:(unsigned short)arg1;
 - (unsigned short)streamID;
 - (unsigned char)versionNumber;
 

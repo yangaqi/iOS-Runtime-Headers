@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class <PUSearchResultsDelegate>, NSArray, NSObject<OS_dispatch_queue>, NSSet, NSString, PLPhotoLibrary, PLSearchIndexDateFormatter, PSIDatabase, PSIQuery;
-
 @interface PUSearchResultsDataSource : NSObject <PUSearchResultsValueDelegate> {
     NSSet *_albumUUIDs;
     PLSearchIndexDateFormatter *_dateFormatter;
@@ -21,16 +19,15 @@
     unsigned int _unprocessedSearchResultsCount;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <PUSearchResultsDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) PSIDatabase * searchIndex;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PUSearchResultsDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) PSIDatabase *searchIndex;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_fetchAlbumsWithUUIDs:(id)arg1;
-- (id)_fetchAssetsWithUUIDs:(id)arg1;
 - (void)_inqBackgroundProcessSearchResults:(id)arg1 withTag:(unsigned int)arg2 searchString:(id)arg3;
 - (void)_inqCancel;
 - (BOOL)_shouldCancel:(unsigned int)arg1;
@@ -46,6 +43,8 @@
 - (void)setDelegate:(id)arg1;
 - (void)setSearchIndex:(id)arg1;
 - (void)setSearchString:(id)arg1;
+- (void)setSearchString:(id)arg1 withCompletion:(id /* block */)arg2;
+- (void)setSearchString:(id)arg1 withWildcardSearch:(BOOL)arg2 andEarlyNotifyOfResults:(id /* block */)arg3 andCompletion:(id /* block */)arg4;
 - (id)valueAtIndex:(unsigned int)arg1;
 
 @end

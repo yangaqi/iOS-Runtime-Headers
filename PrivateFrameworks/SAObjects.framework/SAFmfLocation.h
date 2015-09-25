@@ -2,15 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString, SAPersonAttribute;
-
 @interface SAFmfLocation : SALocation {
+    NSString *_emailAddress;
 }
 
-@property(retain) NSNumber * distance;
-@property(copy) NSString * emailAddress;
-@property(retain) SAPersonAttribute * friend;
-@property(retain) NSNumber * locationDate;
+@property (nonatomic, retain) NSNumber *distance;
+@property (nonatomic, copy) NSString *emailAddress;
+@property (nonatomic, retain) SAPersonAttribute *friend;
+@property (nonatomic, retain) NSNumber *locationDate;
 
 + (id)location;
 + (id)locationWithDictionary:(id)arg1 context:(id)arg2;
@@ -25,6 +24,5 @@
 - (void)setEmailAddress:(id)arg1;
 - (void)setFriend:(id)arg1;
 - (void)setLocationDate:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

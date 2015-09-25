@@ -2,20 +2,13 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@class NSArray, NSDictionary;
+@interface MTLStructType : NSObject
 
-@interface MTLStructType : NSObject {
-    NSDictionary *_dictionary;
-    NSArray *_members;
-}
+@property (readonly) NSArray *members;
 
-@property(readonly) NSArray * members;
++ (id)alloc;
++ (id)allocWithZone:(struct _NSZone { }*)arg1;
 
-- (void)dealloc;
-- (id)describe;
-- (id)description;
-- (id)initWithMembers:(id*)arg1 count:(unsigned int)arg2;
 - (id)memberByName:(id)arg1;
-- (id)members;
 
 @end

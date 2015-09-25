@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImageView, UIKeyboardCandidateBar, UIKeyboardCandidateGrid, UIKeyboardCandidateSortControl, UIKeyboardCandidateSplitKeyboardToggleButton, UIKeyboardCandidateUnsplitKeyboardToggleButton, UIView<UIKeyboardCandidateList>;
-
 @interface UIKeyboardCandidateView : UIInputView {
     UIKeyboardCandidateBar *_bar;
     struct { 
@@ -20,7 +18,7 @@
     UIKeyboardCandidateSortControl *_sortControl;
 }
 
-@property(retain) UIView<UIKeyboardCandidateList> * inlineView;
+@property (nonatomic, retain) UIView<UIKeyboardCandidateList> *inlineView;
 
 + (id)activeCandidateList;
 + (id)activeCandidateView;
@@ -33,7 +31,6 @@
 - (unsigned int)_numberOfColumns:(BOOL)arg1;
 - (void)_toggleExtendedCandidateView:(id)arg1;
 - (id)activeCandidateList;
-- (float)barHeight;
 - (void)candidatesDidChange;
 - (void)dealloc;
 - (float)extendedViewAnimationDuration;
@@ -41,6 +38,7 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)inlineView;
 - (BOOL)isExtended;
+- (BOOL)isSplit;
 - (void)layoutSubviews;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (void)setCandidateBarCanExtend:(BOOL)arg1;

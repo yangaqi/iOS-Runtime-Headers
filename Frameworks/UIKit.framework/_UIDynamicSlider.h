@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIDynamicItemBehavior, UIGravityBehavior, UIPushBehavior, UIView, _UIDynamicSliderAnimator;
-
 @interface _UIDynamicSlider : UISlider <UICollisionBehaviorDelegate, UIDynamicAnimatorDelegate> {
     _UIDynamicSliderAnimator *_animator;
     UIGravityBehavior *_gravityBehavior;
@@ -18,11 +16,12 @@
     float _thumbVelocity;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (void)_clearDynamics;
 - (void)_handleConversionToDynamicsTracking;
 - (void)_handleDynamicsStep;

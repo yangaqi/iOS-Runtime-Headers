@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDProtection, EDResources, NSString;
-
 @interface EDStyle : NSObject <EDImmutableObject, NSCopying> {
     unsigned int mAlignmentInfoIndex;
     bool mAlignmentInfoOverridden;
@@ -23,10 +21,10 @@
     EDResources *mResources;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)styleWithResources:(id)arg1;
 
@@ -38,6 +36,7 @@
 - (unsigned int)contentFormatId;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)fill;
 - (unsigned int)fillIndex;
 - (id)font;
@@ -47,6 +46,7 @@
 - (id)initWithResources:(id)arg1;
 - (bool)isAlignmentInfoOverridden;
 - (bool)isBordersOverridden;
+- (bool)isCenterAcrossAligned;
 - (bool)isContentFormatOverridden;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToStyle:(id)arg1;

@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UILabel;
-
 @interface UIStatusBarReturnToCallItemView : UIStatusBarAppIconItemView {
     UILabel *_textLabel;
 }
 
+- (void).cxx_destruct;
 - (id)_appBundleIdentifier;
-- (void)dealloc;
 - (void)layoutSubviews;
 - (BOOL)updateForNewData:(id)arg1 actions:(int)arg2;
 

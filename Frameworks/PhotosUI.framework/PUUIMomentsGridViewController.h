@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class NSArray, PUUIImagePickerControllerHelper, UIBarButtonItem;
-
 @interface PUUIMomentsGridViewController : PUPhotosGridViewController {
     PUUIImagePickerControllerHelper *__imagePickerControllerHelper;
     NSArray *__imagePickerMediaTypes;
@@ -11,8 +9,8 @@
     UIBarButtonItem *_imagePickerMultipleSelectionDoneButton;
 }
 
-@property(readonly) PUUIImagePickerControllerHelper * _imagePickerControllerHelper;
-@property(setter=_setImagePickerMediaTypes:,copy) NSArray * _imagePickerMediaTypes;
+@property (readonly) PUUIImagePickerControllerHelper *_imagePickerControllerHelper;
+@property (setter=_setImagePickerMediaTypes:, nonatomic, copy) NSArray *_imagePickerMediaTypes;
 
 - (void).cxx_destruct;
 - (void)_handleImagePickerCancel:(id)arg1;
@@ -20,6 +18,7 @@
 - (id)_imagePickerControllerHelper;
 - (id)_imagePickerMediaTypes;
 - (void)_setImagePickerMediaTypes:(id)arg1;
+- (BOOL)canNavigateToPhotoInteractively:(BOOL)arg1;
 - (void)configureSupplementaryView:(id)arg1 ofKind:(id)arg2 forIndexPath:(id)arg3 animated:(BOOL)arg4;
 - (void)getTitle:(out id*)arg1 prompt:(out id*)arg2 shouldHideBackButton:(out BOOL*)arg3 leftBarButtonItems:(out id*)arg4 rightBarButtonItems:(out id*)arg5;
 - (void)handleNavigateToAsset:(id)arg1 inContainer:(id)arg2;
@@ -29,6 +28,8 @@
 - (BOOL)initiallyScrolledToBottom;
 - (void)loadView;
 - (id)newGridLayout;
+- (BOOL)shouldPerformAutomaticContentOffsetAdjustment;
+- (BOOL)shouldShowMenu;
 - (void)viewDidLoad;
 
 @end

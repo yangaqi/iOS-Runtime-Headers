@@ -2,31 +2,30 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@class NSDictionary, NSMutableArray, NSString, PLEntry, PLXPCListenerOperatorComposition;
-
 @interface PLAudioAgent : PLAgent {
     PLXPCListenerOperatorComposition *_audioAppXPCListener;
     NSString *_audioHardware;
     NSDictionary *_audioPowerModel;
     PLEntry *_entryRoutingOld;
-    PLEntry *_entrySpeakerPowerOld;
+    NSDate *_lastModeledEntryDate;
     NSMutableArray *_nsOutputNotifications;
     NSMutableArray *_nsRoutingNotifications;
+    PLXPCListenerOperatorComposition *_screenMirroringXPCListener;
     PLXPCListenerOperatorComposition *_speakerAmpXPCListener;
     BOOL _speakerIsPlayingAudio;
 }
 
-@property(retain) PLXPCListenerOperatorComposition * audioAppXPCListener;
-@property(readonly) NSString * audioHardware;
-@property(readonly) NSDictionary * audioPowerModel;
-@property(retain) PLEntry * entryRoutingOld;
-@property(retain) PLEntry * entrySpeakerPowerOld;
-@property(readonly) NSMutableArray * nsOutputNotifications;
-@property(readonly) NSMutableArray * nsRoutingNotifications;
-@property(retain) PLXPCListenerOperatorComposition * speakerAmpXPCListener;
+@property (retain) PLXPCListenerOperatorComposition *audioAppXPCListener;
+@property (readonly) NSString *audioHardware;
+@property (readonly) NSDictionary *audioPowerModel;
+@property (retain) PLEntry *entryRoutingOld;
+@property (retain) NSDate *lastModeledEntryDate;
+@property (readonly) NSMutableArray *nsOutputNotifications;
+@property (readonly) NSMutableArray *nsRoutingNotifications;
+@property (retain) PLXPCListenerOperatorComposition *screenMirroringXPCListener;
+@property (retain) PLXPCListenerOperatorComposition *speakerAmpXPCListener;
 @property BOOL speakerIsPlayingAudio;
 
-+ (id)accountingGroupDefinitions;
 + (id)entryEventBackwardDefinitions;
 + (id)entryEventForwardDefinitionOutput;
 + (id)entryEventForwardDefinitionRouting;
@@ -36,7 +35,6 @@
 + (id)entryEventPointDefinitionSpeakerAmp;
 + (id)entryEventPointDefinitions;
 + (void)load;
-+ (id)railDefinitions;
 
 - (void).cxx_destruct;
 - (BOOL)active;
@@ -51,31 +49,34 @@
 - (void)createBluetoothAccountingEvents:(id)arg1;
 - (void)createCarPlayAccountingEvents:(id)arg1;
 - (id)entryRoutingOld;
-- (id)entrySpeakerPowerOld;
 - (BOOL)headphonesConnected;
 - (BOOL)headsetHasInput;
 - (id)init;
 - (void)initOperatorDependancies;
+- (id)lastModeledEntryDate;
 - (void)log;
 - (void)logEventForwardOutput;
 - (void)logEventForwardRouting;
 - (void)logEventPointAudioApp:(id)arg1;
 - (void)logEventPointSpeakerAmp:(id)arg1;
 - (void)modelAudioPower;
-- (double)modelAudioPowerForK94:(double)arg1;
 - (void)modelAudioPowerSpeaker:(id)arg1;
+- (double)modelAudioPowerWithVolume:(double)arg1;
 - (BOOL)muted;
 - (int)nowPlayingAppPID;
 - (id)nsOutputNotifications;
 - (id)nsRoutingNotifications;
 - (id)outputCategory;
 - (id)returnVolumeOrOutPutCategory:(int)arg1;
+- (id)screenMirroringXPCListener;
 - (void)setAudioAppXPCListener:(id)arg1;
 - (void)setEntryRoutingOld:(id)arg1;
-- (void)setEntrySpeakerPowerOld:(id)arg1;
+- (void)setLastModeledEntryDate:(id)arg1;
+- (void)setScreenMirroringXPCListener:(id)arg1;
 - (void)setSpeakerAmpXPCListener:(id)arg1;
 - (void)setSpeakerIsPlayingAudio:(BOOL)arg1;
 - (void)setupAVSystemController;
+- (BOOL)shouldModelAsK94orJ2;
 - (id)speakerAmpXPCListener;
 - (BOOL)speakerIsPlayingAudio;
 - (id)volume;

@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@interface SBFLockScreenMetrics : NSObject {
-}
+@interface SBFLockScreenMetrics : NSObject
 
 + (float)_notificationListBottomOffset;
 + (float)_notificationListSideOffset;
@@ -12,9 +11,9 @@
 + (float)dateLabelFontSize;
 + (float)dateViewBaselineY;
 + (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })notificationListInsets;
-+ (float)pinFourDigitEntryFieldBottomYDistanceFromNumberPadTopButton:(BOOL)arg1;
-+ (float)pinFourDigitEntryFieldIndicatorDiameter;
-+ (float)pinFourDigitEntryFieldIndicatorPaddingWidth;
++ (float)pinFixedDigitEntryFieldBottomYDistanceFromNumberPadTopButton:(BOOL)arg1;
++ (float)pinFixedDigitEntryFieldIndicatorDiameter;
++ (float)pinFixedDigitEntryFieldIndicatorPaddingWidth;
 + (float)pinKeypadEntryFieldOffsetForSubtitle;
 + (id)pinKeypadStatusSubtitleViewTitleFont;
 + (float)pinKeypadStatusTitleBaselineOffset:(BOOL)arg1;

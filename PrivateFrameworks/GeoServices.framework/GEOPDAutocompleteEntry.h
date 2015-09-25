@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOPDAutocompleteEntryAddress, GEOPDAutocompleteEntryBusiness, GEOPDAutocompleteEntryHighlightLine, GEOPDAutocompleteEntryQuery, PBUnknownFields;
-
 @interface GEOPDAutocompleteEntry : PBCodable <NSCopying> {
     GEOPDAutocompleteEntryAddress *_address;
     GEOPDAutocompleteEntryBusiness *_business;
+    GEOPDAutocompleteEntryCategory *_category;
     struct { 
         unsigned int type : 1; 
     } _has;
@@ -17,22 +16,25 @@
     PBUnknownFields *_unknownFields;
 }
 
-@property(retain) GEOPDAutocompleteEntryAddress * address;
-@property(retain) GEOPDAutocompleteEntryBusiness * business;
-@property(readonly) BOOL hasAddress;
-@property(readonly) BOOL hasBusiness;
-@property(readonly) BOOL hasHighlightExtra;
-@property(readonly) BOOL hasHighlightMain;
-@property(readonly) BOOL hasQuery;
-@property BOOL hasType;
-@property(retain) GEOPDAutocompleteEntryHighlightLine * highlightExtra;
-@property(retain) GEOPDAutocompleteEntryHighlightLine * highlightMain;
-@property(retain) GEOPDAutocompleteEntryQuery * query;
-@property int type;
-@property(readonly) PBUnknownFields * unknownFields;
+@property (nonatomic, retain) GEOPDAutocompleteEntryAddress *address;
+@property (nonatomic, retain) GEOPDAutocompleteEntryBusiness *business;
+@property (nonatomic, retain) GEOPDAutocompleteEntryCategory *category;
+@property (nonatomic, readonly) BOOL hasAddress;
+@property (nonatomic, readonly) BOOL hasBusiness;
+@property (nonatomic, readonly) BOOL hasCategory;
+@property (nonatomic, readonly) BOOL hasHighlightExtra;
+@property (nonatomic, readonly) BOOL hasHighlightMain;
+@property (nonatomic, readonly) BOOL hasQuery;
+@property (nonatomic) BOOL hasType;
+@property (nonatomic, retain) GEOPDAutocompleteEntryHighlightLine *highlightExtra;
+@property (nonatomic, retain) GEOPDAutocompleteEntryHighlightLine *highlightMain;
+@property (nonatomic, retain) GEOPDAutocompleteEntryQuery *query;
+@property (nonatomic) int type;
+@property (nonatomic, readonly) PBUnknownFields *unknownFields;
 
 - (id)address;
 - (id)business;
+- (id)category;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -40,6 +42,7 @@
 - (id)dictionaryRepresentation;
 - (BOOL)hasAddress;
 - (BOOL)hasBusiness;
+- (BOOL)hasCategory;
 - (BOOL)hasHighlightExtra;
 - (BOOL)hasHighlightMain;
 - (BOOL)hasQuery;
@@ -53,6 +56,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (void)setAddress:(id)arg1;
 - (void)setBusiness:(id)arg1;
+- (void)setCategory:(id)arg1;
 - (void)setHasType:(BOOL)arg1;
 - (void)setHighlightExtra:(id)arg1;
 - (void)setHighlightMain:(id)arg1;

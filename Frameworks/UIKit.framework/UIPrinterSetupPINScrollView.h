@@ -2,16 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIView;
-
 @interface UIPrinterSetupPINScrollView : UIScrollView {
     UIView *_contentView;
     float _visibleHeight;
 }
 
-@property(retain) UIView * contentView;
-@property float visibleHeight;
+@property (nonatomic, retain) UIView *contentView;
+@property (nonatomic) float visibleHeight;
 
+- (void).cxx_destruct;
 - (BOOL)_scrollsToMakeFirstResponderVisible;
 - (id)contentView;
 - (void)dealloc;

@@ -2,38 +2,40 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSDate, NSNumber, NSString, SASportsEntity, SAUIAppPunchOut;
+@interface SASportsMatchup : SADomainObject
 
-@interface SASportsMatchup : SADomainObject {
-}
+@property (nonatomic, retain) SASportsEntity *awayEntity;
+@property (nonatomic, copy) NSArray *awayLineScores;
+@property (nonatomic, copy) NSString *awayScore;
+@property (nonatomic, copy) NSNumber *awayShootoutPoints;
+@property (nonatomic, copy) NSString *awayTeamRecordSummary;
+@property (nonatomic, copy) NSString *currentPeriod;
+@property (nonatomic, copy) NSNumber *expectedLineScoreCount;
+@property (nonatomic, copy) NSString *favoredEntity;
+@property (nonatomic, retain) SASportsEntity *homeEntity;
+@property (nonatomic, copy) NSArray *homeLineScores;
+@property (nonatomic, copy) NSString *homeScore;
+@property (nonatomic, copy) NSNumber *homeShootoutPoints;
+@property (nonatomic, copy) NSString *homeTeamRecordSummary;
+@property (nonatomic, copy) NSNumber *isExplicitlyEndOfPeriod;
+@property (nonatomic, copy) NSString *line;
+@property (nonatomic, copy) NSString *location;
+@property (nonatomic, copy) NSString *locationName;
+@property (nonatomic, copy) NSString *matchupOrder;
+@property (nonatomic, copy) NSString *overUnder;
+@property (nonatomic, copy) NSString *periodDescription;
+@property (nonatomic, copy) NSArray *playSummaries;
+@property (nonatomic, retain) SAUIAppPunchOut *punchout;
+@property (nonatomic, copy) NSDate *startTime;
+@property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) NSString *timeRemaining;
+@property (nonatomic, copy) NSNumber *timeTBD;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *tournamentSeriesDescription;
+@property (nonatomic, copy) NSArray *tvChannels;
+@property (nonatomic, copy) NSString *winningEntity;
 
-@property(retain) SASportsEntity * awayEntity;
-@property(copy) NSArray * awayLineScores;
-@property(copy) NSString * awayScore;
-@property(copy) NSNumber * awayShootoutPoints;
-@property(copy) NSString * currentPeriod;
-@property(copy) NSNumber * expectedLineScoreCount;
-@property(copy) NSString * favoredEntity;
-@property(retain) SASportsEntity * homeEntity;
-@property(copy) NSArray * homeLineScores;
-@property(copy) NSString * homeScore;
-@property(copy) NSNumber * homeShootoutPoints;
-@property(copy) NSString * line;
-@property(copy) NSString * location;
-@property(copy) NSString * locationName;
-@property(copy) NSString * matchupOrder;
-@property(copy) NSString * overUnder;
-@property(copy) NSString * periodDescription;
-@property(copy) NSArray * playSummaries;
-@property(retain) SAUIAppPunchOut * punchout;
-@property(copy) NSDate * startTime;
-@property(copy) NSString * status;
-@property(copy) NSString * timeRemaining;
-@property(copy) NSNumber * timeTBD;
-@property(copy) NSString * title;
-@property(copy) NSString * tournamentSeriesDescription;
-@property(copy) NSArray * tvChannels;
-@property(copy) NSString * winningEntity;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)matchup;
 + (id)matchupWithDictionary:(id)arg1 context:(id)arg2;
@@ -42,6 +44,7 @@
 - (id)awayLineScores;
 - (id)awayScore;
 - (id)awayShootoutPoints;
+- (id)awayTeamRecordSummary;
 - (id)currentPeriod;
 - (id)encodedClassName;
 - (id)expectedLineScoreCount;
@@ -51,6 +54,8 @@
 - (id)homeLineScores;
 - (id)homeScore;
 - (id)homeShootoutPoints;
+- (id)homeTeamRecordSummary;
+- (id)isExplicitlyEndOfPeriod;
 - (id)line;
 - (id)location;
 - (id)locationName;
@@ -63,6 +68,7 @@
 - (void)setAwayLineScores:(id)arg1;
 - (void)setAwayScore:(id)arg1;
 - (void)setAwayShootoutPoints:(id)arg1;
+- (void)setAwayTeamRecordSummary:(id)arg1;
 - (void)setCurrentPeriod:(id)arg1;
 - (void)setExpectedLineScoreCount:(id)arg1;
 - (void)setFavoredEntity:(id)arg1;
@@ -70,6 +76,8 @@
 - (void)setHomeLineScores:(id)arg1;
 - (void)setHomeScore:(id)arg1;
 - (void)setHomeShootoutPoints:(id)arg1;
+- (void)setHomeTeamRecordSummary:(id)arg1;
+- (void)setIsExplicitlyEndOfPeriod:(id)arg1;
 - (void)setLine:(id)arg1;
 - (void)setLocation:(id)arg1;
 - (void)setLocationName:(id)arg1;
@@ -93,7 +101,19 @@
 - (id)title;
 - (id)tournamentSeriesDescription;
 - (id)tvChannels;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 - (id)winningEntity;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (id)siriui_firstEntity;
+- (id)siriui_firstLineScores;
+- (id)siriui_firstScore;
+- (BOOL)siriui_homeIsFirst;
+- (BOOL)siriui_isInTheFuture;
+- (id)siriui_localizedScheduleStatusForLeague:(id)arg1 sport:(id)arg2 showTimeIfToday:(BOOL)arg3;
+- (id)siriui_secondEntity;
+- (id)siriui_secondLineScores;
+- (id)siriui_secondScore;
+- (id)siriui_venueLocation;
 
 @end

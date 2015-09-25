@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSIndexPath, UITableViewUpdateGap;
-
 @interface UIUpdateItem : NSObject {
     int _action;
     int _animation;
@@ -14,19 +12,19 @@
     BOOL _skipAnimation;
 }
 
-@property(readonly) int action;
-@property int animation;
-@property UITableViewUpdateGap * gap;
-@property BOOL headerFooterOnly;
-@property(readonly) NSIndexPath * indexPath;
-@property float offset;
-@property BOOL skipAnimation;
+@property (nonatomic, readonly) int action;
+@property (nonatomic) int animation;
+@property (nonatomic) UITableViewUpdateGap *gap;
+@property (nonatomic) BOOL headerFooterOnly;
+@property (nonatomic, readonly) NSIndexPath *indexPath;
+@property (nonatomic) float offset;
+@property (nonatomic) BOOL skipAnimation;
 
+- (void).cxx_destruct;
 - (id)_actionDescription;
 - (int)action;
 - (int)animation;
 - (int)compareIndexPaths:(id)arg1;
-- (void)dealloc;
 - (id)gap;
 - (BOOL)headerFooterOnly;
 - (id)indexPath;

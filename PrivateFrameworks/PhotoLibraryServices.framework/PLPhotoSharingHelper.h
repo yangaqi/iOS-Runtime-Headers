@@ -2,17 +2,18 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@interface PLPhotoSharingHelper : NSObject {
-}
+@interface PLPhotoSharingHelper : NSObject
 
++ (BOOL)_derivativeExistsForAsset:(id)arg1 cloudPlaceholderKind:(short)arg2;
 + (id)_downloadRequestQueue;
 + (id)_localizationKeyForAssets:(id)arg1;
 + (id)_pathToServerConfigurationCache;
 + (id)_phoneInvitationFailureFile;
 + (id)_processPhoneFailuresQueue;
++ (BOOL)_recentlyRequestedDownloadAsset:(id)arg1 cloudPlaceholderKind:(short)arg2;
 + (int)_serverLimitValueForKey:(id)arg1 withDefaultResult:(int)arg2;
-+ (BOOL)_shouldDownloadAsset:(id)arg1 requestThumbnail:(BOOL)arg2;
-+ (void)acceptPendingInvitationForAlbum:(id)arg1 completion:(id)arg2;
++ (id)_transactionWithName:(const char *)arg1;
++ (void)acceptPendingInvitationForAlbum:(id)arg1 completion:(id /* block */)arg2;
 + (BOOL)accountMatchesEmail:(id)arg1;
 + (void)accountSettingsChanged;
 + (void)applicationIsInForeground:(BOOL)arg1;
@@ -21,7 +22,7 @@
 + (BOOL)canSetUserCloudSharedLiked:(BOOL)arg1 forAssets:(id)arg2 error:(id*)arg3;
 + (void)checkServerModelForAlbum:(id)arg1;
 + (void)clearCachedAccountState;
-+ (void)countOfAssetsInMstreamdSharingDownloadQueueWithCompletionBlock:(id)arg1;
++ (void)countOfAssetsInMstreamdSharingDownloadQueueWithCompletionBlock:(id /* block */)arg1;
 + (BOOL)debugAlwaysStreamSharedVideos;
 + (BOOL)debugAutoAcceptInvitation;
 + (BOOL)debugDownloadAllDerivatives;
@@ -38,10 +39,11 @@
 + (float)derivedAssetSmallDimensionLimitForType:(int)arg1;
 + (id)directoryPathForDownloadActivityForAlbumGUID:(id)arg1 create:(BOOL)arg2;
 + (id)directoryPathForUploadActivityForAlbumGUID:(id)arg1 create:(BOOL)arg2;
-+ (void)downloadAsset:(id)arg1 requestThumbnail:(BOOL)arg2 shouldPrioritize:(BOOL)arg3 shouldExtendTimer:(BOOL)arg4;
++ (void)downloadAsset:(id)arg1 cloudPlaceholderKind:(short)arg2 shouldPrioritize:(BOOL)arg3 shouldExtendTimer:(BOOL)arg4;
++ (id)downloadNotificationForAssetwithUUID:(id)arg1 cloudPlaceholderKind:(short)arg2;
 + (void)enqueueCloudSharedAssetsForPublishToServer:(id)arg1 inSharedAlbum:(id)arg2;
 + (void)forgetSharingPersonID:(id)arg1;
-+ (void)handlePhoneInvitationFailuresWithCompletionBlock:(id)arg1;
++ (void)handlePhoneInvitationFailuresWithCompletionBlock:(id /* block */)arg1;
 + (BOOL)hasPhoneInvitationForAlbum:(id)arg1;
 + (BOOL)hasReachedLimitOfOwnedStreamsInLibrary:(id)arg1;
 + (BOOL)hasReachedLimitOfSubscribedStreamsInLibrary:(id)arg1;
@@ -50,7 +52,7 @@
 + (double)intervalBetweenPolls;
 + (BOOL)isBreadcrumbDebugEnabled;
 + (BOOL)isCellularConnection;
-+ (void)isMstreamdBusyPerformingSharingActivityWithCompletionBlock:(id)arg1;
++ (void)isMstreamdBusyPerformingSharingActivityWithCompletionBlock:(id /* block */)arg1;
 + (void)markAlbumGUIDAsViewed:(id)arg1 clearUnseenAssetsCount:(BOOL)arg2;
 + (void)markCommentsForAssetCollectionWithGUID:(id)arg1 asViewedWithLastViewedDate:(id)arg2;
 + (int)maxAssetsPerStream;
@@ -70,10 +72,10 @@
 + (unsigned long long)purgeSpace:(unsigned long long)arg1;
 + (unsigned long long)purgeableSpace;
 + (void)refreshSubscriberListForAlbumGUID:(id)arg1;
-+ (unsigned int)registerIdleStateChangeObserverWithToken:(int*)arg1 handler:(id)arg2;
++ (unsigned int)registerIdleStateChangeObserverWithToken:(int*)arg1 handler:(id /* block */)arg2;
 + (BOOL)removeCloudSharingDirectories:(id*)arg1;
 + (void)removeSubscribers:(id)arg1 fromOwnedAlbum:(id)arg2;
-+ (void)requestVideoPlaybackURLForAsset:(id)arg1 videoType:(unsigned int)arg2 completion:(id)arg3;
++ (void)requestVideoPlaybackURLForAsset:(id)arg1 videoType:(unsigned int)arg2 completion:(id /* block */)arg3;
 + (void)resetAllLocalState;
 + (void)retryOutstandingActivities;
 + (void)savePhoneInvitationFailuresForPhoneNumber:(id)arg1 inAlbum:(id)arg2;

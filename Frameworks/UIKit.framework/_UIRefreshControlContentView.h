@@ -2,23 +2,21 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSAttributedString, UIColor, UIRefreshControl;
-
 @interface _UIRefreshControlContentView : UIView {
     UIRefreshControl *_refreshControl;
     UIColor *_tintColor;
 }
 
-@property(retain) NSAttributedString * attributedTitle;
-@property(readonly) float maximumSnappingHeight;
-@property(readonly) float minimumSnappingHeight;
-@property UIRefreshControl * refreshControl;
-@property(readonly) int style;
-@property(retain) UIColor * tintColor;
+@property (nonatomic, retain) NSAttributedString *attributedTitle;
+@property (nonatomic, readonly) float maximumSnappingHeight;
+@property (nonatomic, readonly) float minimumSnappingHeight;
+@property (nonatomic) UIRefreshControl *refreshControl;
+@property (nonatomic, readonly) int style;
+@property (nonatomic, retain) UIColor *tintColor;
 
+- (void).cxx_destruct;
 - (float)_heightAtWhichNoneOfTheInterfaceElementsAreVisibleEvenIfTheControlIsStillPartiallyOnScreen;
 - (id)attributedTitle;
-- (void)dealloc;
 - (void)didTransitionFromState:(int)arg1 toState:(int)arg2;
 - (float)maximumSnappingHeight;
 - (float)minimumSnappingHeight;

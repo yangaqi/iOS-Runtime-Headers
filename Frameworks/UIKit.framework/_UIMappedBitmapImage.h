@@ -2,21 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSData;
-
 @interface _UIMappedBitmapImage : UIImage {
     NSData *_data;
 }
 
-@property(retain) NSData * data;
+@property (nonatomic, retain) NSData *data;
 
 + (void)initialize;
 + (BOOL)supportsSecureCoding;
 
+- (void).cxx_destruct;
 - (void)_configureImage:(id)arg1;
 - (void)_preheatBitmapData;
 - (id)data;
-- (void)dealloc;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)setData:(id)arg1;

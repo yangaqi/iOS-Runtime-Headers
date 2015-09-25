@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSTLayout;
-
 @interface TSTAnimation : NSObject <NSCopying> {
     BOOL mByCell;
     BOOL mByCellRange;
@@ -25,26 +23,31 @@
     unsigned int mStageCount;
 }
 
-@property(readonly) unsigned int cellRangeCount;
-@property(readonly) BOOL clipStrokes;
-@property(readonly) BOOL drawCellBackground;
-@property(readonly) BOOL drawCellContent;
-@property(readonly) BOOL drawStrokes;
-@property(readonly) BOOL drawTableBackground;
-@property(readonly) BOOL drawTableName;
+@property (readonly) unsigned int cellRangeCount;
+@property (readonly) BOOL clipStrokes;
+@property (readonly) BOOL drawCellBackground;
+@property (readonly) BOOL drawCellContent;
+@property (readonly) BOOL drawStrokes;
+@property (readonly) BOOL drawTableBackground;
+@property (readonly) BOOL drawTableName;
 @property BOOL drawsBlackAndWhite;
-@property(readonly) BOOL enabled;
+@property (readonly) BOOL enabled;
 @property BOOL expandBackgroundFill;
-@property(readonly) BOOL final;
+@property (readonly) BOOL final;
+@property (nonatomic) TSTLayout *layout;
 @property BOOL showsOverlayLayers;
 @property BOOL showsTableChrome;
-@property(readonly) unsigned int stage;
-@property(readonly) unsigned int stageCount;
+@property (readonly) unsigned int stage;
+@property (readonly) unsigned int stageCount;
 
 + (BOOL)deliveryStyleSupportedForExport:(unsigned int)arg1;
 + (id)newAnimationWithLayout:(id)arg1 andCellRange:(struct TSUColumnRowRect { struct { unsigned short x_1_1_1; unsigned char x_1_1_2; unsigned char x_1_1_3; } x1; struct { unsigned short x_2_1_1; unsigned short x_2_1_2; } x2; })arg2;
 + (id)newAnimationWithLayout:(id)arg1 andDeliveryStyle:(unsigned int)arg2;
-+ (unsigned int)stageCountForTextureDeliveryStyle:(unsigned int)arg1 masterLayout:(id)arg2;
++ (unsigned int)p_NumberOfCellBuilds:(id)arg1;
++ (unsigned int)p_NumberOfColumnBuilds:(id)arg1;
++ (unsigned int)p_NumberOfRowBuilds:(id)arg1;
++ (unsigned int)p_stageCountForProvider:(id)arg1 withAnimationKind:(int)arg2;
++ (unsigned int)stageCountForTextureDeliveryStyle:(unsigned int)arg1 tableProvider:(id)arg2;
 + (unsigned int)textureDeliveryStyleFromDeliveryString:(id)arg1;
 + (id)textureDeliveryStylesLocalized:(BOOL)arg1;
 
@@ -65,8 +68,10 @@
 - (BOOL)expandBackgroundFill;
 - (BOOL)final;
 - (BOOL)isHidingContentOfCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg1;
+- (id)layout;
 - (void)setDrawsBlackAndWhite:(BOOL)arg1;
 - (void)setExpandBackgroundFill:(BOOL)arg1;
+- (void)setLayout:(id)arg1;
 - (void)setShowsOverlayLayers:(BOOL)arg1;
 - (void)setShowsTableChrome:(BOOL)arg1;
 - (void)setStage:(unsigned int)arg1 andFinal:(BOOL)arg2;

@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class NSString, PUSearchResultDataSource;
-
 @interface PUSearchResultsViewController : PUPhotosGridViewController <PUPhotosSectionHeaderViewDelegate, PUSearchResultDelegate> {
     PUSearchResultDataSource *_searchResultDataSource;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) PUSearchResultDataSource * searchResultDataSource;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) PUSearchResultDataSource *searchResultDataSource;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_reloadVisibleMomentHeadersAnimated:(BOOL)arg1;
@@ -25,7 +23,6 @@
 - (id)searchResultDataSource;
 - (void)searchResultHasPendingChanges:(id)arg1;
 - (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)setPhotosDataSource:(id)arg1;
 - (void)setSearchResultDataSource:(id)arg1;
 - (void)setSelected:(BOOL)arg1 itemsAtIndexes:(id)arg2 inSection:(int)arg3 animated:(BOOL)arg4;
 - (void)viewDidLoad;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKBInputBackdropView, UIKBRenderConfig, UIKeyboardCornerView;
-
 @interface UIPeripheralHostView : UIView {
     UIKeyboardCornerView *_cornerViewLeft;
     UIKeyboardCornerView *_cornerViewRight;
@@ -13,14 +11,14 @@
     UIKBRenderConfig *_renderConfig;
 }
 
-@property(readonly) UIKeyboardCornerView * cornerViewLeft;
-@property(readonly) UIKeyboardCornerView * cornerViewRight;
-@property(readonly) UIKBInputBackdropView * inputAccessoryBackdropView;
-@property(readonly) UIKBInputBackdropView * inputBackdropView;
+@property (nonatomic, readonly) UIKeyboardCornerView *cornerViewLeft;
+@property (nonatomic, readonly) UIKeyboardCornerView *cornerViewRight;
+@property (nonatomic, readonly) UIKBInputBackdropView *inputAccessoryBackdropView;
+@property (nonatomic, readonly) UIKBInputBackdropView *inputBackdropView;
 
 - (int)_clipCornersOfView:(id)arg1;
+- (void)_didChangeKeyplaneWithContext:(id)arg1;
 - (id)_inheritedRenderConfig;
-- (void)_resizeForKeyplaneSize:(struct CGSize { float x1; float x2; })arg1 splitWidthsChanged:(BOOL)arg2;
 - (void)_setBaseRenderConfig:(id)arg1;
 - (void)_setRenderConfig:(id)arg1;
 - (void)_setRenderConfig:(id)arg1 updateKeyboard:(BOOL)arg2;

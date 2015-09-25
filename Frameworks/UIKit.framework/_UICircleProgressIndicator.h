@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CADisplayLink, UIColor, UIImage, UIImageView;
-
 @interface _UICircleProgressIndicator : UIView {
     float _animatedValue;
     double _animationEndTime;
@@ -26,18 +24,19 @@
     UIColor *_unhighlightedBackgroundColor;
 }
 
-@property(retain) UIImage * borderImage;
-@property(retain) UIImage * fillImage;
-@property(getter=isHighlighted) BOOL highlighted;
-@property(retain) UIImage * image;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } imageInsets;
-@property(getter=isIndeterminate) BOOL indeterminate;
-@property float progress;
+@property (nonatomic, retain) UIImage *borderImage;
+@property (nonatomic, retain) UIImage *fillImage;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (nonatomic, retain) UIImage *image;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } imageInsets;
+@property (getter=isIndeterminate, nonatomic) BOOL indeterminate;
+@property (nonatomic) float progress;
 
 + (id)_borderImage;
 + (id)_fillImage;
 + (id)_indeterminateImage;
 
+- (void).cxx_destruct;
 - (void)_animateValueOnDisplayLink:(id)arg1;
 - (void)_setHidesBorderView:(BOOL)arg1;
 - (void)_startIndeterminateAnimation;

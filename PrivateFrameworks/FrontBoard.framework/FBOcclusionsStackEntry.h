@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard
  */
 
-@class NSOrderedSet, NSSet, NSString;
-
 @interface FBOcclusionsStackEntry : NSObject {
     NSString *_key;
     float _level;
@@ -11,13 +9,15 @@
     NSOrderedSet *_orderedOcclusions;
 }
 
-@property(copy,readonly) NSString * key;
-@property float level;
-@property(copy) NSSet * occlusions;
-@property(copy,readonly) NSOrderedSet * orderedOcclusions;
+@property (nonatomic, readonly, copy) NSString *key;
+@property (nonatomic) float level;
+@property (nonatomic, copy) NSSet *occlusions;
+@property (nonatomic, readonly, copy) NSOrderedSet *orderedOcclusions;
 
 - (void)dealloc;
 - (id)description;
+- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
+- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (id)initWithKey:(id)arg1;
 - (id)key;
 - (float)level;
@@ -25,5 +25,7 @@
 - (id)orderedOcclusions;
 - (void)setLevel:(float)arg1;
 - (void)setOcclusions:(id)arg1;
+- (id)succinctDescription;
+- (id)succinctDescriptionBuilder;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class <GEOETAUpdaterDelegate>, GEOComposedRoute, GEOComposedWaypoint, GEOETATrafficUpdateRequest, GEOLocation, GEORouteAttributes, GEORouteMatch, NSData, NSTimer;
-
 @interface GEOETAUpdater : NSObject {
     BOOL _allowRequests;
     GEOETATrafficUpdateRequest *_currentETARequest;
@@ -18,27 +16,29 @@
     GEOComposedRoute *_route;
     GEORouteAttributes *_routeAttributes;
     GEORouteMatch *_routeMatch;
+    GEORouteSummaryAttributes *_routeSummaryAttributes;
     BOOL _shouldUseConditionalRequest;
     GEOLocation *_userLocation;
 }
 
-@property BOOL allowRequests;
-@property double debugTimeWindowDuration;
-@property <GEOETAUpdaterDelegate> * delegate;
-@property(retain) GEOComposedWaypoint * destination;
-@property(retain) NSData * directionsResponseID;
-@property double requestInterval;
-@property(retain) GEOComposedRoute * route;
-@property(retain) GEORouteAttributes * routeAttributes;
-@property(retain) GEORouteMatch * routeMatch;
-@property BOOL shouldUseConditionalRequest;
-@property(retain) GEOLocation * userLocation;
+@property (nonatomic) BOOL allowRequests;
+@property (nonatomic) double debugTimeWindowDuration;
+@property (nonatomic) <GEOETAUpdaterDelegate> *delegate;
+@property (nonatomic, retain) GEOComposedWaypoint *destination;
+@property (nonatomic, retain) NSData *directionsResponseID;
+@property (nonatomic) double requestInterval;
+@property (nonatomic, retain) GEOComposedRoute *route;
+@property (nonatomic, retain) GEORouteAttributes *routeAttributes;
+@property (nonatomic, retain) GEORouteMatch *routeMatch;
+@property (nonatomic) BOOL shouldUseConditionalRequest;
+@property (nonatomic, retain) GEOLocation *userLocation;
 
 - (double)_calculateNextTransitionTime;
 - (void)_clearCurrentETARequest;
 - (void)_clearTimer;
 - (void)_continueUpdateRequests;
 - (void)_createETARequest;
+- (void)_fakeResponseForWalkingWithETAUpdateRequest:(id)arg1 currentStep:(id)arg2 percentOfCurrentStepRemaining:(double)arg3;
 - (BOOL)_sendETARequest:(id)arg1 isUpdate:(BOOL)arg2;
 - (BOOL)_shouldStartConditionalETARequest;
 - (void)_startConditionalConnectionETARequest;
@@ -47,6 +47,7 @@
 - (BOOL)_updateETAResponse:(id)arg1 withRemainingDistanceFromRequest:(id)arg2;
 - (BOOL)_updateRouteWithETATrafficUpdateResponse:(id)arg1;
 - (BOOL)allowRequests;
+- (void)cancelRequest;
 - (id)currentStep;
 - (void)dealloc;
 - (double)debugTimeWindowDuration;

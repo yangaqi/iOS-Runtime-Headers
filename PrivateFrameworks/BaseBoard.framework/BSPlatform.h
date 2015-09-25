@@ -2,37 +2,24 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@class NSString;
+@interface BSPlatform : NSObject
 
-@interface BSPlatform : NSObject {
-    BOOL _hasGasGauge;
-    BOOL _isInternalInstall;
-    BOOL _isMultiCore;
-    NSString *_localizedProductName;
-    NSString *_productBuildVersion;
-    NSString *_productClass;
-    NSString *_productHardwareModel;
-    NSString *_productType;
-    NSString *_productVersion;
-    NSString *_uniqueDeviceIdentifier;
-}
-
-@property(readonly) BOOL hasGasGauge;
-@property(getter=isInternalInstall,readonly) BOOL internalInstall;
-@property(copy,readonly) NSString * localizedProductName;
-@property(getter=isMultiCore,readonly) BOOL multiCore;
-@property(copy,readonly) NSString * productBuildVersion;
-@property(copy,readonly) NSString * productClass;
-@property(copy,readonly) NSString * productHardwareModel;
-@property(copy,readonly) NSString * productType;
-@property(copy,readonly) NSString * productVersion;
-@property(copy,readonly) NSString * uniqueDeviceIdentifier;
+@property (nonatomic, readonly) BOOL hasGasGauge;
+@property (nonatomic, readonly) BOOL hasOrbCapability;
+@property (getter=isInternalInstall, nonatomic, readonly) BOOL internalInstall;
+@property (nonatomic, readonly, copy) NSString *localizedProductName;
+@property (getter=isMultiCore, nonatomic, readonly) BOOL multiCore;
+@property (nonatomic, readonly, copy) NSString *productBuildVersion;
+@property (nonatomic, readonly, copy) NSString *productClass;
+@property (nonatomic, readonly, copy) NSString *productHardwareModel;
+@property (nonatomic, readonly, copy) NSString *productType;
+@property (nonatomic, readonly, copy) NSString *productVersion;
+@property (nonatomic, readonly, copy) NSString *uniqueDeviceIdentifier;
 
 + (id)sharedInstance;
 
-- (void)dealloc;
 - (BOOL)hasGasGauge;
-- (id)init;
+- (BOOL)hasOrbCapability;
 - (BOOL)isInternalInstall;
 - (BOOL)isMultiCore;
 - (id)localizedProductName;

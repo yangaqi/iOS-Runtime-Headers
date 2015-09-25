@@ -2,17 +2,17 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@class PLNSTimerOperatorComposition;
-
 @interface PLConfigAgent : PLAgent {
-    PLNSTimerOperatorComposition *_timedTrigger;
+    PLTimer *_timedTrigger;
 }
 
-@property(retain) PLNSTimerOperatorComposition * timedTrigger;
+@property (retain) PLTimer *timedTrigger;
 
 + (id)accountingGroupDefinitions;
 + (id)entryEventBackwardDefinitions;
 + (id)entryEventForwardDefinitions;
++ (id)entryEventNoneDefinitionConfig;
++ (id)entryEventNoneDefinitionPairedDeviceConfig;
 + (id)entryEventNoneDefinitions;
 + (id)entryEventPointDefinitions;
 + (void)load;
@@ -33,9 +33,10 @@
 - (void)log;
 - (id)logAutomatedDeviceGroup;
 - (void)logEventNoneConfig;
+- (void)logEventNonePairedDeviceConfig;
 - (BOOL)noWatchdogs;
+- (id)seedGroup;
 - (void)setTimedTrigger:(id)arg1;
 - (id)timedTrigger;
-- (id)trimmingConditionsForRolloverAtDate:(id)arg1;
 
 @end

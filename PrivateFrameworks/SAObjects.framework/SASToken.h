@@ -2,28 +2,27 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString;
+@interface SASToken : AceObject <SAAceSerializable>
 
-@interface SASToken : AceObject <SAAceSerializable> {
-}
+@property (nonatomic, copy) NSNumber *confidenceScore;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSNumber *endTime;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *originalText;
+@property (nonatomic, copy) NSString *recognitionStability;
+@property (nonatomic) BOOL removeSpaceAfter;
+@property (nonatomic) BOOL removeSpaceBefore;
+@property (nonatomic, copy) NSNumber *silenceStartTime;
+@property (nonatomic, copy) NSNumber *startTime;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *text;
 
-@property(copy) NSNumber * confidenceScore;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(copy) NSNumber * endTime;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * originalText;
-@property(copy) NSString * recognitionStability;
-@property BOOL removeSpaceAfter;
-@property BOOL removeSpaceBefore;
-@property(copy) NSNumber * startTime;
-@property(readonly) Class superclass;
-@property(copy) NSString * text;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)token;
 + (id)tokenWithDictionary:(id)arg1 context:(id)arg2;
 
-- (id)af_speechToken;
 - (id)confidenceScore;
 - (id)encodedClassName;
 - (id)endTime;
@@ -38,9 +37,15 @@
 - (void)setRecognitionStability:(id)arg1;
 - (void)setRemoveSpaceAfter:(BOOL)arg1;
 - (void)setRemoveSpaceBefore:(BOOL)arg1;
+- (void)setSilenceStartTime:(id)arg1;
 - (void)setStartTime:(id)arg1;
 - (void)setText:(id)arg1;
+- (id)silenceStartTime;
 - (id)startTime;
 - (id)text;
+
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
+- (id)af_speechToken;
 
 @end

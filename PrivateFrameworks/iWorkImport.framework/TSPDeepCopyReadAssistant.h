@@ -2,19 +2,18 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSDictionary, NSString, TSPComponent, TSPObject, TSPObjectContext;
-
 @interface TSPDeepCopyReadAssistant : NSObject <TSPDecoderReadCoordinatorDelegate> {
     NSDictionary *_cachedDataMap;
     TSPObject *_cachedMetadataObject;
     TSPComponent *_component;
     TSPObjectContext *_context;
+    TSPDeepCopyObjectMap *_objectMap;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)cachedDataForIdentifier:(long long)arg1;
@@ -25,7 +24,7 @@
 - (unsigned long long)fileFormatVersion;
 - (BOOL)hasDocumentVersionUUID;
 - (id)init;
-- (id)initWithContext:(id)arg1 cachedMetadataObject:(id)arg2 cachedDataMap:(id)arg3;
+- (id)initWithContext:(id)arg1 objectMap:(id)arg2 cachedMetadataObject:(id)arg3 cachedDataMap:(id)arg4;
 - (BOOL)isCrossAppPaste;
 - (BOOL)isCrossDocumentPaste;
 - (BOOL)isFromCopy;

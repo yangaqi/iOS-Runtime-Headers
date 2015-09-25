@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSTimer, UIView, UIWebDocumentView, UIWebSelection, UIWebSelectionGraph, UIWebSelectionHandle, UIWebSelectionNode, UIWebSelectionOutline, UIWebTextRangeView;
-
 @interface UIWebSelectionView : UIView {
     struct { 
         UIWebSelectionHandle *scrollingHandle; 
@@ -71,9 +69,10 @@
     UIWebSelectionHandle *_top;
 }
 
-@property(readonly) UIWebSelection * selection;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } selectionFrame;
-@property(retain) UIWebSelectionNode * selectionNode;
+@property (nonatomic) BOOL creatingSelection;
+@property (nonatomic, readonly) UIWebSelection *selection;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } selectionFrame;
+@property (nonatomic, retain) UIWebSelectionNode *selectionNode;
 
 - (void)_didScroll;
 - (void)_subscribeToScrollNotificationsIfNecessary:(id)arg1;
@@ -89,6 +88,7 @@
 - (void)computeExpandAndContractThresholdsForActiveHandle;
 - (void)considerFlipping;
 - (void)contractForActiveHandle;
+- (BOOL)creatingSelection;
 - (void)dealloc;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })desiredBox;
 - (void)didEndScrollingOrZoomingPage;
@@ -114,9 +114,11 @@
 - (void)scaleChanged;
 - (id)scroller;
 - (id)selection;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })selectionBoundingRect;
 - (void)selectionChanged;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })selectionFrame;
 - (id)selectionNode;
+- (void)setCreatingSelection:(BOOL)arg1;
 - (void)setHandleCenters;
 - (void)setOrientationOfMagnifier:(id)arg1 forHandleInText:(id)arg2;
 - (void)setSelectionFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -129,6 +131,7 @@
 - (void)showControls;
 - (void)showControlsAfterRotation;
 - (void)showCopyCalloutWithAnimation:(BOOL)arg1;
+- (void)showRangeSelection;
 - (void)startSelectionCreationWithPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)stopAnyAutoscrolling;
 - (void)switchToBlockModeForHandle:(id)arg1;

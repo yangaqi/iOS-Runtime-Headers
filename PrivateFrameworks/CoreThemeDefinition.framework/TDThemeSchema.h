@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreThemeDefinition.framework/CoreThemeDefinition
  */
 
-@class CoreThemeDocument;
-
 @interface TDThemeSchema : NSObject {
     CoreThemeDocument *_doc;
 }
@@ -40,6 +38,7 @@
 - (void)loadThemeDirections;
 - (void)loadThemeDrawingLayers;
 - (void)loadThemeElements;
+- (void)loadThemeGraphicsFeatureSetClasses;
 - (void)loadThemeIdioms;
 - (void)loadThemeLooks;
 - (void)loadThemeParts;

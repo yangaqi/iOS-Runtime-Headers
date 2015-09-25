@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <TSCHNotifyOnModify>, NSArray, NSMutableArray;
-
 @interface TSCHChartGrid : NSObject <NSCopying, TSDMixing> {
     BOOL mAddingMultipleCols;
     BOOL mAddingMultipleRows;
@@ -24,13 +17,13 @@
     NSMutableArray *mValues;
 }
 
-@property(readonly) NSArray * columnIds;
-@property int direction;
-@property BOOL dirty;
-@property(readonly) unsigned int numberOfColumns;
-@property(readonly) unsigned int numberOfRows;
-@property <TSCHNotifyOnModify> * objectToNotify;
-@property(readonly) NSArray * rowIds;
+@property (nonatomic, readonly, copy) NSArray *columnIds;
+@property (nonatomic) int direction;
+@property (nonatomic) BOOL dirty;
+@property (nonatomic, readonly) unsigned int numberOfColumns;
+@property (nonatomic, readonly) unsigned int numberOfRows;
+@property (nonatomic) <TSCHNotifyOnModify> *objectToNotify;
+@property (nonatomic, readonly, copy) NSArray *rowIds;
 
 - (void)addingMultipleCols:(BOOL)arg1;
 - (void)addingMultipleRows:(BOOL)arg1;
@@ -77,6 +70,8 @@
 - (unsigned int)numberOfColumns;
 - (unsigned int)numberOfRows;
 - (id)objectToNotify;
+- (void)p_adjustNameListLength:(BOOL)arg1;
+- (void)p_adjustRowAndColumnNameListLength;
 - (void)p_generateRowColumnIdMaps;
 - (BOOL)p_name:(id)arg1 isInArray:(id)arg2;
 - (id)p_uuidsForColumns:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;

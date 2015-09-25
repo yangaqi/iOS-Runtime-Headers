@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDictionary, NSLayoutManager, NSString, NSTextContainer, NSTextStorage;
-
 @interface _UITextContainerView : UIView <NSUITextViewCommonMethods> {
+    unsigned int _invalidationSeqNo;
     NSDictionary *_linkTextAttributes;
     struct CGSize { 
         float width; 
@@ -33,31 +32,33 @@
     } _textContainerOrigin;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(getter=isHorizontallyResizable) BOOL horizontallyResizable;
-@property(readonly) NSLayoutManager * layoutManager;
-@property int layoutOrientation;
-@property(copy) NSDictionary * linkTextAttributes;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } markedRange;
-@property struct CGSize { float x1; float x2; } maxSize;
-@property struct CGSize { float x1; float x2; } minSize;
-@property(readonly) Class superclass;
-@property NSTextContainer * textContainer;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textContainerInset;
-@property(readonly) NSTextStorage * textStorage;
-@property BOOL usesTiledViews;
-@property(getter=isVerticallyResizable) BOOL verticallyResizable;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isHorizontallyResizable, nonatomic) BOOL horizontallyResizable;
+@property (nonatomic, readonly) NSLayoutManager *layoutManager;
+@property (nonatomic, readonly) int layoutOrientation;
+@property (nonatomic, copy) NSDictionary *linkTextAttributes;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } markedRange;
+@property (nonatomic) struct CGSize { float x1; float x2; } maxSize;
+@property (nonatomic) struct CGSize { float x1; float x2; } minSize;
+@property (readonly) Class superclass;
+@property (nonatomic) NSTextContainer *textContainer;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textContainerInset;
+@property (nonatomic, readonly) NSTextStorage *textStorage;
+@property (nonatomic) BOOL usesTiledViews;
+@property (getter=isVerticallyResizable, nonatomic) BOOL verticallyResizable;
 
 + (Class)layerClass;
 
+- (void).cxx_destruct;
 - (void)_didScroll;
 - (BOOL)_ensureLayoutCompleteForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withExtension:(BOOL)arg2;
 - (BOOL)_ensureLayoutCompleteForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withExtensionFactor:(float)arg2 minimumExtensionDistance:(float)arg3 repetitions:(unsigned int)arg4;
 - (void)_ensureLayoutCompleteToEndOfCharacterRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)_ensureMinAndMaxSizesConsistentWithBounds;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })_extendedGlyphRangeForRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 maxGlyphIndex:(unsigned int)arg2 drawingToScreen:(BOOL)arg3;
+- (void)_setFrameOrBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 oldRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 settingAction:(id /* block */)arg3;
 - (void)dealloc;
 - (id)delegate;
 - (id)description;

@@ -2,11 +2,7 @@
    Image: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
  */
 
-@interface BKSHIDEventVendorDefinedDescriptor : BKSHIDEventKeyboardDescriptor {
-}
-
-@property(readonly) unsigned int page;
-@property(readonly) unsigned int usage;
+@interface BKSHIDEventVendorDefinedDescriptor : BKSHIDEventKeyboardDescriptor
 
 + (id)descriptorWithPage:(unsigned int)arg1 usage:(unsigned int)arg2;
 

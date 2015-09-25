@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SASportsEntityGroup : SASportsEntity
 
-@interface SASportsEntityGroup : SASportsEntity {
-}
+@property (nonatomic, copy) NSArray *entities;
+@property (nonatomic, copy) NSString *groupType;
 
-@property(copy) NSArray * entities;
-@property(copy) NSString * groupType;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)entityGroup;
 + (id)entityGroupWithDictionary:(id)arg1 context:(id)arg2;
@@ -19,6 +18,11 @@
 - (id)groupType;
 - (void)setEntities:(id)arg1;
 - (void)setGroupType:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (BOOL)siriui_containsAthletes;
+- (BOOL)siriui_containsTeams;
+- (void)siriui_enumerateEntitiesWithGroupHandler:(id /* block */)arg1 teamHandler:(id /* block */)arg2 athleteHandler:(id /* block */)arg3;
 
 @end

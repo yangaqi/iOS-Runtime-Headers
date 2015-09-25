@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class BRCApplyScheduler, BRCContainerScheduler, BRCDeadlineScheduler, BRCDiskSpaceReclaimer, BRCFSDownloader, BRCFSEventsMonitor, BRCFSReader<BRCFileCoordinationReading>, BRCFSUploader, BRCFSWriter<BRCFileCoordinationWriting>, BRCNotificationManager, BRCRelativePath, BRCServerPersistedState, BRCStageRegistry, BRCThrottle, CDSession, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, NSURL, PQLConnection;
-
 @interface BRCAccountSession : NSObject <BRCCloudDocsAppsObserver> {
     NSString *_accountID;
+    BOOL _accountIsReady;
+    NSNumber *_accountSize;
+    BRCAccountWaitOperation *_accountWaitOperation;
     BRCThrottle *_aliasRemovalThrottle;
     NSString *_appSupportDirPath;
     BRCApplyScheduler *_applyScheduler;
+    unsigned long long _availableDiskSpace;
     NSString *_cacheDirPath;
     PQLConnection *_clientDB;
     NSMutableDictionary *_clientState;
@@ -29,32 +27,29 @@
         BOOL __opaque[124]; 
     } _containersLock;
     CDSession *_coreDuetSession;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _dbProfilingHook;
-
+    NSString *_databaseID;
+    id /* block */ _dbProfilingHook;
     NSURL *_dbURL;
     NSObject<OS_dispatch_source> *_dbWatcher;
     NSObject<OS_dispatch_queue> *_dbWatcherQueue;
     BRCDeadlineScheduler *_defaultScheduler;
     BRCDiskSpaceReclaimer *_diskReclaimer;
-
-  /* Unexpected information at end of encoded ivar type: i */
-  /* Error parsing encoded ivar type info: Ai */
-    /* Warning: Unrecognized filer type: 'A' using 'void*' */ void*_downloadSuspendCount;
-
     BRCFSDownloader *_fsDownloader;
     BRCFSEventsMonitor *_fsEventsMonitor;
     BRCFSReader<BRCFileCoordinationReading> *_fsReader;
     BRCFSUploader *_fsUploader;
     BRCFSWriter<BRCFileCoordinationWriting> *_fsWriter;
+    BRCGlobalProgress *_globalProgress;
     BOOL _isCancelled;
+    BOOL _isGreedy;
+    unsigned long long _lastDiskSpaceCheckTime;
     BRCThrottle *_lostItemThrottle;
+    NSHashTable *_miscOperations;
     BRCNotificationManager *_notificationManager;
     BRCThrottle *_operationFailureThrottle;
     NSMutableDictionary *_privateLocalContainersByID;
     NSMutableDictionary *_privateServerZonesByID;
+    struct br_pacer_t { } *_reschedulePendingDiskItemsPacer;
     BOOL _resumed;
     NSString *_rootDirPath;
     PQLConnection *_serverDB;
@@ -66,80 +61,93 @@
     BRCThrottle *_syncAppContainerThrottle;
     NSMutableDictionary *_syncContexts;
     NSString *_ubiquityTokenSalt;
-
-  /* Unexpected information at end of encoded ivar type: i */
-  /* Error parsing encoded ivar type info: Ai */
-    /* Warning: Unrecognized filer type: 'A' using 'void*' */ void*_uploadSuspendCount;
-
+    struct br_pacer_t { } *_updateDiskSpacePacer;
+    BRCUserNotification *_userNotification;
     NSMutableSet *_xpcClients;
 }
 
-@property(readonly) NSString * accountID;
-@property(readonly) BRCThrottle * aliasRemovalThrottle;
-@property(retain) NSString * appSupportDirPath;
-@property(readonly) BRCApplyScheduler * applyScheduler;
-@property(retain) NSString * cacheDirPath;
-@property(readonly) PQLConnection * clientDB;
-@property(readonly) NSMutableDictionary * clientState;
-@property(readonly) BRCThrottle * containerResetThrottle;
-@property(readonly) BRCThrottle * containerScanThrottle;
-@property(readonly) BRCContainerScheduler * containerScheduler;
-@property(readonly) CDSession * coreDuetSession;
-@property(copy,readonly) NSString * debugDescription;
-@property(readonly) BRCDeadlineScheduler * defaultScheduler;
-@property(copy,readonly) NSString * description;
-@property(readonly) BRCDiskSpaceReclaimer * diskReclaimer;
-@property(readonly) BRCFSDownloader * fsDownloader;
-@property(readonly) BRCFSEventsMonitor * fsEventsMonitor;
-@property(readonly) BRCFSReader<BRCFileCoordinationReading> * fsReader;
-@property(readonly) BRCFSUploader * fsUploader;
-@property(readonly) BRCFSWriter<BRCFileCoordinationWriting> * fsWriter;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isCancelled;
-@property(readonly) BRCThrottle * lostItemThrottle;
-@property(readonly) BRCNotificationManager * notificationManager;
-@property(readonly) BRCThrottle * operationFailureThrottle;
-@property(readonly) BRCRelativePath * root;
-@property(retain) NSString * rootDirPath;
-@property(readonly) PQLConnection * serverDB;
-@property(readonly) BRCServerPersistedState * serverState;
-@property(readonly) BRCStageRegistry * stageRegistry;
-@property(readonly) Class superclass;
-@property(readonly) BRCThrottle * syncAppContainerThrottle;
-@property(readonly) NSString * ubiquityTokenSalt;
+@property (nonatomic, readonly) NSString *accountID;
+@property (nonatomic, readonly) BRCAccountWaitOperation *accountWaitOperation;
+@property (nonatomic, readonly) BRCThrottle *aliasRemovalThrottle;
+@property (nonatomic, retain) NSString *appSupportDirPath;
+@property (nonatomic, readonly) BRCApplyScheduler *applyScheduler;
+@property (nonatomic, readonly) unsigned long long availableDiskSpace;
+@property (nonatomic, retain) NSString *cacheDirPath;
+@property (nonatomic, readonly) PQLConnection *clientDB;
+@property (nonatomic, readonly) NSMutableDictionary *clientState;
+@property (nonatomic, readonly) BRCThrottle *containerResetThrottle;
+@property (nonatomic, readonly) BRCThrottle *containerScanThrottle;
+@property (nonatomic, readonly) BRCContainerScheduler *containerScheduler;
+@property (nonatomic, readonly) CDSession *coreDuetSession;
+@property (nonatomic, readonly) NSString *databaseID;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) BRCDeadlineScheduler *defaultScheduler;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BRCDiskSpaceReclaimer *diskReclaimer;
+@property (nonatomic, readonly) BRCFSDownloader *fsDownloader;
+@property (nonatomic, readonly) BRCFSEventsMonitor *fsEventsMonitor;
+@property (nonatomic, readonly) BRCFSReader<BRCFileCoordinationReading> *fsReader;
+@property (nonatomic, readonly) BRCFSUploader *fsUploader;
+@property (nonatomic, readonly) BRCFSWriter<BRCFileCoordinationWriting> *fsWriter;
+@property (nonatomic, readonly) BRCGlobalProgress *globalProgress;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isCancelled;
+@property (nonatomic, readonly) BOOL isGreedy;
+@property (nonatomic, readonly) BRCThrottle *lostItemThrottle;
+@property (nonatomic, readonly) BRCNotificationManager *notificationManager;
+@property (nonatomic, readonly) BRCThrottle *operationFailureThrottle;
+@property (nonatomic, readonly) BRCRelativePath *root;
+@property (nonatomic, retain) NSString *rootDirPath;
+@property (nonatomic, readonly) PQLConnection *serverDB;
+@property (nonatomic, readonly) BRCServerPersistedState *serverState;
+@property (nonatomic, readonly) BRCStageRegistry *stageRegistry;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BRCThrottle *syncAppContainerThrottle;
+@property (nonatomic, readonly) NSString *ubiquityTokenSalt;
+@property (nonatomic, readonly) BRCUserNotification *userNotification;
 
 + (id)sessionForDumpingDatabasesAtURL:(id)arg1;
 
 - (void).cxx_destruct;
 - (BOOL)_attachDatabase:(id)arg1 toConnection:(id)arg2 error:(id*)arg3;
 - (BOOL)_checkIntegrity:(id)arg1 serverTruth:(BOOL)arg2 error:(id*)arg3;
-- (id)_containerMetadataRecordsToSave;
+- (id)_containerMetadataRecordsToSaveWithBatchSize:(unsigned int)arg1;
 - (void)_createAccountSupportPathIfNeeded:(id)arg1 protectParent:(BOOL)arg2;
 - (BOOL)_createLocalContainer:(id)arg1 ownerName:(id)arg2;
 - (BOOL)_createPrivateLocalContainer:(id)arg1;
 - (BOOL)_createSharedLocalContainer:(id)arg1 ownerName:(id)arg2;
 - (BOOL)_deleteLocalContainer:(id)arg1;
 - (BOOL)_dumpContainer:(id)arg1 toContext:(id)arg2 error:(id*)arg3;
+- (BOOL)_dumpContainerStatus:(id)arg1 toContext:(id)arg2 error:(id*)arg3;
 - (void)_loadContainersFromDisk;
+- (id)_loadedContainers;
 - (id)_localContainersMatchingSearchString:(id)arg1 db:(id)arg2;
 - (BOOL)_openClientTruthConnectionWithError:(id*)arg1;
 - (BOOL)_openServerTruthConnectionWithError:(id*)arg1;
 - (void)_registerLastBootIfNeeded:(id)arg1 table:(struct NSObject { Class x1; }*)arg2;
 - (BOOL)_setupBackupDetector:(struct backup_detector { unsigned long long x1; unsigned long long x2; unsigned long long x3; }*)arg1 error:(id*)arg2;
 - (BOOL)_setupConnection:(id)arg1 databaseName:(id)arg2 error:(id*)arg3;
-- (void)_setupSharedPackageExtensionsApp;
+- (void)_setupSharedPackageExtensionsPlist;
 - (void)_setupThrottles;
+- (void)_showiCloudDriveAppUpSellDialogIfNeeded;
 - (void)_startWatcher;
 - (BOOL)_stepBackupDetector:(struct backup_detector { unsigned long long x1; unsigned long long x2; unsigned long long x3; })arg1 newState:(struct backup_detector { unsigned long long x1; unsigned long long x2; unsigned long long x3; }*)arg2 error:(id*)arg3;
 - (id)_unloadContainers;
 - (id)accountID;
+- (unsigned long long)accountSize;
+- (void)accountSizeDidChange;
+- (id)accountWaitOperation;
+- (void)addMiscOperation:(id)arg1;
 - (id)aliasRemovalThrottle;
 - (id)appSupportDirPath;
 - (id)applyScheduler;
+- (unsigned long long)availableDiskSpace;
+- (void)availableDiskSpaceDidChange;
+- (unsigned long long)availableDiskSpaceUsingCache:(BOOL)arg1;
+- (unsigned long long)availableDiskSpaceUsingCache:(BOOL)arg1 schedulingPendingDiskItemsIfNeeded:(BOOL)arg2;
 - (BOOL)backupDatabaseToURL:(id)arg1 error:(id*)arg2;
 - (struct PQLResultSet { Class x1; }*)bouncedItemsEnumerator;
 - (id)cacheDirPath;
-- (void)cancelAllOperations;
 - (id)clientDB;
 - (id)clientState;
 - (void)close;
@@ -159,29 +167,37 @@
 - (BOOL)createServerZone:(id)arg1;
 - (id)createSharedContainerIfNeeded:(id)arg1 ownerName:(id)arg2;
 - (BOOL)createSharedContainerOnDiskWithMangledID:(id)arg1 createdRoot:(BOOL*)arg2;
+- (id)databaseID;
 - (void)dealloc;
 - (id)defaultScheduler;
 - (id)defaultSyncContext;
 - (BOOL)deleteServerZone:(id)arg1;
 - (id)description;
 - (void)destroyLocalData;
+- (void)destroyLocalDataWithCompletionBlock:(id /* block */)arg1;
 - (void)destroySharedContainer:(id)arg1;
 - (id)deviceKeyForName:(id)arg1 db:(id)arg2;
 - (void)disableDatabaseProfilingForDB:(id)arg1;
 - (id)diskReclaimer;
 - (BOOL)dumpDatabaseToFileHandle:(id)arg1 containerID:(id)arg2 error:(id*)arg3;
+- (void)dumpMiscOperationsToContext:(id)arg1;
+- (BOOL)dumpStatusToFileHandle:(id)arg1 containerID:(id)arg2 error:(id*)arg3;
+- (void)dumpXPCClientsToContext:(id)arg1;
 - (void)enableDatabaseProfilingForDB:(id)arg1;
-- (void)enumeratePrivateContainers:(id)arg1;
-- (void)enumerateServerZones:(id)arg1;
-- (void)enumerateSharedContainers:(id)arg1;
+- (void)enumeratePrivateContainers:(id /* block */)arg1;
+- (void)enumerateServerZones:(id /* block */)arg1;
+- (void)enumerateSharedContainers:(id /* block */)arg1;
 - (id)fsDownloader;
 - (id)fsEventsMonitor;
 - (id)fsReader;
 - (id)fsUploader;
 - (id)fsWriter;
+- (id)globalProgress;
 - (id)init;
 - (id)initWithAccountID:(id)arg1 salt:(id)arg2;
 - (BOOL)isCancelled;
+- (BOOL)isGreedy;
+- (struct PQLResultSet { Class x1; }*)itemsNeedingIndexingEnumeratorWithMinNotifRank:(unsigned long long)arg1 maxNotifRank:(unsigned long long)arg2;
 - (id)localContainersMatchingSearchString:(id)arg1 db:(id)arg2 error:(id*)arg3;
 - (id)lostItemThrottle;
 - (void)markAccountMigrationComplete;
@@ -200,6 +216,7 @@
 - (id)ownerIdentityForName:(id)arg1 db:(id)arg2;
 - (id)ownerKeyForName:(id)arg1 db:(id)arg2;
 - (id)ownerNameForKey:(id)arg1 db:(id)arg2;
+- (id)pendingDownloadItemWithDocumentID:(unsigned int)arg1;
 - (void)preventDatabaseFromBeingReused;
 - (id)privateContainerByID:(id)arg1;
 - (id)privateContainerByMangledID:(id)arg1;
@@ -208,9 +225,7 @@
 - (id)privateServerZoneByID:(id)arg1 db:(id)arg2;
 - (struct PQLResultSet { Class x1; }*)privateServerZonesEnumerator:(id)arg1;
 - (void)registerClient:(id)arg1;
-- (void)registerPackageExtension:(id)arg1;
 - (void)resume;
-- (void)resumeAllTransfers;
 - (id)root;
 - (id)rootDirPath;
 - (BOOL)saveLocalContainerToDB:(id)arg1;
@@ -239,6 +254,7 @@
 - (id)ubiquityTokenSalt;
 - (void)unregisterClient:(id)arg1;
 - (void)userDefaultsChanged;
+- (id)userNotification;
 - (BOOL)validateDatabase:(id)arg1 serverTruth:(BOOL)arg2 error:(id*)arg3;
 
 @end

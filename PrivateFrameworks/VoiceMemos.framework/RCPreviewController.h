@@ -2,17 +2,20 @@
    Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
  */
 
-@class AVPlayerItem, NSHashTable, NSMutableDictionary, NSString, NSUUID, RCAVPlayer, RCAVState, RCAudioSessionRoutingAssertion;
-
 @interface RCPreviewController : NSObject <RCAVPlayerDelegate> {
     RCAVPlayer *_AVPlayer;
     AVPlayerItem *_AVPlayerItem;
+    double _AVPlayerItemCachedDuration;
     RCAVState *_AVState;
+    NSString *_activePlaybackContextName;
     RCAudioSessionRoutingAssertion *_activePreviewRouteAssertion;
     double _currentRateTarget;
     double _currentTimeDelegateUpdateRate;
     double _currentTimeTarget;
     BOOL _isPreparingForPreview;
+    NSURL *_lastPlayedAssetReferenceURL;
+    NSString *_lastRouteKeyForRouteUsageLog;
+    BOOL _logNextRouteUsageStatisticForced;
     NSMutableDictionary *_monitoredDispatchSourcesByURL;
     RCAudioSessionRoutingAssertion *_preparingToPreviewRouteAssertion;
     NSUUID *_preparingToPreviewRouteAssertionSessionUUID;
@@ -22,18 +25,18 @@
     NSHashTable *_weakObservers;
 }
 
-@property(readonly) RCAVPlayer * AVPlayer;
-@property(retain) AVPlayerItem * AVPlayerItem;
-@property(retain) RCAVState * AVState;
-@property double currentTime;
-@property double currentTimeDelegateUpdateRate;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property struct { double x1; double x2; } playableTimeRange;
-@property(readonly) float rate;
-@property(readonly) Class superclass;
-@property BOOL useVoiceMemoSettings;
+@property (nonatomic, readonly) RCAVPlayer *AVPlayer;
+@property (nonatomic, retain) AVPlayerItem *AVPlayerItem;
+@property (nonatomic, retain) RCAVState *AVState;
+@property (nonatomic) double currentTime;
+@property (nonatomic) double currentTimeDelegateUpdateRate;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct { double x1; double x2; } playableTimeRange;
+@property (nonatomic, readonly) float rate;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL useVoiceMemoSettings;
 
 - (void).cxx_destruct;
 - (id)AVPlayer;
@@ -42,17 +45,21 @@
 - (id)_AVPlayerIfActive;
 - (void)_applicationDidEnterBackgroundNotification:(id)arg1;
 - (void)_applicationWillEnterForegroundNotification:(id)arg1;
+- (void)_audioRouteControllerPickedRouteDidChangeNotification:(id)arg1;
 - (void)_audioRouteControllerWillDeactivateAudioSessionNotification:(id)arg1;
 - (void)_beginActivePreviewRouteAssertion;
 - (void)_beginPreparingToPreviewRouteAssertion;
 - (void)_endActivePreviewRouteAssertion;
 - (void)_handleDidStopPlaybackWithError:(id)arg1;
 - (void)_handleUnderlyingAssetDisappeared;
-- (BOOL)_monitorUnderlyingAssetPathInPlayerItem:(id)arg1 assetDisappearedBlock:(id)arg2;
-- (void)_performWithObserversBlock:(id)arg1;
+- (BOOL)_monitorUnderlyingAssetPathInPlayerItem:(id)arg1 assetDisappearedBlock:(id /* block */)arg2;
+- (void)_performWithObserversBlock:(id /* block */)arg1;
+- (void)_playbackUsageStatisticsIncrementPlaybackIfNecessary;
+- (void)_playbackUsageStatisticsPrepareForPlaybackContextName:(id)arg1;
+- (void)_playbackUsageStatisticsPrepareForStartingNewPlayback;
 - (void)_playerCurrentRateDidChangeToRate:(float)arg1 hadPlaybackItem:(BOOL)arg2;
-- (void)_postDelegateCurrentRateChangeToRate:(float)arg1;
 - (void)_postDelegateCurrentTimeUpdate;
+- (void)_postDelegateDidBeginPlaybackWithRate:(float)arg1;
 - (void)_readyToPlay_playPlayer:(id)arg1;
 - (id)_recreateAVPlayer;
 - (void)_setPreparingToPlay:(BOOL)arg1 notifyObservers:(BOOL)arg2;
@@ -64,8 +71,7 @@
 - (void)handlePreviewEnded;
 - (id)init;
 - (void)pause;
-- (void)playOrRestart;
-- (void)playWithTimeRange:(struct { double x1; double x2; })arg1 startTime:(double)arg2;
+- (void)playWithTimeRange:(struct { double x1; double x2; })arg1 startTime:(double)arg2 playbackContextName:(id)arg3;
 - (struct { double x1; double x2; })playableTimeRange;
 - (void)playerCurrentItemDidBecomeReadyToPlay:(id)arg1;
 - (void)playerCurrentRateDidChange:(id)arg1;

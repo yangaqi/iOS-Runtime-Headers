@@ -2,34 +2,33 @@
    Image: /System/Library/PrivateFrameworks/PowerlogCore.framework/PowerlogCore
  */
 
-@class NSObject<OS_dispatch_source>, PLCoreAccountingGroup, PLCoreAgent, PLCoreRail, PLCoreService, PLCoreStorage;
-
 @interface PowerlogCore : NSObject {
-    PLCoreAccountingGroup *_accountingGroups;
+    PLAccountingOperator *_accounting;
     PLCoreAgent *_agents;
     NSObject<OS_dispatch_source> *_fVMPressureSource;
-    PLCoreRail *_rails;
+    NSDate *_launchDate;
     PLCoreService *_services;
     PLCoreStorage *_storage;
 }
 
-@property(readonly) PLCoreAccountingGroup * accountingGroups;
-@property(readonly) PLCoreAgent * agents;
-@property(readonly) PLCoreRail * rails;
-@property(readonly) PLCoreService * services;
-@property(readonly) PLCoreStorage * storage;
+@property (readonly) PLAccountingOperator *accounting;
+@property (readonly) PLCoreAgent *agents;
+@property (readonly) NSDate *launchDate;
+@property (readonly) PLCoreService *services;
+@property (readonly) PLCoreStorage *storage;
 
 + (BOOL)allowRun;
 + (BOOL)isDebugEnabled;
 + (id)sharedCore;
++ (BOOL)sharedCoreStarted;
 
 - (void).cxx_destruct;
-- (id)accountingGroups;
+- (id)accounting;
 - (id)agents;
 - (void)dealloc;
 - (void)didRecieveMemoryPressureWarning;
 - (id)init;
-- (id)rails;
+- (id)launchDate;
 - (id)services;
 - (void)startCore;
 - (void)stopCore;

@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@class MTLVertexAttributeDescriptor;
+@interface MTLVertexAttributeDescriptorArray : NSObject
 
-@interface MTLVertexAttributeDescriptorArray : NSObject {
-    MTLVertexAttributeDescriptor *_descriptors[31];
-}
++ (id)alloc;
++ (id)allocWithZone:(struct _NSZone { }*)arg1;
 
-- (void)dealloc;
 - (id)objectAtIndexedSubscript:(unsigned int)arg1;
 - (void)setObject:(id)arg1 atIndexedSubscript:(unsigned int)arg2;
 

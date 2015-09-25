@@ -2,28 +2,27 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDictionary, NSString;
-
 @interface UIUserNotificationCategory : NSObject <NSCopying, NSMutableCopying, NSSecureCoding> {
     NSDictionary *_actionsByContext;
     NSString *_identifier;
 }
 
-@property(copy) NSDictionary * actionsByContext;
-@property(copy) NSString * identifier;
+@property (nonatomic, copy) NSDictionary *actionsByContext;
+@property (nonatomic, copy) NSString *identifier;
 
 + (BOOL)supportsSecureCoding;
 
+- (void).cxx_destruct;
 - (unsigned int)_maximumActionsForContext:(unsigned int)arg1;
 - (id)actions;
 - (id)actionsByContext;
 - (id)actionsForContext:(unsigned int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)hash;
 - (id)identifier;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithIdentifier:(id)arg1 actionsByContext:(id)arg2;
 - (BOOL)isEqual:(id)arg1;

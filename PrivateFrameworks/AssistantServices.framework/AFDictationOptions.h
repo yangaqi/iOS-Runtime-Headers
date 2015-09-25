@@ -2,37 +2,47 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class AFSiriContext, NSString;
-
 @interface AFDictationOptions : NSObject <NSCopying, NSSecureCoding> {
     NSString *_applicationName;
     NSString *_applicationVersion;
-    AFSiriContext *_context;
+    STSiriContext *_context;
     NSString *_fieldIdentifier;
     NSString *_fieldLabel;
+    NSArray *_inlineItemList;
     NSString *_interactionIdentifier;
     int _keyboardType;
     NSString *_languageCodeOverride;
     NSString *_postfixText;
     NSString *_prefixText;
+    NSString *_requestIdentifier;
     int _returnKeyType;
     NSString *_selectedText;
     int _transcriptionMode;
+    NSDictionary *_voiceSearchHeaderFields;
+    NSDictionary *_voiceSearchQueryParameters;
+    int _voiceSearchTypeOptions;
+    NSDictionary *_voiceTriggerEventInfo;
 }
 
-@property(copy) NSString * applicationName;
-@property(copy) NSString * applicationVersion;
-@property(retain) AFSiriContext * context;
-@property(copy) NSString * fieldIdentifier;
-@property(copy) NSString * fieldLabel;
-@property(copy) NSString * interactionIdentifier;
-@property int keyboardType;
-@property(copy) NSString * languageCodeOverride;
-@property(copy) NSString * postfixText;
-@property(copy) NSString * prefixText;
-@property int returnKeyType;
-@property(copy) NSString * selectedText;
-@property int transcriptionMode;
+@property (nonatomic, copy) NSString *applicationName;
+@property (nonatomic, copy) NSString *applicationVersion;
+@property (nonatomic, retain) STSiriContext *context;
+@property (nonatomic, copy) NSString *fieldIdentifier;
+@property (nonatomic, copy) NSString *fieldLabel;
+@property (nonatomic, copy) NSArray *inlineItemList;
+@property (nonatomic, copy) NSString *interactionIdentifier;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, copy) NSString *languageCodeOverride;
+@property (nonatomic, copy) NSString *postfixText;
+@property (nonatomic, copy) NSString *prefixText;
+@property (nonatomic, copy) NSString *requestIdentifier;
+@property (nonatomic) int returnKeyType;
+@property (nonatomic, copy) NSString *selectedText;
+@property (nonatomic) int transcriptionMode;
+@property (nonatomic, copy) NSDictionary *voiceSearchHeaderFields;
+@property (nonatomic, copy) NSDictionary *voiceSearchQueryParameters;
+@property (nonatomic) int voiceSearchTypeOptions;
+@property (nonatomic, copy) NSDictionary *voiceTriggerEventInfo;
 
 + (BOOL)supportsSecureCoding;
 
@@ -46,11 +56,13 @@
 - (id)fieldIdentifier;
 - (id)fieldLabel;
 - (id)initWithCoder:(id)arg1;
+- (id)inlineItemList;
 - (id)interactionIdentifier;
 - (int)keyboardType;
 - (id)languageCodeOverride;
 - (id)postfixText;
 - (id)prefixText;
+- (id)requestIdentifier;
 - (int)returnKeyType;
 - (id)selectedText;
 - (void)setApplicationName:(id)arg1;
@@ -58,14 +70,24 @@
 - (void)setContext:(id)arg1;
 - (void)setFieldIdentifier:(id)arg1;
 - (void)setFieldLabel:(id)arg1;
+- (void)setInlineItemList:(id)arg1;
 - (void)setInteractionIdentifier:(id)arg1;
 - (void)setKeyboardType:(int)arg1;
 - (void)setLanguageCodeOverride:(id)arg1;
 - (void)setPostfixText:(id)arg1;
 - (void)setPrefixText:(id)arg1;
+- (void)setRequestIdentifier:(id)arg1;
 - (void)setReturnKeyType:(int)arg1;
 - (void)setSelectedText:(id)arg1;
 - (void)setTranscriptionMode:(int)arg1;
+- (void)setVoiceSearchHeaderFields:(id)arg1;
+- (void)setVoiceSearchQueryParameters:(id)arg1;
+- (void)setVoiceSearchTypeOptions:(int)arg1;
+- (void)setVoiceTriggerEventInfo:(id)arg1;
 - (int)transcriptionMode;
+- (id)voiceSearchHeaderFields;
+- (id)voiceSearchQueryParameters;
+- (int)voiceSearchTypeOptions;
+- (id)voiceTriggerEventInfo;
 
 @end

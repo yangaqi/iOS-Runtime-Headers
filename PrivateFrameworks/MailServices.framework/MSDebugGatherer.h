@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/MailServices.framework/MailServices
  */
 
-@interface MSDebugGatherer : MSXPCService {
-}
+@interface MSDebugGatherer : MSXPCService
 
-- (void)gatherDebugDiagnostics:(unsigned int)arg1 withCompletion:(id)arg2;
+- (void)gatherDebugDiagnostics:(unsigned int)arg1 withCompletion:(id /* block */)arg2;
 - (id)init;
+- (id)initWithRemoteObjectInterface:(id)arg1;
 
 @end

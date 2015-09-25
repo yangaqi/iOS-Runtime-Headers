@@ -2,12 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAWeatherLocation : SALocation
 
-@interface SAWeatherLocation : SALocation {
-}
-
-@property(copy) NSString * locationId;
+@property (nonatomic, copy) NSString *locationId;
 
 + (id)location;
 + (id)locationWithDictionary:(id)arg1 context:(id)arg2;
@@ -16,6 +13,5 @@
 - (id)groupIdentifier;
 - (id)locationId;
 - (void)setLocationId:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

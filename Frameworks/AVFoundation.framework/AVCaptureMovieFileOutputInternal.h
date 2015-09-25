@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVWeakReference, NSArray, NSMutableArray;
-
 @interface AVCaptureMovieFileOutputInternal : NSObject {
+    NSMutableArray *connectionsThatRecordVideoOrientationAndMirroringChangesAsMetadataTrack;
     NSArray *metadata;
     struct { 
         long long value; 

@@ -2,35 +2,32 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
  */
 
-@class NSString;
-
 @interface SGEmailKey : NSObject <SGEntityKey> {
     NSString *_messageId;
-    long long _messageIdHash;
     NSString *_source;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) NSString * messageId;
-@property(readonly) long long messageIdHash;
-@property(readonly) NSString * source;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *messageId;
+@property (nonatomic, readonly) NSString *source;
+@property (readonly) Class superclass;
 
 + (BOOL)isSupportedEntityType:(long long)arg1;
 
 - (void).cxx_destruct;
 - (id)description;
 - (unsigned int)hash;
+- (id)initWithMailMessageKey:(id)arg1;
 - (id)initWithSerialized:(id)arg1;
 - (id)initWithSource:(id)arg1 messageId:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToEmailKey:(id)arg1;
 - (id)messageId;
-- (long long)messageIdHash;
 - (id)messageURL;
 - (id)serialize;
 - (id)source;
+- (id)toMailMessageKey;
 
 @end

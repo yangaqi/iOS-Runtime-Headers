@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UINavigationController, UIPrintingMessageView, UIPrintingProgress, UIWindow;
-
 @interface UIPrintingProgressViewController : UITableViewController {
     UIPrintingMessageView *_messageView;
     UINavigationController *_navController;
@@ -12,9 +10,9 @@
     UIWindow *_window;
 }
 
+- (void).cxx_destruct;
 - (void)cancelProgress;
 - (void)cleanupAfterDismiss;
-- (void)dealloc;
 - (void)didRotateFromInterfaceOrientation:(int)arg1;
 - (void)dismissAnimated:(BOOL)arg1;
 - (void)doneProgress;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIDelayedAction, UIInputSwitcherView;
-
 @interface UIInputSwitcher : NSObject {
     NSString *_newMode;
     int m_state;
@@ -21,13 +19,15 @@
 - (BOOL)handleModifiersChangedEvent:(id)arg1;
 - (void)handleRotate:(id)arg1;
 - (BOOL)handleSwitchCommand:(BOOL)arg1;
+- (BOOL)handleSwitchCommand:(BOOL)arg1 withHUD:(BOOL)arg2 withDelay:(BOOL)arg3;
 - (void)hideSwitcher;
 - (id)init;
 - (BOOL)isVisible;
+- (BOOL)isVisibleOrHiding;
 - (id)newMode;
 - (void)setNewMode:(id)arg1;
 - (void)showSwitcher;
-- (BOOL)switchMode:(id)arg1 withDelay:(BOOL)arg2;
+- (BOOL)switchMode:(id)arg1 withHUD:(BOOL)arg2 withDelay:(BOOL)arg3;
 - (void)touchHideSwitcherTimer;
 - (void)touchSwitcherTimer;
 

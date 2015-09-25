@@ -2,18 +2,14 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class CALayer, NSMutableArray, UILabel;
-
 @interface SLSheetPhotoAlbumImageView : SLSheetImagePreviewView {
     BOOL _allAttachmentsAreImages;
     CALayer *_frameLayer;
-    int _frameQuantity;
     NSMutableArray *_frameViews;
     CALayer *_glossLayer;
     UILabel *_imageCountLabel;
     int _imageQuantity;
     int _numPreviewImagesAdded;
-    BOOL _updateLayout;
 }
 
 + (unsigned int)displayedFrameMaximum;
@@ -29,6 +25,6 @@
 - (void)setItemCountString:(id)arg1;
 - (void)setPreviewImage:(id)arg1 forAttachment:(id)arg2;
 - (void)sizeToFit;
-- (void)verticalSizeClassDidChange;
+- (void)traitCollectionDidChange:(id)arg1;
 
 @end

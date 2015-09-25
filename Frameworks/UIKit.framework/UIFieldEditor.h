@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UITextInputDelegate>, <UITextInputTokenizer>, NSDictionary, NSString, NSTextContainer, NSTimer, UIAutoscroll, UITextField, UITextInputController, UITextPosition, UITextRange, UIView, _UICascadingTextStorage, _UIFieldEditorContentView, _UIFieldEditorLayoutManager;
-
-@interface UIFieldEditor : UIScrollView <NSLayoutManagerDelegate, NSUITextViewCommonMethods, UIAutoscrollContainer, UIKeyboardInput, UITextAutoscrolling, UITextInput, UITextInputControllerDelegate> {
+@interface UIFieldEditor : UIScrollView <NSLayoutManagerDelegate, NSUITextViewCommonMethods, UIAutoscrollContainer, UIKeyInputPrivate, UIKeyboardInput, UITextAutoscrolling, UITextInput, UITextInputControllerDelegate> {
     UIAutoscroll *_autoscroll;
     struct CGPoint { 
         float x; 
@@ -42,39 +40,41 @@
     } _unobscuredSecureRange;
 }
 
-@property int autocapitalizationType;
-@property int autocorrectionType;
-@property struct CGPoint { float x1; float x2; } autoscrollContentOffset;
-@property(readonly) UITextPosition * beginningOfDocument;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL enablesReturnKeyAutomatically;
-@property(readonly) UITextPosition * endOfDocument;
-@property(readonly) unsigned int hash;
-@property <UITextInputDelegate> * inputDelegate;
-@property int keyboardAppearance;
-@property int keyboardType;
-@property int layoutOrientation;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } markedRange;
-@property(readonly) UITextRange * markedTextRange;
-@property(copy) NSDictionary * markedTextStyle;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } padding;
-@property int returnKeyType;
-@property(getter=isSecureTextEntry) BOOL secureTextEntry;
-@property(copy) UITextRange * selectedTextRange;
-@property int selectionAffinity;
-@property int spellCheckingType;
-@property(readonly) Class superclass;
-@property NSTextContainer * textContainer;
-@property(readonly) UIView * textInputView;
-@property(readonly) <UITextInputTokenizer> * tokenizer;
-@property(copy) NSDictionary * typingAttributes;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic) int autocorrectionType;
+@property (nonatomic) struct CGPoint { float x1; float x2; } autoscrollContentOffset;
+@property (nonatomic, readonly) UITextPosition *beginningOfDocument;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (nonatomic, readonly) UITextPosition *endOfDocument;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <UITextInputDelegate> *inputDelegate;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, readonly) int layoutOrientation;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } markedRange;
+@property (nonatomic, readonly) UITextRange *markedTextRange;
+@property (nonatomic, copy) NSDictionary *markedTextStyle;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } padding;
+@property (nonatomic) int returnKeyType;
+@property (getter=isSecureTextEntry, nonatomic) BOOL secureTextEntry;
+@property (copy) UITextRange *selectedTextRange;
+@property (nonatomic) int selectionAffinity;
+@property (nonatomic) BOOL shouldAutoscroll;
+@property (nonatomic) int spellCheckingType;
+@property (readonly) Class superclass;
+@property (nonatomic) NSTextContainer *textContainer;
+@property (nonatomic, readonly) UIView *textInputView;
+@property (nonatomic, readonly) <UITextInputTokenizer> *tokenizer;
+@property (nonatomic, copy) NSDictionary *typingAttributes;
 
 + (id)activeFieldEditor;
 + (id)excludedElementsForHTML;
 + (void)releaseSharedInstance;
 + (id)sharedFieldEditor;
 
+- (void).cxx_destruct;
 - (void)_cancelObscureAllTextTimer;
 - (BOOL)_clearOnEditIfNeeded;
 - (void)_deleteBackwardAndNotify:(BOOL)arg1;
@@ -83,7 +83,7 @@
 - (BOOL)_isPasscodeStyle;
 - (id)_layoutManager;
 - (void)_obscureAllText;
-- (void)_performWhileSuppressingDelegateNotifications:(id)arg1;
+- (void)_performWhileSuppressingDelegateNotifications:(id /* block */)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_responderExternalTouchRectForWindow:(id)arg1;
 - (id)_responderForBecomeFirstResponder;
 - (void)_scrollRangeToVisible:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 animated:(BOOL)arg2;
@@ -131,6 +131,7 @@
 - (id)inputDelegate;
 - (void)insertDictationResult:(id)arg1 withCorrectionIdentifier:(id)arg2;
 - (id)insertDictationResultPlaceholder;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })insertFilteredText:(id)arg1;
 - (void)insertText:(id)arg1;
 - (id)interactionAssistant;
 - (void)invalidateTextContainerOrigin;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSMutableDictionary, NSString, _NSProgressFraction;
-
 @interface NSProgressValues : NSObject <NSSecureCoding> {
     _NSProgressFraction *_childFraction;
     BOOL _isCancellable;
@@ -14,11 +12,14 @@
     NSString *_kind;
     NSString *_localizedAdditionalDescription;
     NSString *_localizedDescription;
+    long long _portionOfParent;
     _NSProgressFraction *_selfFraction;
     NSMutableDictionary *_userInfo;
+    BOOL _usingChildUserInfo;
 }
 
 + (id)_derivedKeys;
++ (id)_importantKeys;
 + (id)decodableClasses;
 + (BOOL)supportsSecureCoding;
 

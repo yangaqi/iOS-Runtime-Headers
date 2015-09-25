@@ -2,18 +2,17 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class NSArray;
-
 @interface CKQLPreviewController : QLPreviewController <QLPreviewControllerDataSource> {
     NSArray *_previewItems;
 }
 
-@property(copy) NSArray * previewItems;
+@property (nonatomic, copy) NSArray *previewItems;
 
 - (id)currentPreviewItem;
 - (void)dealloc;
 - (id)init;
 - (int)numberOfPreviewItemsInPreviewController:(id)arg1;
+- (id)previewActions;
 - (id)previewController:(id)arg1 previewItemAtIndex:(int)arg2;
 - (id)previewItems;
 - (void)setDataSource:(id)arg1;

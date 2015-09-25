@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSAttributedString, NSString, NSStringDrawingContext;
-
 @interface SKUIAttributedStringLayout : NSObject <SKUICachedLayout> {
     NSAttributedString *_attributedString;
     struct CGSize { 
@@ -11,29 +9,43 @@
         float height; 
     } _boundingSize;
     NSStringDrawingContext *_context;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _edgeInsetsForShadow;
+    NSShadow *_shadow;
     float _topInset;
+    BOOL _usesTallCharacterSet;
 }
 
-@property(readonly) NSAttributedString * attributedString;
-@property(readonly) float baselineOffset;
-@property(readonly) struct CGSize { float x1; float x2; } boundingSize;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) float firstBaselineOffset;
-@property(readonly) unsigned int hash;
-@property(readonly) int numberOfLines;
-@property(readonly) NSStringDrawingContext * stringDrawingContext;
-@property(readonly) Class superclass;
-@property(readonly) float topInset;
+@property (nonatomic, readonly) NSAttributedString *attributedString;
+@property (nonatomic, readonly) float baselineOffset;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } boundingSize;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsetsForShadow;
+@property (nonatomic, readonly) float firstBaselineOffset;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int numberOfLines;
+@property (nonatomic, readonly) NSShadow *shadow;
+@property (nonatomic, readonly) NSStringDrawingContext *stringDrawingContext;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) float topInset;
+@property (nonatomic, readonly) BOOL usesTallCharacterSet;
 
 - (void).cxx_destruct;
 - (id)attributedString;
 - (float)baselineOffset;
 - (struct CGSize { float x1; float x2; })boundingSize;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })edgeInsetsForShadow;
 - (float)firstBaselineOffset;
 - (id)initWithLayoutRequest:(id)arg1;
 - (int)numberOfLines;
+- (id)shadow;
 - (id)stringDrawingContext;
 - (float)topInset;
+- (BOOL)usesTallCharacterSet;
 
 @end

@@ -2,10 +2,11 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@interface NSInputStream : NSStream {
-}
+@interface NSInputStream : NSStream
 
-@property(readonly) BOOL hasBytesAvailable;
+@property (readonly) BOOL hasBytesAvailable;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)inputStreamWithData:(id)arg1;
@@ -16,6 +17,8 @@
 - (unsigned long)_cfTypeID;
 - (BOOL)getBuffer:(char **)arg1 length:(unsigned int*)arg2;
 - (BOOL)hasBytesAvailable;
+- (id)initWithData:(id)arg1;
+- (id)initWithURL:(id)arg1;
 - (int)read:(char *)arg1 maxLength:(unsigned int)arg2;
 
 @end

@@ -2,18 +2,15 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@class NSData, NSString;
-
 @interface PKWrappedPayment : NSObject <NSSecureCoding> {
     NSData *_transactionData;
     NSString *_transactionIdentifier;
 }
 
-@property(copy) NSData * transactionData;
-@property(copy) NSString * transactionIdentifier;
+@property (nonatomic, copy) NSData *transactionData;
+@property (nonatomic, copy) NSString *transactionIdentifier;
 
 + (BOOL)supportsSecureCoding;
-+ (id)wrappedPaymentWithTransactionResponse:(id)arg1;
 
 - (void)dealloc;
 - (id)description;

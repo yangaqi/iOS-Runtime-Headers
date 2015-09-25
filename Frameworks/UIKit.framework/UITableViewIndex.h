@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSString, UIColor, UIFont;
-
 @interface UITableViewIndex : UIControl {
     float _bottomPadding;
     struct CGSize { 
@@ -28,16 +26,17 @@
     float _verticalTextHeightEstimate;
 }
 
-@property(retain) UIFont * font;
-@property(retain) UIColor * indexBackgroundColor;
-@property(retain) UIColor * indexColor;
-@property(retain) UIColor * indexTrackingBackgroundColor;
-@property(readonly) BOOL pastBottom;
-@property(readonly) BOOL pastTop;
-@property(readonly) int selectedSection;
-@property(readonly) NSString * selectedSectionTitle;
-@property(retain) NSArray * titles;
+@property (nonatomic, retain) UIFont *font;
+@property (nonatomic, retain) UIColor *indexBackgroundColor;
+@property (nonatomic, retain) UIColor *indexColor;
+@property (nonatomic, retain) UIColor *indexTrackingBackgroundColor;
+@property (nonatomic, readonly) BOOL pastBottom;
+@property (nonatomic, readonly) BOOL pastTop;
+@property (nonatomic, readonly) int selectedSection;
+@property (nonatomic, readonly) NSString *selectedSectionTitle;
+@property (nonatomic, retain) NSArray *titles;
 
+- (void).cxx_destruct;
 - (void)_cacheAndMeasureTitles;
 - (id)_displayTitles;
 - (id)_dotImage;
@@ -53,7 +52,6 @@
 - (BOOL)canBecomeFocused;
 - (void)cancelTrackingWithEvent:(id)arg1;
 - (BOOL)continueTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
-- (void)dealloc;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)endTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (id)font;

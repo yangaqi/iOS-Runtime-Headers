@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUIServices.framework/SpringBoardUIServices
  */
 
-@class TPRevealingRingView, UILabel;
-
 @interface SBUIRingViewLabelButton : UIControl {
     UILabel *_label;
     TPRevealingRingView *_ringView;
 }
 
-@property(readonly) TPRevealingRingView * backgroundRing;
-@property(readonly) UILabel * label;
+@property (nonatomic, readonly, retain) TPRevealingRingView *backgroundRing;
+@property (nonatomic, readonly, retain) UILabel *label;
 
 - (id)backgroundRing;
 - (void)dealloc;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOAutomobileOptions, GEOComposedWaypoint, GEOLocation, GEOWalkingOptions, NSArray, NSDate;
-
 @interface GEOQuickETARequest : NSObject {
     NSArray *_additionalTransportTypesRequested;
     NSDate *_arrivalDate;
@@ -13,20 +11,24 @@
     GEOComposedWaypoint *_destinationWaypoint;
     BOOL _includeDistance;
     GEOComposedWaypoint *_sourceWaypoint;
+    GEOTransitOptions *_transitOptions;
     int _transportType;
     GEOWalkingOptions *_walkingOptions;
 }
 
-@property(readonly) NSArray * additionalTransportTypesRequested;
-@property(readonly) NSDate * arrivalDate;
-@property(readonly) GEOAutomobileOptions * automobileOptions;
-@property(readonly) GEOLocation * currentLocation;
-@property(readonly) NSDate * departureDate;
-@property(readonly) GEOComposedWaypoint * destinationWaypoint;
-@property(readonly) BOOL includeDistance;
-@property(readonly) GEOComposedWaypoint * sourceWaypoint;
-@property(readonly) int transportType;
-@property(readonly) GEOWalkingOptions * walkingOptions;
+@property (nonatomic, readonly) NSArray *additionalTransportTypesRequested;
+@property (nonatomic, readonly) NSDate *arrivalDate;
+@property (nonatomic, readonly) GEOAutomobileOptions *automobileOptions;
+@property (nonatomic, readonly) GEOLocation *currentLocation;
+@property (nonatomic, readonly) NSDate *departureDate;
+@property (nonatomic, readonly) GEOComposedWaypoint *destinationWaypoint;
+@property (nonatomic, readonly) BOOL includeDistance;
+@property (nonatomic, readonly) GEOComposedWaypoint *sourceWaypoint;
+@property (nonatomic, readonly) GEOTransitOptions *transitOptions;
+@property (nonatomic, readonly) int transportType;
+@property (nonatomic, readonly) GEOWalkingOptions *walkingOptions;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 - (id)additionalTransportTypesRequested;
 - (id)arrivalDate;
@@ -37,18 +39,23 @@
 - (id)description;
 - (id)destinationWaypoint;
 - (BOOL)includeDistance;
-- (id)initWithDirectionsRequest:(id)arg1 origin:(id)arg2 destination:(id)arg3;
-- (id)initWithOrigin:(id)arg1 destinationPLOI:(id)arg2;
-- (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 currentLocation:(id)arg4 includeDistance:(BOOL)arg5 automobileOptions:(id)arg6 walkingOptions:(id)arg7;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 currentLocation:(id)arg4 includeDistance:(BOOL)arg5 automobileOptions:(id)arg6 transitOptions:(id)arg7 walkingOptions:(id)arg8;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6 additionalTransportTypesRequested:(id)arg7;
-- (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 currentLocation:(id)arg4 includeDistance:(BOOL)arg5 automobileOptions:(id)arg6 walkingOptions:(id)arg7;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 arrivalDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6 additionalTransportTypesRequested:(id)arg7 automobileOptions:(id)arg8 transitOptions:(id)arg9 walkingOptions:(id)arg10;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 currentLocation:(id)arg4 includeDistance:(BOOL)arg5 automobileOptions:(id)arg6 transitOptions:(id)arg7 walkingOptions:(id)arg8;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6;
 - (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6 additionalTransportTypesRequested:(id)arg7;
+- (id)initWithSource:(id)arg1 toDestination:(id)arg2 departureDate:(id)arg3 transportType:(int)arg4 currentLocation:(id)arg5 includeDistance:(BOOL)arg6 additionalTransportTypesRequested:(id)arg7 automobileOptions:(id)arg8 transitOptions:(id)arg9 walkingOptions:(id)arg10;
 - (id)sourceWaypoint;
+- (id)transitOptions;
 - (int)transportType;
 - (id)walkingOptions;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (id)initWithDirectionsRequest:(id)arg1 origin:(id)arg2 destination:(id)arg3;
 
 @end

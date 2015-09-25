@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUIAttributedStringLayout, UIImage;
-
 @interface SKUIStarRatingViewElementView : UIView <SKUIViewElementView> {
     struct UIEdgeInsets { 
         float top; 
@@ -16,17 +14,18 @@
     SKUIAttributedStringLayout *_textLayout;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property int elementSpacing;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int elementSpacing;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)_attributedStringWithViewElement:(id)arg1 context:(id)arg2;
 + (struct CGSize { float x1; float x2; })preferredSizeForViewElement:(id)arg1 context:(id)arg2;
 + (BOOL)prefetchResourcesForViewElement:(id)arg1 reason:(int)arg2 context:(id)arg3;
 + (void)requestLayoutForViewElement:(id)arg1 width:(float)arg2 context:(id)arg3;
 + (struct CGSize { float x1; float x2; })sizeThatFitsWidth:(float)arg1 viewElement:(id)arg2 context:(id)arg3;
++ (id)textPropertiesForViewElement:(id)arg1 width:(float)arg2 context:(id)arg3;
 
 - (void).cxx_destruct;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

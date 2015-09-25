@@ -3,10 +3,17 @@
  */
 
 @interface CallDBMetaInfo : NSObject {
+    NSURL *_dbInfoPrefFile;
 }
 
-+ (id)metInfoPlistURL;
-+ (int)readDatabaseVersion:(BOOL)arg1;
-+ (void)writeDatabaseVersion:(int)arg1 isTemp:(BOOL)arg2;
+@property (retain) NSURL *dbInfoPrefFile;
+
+- (void).cxx_destruct;
+- (id)dbInfoPrefFile;
+- (id)initWithURL:(id)arg1;
+- (int)readDatabaseVersion:(BOOL)arg1;
+- (void)setDbInfoPrefFile:(id)arg1;
+- (BOOL)validateInfo:(BOOL)arg1;
+- (void)writeDatabaseVersion:(int)arg1 isTemp:(BOOL)arg2;
 
 @end

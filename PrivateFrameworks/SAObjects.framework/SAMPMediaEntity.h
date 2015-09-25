@@ -2,13 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAMPMediaEntity : SADomainObject
 
-@interface SAMPMediaEntity : SADomainObject {
-}
-
-@property(copy) NSString * sortTitle;
-@property(copy) NSString * title;
+@property (nonatomic, copy) NSString *sortTitle;
+@property (nonatomic, copy) NSString *title;
 
 + (id)mediaEntity;
 + (id)mediaEntityWithDictionary:(id)arg1 context:(id)arg2;
@@ -19,6 +16,5 @@
 - (void)setTitle:(id)arg1;
 - (id)sortTitle;
 - (id)title;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class IKLockupElement, MPUExtrasConstrainedArtworkContainerView, MPUExtrasZoomingImageInteractiveTransitionSourceContext, NSLayoutConstraint, NSString, UILabel, UIPinchGestureRecognizer, UIView;
-
 @interface MPUExtrasLockupCollectionViewCell : UICollectionViewCell <MPUExtrasCarouselCollectionViewCell> {
     BOOL _allowsPinchingThumbnailImageForInteractiveZoomingImageTransition;
     NSLayoutConstraint *_artworkContainerHeightConstraint;
@@ -26,11 +24,11 @@
     NSString *_zoomingImageTransitionIdentifier;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property IKLockupElement * lockup;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) IKLockupElement *lockup;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_handlePinchGesture:(id)arg1;
@@ -53,7 +51,7 @@
 - (void)setThumbnailImageAccessibilityText:(id)arg1;
 - (void)setThumbnailImagePlaceholder:(id)arg1;
 - (void)setThumbnailMaxSize:(struct CGSize { float x1; float x2; })arg1;
-- (void)setThumbnailOverlayImage:(id)arg1 position:(unsigned int)arg2;
+- (void)setThumbnailOverlayImage:(id)arg1;
 - (void)setTitleText:(id)arg1;
 - (void)setZoomingImageTransitionIdentifier:(id)arg1;
 - (id)subtitleTextStyle;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class AVURLAsset, UIImage;
-
 @interface CKMovieMediaObject : CKAVMediaObject {
     AVURLAsset *_asset;
     BOOL _checkedVideoInfo;
@@ -15,11 +13,11 @@
     UIImage *_thumbnail;
 }
 
-@property(retain) AVURLAsset * asset;
-@property BOOL checkedVideoInfo;
-@property BOOL hasVideoTrack;
-@property struct CGSize { float x1; float x2; } pxSize;
-@property(retain) UIImage * thumbnail;
+@property (nonatomic, retain) AVURLAsset *asset;
+@property (nonatomic) BOOL checkedVideoInfo;
+@property (nonatomic) BOOL hasVideoTrack;
+@property (nonatomic) struct CGSize { float x1; float x2; } pxSize;
+@property (nonatomic, retain) UIImage *thumbnail;
 
 + (id)UTITypes;
 + (Class)__ck_attachmentItemClass;
@@ -49,6 +47,7 @@
 - (void)setHasVideoTrack:(BOOL)arg1;
 - (void)setPxSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setThumbnail:(id)arg1;
+- (BOOL)shouldBeQuickLookedFromEntryView;
 - (id)thumbnail;
 - (void)updateVideoInfo;
 

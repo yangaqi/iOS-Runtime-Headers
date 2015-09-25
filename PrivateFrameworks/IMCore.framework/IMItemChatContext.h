@@ -2,15 +2,11 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@class IMHandle;
-
 @interface IMItemChatContext : NSObject {
     IMHandle *_otherHandle;
     IMHandle *_senderHandle;
 }
 
 - (void)dealloc;
-- (id)sender;
-- (id)subject;
 
 @end

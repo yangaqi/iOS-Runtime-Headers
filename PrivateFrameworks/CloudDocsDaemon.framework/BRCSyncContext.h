@@ -2,51 +2,46 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-@class BRCAccountSession, BRCThrottleBase, BRCTransferStream, BRCUserDefaults, CDAttribute, CDBudget, CKContainer, NSString;
-
-@interface BRCSyncContext : NSObject <BRCLowDiskDelegate> {
+@interface BRCSyncContext : NSObject {
     NSString *_admissionTicket;
     BRCThrottleBase *_applyThrottle;
     CKContainer *_ckContainer;
     NSString *_contextIdentifier;
     CDBudget *_dataBudget;
+    BRCTransferStream *_downloadStream;
     BRCThrottleBase *_downloadThrottle;
-    BRCTransferStream *_downloader;
     CDAttribute *_duetAttribute;
     CDBudget *_energyBudget;
     BOOL _isCancelled;
-    BOOL _isInLowDisk;
     BOOL _isShared;
     BRCThrottleBase *_readerThrottle;
     BRCAccountSession *_session;
+    BRCTransferStream *_uploadStream;
     BRCThrottleBase *_uploadThrottle;
-    BRCTransferStream *_uploader;
 }
 
-@property(readonly) NSString * admissionTicket;
-@property(readonly) BRCThrottleBase * applyThrottle;
-@property(readonly) CKContainer * ckContainer;
-@property(readonly) NSString * contextIdentifier;
-@property(readonly) CDBudget * dataBudget;
-@property(copy,readonly) NSString * debugDescription;
-@property(readonly) BRCUserDefaults * defaults;
-@property(copy,readonly) NSString * description;
-@property(readonly) BRCThrottleBase * downloadThrottle;
-@property(readonly) BRCTransferStream * downloader;
-@property(readonly) CDBudget * energyBudget;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isShared;
-@property(readonly) BRCThrottleBase * readerThrottle;
-@property(readonly) BRCAccountSession * session;
-@property(readonly) Class superclass;
-@property(readonly) BRCThrottleBase * uploadThrottle;
-@property(readonly) BRCTransferStream * uploader;
+@property (nonatomic, readonly) NSString *admissionTicket;
+@property (nonatomic, readonly) BRCThrottleBase *applyThrottle;
+@property (nonatomic, readonly) CKContainer *ckContainer;
+@property (nonatomic, readonly) NSString *contextIdentifier;
+@property (nonatomic, readonly) CDBudget *dataBudget;
+@property (nonatomic, readonly) BRCUserDefaults *defaults;
+@property (nonatomic, readonly) BRCTransferStream *downloadStream;
+@property (nonatomic, readonly) BRCThrottleBase *downloadThrottle;
+@property (nonatomic, readonly) CDBudget *energyBudget;
+@property (nonatomic, readonly) BOOL isShared;
+@property (nonatomic, readonly) BRCThrottleBase *readerThrottle;
+@property (nonatomic, readonly) BRCAccountSession *session;
+@property (nonatomic, readonly) BRCTransferStream *uploadStream;
+@property (nonatomic, readonly) BRCThrottleBase *uploadThrottle;
 
 + (id)contextIdentifierForZone:(id)arg1;
 
 - (void).cxx_destruct;
+- (id)_database;
 - (void)_setupDuetIfNeeded;
 - (void)addOperation:(id)arg1;
+- (void)addOperation:(id)arg1 allowsCellularAccess:(id)arg2;
 - (id)admissionTicket;
 - (BOOL)allowsCellularAccess;
 - (id)applyThrottle;
@@ -57,19 +52,19 @@
 - (id)dataBudget;
 - (id)defaults;
 - (id)description;
+- (id)downloadStream;
 - (id)downloadThrottle;
-- (id)downloader;
 - (id)energyBudget;
 - (id)initWithSession:(id)arg1 contextIdentifier:(id)arg2 isShared:(BOOL)arg3;
 - (id)initWithZone:(id)arg1;
 - (BOOL)isShared;
-- (void)lowDiskStatusChangedForDevice:(int)arg1 hasEnoughSpace:(BOOL)arg2;
 - (void)notifyDuetFromAccessByBundleID:(id)arg1;
 - (id)readerThrottle;
 - (void)resume;
 - (id)session;
 - (void)setupIfNeeded;
+- (id)uploadStream;
 - (id)uploadThrottle;
-- (id)uploader;
+- (void)waitForAllOperations;
 
 @end

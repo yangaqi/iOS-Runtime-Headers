@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableString, WDCharacterProperties;
-
 @interface WDCharacterRun : WDRun {
     BOOL mBinaryWriterContentFlag;
     WDCharacterProperties *mProperties;
@@ -16,6 +14,7 @@
 - (void)clearString;
 - (void)copyPropertiesFrom:(id)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)initWithParagraph:(id)arg1;
 - (id)initWithParagraph:(id)arg1 string:(id)arg2;
 - (BOOL)isEmpty;

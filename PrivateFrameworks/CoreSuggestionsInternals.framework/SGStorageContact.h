@@ -2,31 +2,29 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
  */
 
-@class NSArray, NSMutableSet, NSString, SGRecordId;
-
 @interface SGStorageContact : NSObject {
     long long _masterEntityId;
     NSMutableSet *_profiles;
     SGRecordId *_recordId;
-    long detectedAddressesOnce;
-    long detectedEmailAddressesOnce;
-    long detectedPhonesOnce;
+    long detectedDetailsOnce;
     NSArray *internalDetectedAddresses;
     NSArray *internalDetectedEmailAddresses;
     NSArray *internalDetectedPhones;
 }
 
-@property(readonly) long long masterEntityId;
-@property(readonly) NSString * name;
-@property(readonly) SGRecordId * recordId;
+@property (nonatomic, readonly) long long masterEntityId;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) SGRecordId *recordId;
 
 + (id)contactFromContactEntity:(id)arg1;
 + (id)contactWithMasterEntityId:(long long)arg1;
 + (id)mergeAll:(id)arg1;
++ (void)subtractDetailsFromSGContact:(id)arg1 thatMatchCNContact:(id)arg2;
 
 - (void).cxx_destruct;
 - (void)addProfile:(id)arg1;
 - (id)allNames;
+- (id)bestProfile;
 - (BOOL)canMerge:(id)arg1;
 - (id)convertToContact:(id)arg1;
 - (id)description;
@@ -35,6 +33,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isEqualToStorageContact:(id)arg1;
 - (id)loadAddressDetailsFrom:(id)arg1;
+- (id)loadAllDetailsFrom:(id)arg1;
 - (id)loadEmailAddressDetailsFrom:(id)arg1;
 - (id)loadPhoneDetailsFrom:(id)arg1;
 - (long long)masterEntityId;

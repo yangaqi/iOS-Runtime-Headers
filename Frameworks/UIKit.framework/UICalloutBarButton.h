@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITextReplacement;
-
 @interface UICalloutBarButton : UIButton {
     BOOL forceFlash;
     SEL m_action;
@@ -24,22 +22,23 @@
     int m_type;
 }
 
-@property(readonly) SEL action;
-@property(readonly) float additionalContentHeight;
-@property(readonly) float contentScale;
-@property(readonly) float contentWidth;
-@property float dividerOffset;
-@property BOOL dontDismiss;
-@property BOOL forceFlash;
-@property float imageVerticalAdjust;
-@property int page;
-@property(retain) UITextReplacement * textReplacement;
-@property(readonly) int type;
+@property (nonatomic, readonly) SEL action;
+@property (nonatomic, readonly) float additionalContentHeight;
+@property (nonatomic, readonly) float contentScale;
+@property (nonatomic, readonly) float contentWidth;
+@property (nonatomic) float dividerOffset;
+@property (nonatomic) BOOL dontDismiss;
+@property (nonatomic) BOOL forceFlash;
+@property (nonatomic) float imageVerticalAdjust;
+@property (nonatomic) int page;
+@property (nonatomic, retain) UITextReplacement *textReplacement;
+@property (nonatomic, readonly) int type;
 
 + (id)buttonWithImage:(id)arg1 action:(SEL)arg2 type:(int)arg3 inView:(id)arg4;
 + (id)buttonWithTitle:(id)arg1 action:(SEL)arg2 type:(int)arg3 inView:(id)arg4;
 + (id)buttonWithTitle:(id)arg1 subtitle:(id)arg2 maxWidth:(float)arg3 action:(SEL)arg4 type:(int)arg5 inView:(id)arg6;
 
+- (void).cxx_destruct;
 - (void)_commonSetupWithAction:(SEL)arg1 type:(int)arg2;
 - (SEL)action;
 - (float)additionalContentHeight;

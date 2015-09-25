@@ -2,21 +2,17 @@
    Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
  */
 
-@class NSString;
-
 @interface TIZephyrCandidate : TIKeyboardCandidateSingle {
     BOOL _isFromPhraseDictionary;
     BOOL _isFromTextChecker;
     NSString *_label;
     unsigned int _usageTrackingMask;
     unsigned int _wordOriginFeedbackID;
-    BOOL extensionCandidate;
 }
 
-@property(getter=isExtensionCandidate) BOOL extensionCandidate;
-@property BOOL isFromPhraseDictionary;
-@property BOOL isFromTextChecker;
-@property(copy) NSString * label;
+@property (nonatomic) BOOL isFromPhraseDictionary;
+@property (nonatomic) BOOL isFromTextChecker;
+@property (nonatomic, copy) NSString *label;
 
 + (BOOL)supportsSecureCoding;
 + (int)type;
@@ -30,11 +26,9 @@
 - (id)initWithCandidateResultSetCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isAutocorrection;
-- (BOOL)isExtensionCandidate;
 - (BOOL)isFromPhraseDictionary;
 - (BOOL)isFromTextChecker;
 - (id)label;
-- (void)setExtensionCandidate:(BOOL)arg1;
 - (void)setIsFromPhraseDictionary:(BOOL)arg1;
 - (void)setIsFromTextChecker:(BOOL)arg1;
 - (void)setLabel:(id)arg1;

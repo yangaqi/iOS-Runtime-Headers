@@ -2,51 +2,39 @@
    Image: /System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class FBApplicationProcess, FBProcessExecutionContext, FBProcessManager, FBWaitForProcessDeathTransaction, NSString;
-
-@interface FBApplicationProcessLaunchTransaction : FBTransaction <FBApplicationProcessObserver> {
+@interface FBApplicationProcessLaunchTransaction : FBTransaction {
     NSString *_bundleID;
     FBWaitForProcessDeathTransaction *_deathTransaction;
     FBProcessExecutionContext *_executionContext;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _executionContextProvider;
-
+    id /* block */ _executionContextProvider;
     BOOL _exited;
     BOOL _failedLaunch;
+    int _interruptedOrComplete;
     FBApplicationProcess *_process;
-    BOOL _processIsValid;
     FBProcessManager *_processManager;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) BOOL exited;
-@property(readonly) BOOL failedLaunch;
-@property(readonly) unsigned int hash;
-@property(retain,readonly) FBApplicationProcess * process;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) BOOL exited;
+@property (nonatomic, readonly) BOOL failedLaunch;
+@property (nonatomic, readonly, retain) FBApplicationProcess *process;
 
 - (void)_begin;
 - (BOOL)_canBeInterrupted;
 - (void)_childTransactionDidComplete:(id)arg1;
 - (id)_customizedDescriptionProperties;
 - (void)_didComplete;
+- (void)_queue_finishProcessLaunch:(BOOL)arg1;
 - (void)_queue_launchProcess:(id)arg1;
 - (void)_queue_noteExited;
+- (void)_queue_processWillLaunch:(id)arg1;
+- (BOOL)_shouldFailForChildTransaction:(id)arg1;
+- (void)_willComplete;
+- (void)_willInterruptWithReason:(id)arg1;
 - (void)addObserver:(id)arg1;
-- (void)applicationProcessDidExit:(id)arg1 withContext:(id)arg2;
-- (void)applicationProcessDidLaunch:(id)arg1;
-- (void)applicationProcessWillLaunch:(id)arg1;
 - (void)dealloc;
 - (BOOL)exited;
 - (BOOL)failedLaunch;
-- (id)initWithApplicationBundleID:(id)arg1 executionContextProvider:(id)arg2;
+- (id)initWithApplicationBundleID:(id)arg1 executionContextProvider:(id /* block */)arg2;
 - (id)initWithApplicationProcess:(id)arg1;
 - (id)process;
 - (void)removeObserver:(id)arg1;

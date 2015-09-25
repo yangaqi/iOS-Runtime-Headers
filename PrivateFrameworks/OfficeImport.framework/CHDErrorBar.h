@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDChart, CHDData, OADGraphicProperties;
-
 @interface CHDErrorBar : NSObject {
     CHDChart *mChart;
     int mDirection;
@@ -19,6 +17,7 @@
 + (id)errorBarWithChart:(id)arg1;
 
 - (void)dealloc;
+- (id)description;
 - (int)direction;
 - (id)graphicProperties;
 - (id)initWithChart:(id)arg1;

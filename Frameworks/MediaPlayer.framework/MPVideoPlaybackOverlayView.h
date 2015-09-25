@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPVideoControllerProtocol>, <MPVideoOverlayDelegate>, MPAVController, MPAVItem, MPAudioAndSubtitlesController, MPDetailSlider, MPKnockoutButton, MPVolumeSlider, NSArray, NSLayoutConstraint, NSString, UIActivityIndicatorView, UIButton, UILabel, UINavigationBar, UIPopoverController, UIStatusBar, UIView, _UIBackdropView;
-
-@interface MPVideoPlaybackOverlayView : UIView <MPAudioAndSubtitlesControllerDelegate, MPDetailSliderDelegate, MPVideoOverlay, UIPopoverControllerDelegate> {
+@interface MPVideoPlaybackOverlayView : UIView <MPDetailSliderDelegate, MPVideoOverlay, UIPopoverPresentationControllerDelegate> {
     BOOL _allowsExitFromFullscreen;
+    BOOL _allowsPictureInPicture;
     UIButton *_audioAndSubtitlesButton;
     MPAudioAndSubtitlesController *_audioAndSubtitlesController;
-    UIPopoverController *_audioAndSubtitlesPopover;
     BOOL _automaticallyHandleTransportControls;
     _UIBackdropView *_bottomBarBackdropView;
     UIView *_bottomBarBottomLayoutGuide;
@@ -26,6 +24,7 @@
     MPKnockoutButton *_leftButton;
     UIActivityIndicatorView *_loadingIndicator;
     UILabel *_loadingLabel;
+    MPKnockoutButton *_pictureInPictureButton;
     MPKnockoutButton *_playPauseButton;
     MPAVController *_player;
     MPKnockoutButton *_rightButton;
@@ -56,25 +55,27 @@
     unsigned long long visibleParts;
 }
 
-@property BOOL allowsDetailScrubbing;
-@property BOOL allowsExitFromFullscreen;
-@property BOOL allowsWirelessPlayback;
-@property BOOL automaticallyHandleTransportControls;
-@property(readonly) float bottomBarHeight;
-@property(copy,readonly) NSString * debugDescription;
-@property <MPVideoOverlayDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property unsigned long long desiredParts;
-@property unsigned long long disabledParts;
-@property(readonly) unsigned int hash;
-@property(retain) MPAVItem * item;
-@property(retain,readonly) UINavigationBar * navigationBar;
-@property BOOL navigationBarHidden;
-@property(retain) MPAVController * player;
-@property int style;
-@property(readonly) Class superclass;
-@property <MPVideoControllerProtocol> * videoViewController;
-@property unsigned long long visibleParts;
+@property (nonatomic) BOOL allowsDetailScrubbing;
+@property (nonatomic) BOOL allowsExitFromFullscreen;
+@property (nonatomic) BOOL allowsPictureInPicture;
+@property (nonatomic) BOOL allowsScrubbing;
+@property (nonatomic) BOOL allowsWirelessPlayback;
+@property (nonatomic) BOOL automaticallyHandleTransportControls;
+@property (nonatomic, readonly) float bottomBarHeight;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MPVideoOverlayDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) unsigned long long desiredParts;
+@property (nonatomic) unsigned long long disabledParts;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MPAVItem *item;
+@property (nonatomic, readonly, retain) UINavigationBar *navigationBar;
+@property (nonatomic) BOOL navigationBarHidden;
+@property (nonatomic, retain) MPAVController *player;
+@property (nonatomic) int style;
+@property (readonly) Class superclass;
+@property (nonatomic) <MPVideoControllerProtocol> *videoViewController;
+@property (nonatomic) unsigned long long visibleParts;
 
 - (void).cxx_destruct;
 - (void)_activeAudioRouteDidChange:(id)arg1;
@@ -89,6 +90,7 @@
 - (void)_durationAvailable:(id)arg1;
 - (void)_effectiveScaleModeDidChange:(id)arg1;
 - (void)_fullscreenButtonTapped:(id)arg1;
+- (void)_handleDismissAudioAndSubtitlesController;
 - (void)_hideScrubInstructions;
 - (id)_imageNamed:(id)arg1;
 - (void)_itemChanged:(id)arg1;
@@ -99,6 +101,7 @@
 - (void)_notifyDelegateOfUserEventCancel:(int)arg1;
 - (void)_notifyDelegateOfUserEventEnd:(int)arg1;
 - (void)_observeControl:(id)arg1;
+- (void)_pictureInPictureButtonTapped:(id)arg1;
 - (void)_playPauseButtonTapped:(id)arg1;
 - (void)_playbackStateChanged:(id)arg1;
 - (void)_registerForItemNotifications:(id)arg1;
@@ -119,10 +122,12 @@
 - (void)_updateScaleButton;
 - (void)_updateVolumeSlider;
 - (void)_videoViewDidMoveToWindow:(id)arg1;
+- (int)adaptivePresentationStyleForPresentationController:(id)arg1;
 - (BOOL)allowsDetailScrubbing;
 - (BOOL)allowsExitFromFullscreen;
+- (BOOL)allowsPictureInPicture;
+- (BOOL)allowsScrubbing;
 - (BOOL)allowsWirelessPlayback;
-- (void)audioAndSubtitleControllerRequestsDismissal:(id)arg1;
 - (BOOL)automaticallyHandleTransportControls;
 - (float)bottomBarHeight;
 - (void)dealloc;
@@ -142,12 +147,15 @@
 - (void)layoutSubviews;
 - (id)navigationBar;
 - (BOOL)navigationBarHidden;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (id)player;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
-- (void)popoverControllerDidDismissPopover:(id)arg1;
+- (void)popoverPresentationControllerDidDismissPopover:(id)arg1;
 - (void)removeFromSuperview;
 - (void)setAllowsDetailScrubbing:(BOOL)arg1;
 - (void)setAllowsExitFromFullscreen:(BOOL)arg1;
+- (void)setAllowsPictureInPicture:(BOOL)arg1;
+- (void)setAllowsScrubbing:(BOOL)arg1;
 - (void)setAllowsWirelessPlayback:(BOOL)arg1;
 - (void)setAutomaticallyHandleTransportControls:(BOOL)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -158,8 +166,8 @@
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setHidden:(BOOL)arg1;
 - (void)setHidden:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)setHidden:(BOOL)arg1 animated:(BOOL)arg2 animateAlongside:(id)arg3 completionBlock:(id)arg4;
-- (void)setHidden:(BOOL)arg1 animated:(BOOL)arg2 completionBlock:(id)arg3;
+- (void)setHidden:(BOOL)arg1 animated:(BOOL)arg2 animateAlongside:(id /* block */)arg3 completionBlock:(id /* block */)arg4;
+- (void)setHidden:(BOOL)arg1 animated:(BOOL)arg2 completionBlock:(id /* block */)arg3;
 - (void)setItem:(id)arg1;
 - (void)setNavigationBarHidden:(BOOL)arg1;
 - (void)setPlayer:(id)arg1;

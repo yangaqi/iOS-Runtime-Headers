@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIColor, CIVector, NSNumber;
-
 @interface CIGaussianGradient : CIFilter {
     CIVector *inputCenter;
     CIColor *inputColor0;
@@ -11,10 +9,10 @@
     NSNumber *inputRadius;
 }
 
-@property(retain) CIVector * inputCenter;
-@property(retain) CIColor * inputColor0;
-@property(retain) CIColor * inputColor1;
-@property(retain) NSNumber * inputRadius;
+@property (nonatomic, retain) CIVector *inputCenter;
+@property (nonatomic, retain) CIColor *inputColor0;
+@property (nonatomic, retain) CIColor *inputColor1;
+@property (nonatomic, retain) NSNumber *inputRadius;
 
 + (id)customAttributes;
 
@@ -24,7 +22,6 @@
 - (id)inputColor1;
 - (id)inputRadius;
 - (id)outputImage;
-- (void)setDefaults;
 - (void)setInputCenter:(id)arg1;
 - (void)setInputColor0:(id)arg1;
 - (void)setInputColor1:(id)arg1;

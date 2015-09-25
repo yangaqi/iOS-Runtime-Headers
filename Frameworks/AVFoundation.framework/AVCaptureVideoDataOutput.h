@@ -2,21 +2,18 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVCaptureVideoDataOutputSampleBufferDelegate>, AVCaptureVideoDataOutputInternal, NSArray, NSDictionary, NSObject<OS_dispatch_queue>;
-
 @interface AVCaptureVideoDataOutput : AVCaptureOutput {
     AVCaptureVideoDataOutputInternal *_internal;
 }
 
-@property BOOL alwaysDiscardsLateVideoFrames;
-@property(readonly) NSArray * availableVideoCVPixelFormatTypes;
-@property(readonly) NSArray * availableVideoCodecTypes;
-@property struct { long long x1; int x2; unsigned int x3; long long x4; } minFrameDuration;
-@property(readonly) NSObject<OS_dispatch_queue> * sampleBufferCallbackQueue;
-@property(readonly) <AVCaptureVideoDataOutputSampleBufferDelegate> * sampleBufferDelegate;
-@property(copy) NSDictionary * videoSettings;
+@property (nonatomic) BOOL alwaysDiscardsLateVideoFrames;
+@property (nonatomic, readonly) NSArray *availableVideoCVPixelFormatTypes;
+@property (nonatomic, readonly) NSArray *availableVideoCodecTypes;
+@property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } minFrameDuration;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *sampleBufferCallbackQueue;
+@property (nonatomic, readonly) <AVCaptureVideoDataOutputSampleBufferDelegate> *sampleBufferDelegate;
+@property (nonatomic, copy) NSDictionary *videoSettings;
 
-+ (id)alloc;
 + (void)initialize;
 + (id)supportedVideoSettingsKeys;
 
@@ -31,16 +28,19 @@
 - (void)attachSafelyToFigCaptureSession:(struct OpaqueFigCaptureSession { }*)arg1;
 - (id)availableVideoCVPixelFormatTypes;
 - (id)availableVideoCodecTypes;
+- (BOOL)canAddConnectionForMediaType:(id)arg1;
 - (id)connectionMediaTypes;
 - (void)dealloc;
 - (void)detachSafelyFromFigCaptureSession:(struct OpaqueFigCaptureSession { }*)arg1;
 - (BOOL)hasRequiredOutputFormatForConnection:(id)arg1;
 - (id)init;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })minFrameDuration;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (int)outputFormat;
 - (id)outputScalingModeForSourceFormat:(id)arg1;
 - (struct CGSize { float x1; float x2; })outputSizeForSourceFormat:(id)arg1;
 - (id)recommendedVideoSettingsForAssetWriterWithOutputFileType:(id)arg1;
+- (void)removeConnection:(id)arg1;
 - (int)requiredOutputFormatForConnection:(id)arg1;
 - (id)sampleBufferCallbackQueue;
 - (id)sampleBufferDelegate;

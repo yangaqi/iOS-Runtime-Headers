@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@interface CKDDiscoverAllContactsOperation : CKDDiscoverUserInfosOperation {
-}
+@interface CKDDiscoverAllContactsOperation : CKDDiscoverUserInfosOperation
 
 - (void)_discoverEmailsByBatch:(id)arg1;
-- (void)_handleDiscoveredInfo:(id)arg1 emailToDiscover:(id)arg2;
+- (void)_handleDiscoveredInfo:(id)arg1 emailToDiscover:(id)arg2 responseCode:(id)arg3;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
 - (void)main;
 

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSCachedFetchRequestInfo, NSMutableArray, NSSQLEntity, NSString;
-
 @interface NSSQLStatement : NSObject {
     NSMutableArray *_bindIntarrays;
     NSMutableArray *_bindVariables;
@@ -12,9 +10,11 @@
     NSSQLEntity *_fakeEntityForFetch;
     BOOL _isImpossibleCondition;
     NSString *_sqlString;
+    BOOL _trackChangedRowCount;
 }
 
-@property(retain) NSCachedFetchRequestInfo * cachedStatementInfo;
+@property (nonatomic, retain) NSCachedFetchRequestInfo *cachedStatementInfo;
+@property (nonatomic) BOOL trackChangedRowCount;
 
 - (unsigned int)addBindIntarray:(id)arg1;
 - (unsigned int)addBindVariable:(id)arg1;
@@ -38,6 +38,8 @@
 - (void)setCachedStatementInfo:(id)arg1;
 - (void)setImpossibleCondition:(BOOL)arg1;
 - (void)setSQLString:(id)arg1;
+- (void)setTrackChangedRowCount:(BOOL)arg1;
 - (id)sqlString;
+- (BOOL)trackChangedRowCount;
 
 @end

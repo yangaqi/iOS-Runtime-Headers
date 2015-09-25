@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableDictionary;
-
 @interface UIPushBehavior : UIDynamicBehavior {
     BOOL _active;
     float _angle;
@@ -18,21 +16,22 @@
     double _timeInterval;
 }
 
-@property BOOL active;
-@property float angle;
-@property(copy,readonly) NSArray * items;
-@property float magnitude;
-@property(readonly) int mode;
-@property struct CGVector { float x1; float x2; } pushDirection;
+@property (nonatomic) BOOL active;
+@property (nonatomic) float angle;
+@property (nonatomic, readonly, copy) NSArray *items;
+@property (nonatomic) float magnitude;
+@property (nonatomic, readonly) int mode;
+@property (nonatomic) struct CGVector { float x1; float x2; } pushDirection;
 
++ (BOOL)_isPrimitiveBehavior;
+
+- (void).cxx_destruct;
 - (void)_associate;
-- (void)_commonInit;
 - (void)_dissociate;
 - (void)_step;
 - (BOOL)active;
 - (void)addItem:(id)arg1;
 - (float)angle;
-- (void)dealloc;
 - (id)description;
 - (id)init;
 - (id)initWithItems:(id)arg1;

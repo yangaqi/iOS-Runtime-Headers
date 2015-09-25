@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MIME.framework/MIME
  */
 
-@class NSMutableArray, NSMutableDictionary;
-
 @interface MFMutableMessageHeaders : MFMessageHeaders {
     NSMutableDictionary *_headersAdded;
     NSMutableArray *_headersRemoved;
@@ -20,6 +18,7 @@
 - (id)encodedHeaders;
 - (id)firstHeaderForKey:(id)arg1;
 - (BOOL)hasHeaderForKey:(id)arg1;
+- (id)headersDictionary;
 - (void)mergeHeaders:(id)arg1;
 - (id)mutableCopy;
 - (void)removeHeaderForKey:(id)arg1;

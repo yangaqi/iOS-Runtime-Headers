@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIColor, CIImage;
-
 @interface CIFalseColor : CIFilter {
     CIColor *inputColor0;
     CIColor *inputColor1;
     CIImage *inputImage;
 }
 
-@property(retain) CIColor * inputColor0;
-@property(retain) CIColor * inputColor1;
-@property(retain) CIImage * inputImage;
+@property (nonatomic, retain) CIColor *inputColor0;
+@property (nonatomic, retain) CIColor *inputColor1;
+@property (nonatomic, retain) CIImage *inputImage;
 
 + (id)customAttributes;
 
@@ -21,7 +19,6 @@
 - (id)inputColor1;
 - (id)inputImage;
 - (id)outputImage;
-- (void)setDefaults;
 - (void)setInputColor0:(id)arg1;
 - (void)setInputColor1:(id)arg1;
 - (void)setInputImage:(id)arg1;

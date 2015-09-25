@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class AlphanumericPINTextField;
-
 @interface AlphanumericPINTableViewCell : UITableViewCell {
     AlphanumericPINTextField *_pinTextField;
 }
 
-@property(retain) AlphanumericPINTextField * pinTextField;
+@property (nonatomic, retain) AlphanumericPINTextField *pinTextField;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (void)layoutSubviews;
 - (id)pinTextField;

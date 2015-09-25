@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class EKAlarm, EKCalendar, EKDaemonConnection, NSArray, NSMutableDictionary, NSMutableSet, NSNumber, NSObject<OS_dispatch_queue>, NSString, NSTimeZone;
-
 @interface EKEventStore : NSObject <EKDaemonConnection> {
     NSMutableDictionary *_cachedValidatedEmails;
     NSObject<OS_dispatch_queue> *_calendarQueue;
@@ -14,6 +12,7 @@
     EKCalendar *_defaultCalendarForNewEvents;
     EKCalendar *_defaultCalendarForNewReminders;
     NSNumber *_defaultTimedAlarmOffset;
+    NSArray *_delegateSources;
     NSMutableSet *_deletedObjects;
     unsigned long _flags;
     NSMutableSet *_insertedObjects;
@@ -23,53 +22,62 @@
     NSMutableDictionary *_registeredObjects;
     NSObject<OS_dispatch_queue> *_registeredQueue;
     NSMutableDictionary *_sources;
+    EKCalendar *_suggestedEventCalendar;
     NSTimeZone *_timeZone;
     NSObject<OS_dispatch_queue> *_unsavedChangesQueue;
     NSMutableSet *_updatedObjects;
 }
 
-@property(retain) NSMutableDictionary * _cachedValidatedEmails;
-@property(retain) NSMutableDictionary * _calendars;
-@property(retain) EKCalendar * _defaultCalendarForNewEvents;
-@property(retain) EKCalendar * _defaultCalendarForNewReminders;
-@property(retain) NSMutableDictionary * _sources;
-@property NSObject<OS_dispatch_queue> * calendarQueue;
-@property(readonly) NSArray * calendars;
-@property(readonly) EKDaemonConnection * connection;
-@property(retain) EKDaemonConnection * database;
-@property NSObject<OS_dispatch_queue> * dbChangedQueue;
-@property(copy,readonly) NSString * debugDescription;
-@property(readonly) EKAlarm * defaultAllDayAlarm;
-@property(retain) NSNumber * defaultAllDayAlarmOffset;
-@property(readonly) EKCalendar * defaultCalendarForNewEvents;
-@property(readonly) EKAlarm * defaultTimedAlarm;
-@property(retain) NSNumber * defaultTimedAlarmOffset;
-@property NSMutableSet * deletedObjects;
-@property(copy,readonly) NSString * description;
-@property(readonly) NSArray * eventNotifications;
-@property(readonly) NSString * eventStoreIdentifier;
-@property unsigned long flags;
-@property(readonly) unsigned int hash;
-@property(readonly) NSArray * inboxRepliedSectionItems;
-@property NSMutableSet * insertedObjects;
-@property double lastDatabaseNotificationTimestamp;
-@property(readonly) int notifiableEventCount;
-@property NSMutableSet * objectsPendingCommit;
-@property NSMutableDictionary * publicRegisteredObjects;
-@property NSMutableDictionary * registeredObjects;
-@property NSObject<OS_dispatch_queue> * registeredQueue;
-@property(readonly) NSArray * reminderNotifications;
-@property BOOL showDeclinedEvents;
-@property(readonly) Class superclass;
-@property(copy) NSTimeZone * timeZone;
-@property(readonly) int unacknowledgedEventCount;
-@property NSObject<OS_dispatch_queue> * unsavedChangesQueue;
-@property NSMutableSet * updatedObjects;
+@property (nonatomic, retain) NSMutableDictionary *_cachedValidatedEmails;
+@property (nonatomic, retain) NSMutableDictionary *_calendars;
+@property (nonatomic, retain) EKCalendar *_defaultCalendarForNewEvents;
+@property (nonatomic, retain) EKCalendar *_defaultCalendarForNewReminders;
+@property (nonatomic, retain) NSMutableDictionary *_sources;
+@property (nonatomic, retain) EKCalendar *_suggestedEventCalendar;
+@property (nonatomic) BOOL automaticLocationGeocodingAllowed;
+@property (nonatomic) NSObject<OS_dispatch_queue> *calendarQueue;
+@property (nonatomic, readonly) NSArray *calendars;
+@property (readonly) EKDaemonConnection *connection;
+@property (nonatomic, retain) EKDaemonConnection *database;
+@property (nonatomic) NSObject<OS_dispatch_queue> *dbChangedQueue;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) EKAlarm *defaultAllDayAlarm;
+@property (nonatomic, retain) NSNumber *defaultAllDayAlarmOffset;
+@property (nonatomic, readonly) EKCalendar *defaultCalendarForNewEvents;
+@property (nonatomic, readonly) EKAlarm *defaultTimedAlarm;
+@property (nonatomic, retain) NSNumber *defaultTimedAlarmOffset;
+@property (nonatomic, readonly) NSArray *delegateSources;
+@property (nonatomic) NSMutableSet *deletedObjects;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSArray *eventNotifications;
+@property (nonatomic, readonly) NSString *eventStoreIdentifier;
+@property (nonatomic) unsigned long flags;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *inboxRepliedSectionItems;
+@property (nonatomic) NSMutableSet *insertedObjects;
+@property (nonatomic) double lastDatabaseNotificationTimestamp;
+@property (nonatomic, readonly) int notifiableEventCount;
+@property (nonatomic) NSMutableSet *objectsPendingCommit;
+@property (nonatomic) NSMutableDictionary *publicRegisteredObjects;
+@property (nonatomic) NSMutableDictionary *registeredObjects;
+@property (nonatomic) NSObject<OS_dispatch_queue> *registeredQueue;
+@property (nonatomic, readonly) NSArray *reminderNotifications;
+@property (nonatomic) BOOL showDeclinedEvents;
+@property (nonatomic, readonly) NSArray *sources;
+@property (nonatomic, readonly) EKCalendar *suggestedEventCalendar;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSTimeZone *timeZone;
+@property (nonatomic, readonly) int unacknowledgedEventCount;
+@property (nonatomic) NSObject<OS_dispatch_queue> *unsavedChangesQueue;
+@property (nonatomic) NSMutableSet *updatedObjects;
+
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
 
 + (int)authorizationStatusForEntityType:(unsigned int)arg1;
 + (Class)classForEntityName:(id)arg1;
 + (Class)publicClassForEntityName:(id)arg1;
 
+- (Class)_SGSuggestionsServiceClass;
 - (void)_accessStatusChanged;
 - (id)_addFetchedObjectWithID:(id)arg1;
 - (void)_addObjectToPendingCommits:(id)arg1;
@@ -97,14 +105,17 @@
 - (void)_reregisterObject:(id)arg1 oldID:(id)arg2;
 - (void)_saveWithoutNotify;
 - (id)_sources;
+- (id)_suggestedEventCalendar;
 - (void)_trackModifiedObject:(id)arg1;
-- (id)_uicolorFromString:(id)arg1;
 - (void)_unregisterObject:(id)arg1;
-- (void)_validateObjectIDs:(id)arg1 completion:(id)arg2;
+- (void)_validateObjectIDs:(id)arg1 completion:(id /* block */)arg2;
 - (void)_waitOnSemaphore:(id)arg1;
-- (void)alarmOccurrencesBetweenStartDate:(id)arg1 endDate:(id)arg2 inCalendars:(id)arg3 completion:(id)arg4;
+- (void)acceptSuggestedEvent:(id)arg1;
+- (void)alarmOccurrencesBetweenStartDate:(id)arg1 endDate:(id)arg2 inCalendars:(id)arg3 completion:(id /* block */)arg4;
 - (id)alarmWithUUID:(id)arg1;
-- (void)cacheValidationStatusForEmail:(id)arg1 status:(int)arg2;
+- (BOOL)automaticLocationGeocodingAllowed;
+- (id)birthdayContactIdentifierForEvent:(id)arg1;
+- (void)cacheValidationStatusForEmail:(id)arg1 status:(unsigned int)arg2;
 - (id)calendarItemWithIdentifier:(id)arg1;
 - (id)calendarItemsWithExternalIdentifier:(id)arg1;
 - (id)calendarQueue;
@@ -113,11 +124,11 @@
 - (id)calendarWithIdentifier:(id)arg1;
 - (id)calendars;
 - (id)calendarsForEntityType:(unsigned int)arg1;
+- (BOOL)canModifyCalendarDatabase;
+- (BOOL)canModifySuggestedEventCalendar;
 - (void)cancelFetchRequest:(id)arg1;
 - (id)changesSinceSequenceNumber:(int)arg1;
 - (id)closestCachedOccurrenceToDate:(double)arg1 forEventUID:(int)arg2;
-- (id)colorForCalendar:(id)arg1;
-- (id)colorNamesInRainbowOrder;
 - (BOOL)commit:(id*)arg1;
 - (id)connection;
 - (struct CGColor { }*)copyCGColorForNewCalendar;
@@ -128,17 +139,18 @@
 - (void)dealloc;
 - (id)defaultAllDayAlarm;
 - (id)defaultAllDayAlarmOffset;
-- (id)defaultCalendarColorsInRainbowOrder;
 - (id)defaultCalendarForNewEvents;
 - (id)defaultCalendarForNewReminders;
 - (id)defaultTimedAlarm;
 - (id)defaultTimedAlarmOffset;
+- (id)delegateSources;
 - (BOOL)deleteCalendar:(id)arg1 forEntityType:(int)arg2 error:(id*)arg3;
+- (void)deleteSuggestedEvent:(id)arg1;
 - (id)deletedObjects;
 - (id)doEvents:(id)arg1 haveOccurrencesAfterDate:(id)arg2;
 - (id)earliestExpiringNotifiableEventEndDateAfterDate:(id)arg1 timeZone:(id)arg2;
-- (int)emailAddressValidationStatus:(id)arg1;
-- (void)enumerateEventsMatchingPredicate:(id)arg1 usingBlock:(id)arg2;
+- (unsigned int)emailAddressValidationStatus:(id)arg1;
+- (void)enumerateEventsMatchingPredicate:(id)arg1 usingBlock:(id /* block */)arg2;
 - (id)eventForUID:(id)arg1 occurrenceDate:(id)arg2;
 - (id)eventForUID:(id)arg1 occurrenceDate:(id)arg2 checkValid:(BOOL)arg3;
 - (id)eventNotifications;
@@ -148,28 +160,29 @@
 - (id)eventWithUniqueId:(id)arg1;
 - (id)eventWithUniqueId:(id)arg1 occurrenceDate:(id)arg2;
 - (id)eventsMatchingPredicate:(id)arg1;
-- (void)fetchChangedObjectIDsSinceToken:(int)arg1 resultHandler:(id)arg2;
-- (id)fetchEventsMatchingPredicate:(id)arg1 resultHandler:(id)arg2;
+- (void)fetchChangedObjectIDsSinceToken:(int)arg1 resultHandler:(id /* block */)arg2;
+- (id)fetchEventsMatchingPredicate:(id)arg1 resultHandler:(id /* block */)arg2;
 - (BOOL)fetchProperties:(id)arg1 forReminders:(id)arg2;
-- (id)fetchRemindersMatchingPredicate:(id)arg1 completion:(id)arg2;
+- (id)fetchRemindersMatchingPredicate:(id)arg1 completion:(id /* block */)arg2;
 - (unsigned long)flags;
+- (id)gatherLogs;
 - (BOOL)hideCalendarsFromNotificationCenter:(id)arg1 error:(id*)arg2;
 - (id)importICS:(id)arg1 intoCalendar:(id)arg2 options:(unsigned int)arg3;
 - (id)importICSData:(id)arg1 intoCalendar:(id)arg2 options:(unsigned int)arg3;
-- (void)importICSData:(id)arg1 intoCalendar:(id)arg2 options:(unsigned int)arg3 completion:(id)arg4;
+- (void)importICSData:(id)arg1 intoCalendar:(id)arg2 options:(unsigned int)arg3 completion:(id /* block */)arg4;
 - (id)inboxRepliedSectionItems;
 - (id)init;
 - (id)initWithOptions:(unsigned long)arg1 path:(id)arg2;
 - (id)insertNewEvent;
 - (id)insertNewExceptionDateWithDate:(id)arg1;
 - (id)insertNewReminder;
+- (void)insertSuggestedEventCalendar;
 - (id)insertedObjects;
 - (id)inviteReplyNotifications;
 - (BOOL)isDataProtected;
 - (double)lastDatabaseNotificationTimestamp;
 - (id)localSource;
-- (id)localizedStringForSymbolicColorName:(id)arg1;
-- (void)locationBasedAlarmOccurrencesWithCompletion:(id)arg1;
+- (void)locationBasedAlarmOccurrencesWithCompletion:(id /* block */)arg1;
 - (BOOL)markCalendarAlerted:(id)arg1;
 - (void)markChangedObjectIDsConsumedUpToToken:(int)arg1;
 - (BOOL)markEventAlerted:(id)arg1;
@@ -213,6 +226,7 @@
 - (id)publicObjectWithObjectID:(id)arg1;
 - (id)publicObjectWithPersistentObject:(id)arg1;
 - (id)publicRegisteredObjects;
+- (void)pushSpotlightUpdatesForCalendarItemUUIDs:(id)arg1;
 - (int)readWriteCalendarCountForEntityType:(unsigned int)arg1;
 - (id)readWriteCalendarsForEntityType:(unsigned int)arg1;
 - (void)refreshSourcesIfNecessary;
@@ -236,8 +250,10 @@
 - (BOOL)removeReminder:(id)arg1 error:(id*)arg2;
 - (BOOL)removeResourceChange:(id)arg1 error:(id*)arg2;
 - (BOOL)removeResourceChanges:(id)arg1 error:(id*)arg2;
+- (BOOL)removeResourceChangesForCalendarItem:(id)arg1 error:(id*)arg2;
 - (BOOL)removeSource:(id)arg1 error:(id*)arg2;
-- (void)requestAccessToEntityType:(unsigned int)arg1 completion:(id)arg2;
+- (void)removeSuggestedEventCalendar;
+- (void)requestAccessToEntityType:(unsigned int)arg1 completion:(id /* block */)arg2;
 - (void)reset;
 - (id)resourceChangesForEntityTypes:(unsigned int)arg1;
 - (void)rollback;
@@ -251,6 +267,7 @@
 - (id)scheduledTaskCacheFetchDaysAndTaskCounts;
 - (id)scheduledTaskCacheFetchTasksOnDay:(id)arg1;
 - (int)sequenceNumber;
+- (void)setAutomaticLocationGeocodingAllowed:(BOOL)arg1;
 - (void)setCalendarQueue:(id)arg1;
 - (void)setDatabase:(id)arg1;
 - (void)setDbChangedQueue:(id)arg1;
@@ -278,15 +295,26 @@
 - (void)set_defaultCalendarForNewEvents:(id)arg1;
 - (void)set_defaultCalendarForNewReminders:(id)arg1;
 - (void)set_sources:(id)arg1;
+- (void)set_suggestedEventCalendar:(id)arg1;
 - (id)sharedCalendarInvitationsForEntityTypes:(unsigned int)arg1;
 - (BOOL)showDeclinedEvents;
 - (id)sourceWithIdentifier:(id)arg1;
 - (id)sources;
-- (id)stringForColor:(id)arg1;
-- (id)symbolicNameToUIColors;
+- (id)suggestedEventCalendar;
 - (id)timeZone;
 - (int)unacknowledgedEventCount;
 - (id)unsavedChangesQueue;
 - (id)updatedObjects;
+- (void)vehicleTriggerAlarmOccurrencesWithCompletion:(id /* block */)arg1;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (id)_uicolorFromString:(id)arg1;
+- (id)colorForCalendar:(id)arg1;
+- (id)colorNamesInRainbowOrder;
+- (id)defaultCalendarColorsInRainbowOrder;
+- (id)localizedStringForSymbolicColorName:(id)arg1;
+- (id)stringForColor:(id)arg1;
+- (id)symbolicNameToUIColors;
 
 @end

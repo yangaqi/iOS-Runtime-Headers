@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSArray, NSMutableArray;
-
 @interface PSSpecifierGroupIndex : NSObject <NSCopying> {
     NSMutableArray *_groupSections;
     NSMutableArray *_groupSpecifiers;
@@ -12,12 +10,13 @@
     BOOL _wantsDebugCallbacks;
 }
 
-@property(copy,readonly) NSArray * groupSpecifiers;
-@property(copy,readonly) NSArray * specifiers;
+@property (nonatomic, readonly, copy) NSArray *groupSpecifiers;
+@property (nonatomic, readonly, copy) NSArray *specifiers;
 
 + (BOOL)_wantsDebuggingCallbacks;
 + (id)groupIndexWithSpecifiers:(id)arg1;
 
+- (void).cxx_destruct;
 - (void)_appendDescriptionOfArray:(id)arg1 toString:(id)arg2 withTabLevel:(unsigned int)arg3;
 - (void)_createGroupIndex;
 - (void)_didPerformOperation:(id)arg1 forSpecifierUpdates:(id)arg2;
@@ -33,7 +32,6 @@
 - (id)_ungroupedPrefixSpecifiers;
 - (void)_willPerformOperation:(id)arg1 forSpecifierUpdates:(id)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (BOOL)getGroup:(out unsigned int*)arg1 row:(out unsigned int*)arg2 ofSpecifier:(id)arg3;
 - (BOOL)getGroup:(out unsigned int*)arg1 row:(out unsigned int*)arg2 ofSpecifierAtIndex:(unsigned int)arg3;
@@ -55,7 +53,7 @@
 - (unsigned int)numberOfGroups;
 - (unsigned int)numberOfRowsInGroupAtIndex:(unsigned int)arg1;
 - (void)performSpecifierUpdates:(id)arg1;
-- (void)performSpecifierUpdatesUsingBlock:(id)arg1;
+- (void)performSpecifierUpdatesUsingBlock:(id /* block */)arg1;
 - (void)performUpdateOperation:(id)arg1;
 - (void)performUpdateOperation:(id)arg1 forSpecifierUpdates:(id)arg2;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfSpecifiersInGroup:(id)arg1;

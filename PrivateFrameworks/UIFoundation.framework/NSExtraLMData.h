@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSLayoutManagerTextBlockRowArrayCache, NSMutableArray, NSRunStorage, NSTextContainer;
-
 @interface NSExtraLMData : NSObject {
     NSRunStorage *_attachmentSizesRun;
     NSMutableArray *_blockRunsArray;
@@ -35,7 +33,7 @@
             float height; 
         } size; 
     } _currentAttachmentRect;
-    id _fillHoleLock;
+    NSLock *_fillHoleLock;
     NSTextContainer *_firstTextContainer;
     struct _NSRange { 
         unsigned int location; 
@@ -100,6 +98,7 @@
         unsigned int drawsDebugBaselines : 1; 
         unsigned int reserved : 13; 
     } _lmFlags2;
+    NSParagraphArbitrator *_paragraphArbitrator;
     NSLayoutManagerTextBlockRowArrayCache *_rowArrayCache;
     id _temporaryAttributes;
     struct __CFDictionary { } *_textContainerGlyphIndexes;

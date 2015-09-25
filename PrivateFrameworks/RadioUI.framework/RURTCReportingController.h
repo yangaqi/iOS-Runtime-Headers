@@ -2,24 +2,20 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class NSMutableArray, NSObject<OS_dispatch_queue>, RTCReporting;
-
 @interface RURTCReportingController : MPUReportingController {
     NSObject<OS_dispatch_queue> *_accessQueue;
-    BOOL _recordingEnabled;
-    unsigned int _reportingFlag;
-    NSMutableArray *_reportingFlagLoadCompletionHandlers;
+    unsigned int _reportingState;
+    NSMutableArray *_reportingStateLoadCompletionHandlers;
     RTCReporting *_rtcReporting;
     BOOL _shouldDeferEventFlushing;
 }
 
-@property BOOL shouldDeferEventFlushing;
+@property (nonatomic) BOOL shouldDeferEventFlushing;
 
 - (void).cxx_destruct;
 - (BOOL)_getMethod:(unsigned short*)arg1 respCode:(unsigned short*)arg2 infoDictionary:(id*)arg3 fromReportingEvent:(id)arg4;
 - (void)_recordReportingEvents:(id)arg1;
 - (id)init;
-- (void)loadRTCReportingFlagWithCompletionHandler:(id)arg1;
 - (void)setShouldDeferEventFlushing:(BOOL)arg1;
 - (BOOL)shouldDeferEventFlushing;
 

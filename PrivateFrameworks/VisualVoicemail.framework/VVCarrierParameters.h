@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VisualVoicemail.framework/VisualVoicemail
  */
 
-@class NSDictionary;
-
 @interface VVCarrierParameters : NSObject {
     NSDictionary *_parameterValues;
 }
@@ -16,8 +14,8 @@
 + (BOOL)supportsGreetingChanges;
 + (BOOL)supportsPasswordChanges;
 
+- (void).cxx_destruct;
 - (void)_initForBundle:(id)arg1;
-- (void)dealloc;
 - (id)initForService:(id)arg1;
 - (id)initForServiceBundleId:(id)arg1;
 - (id)parameterValueForKey:(id)arg1;

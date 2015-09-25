@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray;
-
 @interface UIPrintPageRenderer : NSObject {
+    int _cachedPageCount;
     float _footerHeight;
     float _headerHeight;
     struct CGRect { 
@@ -31,17 +30,21 @@
     } _printableRect;
 }
 
-@property float footerHeight;
-@property float headerHeight;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } paperRect;
-@property(copy) NSArray * printFormatters;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } printableRect;
+@property (nonatomic) float footerHeight;
+@property (nonatomic) float headerHeight;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } paperRect;
+@property (nonatomic, copy) NSArray *printFormatters;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } printableRect;
 
+- (void).cxx_destruct;
 - (void)_drawPage:(int)arg1;
 - (void)_endPrintContext:(id)arg1 success:(BOOL)arg2;
 - (int)_maxFormatterPage;
+- (int)_numberOfPages;
+- (BOOL)_numberOfPagesIsCached;
 - (void)_removePrintFormatter:(id)arg1;
 - (BOOL)_startPrintContext:(id)arg1 printSettings:(id)arg2;
+- (void)_startSaveContext:(struct CGContext { }*)arg1;
 - (void)addPrintFormatter:(id)arg1 startingAtPageAtIndex:(int)arg2;
 - (void)dealloc;
 - (void)drawContentForPageAtIndex:(int)arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;

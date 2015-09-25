@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSAttributedString;
-
 @interface _UILabelScaledMetrics : NSObject {
     float _actualScaleFactor;
     float _baselineOffset;
@@ -20,17 +18,17 @@
     } _targetSize;
 }
 
-@property float actualScaleFactor;
-@property float baselineOffset;
-@property(retain) NSAttributedString * scaledAttributedText;
-@property float scaledBaselineOffset;
-@property float scaledLineHeight;
-@property struct CGSize { float x1; float x2; } scaledSize;
-@property struct CGSize { float x1; float x2; } targetSize;
+@property (nonatomic) float actualScaleFactor;
+@property (nonatomic) float baselineOffset;
+@property (nonatomic, retain) NSAttributedString *scaledAttributedText;
+@property (nonatomic) float scaledBaselineOffset;
+@property (nonatomic) float scaledLineHeight;
+@property (nonatomic) struct CGSize { float x1; float x2; } scaledSize;
+@property (nonatomic) struct CGSize { float x1; float x2; } targetSize;
 
+- (void).cxx_destruct;
 - (float)actualScaleFactor;
 - (float)baselineOffset;
-- (void)dealloc;
 - (id)scaledAttributedText;
 - (float)scaledBaselineOffset;
 - (float)scaledLineHeight;

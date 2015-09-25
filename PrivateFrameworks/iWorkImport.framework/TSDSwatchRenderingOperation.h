@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSObject, NSObject<TSSPreset>, NSString, TSKDocumentRoot, UIView;
-
 @interface TSDSwatchRenderingOperation : NSOperation {
     struct CGImage { } *mDeliveredImage;
     TSKDocumentRoot *mDocumentRoot;
@@ -16,7 +14,7 @@
     unsigned int mInsertPopoverPageNumber;
     unsigned int mInsertPopoverPageType;
     NSObject<TSSPreset> *mPreset;
-    NSObject *mRenderingTicket;
+    <TSKAccessControllerReadTicket> *mRenderingTicket;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -30,18 +28,19 @@
     UIView *mView;
 }
 
-@property(readonly) struct CGImage { }* deliveredImage;
-@property(readonly) TSKDocumentRoot * documentRoot;
-@property(copy) NSString * identifier;
-@property(readonly) float imageScale;
-@property(readonly) struct CGSize { float x1; float x2; } imageSize;
+@property (nonatomic, readonly) struct CGImage { }*deliveredImage;
+@property (readonly) TSKDocumentRoot *documentRoot;
+@property (copy) NSString *identifier;
+@property (readonly) float imageScale;
+@property (readonly) struct CGSize { float x1; float x2; } imageSize;
 @property unsigned int insertPopoverPageNumber;
 @property unsigned int insertPopoverPageType;
-@property(readonly) NSObject<TSSPreset> * preset;
-@property(retain) NSObject * renderingTicket;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } swatchFrame;
-@property(retain) UIView * view;
+@property (readonly) NSObject<TSSPreset> *preset;
+@property (nonatomic, retain) <TSKAccessControllerReadTicket> *renderingTicket;
+@property (readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } swatchFrame;
+@property (retain) UIView *view;
 
+- (void)cancel;
 - (void)dealloc;
 - (void)deliverCGImage:(struct CGImage { }*)arg1;
 - (struct CGImage { }*)deliveredImage;
@@ -57,6 +56,7 @@
 - (BOOL)needsPressedStateBackground;
 - (void)p_animateSwatchIn;
 - (void)p_deliverResultOnMainThread:(id)arg1;
+- (id)p_extendedRenderingTicket;
 - (struct CGImage { }*)p_newSwatchPressedStateBackgroundFromCGImage:(struct CGImage { }*)arg1;
 - (id)preset;
 - (id)renderingTicket;

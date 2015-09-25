@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
  */
 
-@interface FBSSystemService : NSObject {
-}
+@interface FBSSystemService : NSObject
 
 + (id)sharedService;
 
@@ -13,16 +12,19 @@
 - (id)clientCallbackQueue;
 - (unsigned int)createClientPort;
 - (void)dealloc;
-- (void)fireCompletion:(id)arg1 error:(id)arg2;
+- (void)deleteAllSnapshotsForApplication:(id)arg1;
+- (void)fireCompletion:(id /* block */)arg1 error:(id)arg2;
 - (id)init;
-- (void)openApplication:(id)arg1 options:(id)arg2 clientPort:(unsigned int)arg3 withResult:(id)arg4;
-- (void)openApplication:(id)arg1 options:(id)arg2 withResult:(id)arg3;
-- (void)openDataActivationURL:(id)arg1 withResult:(id)arg2;
-- (void)openURL:(id)arg1 application:(id)arg2 options:(id)arg3 clientPort:(unsigned int)arg4 withResult:(id)arg5;
+- (BOOL)isPasscodeLockedOrBlocked;
+- (void)openApplication:(id)arg1 options:(id)arg2 clientPort:(unsigned int)arg3 withResult:(id /* block */)arg4;
+- (void)openApplication:(id)arg1 options:(id)arg2 withResult:(id /* block */)arg3;
+- (void)openDataActivationURL:(id)arg1 withResult:(id /* block */)arg2;
+- (void)openURL:(id)arg1 application:(id)arg2 options:(id)arg3 clientPort:(unsigned int)arg4 withResult:(id /* block */)arg5;
 - (int)pidForApplication:(id)arg1;
 - (void)reboot;
-- (void)sendActions:(id)arg1 withResult:(id)arg2;
+- (void)sendActions:(id)arg1 withResult:(id /* block */)arg2;
 - (void)setBadgeValue:(id)arg1 forBundleID:(id)arg2;
+- (void)setKeyboardFocusApplicationWithBundleID:(id)arg1 pid:(int)arg2 completion:(id /* block */)arg3;
 - (void)shutdown;
 - (id)systemApplicationBundleIdentifier;
 - (void)terminateApplication:(id)arg1 forReason:(int)arg2 andReport:(BOOL)arg3 withDescription:(id)arg4;

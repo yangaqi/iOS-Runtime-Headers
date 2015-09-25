@@ -2,16 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface _UIAutologgingDeallocSentinel : NSObject {
     BOOL _called;
     NSString *_message;
 }
 
-@property BOOL called;
-@property(retain) NSString * message;
+@property (nonatomic) BOOL called;
+@property (nonatomic, copy) NSString *message;
 
+- (void).cxx_destruct;
 - (BOOL)called;
 - (void)dealloc;
 - (id)message;

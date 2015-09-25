@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@interface IKUtilites : NSObject {
-}
+@interface IKUtilites : NSObject
 
 + (id)_arrayByAddingValuesFromArrayOfDictionaries:(id)arg1;
 + (id)_entriesBySectionIndexForArrayOfStringEntries:(id)arg1 currentCollation:(id)arg2;
++ (BOOL)runningAnInternalBuild;
 + (id)sort:(id)arg1 options:(id)arg2;
 
 @end

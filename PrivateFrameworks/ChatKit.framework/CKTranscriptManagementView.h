@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class UIView;
-
 @interface CKTranscriptManagementView : UIView {
     UIView *_attachmentsCollectionView;
     float _bottomPadding;
@@ -14,19 +12,21 @@
     BOOL _suppressMapMovement;
 }
 
-@property(retain) UIView * attachmentsCollectionView;
-@property float bottomPadding;
-@property(retain) UIView * mapView;
-@property(retain) UIView * nameField;
-@property float navigationBarTopInset;
-@property float scrollYOffset;
-@property BOOL suppressMapMovement;
+@property (nonatomic, retain) UIView *attachmentsCollectionView;
+@property (nonatomic) float bottomPadding;
+@property (nonatomic, retain) UIView *mapView;
+@property (nonatomic, retain) UIView *nameField;
+@property (nonatomic) float navigationBarTopInset;
+@property (nonatomic) float scrollYOffset;
+@property (nonatomic) BOOL suppressMapMovement;
 
 - (id)attachmentsCollectionView;
 - (float)bottomPadding;
 - (void)dealloc;
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)layoutMarginsDidChange;
+- (BOOL)layoutMarginsFollowReadableWidth;
 - (void)layoutSubviews;
 - (id)mapView;
 - (id)nameField;

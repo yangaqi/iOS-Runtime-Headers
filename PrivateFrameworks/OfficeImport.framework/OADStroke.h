@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADColor, OADDash, OADFill, OADLineEnd, OADLineJoin;
-
 @interface OADStroke : OADProperties <NSCopying> {
     unsigned char mCap;
     OADColor *mColor;
@@ -11,52 +9,54 @@
     OADDash *mDash;
     OADFill *mFill;
     OADLineEnd *mHead;
-    unsigned int mIsCapOverridden : 1;
-    unsigned int mIsColorOverridden : 1;
-    unsigned int mIsCompoundTypeOverridden : 1;
-    unsigned int mIsDashOverridden : 1;
-    unsigned int mIsFillOverridden : 1;
-    unsigned int mIsJoinOverridden : 1;
-    unsigned int mIsPenAlignmentOverridden : 1;
-    unsigned int mIsWidthOverridden : 1;
+    unsigned int mIsCapOverridden;
+    unsigned int mIsColorOverridden;
+    unsigned int mIsCompoundTypeOverridden;
+    unsigned int mIsPenAlignmentOverridden;
+    unsigned int mIsWidthOverridden;
     OADLineJoin *mJoin;
-    unsigned char mPenAlignment;
+    int mPenAlignment;
     OADLineEnd *mTail;
     float mWidth;
 }
 
-@property(retain) OADLineEnd * head;
-@property(retain) OADLineEnd * tail;
+@property (nonatomic, retain) OADLineEnd *head;
+@property (nonatomic, retain) OADLineEnd *tail;
 
 + (id)blackStroke;
 + (id)defaultProperties;
 + (id)nullStroke;
 
-- (int)cap;
+- (unsigned char)cap;
 - (id)color;
-- (int)compoundType;
+- (unsigned char)compoundType;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dash;
 - (void)dealloc;
 - (id)fill;
+- (void)fixPropertiesForChangingParentPreservingEffectiveValues:(id)arg1;
 - (unsigned int)hash;
 - (id)head;
 - (id)init;
 - (id)initWithDefaults;
+- (BOOL)isAnythingOverridden;
 - (BOOL)isCapOverridden;
 - (BOOL)isColorOverridden;
 - (BOOL)isCompoundTypeOverridden;
 - (BOOL)isDashOverridden;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isFillOverridden;
+- (BOOL)isHeadOverridden;
 - (BOOL)isJoinOverridden;
 - (BOOL)isPenAlignmentOverridden;
+- (BOOL)isTailOverridden;
 - (BOOL)isWidthOverridden;
 - (id)join;
 - (int)penAlignment;
-- (void)setCap:(int)arg1;
+- (void)removeUnnecessaryOverrides;
+- (void)setCap:(unsigned char)arg1;
 - (void)setColor:(id)arg1;
-- (void)setCompoundType:(int)arg1;
+- (void)setCompoundType:(unsigned char)arg1;
 - (void)setDash:(id)arg1;
 - (void)setFill:(id)arg1;
 - (void)setHead:(id)arg1;

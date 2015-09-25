@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString, TSTCellRegion;
-
 @interface TSTCellSelection : TSKSelection <TSDTextSelection> {
     struct { 
         unsigned short row; 
@@ -29,29 +22,32 @@
     int mSelectionType;
 }
 
-@property(readonly) struct { unsigned short x1; unsigned char x2; unsigned char x3; } anchorCellID;
-@property(readonly) TSTCellRegion * baseRegion;
-@property(readonly) unsigned int cellCount;
-@property(readonly) TSTCellRegion * cellRegion;
-@property(readonly) struct { unsigned short x1; unsigned char x2; unsigned char x3; } cursorCellID;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isAtEndOfLine;
-@property(readonly) struct _NSRange { unsigned int x1; unsigned int x2; } range;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } searchReferenceRange;
-@property(readonly) int selectionType;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) struct { unsigned short x1; unsigned char x2; unsigned char x3; } anchorCellID;
+@property (nonatomic, readonly) TSTCellRegion *baseRegion;
+@property (nonatomic, readonly) unsigned int cellCount;
+@property (nonatomic, readonly) TSTCellRegion *cellRegion;
+@property (nonatomic, readonly) struct { unsigned short x1; unsigned char x2; unsigned char x3; } cursorCellID;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isAtEndOfLine;
+@property (nonatomic, readonly) struct _NSRange { unsigned int x1; unsigned int x2; } range;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } searchReferenceRange;
+@property (nonatomic, readonly) int selectionType;
+@property (readonly) Class superclass;
 
 + (Class)archivedSelectionClass;
 + (id)selectionWithTableModel:(id)arg1 cellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg2;
 + (id)selectionWithTableModel:(id)arg1 cellRegion:(id)arg2;
++ (id)selectionWithTableModel:(id)arg1 cellUID:(const struct TSTCellUID { struct UUIDData<TSP::UUIDData> { union { unsigned char x_1_2_1[16]; struct { unsigned char x_2_3_1; unsigned char x_2_3_2; unsigned char x_2_3_3; unsigned char x_2_3_4; unsigned char x_2_3_5; unsigned char x_2_3_6; unsigned char x_2_3_7; unsigned char x_2_3_8; unsigned char x_2_3_9; unsigned char x_2_3_10; unsigned char x_2_3_11; unsigned char x_2_3_12; unsigned char x_2_3_13; unsigned char x_2_3_14; unsigned char x_2_3_15; unsigned char x_2_3_16; } x_1_2_2; struct { unsigned long long x_3_3_1; unsigned long long x_3_3_2; } x_1_2_3; } x_1_1_1; } x1; struct UUIDData<TSP::UUIDData> { union { unsigned char x_1_2_1[16]; struct { unsigned char x_2_3_1; unsigned char x_2_3_2; unsigned char x_2_3_3; unsigned char x_2_3_4; unsigned char x_2_3_5; unsigned char x_2_3_6; unsigned char x_2_3_7; unsigned char x_2_3_8; unsigned char x_2_3_9; unsigned char x_2_3_10; unsigned char x_2_3_11; unsigned char x_2_3_12; unsigned char x_2_3_13; unsigned char x_2_3_14; unsigned char x_2_3_15; unsigned char x_2_3_16; } x_1_2_2; struct { unsigned long long x_3_3_1; unsigned long long x_3_3_2; } x_1_2_3; } x_2_1_1; } x2; }*)arg2;
++ (id)selectionWithTableModel:(id)arg1 columnIndices:(id)arg2;
 + (id)selectionWithTableModel:(id)arg1 rowIndices:(id)arg2;
 
-- (id).cxx_construct;
 - (struct { unsigned short x1; unsigned char x2; unsigned char x3; })anchorCellID;
 - (BOOL)areCellsInTheSameRegionInTable:(id)arg1;
 - (id)baseRegion;
+- (BOOL)canEditWithCellSubselectionInTable:(id)arg1;
+- (BOOL)canEditWithControlCellSubselectionInTable:(id)arg1;
 - (unsigned int)cellCount;
 - (id)cellRegion;
 - (BOOL)containsCell:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg1;
@@ -60,8 +56,6 @@
 - (struct { unsigned short x1; unsigned char x2; unsigned char x3; })cursorCellID;
 - (void)dealloc;
 - (id)description;
-- (void)enumerateSelectedCellsInTable:(id)arg1 usingBlock:(id)arg2;
-- (void)enumerateSelectedCellsInTable:(id)arg1 withFlags:(unsigned long)arg2 usingBlock:(id)arg3;
 - (id)initWithArchive:(const struct SelectionArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Reference {} *x5; struct CellID {} *x6; struct RepeatedPtrField<TST::CellRange> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; struct RepeatedPtrField<TST::CellRange> { void **x_8_1_1; int x_8_1_2; int x_8_1_3; int x_8_1_4; } x8; struct CellID {} *x9; int x10; }*)arg1 unarchiver:(id)arg2;
 - (id)initWithTableModel:(id)arg1 andCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg2;
 - (id)initWithTableModel:(id)arg1 andCellRange:(struct TSUColumnRowRect { struct { unsigned short x_1_1_1; unsigned char x_1_1_2; unsigned char x_1_1_3; } x1; struct { unsigned short x_2_1_1; unsigned short x_2_1_2; } x2; })arg2;
@@ -73,6 +67,7 @@
 - (id)initWithTableModel:(id)arg1 cellRegion:(id)arg2 anchorCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg3 cursorCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg4 baseRegion:(id)arg5;
 - (id)initWithTableModel:(id)arg1 cellRegion:(id)arg2 anchorCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg3 cursorCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg4 baseRegion:(id)arg5 selectionType:(int)arg6;
 - (id)initWithTableModel:(id)arg1 cellRegion:(id)arg2 anchorCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg3 cursorCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg4 selectionType:(int)arg5;
+- (id)initWithTableModel:(id)arg1 columnIndices:(id)arg2;
 - (id)initWithTableModel:(id)arg1 rowIndices:(id)arg2;
 - (id)initWithTableModel:(id)arg1 rowOrColumn:(int)arg2 index:(unsigned int)arg3 count:(unsigned int)arg4;
 - (id)initWithTableModel:(id)arg1 selectionType:(int)arg2;
@@ -92,9 +87,7 @@
 - (id)selectionByExtendingWithCellRange:(struct TSUColumnRowRect { struct { unsigned short x_1_1_1; unsigned char x_1_1_2; unsigned char x_1_1_3; } x1; struct { unsigned short x_2_1_1; unsigned short x_2_1_2; } x2; })arg1 inTable:(id)arg2 selectionType:(int)arg3 cursorCell:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg4;
 - (id)selectionByRemovingCellRange:(struct TSUColumnRowRect { struct { unsigned short x_1_1_1; unsigned char x_1_1_2; unsigned char x_1_1_3; } x1; struct { unsigned short x_2_1_1; unsigned short x_2_1_2; } x2; })arg1 inTable:(id)arg2 withAnchor:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg3 cursor:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg4 selectionType:(int)arg5;
 - (int)selectionType;
-- (BOOL)selectsSingleLogicalCellInTable:(id)arg1;
-- (BOOL)selectsSingleLogicalControlCellInTable:(id)arg1;
-- (BOOL)selectsSingleLogicalControlCellInTable:(id)arg1 outShowsChrome:(out BOOL*)arg2;
+- (id)selectionWithHiddenRowsRemovedInTableInfo:(id)arg1;
 - (void)setCellRange:(struct TSUColumnRowRect { struct { unsigned short x_1_1_1; unsigned char x_1_1_2; unsigned char x_1_1_3; } x1; struct { unsigned short x_2_1_1; unsigned short x_2_1_2; } x2; })arg1;
 - (void)setSearchReferenceRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 

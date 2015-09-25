@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray, NSString;
-
 @interface GEOSearchAttributionSource : PBCodable <NSCopying> {
     NSMutableArray *_attributionApps;
     struct { 
@@ -18,15 +16,15 @@
     NSString *_webBaseActionURL;
 }
 
-@property(retain) NSMutableArray * attributionApps;
-@property(readonly) int* attributionRequirements;
-@property(readonly) unsigned int attributionRequirementsCount;
-@property(readonly) BOOL hasWebBaseActionURL;
-@property(retain) NSMutableArray * localizedAttributions;
-@property(retain) NSString * sourceIdentifier;
-@property unsigned int sourceVersion;
-@property(retain) NSMutableArray * supportedComponentActions;
-@property(retain) NSString * webBaseActionURL;
+@property (nonatomic, retain) NSMutableArray *attributionApps;
+@property (nonatomic, readonly) int*attributionRequirements;
+@property (nonatomic, readonly) unsigned int attributionRequirementsCount;
+@property (nonatomic, readonly) BOOL hasWebBaseActionURL;
+@property (nonatomic, retain) NSMutableArray *localizedAttributions;
+@property (nonatomic, retain) NSString *sourceIdentifier;
+@property (nonatomic) unsigned int sourceVersion;
+@property (nonatomic, retain) NSMutableArray *supportedComponentActions;
+@property (nonatomic, retain) NSString *webBaseActionURL;
 
 - (void)addAttributionApps:(id)arg1;
 - (void)addAttributionRequirements:(int)arg1;
@@ -39,6 +37,7 @@
 - (int)attributionRequirementsAtIndex:(unsigned int)arg1;
 - (unsigned int)attributionRequirementsCount;
 - (id)bestLocalizedAttribution;
+- (BOOL)canLocallyHandleAction:(int)arg1 forComponent:(int)arg2;
 - (void)clearAttributionApps;
 - (void)clearAttributionRequirements;
 - (void)clearLocalizedAttributions;
@@ -68,6 +67,7 @@
 - (id)supportedComponentActions;
 - (id)supportedComponentActionsAtIndex:(unsigned int)arg1;
 - (unsigned int)supportedComponentActionsCount;
+- (BOOL)supportsAction:(int)arg1 forComponent:(int)arg2;
 - (id)webBaseActionURL;
 - (void)writeTo:(id)arg1;
 

@@ -2,17 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class _UIViewServiceFencingController;
+@interface _UIViewServiceFencingControlProxy : _UIQueueingProxy
 
-@interface _UIViewServiceFencingControlProxy : _UIQueueingProxy {
-    _UIViewServiceFencingController *_fencingController;
-}
++ (id)proxyWithTarget:(id)arg1 exportedProtocol:(id)arg2;
 
-+ (id)proxyWithTarget:(id)arg1 fencingController:(id)arg2 exportedProtocol:(id)arg3;
-
-- (void)__beginFencingMessagesWithSendRight:(id)arg1 connectionCount:(unsigned int)arg2;
-- (void)__endFencingMessagesForSendRight:(id)arg1;
-- (void)dealloc;
+- (void)__participateInSystemAnimationFence:(id)arg1;
 - (id)methodSignatureForSelector:(SEL)arg1;
 
 @end

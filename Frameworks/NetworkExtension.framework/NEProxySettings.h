@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
  */
 
-@class NEProxyServer, NSArray, NSString, NSURL;
-
 @interface NEProxySettings : NSObject <NEConfigurationLegacySupport, NEConfigurationValidating, NEPrettyDescription, NSCopying, NSSecureCoding> {
     BOOL _FTPEnabled;
     NEProxyServer *_FTPServer;
@@ -29,25 +27,28 @@
 }
 
 @property BOOL FTPEnabled;
-@property(copy) NEProxyServer * FTPServer;
+@property (copy) NEProxyServer *FTPServer;
 @property BOOL HTTPEnabled;
 @property BOOL HTTPSEnabled;
-@property(copy) NEProxyServer * HTTPSServer;
-@property(copy) NEProxyServer * HTTPServer;
+@property (copy) NEProxyServer *HTTPSServer;
+@property (copy) NEProxyServer *HTTPServer;
 @property BOOL RTSPEnabled;
-@property(copy) NEProxyServer * RTSPServer;
+@property (copy) NEProxyServer *RTSPServer;
 @property BOOL SOCKSEnabled;
-@property(copy) NEProxyServer * SOCKSServer;
+@property (copy) NEProxyServer *SOCKSServer;
 @property BOOL autoProxyConfigurationEnabled;
 @property BOOL autoProxyDiscovery;
-@property(copy) NSArray * exceptionList;
+@property (copy) NSArray *exceptionList;
 @property BOOL excludeSimpleHostnames;
 @property BOOL gopherEnabled;
-@property(copy) NEProxyServer * gopherServer;
-@property(copy) NSString * proxyAutoConfigJavaScript;
-@property(copy) NSURL * proxyAutoConfigURL;
-@property(copy) NSArray * supplementalMatchDomains;
-@property(copy) NSArray * supplementalMatchOrders;
+@property (copy) NEProxyServer *gopherServer;
+@property (copy) NSArray *matchDomains;
+@property (copy) NSString *proxyAutoConfigJavaScript;
+@property (copy) NSURL *proxyAutoConfigURL;
+@property (copy) NSString *proxyAutoConfigurationJavaScript;
+@property (copy) NSURL *proxyAutoConfigurationURL;
+@property (copy) NSArray *supplementalMatchDomains;
+@property (copy) NSArray *supplementalMatchOrders;
 @property BOOL usePassiveFTP;
 
 + (BOOL)supportsSecureCoding;
@@ -67,8 +68,9 @@
 - (BOOL)autoProxyDiscovery;
 - (BOOL)checkValidityAndCollectErrors:(id)arg1;
 - (id)copyLegacyDictionary;
+- (void)copyPasswordsFromKeychain;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)descriptionWithIndent:(int)arg1;
+- (id)descriptionWithIndent:(int)arg1 options:(unsigned int)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)exceptionList;
 - (BOOL)excludeSimpleHostnames;
@@ -77,8 +79,11 @@
 - (id)init;
 - (id)initFromLegacyDictionary:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)matchDomains;
 - (id)proxyAutoConfigJavaScript;
 - (id)proxyAutoConfigURL;
+- (id)proxyAutoConfigurationJavaScript;
+- (id)proxyAutoConfigurationURL;
 - (void)removeKeychainItems;
 - (void)setAutoProxyConfigurationEnabled:(BOOL)arg1;
 - (void)setAutoProxyDiscovery:(BOOL)arg1;
@@ -92,8 +97,11 @@
 - (void)setHTTPSEnabled:(BOOL)arg1;
 - (void)setHTTPSServer:(id)arg1;
 - (void)setHTTPServer:(id)arg1;
+- (void)setMatchDomains:(id)arg1;
 - (void)setProxyAutoConfigJavaScript:(id)arg1;
 - (void)setProxyAutoConfigURL:(id)arg1;
+- (void)setProxyAutoConfigurationJavaScript:(id)arg1;
+- (void)setProxyAutoConfigurationURL:(id)arg1;
 - (void)setRTSPEnabled:(BOOL)arg1;
 - (void)setRTSPServer:(id)arg1;
 - (void)setSOCKSEnabled:(BOOL)arg1;

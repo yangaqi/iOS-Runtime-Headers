@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class CalDAVServerVersion, NSSet, NSURL;
-
 @interface CalDAVGetAccountPropertiesTaskGroup : CoreDAVGetAccountPropertiesTaskGroup {
     NSSet *_calendarHomes;
     NSURL *_delegatePrincipalURL;
@@ -17,21 +15,21 @@
     NSSet *_userAddresses;
 }
 
-@property(readonly) NSSet * calendarHomes;
-@property(retain) NSURL * delegatePrincipalURL;
-@property(readonly) NSURL * dropboxURL;
-@property(readonly) NSURL * inboxURL;
-@property(readonly) NSURL * notificationURL;
-@property(readonly) NSURL * outboxURL;
-@property(readonly) CalDAVServerVersion * serverVersion;
-@property(readonly) BOOL supportsCalendarUserSearch;
-@property(readonly) NSURL * updatedPrincipalURL;
-@property(readonly) NSSet * userAddresses;
+@property (nonatomic, readonly) NSSet *calendarHomes;
+@property (nonatomic, retain) NSURL *delegatePrincipalURL;
+@property (nonatomic, readonly) NSURL *dropboxURL;
+@property (nonatomic, readonly) NSURL *inboxURL;
+@property (nonatomic, readonly) NSURL *notificationURL;
+@property (nonatomic, readonly) NSURL *outboxURL;
+@property (nonatomic, readonly) CalDAVServerVersion *serverVersion;
+@property (nonatomic, readonly) BOOL supportsCalendarUserSearch;
+@property (nonatomic, readonly) NSURL *updatedPrincipalURL;
+@property (nonatomic, readonly) NSSet *userAddresses;
 
+- (void).cxx_destruct;
 - (id)_copyAccountPropertiesPropFindElements;
 - (void)_setPropertiesFromParsedResponses:(id)arg1;
 - (id)calendarHomes;
-- (void)dealloc;
 - (id)delegatePrincipalURL;
 - (id)description;
 - (id)dropboxURL;

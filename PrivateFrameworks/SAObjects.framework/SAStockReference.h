@@ -2,13 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAStockReference : SADomainObject
 
-@interface SAStockReference : SADomainObject {
-}
-
-@property(copy) NSString * companyName;
-@property(copy) NSString * symbol;
+@property (nonatomic, copy) NSString *companyName;
+@property (nonatomic, copy) NSString *symbol;
 
 + (id)reference;
 + (id)referenceWithDictionary:(id)arg1 context:(id)arg2;
@@ -19,6 +16,5 @@
 - (void)setCompanyName:(id)arg1;
 - (void)setSymbol:(id)arg1;
 - (id)symbol;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

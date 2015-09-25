@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDResources, EDString;
-
 @interface EDTableColumn : NSObject {
     unsigned int mDataAreaDxfIndex;
     unsigned int mHeaderRowDxfIndex;
@@ -19,6 +17,7 @@
 - (id)dataAreaDxf;
 - (unsigned int)dataAreaDxfIndex;
 - (void)dealloc;
+- (id)description;
 - (id)headerRowDxf;
 - (unsigned int)headerRowDxfIndex;
 - (id)initWithResources:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPAVController, MPAVRoutingController, MPVolumeController, NSString, NSTimer, UIImage, UIImageView, UILabel, UIView;
-
 @interface MPVolumeSlider : UISlider <MPAVRoutingControllerDelegate, MPVolumeControllerDelegate> {
     NSTimer *_commitTimer;
     BOOL _forcingOffscreenVisibility;
@@ -26,16 +24,18 @@
     UIView *_volumeWarningView;
 }
 
-@property(setter=_setIsOffScreen:) BOOL _isOffScreen;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } hitRectInsets;
-@property(retain) MPAVController * player;
-@property(readonly) int style;
-@property(readonly) Class superclass;
-@property(copy) NSString * volumeAudioCategory;
-@property(retain) UIImage * volumeWarningTrackImage;
+@property (setter=_setIsOffScreen:, nonatomic) BOOL _isOffScreen;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } hitRectInsets;
+@property (nonatomic, retain) MPAVController *player;
+@property (nonatomic, readonly) MPAVRoutingController *routingController;
+@property (nonatomic, readonly) int style;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *volumeAudioCategory;
+@property (nonatomic, retain) UIImage *volumeWarningTrackImage;
+@property (nonatomic, readonly) UIView *volumeWarningView;
 
 - (void).cxx_destruct;
 - (void)_applicationDidEnterBackgroundNotification:(id)arg1;
@@ -73,6 +73,7 @@
 - (float)minimumValue;
 - (id)player;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
+- (id)routingController;
 - (void)routingControllerAvailableRoutesDidChange:(id)arg1;
 - (void)setAlpha:(float)arg1;
 - (void)setHidden:(BOOL)arg1;
@@ -90,5 +91,6 @@
 - (void)volumeController:(id)arg1 EUVolumeLimitEnforcedDidChange:(BOOL)arg2;
 - (void)volumeController:(id)arg1 volumeValueDidChange:(float)arg2;
 - (id)volumeWarningTrackImage;
+- (id)volumeWarningView;
 
 @end

@@ -2,14 +2,16 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class PBPresentationReaderState;
-
 @interface PBOfficeArtReaderState : OABReaderState {
     PBPresentationReaderState *mPresentationState;
+    PXPresentationState *mXmlDocumentState;
 }
 
+- (void)dealloc;
 - (id)drawableOnTgtSlideForShapeId:(int)arg1;
 - (id)initWithPresentationState:(id)arg1;
 - (id)presentationState;
+- (id)xmlDocumentState;
+- (id)xmlDrawingState;
 
 @end

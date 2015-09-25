@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSArray, NSData, NSDictionary, NSMutableDictionary, NSNumber, NSObject<OS_dispatch_queue>, NSString, SSDownloadPolicy, SSItem, SSItemOffer, SSNetworkConstraints, SSURLRequestProperties;
-
 @interface SSPurchase : NSObject <NSCoding, NSCopying, SSXPCCoding> {
     NSNumber *_accountIdentifier;
     NSString *_affiliateIdentifier;
@@ -15,6 +13,7 @@
     BOOL _displaysOnLockScreen;
     SSDownloadPolicy *_downloadPolicy;
     NSMutableDictionary *_downloadProperties;
+    NSNumber *_enabledServiceType;
     long long _expectedDownloadFileSize;
     NSArray *_filteredAssetTypes;
     NSArray *_gratisIdentifiers;
@@ -30,29 +29,30 @@
     BOOL _usesLocalRedownloadParametersIfPossible;
 }
 
-@property(retain) NSNumber * accountIdentifier;
-@property(copy) NSString * affiliateIdentifier;
-@property(getter=isBackgroundPurchase) BOOL backgroundPurchase;
+@property (retain) NSNumber *accountIdentifier;
+@property (copy) NSString *affiliateIdentifier;
+@property (getter=isBackgroundPurchase) BOOL backgroundPurchase;
 @property int batchIdentifier;
-@property(copy) NSString * buyParameters;
-@property BOOL createsDownloads;
-@property(readonly) NSData * databaseEncoding;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
+@property (copy) NSString *buyParameters;
+@property (nonatomic) BOOL createsDownloads;
+@property (readonly) NSData *databaseEncoding;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property BOOL displaysOnLockScreen;
-@property(copy) SSDownloadPolicy * downloadPolicy;
-@property(copy) NSDictionary * downloadProperties;
+@property (copy) SSDownloadPolicy *downloadPolicy;
+@property (copy) NSDictionary *downloadProperties;
+@property (copy) NSNumber *enabledServiceType;
 @property long long expectedDownloadFileSize;
-@property(copy) NSArray * filteredAssetTypes;
-@property(copy) NSArray * gratisIdentifiers;
-@property(readonly) unsigned int hash;
+@property (copy) NSArray *filteredAssetTypes;
+@property (copy) NSArray *gratisIdentifiers;
+@property (readonly) unsigned int hash;
 @property BOOL ignoresForcedPasswordRestriction;
-@property(copy) SSNetworkConstraints * networkConstraints;
+@property (copy) SSNetworkConstraints *networkConstraints;
 @property long long placeholderDownloadIdentifier;
-@property(getter=isPreauthenticated) BOOL preauthenticated;
-@property(copy) SSURLRequestProperties * requestProperties;
-@property(copy) id requiredDeviceCapabilities;
-@property(readonly) Class superclass;
+@property (getter=isPreauthenticated) BOOL preauthenticated;
+@property (copy) SSURLRequestProperties *requestProperties;
+@property (copy) id requiredDeviceCapabilities;
+@property (readonly) Class superclass;
 @property long long uniqueIdentifier;
 @property BOOL usesLocalRedownloadParametersIfPossible;
 
@@ -76,6 +76,7 @@
 - (id)downloadMetadata;
 - (id)downloadPolicy;
 - (id)downloadProperties;
+- (id)enabledServiceType;
 - (void)encodeWithCoder:(id)arg1;
 - (long long)expectedDownloadFileSize;
 - (id)filteredAssetTypes;
@@ -108,6 +109,7 @@
 - (void)setDownloadMetadata:(id)arg1;
 - (void)setDownloadPolicy:(id)arg1;
 - (void)setDownloadProperties:(id)arg1;
+- (void)setEnabledServiceType:(id)arg1;
 - (void)setExpectedDownloadFileSize:(long long)arg1;
 - (void)setFilteredAssetTypes:(id)arg1;
 - (void)setGratisIdentifiers:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@class NSObject<OS_dispatch_source>;
-
 @interface _CFPrefsSynchronizer : NSObject {
     struct _opaque_pthread_mutex_t { 
         long __sig; 
@@ -18,6 +16,7 @@
 
 - (void)clear;
 - (void)clear_alreadyLocked;
+- (const struct __CFSet { }*)copyDirtySourcesSnapshotAndClear;
 - (void)disableTimer_alreadyLocked;
 - (void)enableTimer_alreadyLocked;
 - (id)init;

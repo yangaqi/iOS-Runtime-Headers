@@ -2,20 +2,24 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class NSString;
-
 @interface QLPreviewTransitionAnimatorManager : NSObject <UINavigationControllerDelegate, UIViewControllerTransitioningDelegate> {
+    BOOL _transitionWantsStatusBar;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property BOOL transitionWantsStatusBar;
 
 + (id)sharedManager;
 
 - (id)animationControllerForDismissedController:(id)arg1;
 - (id)animationControllerForPresentedController:(id)arg1 presentingController:(id)arg2 sourceController:(id)arg3;
 - (id)animatorForShowing:(BOOL)arg1 previewController:(id)arg2 presentingController:(id)arg3;
+- (id)interactionControllerForDismissal:(id)arg1;
+- (id)interactionControllerForPresentation:(id)arg1;
+- (void)setTransitionWantsStatusBar:(BOOL)arg1;
+- (BOOL)transitionWantsStatusBar;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@class <SBFCancelable>, NSString, SBFLockScreenWallpaperParallaxSettings, SBFSubject, UIColor, UIImageView, UIScrollView;
-
 @interface SBFScrollableStaticWallpaperView : SBFStaticWallpaperView <UIScrollViewDelegate> {
     UIColor *_averageColor;
     <SBFCancelable> *_colorBoxCancelToken;
@@ -18,11 +16,11 @@
     SBFSubject *_scrollViewObserver;
 }
 
-@property(readonly) UIColor * averageColor;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly) UIColor *averageColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (BOOL)_shouldScaleForParallax;
 
@@ -32,7 +30,9 @@
 - (struct CGSize { float x1; float x2; })_imageSize;
 - (struct CGPoint { float x1; float x2; })_maximumContentOffsetForOverhang;
 - (struct CGPoint { float x1; float x2; })_minimumContentOffsetForOverhang;
+- (id)_newImageView;
 - (float)_parallaxFactorWithZoomScale:(float)arg1 contentOffset:(struct CGPoint { float x1; float x2; })arg2;
+- (id)_scrollView;
 - (float)_scrollViewParallaxFactor;
 - (void)_setupColorBoxObserver;
 - (void)_setupContentView;

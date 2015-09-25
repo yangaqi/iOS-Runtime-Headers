@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@interface IKPreference : NSObject {
-}
+@interface IKPreference : NSObject
 
 + (BOOL)ignoreHTTPCache;
-+ (BOOL)jsContextInspectable;
 + (BOOL)logDocumentXML;
 + (unsigned int)logLevel;
 + (void)setupJSCoreConsoleLogging;

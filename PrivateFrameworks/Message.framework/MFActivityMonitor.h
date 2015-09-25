@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFError, MFInvocationQueue, MFMailboxUid, NSMutableSet, NSString, NSThread;
-
 @interface MFActivityMonitor : MFPriorityDesignator {
+    NSMutableSet *_associatedProgresses;
     unsigned int _bytesRead;
     unsigned int _bytesWritten;
-    unsigned int _canCancel : 1;
-    unsigned int _changeCount : 8;
+    unsigned int _canCancel;
+    unsigned int _changeCount;
     unsigned int _currentCount;
     double _currentItemPercentDone;
     id _delegate;
@@ -17,8 +16,8 @@
     MFError *_error;
     unsigned int _expectedLength;
     unsigned int _gotNewMessagesState;
-    unsigned int _isActive : 1;
-    unsigned int _key : 13;
+    unsigned int _isActive;
+    unsigned int _key;
     double _lastTime;
     MFMailboxUid *_mailbox;
     unsigned int _maxCount;
@@ -26,19 +25,22 @@
     double _percentDone;
     NSMutableSet *_reasons;
     NSThread *_runningThread;
-    unsigned int _shouldCancel : 1;
+    unsigned int _shouldCancel;
     double _startTime;
     NSString *_statusMessage;
-    unsigned int _supportsPerItemProgress : 1;
+    unsigned int _supportsPerItemProgress;
     id _target;
     NSString *_taskName;
 }
 
-@property(retain) MFMailboxUid * mailbox;
+@property (nonatomic) BOOL canBeCancelled;
+@property (retain) MFMailboxUid *mailbox;
+@property (nonatomic) BOOL shouldCancel;
 
 + (id)currentMonitor;
 + (void)destroyMonitor;
 
+- (void)_cancelAssociatedProgresses;
 - (void)_didChange;
 - (BOOL)_lockedAddActivityTarget:(id)arg1;
 - (id)_ntsThrottledUserInfoDict;
@@ -48,6 +50,7 @@
 - (void)addActivityTarget:(id)arg1;
 - (void)addActivityTargets:(id)arg1;
 - (void)addReason:(id)arg1;
+- (void)associateProgress:(id)arg1;
 - (unsigned int)bytesRead;
 - (unsigned int)bytesWritten;
 - (BOOL)canBeCancelled;
@@ -57,6 +60,7 @@
 - (void)dealloc;
 - (id)description;
 - (id)displayName;
+- (void)dissociateProgress:(id)arg1;
 - (id)error;
 - (unsigned int)expectedLength;
 - (void)finishedActivity:(id)arg1;

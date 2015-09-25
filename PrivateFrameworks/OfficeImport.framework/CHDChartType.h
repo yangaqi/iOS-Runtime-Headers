@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDChart, CHDDataLabel, CHDSeriesCollection, EDCollection;
-
 @interface CHDChartType : NSObject {
     EDCollection *mAxisIds;
     CHDChart *mChart;
@@ -25,6 +23,7 @@
 - (id)defaultDataLabel;
 - (int)defaultLabelPosition;
 - (id)defaultTitleWithResources:(id)arg1;
+- (id)description;
 - (id)initWithChart:(id)arg1;
 - (bool)isHorizontal;
 - (bool)isPlotedOnSecondaryAxis;

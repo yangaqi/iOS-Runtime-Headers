@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
  */
 
-@class NSSet;
+@interface FBSMutableSceneClientSettings : FBSSceneClientSettings
 
-@interface FBSMutableSceneClientSettings : FBSSceneClientSettings {
-}
-
-@property(copy) NSSet * occlusions;
-@property int preferredInterfaceOrientation;
-@property float preferredLevel;
+@property (nonatomic, copy) NSSet *occlusions;
+@property (nonatomic) int preferredInterfaceOrientation;
+@property (nonatomic) float preferredLevel;
+@property (nonatomic, copy) NSString *preferredSceneHostIdentifier;
 
 + (BOOL)_isMutable;
 
@@ -19,5 +17,6 @@
 - (void)setOcclusions:(id)arg1;
 - (void)setPreferredInterfaceOrientation:(int)arg1;
 - (void)setPreferredLevel:(float)arg1;
+- (void)setPreferredSceneHostIdentifier:(id)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class <ML3DatabaseConnectionPoolDelegate>, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSString, NSUUID, _ML3DatabaseConnectionSubPool;
-
 @interface ML3DatabaseConnectionPool : NSObject {
     unsigned int _connectionsJournalingMode;
     int _connectionsProfilingLevel;
@@ -22,20 +20,20 @@
     _ML3DatabaseConnectionSubPool *_writersSubPool;
 }
 
-@property unsigned int connectionsJournalingMode;
-@property int connectionsProfilingLevel;
-@property(readonly) NSString * databasePath;
-@property <ML3DatabaseConnectionPoolDelegate> * delegate;
-@property(readonly) BOOL isCurrentThreadConnectionInTransaction;
-@property(getter=isLocked,readonly) BOOL locked;
-@property(readonly) unsigned int maxReaders;
-@property(readonly) unsigned int maxWriters;
-@property BOOL useDistantWriterConnections;
+@property (nonatomic) unsigned int connectionsJournalingMode;
+@property (nonatomic) int connectionsProfilingLevel;
+@property (nonatomic, readonly) NSString *databasePath;
+@property (nonatomic) <ML3DatabaseConnectionPoolDelegate> *delegate;
+@property (readonly) BOOL isCurrentThreadConnectionInTransaction;
+@property (getter=isLocked, nonatomic, readonly) BOOL locked;
+@property (nonatomic, readonly) unsigned int maxReaders;
+@property (nonatomic, readonly) unsigned int maxWriters;
+@property (nonatomic) BOOL useDistantWriterConnections;
 
 - (void).cxx_destruct;
 - (void)_closeAllConnectionsAndWaitForBusyConnections:(BOOL)arg1;
 - (id)_connectionForIdentifier:(id)arg1;
-- (id)_connectionForWriting:(BOOL)arg1 useThreadConnection:(BOOL)arg2;
+- (id)_connectionForWriting:(BOOL)arg1 useThreadConnection:(BOOL)arg2 storeThreadLocalConnection:(BOOL)arg3;
 - (id)_localConnectionForThread:(id)arg1;
 - (void)_setConnection:(id)arg1 forIdentifier:(id)arg2;
 - (void)_setLocalConnection:(id)arg1 forThread:(id)arg2;

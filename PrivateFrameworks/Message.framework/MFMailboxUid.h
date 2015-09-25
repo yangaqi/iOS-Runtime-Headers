@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFMessageCriterion, MFWeakReferenceHolder, MailAccount, NSArray, NSMutableArray, NSMutableDictionary, NSNumber, NSString;
-
 @interface MFMailboxUid : NSObject <NSCopying> {
     MFWeakReferenceHolder *_account;
     unsigned int _attributes;
@@ -23,8 +21,10 @@
     NSString *uniqueId;
 }
 
-@property(retain) NSArray * extraAttributes;
-@property(retain) NSString * permanentTag;
+@property (nonatomic, retain) NSArray *extraAttributes;
+@property (nonatomic, retain) NSString *permanentTag;
+@property (nonatomic, readonly) unsigned int suggestionsLostMessageSearchResultCount;
+@property (nonatomic, readonly) double suggestionsLostMessageSearchTimestamp;
 
 + (BOOL)isDraftsMailboxType:(int)arg1;
 + (BOOL)isOutgoingMailboxType:(int)arg1;
@@ -119,12 +119,15 @@
 - (BOOL)shouldRestoreMessagesAfterFailedDelete;
 - (void)sortChildren;
 - (id)store;
+- (unsigned int)suggestionsLostMessageSearchResultCount;
+- (double)suggestionsLostMessageSearchTimestamp;
 - (id)tildeAbbreviatedPath;
 - (id)topMailbox;
 - (int)type;
 - (id)uniqueId;
 - (unsigned int)unreadCount;
 - (unsigned int)unreadCountMatchingCriterion:(id)arg1;
+- (void)updateSuggestionsLostMessageSearchResultCount:(unsigned int)arg1;
 - (BOOL)userInfoBoolForKey:(id)arg1;
 - (id)userInfoDictionary;
 - (id)userInfoForSerialization;

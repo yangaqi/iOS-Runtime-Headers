@@ -2,22 +2,17 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString, OADParagraphProperties;
-
 @interface OADTextField : OADTextRun {
-    NSString *mId;
     OADParagraphProperties *mParagraphProperties;
     NSString *mText;
 }
 
 - (unsigned int)characterCount;
 - (void)dealloc;
-- (id)id;
 - (id)init;
 - (BOOL)isEmpty;
 - (id)paragraphProperties;
 - (void)removeUnnecessaryOverrides;
-- (void)setId:(id)arg1;
 - (void)setText:(id)arg1;
 - (id)text;
 

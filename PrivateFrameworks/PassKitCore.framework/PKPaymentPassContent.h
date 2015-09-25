@@ -2,25 +2,21 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@class NSString, NSURL;
-
 @interface PKPaymentPassContent : PKPassContent <NSSecureCoding> {
     NSString *_appURLScheme;
+    NSDictionary *_localizedSuspendedReasonsByAID;
     NSString *_messagePushTopic;
     NSURL *_messageServiceURL;
-    BOOL _supportsDPANNotifications;
-    BOOL _supportsFPANNotifications;
     NSString *_transactionPushTopic;
     NSURL *_transactionServiceURL;
 }
 
-@property(copy) NSString * appURLScheme;
-@property(copy) NSString * messagePushTopic;
-@property(copy) NSURL * messageServiceURL;
-@property BOOL supportsDPANNotifications;
-@property BOOL supportsFPANNotifications;
-@property(copy) NSString * transactionPushTopic;
-@property(copy) NSURL * transactionServiceURL;
+@property (nonatomic, copy) NSString *appURLScheme;
+@property (nonatomic, copy) NSDictionary *localizedSuspendedReasonsByAID;
+@property (nonatomic, copy) NSString *messagePushTopic;
+@property (nonatomic, copy) NSURL *messageServiceURL;
+@property (nonatomic, copy) NSString *transactionPushTopic;
+@property (nonatomic, copy) NSURL *transactionServiceURL;
 
 + (BOOL)supportsSecureCoding;
 
@@ -29,17 +25,15 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDictionary:(id)arg1 bundle:(id)arg2;
+- (id)localizedSuspendedReasonsByAID;
 - (id)messagePushTopic;
 - (id)messageServiceURL;
 - (void)setAppURLScheme:(id)arg1;
+- (void)setLocalizedSuspendedReasonsByAID:(id)arg1;
 - (void)setMessagePushTopic:(id)arg1;
 - (void)setMessageServiceURL:(id)arg1;
-- (void)setSupportsDPANNotifications:(BOOL)arg1;
-- (void)setSupportsFPANNotifications:(BOOL)arg1;
 - (void)setTransactionPushTopic:(id)arg1;
 - (void)setTransactionServiceURL:(id)arg1;
-- (BOOL)supportsDPANNotifications;
-- (BOOL)supportsFPANNotifications;
 - (id)transactionPushTopic;
 - (id)transactionServiceURL;
 

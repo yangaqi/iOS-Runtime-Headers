@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/NanoPreferencesSync.framework/NanoPreferencesSync
  */
 
-@class NPSDomainAccessorInternal, NSObject<OS_dispatch_queue>, NSString, NSUUID;
-
 @interface NPSDomainAccessor : NSObject {
     NSObject<OS_dispatch_queue> *_externalQueue;
     NPSDomainAccessorInternal *_internalAccessor;
     NSObject<OS_dispatch_queue> *_invalidationQueue;
 }
 
-@property(readonly) NSString * domain;
-@property(retain) NSObject<OS_dispatch_queue> * externalQueue;
-@property(retain) NPSDomainAccessorInternal * internalAccessor;
-@property(retain) NSObject<OS_dispatch_queue> * invalidationQueue;
-@property(readonly) NSUUID * pairingID;
+@property (nonatomic, readonly) NSString *domain;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *externalQueue;
+@property (nonatomic, retain) NPSDomainAccessorInternal *internalAccessor;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *invalidationQueue;
+@property (nonatomic, readonly) NSUUID *pairingID;
 
 + (id)copyDomainList;
 + (id)copyDomainListForPairingID:(id)arg1 pairingDataStore:(id)arg2;
@@ -29,6 +27,7 @@
 - (id)dataForKey:(id)arg1;
 - (void)dealloc;
 - (id)dictionaryForKey:(id)arg1;
+- (id)dictionaryRepresentation;
 - (id)domain;
 - (double)doubleForKey:(id)arg1;
 - (double)doubleForKey:(id)arg1 keyExistsAndHasValidFormat:(BOOL*)arg2;
@@ -36,6 +35,7 @@
 - (float)floatForKey:(id)arg1;
 - (float)floatForKey:(id)arg1 keyExistsAndHasValidFormat:(BOOL*)arg2;
 - (id)initWithDomain:(id)arg1;
+- (id)initWithDomain:(id)arg1 pairedDevice:(id)arg2;
 - (id)initWithDomain:(id)arg1 pairingID:(id)arg2 pairingDataStore:(id)arg3;
 - (id)initWithDomain:(id)arg1 queue:(id)arg2;
 - (id)initWithDomain:(id)arg1 queue:(id)arg2 pairingID:(id)arg3 pairingDataStore:(id)arg4;
@@ -48,7 +48,7 @@
 - (long long)longForKey:(id)arg1;
 - (long long)longForKey:(id)arg1 keyExistsAndHasValidFormat:(BOOL*)arg2;
 - (id)objectForKey:(id)arg1;
-- (void)objectForKey:(id)arg1 completionHandler:(id)arg2;
+- (void)objectForKey:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)pairingID;
 - (id)queue;
 - (void)removeObjectForKey:(id)arg1;
@@ -60,11 +60,11 @@
 - (void)setInternalAccessor:(id)arg1;
 - (void)setInvalidationQueue:(id)arg1;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
-- (void)setObject:(id)arg1 forKey:(id)arg2 completionHandler:(id)arg3;
+- (void)setObject:(id)arg1 forKey:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)setURL:(id)arg1 forKey:(id)arg2;
 - (id)stringArrayForKey:(id)arg1;
 - (id)stringForKey:(id)arg1;
 - (id)synchronize;
-- (void)synchronizeWithCompletionHandler:(id)arg1;
+- (void)synchronizeWithCompletionHandler:(id /* block */)arg1;
 
 @end

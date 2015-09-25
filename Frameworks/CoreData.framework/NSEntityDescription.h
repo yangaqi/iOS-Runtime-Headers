@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSArray, NSData, NSDictionary, NSEntityDescription, NSManagedObjectModel, NSMutableDictionary, NSString;
-
 @interface NSEntityDescription : NSObject <NSCoding, NSCopying, NSFastEnumeration> {
     int _cd_rc;
     NSString *_classNameForEntity;
@@ -18,7 +16,9 @@
         unsigned int _rangesAreInDataBlob : 1; 
         unsigned int _hasAttributesWithExternalDataReferences : 1; 
         unsigned int _hasNonstandardPrimitiveProperties : 2; 
-        unsigned int _reservedEntityDescription : 21; 
+        unsigned int _hasUniqueProperties : 1; 
+        unsigned int _validationUniqueProperties : 1; 
+        unsigned int _reservedEntityDescription : 19; 
     } _entityDescriptionFlags;
     void *_extraIvars;
     id _flattenedSubentities;
@@ -39,22 +39,23 @@
     NSString *_versionHashModifier;
 }
 
-@property(getter=isAbstract) BOOL abstract;
-@property(copy,readonly) NSDictionary * attributesByName;
-@property(retain) NSArray * compoundIndexes;
-@property(copy) NSString * managedObjectClassName;
-@property(readonly) NSManagedObjectModel * managedObjectModel;
-@property(copy) NSString * name;
-@property(retain) NSArray * properties;
-@property(copy,readonly) NSDictionary * propertiesByName;
-@property(copy,readonly) NSDictionary * relationshipsByName;
-@property(copy) NSString * renamingIdentifier;
-@property(retain) NSArray * subentities;
-@property(copy,readonly) NSDictionary * subentitiesByName;
-@property(readonly) NSEntityDescription * superentity;
-@property(retain) NSDictionary * userInfo;
-@property(copy,readonly) NSData * versionHash;
-@property(copy) NSString * versionHashModifier;
+@property (getter=isAbstract) BOOL abstract;
+@property (readonly, copy) NSDictionary *attributesByName;
+@property (retain) NSArray *compoundIndexes;
+@property (copy) NSString *managedObjectClassName;
+@property (readonly) NSManagedObjectModel *managedObjectModel;
+@property (copy) NSString *name;
+@property (retain) NSArray *properties;
+@property (readonly, copy) NSDictionary *propertiesByName;
+@property (readonly, copy) NSDictionary *relationshipsByName;
+@property (copy) NSString *renamingIdentifier;
+@property (retain) NSArray *subentities;
+@property (readonly, copy) NSDictionary *subentitiesByName;
+@property (readonly) NSEntityDescription *superentity;
+@property (retain) NSArray *uniquenessConstraints;
+@property (nonatomic, retain) NSDictionary *userInfo;
+@property (readonly, copy) NSData *versionHash;
+@property (copy) NSString *versionHashModifier;
 
 + (id)_MOClassName;
 + (id)entityForName:(id)arg1 inManagedObjectContext:(id)arg2;
@@ -65,10 +66,13 @@
 - (void)_addSubentity:(id)arg1;
 - (id)_allPropertyNames;
 - (id)_attributeNamed:(id)arg1;
-- (struct __CFSet { }*)_collectSubentities;
+- (id)_checkForNonCascadeNoInverses;
+- (id)_collectSubentities;
 - (id)_compoundIndexes;
+- (BOOL)_constraintIsExtension:(id)arg1;
 - (void)_createCachesAndOptimizeState;
 - (Class)_entityClass;
+- (id)_extensionsOfParentConstraint:(id)arg1;
 - (void)_flattenProperties;
 - (id)_flattenedSubentities;
 - (BOOL)_hasAttributesWithExternalDataReferences;
@@ -76,12 +80,19 @@
 - (BOOL)_hasPotentialHashSkew;
 - (BOOL)_hasPropertiesIndexedBySpotlight;
 - (BOOL)_hasPropertiesStoredInTruthFile;
+- (BOOL)_hasUniqueProperties;
+- (BOOL)_hasUniquePropertiesDownInheritanceHiearchy;
+- (BOOL)_hasUniquePropertiesUncached;
+- (BOOL)_hasUniquedAttributeWithName:(id)arg1;
 - (id)_initWithName:(id)arg1;
 - (BOOL)_isDeallocating;
 - (BOOL)_isEditable;
 - (BOOL)_isFlattened;
 - (BOOL)_isInheritedPropertyNamed:(id)arg1;
+- (BOOL)_isPathologicalForConstraintMerging:(id*)arg1;
 - (id)_keypathsForDeletions;
+- (id)_keypathsToPrefetchForDeletePropagation;
+- (id)_keypathsToPrefetchForDeletePropagationPrefixedWith:(id)arg1 toDepth:(int)arg2 processedEntities:(id)arg3;
 - (void*)_leopardStyleAttributesByName;
 - (void*)_leopardStyleRelationshipsByName;
 - (id)_localRelationshipNamed:(id)arg1;
@@ -117,13 +128,14 @@
 - (id)_subentityNamed:(id)arg1;
 - (void)_throwIfNotEditable;
 - (BOOL)_tryRetain;
+- (id)_uniquenessConstraints;
 - (id)_versionHashInStyle:(unsigned int)arg1;
 - (void)_writeIntoData:(id)arg1 propertiesDict:(id)arg2 uniquedPropertyNames:(id)arg3 uniquedStrings:(id)arg4 uniquedData:(id)arg5 uniquedMappings:(id)arg6 entities:(id)arg7;
 - (id)attributeKeys;
 - (id)attributesByName;
 - (id)compoundIndexes;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
 - (id)description;
 - (id)elementID;
@@ -156,6 +168,7 @@
 - (void)setProperties:(id)arg1;
 - (void)setRenamingIdentifier:(id)arg1;
 - (void)setSubentities:(id)arg1;
+- (void)setUniquenessConstraints:(id)arg1;
 - (void)setUserInfo:(id)arg1;
 - (void)setVersionHashModifier:(id)arg1;
 - (id)subentities;
@@ -163,6 +176,7 @@
 - (id)superentity;
 - (id)toManyRelationshipKeys;
 - (id)toOneRelationshipKeys;
+- (id)uniquenessConstraints;
 - (id)userInfo;
 - (id)versionHash;
 - (id)versionHashModifier;

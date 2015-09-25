@@ -2,19 +2,24 @@
    Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
  */
 
-@class NSString;
-
 @interface HKObjectType : NSObject <NSCopying, NSSecureCoding> {
     int _code;
     Class _dataObjectClass;
     NSString *_identifier;
 }
 
-@property(readonly) int code;
-@property(readonly) Class dataObjectClass;
-@property(readonly) NSString * identifier;
+@property (nonatomic, readonly) int code;
+@property (nonatomic, readonly) Class dataObjectClass;
+@property (readonly) NSString *identifier;
 
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
+
++ (id)_allCategoryTypes;
++ (id)_allCorrelationTypes;
 + (id)_allDataTypeIdentifiers;
++ (id)_allQuantityTypes;
++ (id)_allTypesOfClass:(Class)arg1;
++ (id)_allTypesWithIdentifierTable:(id)arg1;
 + (BOOL)_allowAuthorizationForReadingWithTypes:(id)arg1 entitlements:(id)arg2 disallowedTypes:(id)arg3;
 + (BOOL)_allowAuthorizationForSharing:(BOOL)arg1 types:(id)arg2 entitlements:(id)arg3 disallowedTypes:(id)arg4;
 + (BOOL)_allowAuthorizationForSharingWithTypes:(id)arg1 entitlements:(id)arg2 disallowedTypes:(id)arg3;
@@ -24,10 +29,10 @@
 + (id)calorieGoal;
 + (id)categoryTypeForIdentifier:(id)arg1;
 + (id)characteristicTypeForIdentifier:(id)arg1;
++ (id)coachingEventType;
 + (id)correlationTypeForIdentifier:(id)arg1;
 + (id)dataTypeWithCode:(int)arg1;
 + (id)quantityTypeForIdentifier:(id)arg1;
-+ (id)sedentaryMissedHourDataType;
 + (BOOL)supportsSecureCoding;
 + (id)workoutType;
 
@@ -43,11 +48,14 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)hash;
-- (id)hk_categoryID;
-- (id)hk_localizedName;
 - (id)identifier;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HealthKitUI.framework/HealthKitUI
+
+- (id)hk_categoryID;
+- (id)hk_localizedName;
 
 @end

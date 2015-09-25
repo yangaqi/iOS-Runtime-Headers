@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSDictionary, PSRootController, UIViewController<PSController>;
-
 @interface PSSetupController : PSRootController {
     UIViewController<PSController> *_parentController;
     PSRootController *_parentRootController;
     NSDictionary *_rootInfo;
 }
 
+- (void).cxx_destruct;
 - (id)controller;
-- (void)dealloc;
 - (void)dismiss;
 - (void)dismissAnimated:(BOOL)arg1;
-- (void)dismissAnimated:(BOOL)arg1 completion:(id)arg2;
-- (void)dismissWithCompletion:(id)arg1;
+- (void)dismissAnimated:(BOOL)arg1 completion:(id /* block */)arg2;
+- (void)dismissWithCompletion:(id /* block */)arg1;
 - (void)handleURL:(id)arg1;
 - (id)init;
 - (id)parentController;

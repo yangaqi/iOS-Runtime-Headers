@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray;
-
 @interface PDPresentation : OCDDocument {
     NSMutableArray *mBulletBlips;
     NSMutableArray *mCommentAuthors;
@@ -24,7 +22,6 @@
     NSMutableArray *mSlides;
 }
 
-- (id).cxx_construct;
 - (unsigned long)addBulletBlip:(id)arg1;
 - (void)addCommentAuthor:(id)arg1;
 - (void)addNotesMaster:(id)arg1;
@@ -38,6 +35,7 @@
 - (id)commentAuthorAtIndex:(unsigned int)arg1;
 - (unsigned int)commentAuthorCount;
 - (void)dealloc;
+- (id)description;
 - (void)ensureDefaultLayoutsForMasters;
 - (void)flushUnusedMastersAndLayouts;
 - (unsigned int)indexOfSlide:(id)arg1;
@@ -49,12 +47,14 @@
 - (id)notesMasterAtIndex:(unsigned int)arg1;
 - (unsigned int)notesMasterCount;
 - (struct CGSize { float x1; float x2; })notesSize;
+- (void)removeUnnecessaryOverrides;
 - (void)setIsAutoPlay:(BOOL)arg1;
 - (void)setIsCommentsVisible:(BOOL)arg1;
 - (void)setIsKiosk:(BOOL)arg1;
 - (void)setIsLooping:(BOOL)arg1;
 - (void)setNotesSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)setSlideSize:(struct CGSize { float x1; float x2; })arg1;
+- (void)setUpPropertyHierarchyPreservingEffectiveValues;
 - (id)slideAtIndex:(unsigned int)arg1;
 - (unsigned int)slideCount;
 - (id)slideMasterAtIndex:(unsigned int)arg1;

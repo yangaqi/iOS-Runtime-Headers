@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@interface CKAnimatedImageMediaObject : CKImageMediaObject {
-}
+@interface CKAnimatedImageMediaObject : CKImageMediaObject
 
 + (id)UTITypes;
++ (Class)__ck_attachmentItemClass;
 
 - (id)animatedImageForWidth:(float)arg1;
 - (id)generateAnimatedPreviewFromThumbnails:(id)arg1 width:(float)arg2 orientation:(BOOL)arg3;

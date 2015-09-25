@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADBlipRef;
-
 @interface OADCustomPattern : OADPattern {
     OADBlipRef *mBlipRef;
     BOOL mIsBlipRefOverridden;
@@ -14,8 +12,10 @@
 - (id)blipRef;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (void)fixPropertiesForChangingParentPreservingEffectiveValues:(id)arg1;
 - (unsigned int)hash;
 - (id)initWithDefaults;
+- (BOOL)isAnythingOverridden;
 - (BOOL)isBlipRefOverridden;
 - (BOOL)isEqual:(id)arg1;
 - (void)setBlipRef:(id)arg1;

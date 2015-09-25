@@ -2,33 +2,29 @@
    Image: /System/Library/PrivateFrameworks/PlugInKit.framework/PlugInKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSDictionary, NSSet, NSString;
-
 @interface PKDiscoveryDriver : NSObject <LSApplicationWorkspaceObserverProtocol> {
     int _annotationNotifyToken;
     NSDictionary *_attributes;
     unsigned int _flags;
     NSSet *_lastResults;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _report;
-
+    PKDiscoveryLSWatcher *_lsWatcher;
+    id _mcNotificationToken;
+    NSObject<OS_dispatch_queue> *_queue;
+    id /* block */ _report;
 }
 
 @property int annotationNotifyToken;
-@property(retain) NSDictionary * attributes;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
+@property (retain) NSDictionary *attributes;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property unsigned int flags;
-@property(readonly) unsigned int hash;
-@property(retain) NSSet * lastResults;
-@property(copy) id report;
-@property(readonly) Class superclass;
+@property (readonly) unsigned int hash;
+@property (retain) NSSet *lastResults;
+@property (retain) PKDiscoveryLSWatcher *lsWatcher;
+@property (retain) id mcNotificationToken;
+@property (retain) NSObject<OS_dispatch_queue> *queue;
+@property (copy) id /* block */ report;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (int)annotationNotifyToken;
@@ -36,16 +32,22 @@
 - (void)cancel;
 - (void)dealloc;
 - (unsigned int)flags;
-- (id)initWithAttributes:(id)arg1 flags:(unsigned int)arg2 report:(id)arg3;
+- (id)initWithAttributes:(id)arg1 flags:(unsigned int)arg2 report:(id /* block */)arg3;
+- (void)installWatchers;
 - (id)lastResults;
+- (id)lsWatcher;
+- (id)mcNotificationToken;
 - (void)performWithPreviousResults:(id)arg1 forceNotify:(BOOL)arg2;
-- (void)pluginsDidInstall:(id)arg1;
-- (void)pluginsDidUninstall:(id)arg1;
-- (id)report;
+- (id)queue;
+- (void)removeWatchers;
+- (id /* block */)report;
 - (void)setAnnotationNotifyToken:(int)arg1;
 - (void)setAttributes:(id)arg1;
 - (void)setFlags:(unsigned int)arg1;
 - (void)setLastResults:(id)arg1;
-- (void)setReport:(id)arg1;
+- (void)setLsWatcher:(id)arg1;
+- (void)setMcNotificationToken:(id)arg1;
+- (void)setQueue:(id)arg1;
+- (void)setReport:(id /* block */)arg1;
 
 @end

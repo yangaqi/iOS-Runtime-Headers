@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CellularPlanManager.framework/CellularPlanManager
  */
 
-@class NSData, NSMutableArray, NSString, NSXPCConnection;
-
 @interface CTCellularPlanManager : NSObject <CTCellularPlanClientDelegate> {
     NSXPCConnection *_connection;
     NSData *_cookieData;
@@ -12,43 +10,57 @@
     NSMutableArray *_subscriptionCompletions;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedManager;
 
 - (void)_connect_sync;
 - (void)_ensureConnected_sync;
-- (void)_plansForRenewal:(BOOL)arg1 progress:(id)arg2 completion:(id)arg3 latitude:(id)arg4 longitude:(id)arg5;
+- (void)_plansForRenewal:(BOOL)arg1 progress:(id /* block */)arg2 completion:(id /* block */)arg3 latitude:(id)arg4 longitude:(id)arg5 additionalParameters:(id)arg6;
 - (void)_reconnect;
-- (void)_subscriptionDetailsWithCompletion:(id)arg1 updateIfNeeded:(BOOL)arg2;
-- (void)carrierHandoffToken:(id)arg1;
-- (void)connectionSettings:(id)arg1;
+- (void)carrierHandoffToken:(id /* block */)arg1;
+- (void)connectionSettings:(id /* block */)arg1;
 - (void)dealloc;
 - (void)didPurchasePlanWithIccid:(id)arg1 downloadProfile:(BOOL)arg2;
-- (void)getCurrentPlanType:(id)arg1;
-- (void)getDeviceInfo:(id)arg1;
-- (void)getIMEIPrefix:(id)arg1;
-- (void)getSelectedEnv:(id)arg1;
-- (void)getSelectedProxy:(id)arg1;
+- (void)didSelectPlanItem:(id)arg1 completion:(id /* block */)arg2;
+- (void)expirePlan;
+- (void)getCurrentPlanType:(id /* block */)arg1;
+- (void)getDeviceInfo:(id /* block */)arg1;
+- (void)getIMEIPrefix:(id /* block */)arg1;
+- (void)getSelectedEnv:(id /* block */)arg1;
+- (void)getSelectedProxy:(id /* block */)arg1;
 - (id)init;
-- (void)isNewDataPlanCapable:(id)arg1;
+- (void)isAddButtonEnabled:(id /* block */)arg1;
+- (void)isMultipleDataPlanSupportAvailable:(id /* block */)arg1;
+- (void)isNewDataPlanCapable:(id /* block */)arg1;
+- (void)isRoamingPlanSupportAvailable:(id /* block */)arg1;
+- (void)latitudeLongitudeOverride:(id /* block */)arg1;
+- (void)launchSequoia;
+- (void)mccMncOverride:(id /* block */)arg1;
 - (void)openInternalUrlId:(int)arg1;
-- (void)plansForRenewalWithCompletion:(id)arg1;
-- (void)plansForRenewalWithProgress:(id)arg1 andCompletion:(id)arg2;
-- (void)plansWithCompletion:(id)arg1;
-- (void)plansWithCompletion:(id)arg1 latitude:(id)arg2 longitude:(id)arg3;
-- (void)plansWithProgress:(id)arg1 andCompletion:(id)arg2;
-- (void)setActivePlan:(id)arg1 completion:(id)arg2;
+- (void)planInfoDidUpdate;
+- (void)planItemsWithCompletion:(id /* block */)arg1;
+- (void)plansForRenewalWithCompletion:(id /* block */)arg1;
+- (void)plansForRenewalWithProgress:(id /* block */)arg1 andCompletion:(id /* block */)arg2;
+- (void)plansWithCompletion:(id /* block */)arg1;
+- (void)plansWithCompletion:(id /* block */)arg1 latitude:(id)arg2 longitude:(id)arg3;
+- (void)plansWithProgress:(id /* block */)arg1 andCompletion:(id /* block */)arg2;
+- (void)plansWithProgress:(id /* block */)arg1 andCompletion:(id /* block */)arg2 additionalParameters:(id)arg3;
+- (void)setActivePlan:(id)arg1 completion:(id /* block */)arg2;
 - (void)setIMEIPrefix:(id)arg1;
+- (void)setLatitude:(id)arg1 andLongitude:(id)arg2;
+- (void)setMcc:(int)arg1 andMnc:(int)arg2;
 - (void)setSelectedEnv:(int)arg1;
 - (void)setSelectedProxy:(int)arg1;
 - (void)setUserInPurchaseFlow:(BOOL)arg1;
-- (void)subscriptionDetailsDidUpdate:(id)arg1;
+- (void)shouldShowPlanList:(id /* block */)arg1;
 - (void)subscriptionDetailsForCompletion:(id)arg1;
-- (void)subscriptionDetailsRequestDidFail:(id)arg1;
-- (void)subscriptionDetailsWithCompletion:(id)arg1;
+- (void)subscriptionDetailsWithCompletion:(id /* block */)arg1;
+- (void)triggerAddNewDataPlan:(id /* block */)arg1;
+- (void)updatePlansDatabase;
+- (void)willDisplayPlanItems;
 
 @end

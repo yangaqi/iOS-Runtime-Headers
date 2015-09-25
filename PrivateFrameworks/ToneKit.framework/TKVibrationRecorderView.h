@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
  */
 
-@class <TKVibrationRecorderStyleProvider>, <TKVibrationRecorderViewDelegate>, NSLayoutConstraint, NSString, TKVibrationRecorderProgressView, TKVibrationRecorderTouchSurface, UILabel, UIToolbar;
-
 @interface TKVibrationRecorderView : UIView <TKVibrationRecorderTouchSurfaceDelegate> {
     BOOL _animatingProgress;
     UIToolbar *_controlsToolbar;
@@ -18,33 +16,36 @@
     BOOL _replayModeEnabled;
     int _rightButtonIdentifier;
     <TKVibrationRecorderStyleProvider> *_styleProvider;
+    <UILayoutSupport> *_topLayoutGuide;
     TKVibrationRecorderTouchSurface *_touchSurface;
     NSLayoutConstraint *_touchSurfaceTopConstraint;
     double _vibrationPatternMaximumDuration;
     BOOL _waitingForEndOfCurrentVibrationComponent;
 }
 
-@property(getter=_isAnimatingProgress,setter=_setAnimatingProgress:) BOOL _animatingProgress;
-@property(setter=_setControlsToolbar:,retain) UIToolbar * _controlsToolbar;
-@property(setter=_setControlsToolbarTopConstraint:,retain) NSLayoutConstraint * _controlsToolbarTopConstraint;
-@property(setter=_setCurrentVibrationComponentDidStartTimestamp:) double _currentVibrationComponentDidStartTimestamp;
-@property(setter=_setCurrentVibrationProgressDidStartTimestamp:) double _currentVibrationProgressDidStartTimestamp;
-@property(setter=_setInstructionsLabel:,retain) UILabel * _instructionsLabel;
-@property(setter=_setLeftButtonIdentifier:) int _leftButtonIdentifier;
-@property(setter=_setProgressToolbarBottomConstraint:,retain) NSLayoutConstraint * _progressToolbarBottomConstraint;
-@property(setter=_setProgressView:,retain) TKVibrationRecorderProgressView * _progressView;
-@property(getter=_isReplayModeEnabled,setter=_setReplayModeEnabled:) BOOL _replayModeEnabled;
-@property(setter=_setRightButtonIdentifier:) int _rightButtonIdentifier;
-@property(setter=_setStyleProvider:,retain) <TKVibrationRecorderStyleProvider> * _styleProvider;
-@property(setter=_setTouchSurface:,retain) TKVibrationRecorderTouchSurface * _touchSurface;
-@property(setter=_setTouchSurfaceTopConstraint:,retain) NSLayoutConstraint * _touchSurfaceTopConstraint;
-@property(setter=_setVibrationPatternMaximumDuration:) double _vibrationPatternMaximumDuration;
-@property(getter=_isWaitingForEndOfCurrentVibrationComponent,setter=_setWaitingForEndOfCurrentVibrationComponent:) BOOL _waitingForEndOfCurrentVibrationComponent;
-@property(copy,readonly) NSString * debugDescription;
-@property <TKVibrationRecorderViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (getter=_isAnimatingProgress, setter=_setAnimatingProgress:, nonatomic) BOOL _animatingProgress;
+@property (setter=_setControlsToolbar:, nonatomic, retain) UIToolbar *_controlsToolbar;
+@property (setter=_setControlsToolbarTopConstraint:, nonatomic, retain) NSLayoutConstraint *_controlsToolbarTopConstraint;
+@property (setter=_setCurrentVibrationComponentDidStartTimestamp:, nonatomic) double _currentVibrationComponentDidStartTimestamp;
+@property (setter=_setCurrentVibrationProgressDidStartTimestamp:, nonatomic) double _currentVibrationProgressDidStartTimestamp;
+@property (setter=_setInstructionsLabel:, nonatomic, retain) UILabel *_instructionsLabel;
+@property (setter=_setLeftButtonIdentifier:, nonatomic) int _leftButtonIdentifier;
+@property (setter=_setProgressToolbarBottomConstraint:, nonatomic, retain) NSLayoutConstraint *_progressToolbarBottomConstraint;
+@property (setter=_setProgressView:, nonatomic, retain) TKVibrationRecorderProgressView *_progressView;
+@property (getter=_isReplayModeEnabled, setter=_setReplayModeEnabled:, nonatomic) BOOL _replayModeEnabled;
+@property (setter=_setRightButtonIdentifier:, nonatomic) int _rightButtonIdentifier;
+@property (setter=_setStyleProvider:, nonatomic, retain) <TKVibrationRecorderStyleProvider> *_styleProvider;
+@property (setter=_setTopLayoutGuide:, nonatomic, retain) <UILayoutSupport> *_topLayoutGuide;
+@property (setter=_setTouchSurface:, nonatomic, retain) TKVibrationRecorderTouchSurface *_touchSurface;
+@property (setter=_setTouchSurfaceTopConstraint:, nonatomic, retain) NSLayoutConstraint *_touchSurfaceTopConstraint;
+@property (setter=_setVibrationPatternMaximumDuration:, nonatomic) double _vibrationPatternMaximumDuration;
+@property (getter=_isWaitingForEndOfCurrentVibrationComponent, setter=_setWaitingForEndOfCurrentVibrationComponent:, nonatomic) BOOL _waitingForEndOfCurrentVibrationComponent;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <TKVibrationRecorderViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) <UILayoutSupport> *topLayoutGuide;
 
 - (id)_controlsToolbar;
 - (id)_controlsToolbarTopConstraint;
@@ -75,12 +76,14 @@
 - (void)_setReplayModeEnabled:(BOOL)arg1;
 - (void)_setRightButtonIdentifier:(int)arg1;
 - (void)_setStyleProvider:(id)arg1;
+- (void)_setTopLayoutGuide:(id)arg1;
 - (void)_setTouchSurface:(id)arg1;
 - (void)_setTouchSurfaceTopConstraint:(id)arg1;
 - (void)_setVibrationPatternMaximumDuration:(double)arg1;
 - (void)_setWaitingForEndOfCurrentVibrationComponent:(BOOL)arg1;
 - (id)_styleProvider;
 - (id)_titleForControlsToolbarButtonWithIdentifier:(int)arg1;
+- (id)_topLayoutGuide;
 - (id)_touchSurface;
 - (id)_touchSurfaceTopConstraint;
 - (void)_updateProgress:(id)arg1;
@@ -93,15 +96,15 @@
 - (void)exitRecordingModeWithPlayButtonEnabled:(BOOL)arg1;
 - (void)exitReplayMode;
 - (id)initWithVibrationPatternMaximumDuration:(double)arg1;
-- (void)navigationController:(id)arg1 willRotateToInterfaceOrientation:(int)arg2 duration:(double)arg3;
 - (void)setDelegate:(id)arg1;
+- (void)setTopLayoutGuide:(id)arg1;
 - (void)startAnimatingProgress;
 - (void)stopAnimatingProgress;
+- (id)topLayoutGuide;
 - (void)vibrationComponentDidEndForVibrationRecorderTouchSurface:(id)arg1;
 - (void)vibrationComponentDidStartForVibrationRecorderTouchSurface:(id)arg1;
 - (void)vibrationRecorderTouchSurface:(id)arg1 didExitRecordingModeWithContextObject:(id)arg2;
 - (BOOL)vibrationRecorderTouchSurfaceDidEnterRecordingMode:(id)arg1;
 - (void)vibrationRecorderTouchSurfaceDidFinishReplayingVibration:(id)arg1;
-- (void)wasAddedToNavigationController:(id)arg1;
 
 @end

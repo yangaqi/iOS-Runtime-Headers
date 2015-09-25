@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class PUPhotosGridViewControllerSpec;
-
 @interface PUZoomableGridViewControllerSpec : NSObject {
     BOOL _canDisplayMultipleRightBarButtonItems;
     struct UIEdgeInsets { 
@@ -18,6 +16,7 @@
         float bottom; 
         float right; 
     } _collectionsLevelSectionHeaderHighlightInset;
+    float _collectionsSectionHeaderHeight;
     int _collectionsSectionHeaderStyle;
     struct UIEdgeInsets { 
         float top; 
@@ -31,7 +30,11 @@
         float bottom; 
         float right; 
     } _fullMomentsLevelSectionHeaderHighlightInset;
-    int _fullMomentsLevelThumbnailFormat;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _fullMomentsLevelThumbnailSize;
+    float _fullMomentsSectionHeaderHeight;
     int _fullMomentsSectionHeaderStyle;
     PUPhotosGridViewControllerSpec *_gridSpec;
     struct UIEdgeInsets { 
@@ -40,7 +43,6 @@
         float bottom; 
         float right; 
     } _magnifiedDragEdgeInsets;
-    int _magnifiedImageFormat;
     struct CGSize { 
         float width; 
         float height; 
@@ -58,33 +60,36 @@
         float bottom; 
         float right; 
     } _yearsLevelSectionHeaderHighlightInset;
+    float _yearsSectionHeaderHeight;
     int _yearsSectionHeaderStyle;
 }
 
-@property(readonly) BOOL canDisplayMultipleRightBarButtonItems;
-@property(readonly) int collectionsLevelCellFillMode;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } collectionsLevelSectionHeaderContentInset;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } collectionsLevelSectionHeaderHighlightInset;
-@property(readonly) int collectionsLevelThumbnailFormat;
-@property(readonly) unsigned int collectionsSectionHeaderBackgroundStyle;
-@property(readonly) int collectionsSectionHeaderStyle;
-@property(readonly) int fullMomentsLevelCellFillMode;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } fullMomentsLevelSectionHeaderContentInset;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } fullMomentsLevelSectionHeaderHighlightInset;
-@property(readonly) int fullMomentsLevelThumbnailFormat;
-@property(readonly) unsigned int fullMomentsSectionHeaderBackgroundStyle;
-@property(readonly) int fullMomentsSectionHeaderStyle;
-@property(retain) PUPhotosGridViewControllerSpec * gridSpec;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } magnifiedDragEdgeInsets;
-@property(readonly) int magnifiedImageFormat;
-@property(readonly) struct CGSize { float x1; float x2; } magnifiedImageSize;
-@property float magnifiedYOffset;
-@property(readonly) int yearsLevelCellFillMode;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } yearsLevelSectionHeaderContentInset;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } yearsLevelSectionHeaderHighlightInset;
-@property(readonly) int yearsLevelThumbnailFormat;
-@property(readonly) unsigned int yearsSectionHeaderBackgroundStyle;
-@property(readonly) int yearsSectionHeaderStyle;
+@property (nonatomic, readonly) BOOL canDisplayMultipleRightBarButtonItems;
+@property (nonatomic, readonly) int collectionsLevelCellFillMode;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } collectionsLevelSectionHeaderContentInset;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } collectionsLevelSectionHeaderHighlightInset;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } collectionsLevelThumbnailSize;
+@property (nonatomic, readonly) unsigned int collectionsSectionHeaderBackgroundStyle;
+@property (nonatomic, readonly) float collectionsSectionHeaderHeight;
+@property (nonatomic, readonly) int collectionsSectionHeaderStyle;
+@property (nonatomic, readonly) int fullMomentsLevelCellFillMode;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } fullMomentsLevelSectionHeaderContentInset;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } fullMomentsLevelSectionHeaderHighlightInset;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } fullMomentsLevelThumbnailSize;
+@property (nonatomic, readonly) unsigned int fullMomentsSectionHeaderBackgroundStyle;
+@property (nonatomic, readonly) float fullMomentsSectionHeaderHeight;
+@property (nonatomic, readonly) int fullMomentsSectionHeaderStyle;
+@property (nonatomic, retain) PUPhotosGridViewControllerSpec *gridSpec;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } magnifiedDragEdgeInsets;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } magnifiedImageSize;
+@property (nonatomic) float magnifiedYOffset;
+@property (nonatomic, readonly) int yearsLevelCellFillMode;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } yearsLevelSectionHeaderContentInset;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } yearsLevelSectionHeaderHighlightInset;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } yearsLevelThumbnailSize;
+@property (nonatomic, readonly) unsigned int yearsSectionHeaderBackgroundStyle;
+@property (nonatomic, readonly) float yearsSectionHeaderHeight;
+@property (nonatomic, readonly) int yearsSectionHeaderStyle;
 
 - (void).cxx_destruct;
 - (void)_setGridSpec:(id)arg1;
@@ -92,8 +97,9 @@
 - (int)collectionsLevelCellFillMode;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })collectionsLevelSectionHeaderContentInset;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })collectionsLevelSectionHeaderHighlightInset;
-- (int)collectionsLevelThumbnailFormat;
+- (struct CGSize { float x1; float x2; })collectionsLevelThumbnailSize;
 - (unsigned int)collectionsSectionHeaderBackgroundStyle;
+- (float)collectionsSectionHeaderHeight;
 - (int)collectionsSectionHeaderStyle;
 - (void)configureCollectionsLevelGridLayout:(id)arg1 forWidth:(float)arg2;
 - (void)configureFullMomentsLevelGridLayout:(id)arg1 forWidth:(float)arg2;
@@ -101,12 +107,12 @@
 - (int)fullMomentsLevelCellFillMode;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })fullMomentsLevelSectionHeaderContentInset;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })fullMomentsLevelSectionHeaderHighlightInset;
-- (int)fullMomentsLevelThumbnailFormat;
+- (struct CGSize { float x1; float x2; })fullMomentsLevelThumbnailSize;
 - (unsigned int)fullMomentsSectionHeaderBackgroundStyle;
+- (float)fullMomentsSectionHeaderHeight;
 - (int)fullMomentsSectionHeaderStyle;
 - (id)gridSpec;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })magnifiedDragEdgeInsets;
-- (int)magnifiedImageFormat;
 - (struct CGSize { float x1; float x2; })magnifiedImageSize;
 - (float)magnifiedYOffset;
 - (id)mapViewControllerSpec;
@@ -116,8 +122,9 @@
 - (int)yearsLevelCellFillMode;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })yearsLevelSectionHeaderContentInset;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })yearsLevelSectionHeaderHighlightInset;
-- (int)yearsLevelThumbnailFormat;
+- (struct CGSize { float x1; float x2; })yearsLevelThumbnailSize;
 - (unsigned int)yearsSectionHeaderBackgroundStyle;
+- (float)yearsSectionHeaderHeight;
 - (int)yearsSectionHeaderStyle;
 
 @end

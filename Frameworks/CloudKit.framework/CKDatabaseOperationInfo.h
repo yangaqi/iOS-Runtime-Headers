@@ -6,10 +6,11 @@
     int _databaseScope;
 }
 
-@property int databaseScope;
+@property (nonatomic) int databaseScope;
 
 + (BOOL)supportsSecureCoding;
 
+- (unsigned long long)activityStart;
 - (int)databaseScope;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

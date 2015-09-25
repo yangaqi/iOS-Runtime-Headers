@@ -3,16 +3,16 @@
  */
 
 @interface UIAcceleration : NSObject {
-    double timestamp;
-    double x;
-    double y;
-    double z;
+    double _timestamp;
+    double _x;
+    double _y;
+    double _z;
 }
 
-@property double timestamp;
-@property double x;
-@property double y;
-@property double z;
+@property (nonatomic) double timestamp;
+@property (nonatomic) double x;
+@property (nonatomic) double y;
+@property (nonatomic) double z;
 
 - (id)description;
 - (void)setTimestamp:(double)arg1;

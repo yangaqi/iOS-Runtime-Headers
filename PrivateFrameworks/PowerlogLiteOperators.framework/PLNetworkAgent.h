@@ -2,21 +2,15 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@class NSDate, PLEntryNotificationOperatorComposition, PLProcessPortMap, PLSemaphore;
-
 @interface PLNetworkAgent : PLAgent {
     PLEntryNotificationOperatorComposition *_batteryLevelChanged;
     PLEntryNotificationOperatorComposition *_canSleep;
     PLSemaphore *_canSleepSemaphore;
-    PLProcessPortMap *_portMapper;
-    NSDate *_priorLogEventPointPortMappingTimestamp;
 }
 
-@property(retain) PLEntryNotificationOperatorComposition * batteryLevelChanged;
-@property(retain) PLEntryNotificationOperatorComposition * canSleep;
-@property(retain) PLSemaphore * canSleepSemaphore;
-@property(retain) PLProcessPortMap * portMapper;
-@property(retain) NSDate * priorLogEventPointPortMappingTimestamp;
+@property (retain) PLEntryNotificationOperatorComposition *batteryLevelChanged;
+@property (retain) PLEntryNotificationOperatorComposition *canSleep;
+@property (retain) PLSemaphore *canSleepSemaphore;
 
 + (id)accountingGroupDefinitions;
 + (id)defaults;
@@ -24,7 +18,6 @@
 + (id)entryEventForwardDefinitions;
 + (id)entryEventIntervalDefinitions;
 + (id)entryEventNoneDefinitions;
-+ (id)entryEventPointDefinitions;
 + (void)load;
 + (id)railDefinitions;
 
@@ -36,13 +29,8 @@
 - (void)initOperatorDependancies;
 - (void)log;
 - (void)logEventBackwardCumulativeNetworkUsage;
-- (void)logEventPointPortMapping;
-- (id)portMapper;
-- (id)priorLogEventPointPortMappingTimestamp;
 - (void)setBatteryLevelChanged:(id)arg1;
 - (void)setCanSleep:(id)arg1;
 - (void)setCanSleepSemaphore:(id)arg1;
-- (void)setPortMapper:(id)arg1;
-- (void)setPriorLogEventPointPortMappingTimestamp:(id)arg1;
 
 @end

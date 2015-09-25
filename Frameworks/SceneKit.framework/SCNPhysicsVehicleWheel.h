@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
  */
 
-@class SCNNode, SCNPhysicsVehicle;
-
 @interface SCNPhysicsVehicleWheel : NSObject <NSCopying, NSSecureCoding> {
     struct SCNVector3 { 
         float x; 
@@ -21,7 +19,6 @@
     float _maximumSuspensionTravel;
     SCNNode *_node;
     float _radius;
-    id _reserved;
     struct SCNVector3 { 
         float x; 
         float y; 
@@ -40,7 +37,7 @@
 @property float frictionSlip;
 @property float maximumSuspensionForce;
 @property float maximumSuspensionTravel;
-@property(readonly) SCNNode * node;
+@property (readonly) SCNNode *node;
 @property float radius;
 @property struct SCNVector3 { float x1; float x2; float x3; } steeringAxis;
 @property float suspensionCompression;
@@ -48,11 +45,9 @@
 @property float suspensionRestLength;
 @property float suspensionStiffness;
 
-+ (id)SCNJSExportProtocol;
 + (BOOL)supportsSecureCoding;
 + (id)wheelWithNode:(id)arg1;
 
-- (id).cxx_construct;
 - (void)_setVehicle:(id)arg1;
 - (void)_setWheelIndex:(int)arg1;
 - (struct SCNVector3 { float x1; float x2; float x3; })axle;

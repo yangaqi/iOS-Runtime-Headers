@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKPlaceCardReviewsControllerDelegate>, ABMonogrammer, GEORating, MKMapItem, NSMutableArray, NSMutableDictionary, NSString, _MKPlaceViewController;
-
 @interface MKPlaceReviewsViewController : UITableViewController <MKPlaceAttributionCellProvider, MKPlaceReviewsViewCheckInWriteCellDelegate, MKStackingViewControllerPreferredSizeUse> {
     NSMutableDictionary *_cachedMaskedImages;
     BOOL _hasAttribution;
     MKMapItem *_mapItem;
     ABMonogrammer *_monogrammer;
     _MKPlaceViewController *_owner;
-    GEORating *_rating;
+    NSArray *_reviews;
     <MKPlaceCardReviewsControllerDelegate> *_reviewsControllerDelegate;
     BOOL _showAttribution;
     BOOL _showCheckInAndWriteReviewButtons;
@@ -18,25 +16,26 @@
     NSMutableArray *_viewDidAppearBlocks;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL hasAttribution;
-@property(readonly) unsigned int hash;
-@property(retain) MKMapItem * mapItem;
-@property(retain) ABMonogrammer * monogrammer;
-@property _MKPlaceViewController * owner;
-@property(retain) GEORating * rating;
-@property(readonly) BOOL requiresPreferredContentSizeInStackingView;
-@property <MKPlaceCardReviewsControllerDelegate> * reviewsControllerDelegate;
-@property BOOL showAttribution;
-@property(readonly) BOOL showAttributionButtons;
-@property BOOL showCheckInAndWriteReviewButtons;
-@property BOOL showMoreReviewsButton;
-@property(readonly) Class superclass;
-@property(retain) NSMutableArray * viewDidAppearBlocks;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL hasAttribution;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MKMapItem *mapItem;
+@property (nonatomic, retain) ABMonogrammer *monogrammer;
+@property (nonatomic) _MKPlaceViewController *owner;
+@property (nonatomic, readonly) BOOL requiresPreferredContentSizeInStackingView;
+@property (nonatomic, retain) NSArray *reviews;
+@property (nonatomic) <MKPlaceCardReviewsControllerDelegate> *reviewsControllerDelegate;
+@property (nonatomic, readonly) unsigned int reviewsCount;
+@property (nonatomic) BOOL showAttribution;
+@property (nonatomic, readonly) BOOL showAttributionButtons;
+@property (nonatomic) BOOL showCheckInAndWriteReviewButtons;
+@property (nonatomic) BOOL showMoreReviewsButton;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSMutableArray *viewDidAppearBlocks;
 
 - (void).cxx_destruct;
-- (void)_showReviewWithID:(id)arg1;
+- (void)_showReview:(id)arg1;
 - (void)_viewAllReviews;
 - (void)checkInWriteReviewCellDidSelectCheckIn:(id)arg1;
 - (void)checkInWriteReviewCellDidSelectWriteReview:(id)arg1;
@@ -46,14 +45,17 @@
 - (id)monogrammer;
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (id)owner;
-- (id)rating;
+- (void)performWhenViewHasAppeared:(id /* block */)arg1;
 - (BOOL)requiresPreferredContentSizeInStackingView;
+- (id)reviewAtIndex:(unsigned int)arg1;
+- (id)reviews;
 - (id)reviewsControllerDelegate;
+- (unsigned int)reviewsCount;
 - (void)setHasAttribution:(BOOL)arg1;
 - (void)setMapItem:(id)arg1;
 - (void)setMonogrammer:(id)arg1;
 - (void)setOwner:(id)arg1;
-- (void)setRating:(id)arg1;
+- (void)setReviews:(id)arg1;
 - (void)setReviewsControllerDelegate:(id)arg1;
 - (void)setShowAttribution:(BOOL)arg1;
 - (void)setShowCheckInAndWriteReviewButtons:(BOOL)arg1;

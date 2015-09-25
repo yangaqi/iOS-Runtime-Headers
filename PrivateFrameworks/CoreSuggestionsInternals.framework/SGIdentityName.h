@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
  */
 
-@class NSString;
-
 @interface SGIdentityName : NSObject {
     NSString *_firstname;
     NSString *_middlename;
@@ -13,12 +11,12 @@
     NSString *_surname;
 }
 
-@property(readonly) NSString * firstname;
-@property(readonly) NSString * fullName;
-@property(readonly) NSString * middlename;
-@property(readonly) NSString * prefix;
-@property(readonly) NSString * suffix;
-@property(readonly) NSString * surname;
+@property (nonatomic, readonly) NSString *firstname;
+@property (nonatomic, readonly) NSString *fullName;
+@property (nonatomic, readonly) NSString *middlename;
+@property (nonatomic, readonly) NSString *prefix;
+@property (nonatomic, readonly) NSString *suffix;
+@property (nonatomic, readonly) NSString *surname;
 
 + (void)initialize;
 + (id)nameWithString:(id)arg1;
@@ -38,6 +36,6 @@
 - (id)segmentWesternNameWithNameParts:(id)arg1 andPrefix:(id)arg2;
 - (id)suffix;
 - (id)surname;
-- (id)toSGName;
+- (id)toSGNameWithOrigin:(id)arg1 andRecordId:(id)arg2;
 
 @end

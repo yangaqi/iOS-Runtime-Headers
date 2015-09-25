@@ -2,14 +2,11 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SAGKWebSearchDomainObject : SAGKDomainObject
 
-@interface SAGKWebSearchDomainObject : SAGKDomainObject {
-}
-
-@property(copy) NSArray * image;
-@property(copy) NSArray * linkedAnswerGroups;
-@property(copy) NSString * query;
+@property (nonatomic, copy) NSArray *image;
+@property (nonatomic, copy) NSArray *linkedAnswerGroups;
+@property (nonatomic, copy) NSString *query;
 
 + (id)webSearchDomainObject;
 + (id)webSearchDomainObjectWithDictionary:(id)arg1 context:(id)arg2;
@@ -22,6 +19,5 @@
 - (void)setImage:(id)arg1;
 - (void)setLinkedAnswerGroups:(id)arg1;
 - (void)setQuery:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

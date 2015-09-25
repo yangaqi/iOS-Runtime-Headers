@@ -2,13 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, SAWebWebSearchResult;
+@interface SAWebObject : SADomainObject
 
-@interface SAWebObject : SADomainObject {
-}
-
-@property(copy) NSString * query;
-@property(retain) SAWebWebSearchResult * results;
+@property (nonatomic, copy) NSString *query;
+@property (nonatomic, retain) SAWebWebSearchResult *results;
 
 + (id)object;
 + (id)objectWithDictionary:(id)arg1 context:(id)arg2;
@@ -19,6 +16,5 @@
 - (id)results;
 - (void)setQuery:(id)arg1;
 - (void)setResults:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

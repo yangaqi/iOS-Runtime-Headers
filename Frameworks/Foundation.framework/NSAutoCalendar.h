@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSCalendar, NSDate, NSLocale, NSTimeZone;
-
 @interface NSAutoCalendar : NSCalendar {
     NSCalendar *cal;
     unsigned int changedFirstWeekday;
@@ -15,6 +13,7 @@
 
 + (BOOL)supportsSecureCoding;
 
+- (id)_init;
 - (void)_update:(id)arg1;
 - (id)calendarIdentifier;
 - (Class)classForCoder;
@@ -26,7 +25,7 @@
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
-- (void)enumerateDatesStartingAfterDate:(id)arg1 matchingComponents:(id)arg2 options:(unsigned int)arg3 usingBlock:(id)arg4;
+- (void)enumerateDatesStartingAfterDate:(id)arg1 matchingComponents:(id)arg2 options:(unsigned int)arg3 usingBlock:(id /* block */)arg4;
 - (unsigned int)firstWeekday;
 - (id)gregorianStartDate;
 - (id)init;

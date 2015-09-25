@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class CKPCSDiagnosticInformation, NSArray, NSDictionary, NSString;
-
 @interface CKDFetchRecordZonePCSDiagnosticsOperation : CKDDatabaseOperation {
     NSString *_identityStatus;
     NSDictionary *_invalidPCSByZoneID;
@@ -12,14 +10,15 @@
     NSDictionary *_validPCSByZoneID;
 }
 
-@property(retain) NSString * identityStatus;
-@property(retain) NSDictionary * invalidPCSByZoneID;
-@property(retain) CKPCSDiagnosticInformation * pcsDiagnosticInfo;
-@property(retain) NSArray * recordZoneIDs;
-@property(retain) NSDictionary * validPCSByZoneID;
+@property (nonatomic, retain) NSString *identityStatus;
+@property (nonatomic, retain) NSDictionary *invalidPCSByZoneID;
+@property (nonatomic, retain) CKPCSDiagnosticInformation *pcsDiagnosticInfo;
+@property (nonatomic, retain) NSArray *recordZoneIDs;
+@property (nonatomic, retain) NSDictionary *validPCSByZoneID;
 
 - (void).cxx_destruct;
 - (void)_handleRecordZoneFetch:(id)arg1 zoneID:(id)arg2 responseCode:(id)arg3;
+- (unsigned long long)activityStart;
 - (id)identityStatus;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
 - (id)invalidPCSByZoneID;

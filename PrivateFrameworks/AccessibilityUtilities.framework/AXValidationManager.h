@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-@class <AXValidationReportingServices>, NSMutableArray, NSString;
-
 @interface AXValidationManager : NSObject {
     NSMutableArray *_consoleErrorMessages;
     BOOL _debugBuild;
@@ -17,35 +15,54 @@
     NSString *_validationTargetName;
 }
 
-@property(retain) NSMutableArray * consoleErrorMessages;
-@property(getter=isDebugBuild) BOOL debugBuild;
-@property BOOL forceDoNotReport;
-@property unsigned int numberOfValidationErrors;
-@property(copy) NSString * overrideProcessName;
-@property BOOL shouldCrashOnError;
-@property BOOL shouldLogToConsole;
-@property BOOL shouldReportToServer;
-@property(retain) <AXValidationReportingServices> * validateionReportingServices;
-@property(copy) NSString * validationTargetName;
+@property (nonatomic, retain) NSMutableArray *consoleErrorMessages;
+@property (getter=isDebugBuild, nonatomic) BOOL debugBuild;
+@property (nonatomic) BOOL forceDoNotReport;
+@property (nonatomic) unsigned int numberOfValidationErrors;
+@property (nonatomic, copy) NSString *overrideProcessName;
+@property (nonatomic) BOOL shouldCrashOnError;
+@property (nonatomic) BOOL shouldLogToConsole;
+@property (nonatomic) BOOL shouldReportToServer;
+@property (nonatomic, retain) <AXValidationReportingServices> *validateionReportingServices;
+@property (nonatomic, copy) NSString *validationTargetName;
 
 + (id)sharedInstance;
 
+- (BOOL)_client:(id)arg1 validateClass:(id)arg2 hasClassMethod:(id)arg3 withFullSignature:(char *)arg4 argList:(void*)arg5;
+- (BOOL)_client:(id)arg1 validateClass:(id)arg2 hasMethod:(id)arg3 methodType:(int)arg4;
+- (BOOL)_client:(id)arg1 validateClass:(id)arg2 hasMethod:(id)arg3 methodType:(int)arg4 returnType:(id)arg5 arguments:(id)arg6;
 - (void)_printConsoleReport:(BOOL)arg1 isDelayed:(BOOL)arg2;
-- (BOOL)_validateClass:(id)arg1 hasMethod:(id)arg2 methodType:(int)arg3;
-- (BOOL)_validateClass:(id)arg1 hasMethod:(id)arg2 methodType:(int)arg3 returnType:(id)arg4 arguments:(id)arg5;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 conformsToProtocol:(id)arg3;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasClassMethod:(id)arg3;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasClassMethod:(id)arg3 withFullSignature:(char *)arg4;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasInstanceMethod:(id)arg3;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasInstanceMethod:(id)arg3 withFullSignature:(char *)arg4;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasInstanceMethod:(id)arg3 withFullSignature:(char *)arg4 argList:(void*)arg5;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasInstanceVariable:(id)arg3;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasInstanceVariable:(id)arg3 withType:(char *)arg4;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasProperty:(id)arg3;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 hasProperty:(id)arg3 withType:(char *)arg4;
+- (BOOL)client:(id)arg1 validateClass:(id)arg2 isKindOfClass:(id)arg3;
+- (BOOL)client:(id)arg1 validateProtocol:(id)arg2 hasMethod:(id)arg3 isInstanceMethod:(BOOL)arg4 isRequired:(BOOL)arg5;
+- (BOOL)client:(id)arg1 validateProtocol:(id)arg2 hasOptionalClassMethod:(id)arg3;
+- (BOOL)client:(id)arg1 validateProtocol:(id)arg2 hasOptionalInstanceMethod:(id)arg3;
+- (BOOL)client:(id)arg1 validateProtocol:(id)arg2 hasProperty:(id)arg3;
+- (BOOL)client:(id)arg1 validateProtocol:(id)arg2 hasRequiredClassMethod:(id)arg3;
+- (BOOL)client:(id)arg1 validateProtocol:(id)arg2 hasRequiredInstanceMethod:(id)arg3;
 - (id)consoleErrorMessages;
 - (void)dealloc;
 - (BOOL)forceDoNotReport;
 - (id)init;
-- (void)installSafeCategories:(id)arg1 afterDelay:(double)arg2 validationTargetName:(id)arg3 overrideProcessName:(id)arg4;
-- (void)installSafeCategories:(id)arg1 afterDelay:(double)arg2 validationTargetName:(id)arg3 overrideProcessName:(id)arg4 forceDoNotReport:(BOOL)arg5;
+- (void)installSafeCategories:(id /* block */)arg1 afterDelay:(double)arg2 validationTargetName:(id)arg3 overrideProcessName:(id)arg4;
+- (void)installSafeCategories:(id /* block */)arg1 afterDelay:(double)arg2 validationTargetName:(id)arg3 overrideProcessName:(id)arg4 forceDoNotReport:(BOOL)arg5;
 - (BOOL)installSafeCategory:(id)arg1;
 - (BOOL)installSafeCategory:(id)arg1 canInteractWithTargetClass:(BOOL)arg2;
 - (BOOL)isDebugBuild;
 - (unsigned int)numberOfValidationErrors;
 - (id)overrideProcessName;
-- (void)performValidations:(id)arg1 withPreValidationHandler:(id)arg2 postValidationHandler:(id)arg3;
-- (void)performValidations:(id)arg1 withPreValidationHandler:(id)arg2 postValidationHandler:(id)arg3 safeCategoryInstallationHandler:(id)arg4;
+- (void)performValidations:(id /* block */)arg1 withPreValidationHandler:(id /* block */)arg2 postValidationHandler:(id /* block */)arg3;
+- (void)performValidations:(id /* block */)arg1 withPreValidationHandler:(id /* block */)arg2 postValidationHandler:(id /* block */)arg3 safeCategoryInstallationHandler:(id /* block */)arg4;
 - (void)sendExceptionForInstallingSafeCategory:(id)arg1 onTarget:(id)arg2 overrideProcessName:(id)arg3;
 - (void)sendExceptionForSafeBlock:(id)arg1 overrideProcessName:(id)arg2;
 - (void)sendExceptionForSafeIVarKey:(id)arg1 onTarget:(id)arg2 overrideProcessName:(id)arg3;
@@ -84,6 +101,7 @@
 - (BOOL)validateClass:(id)arg1 hasInstanceVariable:(id)arg2;
 - (BOOL)validateClass:(id)arg1 hasInstanceVariable:(id)arg2 withType:(char *)arg3;
 - (BOOL)validateClass:(id)arg1 hasProperty:(id)arg2;
+- (BOOL)validateClass:(id)arg1 hasProperty:(id)arg2 withType:(char *)arg3;
 - (BOOL)validateClass:(id)arg1 isKindOfClass:(id)arg2;
 - (BOOL)validateProtocol:(id)arg1 hasMethod:(id)arg2 isInstanceMethod:(BOOL)arg3 isRequired:(BOOL)arg4;
 - (BOOL)validateProtocol:(id)arg1 hasOptionalClassMethod:(id)arg2;

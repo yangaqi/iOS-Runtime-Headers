@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/iAd.framework/iAd
  */
 
-@class <ADSSession_RPC>, ADAdSheetConnection, NSMutableArray, NSString;
-
 @interface ADSession : NSObject <ADAdSheetConnectionDelegate, ADAdSheetProxyDelegate, ADSession_RPC> {
     NSMutableArray *_adSpaces;
     BOOL _applicationCanReceiveBackgroundAds;
@@ -11,20 +9,19 @@
     ADAdSheetConnection *_connection;
 }
 
-@property(retain) NSMutableArray * adSpaces;
-@property BOOL applicationCanReceiveBackgroundAds;
-@property int classicUnavailableToken;
-@property(retain) ADAdSheetConnection * connection;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) <ADSSession_RPC> * rpcProxy;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) NSMutableArray *adSpaces;
+@property (nonatomic) BOOL applicationCanReceiveBackgroundAds;
+@property (nonatomic) int classicUnavailableToken;
+@property (nonatomic, retain) ADAdSheetConnection *connection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) <ADSSession_RPC> *rpcProxy;
+@property (readonly) Class superclass;
 
 + (id)sharedInstance;
 
 - (void)_appDidBecomeActive;
-- (void)_appWillResignActive;
 - (id)_linkedOnVersion;
 - (void)_remote_heartbeatTokenDidChange:(id)arg1 expirationDate:(double)arg2 error:(id)arg3;
 - (void)_remote_policyEngineDidIdleDisable;
@@ -33,18 +30,23 @@
 - (id)adSheetMachServiceName;
 - (id)adSpaces;
 - (void)addClientToSegments:(id)arg1 replaceExisting:(BOOL)arg2;
+- (void)addClientToSegments:(id)arg1 replaceExisting:(BOOL)arg2 privateSegment:(BOOL)arg3;
 - (id)additionalAdSheetLaunchOptions;
 - (BOOL)applicationCanReceiveBackgroundAds;
 - (int)classicUnavailableToken;
 - (void)configureConnection:(id)arg1;
 - (id)connection;
-- (void)determineAppInstallAttributionWithCompletionHandler:(id)arg1;
+- (void)determineAppInstallAttributionWithCompletionHandler:(id /* block */)arg1;
 - (id)init;
-- (void)lookupAdConversionDetails:(id)arg1;
-- (void)performWhenConnected:(id)arg1;
+- (void)lookupAdConversionDetails:(id /* block */)arg1;
+- (void)performWhenConnected:(id /* block */)arg1;
 - (void)registerAdSpace:(id)arg1;
+- (void)reportPrerollRequest;
+- (void)requestAdsForContext:(id)arg1 creativeTypes:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)requestAdsForContext:(id)arg1 serverURL:(id)arg2 creativeTypes:(id)arg3 completionHandler:(id /* block */)arg4;
+- (void)requestAttributionDetailsWithBlock:(id /* block */)arg1;
 - (id)rpcProxy;
-- (id)rpcProxyWithErrorHandler:(id)arg1;
+- (id)rpcProxyWithErrorHandler:(id /* block */)arg1;
 - (void)setAdSpaces:(id)arg1;
 - (void)setApplicationCanReceiveBackgroundAds:(BOOL)arg1;
 - (void)setClassicUnavailableToken:(int)arg1;

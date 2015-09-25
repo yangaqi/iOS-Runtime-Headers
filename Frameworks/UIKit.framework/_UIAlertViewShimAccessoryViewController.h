@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIViewController;
-
 @interface _UIAlertViewShimAccessoryViewController : UIViewController {
     UIViewController *_accessoryViewController;
     float _preferredHeight;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithAccessoryViewController:(id)arg1;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 

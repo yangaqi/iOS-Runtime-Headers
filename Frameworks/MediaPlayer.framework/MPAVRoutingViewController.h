@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPAVRoutingViewControllerDelegate>, MPAVRoutingController, MPWeakTimer, NSArray, NSString, UIColor, UITableView;
-
 @interface MPAVRoutingViewController : UIViewController <MPAVRoutingControllerDelegate, MPAVRoutingTableViewCellDelegate, UITableViewDataSource, UITableViewDelegate> {
     int _airPlayPasswordAlertDidAppearToken;
     BOOL _airPlayPasswordAlertDidAppearTokenIsValid;
@@ -13,31 +11,38 @@
     NSArray *_cachedRoutes;
     BOOL _cachedShowAirPlayDebugButton;
     <MPAVRoutingViewControllerDelegate> *_delegate;
+    int _discoveryModeBeforeEnteringBackground;
     BOOL _hasCachedAirPlayDebugButtonStatus;
     BOOL _needsDisplayedRoutesUpdate;
     MPAVRoutingController *_routingController;
     unsigned int _style;
+    BOOL _suspendedDiscoveryModeDueToApplicationState;
     UIColor *_tableCellsBackgroundColor;
     UIColor *_tableCellsContentColor;
     UITableView *_tableView;
     MPWeakTimer *_updateTimer;
 }
 
-@property BOOL allowMirroring;
-@property(setter=setAVItemType:) unsigned int avItemType;
-@property(copy,readonly) NSString * debugDescription;
-@property <MPAVRoutingViewControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) unsigned int style;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL allowMirroring;
+@property (setter=setAVItemType:, nonatomic) unsigned int avItemType;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MPAVRoutingViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int style;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
+- (void)_applicationDidEnterBackgroundNotification:(id)arg1;
+- (void)_applicationWillEnterForegroundNotification:(id)arg1;
+- (void)_beginRouteDiscovery;
 - (unsigned int)_debugButtonTableViewIndex;
 - (id)_displayedRoutes;
+- (void)_endRouteDiscovery;
 - (float)_expandedCellHeight;
 - (float)_normalCellHeight;
 - (void)_pickRoute:(id)arg1;
+- (void)_registerNotifications;
 - (unsigned int)_routeIndexForTableViewIndex:(unsigned int)arg1;
 - (id)_routesWhereMirroringIsPreferred;
 - (void)_serviceWillPresentAuthenticationPromptNotification:(id)arg1;
@@ -51,8 +56,12 @@
 - (id)_tableCellsBackgroundColor;
 - (id)_tableCellsContentColor;
 - (id)_tableView;
+- (float)_tableViewFooterViewHeight;
+- (float)_tableViewHeaderViewHeight;
 - (float)_tableViewHeightAccordingToDataSource;
 - (unsigned int)_tableViewIndexForRouteIndex:(unsigned int)arg1;
+- (unsigned int)_tableViewNumberOfRows;
+- (void)_unregisterNotifications;
 - (void)_updateDisplayedRoutes;
 - (BOOL)allowMirroring;
 - (unsigned int)avItemType;

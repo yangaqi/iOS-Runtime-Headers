@@ -2,16 +2,20 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@class NSArray, NSHTTPCookieStorageInternal;
-
 @interface NSHTTPCookieStorage : NSObject {
     NSHTTPCookieStorageInternal *_internal;
 }
 
 @property unsigned int cookieAcceptPolicy;
-@property(copy,readonly) NSArray * cookies;
+@property (readonly, copy) NSArray *cookies;
 
-+ (id)aa_icloudCookies;
+// Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+
++ (id)_groupContainerCookieStorages;
++ (id)_groupContainerStoragesLock;
++ (void)_setSharedHTTPCookieStorage:(id)arg1;
++ (id)_sharedCookieStorageLock;
++ (id)sharedCookieStorageForGroupContainerIdentifier:(id)arg1;
 + (id)sharedHTTPCookieStorage;
 
 - (struct OpaqueCFHTTPCookieStorage { }*)_CFHTTPCookieStorage;
@@ -28,7 +32,7 @@
 - (void)dealloc;
 - (void)deleteCookie:(id)arg1;
 - (id)description;
-- (void)getCookiesForTask:(id)arg1 completionHandler:(id)arg2;
+- (void)getCookiesForTask:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)init;
 - (void)removeCookiesSinceDate:(id)arg1;
 - (void)setCookie:(id)arg1;
@@ -37,6 +41,13 @@
 - (void)setCookiesFromResponseHeader:(id)arg1 forURL:(id)arg2 policyBaseURL:(id)arg3;
 - (id)sortedCookiesUsingDescriptors:(id)arg1;
 - (void)storeCookies:(id)arg1 forTask:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
+
++ (id)aa_icloudCookies;
+
+// Image: /System/Library/PrivateFrameworks/WebUI.framework/WebUI
+
 - (void)webui_applySafariCookieAcceptPolicy;
 - (void)webui_migrateSafariCookieAcceptPolicy;
 

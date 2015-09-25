@@ -2,20 +2,18 @@
    Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
  */
 
-@class GLKTextureInfo, NSArray, UIImage;
-
-@interface FIUIRingsViewController : GLKViewController <FIUIRingGroupAnimationStatusDelegate> {
+@interface FIUIRingsViewController : FIUIGLViewController <FIUIRingGroupAnimationStatusDelegate> {
     BOOL _buffersCreated;
     struct CGPoint { 
         float x; 
         float y; 
     } _cachedGroupCenter;
-    float _cachedPointSize[3];
+    float _cachedPointSize;
     struct CGPoint { 
         float x; 
         float y; 
-    } _cachedPosition[3];
-    float _cachedThickness[3];
+    } _cachedPosition;
+    float _cachedThickness;
     unsigned int _color1Attribute;
     unsigned int _color2Attribute;
     unsigned int _coordPercentAttribute;
@@ -23,9 +21,8 @@
     unsigned int _coordinateAttribute;
     unsigned int _coordinateBuffer;
     BOOL _didSetup;
-    BOOL _dirtiedProjectionMatrix;
-    BOOL _displayLinkInstalledInNewRunLoop;
-    BOOL _displayLinkRemovedFromOldRunLoop;
+    unsigned int _endCapShadowDistanceUniform;
+    unsigned int _flatColorProgram;
     unsigned int _iconSpriteColorAttribute;
     unsigned int _iconSpriteIconsPerDimensionUniform;
     UIImage *_iconSpriteImage;
@@ -69,11 +66,11 @@
         float m[16]; 
     } _projectionMatrix;
     unsigned int _ringEmptyProgram;
+    unsigned int _ringEndCapProgram;
     NSArray *_ringGroups;
     int _ringGroupsPerRow;
     unsigned int _ringProgram;
     float _ringSpacing;
-    unsigned int _ringStartProgram;
     BOOL _ringVAOinit;
     union _GLKVector2 { struct { float x_1_1_1; float x_1_1_2; } x1; struct { float x_2_1_1; float x_2_1_2; } x2; float x3[2]; } *_ringVertexCoordinates;
     union _GLKVector2 { struct { float x_1_1_1; float x_1_1_2; } x1; struct { float x_2_1_1; float x_2_1_2; } x2; float x3[2]; } *_ringVertexPositions;
@@ -83,15 +80,14 @@
     unsigned int _sizesAttribute;
     unsigned int _transformUniform;
     unsigned int _trigResultsAttribute;
-    BOOL _viewIsVisible;
 }
 
-@property(retain) UIImage * iconSpriteImage;
-@property unsigned int iconTextureColumns;
-@property unsigned int iconTextureRows;
-@property(readonly) NSArray * ringGroups;
-@property int ringGroupsPerRow;
-@property float ringSpacing;
+@property (nonatomic, retain) UIImage *iconSpriteImage;
+@property (nonatomic) unsigned int iconTextureColumns;
+@property (nonatomic) unsigned int iconTextureRows;
+@property (nonatomic, readonly) NSArray *ringGroups;
+@property (nonatomic) int ringGroupsPerRow;
+@property (nonatomic) float ringSpacing;
 
 + (id)_iconSpriteImage;
 + (id)_ringsViewControllerConfiguredForCompanionWithNumberOfRings:(int)arg1 ringType:(int)arg2;
@@ -99,23 +95,20 @@
 + (id)ringsViewControllerConfiguredForThreeRingsOnCompanion;
 
 - (void).cxx_destruct;
-- (void)_appBecameActive:(id)arg1;
 - (void)_context_createBuffers;
+- (void)_context_loadFlatColorProgramIfNeeded;
 - (void)_context_loadRingDataForGroupAtIndex:(int)arg1;
 - (void)_context_loadRingEmptyProgramIfNeeded;
 - (void)_context_loadUniformsAndAttributes;
-- (void)_context_loadVertexShader:(id)arg1 fragmentShader:(id)arg2 forProgram:(unsigned int*)arg3;
 - (void)_context_prepareForIconDraw;
 - (void)_context_prepareForRingDraw:(BOOL)arg1;
 - (void)_destroyBuffers;
-- (void)_installNewDisplayLinkIfAppIsActive;
 - (void)_loadIconDataForGroupAtIndex:(int)arg1;
 - (void)_setRingGroups:(id)arg1;
 - (void)_setupIfNecessary;
 - (void)_updateProjectionMatrix;
 - (void)dealloc;
-- (void)glkView:(id)arg1 drawInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
-- (void)hack_forceUnpauseRings;
+- (unsigned int)drawInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)iconSpriteImage;
 - (unsigned int)iconTextureColumns;
 - (unsigned int)iconTextureRows;
@@ -124,9 +117,8 @@
 - (id)ringGroups;
 - (int)ringGroupsPerRow;
 - (float)ringSpacing;
+- (void)setActiveEnergyPercentage:(float)arg1 animated:(BOOL)arg2;
 - (void)setBriskPercentage:(float)arg1 animated:(BOOL)arg2;
-- (void)setCalorieDotPercentage:(float)arg1 animated:(BOOL)arg2;
-- (void)setCaloriePercentage:(float)arg1 animated:(BOOL)arg2;
 - (void)setIconSpriteImage:(id)arg1;
 - (void)setIconTextureColumns:(unsigned int)arg1;
 - (void)setIconTextureRows:(unsigned int)arg1;
@@ -135,13 +127,9 @@
 - (void)setRingSpacing:(float)arg1;
 - (BOOL)shouldAutorotate;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
-- (id)snapshot;
 - (unsigned int)supportedInterfaceOrientations;
 - (void)update;
 - (void)viewDidLayoutSubviews;
 - (void)viewDidLoad;
-- (void)viewDidMoveToWindow:(id)arg1 shouldAppearOrDisappear:(BOOL)arg2;
-- (void)viewWillAppear:(BOOL)arg1;
-- (void)viewWillDisappear:(BOOL)arg1;
 
 @end

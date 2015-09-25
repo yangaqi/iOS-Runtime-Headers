@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPArtworkDataSource>, NSObject<OS_dispatch_queue>;
-
 @interface MPMediaLibraryDataProviderSystemML3 : MPMediaLibraryDataProviderML3 {
     <MPArtworkDataSource> *_completeMyCollectionArtworkDataSource;
     long long _currentRevision;
@@ -17,16 +15,16 @@
 - (void).cxx_destruct;
 - (long long)_currentRevision;
 - (void)_initInstanceVariableOnce;
-- (void)_seedCloudPlaylistWithTrack:(id)arg1 container:(id)arg2 completionBlock:(id)arg3;
+- (void)_seedCloudPlaylistWithTrack:(id)arg1 container:(id)arg2 completionBlock:(id /* block */)arg3;
 - (id)completeMyCollectionArtworkDataSource;
 - (void*)createGeniusClusterPlaylistWithSeedItemIdentifiers:(long long*)arg1 count:(unsigned int)arg2 error:(id*)arg3;
-- (id)errorResolverForMediaItem:(id)arg1;
+- (id)errorResolverForItem:(id)arg1;
 - (long long*)generateItemIdentifiersForGeniusClusterPlaylist:(void*)arg1 count:(unsigned int*)arg2 error:(id*)arg3;
 - (id)initWithLibrary:(id)arg1;
 - (BOOL)isGeniusEnabled;
 - (void)releaseGeniusClusterPlaylist:(void*)arg1;
-- (void)seedPlaylistWithIdentifier:(long long)arg1 withItemWithIdentifier:(long long)arg2 completionBlock:(id)arg3;
-- (BOOL)supportsEntityChangeTrackingForMediaEntityType:(unsigned int)arg1 collectionGroupingType:(int)arg2 dataProviderClass:(out Class*)arg3;
+- (void)seedPlaylistWithIdentifier:(long long)arg1 withItemWithIdentifier:(long long)arg2 completionBlock:(id /* block */)arg3;
+- (BOOL)supportsEntityChangeTrackingForMediaEntityType:(int)arg1 collectionGroupingType:(int)arg2 dataProviderClass:(out Class*)arg3;
 - (void)updateEntitesToCurrentRevision;
 
 @end

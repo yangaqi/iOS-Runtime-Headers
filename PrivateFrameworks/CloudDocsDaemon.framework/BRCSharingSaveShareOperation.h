@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-@interface BRCSharingSaveShareOperation : BRCSharingModifyShareOperation {
-}
+@interface BRCSharingSaveShareOperation : BRCSharingModifyShareOperation
 
 - (id)initWithShare:(id)arg1 zone:(id)arg2;
 - (void)main;
+- (unsigned long long)startActivity;
 
 @end

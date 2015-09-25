@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CADisplayLink, NSString;
-
 @interface UIScrollTestParameters : NSObject {
     int _axis;
     NSString *_currentTest;
@@ -14,15 +12,16 @@
     float _startOffset;
 }
 
-@property int axis;
-@property(retain) NSString * currentTest;
-@property int delta;
-@property(retain) CADisplayLink * displayLink;
-@property(readonly) float endOffset;
-@property int iterations;
-@property int scrollLength;
-@property float startOffset;
+@property (nonatomic) int axis;
+@property (nonatomic, retain) NSString *currentTest;
+@property (nonatomic) int delta;
+@property (nonatomic, retain) CADisplayLink *displayLink;
+@property (nonatomic, readonly) float endOffset;
+@property (nonatomic) int iterations;
+@property (nonatomic) int scrollLength;
+@property (nonatomic) float startOffset;
 
+- (void).cxx_destruct;
 - (int)axis;
 - (id)currentTest;
 - (void)dealloc;

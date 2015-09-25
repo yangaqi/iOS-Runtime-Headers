@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, NSMutableDictionary, NSString;
-
 @interface OCXRelationships : NSObject {
     unsigned int mNextId;
     NSString *mPath;
@@ -18,6 +16,7 @@
 - (id)initWithPath:(id)arg1;
 - (BOOL)isEmpty;
 - (id)path;
+- (id)targetForKey:(id)arg1;
 - (void)writeRelationshipsToFilename:(id)arg1 stream:(id)arg2;
 
 @end

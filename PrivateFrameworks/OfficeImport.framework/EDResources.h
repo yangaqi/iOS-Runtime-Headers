@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection, EDColorsCollection, EDContentFormatsCollection, EDFontsCollection, EDLinksCollection, EDStylesCollection, EDTableStylesCollection;
-
 @interface EDResources : NSObject {
     EDCollection *mAlignmentInfos;
     EDCollection *mBorder;
@@ -27,6 +25,7 @@
 - (id)colors;
 - (id)contentFormats;
 - (void)dealloc;
+- (id)description;
 - (id)differentialStyles;
 - (id)fills;
 - (id)fonts;

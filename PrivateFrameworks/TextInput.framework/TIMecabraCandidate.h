@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
  */
 
-@class NSNumber, NSString;
-
 @interface TIMecabraCandidate : TIKeyboardCandidate {
     NSString *_candidate;
+    int _cursorMovement;
+    unsigned int _deleteCount;
     BOOL _emojiCandidate;
     BOOL _extensionCandidate;
     NSString *_input;
@@ -13,20 +13,25 @@
     NSNumber *_mecabraCandidatePointerValue;
 }
 
-@property(retain) NSNumber * mecabraCandidatePointerValue;
+@property (nonatomic, retain) NSNumber *mecabraCandidatePointerValue;
 
 + (BOOL)supportsSecureCoding;
 + (int)type;
 
 - (id)candidate;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (int)cursorMovement;
 - (void)dealloc;
+- (unsigned int)deleteCount;
 - (void)encodeWithCandidateResultSetCoder:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCandidate:(id)arg1 forInput:(id)arg2 mecabraCandidatePointerValue:(id)arg3 isExtension:(BOOL)arg4 isEmoji:(BOOL)arg5 isShortcut:(BOOL)arg6;
+- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 mecabraCandidatePointerValue:(id)arg3 isExtension:(BOOL)arg4 isEmoji:(BOOL)arg5 isShortcut:(BOOL)arg6 deleteCount:(unsigned int)arg7;
+- (id)initWithCandidate:(id)arg1 forInput:(id)arg2 mecabraCandidatePointerValue:(id)arg3 isExtension:(BOOL)arg4 isEmoji:(BOOL)arg5 isShortcut:(BOOL)arg6 deleteCount:(unsigned int)arg7 cursorMovement:(int)arg8;
 - (id)initWithCandidateResultSetCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithSurface:(id)arg1 input:(id)arg2 mecabraCandidatePointerValue:(id)arg3;
+- (id)initWithSurface:(id)arg1 input:(id)arg2 mecabraCandidatePointerValue:(id)arg3 isExtension:(BOOL)arg4;
 - (id)input;
 - (BOOL)isEmojiCandidate;
 - (BOOL)isExtensionCandidate;

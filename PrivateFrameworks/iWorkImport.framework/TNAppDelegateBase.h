@@ -2,22 +2,21 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray;
+@interface TNAppDelegateBase : TSABaseApplicationDelegate
 
-@interface TNAppDelegateBase : TSABaseApplicationDelegate {
-}
-
-@property(readonly) NSArray * excelDocumentTypes;
+@property (nonatomic, readonly) NSArray *excelDocumentTypes;
 
 - (id)appChartPropertyOverrides;
 - (void)applicationDidFinishLaunching:(id)arg1;
 - (id)applicationName;
 - (id)applicationTemplateVariantsForLocale:(struct __CFLocale { }*)arg1;
+- (id)cloudKitContainerIdentifier;
 - (void)configureSharedCode;
 - (id)createCompatibilityDelegate;
 - (id)defaultAppStoreURLString;
 - (Class)documentRootClass;
 - (id)documentTypeDisplayName;
+- (id)documentTypeDisplayNameForSharingInvitation;
 - (Class)documentViewControllerClass;
 - (id)excelDocumentTypes;
 - (id)image32IconForTXTFiles;
@@ -30,14 +29,18 @@
 - (id)previewImageNameForEncryptedNativeDocument;
 - (id)previewImageNameForNativeDocument;
 - (void)registerClassTypeMappings;
+- (id)sharedAlertMessageWithUserName:(id)arg1;
+- (id)sharedReadOnlyAlertMessageWithUserName:(id)arg1;
 - (id)stringForCloseDocument;
 - (id)stringForCollaboratorConflict;
 - (id)stringForCollaboratorConflictDetails;
 - (id)stringForCollaboratorConflictWithKeepDetails;
 - (id)stringForCollaboratorsBlockedWhileOffline;
 - (id)stringForDocumentUpdated;
-- (id)stringForDocumentUpdatedByOwner;
+- (id)stringForDocumentUpdatedByOwnerDetails;
+- (id)stringForDocumentUpdatedByOwnerWithKeepDetails;
 - (id)stringForDocumentUpdatedTitle;
+- (id)stringForLearnMoreSharingURL;
 - (id)stringForRemoteVersionRestorationAlertMessage;
 - (id)stringForRemoteVersionRestorationWithUnsavedChangesAlertMessage;
 - (id)stringForUpdatingDocument;

@@ -2,23 +2,23 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAReminderPhonePayload : AceObject <SAReminderPayload>
 
-@interface SAReminderPhonePayload : AceObject <SAReminderPayload> {
-}
-
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * recipient;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *phoneCallType;
+@property (nonatomic, copy) NSString *recipient;
+@property (readonly) Class superclass;
 
 + (id)phonePayload;
 + (id)phonePayloadWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)encodedClassName;
 - (id)groupIdentifier;
+- (id)phoneCallType;
 - (id)recipient;
+- (void)setPhoneCallType:(id)arg1;
 - (void)setRecipient:(id)arg1;
 
 @end

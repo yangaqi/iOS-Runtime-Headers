@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
  */
 
-@class CBPeripheral, CBService, NSArray, NSData, NSNumber;
-
 @interface CBCharacteristic : CBAttribute {
     NSArray *_descriptors;
     NSNumber *_handle;
@@ -14,17 +12,19 @@
     CBService *_service;
     NSData *_value;
     NSNumber *_valueHandle;
+    unsigned long long _valueTimestamp;
 }
 
-@property(retain) NSArray * descriptors;
-@property(readonly) NSNumber * handle;
-@property(readonly) BOOL isBroadcasted;
+@property (retain) NSArray *descriptors;
+@property (nonatomic, readonly) NSNumber *handle;
+@property (readonly) BOOL isBroadcasted;
 @property BOOL isNotifying;
-@property(readonly) CBPeripheral * peripheral;
-@property(readonly) unsigned int properties;
-@property CBService * service;
-@property(retain) NSData * value;
-@property(readonly) NSNumber * valueHandle;
+@property (nonatomic, readonly) CBPeripheral *peripheral;
+@property (nonatomic) unsigned int properties;
+@property (nonatomic) CBService *service;
+@property (retain) NSData *value;
+@property (nonatomic, readonly) NSNumber *valueHandle;
+@property (nonatomic, readonly) unsigned long long valueTimestamp;
 
 - (void)dealloc;
 - (id)description;
@@ -44,9 +44,11 @@
 - (id)service;
 - (void)setDescriptors:(id)arg1;
 - (void)setIsNotifying:(BOOL)arg1;
+- (void)setProperties:(unsigned int)arg1;
 - (void)setService:(id)arg1;
 - (void)setValue:(id)arg1;
 - (id)value;
 - (id)valueHandle;
+- (unsigned long long)valueTimestamp;
 
 @end

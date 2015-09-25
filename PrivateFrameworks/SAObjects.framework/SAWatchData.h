@@ -2,18 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAWatchData : AceObject <SAAceSerializable>
 
-@interface SAWatchData : AceObject <SAAceSerializable> {
-}
-
-@property BOOL configuredForLeftWrist;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * interfaceOrientation;
-@property(readonly) Class superclass;
-@property BOOL wristDetected;
+@property (nonatomic) BOOL configuredForLeftWrist;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *interfaceOrientation;
+@property (readonly) Class superclass;
 
 + (id)watchData;
 + (id)watchDataWithDictionary:(id)arg1 context:(id)arg2;
@@ -24,7 +20,5 @@
 - (id)interfaceOrientation;
 - (void)setConfiguredForLeftWrist:(BOOL)arg1;
 - (void)setInterfaceOrientation:(id)arg1;
-- (void)setWristDetected:(BOOL)arg1;
-- (BOOL)wristDetected;
 
 @end

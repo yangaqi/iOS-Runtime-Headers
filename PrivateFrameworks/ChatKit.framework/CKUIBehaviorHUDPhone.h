@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@interface CKUIBehaviorHUDPhone : CKUIBehaviorPhone {
-}
+@interface CKUIBehaviorHUDPhone : CKUIBehaviorPhone
 
 - (id)blue_sendButtonColor;
 - (id)entryFieldAudioRecordingBaloonColor;
@@ -19,6 +18,6 @@
 - (int)keyboardAppearance;
 - (BOOL)shouldNotShowSendButton;
 - (id)siri_sendButtonColor;
-- (BOOL)usesJoystick;
+- (BOOL)usesActionMenu;
 
 @end

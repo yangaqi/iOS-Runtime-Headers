@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKeyboardEmoji, UILabel;
-
 @interface UIKeyboardEmojiCollectionViewCell : UICollectionViewCell {
     UIKeyboardEmoji *_emoji;
     UILabel *_emojiLabel;
 }
 
-@property(copy) UIKeyboardEmoji * emoji;
-@property int emojiFontSize;
+@property (nonatomic, copy) UIKeyboardEmoji *emoji;
+@property (nonatomic) int emojiFontSize;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)debugDescription;
 - (id)emoji;
 - (int)emojiFontSize;

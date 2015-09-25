@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class PSEditingPane;
-
 @interface PSDetailController : PSViewController {
     PSEditingPane *_pane;
 }
 
-@property PSEditingPane * pane;
+@property (nonatomic) PSEditingPane *pane;
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (void)didRotateFromInterfaceOrientation:(int)arg1;
 - (void)loadPane;

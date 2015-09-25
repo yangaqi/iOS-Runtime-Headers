@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableDictionary, NSTimer, UIButton, UIColor, UIImageView;
-
 @interface UIStepper : UIControl {
     BOOL _autorepeat;
     BOOL _continuous;
@@ -21,18 +19,20 @@
     BOOL _wraps;
 }
 
-@property BOOL autorepeat;
-@property(getter=isContinuous) BOOL continuous;
-@property double maximumValue;
-@property double minimumValue;
-@property double stepValue;
-@property(retain) UIColor * tintColor;
-@property double value;
-@property BOOL wraps;
+@property (nonatomic) BOOL autorepeat;
+@property (getter=isContinuous, nonatomic) BOOL continuous;
+@property (nonatomic) double maximumValue;
+@property (nonatomic) double minimumValue;
+@property (nonatomic) double stepValue;
+@property (nonatomic, retain) UIColor *tintColor;
+@property (nonatomic) double value;
+@property (nonatomic) BOOL wraps;
 
+- (void).cxx_destruct;
 - (void)_commonStepperInit;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedHeight;
 - (BOOL)_contentHuggingDefault_isUsuallyFixedWidth;
+- (unsigned int)_controlEventsForActionTriggered;
 - (struct CGSize { float x1; float x2; })_intrinsicSizeWithinSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)_populateArchivedSubviews:(id)arg1;
 - (void)_setBackgroundImage:(id)arg1 forState:(unsigned int)arg2;
@@ -51,7 +51,6 @@
 - (BOOL)beginTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
 - (void)cancelTrackingWithEvent:(id)arg1;
 - (BOOL)continueTrackingWithTouch:(id)arg1 withEvent:(id)arg2;
-- (void)dealloc;
 - (id)decrementImageForState:(unsigned int)arg1;
 - (id)dividerImageForLeftSegmentState:(unsigned int)arg1 rightSegmentState:(unsigned int)arg2;
 - (void)encodeWithCoder:(id)arg1;

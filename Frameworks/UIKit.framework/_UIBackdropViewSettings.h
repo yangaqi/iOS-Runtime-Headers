@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIColor, UIImage, _UIBackdropColorSettings, _UIBackdropView;
-
 @interface _UIBackdropViewSettings : NSObject {
     BOOL _appliesTintAndBlurSettings;
     _UIBackdropView *_backdrop;
@@ -14,6 +12,8 @@
     float _colorBurnTintAlpha;
     float _colorBurnTintLevel;
     UIImage *_colorBurnTintMaskImage;
+    float _colorOffsetAlpha;
+    NSValue *_colorOffsetMatrix;
     _UIBackdropColorSettings *_colorSettings;
     UIColor *_colorTint;
     float _colorTintAlpha;
@@ -51,74 +51,83 @@
     int _suppressSettingsDidChange;
     BOOL _usesBackdropEffectView;
     BOOL _usesColorBurnTintView;
+    BOOL _usesColorOffset;
     BOOL _usesColorTintView;
     BOOL _usesContentView;
     BOOL _usesDarkeningTintView;
     BOOL _usesGrayscaleTintView;
     unsigned int _version;
+    float _zoom;
     BOOL _zoomsBack;
 }
 
-@property BOOL appliesTintAndBlurSettings;
-@property _UIBackdropView * backdrop;
-@property(getter=isBackdropVisible) BOOL backdropVisible;
-@property int blurHardEdges;
-@property(copy) NSString * blurQuality;
-@property float blurRadius;
-@property BOOL blursWithHardEdges;
-@property float colorBurnTintAlpha;
-@property float colorBurnTintLevel;
-@property(retain) UIImage * colorBurnTintMaskImage;
-@property(retain) _UIBackdropColorSettings * colorSettings;
-@property(retain) UIColor * colorTint;
-@property float colorTintAlpha;
-@property float colorTintMaskAlpha;
-@property(retain) UIImage * colorTintMaskImage;
-@property(retain) UIColor * combinedTintColor;
-@property BOOL darkenWithSourceOver;
-@property float darkeningTintAlpha;
-@property float darkeningTintBrightness;
-@property float darkeningTintHue;
-@property(retain) UIImage * darkeningTintMaskImage;
-@property float darkeningTintSaturation;
-@property(setter=setDesignMode:) BOOL designMode;
-@property(getter=isEnabled) BOOL enabled;
-@property BOOL explicitlySetGraphicsQuality;
-@property float filterMaskAlpha;
-@property(retain) UIImage * filterMaskImage;
-@property int graphicsQuality;
-@property float grayscaleTintAlpha;
-@property float grayscaleTintLevel;
-@property float grayscaleTintMaskAlpha;
-@property(retain) UIImage * grayscaleTintMaskImage;
-@property(getter=isHighlighted) BOOL highlighted;
-@property(retain) UIColor * legibleColor;
-@property BOOL lightenGrayscaleWithSourceOver;
-@property int renderingHint;
-@property BOOL requiresColorStatistics;
-@property struct __CFRunLoopObserver { }* runLoopObserver;
-@property float saturationDeltaFactor;
-@property float scale;
-@property(getter=isSelected) BOOL selected;
-@property int stackingLevel;
-@property double statisticsInterval;
-@property int style;
-@property int suppressSettingsDidChange;
-@property BOOL usesBackdropEffectView;
-@property BOOL usesColorBurnTintView;
-@property BOOL usesColorTintView;
-@property BOOL usesContentView;
-@property BOOL usesDarkeningTintView;
-@property BOOL usesGrayscaleTintView;
-@property unsigned int version;
-@property BOOL zoomsBack;
+@property (nonatomic) BOOL appliesTintAndBlurSettings;
+@property (nonatomic) _UIBackdropView *backdrop;
+@property (getter=isBackdropVisible, nonatomic) BOOL backdropVisible;
+@property (nonatomic) int blurHardEdges;
+@property (nonatomic, copy) NSString *blurQuality;
+@property (nonatomic) float blurRadius;
+@property (nonatomic) BOOL blursWithHardEdges;
+@property (nonatomic) float colorBurnTintAlpha;
+@property (nonatomic) float colorBurnTintLevel;
+@property (nonatomic, retain) UIImage *colorBurnTintMaskImage;
+@property (nonatomic) float colorOffsetAlpha;
+@property (nonatomic, retain) NSValue *colorOffsetMatrix;
+@property (nonatomic, retain) _UIBackdropColorSettings *colorSettings;
+@property (nonatomic, retain) UIColor *colorTint;
+@property (nonatomic) float colorTintAlpha;
+@property (nonatomic) float colorTintMaskAlpha;
+@property (nonatomic, retain) UIImage *colorTintMaskImage;
+@property (nonatomic, readonly) UIColor *combinedTintColor;
+@property (nonatomic) BOOL darkenWithSourceOver;
+@property (nonatomic) float darkeningTintAlpha;
+@property (nonatomic) float darkeningTintBrightness;
+@property (nonatomic) float darkeningTintHue;
+@property (nonatomic, retain) UIImage *darkeningTintMaskImage;
+@property (nonatomic) float darkeningTintSaturation;
+@property (setter=setDesignMode:, nonatomic) BOOL designMode;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
+@property (nonatomic) BOOL explicitlySetGraphicsQuality;
+@property (nonatomic) float filterMaskAlpha;
+@property (nonatomic, retain) UIImage *filterMaskImage;
+@property (nonatomic) int graphicsQuality;
+@property (nonatomic) float grayscaleTintAlpha;
+@property (nonatomic) float grayscaleTintLevel;
+@property (nonatomic) float grayscaleTintMaskAlpha;
+@property (nonatomic, retain) UIImage *grayscaleTintMaskImage;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (nonatomic, retain) UIColor *legibleColor;
+@property (nonatomic) BOOL lightenGrayscaleWithSourceOver;
+@property (nonatomic) int renderingHint;
+@property (nonatomic) BOOL requiresColorStatistics;
+@property (nonatomic) float saturationDeltaFactor;
+@property (nonatomic) float scale;
+@property (getter=isSelected, nonatomic) BOOL selected;
+@property (nonatomic) int stackingLevel;
+@property (nonatomic) double statisticsInterval;
+@property (nonatomic, readonly) int style;
+@property (nonatomic) int suppressSettingsDidChange;
+@property (nonatomic) BOOL usesBackdropEffectView;
+@property (nonatomic) BOOL usesColorBurnTintView;
+@property (nonatomic) BOOL usesColorOffset;
+@property (nonatomic) BOOL usesColorTintView;
+@property (nonatomic) BOOL usesContentView;
+@property (nonatomic) BOOL usesDarkeningTintView;
+@property (nonatomic) BOOL usesGrayscaleTintView;
+@property (nonatomic) unsigned int version;
+@property (nonatomic) float zoom;
+@property (nonatomic) BOOL zoomsBack;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (id)darkeningTintColor;
 + (id)settingsForPrivateStyle:(int)arg1;
 + (id)settingsForPrivateStyle:(int)arg1 graphicsQuality:(int)arg2;
 + (id)settingsForStyle:(int)arg1;
 + (id)settingsForStyle:(int)arg1 graphicsQuality:(int)arg2;
++ (id)settingsPreservingHintsFromSettings:(id)arg1 graphicsQuality:(int)arg2;
 
+- (void).cxx_destruct;
 - (void)addKeyPathObserver:(id)arg1;
 - (BOOL)appliesTintAndBlurSettings;
 - (id)backdrop;
@@ -130,6 +139,8 @@
 - (float)colorBurnTintAlpha;
 - (float)colorBurnTintLevel;
 - (id)colorBurnTintMaskImage;
+- (float)colorOffsetAlpha;
+- (id)colorOffsetMatrix;
 - (id)colorSettings;
 - (id)colorTint;
 - (float)colorTintAlpha;
@@ -144,7 +155,6 @@
 - (id)darkeningTintMaskImage;
 - (float)darkeningTintSaturation;
 - (void)dealloc;
-- (void)decrementSuppressSettingsDidChange;
 - (id)description;
 - (BOOL)designMode;
 - (BOOL)explicitlySetGraphicsQuality;
@@ -155,7 +165,6 @@
 - (float)grayscaleTintLevel;
 - (float)grayscaleTintMaskAlpha;
 - (id)grayscaleTintMaskImage;
-- (void)incrementSuppressSettingsDidChange;
 - (id)init;
 - (id)initWithDefaultValues;
 - (id)initWithDefaultValuesForGraphicsQuality:(int)arg1;
@@ -169,7 +178,6 @@
 - (int)renderingHint;
 - (BOOL)requiresColorStatistics;
 - (void)restoreDefaultValues;
-- (struct __CFRunLoopObserver { }*)runLoopObserver;
 - (float)saturationDeltaFactor;
 - (float)scale;
 - (void)scheduleSettingsDidChangeIfNeeded;
@@ -183,12 +191,13 @@
 - (void)setColorBurnTintAlpha:(float)arg1;
 - (void)setColorBurnTintLevel:(float)arg1;
 - (void)setColorBurnTintMaskImage:(id)arg1;
+- (void)setColorOffsetAlpha:(float)arg1;
+- (void)setColorOffsetMatrix:(id)arg1;
 - (void)setColorSettings:(id)arg1;
 - (void)setColorTint:(id)arg1;
 - (void)setColorTintAlpha:(float)arg1;
 - (void)setColorTintMaskAlpha:(float)arg1;
 - (void)setColorTintMaskImage:(id)arg1;
-- (void)setCombinedTintColor:(id)arg1;
 - (void)setDarkenWithSourceOver:(BOOL)arg1;
 - (void)setDarkeningTintAlpha:(float)arg1;
 - (void)setDarkeningTintBrightness:(float)arg1;
@@ -211,7 +220,6 @@
 - (void)setLightenGrayscaleWithSourceOver:(BOOL)arg1;
 - (void)setRenderingHint:(int)arg1;
 - (void)setRequiresColorStatistics:(BOOL)arg1;
-- (void)setRunLoopObserver:(struct __CFRunLoopObserver { }*)arg1;
 - (void)setSaturationDeltaFactor:(float)arg1;
 - (void)setScale:(float)arg1;
 - (void)setSelected:(BOOL)arg1;
@@ -222,12 +230,14 @@
 - (void)setSuppressSettingsDidChange:(int)arg1;
 - (void)setUsesBackdropEffectView:(BOOL)arg1;
 - (void)setUsesColorBurnTintView:(BOOL)arg1;
+- (void)setUsesColorOffset:(BOOL)arg1;
 - (void)setUsesColorTintView:(BOOL)arg1;
 - (void)setUsesContentView:(BOOL)arg1;
 - (void)setUsesDarkeningTintView:(BOOL)arg1;
 - (void)setUsesGrayscaleTintView:(BOOL)arg1;
 - (void)setValuesFromModel:(id)arg1;
 - (void)setVersion:(unsigned int)arg1;
+- (void)setZoom:(float)arg1;
 - (void)setZoomsBack:(BOOL)arg1;
 - (int)stackingLevel;
 - (double)statisticsInterval;
@@ -235,11 +245,18 @@
 - (int)suppressSettingsDidChange;
 - (BOOL)usesBackdropEffectView;
 - (BOOL)usesColorBurnTintView;
+- (BOOL)usesColorOffset;
 - (BOOL)usesColorTintView;
 - (BOOL)usesContentView;
 - (BOOL)usesDarkeningTintView;
 - (BOOL)usesGrayscaleTintView;
 - (unsigned int)version;
+- (float)zoom;
 - (BOOL)zoomsBack;
+
+// Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
+
++ (id)MPU_settingsForNowPlayingBackdrop;
++ (id)MPU_settingsForNowPlayingVibrantContent;
 
 @end

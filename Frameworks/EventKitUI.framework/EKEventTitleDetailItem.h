@@ -2,17 +2,17 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class NSObject<EKEventTitleDetailItemDelegate>, UIColor, UITableViewCell;
-
 @interface EKEventTitleDetailItem : EKEventDetailItem <EKEventDetailTitleCellDelegate> {
     UITableViewCell *_cell;
     BOOL _cellNeedsUpdate;
     UIColor *_color;
     NSObject<EKEventTitleDetailItemDelegate> *_editDelegate;
+    BOOL _hidesSeparator;
     BOOL _showDot;
 }
 
-@property NSObject<EKEventTitleDetailItemDelegate> * editDelegate;
+@property (nonatomic) NSObject<EKEventTitleDetailItemDelegate> *editDelegate;
+@property (nonatomic) BOOL hidesSeparator;
 
 - (void).cxx_destruct;
 - (void)_updateCellIfNeededForWidth:(float)arg1;
@@ -21,9 +21,11 @@
 - (float)defaultCellHeightForSubitemAtIndex:(unsigned int)arg1 forWidth:(float)arg2;
 - (void)editButtonPressed;
 - (id)editDelegate;
+- (BOOL)hidesSeparator;
 - (void)reset;
 - (void)setCellPosition:(int)arg1;
 - (void)setEditDelegate:(id)arg1;
+- (void)setHidesSeparator:(BOOL)arg1;
 - (BOOL)shouldShowEditButtonInline;
 
 @end

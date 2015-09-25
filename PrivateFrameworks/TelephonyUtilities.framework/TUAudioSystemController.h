@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUtilities.framework/TelephonyUtilities
  */
 
-@class NSArray, NSNumber, NSObject<OS_dispatch_queue>;
-
 @interface TUAudioSystemController : TUAudioController {
     NSObject<OS_dispatch_queue> *_downlinkMutedQueue;
     NSNumber *_isDownlinkMutedCached;
@@ -13,6 +11,7 @@
     BOOL _isRequestingPickableRoutesForPlayAndRecordVideo;
     BOOL _isRequestingPickableRoutesForPlayAndRecordVoice;
     BOOL _isRequestingPickableRoutesForTTY;
+    BOOL _isRequestingPickableRoutesForVoicemail;
     BOOL _isRequestingTTY;
     BOOL _isRequestingUplinkMuted;
     NSNumber *_isTTYCached;
@@ -25,11 +24,13 @@
     unsigned long long _lastTTYPickableRoutesScheduleTime;
     unsigned long long _lastTTYRequestScheduleTime;
     unsigned long long _lastUplinkMutedRequestScheduleTime;
+    unsigned long long _lastVoicemailRoutesScheduleTime;
     NSArray *_pickableRoutesForPhoneCall;
     NSArray *_pickableRoutesForPlayAndRecordRemoteVoice;
     NSArray *_pickableRoutesForPlayAndRecordVideo;
     NSArray *_pickableRoutesForPlayAndRecordVoice;
     NSArray *_pickableRoutesForTTY;
+    NSArray *_pickableRoutesForVoicemail;
     NSObject<OS_dispatch_queue> *_pickableRoutesQueue;
     NSObject<OS_dispatch_queue> *_ttyQueue;
     NSObject<OS_dispatch_queue> *_uplinkMutedQueue;
@@ -38,6 +39,7 @@
 + (id)sharedAudioSystemController;
 + (id)sharedSystemController;
 
+- (void).cxx_destruct;
 - (void)_handleCallStatusChanged;
 - (void)_handleDownlinkMuteDidChangeNotification:(id)arg1;
 - (void)_handleUplinkMuteDidChangeNotification:(id)arg1;
@@ -47,15 +49,14 @@
 - (id)_pickableRoutesForPlayAndRecordVideoWithForceNewRequest:(BOOL)arg1;
 - (id)_pickableRoutesForPlayAndRecordVoiceWithForceNewRequest:(BOOL)arg1;
 - (id)_pickableRoutesForTTYWithForceNewRequest:(BOOL)arg1;
+- (id)_pickableRoutesForVoiceMailWithForceNewRequest:(BOOL)arg1;
+- (id)bestGuessPickableRoutesForAnyCall;
 - (void)dealloc;
 - (id)init;
 - (BOOL)isDownlinkMuted;
 - (BOOL)isTTY;
 - (BOOL)isUplinkMuted;
 - (id)pickableRoutesForCategory:(id)arg1 andMode:(id)arg2;
-- (id)pickableRoutesForFaceTimeAudioCategory;
-- (id)pickableRoutesForFaceTimeVideoCategory;
-- (id)pickableRoutesForPhoneCallCategory;
 - (id)pickableRoutesForTTY;
 - (BOOL)setDownlinkMuted:(BOOL)arg1;
 - (BOOL)setUplinkMuted:(BOOL)arg1;

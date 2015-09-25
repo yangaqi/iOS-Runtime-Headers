@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AirTrafficDevice.framework/AirTrafficDevice
  */
 
-@class ATAssetManager, ATRestoreAssetLink, ATSession, ATStoreAssetLink, MSVXPCTransaction, NSObject<OS_dispatch_queue>, NSString;
-
 @interface ATRestoreManager : NSObject <ATEnvironmentMonitorObserver, ATRestoreAssetLinkDelegate, ATSessionObserver> {
     ATRestoreAssetLink *_applicationDataRestoreLink;
     ATAssetManager *_assetManager;
@@ -11,14 +9,15 @@
     NSObject<OS_dispatch_queue> *_queue;
     ATRestoreAssetLink *_restoreLink;
     ATSession *_restoreSession;
+    ATDeviceSettings *_settings;
     ATStoreAssetLink *_storeLink;
     MSVXPCTransaction *_xpcTransaction;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedManager;
 

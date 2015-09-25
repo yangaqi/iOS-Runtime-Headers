@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSString, NSURL;
-
 @interface UIDocumentPickerExtensionViewController : UIViewController <_UIDocumentPickerExtensionViewController> {
     unsigned int _documentPickerMode;
     NSURL *_documentStorageURL;
@@ -12,21 +10,22 @@
     NSArray *_validTypes;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property unsigned int documentPickerMode;
-@property(copy) NSURL * documentStorageURL;
-@property(readonly) unsigned int hash;
-@property(copy) NSURL * originalURL;
-@property(copy) NSString * providerIdentifier;
-@property(readonly) Class superclass;
-@property(copy) NSArray * validTypes;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) unsigned int documentPickerMode;
+@property (nonatomic, copy) NSURL *documentStorageURL;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSURL *originalURL;
+@property (nonatomic, copy) NSString *providerIdentifier;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSArray *validTypes;
 
 + (id)_exportedInterface;
 + (id)_remoteViewControllerInterface;
 
+- (void).cxx_destruct;
 - (void)_documentPickerDidDismiss;
-- (void)_prepareWithExtensionInfo:(id)arg1 completionHandler:(id)arg2;
+- (void)_prepareWithExtensionInfo:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)_setDocumentStorageURL:(id)arg1;
 - (void)_setPickableTypes:(id)arg1;
 - (void)_setPickerMode:(unsigned int)arg1;
@@ -34,7 +33,6 @@
 - (void)_setTintColor:(id)arg1;
 - (void)_setUploadURL:(id)arg1;
 - (void)_setUploadURLWrapper:(id)arg1;
-- (void)dealloc;
 - (void)dismissGrantingAccessToURL:(id)arg1;
 - (unsigned int)documentPickerMode;
 - (id)documentStorageURL;

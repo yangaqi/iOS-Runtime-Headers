@@ -2,12 +2,11 @@
    Image: /System/Library/PrivateFrameworks/CoreBrightness.framework/CoreBrightness
  */
 
-@class BrightnessSystemClientExportedObj, NSArray, NSTimer, NSXPCConnection;
-
 @interface BrightnessSystemClientInternal : NSThread {
     NSXPCConnection *_connection;
     bool _initializationComplete;
     id _remote;
+    struct __CFRunLoop { } *_rl;
     NSTimer *_timer;
     NSArray *clientProperties;
     BrightnessSystemClientExportedObj *exportedObj;
@@ -18,8 +17,8 @@
 - (void)destroyClient;
 - (id)init;
 - (void)main;
-- (void)registerNotificationBlock:(id)arg1;
-- (void)registerNotificationBlock:(id)arg1 forProperties:(id)arg2;
+- (void)registerNotificationBlock:(id /* block */)arg1;
+- (void)registerNotificationBlock:(id /* block */)arg1 forProperties:(id)arg2;
 - (BOOL)setProperty:(id)arg1 forKey:(id)arg2;
 - (void)timerFire:(id)arg1;
 

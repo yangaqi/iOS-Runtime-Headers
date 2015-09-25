@@ -2,11 +2,14 @@
    Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
  */
 
-@interface HDCorrelationSampleSyncEntity : HDSampleSyncEntity {
-}
+@interface HDCorrelationSampleSyncEntity : HDSampleSyncEntity
 
 + (id)_objectWithCodable:(id)arg1;
 + (Class)healthEntityClass;
++ (int)nanoSyncObjectType;
++ (id)predicateForSyncObjects;
++ (id)sampleTypesByAgeInDaysForNanoSyncRestore;
 + (int)syncEntityType;
++ (unsigned int)syncObjectLimitForNanoSyncMessage;
 
 @end

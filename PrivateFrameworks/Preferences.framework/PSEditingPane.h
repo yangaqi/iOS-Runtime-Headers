@@ -2,25 +2,23 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class PSSpecifier, UIViewController;
-
 @interface PSEditingPane : UIView {
     id _delegate;
-    unsigned int _requiresKeyboard : 1;
+    unsigned int _requiresKeyboard;
     PSSpecifier *_specifier;
     UIViewController *_viewController;
 }
 
-@property UIViewController * viewController;
+@property (nonatomic) UIViewController *viewController;
 
 + (id)defaultBackgroundColor;
 + (float)preferredHeight;
 
+- (void).cxx_destruct;
 - (void)addNewValue;
 - (BOOL)changed;
 - (id)childViewControllerForHostingViewController;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentRect;
-- (void)dealloc;
 - (void)didRotateFromInterfaceOrientation:(int)arg1;
 - (void)doneEditing;
 - (void)editMode;

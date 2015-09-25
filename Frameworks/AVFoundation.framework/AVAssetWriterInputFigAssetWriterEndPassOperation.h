@@ -2,41 +2,21 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AVAssetWriterInputPassDescription, NSError;
-
-@interface AVAssetWriterInputFigAssetWriterEndPassOperation : NSObject {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completionBlock;
-
-    NSError *_error;
+@interface AVAssetWriterInputFigAssetWriterEndPassOperation : AVOperation {
     struct OpaqueFigAssetWriter { } *_figAssetWriter;
     AVAssetWriterInputPassDescription *_nextPassDescription;
-    BOOL _succeeded;
     int _trackID;
 }
 
-@property(copy) id completionBlock;
-@property(readonly) AVAssetWriterInputPassDescription * descriptionForNextPass;
-@property(readonly) NSError * error;
-@property(readonly) BOOL succeeded;
+@property (nonatomic, readonly) AVAssetWriterInputPassDescription *descriptionForNextPass;
 
-- (void)_markOperationAsCompletedWithSuccess:(BOOL)arg1 error:(id)arg2;
 - (void)_notifyWhetherMorePassesAreNeeded:(BOOL)arg1 timeRanges:(id)arg2 forTrackWithID:(int)arg3;
-- (id)completionBlock;
 - (void)dealloc;
 - (id)descriptionForNextPass;
-- (id)error;
 - (void)finalize;
 - (id)init;
 - (id)initWithFigAssetWriter:(struct OpaqueFigAssetWriter { }*)arg1 trackID:(int)arg2;
-- (void)setCompletionBlock:(id)arg1;
+- (BOOL)isAsynchronous;
 - (void)start;
-- (BOOL)succeeded;
 
 @end

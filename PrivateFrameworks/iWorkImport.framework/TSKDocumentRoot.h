@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSMutableArray, NSObject<OS_dispatch_queue>, NSSet, NSString, TSKAccessController, TSKAnnotationAuthorStorage, TSKChangeNotifier, TSKDocumentSupport, TSKPasteboardController, TSKSelectionDispatcher, TSSStylesheet, TSSTheme, TSULocale;
-
 @interface TSKDocumentRoot : TSPObject <TSKAccessControllerDelegate, TSKModel> {
     TSKAccessController *_accessController;
     NSMutableArray *_activityLogEntries;
@@ -21,40 +14,40 @@
     NSMutableArray *_iCloudTeardownStack;
     NSObject<OS_dispatch_queue> *_iCloudTeardownStackQueue;
     BOOL _isBeingLocalized;
-    BOOL _isCollaborationLobbyOutgoingRequestsSuspended;
     BOOL _isFindActive;
     TSKPasteboardController *_pasteboardController;
     TSKSelectionDispatcher *_selectionDispatcher;
 }
 
-@property(readonly) TSKAccessController * accessController;
-@property(retain) TSKAnnotationAuthorStorage * annotationAuthorStorage;
-@property(readonly) unsigned int applicationType;
-@property(readonly) TSKChangeNotifier * changeNotifier;
-@property(readonly) NSString * creationLanguage;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) TSULocale * documentCreationLocale;
-@property(readonly) TSULocale * documentLocale;
-@property(readonly) TSKDocumentSupport * documentSupport;
-@property(retain) NSSet * filteredAuthors;
-@property(getter=isFindActive) BOOL findActive;
-@property(readonly) BOOL hasICloudConflict;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isBeingLocalized;
-@property(retain) TSKPasteboardController * pasteboardController;
-@property(readonly) TSKSelectionDispatcher * selectionDispatcher;
-@property(readonly) TSSStylesheet * stylesheet;
-@property(readonly) Class superclass;
-@property(readonly) TSSTheme * theme;
-@property(readonly) unsigned int writingDirection;
-@property(readonly) unsigned int writingDirectionForStorage;
+@property (nonatomic, readonly) TSKAccessController *accessController;
+@property (nonatomic, retain) TSKAnnotationAuthorStorage *annotationAuthorStorage;
+@property (nonatomic, readonly) unsigned int applicationType;
+@property (nonatomic, readonly) TSKChangeNotifier *changeNotifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) TSULocale *documentCreationLocale;
+@property (nonatomic, readonly) NSString *documentLanguage;
+@property (nonatomic, readonly) TSULocale *documentLocale;
+@property (nonatomic, readonly) TSKDocumentSupport *documentSupport;
+@property (nonatomic, retain) NSSet *filteredAuthors;
+@property (getter=isFindActive, nonatomic) BOOL findActive;
+@property (nonatomic, readonly) BOOL hasICloudConflict;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isBeingLocalized;
+@property (nonatomic, retain) TSKPasteboardController *pasteboardController;
+@property (nonatomic, readonly) TSKSelectionDispatcher *selectionDispatcher;
+@property (nonatomic, readonly) TSSStylesheet *stylesheet;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) TSSTheme *theme;
+@property (nonatomic, readonly) unsigned int writingDirection;
+@property (nonatomic, readonly) unsigned int writingDirectionForStorage;
 
 + (BOOL)needsObjectUUID;
 
 - (id)UIStateForChart:(id)arg1;
 - (id)accessController;
-- (long long)addObserverForICloudTeardownWithBlock:(id)arg1;
+- (long long)addObserverForICloudTeardownSuspendingCollaboration:(BOOL)arg1 block:(id /* block */)arg2;
+- (long long)addObserverForICloudTeardownWithBlock:(id /* block */)arg1;
 - (void)addOrUpdateAnnotationAuthorList:(id)arg1;
 - (id)additionalDocumentPropertiesForWrite;
 - (id)annotationAuthorStorage;
@@ -63,7 +56,6 @@
 - (id)changeNotifier;
 - (id)collaborationState;
 - (id)commandForRemovingCommentsFromDrawables:(id)arg1 context:(id)arg2;
-- (id)creationLanguage;
 - (id)customFormatList;
 - (id)dataFromDocumentCachePath:(id)arg1;
 - (void)dealloc;
@@ -73,6 +65,7 @@
 - (id)documentCreationLocale;
 - (void)documentDidLoad;
 - (BOOL)documentDisallowsHighlightsOnStorage:(id)arg1;
+- (id)documentLanguage;
 - (id)documentLocale;
 - (id)documentSupport;
 - (id)filteredAuthors;
@@ -91,24 +84,26 @@
 - (id)makeStyleMapper;
 - (unsigned long long)maxMediaItemFileSize;
 - (void)migrateStylesInObjects:(id)arg1;
+- (void)migrateStylesInObjects:(id)arg1 changePropagationMap:(id)arg2;
 - (id)migratedPresetForPreset:(id)arg1;
 - (id)migratedPropertyMapForPropertyMap:(id)arg1;
 - (id)migratedStyleForStyle:(id)arg1;
 - (id)modelEnumerator;
 - (id)modelEnumeratorForObjectsConformingToProtocol:(id)arg1;
 - (id)modelEnumeratorForObjectsOfClass:(Class)arg1;
-- (id)modelEnumeratorForObjectsPassingTest:(id)arg1;
+- (id)modelEnumeratorForObjectsPassingTest:(id /* block */)arg1;
 - (id)modelEnumeratorForObjectsRespondingToSelector:(SEL)arg1;
 - (id)modelEnumeratorWithFlags:(unsigned int)arg1;
 - (id)modelEnumeratorWithFlags:(unsigned int)arg1 forObjectsConformingToProtocol:(id)arg2;
 - (id)modelEnumeratorWithFlags:(unsigned int)arg1 forObjectsOfClass:(Class)arg2;
-- (id)modelEnumeratorWithFlags:(unsigned int)arg1 forObjectsPassingTest:(id)arg2;
+- (id)modelEnumeratorWithFlags:(unsigned int)arg1 forObjectsPassingTest:(id /* block */)arg2;
 - (id)modelEnumeratorWithFlags:(unsigned int)arg1 forObjectsRespondingToSelector:(SEL)arg2;
 - (struct CGImageSource { }*)newImageSourceForDocumentCachePath:(id)arg1;
 - (void)notifyICloudTeardownObservers;
 - (id)pasteboardController;
 - (void)pauseRecalculation;
-- (void)pauseRecalculationForBlock:(id)arg1;
+- (void)pauseRecalculationForBlock:(id /* block */)arg1;
+- (void)pauseRecalculationSometimeSoon;
 - (void)removeCommentsFromDrawables:(id)arg1;
 - (void)removeICloudTeardownObserver:(long long)arg1;
 - (void)resumeRecalculation;
@@ -124,6 +119,7 @@
 - (void)setThemeForTemplateImport:(id)arg1;
 - (void)setUIState:(id)arg1 forChart:(id)arg2;
 - (BOOL)shouldShowComments;
+- (id)stylesToNotResizeInStylesheet:(id)arg1;
 - (id)stylesheet;
 - (id)theme;
 - (Class)thumbnailImagerClass;

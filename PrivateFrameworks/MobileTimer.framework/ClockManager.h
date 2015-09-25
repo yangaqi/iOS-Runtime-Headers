@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
  */
 
-@class NSArray, NSMutableArray, ObjectUpdates;
-
 @interface ClockManager : NSObject {
     ObjectUpdates *_localNotificationUpdates;
+    UNSNotificationScheduler *_notificationScheduler;
     BOOL _performingUpgrade;
     NSMutableArray *_scheduledLocalNotifications;
     BOOL ignoringNotificationPostRequests;
     BOOL runningInAssistantPlugin;
-    BOOL runningInSpringBoard;
 }
 
-@property(getter=isIgnoringNotificationPostRequests) BOOL ignoringNotificationPostRequests;
-@property(getter=isRunningInAssistantPlugin) BOOL runningInAssistantPlugin;
-@property(getter=isRunningInSpringBoard) BOOL runningInSpringBoard;
-@property(readonly) NSArray * scheduledLocalNotificationsCache;
-@property(readonly) ObjectUpdates * updatesToLocalNotificationsCache;
+@property (getter=isIgnoringNotificationPostRequests, nonatomic) BOOL ignoringNotificationPostRequests;
+@property (nonatomic, retain) UNSNotificationScheduler *notificationScheduler;
+@property (getter=isRunningInAssistantPlugin, nonatomic) BOOL runningInAssistantPlugin;
+@property (nonatomic, readonly) NSArray *scheduledLocalNotificationsCache;
+@property (nonatomic, readonly) ObjectUpdates *updatesToLocalNotificationsCache;
 
 + (void)loadUserPreferences;
 + (void)saveAndNotifyForUserPreferences:(BOOL)arg1 localNotifications:(BOOL)arg2;
@@ -25,20 +23,21 @@
 + (id)sharedManager;
 + (id)urlForClockAppSection:(int)arg1;
 
+- (void).cxx_destruct;
 - (void)cancelLocalNotification:(id)arg1;
-- (void)dealloc;
 - (BOOL)discardOldVersion;
+- (id)init;
 - (BOOL)isIgnoringNotificationPostRequests;
 - (BOOL)isRunningInAssistantPlugin;
-- (BOOL)isRunningInSpringBoard;
+- (id)notificationScheduler;
 - (void)postUserPreferencesChangedNotification;
 - (void)refreshScheduledLocalNotificationsCache;
 - (void)resetUpdatesToLocalNotificationsCache;
 - (void)scheduleLocalNotification:(id)arg1;
 - (id)scheduledLocalNotificationsCache;
 - (void)setIgnoringNotificationPostRequests:(BOOL)arg1;
+- (void)setNotificationScheduler:(id)arg1;
 - (void)setRunningInAssistantPlugin:(BOOL)arg1;
-- (void)setRunningInSpringBoard:(BOOL)arg1;
 - (id)updatesToLocalNotificationsCache;
 - (BOOL)upgrade;
 - (BOOL)upgradeIfNeverAttempted;

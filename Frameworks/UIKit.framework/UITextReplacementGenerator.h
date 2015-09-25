@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UITextRange;
-
 @interface UITextReplacementGenerator : NSObject {
     UITextRange *_replacementRange;
     NSString *_stringToReplace;
 }
 
-@property(retain) UITextRange * replacementRange;
-@property(copy) NSString * stringToReplace;
+@property (nonatomic, retain) UITextRange *replacementRange;
+@property (nonatomic, copy) NSString *stringToReplace;
 
+- (void).cxx_destruct;
 - (void)addPlaceholderForEmptyReplacements:(id)arg1;
-- (void)dealloc;
 - (id)replacementRange;
 - (id)replacementWithText:(id)arg1;
 - (id)replacements;

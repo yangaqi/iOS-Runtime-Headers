@@ -2,10 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@interface SiriUIContentLabel : UILabel {
-}
+@interface SiriUIContentLabel : UILabel
 
 + (id)label;
++ (id)labelWithBodyFont;
 + (id)labelWithHeaderFont;
 + (id)labelWithLightWeightRegularFont;
 + (id)labelWithLightWeightSubtextFont;

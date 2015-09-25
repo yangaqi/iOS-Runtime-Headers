@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class CKDPProtectionInfo, CKDPRecordIdentifier, NSData, NSString;
-
 @interface CKDPAsset : PBCodable <NSCopying> {
     NSString *_contentBaseURL;
     NSData *_data;
@@ -11,8 +9,10 @@
     NSString *_downloadBaseURL;
     NSData *_downloadRequest;
     NSString *_downloadToken;
+    long long _downloadTokenExpiration;
     long long _downloadURLExpiration;
     struct { 
+        unsigned int downloadTokenExpiration : 1; 
         unsigned int downloadURLExpiration : 1; 
         unsigned int size : 1; 
     } _has;
@@ -27,38 +27,40 @@
     NSString *_uploadReceipt;
 }
 
-@property(retain) NSString * contentBaseURL;
-@property(retain) NSData * data;
-@property(retain) NSString * derivedContentType;
-@property(retain) NSString * downloadBaseURL;
-@property(retain) NSData * downloadRequest;
-@property(retain) NSString * downloadToken;
-@property long long downloadURLExpiration;
-@property(readonly) BOOL hasContentBaseURL;
-@property(readonly) BOOL hasData;
-@property(readonly) BOOL hasDerivedContentType;
-@property(readonly) BOOL hasDownloadBaseURL;
-@property(readonly) BOOL hasDownloadRequest;
-@property(readonly) BOOL hasDownloadToken;
-@property BOOL hasDownloadURLExpiration;
-@property(readonly) BOOL hasHeader;
-@property(readonly) BOOL hasOwner;
-@property(readonly) BOOL hasProtectionInfo;
-@property(readonly) BOOL hasRecordId;
-@property(readonly) BOOL hasReferenceSignature;
-@property(readonly) BOOL hasRequestor;
-@property(readonly) BOOL hasSignature;
-@property BOOL hasSize;
-@property(readonly) BOOL hasUploadReceipt;
-@property(retain) NSData * header;
-@property(retain) NSString * owner;
-@property(retain) CKDPProtectionInfo * protectionInfo;
-@property(retain) CKDPRecordIdentifier * recordId;
-@property(retain) NSData * referenceSignature;
-@property(retain) NSString * requestor;
-@property(retain) NSData * signature;
-@property long long size;
-@property(retain) NSString * uploadReceipt;
+@property (nonatomic, retain) NSString *contentBaseURL;
+@property (nonatomic, retain) NSData *data;
+@property (nonatomic, retain) NSString *derivedContentType;
+@property (nonatomic, retain) NSString *downloadBaseURL;
+@property (nonatomic, retain) NSData *downloadRequest;
+@property (nonatomic, retain) NSString *downloadToken;
+@property (nonatomic) long long downloadTokenExpiration;
+@property (nonatomic) long long downloadURLExpiration;
+@property (nonatomic, readonly) BOOL hasContentBaseURL;
+@property (nonatomic, readonly) BOOL hasData;
+@property (nonatomic, readonly) BOOL hasDerivedContentType;
+@property (nonatomic, readonly) BOOL hasDownloadBaseURL;
+@property (nonatomic, readonly) BOOL hasDownloadRequest;
+@property (nonatomic, readonly) BOOL hasDownloadToken;
+@property (nonatomic) BOOL hasDownloadTokenExpiration;
+@property (nonatomic) BOOL hasDownloadURLExpiration;
+@property (nonatomic, readonly) BOOL hasHeader;
+@property (nonatomic, readonly) BOOL hasOwner;
+@property (nonatomic, readonly) BOOL hasProtectionInfo;
+@property (nonatomic, readonly) BOOL hasRecordId;
+@property (nonatomic, readonly) BOOL hasReferenceSignature;
+@property (nonatomic, readonly) BOOL hasRequestor;
+@property (nonatomic, readonly) BOOL hasSignature;
+@property (nonatomic) BOOL hasSize;
+@property (nonatomic, readonly) BOOL hasUploadReceipt;
+@property (nonatomic, retain) NSData *header;
+@property (nonatomic, retain) NSString *owner;
+@property (nonatomic, retain) CKDPProtectionInfo *protectionInfo;
+@property (nonatomic, retain) CKDPRecordIdentifier *recordId;
+@property (nonatomic, retain) NSData *referenceSignature;
+@property (nonatomic, retain) NSString *requestor;
+@property (nonatomic, retain) NSData *signature;
+@property (nonatomic) long long size;
+@property (nonatomic, retain) NSString *uploadReceipt;
 
 - (void).cxx_destruct;
 - (id)contentBaseURL;
@@ -71,6 +73,7 @@
 - (id)downloadBaseURL;
 - (id)downloadRequest;
 - (id)downloadToken;
+- (long long)downloadTokenExpiration;
 - (long long)downloadURLExpiration;
 - (BOOL)hasContentBaseURL;
 - (BOOL)hasData;
@@ -78,6 +81,7 @@
 - (BOOL)hasDownloadBaseURL;
 - (BOOL)hasDownloadRequest;
 - (BOOL)hasDownloadToken;
+- (BOOL)hasDownloadTokenExpiration;
 - (BOOL)hasDownloadURLExpiration;
 - (BOOL)hasHeader;
 - (BOOL)hasOwner;
@@ -104,7 +108,9 @@
 - (void)setDownloadBaseURL:(id)arg1;
 - (void)setDownloadRequest:(id)arg1;
 - (void)setDownloadToken:(id)arg1;
+- (void)setDownloadTokenExpiration:(long long)arg1;
 - (void)setDownloadURLExpiration:(long long)arg1;
+- (void)setHasDownloadTokenExpiration:(BOOL)arg1;
 - (void)setHasDownloadURLExpiration:(BOOL)arg1;
 - (void)setHasSize:(BOOL)arg1;
 - (void)setHeader:(id)arg1;

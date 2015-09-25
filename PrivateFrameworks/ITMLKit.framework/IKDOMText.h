@@ -2,12 +2,12 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@interface IKDOMText : IKDOMCharacterData <IKJSDOMText> {
-}
+@interface IKDOMText : IKDOMCharacterData <IKJSDOMText>
 
 - (id)nodeName;
 - (int)nodeType;
 - (id)nodeValue;
+- (void)setNodeValue:(id)arg1;
 - (void)setTextContent:(id)arg1;
 - (id)textContent;
 

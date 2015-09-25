@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class <PUCloudPhotoWelcomeViewDelegate>, NSLayoutConstraint, UIButton, UIImageView, UILabel;
-
 @interface PUCloudPhotoWelcomeView : UIView {
     UILabel *_bodyLabel;
     <PUCloudPhotoWelcomeViewDelegate> *_delegate;
@@ -19,13 +17,13 @@
     UILabel *_titleLabel;
 }
 
-@property(retain) UILabel * bodyLabel;
-@property <PUCloudPhotoWelcomeViewDelegate> * delegate;
-@property(retain) UILabel * finePrintLabel;
-@property(retain) UIButton * goButton;
-@property(getter=goButtonIsEnabled) BOOL goButtonEnabled;
-@property(retain) UIImageView * graphicImageView;
-@property(retain) UILabel * titleLabel;
+@property (nonatomic, retain) UILabel *bodyLabel;
+@property (nonatomic) <PUCloudPhotoWelcomeViewDelegate> *delegate;
+@property (nonatomic, retain) UILabel *finePrintLabel;
+@property (nonatomic, retain) UIButton *goButton;
+@property (getter=goButtonIsEnabled, nonatomic) BOOL goButtonEnabled;
+@property (nonatomic, retain) UIImageView *graphicImageView;
+@property (nonatomic, retain) UILabel *titleLabel;
 
 + (void)initialize;
 
@@ -41,7 +39,6 @@
 - (BOOL)goButtonIsEnabled;
 - (id)graphicImageView;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (void)layoutSubviews;
 - (void)setBodyLabel:(id)arg1;
 - (void)setDelegate:(id)arg1;

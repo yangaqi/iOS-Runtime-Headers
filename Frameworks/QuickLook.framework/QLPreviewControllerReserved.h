@@ -2,27 +2,24 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <QLPreviewItem>, MPVolumeView, NSArray, NSMutableDictionary, NSNumberFormatter, NSString, NSURL, QLArchiveViewer, QLPreviewItemsSource, UIBarButtonItem, UIDocumentInteractionController, UILabel, UINavigationController, UIView, UIViewController<QLPreviewContentControllerProtocol>, _UIAsyncInvocation;
-
 @interface QLPreviewControllerReserved : NSObject {
-    UIBarButtonItem *actionItem;
+    NSArray *additionalLeftBarButtonItems;
+    NSArray *additionalRightBarButtonItems;
     UIBarButtonItem *archiveItem;
     QLArchiveViewer *archiveViewer;
     NSMutableDictionary *avStateForPreviewItems;
     BOOL blockRemoteImages;
     _UIAsyncInvocation *cancelViewServiceRequest;
+    unsigned int crashCount;
+    UIBarButtonItem *customActionItem;
+    UIBarButtonItem *defaultActionItem;
     id delegate;
-    NSNumberFormatter *indexFormatter;
-    UIBarButtonItem *indexItem;
-    UILabel *indexLabel;
+    BOOL hasToolBar;
     UIDocumentInteractionController *interactionController;
     BOOL internalViewsLoaded;
     BOOL isDelayingPresentation;
-    unsigned int isInUIDICPopover : 1;
+    unsigned int isInUIDICPopover;
+    QLActivityItemProvider *itemProvider;
     QLPreviewItemsSource *itemsSource;
     NSURL *lastPreviewedCurrentItemURL;
     NSURL *lastPreviewedRealItemURL;
@@ -30,37 +27,33 @@
     NSString *loadingTextForMissingFiles;
     UIView *mainView;
     int mode;
+    unsigned int navigationButtonsMask;
     UINavigationController *navigationController;
+    unsigned int orbMode;
     NSArray *originalLeftBarButtonItems;
     NSArray *originalRightBarButtonItems;
     int overlayState;
-    NSMutableDictionary *pdfPreviewDataCache;
-    UIBarButtonItem *playPauseButton;
+    int overlayStateBeforeDismissal;
+    UIBarButtonItem *pauseButton;
+    UIBarButtonItem *playButton;
     UIViewController<QLPreviewContentControllerProtocol> *previewContentController;
     <QLPreviewItem> *previewItem;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id readyBlock;
-
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id restorePreviousStateBlock;
-
-    UIBarButtonItem *routeButton;
+    UIViewController *previousViewControllerForNavigationItem;
+    id /* block */ readyBlock;
+    id /* block */ restorePreviousStateBlock;
     BOOL scrubbing;
     BOOL showActionAsDefaultButton;
     BOOL sourceIsManaged;
-    unsigned int statusBarWasHidden : 1;
+    unsigned int statusBarWasHidden;
+    id strongDelegate;
+    QLDismissGestureRecognizer *swipeToDismissGestureRecognizer;
     UIBarButtonItem *titleItem;
-    unsigned int toolbarWasHidden : 1;
+    unsigned int toolbarButtonsMask;
+    unsigned int toolbarWasHidden;
     BOOL useCustomActionButton;
-    MPVolumeView *volumeView;
-    MPVolumeView *volumeViewHidden;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)init;
 
 @end

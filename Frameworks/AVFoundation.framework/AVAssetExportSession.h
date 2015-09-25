@@ -2,33 +2,18 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVVideoCompositing>, AVAsset, AVAssetExportSessionInternal, AVAudioMix, AVMetadataItemFilter, AVVideoComposition, NSArray, NSError, NSString, NSURL;
-
 @interface AVAssetExportSession : NSObject {
     AVAssetExportSessionInternal *_exportSession;
 }
 
-@property(retain,readonly) AVAsset * asset;
-@property(copy) AVAudioMix * audioMix;
-@property(copy) NSString * audioTimePitchAlgorithm;
-@property BOOL canPerformMultiplePassesOverSourceMediaData;
-@property(readonly) <AVVideoCompositing> * customVideoCompositor;
-@property(copy) NSURL * directoryForTemporaryFiles;
-@property(readonly) NSError * error;
-@property(readonly) long long estimatedOutputFileLength;
-@property long long fileLengthLimit;
-@property(readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } maxDuration;
-@property(copy) NSArray * metadata;
-@property(retain) AVMetadataItemFilter * metadataItemFilter;
-@property(copy) NSString * outputFileType;
-@property(copy) NSURL * outputURL;
-@property(readonly) NSString * presetName;
-@property(readonly) float progress;
-@property BOOL shouldOptimizeForNetworkUse;
-@property(readonly) int status;
-@property(readonly) NSArray * supportedFileTypes;
-@property struct { struct { long long x_1_1_1; int x_1_1_2; unsigned int x_1_1_3; long long x_1_1_4; } x1; struct { long long x_2_1_1; int x_2_1_2; unsigned int x_2_1_3; long long x_2_1_4; } x2; } timeRange;
-@property(copy) AVVideoComposition * videoComposition;
+@property (nonatomic, readonly, retain) AVAsset *asset;
+@property (nonatomic, readonly) NSError *error;
+@property (nonatomic, copy) NSString *outputFileType;
+@property (nonatomic, copy) NSURL *outputURL;
+@property (nonatomic, readonly) NSString *presetName;
+@property (nonatomic, readonly) float progress;
+@property (nonatomic) BOOL shouldOptimizeForNetworkUse;
+@property (nonatomic, readonly) int status;
 
 + (id)_asynchronousDispatchQueue;
 + (id)_audioOnlyPresets;
@@ -55,8 +40,9 @@
 + (id)_utTypesForPresets;
 + (id)_utTypesForTemporalMetadataPresets;
 + (id)_videoCompressionPropertiesForVideoSetting:(id)arg1;
++ (id)_videoOnlyPresets;
 + (id)allExportPresets;
-+ (void)determineCompatibilityOfExportPreset:(id)arg1 withAsset:(id)arg2 outputFileType:(id)arg3 completionHandler:(id)arg4;
++ (void)determineCompatibilityOfExportPreset:(id)arg1 withAsset:(id)arg2 outputFileType:(id)arg3 completionHandler:(id /* block */)arg4;
 + (long long)estimatedOutputFileLengthForPreset:(id)arg1 duration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg2 properties:(id)arg3;
 + (id)exportPresetsCompatibleWithAsset:(id)arg1;
 + (id)exportSessionWithAsset:(id)arg1 presetName:(id)arg2;
@@ -106,11 +92,11 @@
 - (id)customVideoCompositor;
 - (void)dealloc;
 - (id)description;
-- (void)determineCompatibleFileTypesWithCompletionHandler:(id)arg1;
+- (void)determineCompatibleFileTypesWithCompletionHandler:(id /* block */)arg1;
 - (id)directoryForTemporaryFiles;
 - (id)error;
 - (long long)estimatedOutputFileLength;
-- (void)exportAsynchronouslyWithCompletionHandler:(id)arg1;
+- (void)exportAsynchronouslyWithCompletionHandler:(id /* block */)arg1;
 - (long long)fileLengthLimit;
 - (void)finalize;
 - (id)init;

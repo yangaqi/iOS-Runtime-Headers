@@ -2,25 +2,25 @@
    Image: /System/Library/PrivateFrameworks/CoreIndoor.framework/CoreIndoor
  */
 
-@class NSString;
+@interface CLIndoorMaintenance : CLIndoorXPCProvider <CLIndoorXPCProviderImplementation>
 
-@interface CLIndoorMaintenance : CLIndoorXPCProvider <CLIndoorXPCProviderImplementation> {
-}
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-
-- (void)doSynchronousXPC:(id)arg1 description:(const char *)arg2;
+- (void)doSynchronousXPC:(id /* block */)arg1 description:(const char *)arg2 waitForever:(bool)arg3;
 - (id)endpointName;
 - (void)eraseEverything;
-- (void)onQueueEraseEverything:(id)arg1;
-- (void)onQueuePrefetch:(id)arg1 withCallback:(id)arg2;
+- (void)numFloors:(id /* block */)arg1;
+- (void)onQueueEraseEverything:(id /* block */)arg1;
+- (void)onQueueNumFloors:(id /* block */)arg1;
+- (void)onQueuePrefetch:(id)arg1 callback:(id /* block */)arg2 when:(unsigned char)arg3;
 - (void)onQueueShutdown;
 - (void)prefetch:(id)arg1;
+- (void)prefetchSynchronous:(id)arg1;
 - (id)remoteObjectProtocol;
-- (void)retrieveLocationRelevancyDurationWithCompletionHandler:(id)arg1;
+- (void)retrieveLocationRelevancyDurationWithCompletionHandler:(id /* block */)arg1;
 - (void)shutdown;
 - (BOOL)withinQueueCanReinitializeRemoteState;
 - (void)withinQueueInvalidateState;

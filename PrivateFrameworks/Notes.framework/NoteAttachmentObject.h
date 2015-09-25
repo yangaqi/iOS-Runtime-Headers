@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
  */
 
-@class NSString, NoteObject;
+@interface NoteAttachmentObject : NSManagedObject
 
-@interface NoteAttachmentObject : NSManagedObject {
-}
-
-@property(retain) NSString * contentID;
-@property(retain) NSString * filename;
-@property(retain) NSString * mimeType;
-@property(retain) NoteObject * note;
+@property (nonatomic, retain) NSString *contentID;
+@property (nonatomic, retain) NSString *filename;
+@property (nonatomic, retain) NSString *mimeType;
+@property (nonatomic, retain) NoteObject *note;
 
 + (BOOL)applyFileAttributesForAttachment:(id)arg1 error:(id*)arg2;
++ (id)attachmentDirectoryPathForAttachmentObjectID:(id)arg1 error:(id*)arg2;
++ (id)attachmentDirectoryURLForAttachmentObjectID:(id)arg1 error:(id*)arg2;
 + (BOOL)migrateAttachmentRelatedFilesInContext:(id)arg1 error:(id*)arg2;
 + (BOOL)migrateFileForAttachment:(id)arg1 toCurrentAttachmentPathWithError:(id*)arg2;
 

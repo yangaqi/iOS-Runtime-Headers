@@ -2,18 +2,19 @@
    Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
  */
 
-@class HMDCharacteristic;
-
 @interface HMDCharacteristicRequest : NSObject {
     HMDCharacteristic *_characteristic;
+    id _previousValue;
 }
 
-@property(readonly) HMDCharacteristic * characteristic;
+@property (nonatomic, readonly) HMDCharacteristic *characteristic;
+@property (nonatomic, readonly) id previousValue;
 
 + (id)requestWithCharacteristic:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)characteristic;
 - (id)initWithCharacteristic:(id)arg1;
+- (id)previousValue;
 
 @end

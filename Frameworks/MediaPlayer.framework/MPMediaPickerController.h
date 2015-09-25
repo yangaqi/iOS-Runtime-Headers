@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPMediaPickerControllerDelegate>, MPRemoteMediaPickerController, NSString, _UIAsyncInvocation;
-
 @interface MPMediaPickerController : UIViewController {
     BOOL _allowsPickingMultipleItems;
     _UIAsyncInvocation *_cancelRequest;
@@ -15,11 +13,11 @@
     BOOL _showsCloudItems;
 }
 
-@property BOOL allowsPickingMultipleItems;
-@property <MPMediaPickerControllerDelegate> * delegate;
-@property(readonly) unsigned int mediaTypes;
-@property(copy) NSString * prompt;
-@property BOOL showsCloudItems;
+@property (nonatomic) BOOL allowsPickingMultipleItems;
+@property (nonatomic) <MPMediaPickerControllerDelegate> *delegate;
+@property (nonatomic, readonly) unsigned int mediaTypes;
+@property (nonatomic, copy) NSString *prompt;
+@property (nonatomic) BOOL showsCloudItems;
 
 + (void)preheatMediaPicker;
 
@@ -36,9 +34,9 @@
 - (BOOL)allowsPickingMultipleItems;
 - (void)dealloc;
 - (id)delegate;
-- (id)init;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithMediaTypes:(unsigned int)arg1;
-- (void)loadView;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (unsigned int)mediaTypes;
 - (id)prompt;
 - (void)remoteMediaPickerDidCancel;
@@ -49,6 +47,7 @@
 - (void)setShowsCloudItems:(BOOL)arg1;
 - (BOOL)showsCloudItems;
 - (void)viewDidAppear:(BOOL)arg1;
+- (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)willMoveToParentViewController:(id)arg1;
 

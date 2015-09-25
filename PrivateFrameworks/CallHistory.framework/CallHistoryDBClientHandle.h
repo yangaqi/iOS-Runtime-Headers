@@ -2,19 +2,15 @@
    Image: /System/Library/PrivateFrameworks/CallHistory.framework/CallHistory
  */
 
-@class CallHistoryDBHandle, NSObject<OS_dispatch_queue>;
-
 @interface CallHistoryDBClientHandle : CHSynchronizedLoggable {
-    BOOL _dataStoreCreated;
     id _observerCallRecordRef;
     id _observerCallTimersRef;
     NSObject<OS_dispatch_queue> *_recentCallQueue;
     CallHistoryDBHandle *dbStoreHandle;
 }
 
-@property BOOL dataStoreCreated;
-@property(readonly) CallHistoryDBHandle * dbStoreHandle;
-@property(retain) NSObject<OS_dispatch_queue> * recentCallQueue;
+@property (nonatomic, readonly) CallHistoryDBHandle *dbStoreHandle;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *recentCallQueue;
 
 + (id)createForClient;
 + (id)createForServer;
@@ -26,8 +22,6 @@
 - (BOOL)createCallRecord:(id)arg1 error:(id*)arg2 save:(BOOL)arg3;
 - (BOOL)createCallRecords:(id)arg1;
 - (BOOL)createCallRecords:(id)arg1 error:(id*)arg2;
-- (void)createDataStore;
-- (BOOL)dataStoreCreated;
 - (id)dbStoreHandle;
 - (void)dealloc;
 - (BOOL)deleteAll;
@@ -39,6 +33,7 @@
 - (BOOL)deleteObjectsWithUniqueIds:(id)arg1 error:(id*)arg2;
 - (id)fetchAll;
 - (id)fetchAllNoLimit;
+- (id)fetchAllObjectsWithUniqueId:(id)arg1;
 - (id)fetchObjectWithUniqueId:(id)arg1;
 - (id)fetchObjectsWithPredicate:(id)arg1;
 - (id)fetchObjectsWithUniqueIds:(id)arg1;
@@ -49,13 +44,14 @@
 - (id)init;
 - (id)init:(BOOL)arg1;
 - (id)manager;
+- (BOOL)moveCallRecordsFromDatabaseAtURL:(id)arg1 withVersion:(int)arg2;
 - (void)parseCallStatus_sync:(unsigned int)arg1 isAnswered:(BOOL*)arg2 isOriginated:(BOOL*)arg3;
 - (id)recentCallQueue;
 - (void)registerForNotifications;
+- (BOOL)resetAllTimers;
 - (void)resetTimers;
 - (BOOL)saveDatabase:(id*)arg1;
 - (void)setClientObject_sync:(id)arg1 withStoreObject:(id)arg2;
-- (void)setDataStoreCreated:(BOOL)arg1;
 - (void)setRecentCallQueue:(id)arg1;
 - (void)setStoreObject_sync:(id)arg1 withClientObject:(id)arg2;
 - (id)timerIncoming;

@@ -2,14 +2,17 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSArray;
-
 @interface SKUIRowViewElement : SKUIViewElement {
+    NSString *_type;
 }
 
-@property(readonly) NSArray * columns;
+@property (nonatomic, readonly) NSArray *columns;
+@property (nonatomic, readonly) NSString *type;
 
+- (void).cxx_destruct;
 - (id)columns;
+- (id)initWithDOMElement:(id)arg1 parent:(id)arg2 elementFactory:(id)arg3;
 - (int)pageComponentType;
+- (id)type;
 
 @end

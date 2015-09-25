@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/Parsec.framework/Parsec
  */
 
-@class NSData, NSMutableArray, NSString, NSURL, UIImage;
-
 @interface PRSImage : NSObject <NSSecureCoding> {
     NSMutableArray *_completionBlocks;
+    float _cornerRadius;
     NSData *_data;
     NSString *_dataType;
     NSString *_identifier;
@@ -16,33 +15,49 @@
     NSURL *_url;
 }
 
-@property(retain) NSData * data;
-@property(retain) NSString * dataType;
-@property(retain) NSString * identifier;
-@property(retain) UIImage * image;
+@property float cornerRadius;
+@property (retain) NSData *data;
+@property (retain) NSString *dataType;
+@property (retain) NSString *identifier;
+@property (retain) UIImage *image;
 @property BOOL isTemplate;
-@property(retain) NSURL * url;
+@property (retain) UIImage *preloadedImage;
+@property (retain) NSURL *url;
 
-+ (id)converterBlock;
+// Image: /System/Library/PrivateFrameworks/Parsec.framework/Parsec
+
++ (id /* block */)converterBlock;
++ (void)setResourceDictionary:(id)arg1;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (float)cornerRadius;
 - (id)data;
 - (id)dataType;
 - (void)encodeWithCoder:(id)arg1;
 - (id)identifier;
 - (id)image;
+- (id)imageWithSource:(id)arg1 maxSize:(struct CGSize { float x1; float x2; })arg2 scale:(float)arg3;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isTemplate;
-- (void)loadImageWithSource:(id)arg1 maxSize:(struct CGSize { float x1; float x2; })arg2 completion:(id)arg3;
-- (void)loadImageWithSprite:(id)arg1 map:(id)arg2 completion:(id)arg3;
+- (void)loadImageWithSource:(id)arg1 maxSize:(struct CGSize { float x1; float x2; })arg2 completion:(id /* block */)arg3;
+- (void)loadImageWithSprite:(id)arg1 map:(id)arg2 completion:(id /* block */)arg3;
 - (void)preloadImageWithSource:(id)arg1;
+- (id)preloadedImage;
+- (void)produceImageWithSource:(id)arg1 complete:(id /* block */)arg2;
+- (void)setCornerRadius:(float)arg1;
 - (void)setData:(id)arg1;
 - (void)setDataType:(id)arg1;
 - (void)setIdentifier:(id)arg1;
 - (void)setImage:(id)arg1;
 - (void)setIsTemplate:(BOOL)arg1;
+- (void)setPreloadedImage:(id)arg1;
 - (void)setUrl:(id)arg1;
 - (id)url;
+
+// Image: /System/Library/PrivateFrameworks/SpotlightUI.framework/SpotlightUI
+
+- (id)scaledImage;
+- (id)scaledImageAtMaxSize:(struct CGSize { float x1; float x2; })arg1;
 
 @end

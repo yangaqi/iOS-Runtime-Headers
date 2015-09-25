@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSDate, NSMutableArray, NSString, TPDocumentRoot, TPFootnoteLayoutController, TPPageLayoutState, TPSearchCanvasDelegate, TSUMutablePointerSet, TSWPLayoutManager;
-
 @interface TPPageController : NSObject <TPLayoutStateConsumer, TPLayoutStateProvider, TPPageLayoutInfoProvider, TSWPLayoutOwner> {
     int _backgroundLayoutEnabled;
     int _backgroundLayoutSuspendCount;
@@ -12,6 +10,7 @@
     TSWPLayoutManager *_bodyLayoutManager;
     BOOL _checkedForBackUp;
     unsigned int _completePageCount;
+    unsigned int _currentPageBeingLaidOut;
     unsigned int _didLayOutPageIndex;
     TPDocumentRoot *_documentRoot;
     TPFootnoteLayoutController *_footnoteLayoutController;
@@ -40,17 +39,17 @@
     BOOL _shouldUpdatePageCount;
 }
 
-@property BOOL backgroundLayoutEnabled;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int firstPageIndexNeedingLayout;
-@property(readonly) unsigned int hash;
-@property(readonly) unsigned int pageCount;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL backgroundLayoutEnabled;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) unsigned int firstPageIndexNeedingLayout;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int pageCount;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)accquireLockAndPerformAction:(id)arg1;
+- (void)accquireLockAndPerformAction:(id /* block */)arg1;
 - (void)addLayoutObserver:(id)arg1;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })anchoredRangeForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
 - (BOOL)archivedLayoutState:(id)arg1 setBodyLength:(unsigned int)arg2;
@@ -93,6 +92,7 @@
 - (id)initWithDocumentRoot:(id)arg1;
 - (BOOL)isLayoutComplete;
 - (BOOL)isLayoutCompleteThroughPageIndex:(unsigned int)arg1;
+- (BOOL)isLayoutInProgress;
 - (BOOL)isSectionInfo:(id)arg1 onPage:(unsigned int)arg2;
 - (unsigned int)lastPageCountForArchivedLayoutState:(id)arg1;
 - (void)layoutManager:(id)arg1 didClearDirtyRangeWithDelta:(int)arg2 afterCharIndex:(unsigned int)arg3;
@@ -128,7 +128,8 @@
 - (unsigned int)p_layoutEndFootnoteIndex;
 - (void)p_layoutFootnotesIntoPageLayout:(id)arg1;
 - (void)p_layoutIntoPageLayout:(id)arg1 outDidSync:(BOOL*)arg2;
-- (void)p_layoutNextPageForLayoutController:(id)arg1;
+- (void)p_layoutNextPageForLayoutController:(id)arg1 dirtyRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
+- (void)p_layoutNextPageOnce;
 - (void)p_layoutTextIntoPageLayout:(id)arg1 outDidSync:(BOOL*)arg2;
 - (void)p_layoutThroughPageIndex:(unsigned int)arg1 forLayoutController:(id)arg2 clearOffscreenInfos:(BOOL)arg3;
 - (void)p_notifyObserversDidInvalidate;
@@ -142,8 +143,9 @@
 - (unsigned int)p_pageIndexForCharIndex:(unsigned int)arg1 caretAffinity:(int)arg2 forceLayout:(BOOL)arg3 searchAfterLayoutPoint:(BOOL)arg4;
 - (unsigned int)p_pageIndexForFootnoteIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2 searchAfterLayoutPoint:(BOOL)arg3;
 - (id)p_pageIndexPathForPageIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2 allowAfterLayoutPoint:(BOOL)arg3;
-- (id)p_pageInfoForBodySelection:(id)arg1;
 - (id)p_pageInfoForPageAtIndex:(unsigned int)arg1;
+- (id)p_pageInfosForAttachmentAtBodyCharIndex:(unsigned int)arg1 selectionPath:(id)arg2;
+- (id)p_pageInfosForBodySelection:(id)arg1;
 - (id)p_pageMasterForPageIndex:(unsigned int)arg1 inSection:(id)arg2 sectionHint:(id)arg3;
 - (void)p_prepareLayoutStateForNextPage;
 - (void)p_preparePageHintForNextPage;
@@ -160,7 +162,7 @@
 - (void)p_setBackgroundLayoutStartDate:(id)arg1;
 - (void)p_setNeedsLayoutFromSectionIndexToEnd:(unsigned int)arg1;
 - (void)p_setNeedsLayoutOnPageIndex:(unsigned int)arg1;
-- (void)p_syncFromNextPage;
+- (void)p_syncFromNextPageWithDirtyRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (id)p_textPageHintFollowingPageIndexPath:(id)arg1;
 - (id)p_textPageHintPrecedingPageIndex:(unsigned int)arg1;
 - (id)p_textPageHintPrecedingPageIndexPath:(id)arg1;
@@ -169,7 +171,7 @@
 - (void)p_updateNonTextHintAtPageIndexPath:(id)arg1;
 - (void)p_updatePageCount;
 - (void)p_updateTextHintAtPageIndexPath:(id)arg1 withTarget:(id)arg2;
-- (void)p_withPageLayoutAtIndex:(unsigned int)arg1 preferredLayoutController:(id)arg2 executeBlock:(id)arg3;
+- (void)p_withPageLayoutAtIndex:(unsigned int)arg1 preferredLayoutController:(id)arg2 executeBlock:(id /* block */)arg3;
 - (BOOL)pageAtIndexHasBody:(unsigned int)arg1;
 - (BOOL)pageBeginsWithPaginatedAttachment:(unsigned int)arg1;
 - (unsigned int)pageCount;
@@ -178,7 +180,6 @@
 - (unsigned int)pageIndexForAnchoredCharIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
 - (unsigned int)pageIndexForCharIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
 - (unsigned int)pageIndexForFootnoteIndex:(unsigned int)arg1 forceLayout:(BOOL)arg2;
-- (id)pageInfoForAttachmentAtBodyCharIndex:(unsigned int)arg1 selection:(id)arg2;
 - (id)pageInfoForPageIndex:(unsigned int)arg1;
 - (id)pageInfosForInfo:(id)arg1 withSelectionPath:(id)arg2;
 - (unsigned int)pageNumberForPageIndex:(unsigned int)arg1;
@@ -201,7 +202,7 @@
 - (id)textWrapper;
 - (void)willScroll:(id)arg1;
 - (void)willZoom:(id)arg1;
-- (void)withPageLayoutAtIndex:(unsigned int)arg1 executeBlock:(id)arg2;
-- (void)withPageLayoutAtIndex:(unsigned int)arg1 preferredLayoutController:(id)arg2 executeBlock:(id)arg3;
+- (void)withPageLayoutAtIndex:(unsigned int)arg1 executeBlock:(id /* block */)arg2;
+- (void)withPageLayoutAtIndex:(unsigned int)arg1 preferredLayoutController:(id)arg2 executeBlock:(id /* block */)arg3;
 
 @end

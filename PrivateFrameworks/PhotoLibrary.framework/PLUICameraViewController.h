@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class NSString;
-
-@interface PLUICameraViewController : CAMCameraViewController <UIImagePickerCameraViewController> {
+@interface PLUICameraViewController : CMKCameraViewController <UIImagePickerCameraViewController> {
     int _newStatusBarStyle;
     struct CGAffineTransform { 
         float a; 
@@ -17,10 +15,10 @@
     int _previousStatusBarStyle;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_adjustContentSizeForOrientation:(int)arg1;
 - (void)_applicationWillEnterForeground:(id)arg1;

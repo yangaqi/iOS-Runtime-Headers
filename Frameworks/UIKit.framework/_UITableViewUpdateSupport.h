@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, NSMutableIndexSet, UITableView, UITableViewRowData;
-
 @interface _UITableViewUpdateSupport : NSObject {
     id _context;
     id *animatedCells;
@@ -78,7 +76,8 @@
     } visibleRows;
 }
 
-- (void)_addBottomShadowViewViewForViewAnimation:(id)arg1;
+- (void).cxx_destruct;
+- (void)_addBottomShadowViewViewForViewAnimation:(id)arg1 viewType:(int)arg2;
 - (void)_computeAutomaticAnimationTypes;
 - (void)_computeGaps;
 - (void)_computeRowUpdates;
@@ -103,7 +102,11 @@
 - (void)_setupDeleteAnimationForHeaderInSection:(int)arg1 withTargetRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 forUpdateItem:(id)arg3;
 - (void)_setupInsertAnimationForFooterInSection:(int)arg1 withTargetRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 forUpdateItem:(id)arg3;
 - (void)_setupInsertAnimationForHeaderInSection:(int)arg1 withTargetRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 forUpdateItem:(id)arg3;
+- (float)_startOfRowAfterFooterInSection:(int)arg1 withRowData:(id)arg2;
+- (float)_startOfRowAfterHeaderInSection:(int)arg1 withRowData:(id)arg2;
+- (float)_startOfRowAfterRow:(int)arg1 withRowData:(id)arg2;
 - (void)_validateAnimatedCells;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })_visibleRowRangePlusAdjoining;
 - (void)dealloc;
 - (id)initWithTableView:(id)arg1 updateItems:(id)arg2 oldRowData:(id)arg3 newRowData:(id)arg4 oldRowRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg5 newRowRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg6 context:(id)arg7;
 

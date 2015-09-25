@@ -2,37 +2,33 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSString, UIKBKeyDisplayContents;
-
 @interface UIKBKeyDisplayContents : NSObject {
     int _displayPathType;
     NSString *_displayString;
     NSString *_displayStringImage;
     UIKBKeyDisplayContents *_fallbackContents;
     BOOL _fillPath;
+    BOOL _flipImageHorizontally;
     BOOL _force1xImages;
     NSArray *_highlightedVariantsList;
-    BOOL _isCustomGlyph;
-    NSString *_secondaryDisplayString;
-    NSString *_secondaryDisplayStringImage;
-    BOOL _secondaryIsCustomGlyph;
+    NSArray *_secondaryDisplayStringImages;
+    NSArray *_secondaryDisplayStrings;
     BOOL _stringKeycapOverImage;
     NSArray *_variantDisplayContents;
 }
 
-@property int displayPathType;
-@property(retain) NSString * displayString;
-@property(retain) NSString * displayStringImage;
-@property(retain) UIKBKeyDisplayContents * fallbackContents;
-@property BOOL fillPath;
-@property BOOL force1xImages;
-@property(retain) NSArray * highlightedVariantsList;
-@property BOOL isCustomGlyph;
-@property(retain) NSString * secondaryDisplayString;
-@property(retain) NSString * secondaryDisplayStringImage;
-@property BOOL secondaryIsCustomGlyph;
-@property BOOL stringKeycapOverImage;
-@property(retain) NSArray * variantDisplayContents;
+@property (nonatomic) int displayPathType;
+@property (nonatomic, retain) NSString *displayString;
+@property (nonatomic, retain) NSString *displayStringImage;
+@property (nonatomic, retain) UIKBKeyDisplayContents *fallbackContents;
+@property (nonatomic) BOOL fillPath;
+@property (nonatomic) BOOL flipImageHorizontally;
+@property (nonatomic) BOOL force1xImages;
+@property (nonatomic, retain) NSArray *highlightedVariantsList;
+@property (nonatomic, retain) NSArray *secondaryDisplayStringImages;
+@property (nonatomic, retain) NSArray *secondaryDisplayStrings;
+@property (nonatomic) BOOL stringKeycapOverImage;
+@property (nonatomic, retain) NSArray *variantDisplayContents;
 
 + (id)displayContents;
 
@@ -43,23 +39,21 @@
 - (id)displayStringImage;
 - (id)fallbackContents;
 - (BOOL)fillPath;
+- (BOOL)flipImageHorizontally;
 - (BOOL)force1xImages;
 - (id)highlightedVariantsList;
-- (BOOL)isCustomGlyph;
-- (id)secondaryDisplayString;
-- (id)secondaryDisplayStringImage;
-- (BOOL)secondaryIsCustomGlyph;
+- (id)secondaryDisplayStringImages;
+- (id)secondaryDisplayStrings;
 - (void)setDisplayPathType:(int)arg1;
 - (void)setDisplayString:(id)arg1;
 - (void)setDisplayStringImage:(id)arg1;
 - (void)setFallbackContents:(id)arg1;
 - (void)setFillPath:(BOOL)arg1;
+- (void)setFlipImageHorizontally:(BOOL)arg1;
 - (void)setForce1xImages:(BOOL)arg1;
 - (void)setHighlightedVariantsList:(id)arg1;
-- (void)setIsCustomGlyph:(BOOL)arg1;
-- (void)setSecondaryDisplayString:(id)arg1;
-- (void)setSecondaryDisplayStringImage:(id)arg1;
-- (void)setSecondaryIsCustomGlyph:(BOOL)arg1;
+- (void)setSecondaryDisplayStringImages:(id)arg1;
+- (void)setSecondaryDisplayStrings:(id)arg1;
 - (void)setStringKeycapOverImage:(BOOL)arg1;
 - (void)setVariantDisplayContents:(id)arg1;
 - (BOOL)stringKeycapOverImage;

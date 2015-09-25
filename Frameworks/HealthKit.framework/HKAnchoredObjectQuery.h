@@ -2,39 +2,46 @@
    Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSNumber;
-
 @interface HKAnchoredObjectQuery : HKQuery {
-    NSNumber *_anchor;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completionHandler;
-
+    HKQueryAnchor *_anchor;
+    id /* block */ _completionHandler;
+    BOOL _includeDeletedObjects;
+    BOOL _initialHandlerCalled;
     unsigned int _limit;
+    id /* block */ _updateHandler;
 }
 
-@property(retain) NSNumber * anchor;
-@property(readonly) id completionHandler;
-@property unsigned int limit;
+@property (nonatomic, retain) HKQueryAnchor *anchor;
+@property (nonatomic, readonly) id /* block */ completionHandler;
+@property (nonatomic) BOOL includeDeletedObjects;
+@property (nonatomic) unsigned int limit;
+@property (nonatomic, copy) id /* block */ updateHandler;
+
+// Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
 
 + (Class)_queryServerDataObjectClass;
 
 - (void).cxx_destruct;
 - (void)_queue_cleanupAfterDeactivation;
 - (void)_queue_configureQueryServerDataObject:(id)arg1;
-- (id)_queue_errorHandler;
+- (id /* block */)_queue_errorHandler;
+- (BOOL)_queue_shouldStayAliveAfterInitialResults;
 - (void)_queue_validate;
 - (id)anchor;
-- (id)completionHandler;
-- (void)deliverDataObjects:(id)arg1 withAnchor:(id)arg2 queryUUID:(id)arg3;
-- (id)initWithType:(id)arg1 predicate:(id)arg2 anchor:(unsigned int)arg3 limit:(unsigned int)arg4 completionHandler:(id)arg5;
+- (id /* block */)completionHandler;
+- (void)deliverSampleObjects:(id)arg1 deletedObjects:(id)arg2 withAnchor:(id)arg3 forQuery:(id)arg4;
+- (BOOL)includeDeletedObjects;
+- (id)initWithType:(id)arg1 predicate:(id)arg2 anchor:(unsigned int)arg3 limit:(unsigned int)arg4 completionHandler:(id /* block */)arg5;
+- (id)initWithType:(id)arg1 predicate:(id)arg2 anchor:(id)arg3 limit:(unsigned int)arg4 resultsHandler:(id /* block */)arg5;
 - (unsigned int)limit;
 - (void)setAnchor:(id)arg1;
+- (void)setIncludeDeletedObjects:(BOOL)arg1;
 - (void)setLimit:(unsigned int)arg1;
+- (void)setUpdateHandler:(id /* block */)arg1;
+- (id /* block */)updateHandler;
+
+// Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
+
++ (Class)hd_queryServerClass;
 
 @end

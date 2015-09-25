@@ -2,27 +2,25 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString;
+@interface SASUpdateAudioInfo : SABaseCommand <SAServerBoundCommand>
 
-@interface SASUpdateAudioInfo : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property(copy) NSString * audioSource;
-@property int codec;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(copy) NSString * deviceIdentifier;
-@property(copy) NSString * deviceModel;
-@property(copy) NSString * dspStatus;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * headsetAddress;
-@property(copy) NSString * headsetId;
-@property(copy) NSString * headsetName;
-@property(copy) NSNumber * noiseReductionLevel;
-@property(copy) NSString * origin;
-@property(copy) NSString * refId;
-@property(readonly) Class superclass;
+@property (nonatomic, copy) NSString *aceId;
+@property (nonatomic, copy) NSString *audioSource;
+@property (nonatomic) int codec;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *deviceIdentifier;
+@property (nonatomic, copy) NSString *deviceModel;
+@property (nonatomic, copy) NSString *dspStatus;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *headsetAddress;
+@property (nonatomic, copy) NSString *headsetId;
+@property (nonatomic, copy) NSString *headsetName;
+@property (nonatomic, copy) NSNumber *noiseReductionLevel;
+@property (nonatomic, copy) NSString *origin;
+@property (nonatomic, retain) SASRecordingInfo *recordingInfo;
+@property (nonatomic, copy) NSString *refId;
+@property (readonly) Class superclass;
 
 + (id)updateAudioInfo;
 + (id)updateAudioInfoWithDictionary:(id)arg1 context:(id)arg2;
@@ -39,6 +37,7 @@
 - (id)headsetName;
 - (id)noiseReductionLevel;
 - (id)origin;
+- (id)recordingInfo;
 - (void)setAudioSource:(id)arg1;
 - (void)setCodec:(int)arg1;
 - (void)setDeviceIdentifier:(id)arg1;
@@ -49,5 +48,6 @@
 - (void)setHeadsetName:(id)arg1;
 - (void)setNoiseReductionLevel:(id)arg1;
 - (void)setOrigin:(id)arg1;
+- (void)setRecordingInfo:(id)arg1;
 
 @end

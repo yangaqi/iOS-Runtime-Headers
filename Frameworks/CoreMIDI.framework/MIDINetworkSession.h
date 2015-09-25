@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/CoreMIDI.framework/CoreMIDI
  */
 
-@class NSString;
-
 @interface MIDINetworkSession : NSObject {
-    struct _MIDINetworkSessionImpl { struct OpaqueMIDIEntity {} *x1; struct OpaqueMIDIEndpoint {} *x2; struct OpaqueMIDIEndpoint {} *x3; id x4; id x5; struct ContactOrConnectionSet { bool x_6_1_1; id x_6_1_2; } x6; } *_impl;
+    void *_imp;
 }
 
-@property unsigned int connectionPolicy;
-@property(getter=isEnabled) BOOL enabled;
-@property(readonly) NSString * localName;
-@property(readonly) NSString * networkName;
-@property(readonly) unsigned int networkPort;
+@property (nonatomic) unsigned int connectionPolicy;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
+@property (nonatomic, readonly) NSString *localName;
+@property (nonatomic, readonly) NSString *networkName;
+@property (nonatomic, readonly) unsigned int networkPort;
 
 + (id)defaultSession;
 
@@ -24,7 +22,7 @@
 - (id)contacts;
 - (void)contactsChanged;
 - (void)dealloc;
-- (struct OpaqueMIDIEndpoint { }*)destinationEndpoint;
+- (unsigned long)destinationEndpoint;
 - (id)init;
 - (BOOL)isEnabled;
 - (id)localName;
@@ -37,7 +35,7 @@
 - (void)setConnectionPolicy:(unsigned int)arg1;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setStateToEntity;
-- (struct OpaqueMIDIEndpoint { }*)sourceEndpoint;
+- (unsigned long)sourceEndpoint;
 - (void)updateFromEntity;
 
 @end

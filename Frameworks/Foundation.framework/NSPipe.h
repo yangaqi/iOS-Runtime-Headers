@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSFileHandle;
+@interface NSPipe : NSObject
 
-@interface NSPipe : NSObject {
-}
-
-@property(retain,readonly) NSFileHandle * fileHandleForReading;
-@property(retain,readonly) NSFileHandle * fileHandleForWriting;
+@property (readonly, retain) NSFileHandle *fileHandleForReading;
+@property (readonly, retain) NSFileHandle *fileHandleForWriting;
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)pipe;
 
+- (void)_closeOnDealloc;
 - (id)fileHandleForReading;
 - (id)fileHandleForWriting;
 - (id)init;

@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIImage, NSNumber;
-
 @interface CIVibrance : CIFilter <_CIFilterProperties> {
     NSNumber *inputAmount;
     CIImage *inputImage;
 }
 
-@property(retain) NSNumber * inputAmount;
-@property(retain) CIImage * inputImage;
+@property (nonatomic, retain) NSNumber *inputAmount;
+@property (nonatomic, retain) CIImage *inputImage;
 
 + (id)customAttributes;
 
@@ -22,7 +20,6 @@
 - (id)inputAmount;
 - (id)inputImage;
 - (id)outputImage;
-- (void)setDefaults;
 - (void)setInputAmount:(id)arg1;
 - (void)setInputImage:(id)arg1;
 

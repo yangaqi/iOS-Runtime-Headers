@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSCalendar, NSLocale, NSObject<OS_dispatch_semaphore>, NSString, NSTimeZone;
-
 @interface NSDateIntervalFormatter : NSFormatter {
     NSCalendar *_calendar;
     unsigned int _dateStyle;
@@ -13,18 +11,18 @@
     NSLocale *_locale;
     NSObject<OS_dispatch_semaphore> *_lock;
     BOOL _modified;
-    void *_reserved[4];
+    void *_reserved;
     unsigned int _timeStyle;
     NSTimeZone *_timeZone;
     BOOL _useTemplate;
 }
 
-@property(copy) NSCalendar * calendar;
+@property (copy) NSCalendar *calendar;
 @property unsigned int dateStyle;
-@property(copy) NSString * dateTemplate;
-@property(copy) NSLocale * locale;
+@property (copy) NSString *dateTemplate;
+@property (copy) NSLocale *locale;
 @property unsigned int timeStyle;
-@property(copy) NSTimeZone * timeZone;
+@property (copy) NSTimeZone *timeZone;
 
 - (id)attributedStringForObjectValue:(id)arg1 withDefaultAttributes:(id)arg2;
 - (id)calendar;
@@ -34,6 +32,7 @@
 - (void)dealloc;
 - (id)editingStringForObjectValue:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
+- (void)finalize;
 - (BOOL)getObjectValue:(out id*)arg1 forString:(id)arg2 errorDescription:(out id*)arg3;
 - (id)init;
 - (id)initWithCoder:(id)arg1;

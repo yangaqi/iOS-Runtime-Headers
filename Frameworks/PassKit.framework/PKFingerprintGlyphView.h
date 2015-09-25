@@ -2,12 +2,11 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class CALayer, NSArray, NSMutableArray, NSString, UIColor, UIView;
-
 @interface PKFingerprintGlyphView : UIView <PKMicaResizableView> {
     CALayer *_backgroundLayer;
     NSArray *_backgroundShapeLayers;
     UIView *_contentView;
+    BOOL _fadeOnRecognized;
     CALayer *_foregroundLayer;
     CALayer *_foregroundRingContainerLayer;
     NSArray *_foregroundRingShapeLayers;
@@ -26,23 +25,25 @@
     BOOL _transitioning;
 }
 
-@property(readonly) UIView * contentView;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) UIColor * primaryColor;
-@property(copy) UIColor * secondaryColor;
-@property(readonly) int state;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) UIView *contentView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL fadeOnRecognized;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) UIColor *primaryColor;
+@property (nonatomic, copy) UIColor *secondaryColor;
+@property (nonatomic, readonly) int state;
+@property (readonly) Class superclass;
 
 - (void)_continueHoldingStateForPathAtIndex:(unsigned int)arg1 withTransitionIndex:(unsigned int)arg2;
 - (void)_endRotationAnimation;
-- (void)_executeAfterMinimumAnimationDurationForStateTransition:(id)arg1;
+- (void)_executeAfterMinimumAnimationDurationForStateTransition:(id /* block */)arg1;
 - (void)_executeTransitionCompletionHandlers:(BOOL)arg1;
 - (void)_finishTransitionForIndex:(unsigned int)arg1;
 - (void)_hideNonRingShapeLayersWithTransitionIndex:(unsigned int)arg1 withGap:(BOOL)arg2 animated:(BOOL)arg3;
 - (double)_minimumAnimationDurationForStateTransition;
 - (void)_performTransitionWithTransitionIndex:(unsigned int)arg1 animated:(BOOL)arg2;
+- (void)_restartRotationIfNecessary;
 - (void)_setProgress:(float)arg1 withDuration:(double)arg2 forShapeLayerAtIndex:(unsigned int)arg3;
 - (void)_showFingerprintWithTransitionIndex:(unsigned int)arg1 animated:(BOOL)arg2;
 - (void)_startRecognitionHoldingStateWithTransitionIndex:(unsigned int)arg1;
@@ -52,7 +53,10 @@
 - (struct CGSize { float x1; float x2; })boundsSizeToMatchPointScale:(float)arg1;
 - (id)contentView;
 - (void)dealloc;
+- (void)didMoveToWindow;
+- (BOOL)fadeOnRecognized;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
 - (id)pathStateForLayer:(id)arg1;
@@ -60,13 +64,14 @@
 - (id)primaryColor;
 - (id)secondaryColor;
 - (void)setContentViewAlpha:(float)arg1 withDuration:(double)arg2;
+- (void)setFadeOnRecognized:(BOOL)arg1;
 - (void)setPathState:(id)arg1 forLayer:(id)arg2;
 - (void)setPrimaryColor:(id)arg1;
 - (void)setPrimaryColor:(id)arg1 animated:(BOOL)arg2;
 - (void)setProgress:(float)arg1 withDuration:(double)arg2;
 - (void)setSecondaryColor:(id)arg1;
 - (void)setSecondaryColor:(id)arg1 animated:(BOOL)arg2;
-- (void)setState:(int)arg1 animated:(BOOL)arg2 completionHandler:(id)arg3;
+- (void)setState:(int)arg1 animated:(BOOL)arg2 completionHandler:(id /* block */)arg3;
 - (int)state;
 
 @end

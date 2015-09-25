@@ -2,21 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSExtension, NSString;
-
 @interface _UIDocumentPickerDescriptor : NSObject {
     NSExtension *_extension;
     BOOL _newlyAdded;
 }
 
-@property BOOL enabled;
-@property(retain) NSExtension * extension;
-@property(retain,readonly) NSString * fileProviderDocumentGroup;
-@property(copy,readonly) NSString * identifier;
-@property(copy,readonly) NSString * localizedName;
-@property(getter=isNewlyAdded) BOOL newlyAdded;
-@property(copy,readonly) NSString * nonUIIdentifier;
-@property(copy,readonly) NSArray * supportedContentTypes;
+@property (nonatomic) BOOL enabled;
+@property (nonatomic, retain) NSExtension *extension;
+@property (nonatomic, readonly, retain) NSString *fileProviderDocumentGroup;
+@property (nonatomic, readonly, copy) NSString *identifier;
+@property (nonatomic, readonly, copy) NSString *localizedName;
+@property (getter=isNewlyAdded, nonatomic) BOOL newlyAdded;
+@property (nonatomic, readonly, copy) NSString *nonUIIdentifier;
+@property (nonatomic, readonly, copy) NSArray *supportedContentTypes;
 
 + (id)allPickers;
 + (id)allPickersForMode:(unsigned int)arg1 documentTypes:(id)arg2;
@@ -31,6 +29,7 @@
 + (void)setHostBundleID:(id)arg1;
 + (void)setOrderFromPickers:(id)arg1;
 
+- (void).cxx_destruct;
 - (id)_extensionValueOfClass:(Class)arg1 forKey:(id)arg2;
 - (id)_ownBundle;
 - (id)_parentApp;
@@ -47,6 +46,7 @@
 - (id)localizedName;
 - (id)nonUIBundle;
 - (id)nonUIIdentifier;
+- (BOOL)pickerEnabledForMode:(unsigned int)arg1 documentTypes:(id)arg2 reason:(id*)arg3;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setExtension:(id)arg1;
 - (void)setNewlyAdded:(BOOL)arg1;

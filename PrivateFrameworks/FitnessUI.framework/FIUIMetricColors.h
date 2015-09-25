@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
  */
 
-@class UIColor;
-
 @interface FIUIMetricColors : NSObject {
     UIColor *_adjustmentButtonBackgroundColor;
     UIColor *_buttonDisabledTextColor;
@@ -12,21 +10,23 @@
     UIColor *_gradientLightColor;
     UIColor *_nonGradientTextColor;
     UIColor *_valueDisplayColor;
+    NSString *_workoutRingColorIdentifier;
 }
 
-@property(retain) UIColor * adjustmentButtonBackgroundColor;
-@property(retain) UIColor * buttonDisabledTextColor;
-@property(retain) UIColor * buttonTextColor;
-@property(retain) UIColor * gradientDarkColor;
-@property(retain) UIColor * gradientLightColor;
-@property(retain) UIColor * nonGradientTextColor;
-@property(retain) UIColor * valueDisplayColor;
+@property (nonatomic, retain) UIColor *adjustmentButtonBackgroundColor;
+@property (nonatomic, retain) UIColor *buttonDisabledTextColor;
+@property (nonatomic, retain) UIColor *buttonTextColor;
+@property (nonatomic, retain) UIColor *gradientDarkColor;
+@property (nonatomic, retain) UIColor *gradientLightColor;
+@property (nonatomic, retain) UIColor *nonGradientTextColor;
+@property (nonatomic, retain) UIColor *valueDisplayColor;
+@property (nonatomic, retain) NSString *workoutRingColorIdentifier;
 
 + (id)briskColors;
-+ (id)calorieColors;
 + (id)clockColors;
 + (id)distanceColors;
 + (id)elapsedTimeColors;
++ (id)energyColors;
 + (id)heartRateColors;
 + (id)keyColors;
 + (id)metricColorsForGoalTypeIdentifier:(unsigned int)arg1;
@@ -50,6 +50,8 @@
 - (void)setGradientLightColor:(id)arg1;
 - (void)setNonGradientTextColor:(id)arg1;
 - (void)setValueDisplayColor:(id)arg1;
+- (void)setWorkoutRingColorIdentifier:(id)arg1;
 - (id)valueDisplayColor;
+- (id)workoutRingColorIdentifier;
 
 @end

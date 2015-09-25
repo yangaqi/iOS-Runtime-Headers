@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSData, NSObject<OS_dispatch_semaphore>;
-
 @interface _UIDecompressionInfo : NSObject {
     BOOL decompressionComplete;
     NSData *imageData;
@@ -18,7 +16,7 @@
     NSObject<OS_dispatch_semaphore> *syncSemaphore;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithData:(id)arg1 maxSize:(struct CGSize { float x1; float x2; })arg2 renderingIntent:(int)arg3;
 
 @end

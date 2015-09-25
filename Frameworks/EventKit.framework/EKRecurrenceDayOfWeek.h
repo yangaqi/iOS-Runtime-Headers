@@ -7,8 +7,8 @@
     int _weekNumber;
 }
 
-@property(readonly) int dayOfTheWeek;
-@property(readonly) int weekNumber;
+@property (nonatomic, readonly) int dayOfTheWeek;
+@property (nonatomic, readonly) int weekNumber;
 
 + (id)dayOfWeek:(int)arg1;
 + (id)dayOfWeek:(int)arg1 weekNumber:(int)arg2;
@@ -19,7 +19,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)hash;
 - (id)iCalendarDescription;
-- (id)iCalendarValueFromDayOfTheWeek:(unsigned int)arg1;
+- (id)iCalendarValueFromDayOfTheWeek:(int)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDayOfTheWeek:(int)arg1 weekNumber:(int)arg2;
 - (BOOL)isEqual:(id)arg1;

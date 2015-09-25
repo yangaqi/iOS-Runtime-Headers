@@ -2,20 +2,19 @@
    Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
  */
 
-@class HKUnit;
-
 @interface HKQuantity : NSObject <NSCopying, NSSecureCoding> {
     HKUnit *_unit;
     double _value;
 }
 
-@property(getter=_unit,readonly) HKUnit * unit;
+@property (getter=_unit, nonatomic, readonly) HKUnit *unit;
 
 + (id)quantityWithUnit:(id)arg1 doubleValue:(double)arg2;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)_initWithUnit:(id)arg1 doubleValue:(double)arg2;
+- (BOOL)_isZero;
 - (id)_quantityByAddingQuantity:(id)arg1;
 - (id)_unit;
 - (int)compare:(id)arg1;

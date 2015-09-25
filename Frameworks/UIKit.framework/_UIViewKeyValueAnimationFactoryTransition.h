@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CABasicAnimation;
-
 @interface _UIViewKeyValueAnimationFactoryTransition : NSObject {
     CABasicAnimation *_fromAnimation;
     CABasicAnimation *_toAnimation;
 }
 
-@property(retain) CABasicAnimation * fromAnimation;
-@property(retain) CABasicAnimation * toAnimation;
+@property (nonatomic, retain) CABasicAnimation *fromAnimation;
+@property (nonatomic, retain) CABasicAnimation *toAnimation;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)fromAnimation;
 - (void)setFromAnimation:(id)arg1;
 - (void)setToAnimation:(id)arg1;

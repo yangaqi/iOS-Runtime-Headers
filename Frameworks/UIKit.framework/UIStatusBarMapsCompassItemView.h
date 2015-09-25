@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class MKStarkCompassView;
-
 @interface UIStatusBarMapsCompassItemView : UIStatusBarItemView {
     MKStarkCompassView *_compassView;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (float)updateContentsAndWidth;
 
 @end

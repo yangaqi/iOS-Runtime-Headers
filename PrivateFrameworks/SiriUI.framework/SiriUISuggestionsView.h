@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
  */
 
-@class <SiriUISuggestionsViewDelegate>, NSArray, NSMutableOrderedSet, NSString, NSTimer, SiriUIAcousticIDSpinner, UIColor, UILabel;
-
 @interface SiriUISuggestionsView : UIView {
     SiriUIAcousticIDSpinner *_acousticIDSpinner;
     struct CGPoint { 
@@ -16,6 +14,7 @@
     NSString *_headerText;
     UILabel *_largeSubheaderLabel;
     NSString *_largeSubheaderText;
+    unsigned int _numberOfSuggestions;
     UILabel *_oldHeaderLabel;
     NSArray *_oldSuggestionLabels;
     int _orientation;
@@ -27,13 +26,13 @@
     NSTimer *_updateSuggestionsTimer;
 }
 
-@property struct CGPoint { float x1; float x2; } contentOffset;
-@property <SiriUISuggestionsViewDelegate> * delegate;
-@property(copy) NSString * headerText;
-@property(copy) NSString * largeSubheaderText;
-@property int orientation;
-@property(copy) NSString * subheaderText;
-@property(copy) UIColor * textColor;
+@property (nonatomic) struct CGPoint { float x1; float x2; } contentOffset;
+@property (nonatomic) <SiriUISuggestionsViewDelegate> *delegate;
+@property (nonatomic, copy) NSString *headerText;
+@property (nonatomic, copy) NSString *largeSubheaderText;
+@property (nonatomic) int orientation;
+@property (nonatomic, copy) NSString *subheaderText;
+@property (nonatomic, copy) UIColor *textColor;
 
 - (void).cxx_destruct;
 - (void)_animateHeaderIn;
@@ -44,6 +43,7 @@
 - (float)_headerToLargeSubheaderOffset;
 - (float)_headerToSubheaderOffset;
 - (int)_heightType;
+- (BOOL)_isPadHeightType;
 - (BOOL)_isPortrait;
 - (float)_largeSubheaderFontSize;
 - (void)_loadLargeSubheaderViewIfNeeded;
@@ -58,13 +58,14 @@
 - (void)_updateSuggestions;
 - (double)_updateSuggestionsDelay;
 - (void)acousticIDSpinnerDidHide:(id)arg1;
-- (void)animateOutWithCompletion:(id)arg1;
+- (void)animateOutWithCompletion:(id /* block */)arg1;
 - (void)clearCurrentSuggestions;
 - (struct CGPoint { float x1; float x2; })contentOffset;
 - (id)delegate;
 - (id)headerText;
 - (void)hideAcousticIDSpinner;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (BOOL)isShowingSuggestions;
 - (id)largeSubheaderText;
 - (void)layoutSubviews;
 - (int)orientation;

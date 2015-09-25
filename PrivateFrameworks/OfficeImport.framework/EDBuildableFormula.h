@@ -2,22 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString;
-
 @interface EDBuildableFormula : NSObject <EDFormulaBuilding> {
     struct EDBuildablePtg { int (**x1)(); char *x2; int x3; unsigned int x4; unsigned short x5; struct EDBuildablePtg {} *x6; struct EDBuildablePtg {} *x7; bool x8; int x9; unsigned short x10; unsigned short x11; } *mTree;
     int mWarning;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (BOOL)addArrayWithCol:(int)arg1 andRow:(int)arg2;
 - (BOOL)addInfixOperator:(int)arg1 atIndex:(unsigned int)arg2 factor:(double)arg3;
@@ -50,10 +43,12 @@
 - (unsigned int)removeOptionalPtgArgs:(unsigned int)arg1 minArgs:(unsigned int)arg2;
 - (void)removeTokenAtIndex:(unsigned int)arg1;
 - (BOOL)replaceArgPtgAtIndex:(unsigned int)arg1 withFormula:(id)arg2;
+- (void)replaceStringInStringTokenAtIndex:(unsigned int)arg1 content:(id)arg2;
 - (char *)setExtendedDataForLastTokenAtIndex:(unsigned int)arg1 length:(unsigned int)arg2;
 - (void)setWarning:(int)arg1;
 - (BOOL)shrinkSpanningRef:(struct EDBuildablePtg { int (**x1)(); char *x2; int x3; unsigned int x4; unsigned short x5; struct EDBuildablePtg {} *x6; struct EDBuildablePtg {} *x7; bool x8; int x9; unsigned short x10; unsigned short x11; }*)arg1;
 - (BOOL)shrinkSpanningRefAtArgIndex:(unsigned int)arg1;
+- (id)stringFromStringTokenAtIndex:(unsigned int)arg1;
 - (struct EDBuildablePtg { int (**x1)(); char *x2; int x3; unsigned int x4; unsigned short x5; struct EDBuildablePtg {} *x6; struct EDBuildablePtg {} *x7; bool x8; int x9; unsigned short x10; unsigned short x11; }*)tokenAtIndex:(unsigned int)arg1;
 - (struct EDBuildablePtg { int (**x1)(); char *x2; int x3; unsigned int x4; unsigned short x5; struct EDBuildablePtg {} *x6; struct EDBuildablePtg {} *x7; bool x8; int x9; unsigned short x10; unsigned short x11; }*)tokenAtIndex:(unsigned int)arg1 previousToken:(struct EDBuildablePtg {}**)arg2;
 - (int)tokenTypeAtIndex:(unsigned int)arg1;

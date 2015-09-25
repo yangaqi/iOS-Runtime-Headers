@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDFormula, EDResources, OADGraphicProperties;
-
 @interface CHDTrendlineLabel : NSObject {
     bool mAutomaticLabelDeleted;
+    bool mContentFormatDerived;
     unsigned int mContentFormatId;
     bool mGeneratedText;
     OADGraphicProperties *mGraphicProperties;
@@ -19,9 +18,11 @@
 - (id)contentFormat;
 - (unsigned int)contentFormatId;
 - (void)dealloc;
+- (id)description;
 - (id)graphicProperties;
 - (id)initWithResources:(id)arg1;
 - (bool)isAutomaticLabelDeleted;
+- (bool)isContentFormatDerivedFromDataPoints;
 - (bool)isGeneratedText;
 - (id)lastCachedName;
 - (id)name;
@@ -30,6 +31,7 @@
 - (void)setContentFormatId:(unsigned int)arg1;
 - (void)setGeneratedText:(bool)arg1;
 - (void)setGraphicProperties:(id)arg1;
+- (void)setIsContentFormatDerivedFromDataPoints:(bool)arg1;
 - (void)setLastCachedName:(id)arg1;
 - (void)setName:(id)arg1 chart:(id)arg2;
 - (void)setStringIndex:(unsigned int)arg1;

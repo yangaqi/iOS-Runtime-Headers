@@ -2,14 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMapTable;
-
-@interface GEOSearchResponse : GEOPlaceSearchResponse {
-    NSMapTable *_attributionKeysToInfo;
-}
-
-- (void)_addAttributionInfo:(id)arg1;
-- (id)attributionInfoForSourceIdentifier:(id)arg1 sourceVersion:(unsigned int)arg2;
-- (void)dealloc;
+@interface GEOSearchResponse : GEOPlaceSearchResponse
 
 @end

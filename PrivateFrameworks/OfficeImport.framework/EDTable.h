@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection, EDReference, EDResources, NSString;
-
 @interface EDTable : NSObject {
     EDCollection *mColumnFilters;
     unsigned int mDataAreaBorderDxfIndex;
@@ -36,6 +34,7 @@
 - (id)dataAreaDxf;
 - (unsigned int)dataAreaDxfIndex;
 - (void)dealloc;
+- (id)description;
 - (id)displayName;
 - (id)headerRowBorderDxf;
 - (unsigned int)headerRowBorderDxfIndex;

@@ -2,27 +2,32 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@class NSString;
-
 @interface _BSCategoryLogger : NSObject <BSLogging> {
     NSString *_category;
+    BOOL _enabled;
     NSString *_name;
 }
 
-@property(retain) NSString * category;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) NSString * name;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) NSString *category;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *name;
+@property (readonly) Class superclass;
 
 - (id)category;
 - (void)dealloc;
+- (id)description;
+- (unsigned int)hash;
 - (id)initWithLoggerName:(id)arg1 category:(id)arg2;
+- (BOOL)isEnabled;
+- (BOOL)isEqual:(id)arg1;
 - (void)logWithFormat:(id)arg1;
 - (void)logWithFormat:(id)arg1 arguments:(void*)arg2;
 - (id)name;
 - (void)setCategory:(id)arg1;
+- (void)setEnabled:(BOOL)arg1;
 - (void)setName:(id)arg1;
 
 @end

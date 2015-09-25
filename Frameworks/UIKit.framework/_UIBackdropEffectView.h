@@ -2,18 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CABackdropLayer;
-
 @interface _UIBackdropEffectView : UIView {
     CABackdropLayer *_backdropLayer;
     float _zoom;
 }
 
-@property(retain) CABackdropLayer * backdropLayer;
-@property float zoom;
+@property (nonatomic, retain) CABackdropLayer *backdropLayer;
+@property (nonatomic) float zoom;
 
 + (Class)layerClass;
 
+- (void).cxx_destruct;
 - (BOOL)_shouldAnimatePropertyWithKey:(id)arg1;
 - (id)backdropLayer;
 - (void)backdropLayerStatisticsDidChange:(id)arg1;

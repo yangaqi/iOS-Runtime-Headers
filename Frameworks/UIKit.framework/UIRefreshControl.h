@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSAttributedString, UIColor, UIScrollView, _UIRefreshControlContentView;
-
 @interface UIRefreshControl : UIControl {
     float _additionalTopInset;
     BOOL _adjustingInsets;
@@ -23,26 +21,28 @@
     float _visibleHeight;
 }
 
-@property(getter=_isApplyingInsets,readonly) BOOL _applyingInsets;
-@property(readonly) float _refreshControlHeight;
-@property(readonly) float _snappingHeight;
-@property(readonly) float _visibleHeight;
-@property(getter=_appliedInsets,readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } appliedInsets;
-@property(retain) NSAttributedString * attributedTitle;
-@property(readonly) int refreshControlState;
-@property(getter=isRefreshing,readonly) BOOL refreshing;
-@property(readonly) int style;
-@property(retain) UIColor * tintColor;
+@property (getter=_isApplyingInsets, nonatomic, readonly) BOOL _applyingInsets;
+@property (nonatomic, readonly) float _refreshControlHeight;
+@property (nonatomic, readonly) float _snappingHeight;
+@property (nonatomic, readonly) float _visibleHeight;
+@property (getter=_appliedInsets, nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } appliedInsets;
+@property (nonatomic, retain) NSAttributedString *attributedTitle;
+@property (nonatomic, readonly) int refreshControlState;
+@property (getter=isRefreshing, nonatomic, readonly) BOOL refreshing;
+@property (nonatomic, readonly) int style;
+@property (nonatomic, retain) UIColor *tintColor;
 
 + (Class)_contentViewClassForStyle:(int)arg1;
 + (id)_defaultColor;
 
+- (void).cxx_destruct;
 - (void)_addInsetHeight:(float)arg1;
 - (void)_addInsets;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_appliedInsets;
 - (id)_attributedTitle;
 - (BOOL)_canTransitionFromState:(int)arg1 toState:(int)arg2;
 - (id)_contentView;
+- (unsigned int)_controlEventsForActionTriggered;
 - (void)_didScroll;
 - (BOOL)_isApplyingInsets;
 - (struct CGPoint { float x1; float x2; })_originForContentOffset:(struct CGPoint { float x1; float x2; })arg1;

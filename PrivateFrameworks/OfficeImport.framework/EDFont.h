@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDColorReference, EDResources, NSString;
-
 @interface EDFont : NSObject <EDImmutableObject, NSCopying> {
     bool mBold;
     bool mBoldOverridden;
@@ -16,6 +14,7 @@
     bool mItalic;
     bool mItalicOverridden;
     NSString *mName;
+    bool mNameOverridden;
     bool mOutline;
     EDResources *mResources;
     int mScript;
@@ -28,10 +27,10 @@
     bool mWeightOverridden;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)fontWithResources:(id)arg1;
 
@@ -40,6 +39,7 @@
 - (id)colorReference;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (int)family;
 - (double)height;
 - (id)initWithResources:(id)arg1;
@@ -50,6 +50,7 @@
 - (bool)isHeightOverridden;
 - (bool)isItalic;
 - (bool)isItalicOverridden;
+- (bool)isNameOverridden;
 - (bool)isOutline;
 - (bool)isShadow;
 - (bool)isStrike;

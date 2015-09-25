@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSMutableArray, NSString, PSListController, PSSpecifier;
-
 @interface PSExpandableListGroupController : NSObject <PSSpecifierGroupController> {
     int _collaspeAfterCount;
     PSSpecifier *_groupSpecifier;
@@ -14,14 +12,14 @@
     PSSpecifier *_spinnerSpecifier;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (int)_groupIndex;
 - (void)addSpecifiers:(id)arg1;
-- (void)dealloc;
 - (id)initWithListController:(id)arg1 groupSpecifier:(id)arg2;
 - (id)initWithListController:(id)arg1 groupSpecifier:(id)arg2 collapseAfterCount:(int)arg3;
 - (void)reloadSpecifier:(id)arg1;

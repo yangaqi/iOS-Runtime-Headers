@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
  */
 
-@interface NSBundleAccessibility : __NSBundleAccessibility_super {
-}
+@interface NSBundleAccessibility : __NSBundleAccessibility_super
 
-+ (Class)safeCategoryTargetClass;
++ (Class)safeCategoryBaseClass;
 + (id)safeCategoryTargetClassName;
 
 - (void)_loadAXBundleForBundleOffMainThread;

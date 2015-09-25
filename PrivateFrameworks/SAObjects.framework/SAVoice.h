@@ -2,16 +2,13 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAVoice : SADomainObject
 
-@interface SAVoice : SADomainObject {
-}
-
-@property(copy) NSString * gender;
-@property(copy) NSString * languageString;
-@property(copy) NSString * masteredVersion;
-@property(copy) NSString * name;
-@property(copy) NSString * quality;
+@property (nonatomic, copy) NSString *gender;
+@property (nonatomic, copy) NSString *languageString;
+@property (nonatomic, copy) NSString *masteredVersion;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *quality;
 
 + (id)voice;
 + (id)voiceWithDictionary:(id)arg1 context:(id)arg2;
@@ -28,6 +25,5 @@
 - (void)setMasteredVersion:(id)arg1;
 - (void)setName:(id)arg1;
 - (void)setQuality:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

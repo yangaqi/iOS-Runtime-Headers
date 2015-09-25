@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLScrubViewDataSource>, NSMutableArray, NSMutableDictionary, NSMutableSet, NSOperationQueue, NSString, QLPageNumberView, QLThumbnailView;
-
 @interface QLScrubView : UIView <UIGestureRecognizerDelegate> {
     <QLScrubViewDataSource> *_dataSource;
     id _delegate;
@@ -19,16 +17,18 @@
     float _thumbHeight;
     float _thumbOrigin;
     NSMutableDictionary *_thumbViews;
+    float _topOffset;
     NSMutableArray *_visibleThumbIndexes;
 }
 
-@property <QLScrubViewDataSource> * dataSource;
-@property(copy,readonly) NSString * debugDescription;
+@property <QLScrubViewDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
 @property id delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property BOOL runOnMainThread;
-@property(readonly) Class superclass;
+@property (readonly) Class superclass;
+@property (nonatomic) float topOffset;
 
 + (float)defaultWidth;
 
@@ -61,6 +61,8 @@
 - (void)setDelegate:(id)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setRunOnMainThread:(BOOL)arg1;
+- (void)setTopOffset:(float)arg1;
 - (void)tapReceived:(id)arg1;
+- (float)topOffset;
 
 @end

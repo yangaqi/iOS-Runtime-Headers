@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/CompanionSync.framework/CompanionSync
  */
 
-@class NSData, NSString;
-
 @interface SYErrorInfo : PBCodable <NSCopying> {
-    unsigned int _code;
+    int _code;
     NSString *_domain;
     NSData *_userInfo;
 }
 
-@property unsigned int code;
-@property(retain) NSString * domain;
-@property(readonly) BOOL hasUserInfo;
-@property(retain) NSData * userInfo;
+@property (nonatomic) int code;
+@property (nonatomic, retain) NSString *domain;
+@property (nonatomic, readonly) BOOL hasUserInfo;
+@property (nonatomic, retain) NSData *userInfo;
 
 + (void)initialize;
 
 - (void).cxx_destruct;
 - (id)_usefulDescription;
-- (unsigned int)code;
+- (int)code;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -31,7 +29,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (void)setCode:(unsigned int)arg1;
+- (void)setCode:(int)arg1;
 - (void)setDomain:(id)arg1;
 - (void)setUserInfo:(id)arg1;
 - (id)userInfo;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class IKDOMNode, NSDate, NSString;
-
 @interface IKDOMEvent : IKJSObject <IKJSDOMEvent> {
     BOOL _bubbles;
     BOOL _cancelable;
@@ -18,17 +16,17 @@
     NSString *_xmlAttribute;
 }
 
-@property(readonly) BOOL bubbles;
-@property(readonly) BOOL cancelable;
-@property(retain) IKDOMNode * currentTarget;
-@property BOOL defaultPrevented;
-@property int dispatchState;
-@property int eventPhase;
-@property(getter=isInUse) BOOL inUse;
-@property(retain) IKDOMNode * target;
-@property(readonly) NSDate * timeStamp;
-@property(retain,readonly) NSString * type;
-@property(retain,readonly) NSString * xmlAttribute;
+@property (nonatomic, readonly) BOOL bubbles;
+@property (nonatomic, readonly) BOOL cancelable;
+@property (nonatomic, retain) IKDOMNode *currentTarget;
+@property (nonatomic) BOOL defaultPrevented;
+@property (nonatomic) int dispatchState;
+@property (nonatomic) int eventPhase;
+@property (getter=isInUse, nonatomic) BOOL inUse;
+@property (nonatomic, retain) IKDOMNode *target;
+@property (nonatomic, readonly) NSDate *timeStamp;
+@property (nonatomic, readonly, retain) NSString *type;
+@property (nonatomic, readonly, retain) NSString *xmlAttribute;
 
 - (void).cxx_destruct;
 - (BOOL)bubbles;
@@ -38,6 +36,7 @@
 - (int)dispatchState;
 - (int)eventPhase;
 - (id)initWithAppContext:(id)arg1 type:(id)arg2 xmlAttribute:(id)arg3 canBubble:(BOOL)arg4 isCancelable:(BOOL)arg5;
+- (id)initWithType:(id)arg1 eventInit:(id)arg2;
 - (BOOL)isImmediatePropagationStopped;
 - (BOOL)isInUse;
 - (BOOL)isPropagationStopped;

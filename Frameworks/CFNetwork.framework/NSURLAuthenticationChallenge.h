@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@class <NSURLAuthenticationChallengeSender>, NSError, NSURLAuthenticationChallengeInternal, NSURLCredential, NSURLProtectionSpace, NSURLResponse;
-
 @interface NSURLAuthenticationChallenge : NSObject <NSSecureCoding> {
     NSURLAuthenticationChallengeInternal *_internal;
 }
 
-@property(copy,readonly) NSError * error;
-@property(copy,readonly) NSURLResponse * failureResponse;
-@property(readonly) int previousFailureCount;
-@property(copy,readonly) NSURLCredential * proposedCredential;
-@property(copy,readonly) NSURLProtectionSpace * protectionSpace;
-@property(retain,readonly) <NSURLAuthenticationChallengeSender> * sender;
+@property (readonly, copy) NSError *error;
+@property (readonly, copy) NSURLResponse *failureResponse;
+@property (readonly) int previousFailureCount;
+@property (readonly, copy) NSURLCredential *proposedCredential;
+@property (readonly, copy) NSURLProtectionSpace *protectionSpace;
+@property (readonly, retain) <NSURLAuthenticationChallengeSender> *sender;
 
 + (id)_authenticationChallengeForCFAuthChallenge:(struct _CFURLAuthChallenge { }*)arg1 sender:(id)arg2;
 + (id)_createAuthenticationChallengeForCFAuthChallenge:(struct _CFURLAuthChallenge { }*)arg1 sender:(id)arg2;
@@ -21,6 +19,8 @@
 
 - (struct _CFURLAuthChallenge { }*)_createCFAuthChallenge;
 - (id)_initWithCFAuthChallenge:(struct _CFURLAuthChallenge { }*)arg1 sender:(id)arg2;
+- (id)_initWithListOfProtectionSpaces:(id)arg1 CurrentProtectionSpace:(id)arg2 proposedCredential:(id)arg3 previousFailureCount:(int)arg4 failureResponse:(id)arg5 error:(id)arg6 sender:(id)arg7;
+- (BOOL)_isPasswordBasedChallenge;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)error;

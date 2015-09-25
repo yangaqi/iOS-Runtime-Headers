@@ -2,16 +2,10 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <TSPComponentDelegate>, NSDictionary, NSHashTable, NSMutableSet, NSObject<OS_dispatch_queue>, NSString, TSPComponentExternalReferenceMap, TSPObject;
-
 @interface TSPComponent : NSObject <NSDiscardableContent> {
     int _accessCount;
     NSObject<OS_dispatch_queue> *_accessQueue;
+    TSPComponentObjectUUIDMap *_componentObjectUUIDMap;
     NSMutableSet *_dataReferences;
     <TSPComponentDelegate> *_delegate;
     unsigned long long _encodedLength;
@@ -26,7 +20,6 @@
     } _flags;
     long long _identifier;
     NSString *_locator;
-    NSDictionary *_objectUUIDToIdentifierDictionary;
     NSString *_preferredLocator;
     unsigned long long _readVersion;
     unsigned long long _saveToken;
@@ -36,32 +29,32 @@
     NSHashTable *_writtenObjects;
 }
 
-@property(readonly) unsigned long long encodedLength;
-@property(readonly) long long identifier;
-@property(readonly) BOOL isStoredOutsideObjectArchive;
-@property(readonly) BOOL isTransientComponent;
-@property(readonly) NSString * locator;
-@property(readonly) BOOL modified;
-@property(readonly) BOOL needsArchiving;
-@property(readonly) NSDictionary * objectUUIDToIdentifierDictionary;
-@property(readonly) unsigned char packageIdentifier;
-@property(readonly) BOOL persisted;
-@property(readonly) NSString * preferredLocator;
-@property(readonly) unsigned long long readVersion;
-@property(retain) TSPObject * rootObject;
-@property(readonly) unsigned long long saveToken;
-@property(readonly) unsigned long long writeVersion;
+@property (nonatomic, readonly) TSPComponentObjectUUIDMap *componentObjectUUIDMap;
+@property (nonatomic, readonly) unsigned long long encodedLength;
+@property (nonatomic, readonly) long long identifier;
+@property (nonatomic, readonly) BOOL isStoredOutsideObjectArchive;
+@property (nonatomic, readonly) BOOL isTransientComponent;
+@property (nonatomic, readonly) NSString *locator;
+@property (readonly) BOOL modified;
+@property (readonly) BOOL needsArchiving;
+@property (readonly) unsigned char packageIdentifier;
+@property (readonly) BOOL persisted;
+@property (nonatomic, readonly) NSString *preferredLocator;
+@property (nonatomic, readonly) unsigned long long readVersion;
+@property (retain) TSPObject *rootObject;
+@property (nonatomic, readonly) unsigned long long saveToken;
+@property (nonatomic, readonly) unsigned long long writeVersion;
 
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)addExternalReferenceToObjectOrLazyReference:(id)arg1 isWeak:(BOOL)arg2 externalReferenceMap:(id)arg3 delegate:(id)arg4;
 - (BOOL)beginContentAccess;
+- (id)componentObjectUUIDMap;
 - (void)didReadObjects:(id)arg1;
 - (void)discardContentIfPossible;
 - (unsigned long long)encodedLength;
 - (void)endContentAccess;
-- (void)enumerateDataReferences:(id)arg1;
-- (void)enumerateExternalReferences:(id)arg1;
+- (void)enumerateDataReferences:(id /* block */)arg1;
+- (void)enumerateExternalReferences:(id /* block */)arg1;
 - (struct ComponentExternalReferenceInfo { long long x1; BOOL x2; })externalReferenceInfoForObjectIdentifier:(long long)arg1;
 - (long long)identifier;
 - (id)init;
@@ -79,21 +72,20 @@
 - (BOOL)needsArchivingImpl;
 - (id)newExternalReferenceMapWithStrongReferences:(id)arg1 weakReferences:(id)arg2 delegate:(id)arg3;
 - (id)newUpdatedExternalReferenceMapUsingDelegate:(id)arg1;
-- (id)objectUUIDToIdentifierDictionary;
 - (unsigned char)packageIdentifier;
 - (BOOL)persisted;
 - (id)preferredLocator;
 - (unsigned long long)readVersion;
 - (id)rootObject;
-- (void)saveToMessage:(struct ComponentInfo { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; unsigned long long x5; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x6; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x7; struct RepeatedField<unsigned int> { unsigned int *x_8_1_1; int x_8_1_2; int x_8_1_3; } x8; int x9; struct RepeatedField<unsigned int> { unsigned int *x_10_1_1; int x_10_1_2; int x_10_1_3; } x10; int x11; struct RepeatedPtrField<TSP::ComponentExternalReference> { void **x_12_1_1; int x_12_1_2; int x_12_1_3; int x_12_1_4; } x12; struct RepeatedPtrField<TSP::ComponentDataReference> { void **x_13_1_1; int x_13_1_2; int x_13_1_3; int x_13_1_4; } x13; struct RepeatedPtrField<TSP::ObjectUUIDMapEntry> { void **x_14_1_1; int x_14_1_2; int x_14_1_3; int x_14_1_4; } x14; unsigned long long x15; bool x16; }*)arg1 saveToken:(unsigned long long)arg2 writtenComponentInfo:(const struct WrittenComponentInfo { id x1; id x2; BOOL x3; BOOL x4; id x5; BOOL x6; BOOL x7; id x8; id x9; BOOL x10; unsigned long long x11; unsigned long long x12; id x13; id x14; id x15; id x16; }*)arg3;
+- (void)saveToMessage:(struct ComponentInfo { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; unsigned long long x5; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x6; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x7; struct RepeatedField<unsigned int> { unsigned int *x_8_1_1; int x_8_1_2; int x_8_1_3; } x8; int x9; struct RepeatedField<unsigned int> { unsigned int *x_10_1_1; int x_10_1_2; int x_10_1_3; } x10; int x11; struct RepeatedPtrField<TSP::ComponentExternalReference> { void **x_12_1_1; int x_12_1_2; int x_12_1_3; int x_12_1_4; } x12; struct RepeatedPtrField<TSP::ComponentDataReference> { void **x_13_1_1; int x_13_1_2; int x_13_1_3; int x_13_1_4; } x13; struct RepeatedPtrField<TSP::ObjectUUIDMapEntry> { void **x_14_1_1; int x_14_1_2; int x_14_1_3; int x_14_1_4; } x14; unsigned long long x15; bool x16; }*)arg1 saveToken:(unsigned long long)arg2 writtenComponentInfo:(const struct WrittenComponentInfo { id x1; BOOL x2; BOOL x3; id x4; BOOL x5; id x6; BOOL x7; unsigned long long x8; unsigned long long x9; id x10; id x11; }*)arg3;
 - (unsigned long long)saveToken;
 - (void)setArchivedObjectsImpl:(id)arg1;
 - (void)setLocator:(id)arg1;
 - (void)setModified:(BOOL)arg1 forObject:(id)arg2;
 - (void)setModified:(BOOL)arg1 forObject:(id)arg2 isDocumentUpgrade:(BOOL)arg3;
 - (void)setModifiedImpl:(BOOL)arg1 forObject:(id)arg2;
-- (void)setPackageIdentifier:(unsigned char)arg1 preferredLocator:(id)arg2 locator:(id)arg3 isStoredOutsideObjectArchive:(BOOL)arg4 rootObjectOrNil:(id)arg5 archivedObjects:(id)arg6 externalReferenceMap:(id)arg7 dataReferences:(id)arg8 readVersion:(unsigned long long)arg9 writeVersion:(unsigned long long)arg10 objectUUIDToIdentifierDictionary:(id)arg11 saveToken:(unsigned long long)arg12 encodedLength:(unsigned long long)arg13 wasCopied:(BOOL)arg14 wasModifiedDuringWrite:(BOOL)arg15;
-- (void)setReadVersion:(unsigned long long)arg1 writeVersion:(unsigned long long)arg2 objectUUIDToIdentifierDictionary:(id)arg3;
+- (void)setPackageIdentifier:(unsigned char)arg1 preferredLocator:(id)arg2 locator:(id)arg3 isStoredOutsideObjectArchive:(BOOL)arg4 rootObjectOrNil:(id)arg5 archivedObjects:(id)arg6 externalReferenceMap:(id)arg7 dataReferences:(id)arg8 readVersion:(unsigned long long)arg9 writeVersion:(unsigned long long)arg10 componentObjectUUIDMap:(id)arg11 saveToken:(unsigned long long)arg12 encodedLength:(unsigned long long)arg13 wasCopied:(BOOL)arg14 wasModifiedDuringWrite:(BOOL)arg15;
+- (void)setReadVersion:(unsigned long long)arg1 writeVersion:(unsigned long long)arg2 componentObjectUUIDMap:(id)arg3;
 - (void)setRootObject:(id)arg1;
 - (BOOL)shouldForceCaching;
 - (BOOL)shouldKeepStrongObjectImpl;

@@ -2,19 +2,16 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray, OITSDBezierPath, OITSUColor;
-
 @interface MFPPathGradientBrush : MFPGradientBrush {
     OITSUColor *mCenterColor;
     struct CGPoint { 
         float x; 
         float y; 
     } mCenterPoint;
-    OITSDBezierPath *mPath;
+    TSUBezierPath *mPath;
     NSArray *mSurroundColors;
 }
 
-- (id).cxx_construct;
 - (void)createShading;
 - (void)dealloc;
 - (id)endColor;

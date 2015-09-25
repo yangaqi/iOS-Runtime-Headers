@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/FMFUI.framework/FMFUI
  */
 
-@class <FMFMapViewControllerDelegate>, FMF3HiddenMapTrackingHandler, FMFMapOptionsViewController, FMFMapViewDelegateInternal, FMFNoLocationView, FMFRefreshBarButtonItem, FMFSession, FMFTitleView, MKMapView, MKUserTrackingBarButtonItem, NSSet, NSString, UIBarButtonItem, UIColor, UIImageView, UIToolbar, UIView;
-
 @interface FMFMapViewController : UIViewController <FMF3HiddenMapTrackingHandlerDelegate, FMFMapOptionsViewControllerDelegate, FMFMapViewDelegateInternalDelegate, FMFNoLocationViewDelegate, FMFSessionDelegateInternal> {
     BOOL __blockDidReceiveAnimation;
     NSSet *__internalHandlesShowingLocations;
@@ -11,6 +9,7 @@
     NSSet *__preloadedHandles;
     BOOL __refreshingIsPaused;
     void *_addressBook;
+    BOOL _alwaysShowAccuracy;
     UIColor *_annotationTintColor;
     UIImageView *_cachedMapView;
     BOOL _canShowNoLocation;
@@ -28,6 +27,7 @@
     FMFSession *_fmfSession;
     FMF3HiddenMapTrackingHandler *_hiddenMap;
     UIBarButtonItem *_infoBarButtonItem;
+    BOOL _isMapCenteringDisabled;
     BOOL _isSimpleMap;
     FMFMapOptionsViewController *_mapOptionsVC;
     BOOL _mapTypeLoaded;
@@ -44,47 +44,47 @@
     BOOL _viewWillAppearCalled;
 }
 
-@property BOOL _blockDidReceiveAnimation;
-@property(retain) NSSet * _internalHandlesShowingLocations;
-@property BOOL _isRenderingInitialMap;
-@property(retain) NSSet * _preloadedHandles;
-@property BOOL _refreshingIsPaused;
-@property void* addressBook;
-@property(copy) UIColor * annotationTintColor;
-@property(retain) UIImageView * cachedMapView;
-@property BOOL canShowNoLocation;
-@property(copy,readonly) NSString * debugDescription;
-@property unsigned int defaultMapType;
-@property <FMFMapViewControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(retain) UIBarButtonItem * directionsBarButtonItem;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsets;
-@property(retain) UIToolbar * floatingLocationToolbar;
-@property(retain) UIView * floatingToolbarView;
-@property(retain) FMFSession * fmfSession;
-@property(copy) NSSet * handlesShowingLocations;
-@property(readonly) unsigned int hash;
-@property(retain) FMF3HiddenMapTrackingHandler * hiddenMap;
-@property(retain) UIBarButtonItem * infoBarButtonItem;
-@property BOOL isSimpleMap;
-@property(retain) FMFMapOptionsViewController * mapOptionsVC;
-@property BOOL mapTypeLoaded;
-@property(retain) MKMapView * mapView;
-@property(retain) FMFMapViewDelegateInternal * mapViewDelegate;
-@property(retain) FMFNoLocationView * noLocationView;
-@property(retain) FMFRefreshBarButtonItem * refreshButton;
-@property BOOL shouldZoomToFitMeAndLocations;
-@property BOOL shouldZoomToFitNewLocations;
-@property BOOL showFloatingMapLocationButton;
-@property(readonly) Class superclass;
-@property(retain) FMFTitleView * titleView;
-@property(retain) UIToolbar * toolbar;
-@property(retain) MKUserTrackingBarButtonItem * userLocationButton;
-@property BOOL viewWillAppearCalled;
+@property (nonatomic) BOOL _blockDidReceiveAnimation;
+@property (nonatomic, retain) NSSet *_internalHandlesShowingLocations;
+@property (nonatomic) BOOL _isRenderingInitialMap;
+@property (nonatomic, retain) NSSet *_preloadedHandles;
+@property (nonatomic) BOOL _refreshingIsPaused;
+@property (nonatomic) void*addressBook;
+@property (nonatomic) BOOL alwaysShowAccuracy;
+@property (nonatomic, copy) UIColor *annotationTintColor;
+@property (nonatomic, retain) UIImageView *cachedMapView;
+@property (nonatomic) BOOL canShowNoLocation;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) unsigned int defaultMapType;
+@property (nonatomic) <FMFMapViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIBarButtonItem *directionsBarButtonItem;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsets;
+@property (nonatomic, retain) UIToolbar *floatingLocationToolbar;
+@property (nonatomic, retain) UIView *floatingToolbarView;
+@property (nonatomic, retain) FMFSession *fmfSession;
+@property (nonatomic, copy) NSSet *handlesShowingLocations;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) FMF3HiddenMapTrackingHandler *hiddenMap;
+@property (nonatomic, retain) UIBarButtonItem *infoBarButtonItem;
+@property (nonatomic) BOOL isMapCenteringDisabled;
+@property (nonatomic) BOOL isSimpleMap;
+@property (nonatomic, retain) FMFMapOptionsViewController *mapOptionsVC;
+@property (nonatomic) BOOL mapTypeLoaded;
+@property (nonatomic, retain) MKMapView *mapView;
+@property (nonatomic, retain) FMFMapViewDelegateInternal *mapViewDelegate;
+@property (nonatomic, retain) FMFNoLocationView *noLocationView;
+@property (nonatomic, retain) FMFRefreshBarButtonItem *refreshButton;
+@property (nonatomic) BOOL shouldZoomToFitMeAndLocations;
+@property (nonatomic) BOOL shouldZoomToFitNewLocations;
+@property (nonatomic) BOOL showFloatingMapLocationButton;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) FMFTitleView *titleView;
+@property (nonatomic, retain) UIToolbar *toolbar;
+@property (nonatomic, retain) MKUserTrackingBarButtonItem *userLocationButton;
+@property (nonatomic) BOOL viewWillAppearCalled;
 
 + (struct CGSize { float x1; float x2; })annotationImageSize;
-+ (id)smallAnnotationViewImage;
-+ (id)smallAnnotationViewImageWithTintColor:(id)arg1;
 
 - (void).cxx_destruct;
 - (void)_authorizeMonitoringLocation;
@@ -102,10 +102,13 @@
 - (void)addFloatingToolbar;
 - (void)addHandlesToSession;
 - (void*)addressBook;
+- (BOOL)alwaysShowAccuracy;
+- (id)annotationImageForAnnotation:(id)arg1 andHandle:(id)arg2;
 - (id)annotationImageForHandle:(id)arg1;
 - (id)annotationTintColor;
 - (void)applicationDidBecomeActive:(id)arg1;
 - (id)cachedMapView;
+- (BOOL)canSelectAnnotation:(id)arg1;
 - (BOOL)canShowNoLocation;
 - (void)dealloc;
 - (unsigned int)defaultMapType;
@@ -138,6 +141,7 @@
 - (id)initWithDelegate:(id)arg1 handles:(id)arg2;
 - (void)initializeDefaults;
 - (BOOL)isCompact;
+- (BOOL)isMapCenteringDisabled;
 - (BOOL)isSimpleMap;
 - (void)loadCachedLocationsForHandles;
 - (void)loadDelegate;
@@ -152,8 +156,8 @@
 - (id)mapViewDelegate;
 - (void)mapViewDidFinishRenderingMap;
 - (id)noLocationView;
+- (id)openInAppURL;
 - (void)openInMapsButtonTapped:(id)arg1;
-- (id)personImageForNoLocationView;
 - (void)presentMapOptionsModal:(id)arg1;
 - (void)reZoomToFit;
 - (id)refreshButton;
@@ -168,6 +172,7 @@
 - (void)selectAnnotationIfSingleFriend:(id)arg1;
 - (BOOL)sessionContainsHandle:(id)arg1;
 - (void)setAddressBook:(void*)arg1;
+- (void)setAlwaysShowAccuracy:(BOOL)arg1;
 - (void)setAnnotationTintColor:(id)arg1;
 - (void)setCachedMapView:(id)arg1;
 - (void)setCanShowNoLocation:(BOOL)arg1;
@@ -181,6 +186,7 @@
 - (void)setHandlesShowingLocations:(id)arg1;
 - (void)setHiddenMap:(id)arg1;
 - (void)setInfoBarButtonItem:(id)arg1;
+- (void)setIsMapCenteringDisabled:(BOOL)arg1;
 - (void)setIsSimpleMap:(BOOL)arg1;
 - (void)setMapOptionsVC:(id)arg1;
 - (void)setMapTypeLoaded:(BOOL)arg1;

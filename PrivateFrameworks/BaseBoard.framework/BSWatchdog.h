@@ -2,19 +2,9 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <BSWatchdogDelegate>, <BSWatchdogProviding>, BSTimer, NSDate, NSObject<OS_dispatch_queue>;
-
 @interface BSWatchdog : NSObject {
     BOOL _completed;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completion;
-
+    id /* block */ _completion;
     <BSWatchdogDelegate> *_delegate;
     BOOL _hasFired;
     BOOL _invalidated;
@@ -25,28 +15,29 @@
     BSTimer *_timer;
 }
 
-@property(retain) <BSWatchdogDelegate> * delegate;
-@property(getter=hasFired,readonly) BOOL fired;
-@property(retain,readonly) <BSWatchdogProviding> * provider;
-@property(retain,readonly) NSObject<OS_dispatch_queue> * queue;
-@property(retain,readonly) NSDate * startDate;
-@property(readonly) double timeout;
+@property (nonatomic, retain) <BSWatchdogDelegate> *delegate;
+@property (getter=hasFired, nonatomic, readonly) BOOL fired;
+@property (nonatomic, readonly, retain) <BSWatchdogProviding> *provider;
+@property (nonatomic, readonly, retain) NSObject<OS_dispatch_queue> *queue;
+@property (nonatomic, readonly, retain) NSDate *startDate;
+@property (nonatomic, readonly) double timeout;
 
 - (void)_completeWatchdogAfterFiring:(BOOL)arg1;
 - (void)_invalidateTimer;
-- (void)_setupTimerWithInterval:(double)arg1 handler:(id)arg2;
+- (void)_setupTimerWithInterval:(double)arg1 handler:(id /* block */)arg2;
 - (void)_stageOneTimerFired;
 - (void)_stageTwoTimerFired;
 - (void)_startWatchdogTimer;
+- (void)_watchdogInvalidated;
 - (void)_watchdogTimerFired;
 - (void)dealloc;
 - (id)delegate;
 - (id)description;
 - (BOOL)hasFired;
 - (id)initWithProvider:(id)arg1 queue:(id)arg2;
-- (id)initWithProvider:(id)arg1 queue:(id)arg2 completion:(id)arg3;
+- (id)initWithProvider:(id)arg1 queue:(id)arg2 completion:(id /* block */)arg3;
 - (id)initWithTimeout:(double)arg1 queue:(id)arg2;
-- (id)initWithTimeout:(double)arg1 queue:(id)arg2 completion:(id)arg3;
+- (id)initWithTimeout:(double)arg1 queue:(id)arg2 completion:(id /* block */)arg3;
 - (void)invalidate;
 - (id)provider;
 - (id)queue;

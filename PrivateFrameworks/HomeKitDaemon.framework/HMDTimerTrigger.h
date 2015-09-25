@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
  */
 
-@class NSDate, NSDateComponents, NSString, NSTimeZone, NSTimer;
-
 @interface HMDTimerTrigger : HMDTrigger {
     NSDate *_currentFireDate;
     NSDate *_fireDate;
@@ -13,18 +11,17 @@
     NSString *_timerID;
 }
 
-@property(retain) NSDate * currentFireDate;
-@property(copy) NSDate * fireDate;
-@property(copy) NSTimeZone * fireDateTimeZone;
-@property(copy) NSDateComponents * fireRepeatInterval;
-@property(retain) NSTimer * timer;
-@property(retain) NSString * timerID;
+@property (nonatomic, retain) NSDate *currentFireDate;
+@property (nonatomic, copy) NSDate *fireDate;
+@property (nonatomic, copy) NSTimeZone *fireDateTimeZone;
+@property (nonatomic, copy) NSDateComponents *fireRepeatInterval;
+@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic, retain) NSString *timerID;
 
 + (BOOL)supportsSecureCoding;
 + (id)validateWholeMinuteDate:(id)arg1 onCalendar:(id)arg2;
 
 - (void).cxx_destruct;
-- (id)_activate:(BOOL)arg1;
 - (void)_closestDatesForStartDate:(id)arg1 earliestDate:(id)arg2 timeZone:(id)arg3 deliveryRepeatInterval:(id)arg4 returnDateBefore:(id*)arg5 returnDateAfter:(id*)arg6;
 - (void)_handleUpdateTimerTriggerPropertiesRequest:(id)arg1;
 - (id)_nextFireDate;
@@ -32,6 +29,7 @@
 - (void)_startTimerWithFireDate:(id)arg1;
 - (void)_stopTimer;
 - (void)_timerTriggered;
+- (void)activate:(BOOL)arg1 completionHandler:(id /* block */)arg2;
 - (void)completeConfiguration;
 - (void)configure:(id)arg1 messageDispatcher:(id)arg2 queue:(id)arg3;
 - (id)currentFireDate;

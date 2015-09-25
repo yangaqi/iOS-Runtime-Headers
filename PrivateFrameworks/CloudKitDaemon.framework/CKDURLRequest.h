@@ -2,17 +2,14 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <CKDAccountInfoProvider>, <CKDResponseBodyParser>, CKDClientContext, CKDProtobufStreamWriter, CKDProtocolTranslator, CKTimeLogger, NSArray, NSData, NSDate, NSDictionary, NSError, NSFileHandle, NSHTTPURLResponse, NSInputStream, NSMutableArray, NSMutableData, NSMutableDictionary, NSOperationQueue, NSString, NSURL, NSURLRequest, NSURLSessionConfiguration, NSURLSessionDataTask;
-
 @interface CKDURLRequest : NSObject <CKDFlowControllable, CKDProtobufMessageSigningDelegate, CKDURLSessionTaskDelegate> {
     <CKDAccountInfoProvider> *_accountInfoProvider;
+    unsigned long long _activityID;
     BOOL _allowAutomaticRedirects;
+    BOOL _allowsBackgroundNetworking;
     BOOL _allowsCellularAccess;
     BOOL _allowsPowerNapScheduling;
+    NSString *_authPromptReason;
     NSFileHandle *_binaryRequestFileHandle;
     NSString *_binaryRequestLogFilePath;
     NSFileHandle *_binaryResponseFileHandle;
@@ -20,11 +17,7 @@
     int _cachedPartitionType;
     int _cachedServerType;
     BOOL _cancelled;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completionBlock;
-
+    id /* block */ _completionBlock;
     CKDClientContext *_context;
     int _databaseScope;
     NSDate *_dateRequestWentOut;
@@ -42,6 +35,7 @@
     BOOL _haveCachedPartitionType;
     BOOL _haveCachedServerType;
     BOOL _haveParsedFakeResponseData;
+    BOOL _isHandlingAuthRetry;
     struct CC_SHA256state_st { 
         unsigned int count[2]; 
         unsigned int hash[8]; 
@@ -52,110 +46,119 @@
         unsigned int hash[8]; 
         unsigned int wbuf[16]; 
     } _mescalTxSignature;
+    CKDOperationMetrics *_metrics;
+    <CKDURLRequestMetricsDelegate> *_metricsDelegate;
+    BOOL _needsAuthRetry;
     unsigned int _numDownloadedElements;
     NSMutableDictionary *_overriddenHeaders;
+    BOOL _preferAnonymousRequests;
+    int _qualityOfService;
     NSMutableData *_receivedMescalData;
     NSMutableArray *_redirectHistory;
     NSURLRequest *_request;
     NSFileHandle *_requestFileHandle;
     NSString *_requestLogFilePath;
     NSArray *_requestOperations;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _requestProgressBlock;
-
+    id /* block */ _requestProgressBlock;
     NSDictionary *_requestProperties;
     NSString *_requestUUID;
     NSHTTPURLResponse *_response;
     <CKDResponseBodyParser> *_responseBodyParser;
     NSFileHandle *_responseFileHandle;
     NSString *_responseLogFilePath;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _responseProgressBlock;
-
+    id /* block */ _responseProgressBlock;
     int _responseStatusCode;
     NSURLSessionConfiguration *_sessionConfiguration;
+    NSString *_sessionConfigurationName;
     NSString *_sourceApplicationBundleIdentifier;
     NSString *_sourceApplicationSecondaryIdentifier;
     CKDProtobufStreamWriter *_streamWriter;
     CKTimeLogger *_timeLogger;
     double _timeoutInterval;
     CKDProtocolTranslator *_translator;
+    unsigned long long _transmissionActivityID;
     NSURLSessionDataTask *_urlSessionTask;
-    BOOL _usesBackgroundSession;
+    NSObject<OS_voucher> *_voucher;
 }
 
-@property(readonly) NSString * acceptContentType;
-@property(retain) <CKDAccountInfoProvider> * accountInfoProvider;
-@property(readonly) NSDictionary * additionalHeaderValues;
-@property BOOL allowAutomaticRedirects;
-@property BOOL allowsCellularAccess;
-@property BOOL allowsPowerNapScheduling;
-@property(retain) NSFileHandle * binaryRequestFileHandle;
-@property(retain) NSString * binaryRequestLogFilePath;
-@property(retain) NSFileHandle * binaryResponseFileHandle;
-@property(retain) NSString * binaryResponseLogFilePath;
-@property int cachedPartitionType;
-@property int cachedServerType;
-@property(getter=isCancelled) BOOL cancelled;
-@property(copy) id completionBlock;
-@property(retain) CKDClientContext * context;
-@property int databaseScope;
-@property(retain) NSDate * dateRequestWentOut;
-@property(copy,readonly) NSString * debugDescription;
-@property(retain) NSOperationQueue * delegateQueue;
-@property(copy,readonly) NSString * description;
-@property(copy) NSString * deviceID;
-@property(retain) NSError * error;
-@property(retain) NSString * flowControlKey;
-@property(retain) NSString * hardwareIDOverride;
-@property(readonly) BOOL hasRequestBody;
-@property(readonly) unsigned int hash;
-@property BOOL haveCachedPartitionType;
-@property BOOL haveCachedServerType;
-@property(readonly) NSString * httpMethod;
-@property(readonly) BOOL isFinished;
-@property(readonly) int isolationLevel;
-@property(readonly) NSURL * lastRedirectURL;
-@property unsigned int numDownloadedElements;
-@property(readonly) int operationType;
-@property(readonly) int partitionType;
-@property(readonly) NSString * path;
-@property(readonly) NSString * protobufOperationName;
-@property(retain) NSURLRequest * request;
-@property(readonly) NSInputStream * requestBodyStream;
-@property(readonly) NSString * requestContentType;
-@property(retain) NSFileHandle * requestFileHandle;
-@property(retain) NSString * requestLogFilePath;
-@property(readonly) NSArray * requestOperationClasses;
-@property(readonly) NSArray * requestOperations;
-@property(copy) id requestProgressBlock;
-@property(retain) NSDictionary * requestProperties;
-@property(readonly) NSString * requestUUID;
-@property(retain) NSHTTPURLResponse * response;
-@property(retain) <CKDResponseBodyParser> * responseBodyParser;
-@property(retain) NSFileHandle * responseFileHandle;
-@property(readonly) NSDictionary * responseHeaders;
-@property(retain) NSString * responseLogFilePath;
-@property(copy) id responseProgressBlock;
-@property(readonly) int responseStatusCode;
-@property(readonly) NSString * sectionID;
-@property(readonly) int serverType;
-@property(retain) NSURLSessionConfiguration * sessionConfiguration;
-@property(readonly) BOOL shouldCompressBody;
-@property(retain) NSString * sourceApplicationBundleIdentifier;
-@property(retain) NSString * sourceApplicationSecondaryIdentifier;
-@property(readonly) CKDProtobufStreamWriter * streamWriter;
-@property(readonly) Class superclass;
-@property(retain) CKTimeLogger * timeLogger;
-@property double timeoutInterval;
-@property(retain) CKDProtocolTranslator * translator;
-@property(readonly) NSURL * url;
-@property(retain) NSURLSessionDataTask * urlSessionTask;
-@property BOOL usesBackgroundSession;
+@property (nonatomic, readonly) NSString *acceptContentType;
+@property (nonatomic, retain) <CKDAccountInfoProvider> *accountInfoProvider;
+@property (nonatomic, readonly) NSDictionary *additionalHeaderValues;
+@property (nonatomic) BOOL allowAutomaticRedirects;
+@property (nonatomic) BOOL allowsBackgroundNetworking;
+@property (nonatomic) BOOL allowsCellularAccess;
+@property (nonatomic) BOOL allowsPowerNapScheduling;
+@property (nonatomic, retain) NSString *authPromptReason;
+@property (nonatomic, retain) NSFileHandle *binaryRequestFileHandle;
+@property (nonatomic, retain) NSString *binaryRequestLogFilePath;
+@property (nonatomic, retain) NSFileHandle *binaryResponseFileHandle;
+@property (nonatomic, retain) NSString *binaryResponseLogFilePath;
+@property (nonatomic) int cachedPartitionType;
+@property (nonatomic) int cachedServerType;
+@property (getter=isCancelled) BOOL cancelled;
+@property (nonatomic, copy) id /* block */ completionBlock;
+@property (nonatomic, retain) CKDClientContext *context;
+@property (nonatomic) int databaseScope;
+@property (retain) NSDate *dateRequestWentOut;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) NSOperationQueue *delegateQueue;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSString *deviceID;
+@property (nonatomic, retain) NSError *error;
+@property (nonatomic, retain) NSString *flowControlKey;
+@property (nonatomic, retain) NSString *hardwareIDOverride;
+@property (nonatomic, readonly) BOOL hasRequestBody;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL haveCachedPartitionType;
+@property (nonatomic) BOOL haveCachedServerType;
+@property (nonatomic, readonly) NSString *httpMethod;
+@property (readonly) BOOL isFinished;
+@property BOOL isHandlingAuthRetry;
+@property (nonatomic, readonly) int isolationLevel;
+@property (nonatomic, readonly) NSURL *lastRedirectURL;
+@property (nonatomic, retain) CKDOperationMetrics *metrics;
+@property (nonatomic) <CKDURLRequestMetricsDelegate> *metricsDelegate;
+@property BOOL needsAuthRetry;
+@property (nonatomic) unsigned int numDownloadedElements;
+@property (nonatomic, readonly) int operationType;
+@property (nonatomic, readonly) int partitionType;
+@property (nonatomic, readonly) NSString *path;
+@property (nonatomic) BOOL preferAnonymousRequests;
+@property (nonatomic, readonly) NSString *protobufOperationName;
+@property (nonatomic) int qualityOfService;
+@property (retain) NSURLRequest *request;
+@property (nonatomic, readonly) NSInputStream *requestBodyStream;
+@property (nonatomic, readonly) NSString *requestContentType;
+@property (nonatomic, retain) NSFileHandle *requestFileHandle;
+@property (nonatomic, retain) NSString *requestLogFilePath;
+@property (nonatomic, readonly) NSArray *requestOperationClasses;
+@property (nonatomic, readonly) NSArray *requestOperations;
+@property (nonatomic, copy) id /* block */ requestProgressBlock;
+@property (nonatomic, retain) NSDictionary *requestProperties;
+@property (nonatomic, readonly) NSString *requestUUID;
+@property (retain) NSHTTPURLResponse *response;
+@property (nonatomic, retain) <CKDResponseBodyParser> *responseBodyParser;
+@property (nonatomic, retain) NSFileHandle *responseFileHandle;
+@property (nonatomic, readonly) NSDictionary *responseHeaders;
+@property (nonatomic, retain) NSString *responseLogFilePath;
+@property (nonatomic, copy) id /* block */ responseProgressBlock;
+@property (nonatomic, readonly) int responseStatusCode;
+@property (nonatomic, readonly) NSString *sectionID;
+@property (nonatomic, readonly) int serverType;
+@property (retain) NSURLSessionConfiguration *sessionConfiguration;
+@property (retain) NSString *sessionConfigurationName;
+@property (nonatomic, readonly) BOOL shouldCompressBody;
+@property (nonatomic, retain) NSString *sourceApplicationBundleIdentifier;
+@property (nonatomic, retain) NSString *sourceApplicationSecondaryIdentifier;
+@property (nonatomic, readonly) CKDProtobufStreamWriter *streamWriter;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) CKTimeLogger *timeLogger;
+@property (nonatomic) double timeoutInterval;
+@property (nonatomic, retain) CKDProtocolTranslator *translator;
+@property (nonatomic, readonly) NSURL *url;
+@property (retain) NSURLSessionDataTask *urlSessionTask;
+@property (nonatomic, readonly) BOOL usesBackgroundSession;
+@property (nonatomic, retain) NSObject<OS_voucher> *voucher;
 
 + (id)_logQueue;
 + (id)_sharedCookieStorage;
@@ -163,13 +166,13 @@
 - (void).cxx_destruct;
 - (id)CKPropertiesDescription;
 - (void)URLSessionDataTask:(id)arg1 didReceiveData:(id)arg2;
-- (void)URLSessionDataTask:(id)arg1 didReceiveResponse:(id)arg2 completionHandler:(id)arg3;
+- (void)URLSessionDataTask:(id)arg1 didReceiveResponse:(id)arg2 completionHandler:(id /* block */)arg3;
 - (void)URLSessionTask:(id)arg1 conditionalRequirementsChanged:(BOOL)arg2;
 - (void)URLSessionTask:(id)arg1 didCompleteWithError:(id)arg2;
 - (void)URLSessionTask:(id)arg1 didSendBodyData:(long long)arg2 totalBytesSent:(long long)arg3 totalBytesExpectedToSend:(long long)arg4;
-- (void)URLSessionTask:(id)arg1 needNewBodyStream:(id)arg2;
+- (void)URLSessionTask:(id)arg1 needNewBodyStream:(id /* block */)arg2;
 - (id)URLSessionTask:(id)arg1 requestForEstablishedConnection:(id)arg2;
-- (void)URLSessionTask:(id)arg1 willPerformHTTPRedirection:(id)arg2 newRequest:(id)arg3 completionHandler:(id)arg4;
+- (void)URLSessionTask:(id)arg1 willPerformHTTPRedirection:(id)arg2 newRequest:(id)arg3 completionHandler:(id /* block */)arg4;
 - (void)URLSessionTaskIsWaitingForConnection:(id)arg1;
 - (void)_acquireZoneGates;
 - (void)_addRequestHeadersToTransmittedSignature:(id)arg1;
@@ -182,7 +185,7 @@
 - (void)_flushRequestResponseLogs;
 - (void)_handleAuthFailure;
 - (void)_handleBadPasswordResponse;
-- (void)_handleMescalSignatureResponse:(id)arg1 withCompletionHandler:(id)arg2;
+- (void)_handleMescalSignatureResponse:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (int)_handlePlistResult:(id)arg1;
 - (int)_handleServerJSONResult:(id)arg1;
 - (int)_handleServerProtobufResult:(id)arg1 rawData:(id)arg2;
@@ -207,8 +210,10 @@
 - (BOOL)allowAutomaticRedirects;
 - (BOOL)allowsAnonymousAccount;
 - (BOOL)allowsAuthedAccount;
+- (BOOL)allowsBackgroundNetworking;
 - (BOOL)allowsCellularAccess;
 - (BOOL)allowsPowerNapScheduling;
+- (id)authPromptReason;
 - (id)binaryRequestFileHandle;
 - (id)binaryRequestLogFilePath;
 - (id)binaryResponseFileHandle;
@@ -218,7 +223,7 @@
 - (int)cachedServerType;
 - (void)cancel;
 - (id)ckShortDescription;
-- (id)completionBlock;
+- (id /* block */)completionBlock;
 - (id)context;
 - (int)databaseScope;
 - (id)dateRequestWentOut;
@@ -232,7 +237,7 @@
 - (BOOL)expectsSingleObject;
 - (void)finishWithError:(id)arg1;
 - (id)flowControlKey;
-- (void)generateSignature:(id)arg1;
+- (void)generateSignature:(id /* block */)arg1;
 - (id)hardwareIDOverride;
 - (BOOL)hasRequestBody;
 - (BOOL)haveCachedPartitionType;
@@ -243,9 +248,13 @@
 - (id)init;
 - (BOOL)isCancelled;
 - (BOOL)isFinished;
+- (BOOL)isHandlingAuthRetry;
 - (int)isolationLevel;
 - (id)lastRedirectURL;
 - (BOOL)markAsFinished;
+- (id)metrics;
+- (id)metricsDelegate;
+- (BOOL)needsAuthRetry;
 - (unsigned int)numDownloadedElements;
 - (id)operationRequestWithType:(int)arg1;
 - (int)operationType;
@@ -253,7 +262,9 @@
 - (int)partitionType;
 - (id)path;
 - (void)performRequest;
+- (BOOL)preferAnonymousRequests;
 - (id)protobufOperationName;
+- (int)qualityOfService;
 - (void)reportStatusWithError:(id)arg1;
 - (id)request;
 - (id)requestBodyStream;
@@ -267,7 +278,7 @@
 - (id)requestLogFilePath;
 - (id)requestOperationClasses;
 - (id)requestOperations;
-- (id)requestProgressBlock;
+- (id /* block */)requestProgressBlock;
 - (id)requestProperties;
 - (id)requestUUID;
 - (BOOL)requiresAppPartitionURL;
@@ -280,15 +291,19 @@
 - (id)responseFileHandle;
 - (id)responseHeaders;
 - (id)responseLogFilePath;
-- (id)responseProgressBlock;
+- (id /* block */)responseProgressBlock;
 - (int)responseStatusCode;
 - (id)sectionID;
+- (BOOL)sendRequestAnonymously;
 - (int)serverType;
 - (id)sessionConfiguration;
+- (id)sessionConfigurationName;
 - (void)setAccountInfoProvider:(id)arg1;
 - (void)setAllowAutomaticRedirects:(BOOL)arg1;
+- (void)setAllowsBackgroundNetworking:(BOOL)arg1;
 - (void)setAllowsCellularAccess:(BOOL)arg1;
 - (void)setAllowsPowerNapScheduling:(BOOL)arg1;
+- (void)setAuthPromptReason:(id)arg1;
 - (void)setBinaryRequestFileHandle:(id)arg1;
 - (void)setBinaryRequestLogFilePath:(id)arg1;
 - (void)setBinaryResponseFileHandle:(id)arg1;
@@ -296,7 +311,7 @@
 - (void)setCachedPartitionType:(int)arg1;
 - (void)setCachedServerType:(int)arg1;
 - (void)setCancelled:(BOOL)arg1;
-- (void)setCompletionBlock:(id)arg1;
+- (void)setCompletionBlock:(id /* block */)arg1;
 - (void)setContext:(id)arg1;
 - (void)setDatabaseScope:(int)arg1;
 - (void)setDateRequestWentOut:(id)arg1;
@@ -307,25 +322,32 @@
 - (void)setHardwareIDOverride:(id)arg1;
 - (void)setHaveCachedPartitionType:(BOOL)arg1;
 - (void)setHaveCachedServerType:(BOOL)arg1;
+- (void)setIsHandlingAuthRetry:(BOOL)arg1;
+- (void)setMetrics:(id)arg1;
+- (void)setMetricsDelegate:(id)arg1;
+- (void)setNeedsAuthRetry:(BOOL)arg1;
 - (void)setNumDownloadedElements:(unsigned int)arg1;
+- (void)setPreferAnonymousRequests:(BOOL)arg1;
+- (void)setQualityOfService:(int)arg1;
 - (void)setRequest:(id)arg1;
 - (void)setRequestFileHandle:(id)arg1;
 - (void)setRequestLogFilePath:(id)arg1;
-- (void)setRequestProgressBlock:(id)arg1;
+- (void)setRequestProgressBlock:(id /* block */)arg1;
 - (void)setRequestProperties:(id)arg1;
 - (void)setResponse:(id)arg1;
 - (void)setResponseBodyParser:(id)arg1;
 - (void)setResponseFileHandle:(id)arg1;
 - (void)setResponseLogFilePath:(id)arg1;
-- (void)setResponseProgressBlock:(id)arg1;
+- (void)setResponseProgressBlock:(id /* block */)arg1;
 - (void)setSessionConfiguration:(id)arg1;
+- (void)setSessionConfigurationName:(id)arg1;
 - (void)setSourceApplicationBundleIdentifier:(id)arg1;
 - (void)setSourceApplicationSecondaryIdentifier:(id)arg1;
 - (void)setTimeLogger:(id)arg1;
 - (void)setTimeoutInterval:(double)arg1;
 - (void)setTranslator:(id)arg1;
 - (void)setUrlSessionTask:(id)arg1;
-- (void)setUsesBackgroundSession:(BOOL)arg1;
+- (void)setVoucher:(id)arg1;
 - (BOOL)shouldCompressBody;
 - (BOOL)shouldLogResponseBody;
 - (id)sourceApplicationBundleIdentifier;
@@ -342,6 +364,7 @@
 - (id)urlSessionTask;
 - (BOOL)usesBackgroundSession;
 - (BOOL)validate:(id*)arg1;
+- (id)voucher;
 - (id)zoneIDsToLock;
 
 @end

@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
  */
 
-@class CMMotionManager;
-
 @interface FigCoreMotionDelegate : NSObject {
     int accelRingIndex;
-    double accelRingTime[256];
-    float accelRingX[256];
-    float accelRingY[256];
-    float accelRingZ[256];
+    double accelRingTime;
+    float accelRingX;
+    float accelRingY;
+    float accelRingZ;
     BOOL computingPosition;
     BOOL copyingAllData;
     struct { 
@@ -21,26 +19,27 @@
     double dGyroUpdateInterval;
     double dLatestFusedMotionCopied;
     double dLatestTimestamp;
+    double dStartOfLogging;
     struct OpaqueFigSemaphore { } *dataSemaphore;
     struct { 
         float x; 
         float y; 
         float z; 
-    } fusedRingAccel[256];
-    BOOL fusedRingDoingBiasEstimation[256];
+    } fusedRingAccel;
+    BOOL fusedRingDoingBiasEstimation;
     int fusedRingIndex;
     struct { 
         float x; 
         float y; 
         float z; 
-    } fusedRingPosition[256];
+    } fusedRingPosition;
     struct { 
         double w; 
         double x; 
         double y; 
         double z; 
-    } fusedRingQuaternion[256];
-    double fusedRingTime[256];
+    } fusedRingQuaternion;
+    double fusedRingTime;
     BOOL gettingAttitudeChange;
     double latestGravityDataTime;
     double latestMotionDataTime;
@@ -89,6 +88,7 @@
 - (void)getCurrentQuaternion:(struct { double x1; double x2; double x3; double x4; }*)arg1;
 - (long)getFusedVectorX:(float*)arg1 y:(float*)arg2 z:(float*)arg3 forTimeStamp:(double)arg4;
 - (long)getGravityX:(float*)arg1 y:(float*)arg2 z:(float*)arg3 forTimeStamp:(double)arg4;
+- (long)getLatestMotionDataTime:(double*)arg1;
 - (void)getPositionX:(float*)arg1 y:(float*)arg2 z:(float*)arg3 forTimeStamp:(double)arg4;
 - (long)getVectorX:(float*)arg1 y:(float*)arg2 z:(float*)arg3 forTimeStamp:(double)arg4;
 - (id)init;

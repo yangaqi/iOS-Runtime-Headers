@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray, NSMutableArray, NSObject<OS_dispatch_semaphore>, VKModelObject, VKStyleManager, VKWorld;
-
 @interface VKModelObject : NSObject {
     BOOL _active;
     struct map<md::CommandBufferId, std::__1::unique_ptr<ggl::CommandBuffer, std::__1::default_delete<ggl::CommandBuffer> >, std::__1::less<md::CommandBufferId>, std::__1::allocator<std::__1::pair<const md::CommandBufferId, std::__1::unique_ptr<ggl::CommandBuffer, std::__1::default_delete<ggl::CommandBuffer> > > > > { 
@@ -41,11 +34,11 @@
     VKWorld *_world;
 }
 
-@property(getter=isActive) BOOL active;
-@property(readonly) VKStyleManager * styleManager;
-@property(readonly) NSArray * submodels;
-@property(readonly) VKModelObject * supermodel;
-@property VKWorld * world;
+@property (getter=isActive, nonatomic) BOOL active;
+@property (nonatomic, readonly) struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; } styleManager;
+@property (nonatomic, readonly) NSArray *submodels;
+@property (nonatomic, readonly) VKModelObject *supermodel;
+@property (nonatomic) VKWorld *world;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -73,7 +66,7 @@
 - (void)setSupportedPasses:(const struct CommandBufferIdSet { struct vector<md::CommandBufferId, std::__1::allocator<md::CommandBufferId> > { unsigned char *x_1_1_1; unsigned char *x_1_1_2; struct __compressed_pair<md::CommandBufferId *, std::__1::allocator<md::CommandBufferId> > { unsigned char *x_3_2_1; } x_1_1_3; } x1; }*)arg1;
 - (void)setWorld:(id)arg1;
 - (BOOL)shouldLayoutWithoutStyleManager;
-- (id)styleManager;
+- (struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; })styleManager;
 - (id)submodels;
 - (id)supermodel;
 - (const struct CommandBufferIdSet { struct vector<md::CommandBufferId, std::__1::allocator<md::CommandBufferId> > { unsigned char *x_1_1_1; unsigned char *x_1_1_2; struct __compressed_pair<md::CommandBufferId *, std::__1::allocator<md::CommandBufferId> > { unsigned char *x_3_2_1; } x_1_1_3; } x1; }*)supportedRenderPasses;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDReference;
-
 @interface EDSharedFormula : EDFormula {
     unsigned int _baseFormulaIndex;
     EDReference *_baseFormulaRange;
@@ -12,11 +10,11 @@
     int _rowBaseOrOffset;
 }
 
-@property unsigned int baseFormulaIndex;
-@property(readonly) EDReference * baseFormulaRange;
-@property int columnBaseOrOffset;
-@property bool forceNonBaseFormula;
-@property int rowBaseOrOffset;
+@property (nonatomic) unsigned int baseFormulaIndex;
+@property (nonatomic, readonly) EDReference *baseFormulaRange;
+@property (nonatomic) int columnBaseOrOffset;
+@property (nonatomic) bool forceNonBaseFormula;
+@property (nonatomic) int rowBaseOrOffset;
 
 - (void)archiveByAppendingToMutableData:(struct __CFData { }*)arg1;
 - (unsigned int)baseFormulaIndex;
@@ -25,6 +23,7 @@
 - (int)columnBaseOrOffset;
 - (bool)convertTokensToShared;
 - (void)dealloc;
+- (id)description;
 - (bool)forceNonBaseFormula;
 - (id)init;
 - (id)initWithFormula:(id)arg1;

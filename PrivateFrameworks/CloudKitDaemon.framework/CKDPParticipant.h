@@ -2,12 +2,12 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class CKDPContactInformation, CKDPIdentifier, CKDPProtectionInfo;
-
 @interface CKDPParticipant : PBCodable <NSCopying> {
+    long long _acceptTimestamp;
     CKDPContactInformation *_contactInformation;
     BOOL _createdOutOfProcess;
     struct { 
+        unsigned int acceptTimestamp : 1; 
         unsigned int participantType : 1; 
         unsigned int permission : 1; 
         unsigned int state : 1; 
@@ -22,32 +22,36 @@
     CKDPIdentifier *_userId;
 }
 
-@property(retain) CKDPContactInformation * contactInformation;
-@property BOOL createdOutOfProcess;
-@property(readonly) BOOL hasContactInformation;
-@property BOOL hasCreatedOutOfProcess;
-@property(readonly) BOOL hasInviterId;
-@property(readonly) BOOL hasParticipantId;
-@property BOOL hasParticipantType;
-@property BOOL hasPermission;
-@property(readonly) BOOL hasPublicKey;
-@property BOOL hasState;
-@property(readonly) BOOL hasUserId;
-@property(retain) CKDPIdentifier * inviterId;
-@property(retain) CKDPIdentifier * participantId;
-@property int participantType;
-@property int permission;
-@property(retain) CKDPProtectionInfo * publicKey;
-@property int state;
-@property(retain) CKDPIdentifier * userId;
+@property (nonatomic) long long acceptTimestamp;
+@property (nonatomic, retain) CKDPContactInformation *contactInformation;
+@property (nonatomic) BOOL createdOutOfProcess;
+@property (nonatomic) BOOL hasAcceptTimestamp;
+@property (nonatomic, readonly) BOOL hasContactInformation;
+@property (nonatomic) BOOL hasCreatedOutOfProcess;
+@property (nonatomic, readonly) BOOL hasInviterId;
+@property (nonatomic, readonly) BOOL hasParticipantId;
+@property (nonatomic) BOOL hasParticipantType;
+@property (nonatomic) BOOL hasPermission;
+@property (nonatomic, readonly) BOOL hasPublicKey;
+@property (nonatomic) BOOL hasState;
+@property (nonatomic, readonly) BOOL hasUserId;
+@property (nonatomic, retain) CKDPIdentifier *inviterId;
+@property (nonatomic, retain) CKDPIdentifier *participantId;
+@property (nonatomic) int participantType;
+@property (nonatomic) int permission;
+@property (nonatomic, retain) CKDPProtectionInfo *publicKey;
+@property (nonatomic) int state;
+@property (nonatomic, retain) CKDPIdentifier *userId;
 
 - (void).cxx_destruct;
+- (long long)acceptTimestamp;
 - (id)contactInformation;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (BOOL)createdOutOfProcess;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (BOOL)hasAcceptTimestamp;
 - (BOOL)hasContactInformation;
 - (BOOL)hasCreatedOutOfProcess;
 - (BOOL)hasInviterId;
@@ -66,8 +70,10 @@
 - (int)permission;
 - (id)publicKey;
 - (BOOL)readFrom:(id)arg1;
+- (void)setAcceptTimestamp:(long long)arg1;
 - (void)setContactInformation:(id)arg1;
 - (void)setCreatedOutOfProcess:(BOOL)arg1;
+- (void)setHasAcceptTimestamp:(BOOL)arg1;
 - (void)setHasCreatedOutOfProcess:(BOOL)arg1;
 - (void)setHasParticipantType:(BOOL)arg1;
 - (void)setHasPermission:(BOOL)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray;
-
 @interface OADColor : NSObject <NSCopying> {
     NSMutableArray *mTransforms;
 }
@@ -23,6 +21,7 @@
 - (id)colorForStyleColor:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (void)setTransforms:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
  */
 
-@class <RUITableHeaderDelegate>, NSString, NSURL, RUIWebContainerView;
-
 @interface RUIHTMLHeaderView : UIView <RUIWebContainerViewDelegate, RemoteUITableHeader> {
     NSURL *_baseURL;
     <RUITableHeaderDelegate> *_delegate;
@@ -11,12 +9,12 @@
     RUIWebContainerView *_webContainerView;
 }
 
-@property(retain) NSURL * baseURL;
-@property(copy,readonly) NSString * debugDescription;
-@property <RUITableHeaderDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) NSURL *baseURL;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <RUITableHeaderDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)baseURL;
@@ -28,6 +26,7 @@
 - (void)setDelegate:(id)arg1;
 - (void)setSectionIsFirst:(BOOL)arg1;
 - (void)setText:(id)arg1 attributes:(id)arg2;
+- (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (void)webContainerView:(id)arg1 didClickLinkWithURL:(id)arg2;
 
 @end

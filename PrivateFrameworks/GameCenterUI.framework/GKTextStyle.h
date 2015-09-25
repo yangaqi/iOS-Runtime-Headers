@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
  */
 
-@class GKColorPalette, NSString, UIColor;
-
 @interface GKTextStyle : NSObject {
     float _UIKitFontLeading;
     NSString *_UIKitFontTextStyleName;
@@ -22,20 +20,20 @@
     float _zPosition;
 }
 
-@property(readonly) NSString * UIKitFontTextStyleName;
-@property(retain) UIColor * color;
-@property(readonly) NSString * fontName;
-@property SEL fontNameRebaseSelector;
-@property(readonly) float fontSize;
-@property SEL fontSizeRebaseSelector;
-@property int lineBreakMode;
-@property float m34;
-@property float minimumLineHeight;
-@property BOOL needsParagraphStyle;
-@property BOOL overrideUIKitFontSize;
-@property(retain) GKColorPalette * palette;
-@property int textAlignment;
-@property float zPosition;
+@property (nonatomic, retain) NSString *UIKitFontTextStyleName;
+@property (nonatomic, retain) UIColor *color;
+@property (nonatomic, retain) NSString *fontName;
+@property (nonatomic) SEL fontNameRebaseSelector;
+@property (nonatomic, readonly) float fontSize;
+@property (nonatomic) SEL fontSizeRebaseSelector;
+@property (nonatomic) int lineBreakMode;
+@property (nonatomic) float m34;
+@property (nonatomic) float minimumLineHeight;
+@property (nonatomic) BOOL needsParagraphStyle;
+@property (nonatomic) BOOL overrideUIKitFontSize;
+@property (nonatomic, retain) GKColorPalette *palette;
+@property (nonatomic) int textAlignment;
+@property (nonatomic) float zPosition;
 
 + (id)attributedString:(id)arg1 byReplayingFromBaseStyle:(id)arg2 systemContentSizeDidChange:(BOOL)arg3;
 + (float)bubbleTextScale;
@@ -73,6 +71,8 @@
 - (id)cellActionItem;
 - (id)centered;
 - (id)challengeBubbleValue;
+- (id)challengeText;
+- (id)challengeTitleText;
 - (id)color;
 - (id)composeFields;
 - (id)composeMessage;
@@ -152,6 +152,7 @@
 - (id)segmentBubbleValue;
 - (id)selectedBuyButtonTitle;
 - (void)setColor:(id)arg1;
+- (void)setFontName:(id)arg1;
 - (void)setFontName:(id)arg1 kitTextStyleName:(id)arg2 leadingOverrideFromHISpec:(float)arg3 shouldOverrideSize:(BOOL)arg4 rebaseSelector:(SEL)arg5;
 - (void)setFontName:(id)arg1 kitTextStyleName:(id)arg2 shouldOverrideSize:(BOOL)arg3 rebaseSelector:(SEL)arg4;
 - (void)setFontName:(id)arg1 rebaseSelector:(SEL)arg2;
@@ -165,6 +166,7 @@
 - (void)setOverrideUIKitFontSize:(BOOL)arg1;
 - (void)setPalette:(id)arg1;
 - (void)setTextAlignment:(int)arg1;
+- (void)setUIKitFontTextStyleName:(id)arg1;
 - (void)setZPosition:(float)arg1;
 - (id)settingsBoldButton;
 - (id)settingsButton;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class CalDAVPrincipalSearchPropertySet, NSSet;
-
 @interface CalDAVPrincipalPropertySearchTask : CoreDAVPrincipalPropertySearchTask {
     id _searchContext;
     NSSet *_searchStrings;
@@ -11,12 +9,12 @@
     CalDAVPrincipalSearchPropertySet *_serverSupportSet;
 }
 
-@property(retain) id searchContext;
-@property(retain) NSSet * searchStrings;
-@property(retain) NSSet * searchTypes;
-@property(retain) CalDAVPrincipalSearchPropertySet * serverSupportSet;
+@property (nonatomic, retain) id searchContext;
+@property (nonatomic, retain) NSSet *searchStrings;
+@property (nonatomic, retain) NSSet *searchTypes;
+@property (nonatomic, retain) CalDAVPrincipalSearchPropertySet *serverSupportSet;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)extraAttributes;
 - (id)initWithSearchStrings:(id)arg1 searchTypes:(id)arg2 serverSupportSet:(id)arg3 atURL:(id)arg4;
 - (id)searchContext;

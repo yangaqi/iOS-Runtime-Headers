@@ -2,20 +2,19 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAHASearchCriteriaFilter : SAHAFilter
 
-@interface SAHASearchCriteriaFilter : SAHAFilter {
-}
+@property (nonatomic, copy) NSString *attribute;
+@property (nonatomic, copy) NSString *entityType;
+@property (nonatomic, copy) NSString *groupName;
+@property (nonatomic, copy) NSString *homeName;
+@property (nonatomic, copy) NSString *roomName;
+@property (nonatomic, copy) NSString *sceneName;
+@property (nonatomic, copy) NSString *serviceName;
+@property (nonatomic, copy) NSString *serviceType;
+@property (nonatomic, copy) NSString *zoneName;
 
-@property(copy) NSString * attribute;
-@property(copy) NSString * entityType;
-@property(copy) NSString * groupName;
-@property(copy) NSString * homeName;
-@property(copy) NSString * roomName;
-@property(copy) NSString * sceneName;
-@property(copy) NSString * serviceName;
-@property(copy) NSString * serviceType;
-@property(copy) NSString * zoneName;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)searchCriteriaFilter;
 + (id)searchCriteriaFilterWithDictionary:(id)arg1 context:(id)arg2;
@@ -39,7 +38,10 @@
 - (void)setServiceName:(id)arg1;
 - (void)setServiceType:(id)arg1;
 - (void)setZoneName:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 - (id)zoneName;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPMoviePlayerControllerDelegate>, MPAVController, MPInlineVideoController, MPMovieAccessLog, MPMovieErrorLog, MPMoviePlayerController, MPMovieView, MPNowPlayingObserver, NSArray, NSDictionary, NSError, NSMutableArray, NSMutableDictionary, NSMutableSet, NSString, UIWindow;
-
 @interface MPMoviePlayerControllerNew : NSObject <MPMediaPlayback, MPMovieViewDelegate> {
     NSDictionary *_HTTPHeaderFields;
     int _additionalButtons;
@@ -42,8 +40,9 @@
     int _repeatMode;
     BOOL _setUseApplicationAudioSessionWhenPlaybackEnds;
     BOOL _shouldAutoplay;
+    BOOL _shouldIgnoreItemChange;
     BOOL _shouldRestartPlaybackFromBeginning;
-    unsigned int _stateBeforeSettingPlaybackTime;
+    int _stateBeforeSettingPlaybackTime;
     double _timeWhenResignedActive;
     NSMutableDictionary *_timedMetadataForUniqueKey;
     BOOL _useApplicationAudioSession;
@@ -53,13 +52,13 @@
     BOOL _willSoonEndUsingVideoLayer;
 }
 
-@property float currentPlaybackRate;
-@property double currentPlaybackTime;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isPreparedToPlay;
-@property(readonly) Class superclass;
+@property (nonatomic) float currentPlaybackRate;
+@property (nonatomic) double currentPlaybackTime;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isPreparedToPlay;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_HTTPHeaderFields;
@@ -75,9 +74,11 @@
 - (id)_delegate;
 - (void)_didBecomeActiveNotification:(id)arg1;
 - (BOOL)_didPostFinishNotificationForReason:(int)arg1;
+- (void)_endPlayback;
 - (void)_endUsingVideoLayer;
 - (void)_ensureActive;
 - (void)_firstVideoFrameDisplayedNotification:(id)arg1;
+- (void)_handlePlaybackEnd;
 - (id)_hostedWindow;
 - (unsigned int)_hostedWindowContextID;
 - (void)_isExternalPlaybackActiveDidChangeNotification:(id)arg1;

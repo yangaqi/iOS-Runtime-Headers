@@ -2,8 +2,12 @@
    Image: /usr/lib/system/libdispatch.dylib
  */
 
-@interface OS_dispatch_io : OS_dispatch_object <OS_dispatch_io> {
-}
+@interface OS_dispatch_io : OS_dispatch_object <OS_dispatch_io>
+
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)load;
 

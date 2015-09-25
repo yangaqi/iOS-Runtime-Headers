@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSTCellRangeIteratorDelegate>, TSTCell, TSTCellIterator;
-
 @interface TSTCellRangeIterator : NSObject {
     TSTCellIterator *mCellIterator;
     BOOL mCellValidForDelegate;
@@ -41,9 +39,8 @@
     BOOL mIterDataValid;
 }
 
-@property(readonly) BOOL cellValid;
+@property (nonatomic, readonly) BOOL cellValid;
 
-- (id).cxx_construct;
 - (BOOL)cellValid;
 - (void)dealloc;
 - (id)initWithTableModel:(id)arg1 delegate:(id)arg2;

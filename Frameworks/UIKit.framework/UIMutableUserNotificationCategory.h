@@ -2,14 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIMutableUserNotificationCategory : UIUserNotificationCategory {
     NSString *identifier;
 }
 
-@property(copy) NSString * identifier;
+@property (nonatomic, copy) NSString *identifier;
 
+- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)identifier;
 - (void)setActions:(id)arg1 forContext:(unsigned int)arg2;

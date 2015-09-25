@@ -2,16 +2,17 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLPreviewContentDataSource>, <QLPreviewContentDelegate>, NSMutableArray, NSMutableDictionary, NSMutableOrderedSet, NSMutableSet, NSString, QLAirPlayController, UIColor, UILongPressGestureRecognizer, UIPageViewController, UISegmentedControl, UITapGestureRecognizer;
-
 @interface QLPreviewContentController : UIViewController <QLPreviewContentControllerProtocol, QLPreviewItemInteractionDelegate> {
     QLAirPlayController *_airPlayController;
+    BOOL _allowPan;
     UIColor *_backgroundColor;
     BOOL _blockRemoteImages;
+    NSString *_currentPreviewItemContentType;
     int _currentPreviewItemIndex;
     UISegmentedControl *_customToolbarSegmentedArrowControl;
     <QLPreviewContentDataSource> *_dataSource;
     <QLPreviewContentDelegate> *_delegate;
+    UIPanGestureRecognizer *_dismissGesture;
     NSMutableSet *_gestureRecognizersForFullScreenDisplay;
     BOOL _isForeground;
     NSMutableSet *_loadingItems;
@@ -19,12 +20,18 @@
     UILongPressGestureRecognizer *_longPressRecognizer;
     float _navigationBarVerticalOffset;
     int _numberOfPreviewItems;
+    unsigned int _orbMode;
     BOOL _overlayHidden;
+    UIGestureRecognizer *_pagePanGesture;
+    UIGestureRecognizer *_pageSwipeGesture;
     UIPageViewController *_pageViewController;
+    BOOL _panGestureWasCancelled;
+    UIView *_panViewBackground;
     int _previewMode;
     NSMutableDictionary *_previewViewControllerCache;
     NSMutableArray *_previewViewControllerCacheOrdering;
     NSMutableOrderedSet *_scheduledLoads;
+    PHSwipeDownTracker *_swipeDownTracker;
     BOOL _swiping;
     UITapGestureRecognizer *_tapRecognizer;
     BOOL _transitioning;
@@ -46,15 +53,15 @@
     } clientContext;
 }
 
-@property(copy) UIColor * backgroundColor;
+@property (copy) UIColor *backgroundColor;
 @property struct { int x1; struct { unsigned int x_2_1_1[8]; } x2; struct CGRect { struct CGPoint { float x_1_2_1; float x_1_2_2; } x_3_1_1; struct CGSize { float x_2_2_1; float x_2_2_2; } x_3_1_2; } x3; } clientContext;
-@property <QLPreviewContentDataSource> * dataSource;
-@property(copy,readonly) NSString * debugDescription;
-@property <QLPreviewContentDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
+@property <QLPreviewContentDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property <QLPreviewContentDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
 @property int previewMode;
-@property(readonly) Class superclass;
+@property (readonly) Class superclass;
 
 - (void)_activateAirPlayOnRemoteScreen:(id)arg1;
 - (void)_cachePreviewViewController:(id)arg1;
@@ -66,6 +73,7 @@
 - (void)_hideMenuController;
 - (void)_leftSwipeRecognized:(id)arg1;
 - (void)_longPressGestureRecognized:(id)arg1;
+- (void)_panGestureRecognized:(id)arg1;
 - (id)_previewControllerForPreviewItem:(id)arg1 createIfNeeded:(BOOL)arg2 withIndex:(int)arg3;
 - (id)_previewViewControllerForPreviewItemIndex:(unsigned int)arg1;
 - (void)_removeNonCachedPreviewViewControllers;
@@ -97,12 +105,14 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)didReceiveMemoryWarning;
+- (void)dismissTransitionIsReadyToFinishSynchronizedWithBlock:(id /* block */)arg1;
 - (void)endScrubbing;
 - (void)enterBackground;
 - (void)forceResignFirstResponder;
 - (BOOL)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
 - (BOOL)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2;
 - (id)init;
+- (void)invalidate;
 - (void)overlayWasInteractedWithOnPreviewItem:(id)arg1;
 - (void)pageViewController:(id)arg1 didFinishAnimating:(BOOL)arg2 previousViewControllers:(id)arg3 transitionCompleted:(BOOL)arg4;
 - (id)pageViewController:(id)arg1 viewControllerAfterViewController:(id)arg2;
@@ -133,9 +143,10 @@
 - (void)setDelegate:(id)arg1;
 - (void)setLoadingTextForMissingFiles:(id)arg1;
 - (void)setNavigationBarVerticalOffset:(float)arg1;
+- (void)setOrbMode:(unsigned int)arg1;
 - (void)setOverlayHidden:(BOOL)arg1 duration:(double)arg2;
 - (void)setPreviewMode:(int)arg1;
-- (void)setTransitioning:(BOOL)arg1 synchronizedWithBlock:(id)arg2;
+- (void)setTransitioning:(BOOL)arg1 synchronizedWithBlock:(id /* block */)arg2;
 - (void)showContentsWasTappedForPreviewItem:(id)arg1;
 - (id)snapshotView;
 - (void)stopLoadingCurrentPreviewItem;
@@ -146,6 +157,7 @@
 - (void)viewDidUpdateForPreviewItem:(id)arg1;
 - (void)viewWasTappedOnPreviewItem:(id)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
+- (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 - (void)willChangeContentFrame;
 - (void)willMoveToParentViewController:(id)arg1;
 

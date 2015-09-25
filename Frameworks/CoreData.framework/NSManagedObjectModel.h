@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSArray, NSDictionary, NSMutableDictionary, NSSet;
-
 @interface NSManagedObjectModel : NSObject <NSCoding, NSCopying, NSFastEnumeration> {
     NSMutableDictionary *_configurations;
     id _dataForOptimization;
@@ -14,19 +12,20 @@
         unsigned int _isInUse : 1; 
         unsigned int _isImmutable : 1; 
         unsigned int _isOptimizedForEncoding : 1; 
-        unsigned int _reservedEntityDescription : 29; 
+        unsigned int _hasEntityWithConstraints : 1; 
+        unsigned int _reservedEntityDescription : 28; 
     } _managedObjectModelFlags;
     id *_optimizationHints;
     NSSet *_versionIdentifiers;
 }
 
-@property(readonly) NSArray * configurations;
-@property(retain) NSArray * entities;
-@property(copy,readonly) NSDictionary * entitiesByName;
-@property(copy,readonly) NSDictionary * entityVersionHashesByName;
-@property(copy,readonly) NSDictionary * fetchRequestTemplatesByName;
-@property(retain) NSDictionary * localizationDictionary;
-@property(copy) NSSet * versionIdentifiers;
+@property (readonly) NSArray *configurations;
+@property (retain) NSArray *entities;
+@property (readonly, copy) NSDictionary *entitiesByName;
+@property (readonly, copy) NSDictionary *entityVersionHashesByName;
+@property (readonly, copy) NSDictionary *fetchRequestTemplatesByName;
+@property (retain) NSDictionary *localizationDictionary;
+@property (copy) NSSet *versionIdentifiers;
 
 + (void)_deepCollectEntitiesInArray:(id)arg1 entity:(id)arg2;
 + (id)_modelPathsFromBundles:(id)arg1;
@@ -46,6 +45,7 @@
 - (id)_entityForName:(id)arg1;
 - (id)_entityVersionHashesByNameInStyle:(unsigned int)arg1;
 - (void)_flattenProperties;
+- (BOOL)_hasEntityWithUniquenessConstraints;
 - (BOOL)_hasPrecomputedKeyOrder;
 - (id)_initWithEntities:(id)arg1;
 - (BOOL)_isConfiguration:(id)arg1 inStyle:(unsigned int)arg2 compatibleWithStoreMetadata:(id)arg3;
@@ -67,7 +67,7 @@
 - (id)_versionIdentifiersAsArray;
 - (id)configurations;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

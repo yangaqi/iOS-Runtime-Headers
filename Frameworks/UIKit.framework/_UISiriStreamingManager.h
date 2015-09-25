@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSLayoutManager, NSMutableArray, NSTextContainer, NSTextStorage, UITextView, UIView;
-
 @interface _UISiriStreamingManager : NSObject {
     BOOL _commitResultsAfterDynamicsFinish;
     unsigned int _firstIndexToRemoveAfterLineChangeClearingAnimation;
@@ -19,16 +17,16 @@
     NSArray *_wordsToSetAfterAnimations;
 }
 
-@property(readonly) NSLayoutManager * streamingLayoutManager;
-@property(readonly) NSTextContainer * streamingTextContainer;
-@property(readonly) NSTextStorage * streamingTextStorage;
-@property(copy) NSArray * words;
+@property (nonatomic, readonly) NSLayoutManager *streamingLayoutManager;
+@property (nonatomic, readonly) NSTextContainer *streamingTextContainer;
+@property (nonatomic, readonly) NSTextStorage *streamingTextStorage;
+@property (nonatomic, copy) NSArray *words;
 
+- (void).cxx_destruct;
 - (void)_commitFinalResults;
 - (void)animateText;
 - (void)behaviorDidStop:(id)arg1;
 - (void)commitFinalResults;
-- (void)dealloc;
 - (id)initWithTextView:(id)arg1;
 - (void)setWords:(id)arg1;
 - (id)streamingLayoutManager;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKPaymentAuthorizationHostProtocol>, NSLayoutConstraint, NSMutableArray, NSString, PKAuthenticator, PKPaymentAuthorizationDataModel, PKPaymentAuthorizationFooterView, PKPaymentAuthorizationLayout, PKPaymentAuthorizationNavigationBar, PKPaymentAuthorizationSummaryItemsView, PKPaymentAuthorizationTotalView, PKPaymentOptionsViewController, PKPaymentService, PKPaymentWebService, UITableView, UIView;
-
 @interface PKPaymentAuthorizationServiceViewController : UIViewController <PKAuthenticatorDelegate, PKPaymentAuthorizationPresentationObserver, PKPaymentAuthorizationServiceProtocol, PKPaymentOptionsViewControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
     PKAuthenticator *_authenticator;
     BOOL _awaitingClientCallbackReply;
@@ -32,29 +30,30 @@
     BOOL _treatingHostAsBackgrounded;
 }
 
-@property(retain) PKAuthenticator * authenticator;
-@property(copy,readonly) NSString * debugDescription;
-@property <PKPaymentAuthorizationHostProtocol> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) PKPaymentAuthorizationDataModel * model;
-@property(retain) PKPaymentService * paymentService;
-@property(retain) PKPaymentWebService * paymentWebService;
-@property unsigned int state;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) PKAuthenticator *authenticator;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PKPaymentAuthorizationHostProtocol> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) PKPaymentAuthorizationDataModel *model;
+@property (nonatomic, retain) PKPaymentService *paymentService;
+@property (nonatomic, retain) PKPaymentWebService *paymentWebService;
+@property (nonatomic) unsigned int state;
+@property (readonly) Class superclass;
 
-- (void)_addPassphraseViewControllerToHierarchy:(id)arg1 withCompletion:(id)arg2;
+- (void)_addPassphraseViewControllerToHierarchy:(id)arg1 withCompletion:(id /* block */)arg2;
 - (int)_authenticatorPolicy;
-- (void)_authorizeTransactionWithCredential:(id)arg1;
+- (void)_authorizePayment:(id)arg1;
 - (void)_createSubviews;
 - (void)_didAuthorizePaymentWithToken:(id)arg1;
 - (void)_didCancelWithParam:(id)arg1;
 - (void)_didFailWithError:(id)arg1;
 - (void)_didFailWithFatalError:(id)arg1;
+- (void)_didSelectPaymentPass:(id)arg1;
 - (void)_didSelectShippingAddress:(id)arg1;
 - (void)_didSelectShippingMethod:(id)arg1;
 - (void)_didSucceed;
-- (void)_enqueueClientCallbackBlock:(id)arg1;
+- (void)_enqueueClientCallbackBlock:(id /* block */)arg1;
 - (id)_evaluationRequest;
 - (void)_handleModelUpdate;
 - (void)_hostApplicationDidEnterBackground;
@@ -71,7 +70,8 @@
 - (void)_resumeWithNextState;
 - (void)_rewrapPayment:(id)arg1;
 - (void)_selectOptionsForDataItem:(id)arg1;
-- (void)_setupWithPaymentRequest:(id)arg1 fromAppWithLocalizedName:(id)arg2;
+- (void)_setupWithPaymentRequest:(id)arg1 fromAppWithLocalizedName:(id)arg2 andApplicationIdentifier:(id)arg3;
+- (void)_simulatePayment;
 - (void)_startEvaluation;
 - (void)_suspendAuthentication;
 - (Class)_tableViewClassForDataItem:(id)arg1;
@@ -87,6 +87,7 @@
 - (void)authenticatorDidEncounterFingerOn:(id)arg1;
 - (void)authenticatorDidEncounterMatchMiss:(id)arg1;
 - (void)authorizationDidAuthorizePaymentCompleteWithStatus:(int)arg1;
+- (void)authorizationDidSelectPaymentMethodCompleteWithPaymentSummaryItems:(id)arg1;
 - (void)authorizationDidSelectShippingAddressCompleteWithStatus:(int)arg1 shippingMethods:(id)arg2 paymentSummaryItems:(id)arg3;
 - (void)authorizationDidSelectShippingMethodCompleteWithStatus:(int)arg1 paymentSummaryItems:(id)arg2;
 - (void)cancelPressed:(id)arg1;
@@ -97,15 +98,15 @@
 - (void)handleHostApplicationDidBecomeActive;
 - (void)handleHostApplicationDidCancel;
 - (void)handleHostApplicationWillResignActive:(BOOL)arg1;
-- (id)handlePaymentRequest:(id)arg1 fromAppWithLocalizedName:(id)arg2;
+- (id)handlePaymentRequest:(id)arg1 fromAppWithLocalizedName:(id)arg2 andApplicationIdentifier:(id)arg3;
 - (id)initWithLayout:(id)arg1;
 - (id)model;
 - (void)navigationController:(id)arg1 willShowViewController:(id)arg2 animated:(BOOL)arg3;
 - (void)paymentOptionsViewControllerDidFinish:(id)arg1;
 - (id)paymentService;
 - (id)paymentWebService;
-- (void)presentPasscodeViewController:(id)arg1 completionHandler:(id)arg2;
-- (void)presentPassphraseViewController:(id)arg1 completionHandler:(id)arg2;
+- (void)presentPasscodeViewController:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)presentPassphraseViewController:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)setAuthenticator:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setModel:(id)arg1;

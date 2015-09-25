@@ -2,23 +2,9 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@interface CKKeepMessagesSelectionList : PSListItemsController {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _sheetHandler;
-
-}
-
-@property(copy) id sheetHandler;
+@interface CKKeepMessagesSelectionList : PSListItemsController
 
 - (void)_warnAboutDeletingMessagesForSelectedListItem:(id)arg1;
 - (void)listItemSelected:(id)arg1;
-- (void)setSheetHandler:(id)arg1;
-- (id)sheetHandler;
 
 @end

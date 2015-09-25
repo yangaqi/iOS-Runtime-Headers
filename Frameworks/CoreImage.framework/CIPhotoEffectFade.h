@@ -2,9 +2,6 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CIPhotoEffectFade : CIPhotoEffect {
-}
-
-+ (id)customAttributes;
+@interface CIPhotoEffectFade : CIPhotoEffect
 
 @end

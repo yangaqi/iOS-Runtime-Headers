@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/WebKit.framework/WebKit
  */
 
-@class NSNumber;
-
 @interface WKWindowFeatures : NSObject {
     struct RetainPtr<NSNumber> { 
         void *m_ptr; 
@@ -31,18 +29,18 @@
     } _y;
 }
 
-@property(readonly) NSNumber * allowsResizing;
-@property(readonly) NSNumber * height;
-@property(readonly) NSNumber * menuBarVisibility;
-@property(readonly) NSNumber * statusBarVisibility;
-@property(readonly) NSNumber * toolbarsVisibility;
-@property(readonly) NSNumber * width;
-@property(readonly) NSNumber * x;
-@property(readonly) NSNumber * y;
+@property (nonatomic, readonly) NSNumber *allowsResizing;
+@property (nonatomic, readonly) NSNumber *height;
+@property (nonatomic, readonly) NSNumber *menuBarVisibility;
+@property (nonatomic, readonly) NSNumber *statusBarVisibility;
+@property (nonatomic, readonly) NSNumber *toolbarsVisibility;
+@property (nonatomic, readonly) NSNumber *width;
+@property (nonatomic, readonly) NSNumber *x;
+@property (nonatomic, readonly) NSNumber *y;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (id)_initWithWindowFeatures:(const struct WindowFeatures { float x1; bool x2; float x3; bool x4; float x5; bool x6; float x7; bool x8; bool x9; bool x10; bool x11; bool x12; bool x13; bool x14; bool x15; bool x16; struct Vector<WTF::String, 0, WTF::CrashOnOverflow> { struct String {} *x_17_1_1; unsigned int x_17_1_2; unsigned int x_17_1_3; } x17; }*)arg1;
+- (id)_initWithWindowFeatures:(const struct WindowFeatures { float x1; bool x2; float x3; bool x4; float x5; bool x6; float x7; bool x8; bool x9; bool x10; bool x11; bool x12; bool x13; bool x14; bool x15; bool x16; struct Vector<WTF::String, 0, WTF::CrashOnOverflow, 16> { struct String {} *x_17_1_1; unsigned int x_17_1_2; unsigned int x_17_1_3; } x17; }*)arg1;
 - (id)allowsResizing;
 - (id)height;
 - (id)menuBarVisibility;

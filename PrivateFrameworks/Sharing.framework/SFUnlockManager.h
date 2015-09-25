@@ -2,20 +2,21 @@
    Image: /System/Library/PrivateFrameworks/Sharing.framework/Sharing
  */
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface SFUnlockManager : NSObject {
     NSObject<OS_dispatch_queue> *_delegateQueue;
+    NSObject<OS_dispatch_source> *_stateRequestTimer;
 }
 
 + (id)sharedUnlockManager;
 
+- (void)cancelStateRequestTimer;
 - (void)dealloc;
 - (void)disableUnlockWithDevice:(id)arg1;
-- (void)enableUnlockWithDevice:(id)arg1 fromKey:(BOOL)arg2 withPasscode:(id)arg3 completionHandler:(id)arg4;
-- (void)establishStashBagWithCompletionHandler:(id)arg1;
+- (void)enableUnlockWithDevice:(id)arg1 fromKey:(BOOL)arg2 withPasscode:(id)arg3 completionHandler:(id /* block */)arg4;
+- (void)establishStashBagWithCompletionHandler:(id /* block */)arg1;
 - (id)init;
-- (void)unlockEnabledWithDevice:(id)arg1 completionHandler:(id)arg2;
-- (void)unlockStateForDevice:(id)arg1 completionHandler:(id)arg2;
+- (id)timerWithBlock:(id /* block */)arg1;
+- (void)unlockEnabledWithDevice:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)unlockStateForDevice:(id)arg1 completionHandler:(id /* block */)arg2;
 
 @end

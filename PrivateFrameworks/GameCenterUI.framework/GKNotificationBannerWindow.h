@@ -2,46 +2,31 @@
    Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
  */
 
-@class GKNotificationBannerView, NSObject<OS_dispatch_semaphore>;
-
 @interface GKNotificationBannerWindow : UIWindow {
-    BOOL _bannerAnimating;
     NSObject<OS_dispatch_semaphore> *_bannerSemaphore;
-    BOOL _bannerVisible;
-    GKNotificationBannerView *_currentBanner;
-    int _initialInterfaceOrientation;
+    GKNotificationBannerViewController *_currentBannerViewController;
 }
 
-@property BOOL bannerAnimating;
-@property(readonly) NSObject<OS_dispatch_semaphore> * bannerSemaphore;
-@property BOOL bannerVisible;
-@property(retain) GKNotificationBannerView * currentBanner;
-@property int initialInterfaceOrientation;
+@property (nonatomic, readonly, retain) NSObject<OS_dispatch_semaphore> *bannerSemaphore;
+@property (nonatomic, retain) GKNotificationBannerViewController *currentBannerViewController;
 
 + (id)bannerWindow;
 + (void)enqueBanner:(id)arg1;
 + (id)queue;
 
 - (BOOL)_canAffectStatusBarAppearance;
-- (struct CGPoint { float x1; float x2; })_hiddenBannerPosition;
+- (BOOL)_canBecomeKeyWindow;
 - (void)_hideBanner:(id)arg1 quickly:(BOOL)arg2;
-- (void)_layoutBanner:(id)arg1 orientation:(int)arg2 animated:(BOOL)arg3;
-- (void)_showBanner:(id)arg1 showDimmingView:(BOOL)arg2;
-- (struct CGPoint { float x1; float x2; })_visibleBannerPosition;
-- (BOOL)bannerAnimating;
+- (BOOL)_includeInDefaultImageSnapshot;
+- (void)_showBanner:(id)arg1;
 - (id)bannerSemaphore;
-- (BOOL)bannerVisible;
-- (id)currentBanner;
+- (id)currentBannerViewController;
 - (void)dealloc;
 - (void)handlePan:(id)arg1;
+- (void)handleSingleTap:(id)arg1;
 - (id)init;
-- (int)initialInterfaceOrientation;
-- (void)orientationChanged:(id)arg1;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
-- (void)setBannerAnimating:(BOOL)arg1;
-- (void)setBannerVisible:(BOOL)arg1;
-- (void)setCurrentBanner:(id)arg1;
-- (void)setInitialInterfaceOrientation:(int)arg1;
+- (void)setCurrentBannerViewController:(id)arg1;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
 
 @end

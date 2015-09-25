@@ -2,23 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class CoreDAVHrefItem, CoreDAVLeafItem;
-
 @interface CalDAVCalendarServerOrganizerItem : CoreDAVItem {
     CoreDAVLeafItem *_commonName;
     CoreDAVHrefItem *_href;
 }
 
-@property(retain) CoreDAVLeafItem * commonName;
-@property(retain) CoreDAVHrefItem * href;
+@property (nonatomic, retain) CoreDAVLeafItem *commonName;
+@property (nonatomic, retain) CoreDAVHrefItem *href;
 
+- (void).cxx_destruct;
 - (id)commonName;
 - (id)copyParseRules;
-- (void)dealloc;
-- (id)description;
 - (id)href;
 - (id)init;
-- (id)initWithNameSpace:(id)arg1 andName:(id)arg2;
 - (void)setCommonName:(id)arg1;
 - (void)setHref:(id)arg1;
 

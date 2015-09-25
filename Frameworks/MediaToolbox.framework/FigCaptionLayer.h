@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/MediaToolbox.framework/MediaToolbox
  */
 
-@class FigCaptionLayerPrivate;
-
-@interface FigCaptionLayer : CALayer {
+@interface FigCaptionLayer : FigBaseCALayer {
     FigCaptionLayerPrivate *_priv;
 }
 

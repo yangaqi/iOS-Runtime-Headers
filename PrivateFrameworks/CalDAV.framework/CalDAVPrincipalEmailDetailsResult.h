@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSSet, NSString, NSURL;
-
 @interface CalDAVPrincipalEmailDetailsResult : NSObject {
     NSSet *_addresses;
     NSString *_displayName;
     NSURL *_principalURL;
 }
 
-@property(retain) NSSet * addresses;
-@property(retain) NSString * displayName;
-@property(retain) NSURL * principalURL;
+@property (nonatomic, retain) NSSet *addresses;
+@property (nonatomic, retain) NSString *displayName;
+@property (nonatomic, retain) NSURL *principalURL;
 
 + (id)resultFromResponseItem:(id)arg1;
 
+- (void).cxx_destruct;
 - (id)addresses;
-- (void)dealloc;
 - (id)description;
 - (id)displayName;
 - (id)principalURL;

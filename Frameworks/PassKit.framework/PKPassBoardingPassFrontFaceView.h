@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class UIImageView;
-
 @interface PKPassBoardingPassFrontFaceView : PKPassFrontFaceView {
     UIImageView *_footerImageView;
     UIImageView *_transitImageView;
@@ -13,6 +11,7 @@
 - (void)createBodyContentViews;
 - (void)dealloc;
 - (void)layoutSubviews;
+- (void)setShowsBarcodeView:(BOOL)arg1 animated:(BOOL)arg2;
 - (id)shortFaceTemplate;
 - (id)shortScrunchedFaceTemplate;
 - (id)tallFaceTemplate;

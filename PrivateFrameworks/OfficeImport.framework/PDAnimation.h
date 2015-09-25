@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OITSUNoCopyDictionary, PDRootTimeNode;
-
 @interface PDAnimation : NSObject {
     OITSUNoCopyDictionary *mBuildMap;
     PDRootTimeNode *mRootTimeNode;
@@ -14,6 +12,7 @@
 - (id)addRootTimeNode;
 - (id)buildMap;
 - (void)dealloc;
+- (id)description;
 - (id)init;
 - (id)rootTimeNode;
 - (void)setBuildMap:(id)arg1;

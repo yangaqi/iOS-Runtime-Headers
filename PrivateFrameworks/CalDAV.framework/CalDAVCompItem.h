@@ -2,17 +2,14 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSString;
-
 @interface CalDAVCompItem : CoreDAVItem {
     NSString *_nameAttribute;
 }
 
-@property(retain) NSString * nameAttribute;
+@property (nonatomic, retain) NSString *nameAttribute;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)init;
-- (id)initWithNameSpace:(id)arg1 andName:(id)arg2;
 - (id)nameAttribute;
 - (void)parserFoundAttributes:(id)arg1;
 - (void)setNameAttribute:(id)arg1;

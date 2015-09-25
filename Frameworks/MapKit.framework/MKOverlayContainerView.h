@@ -2,21 +2,19 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKOverlayContainerViewDelegate>, NSArray, NSMapTable, NSMutableArray, NSMutableOrderedSet, UIView;
-
 @interface MKOverlayContainerView : UIView {
     <MKOverlayContainerViewDelegate> *_delegate;
-    NSMutableArray *_drawables[2];
+    NSMutableArray *_drawables;
     float _mapZoomScale;
-    NSMapTable *_overlayToDrawable[2];
-    NSMutableOrderedSet *_overlays[2];
-    UIView *_viewContainers[2];
-    NSMutableArray *_vkOverlays[2];
+    NSMapTable *_overlayToDrawable;
+    NSMutableOrderedSet *_overlays;
+    UIView *_viewContainers;
+    NSMutableArray *_vkOverlays;
 }
 
-@property <MKOverlayContainerViewDelegate> * delegate;
-@property float mapZoomScale;
-@property(readonly) NSArray * overlays;
+@property (nonatomic) <MKOverlayContainerViewDelegate> *delegate;
+@property (nonatomic) float mapZoomScale;
+@property (nonatomic, readonly) NSArray *overlays;
 
 - (void).cxx_destruct;
 - (void)_configureAndAddDrawable:(id)arg1 forOverlay:(id)arg2 level:(int)arg3;
@@ -34,7 +32,6 @@
 - (void)addOverlay:(id)arg1 level:(int)arg2;
 - (void)addOverlays:(id)arg1;
 - (void)addOverlays:(id)arg1 level:(int)arg2;
-- (void)dealloc;
 - (id)delegate;
 - (void)didMoveToWindow;
 - (id)drawableForOverlay:(id)arg1;
@@ -53,6 +50,5 @@
 - (void)removeOverlays:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setMapZoomScale:(float)arg1;
-- (void)visibleRectChanged;
 
 @end

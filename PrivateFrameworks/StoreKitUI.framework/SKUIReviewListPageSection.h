@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class SKUIReviewListPageComponent, SKUIViewElementLayoutContext;
-
 @interface SKUIReviewListPageSection : SKUIStorePageSection {
     SKUIViewElementLayoutContext *_cellLayoutContext;
 }
 
-@property(readonly) SKUIReviewListPageComponent * pageComponent;
+@property (nonatomic, readonly) SKUIReviewListPageComponent *pageComponent;
 
 - (void).cxx_destruct;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_contentInsetForReviewIndex:(int)arg1;
@@ -20,6 +18,7 @@
 - (void)collectionViewDidSelectItemAtIndexPath:(id)arg1;
 - (void)collectionViewWillApplyLayoutAttributes:(id)arg1;
 - (void)collectionViewWillDisplayCellForItemAtIndexPath:(id)arg1;
+- (void)entityProvider:(id)arg1 didInvalidateWithContext:(id)arg2;
 - (id)initWithPageComponent:(id)arg1;
 - (int)numberOfCells;
 - (void)reloadCellWithIndexPath:(id)arg1 reason:(int)arg2;

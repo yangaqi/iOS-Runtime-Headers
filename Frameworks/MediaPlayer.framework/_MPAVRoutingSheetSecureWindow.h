@@ -2,9 +2,10 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@interface _MPAVRoutingSheetSecureWindow : UIWindow {
-}
+@interface _MPAVRoutingSheetSecureWindow : UIWindow
 
 + (BOOL)_isSecure;
+
+- (BOOL)_canAffectStatusBarAppearance;
 
 @end

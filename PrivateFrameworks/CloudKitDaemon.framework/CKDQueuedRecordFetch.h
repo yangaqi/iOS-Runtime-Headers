@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@interface CKDQueuedRecordFetch : CKDQueuedFetch {
-}
+@interface CKDQueuedRecordFetch : CKDQueuedFetch
 
-- (void)addRequestForRecordID:(id)arg1 withCompletionHandler:(id)arg2;
-- (id)fetchOperation;
+- (void)addRequestForRecordID:(id)arg1 withCompletionHandler:(id /* block */)arg2;
+- (id)fetchOperationForItemIDs:(id)arg1;
 - (Class)operationInfoClass;
 
 @end

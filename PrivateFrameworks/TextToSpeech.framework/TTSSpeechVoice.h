@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/TextToSpeech.framework/TextToSpeech
  */
 
-@class <TTSSpeechService>, NSString;
-
-@interface TTSSpeechVoice : NSObject {
+@interface TTSSpeechVoice : NSObject <NSSecureCoding> {
     int _footprint;
     int _gender;
     NSString *_identifier;
@@ -16,23 +14,27 @@
     BOOL _useVoiceBooster;
 }
 
-@property int footprint;
-@property int gender;
-@property(retain) NSString * identifier;
-@property BOOL isCustomVoice;
-@property(readonly) BOOL isDefault;
-@property(retain) NSString * language;
-@property(retain) NSString * name;
-@property(readonly) BOOL useVoiceBooster;
+@property (nonatomic) int footprint;
+@property (nonatomic) int gender;
+@property (nonatomic, retain) NSString *identifier;
+@property (nonatomic) BOOL isCustomVoice;
+@property (nonatomic, readonly) BOOL isDefault;
+@property (nonatomic, retain) NSString *language;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, readonly) BOOL useVoiceBooster;
+
++ (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (void)_initializeVoiceBooster;
 - (void)_routeChange:(id)arg1;
 - (id)description;
+- (void)encodeWithCoder:(id)arg1;
 - (int)footprint;
 - (int)gender;
 - (id)identifier;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (BOOL)isCustomVoice;
 - (BOOL)isDefault;
 - (id)language;

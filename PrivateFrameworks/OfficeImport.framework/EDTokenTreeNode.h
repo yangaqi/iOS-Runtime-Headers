@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDTokenTreeNode;
-
 @interface EDTokenTreeNode : NSObject {
     EDTokenTreeNode *mFirstChild;
     EDTokenTreeNode *mSibling;
@@ -14,6 +12,7 @@
 + (id)tokenTreeNodeWithIndexAndType:(unsigned int)arg1 type:(int)arg2;
 
 - (void)dealloc;
+- (id)description;
 - (id)firstChild;
 - (id)init;
 - (id)initWithIndexAndType:(unsigned int)arg1 type:(int)arg2;

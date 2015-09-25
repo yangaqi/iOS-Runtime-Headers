@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
  */
 
-@interface _UIAccessibilityNSAttributedString : ___UIAccessibilityNSAttributedString_super {
-}
+@interface _UIAccessibilityNSAttributedString : ___UIAccessibilityNSAttributedString_super
 
-+ (Class)safeCategoryTargetClass;
++ (Class)safeCategoryBaseClass;
 + (id)safeCategoryTargetClassName;
 
 - (void)drawAtPoint:(struct CGPoint { float x1; float x2; })arg1;

@@ -2,21 +2,23 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSMapTable, NSMutableArray, NSString, SKUIGradientView, SKUILockupViewElement, SKUIProductLockupLayout;
-
 @interface SKUIProductLockupCollectionViewCell : SKUIViewReuseCollectionViewCell <SKUIItemOfferButtonDelegate, SKUIOfferViewDelegate, SKUIPerspectiveView, SKUIViewElementView> {
+    NSHashTable *_artworkRelatedChildViewElementViews;
+    NSMapTable *_buyButtonDescriptorToButton;
     NSMapTable *_elementViews;
+    NSMapTable *_imageViewToImageResourceCacheKey;
     SKUIProductLockupLayout *_layout;
     SKUILockupViewElement *_lockup;
     SKUIGradientView *_offerConfirmationGradientView;
     int _offerMetadataPosition;
+    NSHashTable *_offerViews;
     NSMutableArray *_segmentedControlControllers;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)_attributedStringForButton:(id)arg1 context:(id)arg2;
 + (id)_attributedStringForLabel:(id)arg1 context:(id)arg2;

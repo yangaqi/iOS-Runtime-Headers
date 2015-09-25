@@ -2,53 +2,38 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CKQuery, CKQueryCursor, CKRecordZoneID, NSArray, NSObject<OS_dispatch_queue>;
-
 @interface CKQueryOperation : CKDatabaseOperation {
     CKQueryCursor *_cursor;
     NSArray *_desiredKeys;
     BOOL _isFinishing;
     CKQuery *_query;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _queryCompletionBlock;
-
+    id /* block */ _queryCompletionBlock;
     NSObject<OS_dispatch_queue> *_queryResultQueue;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _recordFetchedBlock;
-
-    NSArray *_results;
+    id /* block */ _recordFetchedBlock;
     CKQueryCursor *_resultsCursor;
     unsigned int _resultsLimit;
     BOOL _shouldFetchAssetContent;
     CKRecordZoneID *_zoneID;
 }
 
-@property(copy) CKQueryCursor * cursor;
-@property(copy) NSArray * desiredKeys;
-@property BOOL isFinishing;
-@property(copy) CKQuery * query;
-@property(copy) id queryCompletionBlock;
-@property(retain) NSObject<OS_dispatch_queue> * queryResultQueue;
-@property(copy) id recordFetchedBlock;
-@property(retain) NSArray * results;
-@property(retain) CKQueryCursor * resultsCursor;
-@property unsigned int resultsLimit;
-@property BOOL shouldFetchAssetContent;
-@property(copy) CKRecordZoneID * zoneID;
+@property (nonatomic, copy) CKQueryCursor *cursor;
+@property (nonatomic, copy) NSArray *desiredKeys;
+@property (nonatomic) BOOL isFinishing;
+@property (nonatomic, copy) CKQuery *query;
+@property (nonatomic, copy) id /* block */ queryCompletionBlock;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *queryResultQueue;
+@property (nonatomic, copy) id /* block */ recordFetchedBlock;
+@property (nonatomic, retain) CKQueryCursor *resultsCursor;
+@property (nonatomic) unsigned int resultsLimit;
+@property (nonatomic) BOOL shouldFetchAssetContent;
+@property (nonatomic, copy) CKRecordZoneID *zoneID;
 
 - (void).cxx_destruct;
 - (BOOL)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleCompletionCallback:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
+- (unsigned long long)activityStart;
 - (id)cursor;
 - (id)desiredKeys;
 - (void)fillOutOperationInfo:(id)arg1;
@@ -58,20 +43,18 @@
 - (BOOL)isFinishing;
 - (void)performCKOperation;
 - (id)query;
-- (id)queryCompletionBlock;
+- (id /* block */)queryCompletionBlock;
 - (id)queryResultQueue;
-- (id)recordFetchedBlock;
-- (id)results;
+- (id /* block */)recordFetchedBlock;
 - (id)resultsCursor;
 - (unsigned int)resultsLimit;
 - (void)setCursor:(id)arg1;
 - (void)setDesiredKeys:(id)arg1;
 - (void)setIsFinishing:(BOOL)arg1;
 - (void)setQuery:(id)arg1;
-- (void)setQueryCompletionBlock:(id)arg1;
+- (void)setQueryCompletionBlock:(id /* block */)arg1;
 - (void)setQueryResultQueue:(id)arg1;
-- (void)setRecordFetchedBlock:(id)arg1;
-- (void)setResults:(id)arg1;
+- (void)setRecordFetchedBlock:(id /* block */)arg1;
 - (void)setResultsCursor:(id)arg1;
 - (void)setResultsLimit:(unsigned int)arg1;
 - (void)setShouldFetchAssetContent:(BOOL)arg1;

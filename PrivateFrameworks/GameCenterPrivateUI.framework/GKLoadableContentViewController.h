@@ -2,22 +2,22 @@
    Image: /System/Library/PrivateFrameworks/GameCenterPrivateUI.framework/GameCenterPrivateUI
  */
 
-@class GKLoadableContentStateMachine, NSArray, NSString, UIActivityIndicatorView;
-
-@interface GKLoadableContentViewController : GKViewController <GKStateMachineDelegate> {
+@interface GKLoadableContentViewController : GKViewController <_GKStateMachineDelegate> {
     UIActivityIndicatorView *_activityIndicator;
+    float _loadingIndicatorDelay;
     GKLoadableContentStateMachine *_loadingMachine;
     NSArray *_viewsToHideWhileLoading;
 }
 
-@property(retain) UIActivityIndicatorView * activityIndicator;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) GKLoadableContentStateMachine * loadingMachine;
-@property(retain) NSString * loadingState;
-@property(readonly) Class superclass;
-@property(retain) NSArray * viewsToHideWhileLoading;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) float loadingIndicatorDelay;
+@property (nonatomic, retain) GKLoadableContentStateMachine *loadingMachine;
+@property (nonatomic, retain) NSString *loadingState;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSArray *viewsToHideWhileLoading;
 
 - (id)activityIndicator;
 - (void)dealloc;
@@ -26,9 +26,11 @@
 - (void)didExitLoadedState;
 - (void)didExitLoadingState;
 - (id)init;
+- (float)loadingIndicatorDelay;
 - (id)loadingMachine;
 - (id)loadingState;
 - (void)setActivityIndicator:(id)arg1;
+- (void)setLoadingIndicatorDelay:(float)arg1;
 - (void)setLoadingMachine:(id)arg1;
 - (void)setLoadingState:(id)arg1;
 - (void)setViewsToHideWhileLoading:(id)arg1;

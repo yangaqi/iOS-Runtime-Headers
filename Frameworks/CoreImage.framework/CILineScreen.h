@@ -2,12 +2,8 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CILineScreen : _CIScreenFilter {
-}
+@interface CILineScreen : _CIScreenFilter
 
-+ (id)customAttributes;
-
-- (id)_kernel_code;
-- (id)_kernel_name;
++ (id)_kernel_code;
 
 @end

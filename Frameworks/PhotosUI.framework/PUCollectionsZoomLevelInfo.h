@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class NSMutableDictionary, NSString, PHFetchResult;
-
 @interface PUCollectionsZoomLevelInfo : PUGridZoomLevelInfo <PUSectionedGridLayoutDelegate> {
     PHFetchResult *_collectionsFetchResult;
     NSMutableDictionary *_resultsForCollectionList;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)_collectionsFetchResult;
@@ -24,7 +22,6 @@
 - (id)diagnosticsProviderForVisualSection:(int)arg1;
 - (id)displayTitle;
 - (int)imageDeliveryMode;
-- (int)imageFormat;
 - (id)initWithZoomLevel:(unsigned int)arg1 zoomLevelManager:(id)arg2 baseZoomLevelInfo:(id)arg3;
 - (int)maxRowsPerSection;
 - (void)modelDidChange:(id)arg1;
@@ -35,6 +32,7 @@
 - (id)sectionHeaderElementKind;
 - (id)sectionedGridLayout:(id)arg1 sectionsForVisualSection:(int)arg2;
 - (BOOL)supportsIncrementalChangeNotifications;
+- (struct CGSize { float x1; float x2; })thumbnailImageSize;
 - (void)updateLayoutMetricsForWidth:(float)arg1;
 
 @end

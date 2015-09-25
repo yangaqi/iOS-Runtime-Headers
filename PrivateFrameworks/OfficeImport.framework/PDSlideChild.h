@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADColorMap, OADThemeOverrides;
-
 @interface PDSlideChild : PDSlideBase {
     OADColorMap *mColorMapOverride;
     BOOL mShowMasterPlaceholderAnimations;
@@ -15,6 +13,8 @@
 - (id)colorMapOverride;
 - (id)colorScheme;
 - (void)dealloc;
+- (id)defaultTextListStyle;
+- (id)description;
 - (void)doneWithContent;
 - (id)drawingTheme;
 - (id)fontScheme;

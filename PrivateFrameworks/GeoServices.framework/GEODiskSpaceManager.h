@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
-
 @interface GEODiskSpaceManager : NSObject {
     NSMutableDictionary *_freeableClaims;
     NSObject<OS_dispatch_queue> *_queue;
@@ -11,6 +9,10 @@
 
 + (id)sharedManager;
 
+- (id)_getPurgeableSpace:(struct __CFDictionary { }*)arg1;
+- (id)_getVolume:(struct __CFDictionary { }*)arg1;
+- (BOOL)_isValidVolume:(struct __CFDictionary { }*)arg1;
+- (void)_registerCacheDeleteCallbacks;
 - (void)dealloc;
 - (unsigned long long)freeDiskSpaceBy:(unsigned long long)arg1;
 - (unsigned long long)getFreeableSpace;

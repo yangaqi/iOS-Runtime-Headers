@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class NSArray, NSLock, NSMutableDictionary, NSString, SSAuthenticationContext;
-
 @interface ISDialog : NSObject <SSXPCCoding> {
     BOOL _allowDuplicates;
     BOOL _allowsBioAuthorization;
@@ -21,6 +19,7 @@
     NSLock *_lock;
     int _maxDisplayCount;
     NSString *_message;
+    BOOL _noDefaultButton;
     BOOL _oneButtonPerLine;
     BOOL _shouldDismissAfterUnlock;
     BOOL _shouldDisplayAsTopMost;
@@ -33,34 +32,36 @@
 }
 
 @property BOOL allowDuplicates;
-@property(readonly) BOOL allowsBioAuthorization;
-@property(copy) SSAuthenticationContext * authenticationContext;
+@property (readonly) BOOL allowsBioAuthorization;
+@property (copy) SSAuthenticationContext *authenticationContext;
 @property BOOL authorizationIsForced;
-@property(retain) NSArray * buttons;
-@property(copy,readonly) NSString * debugDescription;
+@property (retain) NSArray *buttons;
+@property (readonly, copy) NSString *debugDescription;
 @property int defaultButtonIndex;
-@property(copy,readonly) NSString * description;
+@property (readonly, copy) NSString *description;
 @property BOOL dismissOnHomeButton;
 @property BOOL dismissOnLock;
-@property(copy) NSString * displayCountKey;
-@property(getter=isDisplayable,readonly) BOOL displayable;
+@property (copy) NSString *displayCountKey;
+@property (getter=isDisplayable, readonly) BOOL displayable;
 @property BOOL displaysOnLockscreen;
 @property BOOL expectsResponse;
 @property BOOL groupsTextFields;
-@property(readonly) unsigned int hash;
+@property (readonly) unsigned int hash;
 @property int kind;
 @property int maximumDisplayCount;
-@property(retain) NSString * message;
+@property (retain) NSString *message;
+@property BOOL noDefaultButton;
 @property BOOL oneButtonPerLine;
 @property BOOL shouldDismissAfterUnlock;
 @property BOOL shouldDisplayAsTopMost;
 @property BOOL shouldPendInSetupIfNotAllowed;
-@property(readonly) Class superclass;
-@property(retain) NSArray * textFields;
-@property(retain) NSString * title;
+@property (readonly) Class superclass;
+@property (retain) NSArray *textFields;
+@property (retain) NSString *title;
 @property int unlockActionButtonIndex;
 
-+ (id)ITunesStoreNotAvailableDialog;
+// Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
+
 + (int)displayCountForKey:(id)arg1;
 
 - (int)_kindForString:(id)arg1;
@@ -93,11 +94,13 @@
 - (int)kind;
 - (int)maximumDisplayCount;
 - (id)message;
+- (BOOL)noDefaultButton;
 - (BOOL)oneButtonPerLine;
 - (void)setAllowDuplicates:(BOOL)arg1;
 - (void)setAuthenticationContext:(id)arg1;
 - (void)setAuthorizationIsForced:(BOOL)arg1;
 - (void)setButtons:(id)arg1;
+- (void)setButtonsWithTitles:(id)arg1;
 - (void)setDefaultButtonIndex:(int)arg1;
 - (void)setDismissOnHomeButton:(BOOL)arg1;
 - (void)setDismissOnLock:(BOOL)arg1;
@@ -108,6 +111,7 @@
 - (void)setKind:(int)arg1;
 - (void)setMaximumDisplayCount:(int)arg1;
 - (void)setMessage:(id)arg1;
+- (void)setNoDefaultButton:(BOOL)arg1;
 - (void)setOneButtonPerLine:(BOOL)arg1;
 - (void)setShouldDismissAfterUnlock:(BOOL)arg1;
 - (void)setShouldDisplayAsTopMost:(BOOL)arg1;
@@ -124,5 +128,9 @@
 - (id)title;
 - (int)unlockActionButtonIndex;
 - (id)valueForUserInfoKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
++ (id)ITunesStoreNotAvailableDialog;
 
 @end

@@ -2,12 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSKMultiTableRemapping>;
-
 @interface TSKAddedToDocumentContext : NSObject {
+    NSMutableArray *mInsertedTableInfos;
 }
 
-@property(retain) <TSKMultiTableRemapping> * multiTableRemapper;
+@property (retain) <TSKMultiTableRemapping> *multiTableRemapper;
 
 + (id)changeTrackingSubstorageForCopyContext;
 + (id)dragCopyContext;
@@ -16,6 +15,7 @@
 + (id)importingContextWithImporterID:(id)arg1;
 + (id)importingMasterTemplateContextWithImporterID:(id)arg1;
 + (id)insertingPrototypeContext;
++ (id)migrateStylesContext;
 + (id)moveSectionContext;
 + (id)movingContext;
 + (id)pastingContext;
@@ -30,6 +30,7 @@
 - (id)addedDrawables;
 - (BOOL)autoUpdateSmartFields;
 - (BOOL)changeTrackingSubstorage;
+- (void)dealloc;
 - (id)importerID;
 - (id)insertedTableInfos;
 - (BOOL)invokeDOLC;
@@ -44,6 +45,7 @@
 - (BOOL)wasDragOperation;
 - (BOOL)wasImported;
 - (BOOL)wasImportedFromMasterTemplate;
+- (BOOL)wasMigratingStyles;
 - (BOOL)wasMoved;
 - (BOOL)wasPasted;
 - (BOOL)wasUnarchived;

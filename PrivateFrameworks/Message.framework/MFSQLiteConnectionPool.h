@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class <MFSQLiteConnectionPoolDelegate>, NSLock, NSMutableSet, NSObject<OS_dispatch_semaphore>;
-
 @interface MFSQLiteConnectionPool : NSObject {
     NSObject<OS_dispatch_semaphore> *_backgroundReaderSemaphore;
     int _backgroundReadersWaiting;
@@ -16,27 +14,31 @@
     <MFSQLiteConnectionPoolDelegate> *_delegate;
     unsigned int _maxConcurrentBackgroundReaders;
     unsigned int _maxConcurrentWriters;
+    NSObject<OS_dispatch_source> *_terminationTimer;
     NSObject<OS_dispatch_semaphore> *_writerSemaphore;
     int _writersWaiting;
 }
 
-@property(readonly) unsigned int backgroundReadersWaiting;
+@property (readonly) unsigned int backgroundReadersWaiting;
 @property unsigned int cacheSize;
-@property <MFSQLiteConnectionPoolDelegate> * delegate;
-@property(readonly) unsigned int maxConcurrentBackgroundReaders;
-@property(readonly) unsigned int maxConcurrentWriters;
-@property(readonly) unsigned int writersWaiting;
+@property <MFSQLiteConnectionPoolDelegate> *delegate;
+@property (readonly) unsigned int maxConcurrentBackgroundReaders;
+@property (readonly) unsigned int maxConcurrentWriters;
+@property (readonly) unsigned int writersWaiting;
 
 - (id)_connectionWithType:(unsigned int)arg1;
+- (void)_interruptActiveConnections;
 - (id)_semaphoreForConnectionType:(unsigned int)arg1 waitCounter:(int**)arg2;
 - (id)backgroundReaderConnection;
 - (unsigned int)backgroundReadersWaiting;
 - (unsigned int)cacheSize;
+- (void)cancelTerminationTimer;
 - (void)checkInConnection:(id)arg1;
 - (void)dealloc;
 - (id)delegate;
 - (void)flush;
 - (id)initWithDelegate:(id)arg1 maxConcurrentBackgroundReaders:(unsigned int)arg2;
+- (void)interruptConnectionsAfterDelay:(double)arg1;
 - (unsigned int)maxConcurrentBackgroundReaders;
 - (unsigned int)maxConcurrentReaders;
 - (unsigned int)maxConcurrentWriters;

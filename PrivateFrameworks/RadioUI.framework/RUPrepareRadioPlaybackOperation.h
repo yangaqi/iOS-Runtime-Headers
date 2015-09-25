@@ -2,39 +2,36 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSLock, RURadioGetTracksOperation, RadioRequestContext, RadioStation;
-
 @interface RUPrepareRadioPlaybackOperation : NSOperation {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _firstTrackBlock;
-
+    id /* block */ _firstTrackBlock;
     RURadioGetTracksOperation *_getTracksOperation;
     NSLock *_lock;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _preparedBlock;
-
+    SSVPlaybackLease *_playbackLease;
+    id /* block */ _preparedBlock;
     RadioRequestContext *_requestContext;
     RadioStation *_station;
+    RadioStationMatchContext *_stationMatchContext;
 }
 
-@property(copy) id preparedBlock;
-@property(copy) RadioRequestContext * requestContext;
+@property (retain) SSVPlaybackLease *playbackLease;
+@property (copy) id /* block */ preparedBlock;
+@property (copy) RadioRequestContext *requestContext;
+@property (retain) RadioStation *station;
+@property (retain) RadioStationMatchContext *stationMatchContext;
 
 - (void).cxx_destruct;
 - (void)cancel;
-- (id)initWithStation:(id)arg1;
+- (id)init;
 - (void)main;
-- (id)preparedBlock;
+- (id)playbackLease;
+- (id /* block */)preparedBlock;
 - (id)requestContext;
-- (void)setPreparedBlock:(id)arg1;
+- (void)setPlaybackLease:(id)arg1;
+- (void)setPreparedBlock:(id /* block */)arg1;
 - (void)setRequestContext:(id)arg1;
+- (void)setStation:(id)arg1;
+- (void)setStationMatchContext:(id)arg1;
+- (id)station;
+- (id)stationMatchContext;
 
 @end

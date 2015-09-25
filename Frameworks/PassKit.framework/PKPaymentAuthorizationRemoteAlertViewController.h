@@ -2,27 +2,26 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class NSString, NSXPCConnection, PKInAppPaymentService, PKPaymentAuthorizationRemoteAlertViewControllerExportedObject, PKPaymentAuthorizationServiceNavigationController, PKPaymentRequest;
-
 @interface PKPaymentAuthorizationRemoteAlertViewController : SBUIRemoteAlertServiceViewController <PKPaymentAuthorizationHostProtocol> {
     BOOL _didForceDismiss;
     PKPaymentAuthorizationRemoteAlertViewControllerExportedObject *_exportedObject;
     int _hostAppInterfaceOrientation;
+    NSString *_hostApplicationIdentifier;
     NSXPCConnection *_hostConnection;
     PKInAppPaymentService *_inAppPaymentService;
     PKPaymentAuthorizationServiceNavigationController *_navigationController;
     PKPaymentRequest *_paymentRequest;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) PKPaymentAuthorizationRemoteAlertViewControllerExportedObject * exportedObject;
-@property(readonly) unsigned int hash;
-@property(retain) NSXPCConnection * hostConnection;
-@property(retain) PKInAppPaymentService * inAppPaymentService;
-@property(retain) PKPaymentAuthorizationServiceNavigationController * navigationController;
-@property(retain) PKPaymentRequest * paymentRequest;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) PKPaymentAuthorizationRemoteAlertViewControllerExportedObject *exportedObject;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSXPCConnection *hostConnection;
+@property (nonatomic, retain) PKInAppPaymentService *inAppPaymentService;
+@property (nonatomic, retain) PKPaymentAuthorizationServiceNavigationController *navigationController;
+@property (nonatomic, retain) PKPaymentRequest *paymentRequest;
+@property (readonly) Class superclass;
 
 + (BOOL)_shouldForwardViewWillTransitionToSize;
 
@@ -33,6 +32,7 @@
 - (void)_willAppearInRemoteViewController;
 - (void)authorizationDidAuthorizePayment:(id)arg1;
 - (void)authorizationDidFinishWithError:(id)arg1;
+- (void)authorizationDidSelectPaymentMethod:(id)arg1;
 - (void)authorizationDidSelectShippingAddress:(id)arg1;
 - (void)authorizationDidSelectShippingMethod:(id)arg1;
 - (void)authorizationWillStart;

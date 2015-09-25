@@ -2,29 +2,23 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSArray, NSIndexSet;
-
 @interface TSTTableSortOrder : NSObject <NSCopying> {
     NSIndexSet *mCachedIndices;
     NSArray *mRules;
     int mType;
 }
 
-@property(readonly) NSIndexSet * columnIndices;
-@property(readonly) BOOL empty;
-@property(readonly) unsigned int ruleCount;
-@property(readonly) NSArray * rules;
-@property(readonly) int type;
+@property (nonatomic, readonly) NSIndexSet *columnIndices;
+@property (nonatomic, readonly) BOOL empty;
+@property (nonatomic, readonly) unsigned int ruleCount;
+@property (nonatomic, readonly) NSArray *rules;
+@property (nonatomic, readonly) int type;
 
 + (id)sortOrderWithColumn:(unsigned char)arg1 direction:(int)arg2 type:(int)arg3;
 + (id)sortOrderWithRules:(id)arg1 type:(int)arg2;
 
 - (id)columnIndices;
+- (BOOL)containsAnyRulesInColumns:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (BOOL)empty;
@@ -37,6 +31,7 @@
 - (id)rules;
 - (id)sortOrderByAddingRule:(id)arg1;
 - (id)sortOrderByChangingTypeTo:(int)arg1;
+- (id)sortOrderByRemovingColumnIndices:(id)arg1;
 - (id)sortOrderByRemovingRuleAtIndex:(unsigned int)arg1;
 - (id)sortOrderByReplacingRuleAtIndex:(unsigned int)arg1 withRule:(id)arg2;
 - (id)sortOrderByReplacingRulesWithRules:(id)arg1;

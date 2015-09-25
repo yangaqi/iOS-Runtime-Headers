@@ -2,19 +2,19 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@class NSArray;
-
 @interface CKModifyRecordZonesOperationInfo : CKDatabaseOperationInfo <NSSecureCoding> {
     BOOL _allowDefaultZoneSave;
     BOOL _markZonesAsUserPurged;
+    int _maxZoneSaveAttempts;
     NSArray *_recordZoneIDsToDelete;
     NSArray *_recordZonesToSave;
 }
 
-@property BOOL allowDefaultZoneSave;
-@property BOOL markZonesAsUserPurged;
-@property(retain) NSArray * recordZoneIDsToDelete;
-@property(retain) NSArray * recordZonesToSave;
+@property (nonatomic) BOOL allowDefaultZoneSave;
+@property (nonatomic) BOOL markZonesAsUserPurged;
+@property (nonatomic) int maxZoneSaveAttempts;
+@property (nonatomic, retain) NSArray *recordZoneIDsToDelete;
+@property (nonatomic, retain) NSArray *recordZonesToSave;
 
 + (BOOL)supportsSecureCoding;
 
@@ -23,10 +23,12 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)markZonesAsUserPurged;
+- (int)maxZoneSaveAttempts;
 - (id)recordZoneIDsToDelete;
 - (id)recordZonesToSave;
 - (void)setAllowDefaultZoneSave:(BOOL)arg1;
 - (void)setMarkZonesAsUserPurged:(BOOL)arg1;
+- (void)setMaxZoneSaveAttempts:(int)arg1;
 - (void)setRecordZoneIDsToDelete:(id)arg1;
 - (void)setRecordZonesToSave:(id)arg1;
 

@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOMapRegion;
-
 @interface GEOPDViewportInfo : PBCodable <NSCopying> {
     struct { 
-        unsigned int mapMode : 1; 
+        unsigned int mapType : 1; 
         unsigned int timeSinceMapViewportChanged : 1; 
     } _has;
-    int _mapMode;
     GEOMapRegion *_mapRegion;
+    int _mapType;
     unsigned int _timeSinceMapViewportChanged;
 }
 
-@property BOOL hasMapMode;
-@property(readonly) BOOL hasMapRegion;
-@property BOOL hasTimeSinceMapViewportChanged;
-@property int mapMode;
-@property(retain) GEOMapRegion * mapRegion;
-@property unsigned int timeSinceMapViewportChanged;
+@property (nonatomic, readonly) BOOL hasMapRegion;
+@property (nonatomic) BOOL hasMapType;
+@property (nonatomic) BOOL hasTimeSinceMapViewportChanged;
+@property (nonatomic, retain) GEOMapRegion *mapRegion;
+@property (nonatomic) int mapType;
+@property (nonatomic) unsigned int timeSinceMapViewportChanged;
 
 + (id)viewportInfoForTraits:(id)arg1;
 
@@ -28,20 +26,20 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (BOOL)hasMapMode;
 - (BOOL)hasMapRegion;
+- (BOOL)hasMapType;
 - (BOOL)hasTimeSinceMapViewportChanged;
 - (unsigned int)hash;
 - (id)initWithTraits:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (int)mapMode;
 - (id)mapRegion;
+- (int)mapType;
 - (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
-- (void)setHasMapMode:(BOOL)arg1;
+- (void)setHasMapType:(BOOL)arg1;
 - (void)setHasTimeSinceMapViewportChanged:(BOOL)arg1;
-- (void)setMapMode:(int)arg1;
 - (void)setMapRegion:(id)arg1;
+- (void)setMapType:(int)arg1;
 - (void)setTimeSinceMapViewportChanged:(unsigned int)arg1;
 - (unsigned int)timeSinceMapViewportChanged;
 - (void)writeTo:(id)arg1;

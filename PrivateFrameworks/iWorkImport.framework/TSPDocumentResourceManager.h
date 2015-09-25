@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSURL, TSPDocumentResourceCache, TSUDownloadManager;
-
 @interface TSPDocumentResourceManager : NSObject {
     NSURL *_appDocumentResourcesMetadataURL;
     NSURL *_appDocumentResourcesURL;
@@ -16,8 +14,8 @@
     long _sageDocumentResourcesConfigurationToken;
 }
 
-@property(readonly) TSPDocumentResourceCache * cache;
-@property(readonly) TSUDownloadManager * downloadManager;
+@property (nonatomic, readonly) TSPDocumentResourceCache *cache;
+@property (nonatomic, readonly) TSUDownloadManager *downloadManager;
 
 + (id)appDocumentResourcesMetadataURL;
 + (id)appDocumentResourcesURL;
@@ -34,6 +32,7 @@
 - (id)cachedDocumentResourceDataStorageForInfo:(id)arg1 isValidated:(BOOL)arg2;
 - (void)clearCache;
 - (id)dataStorageForDigestString:(id)arg1 locator:(id)arg2 extension:(id)arg3 infoToDownload:(id*)arg4;
+- (id)documentResourceRelativePathWithDigestString:(id)arg1 extension:(id)arg2;
 - (id)documentResourcesConfiguration;
 - (id)downloadManager;
 - (id)findDocumentResourceUsingDigestString:(id)arg1 locator:(id)arg2;

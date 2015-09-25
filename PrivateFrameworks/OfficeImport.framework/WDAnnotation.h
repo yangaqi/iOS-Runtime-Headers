@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class WDAnnotation, WDAnnotationData, WDCharacterRun;
-
 @interface WDAnnotation : WDRun {
     WDAnnotationData *mData;
     WDAnnotation *mOtherEndOfRangedAnnotation;
@@ -16,6 +14,7 @@
 - (id)data;
 - (id)date;
 - (void)dealloc;
+- (id)description;
 - (id)initWithParagraph:(id)arg1 type:(int)arg2;
 - (id)otherEndOfRangedAnnotation;
 - (id)owner;

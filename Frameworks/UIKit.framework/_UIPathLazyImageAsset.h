@@ -2,19 +2,18 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray;
-
 @interface _UIPathLazyImageAsset : UIImageAsset {
     BOOL _haveCGCacheImages;
     NSArray *_imagePaths;
     BOOL _imagesHaveBeenLoaded;
 }
 
-@property BOOL haveCGCacheImages;
-@property(copy) NSArray * imagePaths;
+@property (nonatomic) BOOL haveCGCacheImages;
+@property (nonatomic, copy) NSArray *imagePaths;
 
+- (void).cxx_destruct;
 - (void)_clearResolvedImageResources;
-- (void)dealloc;
+- (BOOL)_containsImagesInPath:(id)arg1;
 - (BOOL)haveCGCacheImages;
 - (id)imagePaths;
 - (id)imageWithTraitCollection:(id)arg1;

@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/CoreThemeDefinition.framework/CoreThemeDefinition
  */
 
-@class NSNumber, NSSet;
+@interface TDEffectRenditionSpec : TDRenditionSpec
 
-@interface TDEffectRenditionSpec : TDRenditionSpec {
-}
+@property (nonatomic, retain) NSSet *components;
+@property (nonatomic, retain) NSNumber *effectScale;
 
-@property(retain) NSSet * components;
-@property(retain) NSNumber * effectScale;
-
+- (BOOL)canBePackedWithDocument:(id)arg1;
 - (id)createCSIRepresentationWithCompression:(BOOL)arg1 colorSpaceID:(unsigned int)arg2 document:(id)arg3;
 - (id)effectPreset;
 - (void)setComponentsFromEffectPreset:(id)arg1 withDocument:(id)arg2;

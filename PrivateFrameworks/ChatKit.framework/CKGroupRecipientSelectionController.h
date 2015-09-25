@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class NSString, UIBarButtonItem;
-
 @interface CKGroupRecipientSelectionController : CKRecipientSelectionController <CKRecipientSelectionControllerDelegate> {
     UIBarButtonItem *_doneButton;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) UIBarButtonItem * doneButton;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIBarButtonItem *doneButton;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_frecencySearch;
 - (void)_updateNavigationButton;
@@ -32,7 +30,6 @@
 - (void)recipientSelectionControllerRequestDismissKeyboard:(id)arg1;
 - (void)recipientSelectionControllerReturnPressed:(id)arg1;
 - (void)recipientSelectionControllerSearchListDidShowOrHide:(id)arg1;
-- (BOOL)searchListShouldUsePopvoers;
 - (void)setDoneButton:(id)arg1;
 - (BOOL)shouldAutorotate;
 - (BOOL)shouldSuppressSearchResultsTable;

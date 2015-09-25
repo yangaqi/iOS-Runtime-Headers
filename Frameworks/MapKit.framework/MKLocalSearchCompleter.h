@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <GEOMapServiceCompletionTicket>, <MKLocationManagerOperation>, NSArray, NSTimer;
-
 @interface MKLocalSearchCompleter : MKSearchCompleter {
     BOOL _dirty;
     double _lastRequestTime;
@@ -30,6 +28,7 @@
 - (BOOL)resultsAreCurrent;
 - (void)retry;
 - (void)setBoundingRegion:(struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })arg1;
+- (void)setCategoryFilter:(id)arg1;
 - (void)setFragment:(id)arg1;
 - (void)setSource:(int)arg1;
 - (int)source;

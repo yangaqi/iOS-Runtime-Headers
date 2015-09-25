@@ -2,17 +2,17 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@class NSArray, NSString;
-
 @interface CKFetchRecordVersionsOperationInfo : CKDatabaseOperationInfo <NSSecureCoding> {
     NSArray *_desiredKeys;
     NSString *_minimumVersionETag;
     NSArray *_recordIDs;
+    BOOL _shouldFetchAssetContent;
 }
 
-@property(retain) NSArray * desiredKeys;
-@property(retain) NSString * minimumVersionETag;
-@property(retain) NSArray * recordIDs;
+@property (nonatomic, retain) NSArray *desiredKeys;
+@property (nonatomic, retain) NSString *minimumVersionETag;
+@property (nonatomic, retain) NSArray *recordIDs;
+@property (nonatomic) BOOL shouldFetchAssetContent;
 
 + (BOOL)supportsSecureCoding;
 
@@ -25,5 +25,7 @@
 - (void)setDesiredKeys:(id)arg1;
 - (void)setMinimumVersionETag:(id)arg1;
 - (void)setRecordIDs:(id)arg1;
+- (void)setShouldFetchAssetContent:(BOOL)arg1;
+- (BOOL)shouldFetchAssetContent;
 
 @end

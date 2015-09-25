@@ -2,13 +2,13 @@
    Image: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
  */
 
-@class <NSURLAuthenticationChallengeSender>, NSError, NSURLCredential, NSURLProtectionSpace, NSURLResponse;
-
 @interface NSURLAuthenticationChallengeInternal : NSObject {
     NSError *error;
     NSURLResponse *failureResponse;
+    int preferredProtSpaceIndex;
     int previousFailureCount;
     NSURLCredential *proposedCredential;
+    NSArray *protectionSpacesForChallenge;
     <NSURLAuthenticationChallengeSender> *sender;
     NSURLProtectionSpace *space;
 }

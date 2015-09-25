@@ -2,18 +2,8 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class MKSmallCalloutViewController, NSString, UIPopoverController, UIView, _MKPopoverEmbeddingView;
-
 @interface MKPopoverBasedAnnotationCalloutController : MKAnnotationCalloutController <MKSmallCalloutViewControllerDelegate, UIPopoverControllerDelegate, UIPopoverControllerDelegatePrivate, _MKPopoverEmbeddingViewWindowDelegate, _UIPopoverControllerMapsTransitionDelegate> {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _afterMoveToWindowBlock;
-
+    id /* block */ _afterMoveToWindowBlock;
     BOOL _allowsPopoverWhenNotInWindow;
     BOOL _animatingIn;
     MKSmallCalloutViewController *_calloutViewController;
@@ -25,12 +15,12 @@
     UIPopoverController *_popoverController;
 }
 
-@property BOOL allowsPopoverWhenNotInWindow;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) UIPopoverController * popoverController;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL allowsPopoverWhenNotInWindow;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UIPopoverController *popoverController;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_contentSizeCategoryDidChange:(id)arg1;
@@ -58,7 +48,7 @@
 - (id)popoverController;
 - (void)popoverController:(id)arg1 animationCompleted:(int)arg2;
 - (void)setAllowsPopoverWhenNotInWindow:(BOOL)arg1;
-- (void)setMapDisplayStyle:(unsigned int)arg1;
+- (void)setMapDisplayStyle:(struct { unsigned char x1; unsigned char x2; unsigned char x3; })arg1;
 - (void)showCalloutForAnnotationView:(id)arg1 animated:(BOOL)arg2 scrollToFit:(BOOL)arg3 avoid:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;
 - (void)smallCalloutViewControllerDidAppear:(id)arg1;
 

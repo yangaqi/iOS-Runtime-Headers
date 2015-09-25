@@ -2,65 +2,47 @@
    Image: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class MRNowPlayingArtwork, NSArray, NSDictionary, NSMutableDictionary;
-
 @interface MRMediaRemoteOriginClient : NSObject {
     BOOL _canBeNowPlayingApp;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _commandHandlerBlock;
-
+    id /* block */ _commandHandlerBlock;
     NSMutableDictionary *_commandHandlerBlocks;
     BOOL _isOverrideApp;
-    BOOL _keepAlive;
     int _notifyDidLaunchToken;
     int _notifyRestoreClientStateForLaunch;
     MRNowPlayingArtwork *_nowPlayingArtwork;
     NSDictionary *_nowPlayingInfo;
     struct _MROrigin { } *_origin;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _playbackStateRequestHandler;
-
     unsigned int _routeDiscoveryMode;
+    NSArray *_supportedCommands;
 }
 
-@property BOOL canBeNowPlayingApp;
-@property(copy,readonly) NSArray * commandHandlerBlocks;
-@property BOOL isOverrideApp;
-@property BOOL keepAlive;
-@property(retain) MRNowPlayingArtwork * nowPlayingArtwork;
-@property(retain) NSDictionary * nowPlayingInfo;
-@property(readonly) struct _MROrigin { }* origin;
-@property(copy) id playbackStateRequestHandler;
-@property unsigned int routeDiscoveryMode;
+@property (nonatomic) BOOL canBeNowPlayingApp;
+@property (nonatomic, readonly, copy) NSArray *commandHandlerBlocks;
+@property (nonatomic) BOOL isOverrideApp;
+@property (nonatomic, retain) MRNowPlayingArtwork *nowPlayingArtwork;
+@property (nonatomic, copy) NSDictionary *nowPlayingInfo;
+@property (nonatomic, readonly) struct _MROrigin { }*origin;
+@property (nonatomic) unsigned int routeDiscoveryMode;
+@property (nonatomic, copy) NSArray *supportedCommands;
 
 - (void)_avSystemControllerServerConnectionDiedNotification:(id)arg1;
-- (void)addCommandHandlerBlock:(id)arg1 forKey:(id)arg2;
+- (void)addCommandHandlerBlock:(id /* block */)arg1 forKey:(id)arg2;
 - (BOOL)canBeNowPlayingApp;
 - (id)commandHandlerBlocks;
 - (void)dealloc;
 - (id)initWithOrigin:(struct _MROrigin { }*)arg1;
 - (BOOL)isOverrideApp;
-- (BOOL)keepAlive;
 - (id)nowPlayingArtwork;
 - (id)nowPlayingInfo;
 - (struct _MROrigin { }*)origin;
-- (id)playbackStateRequestHandler;
 - (void)removeCommandHandlerBlockForKey:(id)arg1;
 - (unsigned int)routeDiscoveryMode;
 - (void)setCanBeNowPlayingApp:(BOOL)arg1;
 - (void)setIsOverrideApp:(BOOL)arg1;
-- (void)setKeepAlive:(BOOL)arg1;
 - (void)setNowPlayingArtwork:(id)arg1;
 - (void)setNowPlayingInfo:(id)arg1;
-- (void)setPlaybackStateRequestHandler:(id)arg1;
 - (void)setRouteDiscoveryMode:(unsigned int)arg1;
+- (void)setSupportedCommands:(id)arg1;
+- (id)supportedCommands;
 
 @end

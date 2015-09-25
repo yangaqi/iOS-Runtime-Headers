@@ -2,7 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface EDAnchor : NSObject {
-}
+@interface EDAnchor : NSObject
+
+- (id)description;
 
 @end

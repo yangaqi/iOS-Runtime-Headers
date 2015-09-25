@@ -2,15 +2,9 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <VKTrackingCameraControllerDelegate>, VKAnimation, VKCameraContext, VKMapCanvas, VKMapModel;
-
 @interface VKTrackingCameraController : VKCameraController {
     BOOL _animatingIn;
-    VKAnimation *_animation;
+    VKTimedAnimation *_animation;
     struct VKNavigationCameraModel { 
         double _halfVerticalFov; 
         double _horizontalFov; 
@@ -62,11 +56,7 @@
     } _cameraModel;
     BOOL _canZoomIn;
     BOOL _canZoomOut;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completionHandler;
-
+    id /* block */ _completionHandler;
     double _cruiseHeight;
     double _cruiseHeightOverride;
     double _cruisePhi;
@@ -105,7 +95,7 @@
     } _matchedSection;
     double _maxBoomLength;
     double _maxDistanceScale;
-    VKAnimation *_panAnimation;
+    VKTimedAnimation *_panAnimation;
     double _panBoomLength;
     struct Matrix<double, 3, 1> { 
         double _e[3]; 
@@ -132,7 +122,7 @@
     double _panStartPitch;
     int _panStyle;
     BOOL _panning;
-    VKAnimation *_pitchAnimation;
+    VKTimedAnimation *_pitchAnimation;
     double _pitchOffset;
     BOOL _pitching;
     double _previousCourse;
@@ -180,7 +170,7 @@
     double _startTime;
     double _startZoomScale;
     BOOL _successfullyStartedRouteLinePan;
-    VKAnimation *_tapZoomAnimation;
+    VKTimedAnimation *_tapZoomAnimation;
     double _tracePlaybackSpeedMultiplier;
     <VKTrackingCameraControllerDelegate> *_trackingDelegate;
     double _userZoomFocusStyleMaxZoomScale;
@@ -190,30 +180,30 @@
     double _verticalGroundspanScale;
     int _viewStyle;
     double _zoomScale;
-    VKAnimation *_zoomScaleAnimation;
+    VKTimedAnimation *_zoomScaleAnimation;
     BOOL _zooming;
 }
 
-@property(readonly) BOOL canZoomIn;
-@property(readonly) BOOL canZoomOut;
-@property VKMapCanvas * mapCanvas;
-@property(retain) VKMapModel * mapModel;
-@property int panStyle;
-@property float puckSize;
-@property BOOL shouldLimitTopDownHeight;
-@property double tracePlaybackSpeedMultiplier;
-@property <VKTrackingCameraControllerDelegate> * trackingDelegate;
-@property double userZoomFocusStyleGroundspanMeters;
-@property double userZoomFocusStyleMaxGroundspanMeters;
-@property double userZoomFocusStyleMinGroundspanMeters;
-@property double verticalGroundspanScale;
-@property double zoomScale;
+@property (nonatomic, readonly) BOOL canZoomIn;
+@property (nonatomic, readonly) BOOL canZoomOut;
+@property (nonatomic) VKMapCanvas *mapCanvas;
+@property (nonatomic, retain) VKMapModel *mapModel;
+@property (nonatomic) int panStyle;
+@property (nonatomic) float puckSize;
+@property (nonatomic) BOOL shouldLimitTopDownHeight;
+@property (nonatomic) double tracePlaybackSpeedMultiplier;
+@property (nonatomic) <VKTrackingCameraControllerDelegate> *trackingDelegate;
+@property (nonatomic) double userZoomFocusStyleGroundspanMeters;
+@property (nonatomic) double userZoomFocusStyleMaxGroundspanMeters;
+@property (nonatomic) double userZoomFocusStyleMinGroundspanMeters;
+@property (nonatomic) double verticalGroundspanScale;
+@property (nonatomic) double zoomScale;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
 - (void)_handleZoomChanged;
 - (void)_resumeAnimationIfNecessary;
-- (void)_startTapZoomAnimationFrom:(double)arg1 to:(double)arg2 completionHandler:(id)arg3;
+- (void)_startTapZoomAnimationFrom:(double)arg1 to:(double)arg2 completionHandler:(id /* block */)arg3;
 - (void)_step;
 - (void)_updateCameraForStartAnimation:(double)arg1 position:(struct VKPoint { double x1; double x2; double x3; })arg2 orientation:(const struct { double x1[4][4]; }*)arg3;
 - (void)_updateCruiseHeightAndPhi;
@@ -266,7 +256,7 @@
 - (void)startPanning:(struct CGPoint { float x1; float x2; })arg1;
 - (void)startPinchingWithFocusPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)startPitchingWithFocusPoint:(struct CGPoint { float x1; float x2; })arg1;
-- (void)startWithPounce:(BOOL)arg1 pounceCompletionHandler:(id)arg2;
+- (void)startWithPounce:(BOOL)arg1 pounceCompletionHandler:(id /* block */)arg2;
 - (void)stop;
 - (void)stopPanning:(struct CGPoint { float x1; float x2; })arg1;
 - (void)stopPinchingWithFocusPoint:(struct CGPoint { float x1; float x2; })arg1;
@@ -281,7 +271,7 @@
 - (double)userZoomFocusStyleMaxGroundspanMeters;
 - (double)userZoomFocusStyleMinGroundspanMeters;
 - (double)verticalGroundspanScale;
-- (void)zoom:(double)arg1 relativeToPoint:(struct CGPoint { float x1; float x2; })arg2 completionHandler:(id)arg3;
+- (void)zoom:(double)arg1 relativeToPoint:(struct CGPoint { float x1; float x2; })arg2 completionHandler:(id /* block */)arg3;
 - (double)zoomScale;
 
 @end

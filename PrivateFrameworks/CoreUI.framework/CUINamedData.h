@@ -2,28 +2,15 @@
    Image: /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
  */
 
-@class CUIRenditionKey, NSData, NSString;
+@interface CUINamedData : CUINamedLookup
 
-@interface CUINamedData : NSObject {
-    CUIRenditionKey *_key;
-    NSString *_name;
-    unsigned int _storageRef;
-}
+@property (nonatomic, readonly, copy) NSData *data;
+@property (nonatomic, readonly, copy) NSString *utiType;
 
-@property(readonly) NSData * data;
-@property(copy) NSString * name;
-@property(readonly) NSString * utiType;
-
-- (id)_rendition;
-- (id)_renditionForSpecificKey:(id)arg1;
 - (id)_renditionName;
-- (id)_themeStore;
 - (id)data;
-- (void)dealloc;
 - (id)description;
 - (id)initWithName:(id)arg1 usingRenditionKey:(id)arg2 fromTheme:(unsigned int)arg3;
-- (id)name;
-- (void)setName:(id)arg1;
 - (id)utiType;
 
 @end

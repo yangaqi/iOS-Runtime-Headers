@@ -2,30 +2,34 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class NSArray, NSDictionary, NSMutableSet, NSSet;
-
 @interface MPMediaQueryCriteria : NSObject <NSCopying> {
     NSSet *_collectionPropertiesToFetch;
+    unsigned int _entityLimit;
     unsigned int _entityOrder;
     NSMutableSet *_filterPredicates;
     int _groupingType;
     BOOL _ignoreSystemFilterPredicates;
+    BOOL _includeEntitiesWithBlankNames;
+    BOOL _includeNonLibraryEntities;
     NSSet *_itemPropertiesToFetch;
     NSDictionary *_orderingDirectionMappings;
     NSArray *_orderingProperties;
     BOOL _useSections;
 }
 
-@property(copy) NSSet * collectionPropertiesToFetch;
-@property unsigned int entityOrder;
-@property(readonly) BOOL excludesEntitiesWithBlankNames;
-@property(copy) NSSet * filterPredicates;
-@property int groupingType;
-@property BOOL ignoreSystemFilterPredicates;
-@property(copy) NSSet * itemPropertiesToFetch;
-@property(copy) NSDictionary * orderingDirectionMappings;
-@property(copy) NSArray * orderingProperties;
-@property(readonly) BOOL specifiesPlaylistItems;
+@property (nonatomic, copy) NSSet *collectionPropertiesToFetch;
+@property (nonatomic) unsigned int entityLimit;
+@property (nonatomic) unsigned int entityOrder;
+@property (nonatomic, readonly) BOOL excludesEntitiesWithBlankNames;
+@property (nonatomic, copy) NSSet *filterPredicates;
+@property (nonatomic) int groupingType;
+@property (nonatomic) BOOL ignoreSystemFilterPredicates;
+@property (nonatomic) BOOL includeEntitiesWithBlankNames;
+@property (nonatomic) BOOL includeNonLibraryEntities;
+@property (nonatomic, copy) NSSet *itemPropertiesToFetch;
+@property (nonatomic, copy) NSDictionary *orderingDirectionMappings;
+@property (nonatomic, copy) NSArray *orderingProperties;
+@property (nonatomic, readonly) BOOL specifiesPlaylistItems;
 
 - (void).cxx_destruct;
 - (id)ML3CollectionsQueryInLibrary:(id)arg1;
@@ -38,12 +42,15 @@
 - (id)collectionPropertiesToFetch;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
+- (unsigned int)entityLimit;
 - (unsigned int)entityOrder;
 - (BOOL)excludesEntitiesWithBlankNames;
 - (id)filterPredicates;
 - (int)groupingType;
 - (unsigned int)hash;
 - (BOOL)ignoreSystemFilterPredicates;
+- (BOOL)includeEntitiesWithBlankNames;
+- (BOOL)includeNonLibraryEntities;
 - (id)init;
 - (BOOL)isEqual:(id)arg1;
 - (id)itemPropertiesToFetch;
@@ -53,10 +60,13 @@
 - (void)removeFilterPredicate:(id)arg1;
 - (void)removePredicatesForProperty:(id)arg1;
 - (void)setCollectionPropertiesToFetch:(id)arg1;
+- (void)setEntityLimit:(unsigned int)arg1;
 - (void)setEntityOrder:(unsigned int)arg1;
 - (void)setFilterPredicates:(id)arg1;
 - (void)setGroupingType:(int)arg1;
 - (void)setIgnoreSystemFilterPredicates:(BOOL)arg1;
+- (void)setIncludeEntitiesWithBlankNames:(BOOL)arg1;
+- (void)setIncludeNonLibraryEntities:(BOOL)arg1;
 - (void)setItemPropertiesToFetch:(id)arg1;
 - (void)setOrderingDirectionMappings:(id)arg1;
 - (void)setOrderingProperties:(id)arg1;

@@ -2,10 +2,11 @@
    Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
  */
 
-@interface HDSQLitePredicate : NSObject <NSCopying> {
-}
+@interface HDSQLitePredicate : NSObject <NSCopying>
 
 + (id)compoundPredicateWithPredicate:(id)arg1 otherPredicate:(id)arg2;
++ (id)falsePredicate;
++ (id)truePredicate;
 
 - (id)SQLForEntityClass:(Class)arg1;
 - (id)SQLJoinClausesForEntityClass:(Class)arg1;

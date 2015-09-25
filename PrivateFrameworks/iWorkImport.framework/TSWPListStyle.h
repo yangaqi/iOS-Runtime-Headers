@@ -2,17 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
+@interface TSWPListStyle : TSSStyle <TSSPreset>
 
-@class NSString;
-
-@interface TSWPListStyle : TSSStyle <TSSPreset> {
-}
-
-@property(readonly) NSString * presetKind;
+@property (nonatomic, readonly) NSString *presetKind;
 
 + (id)additionalBulletStrings;
 + (id)arrayValuedProperties;
@@ -37,13 +29,13 @@
 + (id)harvardStyleWithContext:(id)arg1;
 + (BOOL)isDefaultMissingBulletImage:(id)arg1;
 + (int)labelTypeForLevel:(unsigned int)arg1 forPropertyMapping:(id)arg2;
-+ (id)lanaguageSpecificStylesForLanguages:(id)arg1 theme:(id)arg2 stylesheet:(id)arg3;
++ (id)languageSpecificStylesForLanguages:(id)arg1 theme:(id)arg2 stylesheet:(id)arg3;
 + (id)listStyleWithNumberType:(int)arg1 inStyleSheet:(id)arg2 withNumberedPresetStyle:(id)arg3;
 + (id)listStyleWithTextBullet:(id)arg1 inStyleSheet:(id)arg2 withTextBulletPresetStyle:(id)arg3;
-+ (id)nameForLanguageSpecificListStyle:(int)arg1;
++ (id)nameForLanguageSpecificListStyle:(int)arg1 withLocal:(id)arg2;
 + (id)numberedListStyleForPresets:(id)arg1;
 + (id)pDefaultLabelValuesForLabelTypeProperty:(int)arg1;
-+ (void)pGetDefaultTextIndentFloats:(float[9])arg1;
++ (void)pGetDefaultTextIndentFloats:(float)arg1;
 + (id)pLabelTypeArrayForType:(int)arg1;
 + (int)pLabelTypeForLevel:(unsigned int)arg1 forPropertyMapping:(id)arg2 includeDegenerateLevels:(BOOL)arg3;
 + (id)presetStyleDescriptor;

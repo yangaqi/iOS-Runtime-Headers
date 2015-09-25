@@ -2,10 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class <NSTextStorageDelegate>, NSArray, NSMutableArray;
-
 @interface NSTextStorage : NSMutableAttributedString {
-    int _changeInLength;
     int _editedDelta;
     struct _NSRange { 
         unsigned int location; 
@@ -22,14 +19,17 @@
     id _sideData;
 }
 
-@property int changeInLength;
-@property <NSTextStorageDelegate> * delegate;
-@property unsigned int editedMask;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } editedRange;
-@property(readonly) BOOL fixesAttributesLazily;
-@property(readonly) NSArray * layoutManagers;
+@property (nonatomic, readonly) int changeInLength;
+@property (nonatomic) <NSTextStorageDelegate> *delegate;
+@property (nonatomic, readonly) unsigned int editedMask;
+@property (nonatomic, readonly) struct _NSRange { unsigned int x1; unsigned int x2; } editedRange;
+@property (nonatomic, readonly) BOOL fixesAttributesLazily;
+@property (nonatomic, readonly, copy) NSArray *layoutManagers;
+
+// Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
++ (void)initialize;
 
 - (BOOL)_attributeFixingInProgress;
 - (BOOL)_forceFixAttributes;
@@ -40,20 +40,19 @@
 - (void)_notifyEdited:(unsigned int)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 changeInLength:(int)arg3 invalidatedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg4;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })_rangeByEstimatingAttributeFixingForRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)_setAttributeFixingInProgress:(BOOL)arg1;
+- (void)_setEditedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)_setForceFixAttributes:(BOOL)arg1;
 - (void)_setUsesSimpleTextEffects:(BOOL)arg1;
 - (BOOL)_shouldSetOriginalFontAttribute;
-- (id)_undoRedoAttributedSubstringFromRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
-- (void)_undoRedoTextOperation:(id)arg1;
 - (void)_unlock;
 - (BOOL)_usesSimpleTextEffects;
 - (void)addLayoutManager:(id)arg1;
 - (void)beginEditing;
 - (int)changeInLength;
 - (Class)classForCoder;
-- (void)coordinateAccess:(id)arg1;
-- (void)coordinateEditing:(id)arg1;
-- (void)coordinateReading:(id)arg1;
+- (void)coordinateAccess:(id /* block */)arg1;
+- (void)coordinateEditing:(id /* block */)arg1;
+- (void)coordinateReading:(id /* block */)arg1;
 - (id)cuiCatalog;
 - (id)cuiStyleEffects;
 - (void)dealloc;
@@ -73,9 +72,13 @@
 - (id)layoutManagers;
 - (void)processEditing;
 - (void)removeLayoutManager:(id)arg1;
-- (void)setChangeInLength:(int)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setEditedMask:(unsigned int)arg1;
 - (void)setEditedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
+- (id)_undoRedoAttributedSubstringFromRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+- (void)_undoRedoTextOperation:(id)arg1;
 
 @end

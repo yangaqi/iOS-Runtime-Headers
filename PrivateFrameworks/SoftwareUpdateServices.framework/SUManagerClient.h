@@ -2,37 +2,49 @@
    Image: /System/Library/PrivateFrameworks/SoftwareUpdateServices.framework/SoftwareUpdateServices
  */
 
-@class <SUManagerClientDelegate>, NSXPCConnection, SUDescriptor;
-
 @interface SUManagerClient : NSObject <SUManagerClientInterface> {
     int _clientType;
     BOOL _connected;
     <SUManagerClientDelegate> *_delegate;
     SUDescriptor *_installDescriptor;
+    NSMutableDictionary *_installOperationIDsToOperationHandler;
     BOOL _installing;
+    SUDescriptor *_scanDescriptor;
     NSXPCConnection *_serverConnection;
     BOOL _serverIsExiting;
 }
 
-@property int clientType;
-@property <SUManagerClientDelegate> * delegate;
-@property(retain) SUDescriptor * installDescriptor;
+@property (nonatomic) int clientType;
+@property (nonatomic) <SUManagerClientDelegate> *delegate;
+@property (nonatomic, retain) SUDescriptor *installDescriptor;
+@property (nonatomic, retain) SUDescriptor *scanDescriptor;
 
 + (BOOL)_shouldDisallowAvailabilityNotifications;
 
+- (void)_cancelAutoInstallOperation:(id)arg1 withResult:(id /* block */)arg2;
+- (void)_consentAutoInstallOperation:(id)arg1 withResult:(id /* block */)arg2;
 - (void)_invalidateConnection;
+- (void)_registerAutoInstallOperationClientHandler:(id)arg1;
 - (id)_remoteInterface;
-- (id)_remoteInterfaceWithErrorHandler:(id)arg1;
-- (id)_remoteInterfaceWithErrorHandler:(id)arg1 connectIfNecessary:(BOOL)arg2;
+- (id)_remoteInterfaceWithErrorHandler:(id /* block */)arg1;
+- (id)_remoteInterfaceWithErrorHandler:(id /* block */)arg1 connectIfNecessary:(BOOL)arg2;
 - (void)_setClientType;
+- (void)_unregisterAutoInstallOperationClientHandler:(id)arg1;
+- (void)autoInstallOperationDidConsent:(id)arg1;
+- (void)autoInstallOperationDidExpire:(id)arg1;
+- (void)autoInstallOperationIsReadyToInstall:(id)arg1 withResult:(id /* block */)arg2;
+- (void)autoInstallOperationWasCancelled:(id)arg1;
 - (void)automaticDownloadDidFailToStartForNewUpdateAvailable:(id)arg1 withError:(id)arg2;
-- (void)cancelDownload:(id)arg1;
+- (void)cancelDownload:(id /* block */)arg1;
 - (int)clientType;
 - (void)connectToServerIfNecessary;
 - (BOOL)createInstallationKeybag:(id)arg1;
+- (BOOL)createInstallationKeybag:(id)arg1 forUnattendedInstall:(BOOL)arg2;
+- (void)currentAutoInstallOperation:(BOOL)arg1 withResult:(id /* block */)arg2;
 - (void)dealloc;
 - (id)delegate;
-- (void)download:(id)arg1;
+- (void)deviceHasSufficientSpaceForDownload:(id /* block */)arg1;
+- (void)download:(id /* block */)arg1;
 - (void)downloadDidFail:(id)arg1 withError:(id)arg2;
 - (void)downloadDidFinish:(id)arg1;
 - (void)downloadDidStart:(id)arg1;
@@ -45,26 +57,29 @@
 - (void)installDidFail:(id)arg1 withError:(id)arg2;
 - (void)installDidFinish:(id)arg1;
 - (void)installDidStart:(id)arg1;
-- (void)installUpdate:(id)arg1;
+- (void)installUpdate:(id /* block */)arg1;
 - (void)invalidate;
-- (void)isDownloading:(id)arg1;
+- (void)isDownloading:(id /* block */)arg1;
 - (BOOL)isInstallationKeybagRequired;
-- (void)isScanning:(id)arg1;
-- (void)isUpdateReadyForInstallation:(id)arg1;
+- (void)isScanning:(id /* block */)arg1;
+- (void)isUpdateReadyForInstallation:(id /* block */)arg1;
 - (void)noteConnectionDropped;
 - (void)noteServerExiting;
-- (void)pauseDownload:(id)arg1;
-- (void)purgeDownload:(id)arg1;
-- (void)resumeDownload:(id)arg1;
+- (void)pauseDownload:(id /* block */)arg1;
+- (void)purgeDownload:(id /* block */)arg1;
+- (void)resumeDownload:(id /* block */)arg1;
+- (id)scanDescriptor;
 - (void)scanDidCompleteWithNewUpdateAvailable:(id)arg1 error:(id)arg2;
-- (void)scanForUpdates:(id)arg1 withResult:(id)arg2;
+- (void)scanForUpdates:(id)arg1 withResult:(id /* block */)arg2;
 - (void)scanRequestDidFinishForOptions:(id)arg1 update:(id)arg2 error:(id)arg3;
 - (void)scanRequestDidStartForOptions:(id)arg1;
 - (void)setClientType:(int)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setInstallDescriptor:(id)arg1;
-- (void)startDownload:(id)arg1;
-- (void)startDownloadWithMetadata:(id)arg1 withResult:(id)arg2;
-- (void)updateDownloadMetadata:(id)arg1 withResult:(id)arg2;
+- (void)setScanDescriptor:(id)arg1;
+- (void)startDownload:(id /* block */)arg1;
+- (void)startDownloadWithMetadata:(id)arg1 withResult:(id /* block */)arg2;
+- (unsigned long long)totalPurgeableSpace;
+- (void)updateDownloadMetadata:(id)arg1 withResult:(id /* block */)arg2;
 
 @end

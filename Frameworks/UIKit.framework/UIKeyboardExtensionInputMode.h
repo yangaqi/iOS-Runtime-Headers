@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSExtension;
-
 @interface UIKeyboardExtensionInputMode : UIKeyboardInputMode {
     NSExtension *_extension;
 }
 
-@property(retain) NSExtension * extension;
+@property (nonatomic, retain) NSExtension *extension;
 
 - (id)containingBundle;
 - (id)containingBundleDisplayName;
@@ -22,7 +20,7 @@
 - (id)initWithIdentifier:(id)arg1;
 - (BOOL)isAllowedForTraits:(id)arg1;
 - (BOOL)isDefaultRightToLeft;
-- (BOOL)isDesiredForTraits:(id)arg1 forceASCIICapable:(BOOL)arg2;
+- (BOOL)isDesiredForTraits:(id)arg1;
 - (BOOL)isExtensionInputMode;
 - (id)normalizedIdentifierLevels;
 - (void)setExtension:(id)arg1;

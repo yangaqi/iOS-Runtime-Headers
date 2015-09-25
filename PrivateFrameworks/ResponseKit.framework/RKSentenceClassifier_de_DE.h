@@ -2,11 +2,10 @@
    Image: /System/Library/PrivateFrameworks/ResponseKit.framework/ResponseKit
  */
 
-@interface RKSentenceClassifier_de_DE : RKSentenceClassifier {
-}
+@interface RKSentenceClassifier_de_DE : RKSentenceClassifier
 
 - (id)addSentenceTerminatorQuestion:(id)arg1;
-- (id)alternativeConjunction;
+- (id)alternativeConjunctions;
 - (void)analyzeSentence;
 - (id)classifySentence;
 

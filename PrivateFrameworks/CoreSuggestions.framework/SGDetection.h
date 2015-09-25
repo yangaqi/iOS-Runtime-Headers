@@ -2,10 +2,12 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
  */
 
-@class NSString;
-
 @interface SGDetection : NSObject {
     NSString *_context;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
+    } _contextRangeOfInterest;
     NSString *_extraction;
     BOOL _hasPhoneLabel;
     NSString *_label;
@@ -16,21 +18,23 @@
     unsigned int _type;
 }
 
-@property(readonly) NSString * context;
-@property(readonly) NSString * extraction;
-@property(readonly) BOOL hasPhoneLabel;
-@property(readonly) NSString * label;
-@property(readonly) struct _NSRange { unsigned int x1; unsigned int x2; } match;
-@property(readonly) unsigned int type;
+@property (nonatomic, readonly) NSString *context;
+@property (nonatomic, readonly) struct _NSRange { unsigned int x1; unsigned int x2; } contextRangeOfInterest;
+@property (nonatomic, readonly) NSString *extraction;
+@property (nonatomic, readonly) BOOL hasPhoneLabel;
+@property (nonatomic, readonly) NSString *label;
+@property (nonatomic, readonly) struct _NSRange { unsigned int x1; unsigned int x2; } match;
+@property (nonatomic, readonly) unsigned int type;
 
 + (id)detectionWithType:(unsigned int)arg1 text:(id)arg2 matchRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3 matchString:(id)arg4 label:(id)arg5 hasPhoneLabel:(BOOL)arg6;
 
 - (void).cxx_destruct;
 - (id)context;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })contextRangeOfInterest;
 - (id)description;
 - (id)extraction;
 - (BOOL)hasPhoneLabel;
-- (id)initWithType:(unsigned int)arg1 extraction:(id)arg2 context:(id)arg3 label:(id)arg4 hasPhoneLabel:(BOOL)arg5 match:(struct _NSRange { unsigned int x1; unsigned int x2; })arg6;
+- (id)initWithType:(unsigned int)arg1 extraction:(id)arg2 context:(id)arg3 contextRangeOfInterest:(struct _NSRange { unsigned int x1; unsigned int x2; })arg4 label:(id)arg5 hasPhoneLabel:(BOOL)arg6 match:(struct _NSRange { unsigned int x1; unsigned int x2; })arg7;
 - (id)label;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })match;
 - (unsigned int)type;

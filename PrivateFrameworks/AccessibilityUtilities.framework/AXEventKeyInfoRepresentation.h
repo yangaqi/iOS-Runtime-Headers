@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-@class NSString;
-
 @interface AXEventKeyInfoRepresentation : NSObject <NSCopying, NSSecureCoding> {
     unsigned short _keyCode;
     BOOL _keyDown;
@@ -11,14 +9,16 @@
     unsigned int _modifierState;
     NSString *_shiftModifiedInput;
     NSString *_unmodifiedInput;
+    unsigned int _usagePage;
 }
 
-@property unsigned short keyCode;
-@property BOOL keyDown;
-@property(retain) NSString * modifiedInput;
-@property unsigned int modifierState;
-@property(retain) NSString * shiftModifiedInput;
-@property(retain) NSString * unmodifiedInput;
+@property (nonatomic) unsigned short keyCode;
+@property (nonatomic) BOOL keyDown;
+@property (nonatomic, retain) NSString *modifiedInput;
+@property (nonatomic) unsigned int modifierState;
+@property (nonatomic, retain) NSString *shiftModifiedInput;
+@property (nonatomic, retain) NSString *unmodifiedInput;
+@property (nonatomic) unsigned int usagePage;
 
 + (BOOL)supportsSecureCoding;
 
@@ -37,9 +37,11 @@
 - (void)setModifierState:(unsigned int)arg1;
 - (void)setShiftModifiedInput:(id)arg1;
 - (void)setUnmodifiedInput:(id)arg1;
+- (void)setUsagePage:(unsigned int)arg1;
 - (id)shiftModifiedInput;
 - (void)translateKeycode;
 - (void)translateStringToKeycode;
 - (id)unmodifiedInput;
+- (unsigned int)usagePage;
 
 @end

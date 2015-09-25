@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
  */
 
-@class GKGameInternal, GKPlayerInternal, NSArray, NSData, NSDate, NSDictionary, NSString;
-
 @interface GKTurnBasedMatchInternal : GKInternalRepresentation {
     NSString *_bundleID;
     NSString *_bundleVersion;
@@ -24,34 +22,37 @@
     unsigned char _minPlayers;
     NSArray *_participants;
     NSString *_reason;
+    unsigned int _state;
     NSString *_status;
     unsigned int _turnNumber;
 }
 
-@property(retain) NSString * bundleID;
-@property(retain) NSString * bundleVersion;
-@property(retain) NSDate * creationDate;
-@property BOOL currentParticipant;
-@property(retain) GKPlayerInternal * currentPlayer;
-@property(retain) NSDate * deletionDate;
-@property(retain) NSArray * exchanges;
-@property(retain) GKGameInternal * game;
-@property(retain) NSDate * lastTurnDate;
-@property(retain) NSString * lastTurnPlayerID;
-@property(retain) NSDictionary * localizableMessage;
-@property(retain) NSData * matchData;
-@property(retain) NSString * matchDataVersion;
-@property(retain) NSString * matchID;
-@property unsigned char maxPlayers;
-@property(retain) NSString * message;
-@property unsigned char minPlayers;
-@property(retain) NSArray * participants;
-@property(retain) NSString * reason;
-@property(retain) NSString * status;
-@property unsigned int turnNumber;
+@property (nonatomic, retain) NSString *bundleID;
+@property (nonatomic, retain) NSString *bundleVersion;
+@property (nonatomic, retain) NSDate *creationDate;
+@property (nonatomic) BOOL currentParticipant;
+@property (nonatomic, retain) GKPlayerInternal *currentPlayer;
+@property (nonatomic, retain) NSDate *deletionDate;
+@property (nonatomic, retain) NSArray *exchanges;
+@property (nonatomic, retain) GKGameInternal *game;
+@property (nonatomic, retain) NSDate *lastTurnDate;
+@property (nonatomic, retain) NSString *lastTurnPlayerID;
+@property (nonatomic, retain) NSDictionary *localizableMessage;
+@property (nonatomic, retain) NSData *matchData;
+@property (nonatomic, retain) NSString *matchDataVersion;
+@property (nonatomic, retain) NSString *matchID;
+@property (nonatomic) unsigned char maxPlayers;
+@property (nonatomic, retain) NSString *message;
+@property (nonatomic) unsigned char minPlayers;
+@property (nonatomic, retain) NSArray *participants;
+@property (nonatomic, retain) NSString *reason;
+@property (nonatomic) unsigned int state;
+@property (nonatomic, retain) NSString *status;
+@property (nonatomic) unsigned int turnNumber;
 
 + (id)secureCodedPropertyKeys;
 
+- (int)activeExchangeCount;
 - (id)bundleID;
 - (id)bundleVersion;
 - (id)creationDate;
@@ -59,12 +60,14 @@
 - (id)currentPlayer;
 - (void)dealloc;
 - (id)deletionDate;
+- (id)descriptionSubstitutionMap;
 - (id)exchanges;
 - (id)game;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)lastTurnDate;
 - (id)lastTurnPlayerID;
+- (int)localPlayerParticipantIndex;
 - (id)localizableMessage;
 - (id)matchData;
 - (id)matchDataVersion;
@@ -73,6 +76,7 @@
 - (id)message;
 - (unsigned char)minPlayers;
 - (id)participants;
+- (int)previousParticipantIndex;
 - (id)reason;
 - (void)setBundleID:(id)arg1;
 - (void)setBundleVersion:(id)arg1;
@@ -93,8 +97,10 @@
 - (void)setMinPlayers:(unsigned char)arg1;
 - (void)setParticipants:(id)arg1;
 - (void)setReason:(id)arg1;
+- (void)setState:(unsigned int)arg1;
 - (void)setStatus:(id)arg1;
 - (void)setTurnNumber:(unsigned int)arg1;
+- (unsigned int)state;
 - (id)status;
 - (unsigned int)turnNumber;
 

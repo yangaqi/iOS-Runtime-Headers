@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSDGLShader, TSDGLTextureInfo;
-
 @interface TSDGLEdgeDistanceFieldMorphEffect : NSObject {
     BOOL _didSetupTextureAdjustment;
     BOOL _didTeardown;
@@ -17,6 +15,12 @@
             float height; 
         } size; 
     } _incomingTextBounds;
+    struct { 
+        float r; 
+        float g; 
+        float b; 
+        float a; 
+    } _incomingTextColor;
     struct CGAffineTransform { 
         float a; 
         float b; 
@@ -37,6 +41,12 @@
             float height; 
         } size; 
     } _outgoingTextBounds;
+    struct { 
+        float r; 
+        float g; 
+        float b; 
+        float a; 
+    } _outgoingTextColor;
     struct CGAffineTransform { 
         float a; 
         float b; 
@@ -54,13 +64,13 @@
     } _textureAdjustment;
 }
 
-@property(readonly) TSDGLTextureInfo * incomingTextureInfo;
-@property BOOL isTextStyleIdenticalExceptSize;
-@property(readonly) TSDGLTextureInfo * outgoingTextureInfo;
-@property(readonly) TSDGLShader * shader;
+@property (nonatomic, readonly) TSDGLTextureInfo *incomingTextureInfo;
+@property (nonatomic) BOOL isTextStyleIdenticalExceptSize;
+@property (nonatomic, readonly) TSDGLTextureInfo *outgoingTextureInfo;
+@property (nonatomic, readonly) TSDGLShader *shader;
 
 + (void)didEndUsingShaders;
-+ (void)willBeginUsingShaders;
++ (id)willBeginUsingShadersWithMotionBlur:(BOOL)arg1 motionBlurIgnoreTextureOpacity:(BOOL)arg2;
 
 - (void)dealloc;
 - (id)incomingTextureInfo;

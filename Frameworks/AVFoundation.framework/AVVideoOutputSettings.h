@@ -2,20 +2,19 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class NSDictionary;
+@interface AVVideoOutputSettings : AVOutputSettings
 
-@interface AVVideoOutputSettings : AVOutputSettings {
-}
-
-@property(readonly) NSDictionary * cleanApertureDictionary;
-@property(readonly) BOOL dimensionsAreBoundingBox;
-@property(readonly) int height;
-@property(readonly) NSDictionary * pixelAspectRatioDictionary;
-@property(readonly) NSDictionary * pixelTransferProperties;
-@property(readonly) NSDictionary * videoCompositionProcessorProperties;
-@property(readonly) NSDictionary * videoScalingProperties;
-@property(readonly) NSDictionary * videoSettingsDictionary;
-@property(readonly) int width;
+@property (nonatomic, readonly) NSDictionary *cleanApertureDictionary;
+@property (nonatomic, readonly) BOOL dimensionsAreBoundingBox;
+@property (nonatomic, readonly) NSString *frameRateConversionAlgorithm;
+@property (nonatomic, readonly) int height;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } minimumFrameDuration;
+@property (nonatomic, readonly) NSDictionary *pixelAspectRatioDictionary;
+@property (nonatomic, readonly) NSDictionary *pixelTransferProperties;
+@property (nonatomic, readonly) NSDictionary *videoCompositionProcessorProperties;
+@property (nonatomic, readonly) NSDictionary *videoScalingProperties;
+@property (nonatomic, readonly) NSDictionary *videoSettingsDictionary;
+@property (nonatomic, readonly) int width;
 
 + (id)_outputSettingsWithOutputSettingsDictionary:(id)arg1 exceptionReason:(id*)arg2;
 + (id)_validValuesForScalingMode;
@@ -28,8 +27,10 @@
 - (id)cleanApertureDictionary;
 - (id)compatibleMediaTypes;
 - (BOOL)dimensionsAreBoundingBox;
+- (id)frameRateConversionAlgorithm;
 - (int)height;
 - (id)initWithVideoSettingsDictionary:(id)arg1 exceptionReason:(id*)arg2;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })minimumFrameDuration;
 - (id)pixelAspectRatioDictionary;
 - (id)pixelTransferProperties;
 - (BOOL)validateUsingOutputSettingsValidator:(id)arg1 reason:(id*)arg2;

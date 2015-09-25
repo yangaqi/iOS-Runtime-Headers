@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, UIResponder, UIView, UIWindow;
-
 @interface UITransitionView : UIView <NSCoding> {
     int _animationTimingCurve;
     float _curlUpRevealedHeight;
@@ -26,12 +24,13 @@
     } _transitionViewFlags;
 }
 
-@property int animationTimingCurve;
-@property BOOL ignoreDirectTouchEvents;
-@property BOOL shouldNotifyDidCompleteImmediately;
+@property (nonatomic) int animationTimingCurve;
+@property (nonatomic) BOOL ignoreDirectTouchEvents;
+@property (nonatomic) BOOL shouldNotifyDidCompleteImmediately;
 
 + (double)defaultDurationForTransition:(int)arg1;
 
+- (void).cxx_destruct;
 - (float)_curlUpRevealedHeight;
 - (void)_didCompleteTransition:(BOOL)arg1;
 - (void)_didStartTransition;
@@ -39,7 +38,6 @@
 - (void)_startTransition:(int)arg1 withDuration:(double)arg2;
 - (void)_transitionDidStop:(id)arg1 finished:(id)arg2;
 - (int)animationTimingCurve;
-- (void)dealloc;
 - (id)delegate;
 - (double)durationForTransition:(int)arg1;
 - (void)encodeWithCoder:(id)arg1;

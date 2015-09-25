@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UILongPressGestureRecognizer, UITapGestureRecognizer, UITextChecker, _UITextServiceSession;
-
 @interface UIWKTextInteractionAssistant : UITextInteractionAssistant {
     struct CGRect { 
         struct CGPoint { 
@@ -17,16 +15,18 @@
     } _caretBeforeTap;
     _UITextServiceSession *_definitionSession;
     _UITextServiceSession *_learnSession;
+    _UITextServiceSession *_lookupSession;
     UILongPressGestureRecognizer *_loupeGesture;
     unsigned int _options;
     int _selectionOperation;
+    _UITextServiceSession *_shareSession;
     UITapGestureRecognizer *_singleTapGesture;
     UITextChecker *_textChecker;
     NSString *_wordBeforeTap;
 }
 
-@property(retain,readonly) UILongPressGestureRecognizer * loupeGesture;
-@property(retain,readonly) UITapGestureRecognizer * singleTapGesture;
+@property (nonatomic, retain) UILongPressGestureRecognizer *loupeGesture;
+@property (nonatomic, readonly, retain) UITapGestureRecognizer *singleTapGesture;
 
 - (id)_asText;
 - (BOOL)containerAllowsSelection;
@@ -39,8 +39,10 @@
 - (BOOL)gestureRecognizerShouldBegin:(id)arg1;
 - (void)hideTextStyleOptions;
 - (id)initWithView:(id)arg1;
+- (void)legacyTwoFingerSingleTap:(id)arg1;
+- (void)lookup:(id)arg1 fromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (id)loupeGesture;
-- (void)loupeGesture:(id)arg1;
+- (void)loupeGestureWithState:(int)arg1 atGesturePoint:(id /* block */)arg2 shouldCancel:(BOOL*)arg3;
 - (void)oneFingerDoubleTap:(id)arg1;
 - (void)oneFingerTap:(id)arg1;
 - (void)oneFingerTripleTap:(id)arg1;
@@ -63,15 +65,16 @@
 - (void)selectionChangedWithGestureAt:(struct CGPoint { float x1; float x2; })arg1 withGesture:(int)arg2 withState:(int)arg3 withFlags:(int)arg4;
 - (void)selectionChangedWithTouchAt:(struct CGPoint { float x1; float x2; })arg1 withSelectionTouch:(int)arg2;
 - (void)selectionChangedWithTouchAt:(struct CGPoint { float x1; float x2; })arg1 withSelectionTouch:(int)arg2 withFlags:(int)arg3;
+- (void)setLoupeGesture:(id)arg1;
 - (BOOL)shouldTryReplacementsForText:(id)arg1 withOptions:(unsigned int)arg2;
 - (void)showDictionaryFor:(id)arg1 fromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (void)showReplacementsForText:(id)arg1 withOptions:(unsigned int)arg2;
+- (void)showShareSheetFor:(id)arg1 fromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (void)showTextServiceFor:(id)arg1 fromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (void)showTextStyleOptions;
 - (id)singleTapGesture;
 - (void)tapAndAHalf:(id)arg1;
 - (void)twoFingerRangedSelectGesture:(id)arg1;
-- (void)twoFingerSingleTap:(id)arg1;
 - (void)updateSelectionWithPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)updateWithMagnifierTerminalPoint:(BOOL)arg1;
 

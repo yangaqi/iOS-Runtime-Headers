@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDDataValuesCollection, CHDFormula, EDResources;
-
 @interface CHDData : NSObject {
     unsigned int mContentFormatId;
     unsigned int mDataValueIndexCount;
@@ -22,6 +20,7 @@
 - (unsigned int)dataValueIndexCount;
 - (id)dataValues;
 - (void)dealloc;
+- (id)description;
 - (id)firstValueContentFormatWithWorkbook:(id)arg1;
 - (id)formula;
 - (id)initWithDataPointCount:(unsigned int)arg1 resources:(id)arg2;

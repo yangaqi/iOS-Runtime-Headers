@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class MFGraphicsDevice;
-
 @interface WMFPlayer : NSObject {
     BOOL m_boundsSet;
     MFGraphicsDevice *m_gdi;
@@ -45,6 +43,7 @@
 - (int)playInvertRegion:(unsigned int)arg1 :(const char *)arg2;
 - (int)playLineTo:(unsigned int)arg1 :(const char *)arg2;
 - (int)playMoveTo:(unsigned int)arg1 :(const char *)arg2;
+- (int)playOffsetClipRegion:(unsigned int)arg1 :(const char *)arg2;
 - (int)playOffsetViewportOrg:(unsigned int)arg1 :(const char *)arg2;
 - (int)playOffsetWindowOrg:(unsigned int)arg1 :(const char *)arg2;
 - (int)playPaintRegion:(unsigned int)arg1 :(const char *)arg2;

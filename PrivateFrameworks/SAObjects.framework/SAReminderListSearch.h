@@ -2,20 +2,23 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAReminderListSearch : SADomainCommand
 
-@interface SAReminderListSearch : SADomainCommand {
-}
-
-@property(copy) NSString * name;
+@property (nonatomic, copy) NSString *accountName;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) SAReminderTrigger *trigger;
 
 + (id)listSearch;
 + (id)listSearchWithDictionary:(id)arg1 context:(id)arg2;
 
+- (id)accountName;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (id)name;
 - (BOOL)requiresResponse;
+- (void)setAccountName:(id)arg1;
 - (void)setName:(id)arg1;
+- (void)setTrigger:(id)arg1;
+- (id)trigger;
 
 @end

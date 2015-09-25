@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor;
-
 @interface _UITextFieldRoundedRectBackgroundViewNeue : UIImageView {
     float _cornerRadius;
     BOOL _disabled;
@@ -12,17 +10,17 @@
     UIColor *_strokeColor;
 }
 
-@property float cornerRadius;
-@property(retain) UIColor * fillColor;
-@property float lineWidth;
-@property(retain) UIColor * strokeColor;
+@property (nonatomic) float cornerRadius;
+@property (nonatomic, retain) UIColor *fillColor;
+@property (nonatomic) float lineWidth;
+@property (nonatomic, retain) UIColor *strokeColor;
 
+- (void).cxx_destruct;
 - (id)_fillColor:(BOOL)arg1;
 - (id)_initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 active:(BOOL)arg2 lineWidth:(float)arg3;
 - (id)_initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 active:(BOOL)arg2 lineWidth:(float)arg3 updateView:(BOOL)arg4;
 - (id)_strokeColor:(BOOL)arg1;
 - (float)cornerRadius;
-- (void)dealloc;
 - (id)fillColor;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 active:(BOOL)arg2;

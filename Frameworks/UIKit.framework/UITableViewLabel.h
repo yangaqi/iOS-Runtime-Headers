@@ -2,14 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITableViewCell;
-
 @interface UITableViewLabel : UILabel {
     UITableViewCell *_tableCell;
 }
 
-@property UITableViewCell * tableCell;
+@property (nonatomic) UITableViewCell *tableCell;
 
+- (void).cxx_destruct;
 - (void)setTableCell:(id)arg1;
 - (void)setText:(id)arg1;
 - (id)tableCell;

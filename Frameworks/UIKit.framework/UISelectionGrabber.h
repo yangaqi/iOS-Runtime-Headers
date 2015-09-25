@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UISelectionGrabberDot, UITextRangeView;
-
 @interface UISelectionGrabber : UIView {
     int _applicationDeactivationReason;
     BOOL m_activeFlattened;
@@ -15,19 +13,22 @@
     int m_orientation;
 }
 
-@property BOOL activeFlattened;
-@property BOOL alertFlattened;
-@property BOOL animating;
-@property(readonly) UITextRangeView * hostView;
-@property BOOL isDotted;
-@property BOOL navigationTransitionFlattened;
-@property int orientation;
+@property (nonatomic) BOOL activeFlattened;
+@property (nonatomic) BOOL alertFlattened;
+@property (nonatomic) BOOL animating;
+@property (nonatomic, readonly) UITextRangeView *hostView;
+@property (nonatomic) BOOL isDotted;
+@property (nonatomic) BOOL navigationTransitionFlattened;
+@property (nonatomic) int orientation;
 
 + (id)_grabberDot;
 
+- (void).cxx_destruct;
 - (id)_dotView;
 - (BOOL)activeFlattened;
 - (BOOL)alertFlattened;
+- (void)animateGrabberInWithCompletion:(id /* block */)arg1;
+- (void)animateGrabberOutWithCompletion:(id /* block */)arg1;
 - (BOOL)animating;
 - (BOOL)autoscrolled;
 - (void)canExpandAfterAlert:(id)arg1;
@@ -36,7 +37,7 @@
 - (BOOL)clipDot:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)dealloc;
 - (void)didMoveToSuperview;
-- (BOOL)dotIsVisbleInDocument:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (BOOL)dotIsVisibleInDocument:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)hostView;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -66,6 +67,7 @@
 - (void)setIsDotted:(BOOL)arg1;
 - (void)setNavigationTransitionFlattened:(BOOL)arg1;
 - (void)setOrientation:(int)arg1;
+- (void)transitionDot:(int)arg1 completion:(id /* block */)arg2;
 - (void)updateDot;
 
 @end

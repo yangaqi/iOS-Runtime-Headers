@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface _UIDatePickerMode_Date : _UIDatePickerMode {
     float _dateDayWidth;
     float _dateMonthWidth;
@@ -16,11 +14,11 @@
 + (int)datePickerMode;
 + (unsigned int)extractableCalendarUnits;
 
+- (void).cxx_destruct;
 - (id)_dateForYearRow:(int)arg1;
 - (BOOL)_shouldEnableValueForRow:(int)arg1 inComponent:(int)arg2 calendarUnit:(unsigned int)arg3;
 - (void)_shouldReset:(id)arg1;
 - (id)dateFormatForCalendarUnit:(unsigned int)arg1;
-- (void)dealloc;
 - (int)displayedCalendarUnits;
 - (id)localizedFormatString;
 - (unsigned int)nextUnitLargerThanUnit:(unsigned int)arg1;

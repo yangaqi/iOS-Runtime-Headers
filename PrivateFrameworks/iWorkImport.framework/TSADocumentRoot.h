@@ -2,19 +2,10 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <TSADocumentRootDelegate>, NSArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString, SFUCryptoKey, TSAAnnotationCache, TSAFunctionBrowserState, TSAShortcutController, TSCECalculationEngine, TSKCustomFormatList, TSKViewState, TSPLazyReference, TSTCustomFormatList, TSUWeakReference;
-
 @interface TSADocumentRoot : TSWPDocumentRoot <TSKImportExportDelegate> {
     TSAAnnotationCache *_annotationCache;
     NSArray *_buildVersionHistory;
     TSCECalculationEngine *_calculationEngine;
-    NSString *_creationLanguage;
-    unsigned int _creationLanguageWritingDirection;
     TSUWeakReference *_delegateReference;
     TSTCustomFormatList *_deprecatedTablesCustomFormatList;
     BOOL _didLoadControllers;
@@ -22,6 +13,10 @@
     SFUCryptoKey *_documentCacheDecryptionKey;
     NSObject<OS_dispatch_queue> *_documentCacheDecryptionKeyAccessQueue;
     long _documentCacheOnceToken;
+    BOOL _documentCurrentlyImporting;
+    NSString *_documentLanguage;
+    unsigned int _documentLanguageWritingDirection;
+    BOOL _documentLocaleWasUpdated;
     TSAFunctionBrowserState *_functionBrowserState;
     BOOL _hasPreUFFVersion;
     BOOL _isClosed;
@@ -35,23 +30,25 @@
     NSMutableSet *_warnings;
 }
 
-@property(copy) NSArray * buildVersionHistory;
-@property(copy,readonly) NSString * debugDescription;
-@property(readonly) NSString * defaultDraftName;
-@property <TSADocumentRootDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property BOOL didLoadDocumentFromRevert;
-@property BOOL hasPreUFFVersion;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL importingDesignDemoDoc;
-@property(readonly) BOOL isBrowsingVersions;
-@property(readonly) BOOL isClosed;
-@property(readonly) NSSet * missingFontWarningMessages;
-@property(readonly) NSString * name;
-@property BOOL needsMovieCompatibilityUpgrade;
-@property(readonly) Class superclass;
-@property(copy) NSString * templateIdentifier;
-@property(readonly) TSKViewState * viewState;
+@property (nonatomic, copy) NSArray *buildVersionHistory;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) NSString *defaultDraftName;
+@property (nonatomic) <TSADocumentRootDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL didLoadDocumentFromRevert;
+@property (getter=isDocumentCurrentlyImporting, nonatomic) BOOL documentCurrentlyImporting;
+@property (nonatomic, readonly) BOOL documentLocaleWasUpdated;
+@property (nonatomic) BOOL hasPreUFFVersion;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL importingDesignDemoDoc;
+@property (nonatomic, readonly) BOOL isBrowsingVersions;
+@property (nonatomic, readonly) BOOL isClosed;
+@property (nonatomic, readonly) NSSet *missingFontWarningMessages;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic) BOOL needsMovieCompatibilityUpgrade;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *templateIdentifier;
+@property (nonatomic, readonly) TSKViewState *viewState;
 
 + (id)buildVersionHistoryPath;
 + (id)buildVersionHistoryPathPreUFF;
@@ -68,8 +65,8 @@
 + (id)scaledPreviewImageForType:(unsigned int)arg1 scalableImage:(id)arg2;
 + (id)supportedPreviewImageExtensions;
 + (id)supportedScalablePreviewNames;
-+ (void)writePreviewImage:(id)arg1 group:(id)arg2 queue:(id)arg3 dataConsumerProvider:(id)arg4 completion:(id)arg5;
-+ (void)writePreviewImage:(id)arg1 toPath:(id)arg2 withIntermediateDirectories:(BOOL)arg3 name:(id)arg4 group:(id)arg5 queue:(id)arg6 completion:(id)arg7;
++ (void)writePreviewImage:(id)arg1 group:(id)arg2 queue:(id)arg3 dataConsumerProvider:(id /* block */)arg4 completion:(id /* block */)arg5;
++ (void)writePreviewImage:(id)arg1 toPath:(id)arg2 withIntermediateDirectories:(BOOL)arg3 name:(id)arg4 group:(id)arg5 queue:(id)arg6 completion:(id /* block */)arg7;
 + (BOOL)writePreviewImagesToPackageDataWriter:(id)arg1 scalableImage:(id)arg2;
 + (BOOL)writePreviewImagesToPackageDataWriter:(id)arg1 scalableImage:(id)arg2 group:(id)arg3 queue:(id)arg4;
 + (BOOL)writePreviewImagesToPath:(id)arg1 scalableImage:(id)arg2;
@@ -88,20 +85,22 @@
 - (int)compareLocationSortingInfo:(id)arg1 toSortingInfo:(id)arg2;
 - (id)consolidatedDocumentWarningsFromWarnings:(id)arg1;
 - (id)createViewStateRootForContinuation:(BOOL)arg1;
-- (id)creationLanguage;
 - (id)customFormatList;
 - (id)dataFromDocumentCachePath:(id)arg1;
 - (void)dealloc;
 - (id)defaultDraftName;
 - (id)delegate;
 - (void)didDownloadDocumentResources:(id)arg1 failedOrCancelledDocumentResources:(id)arg2 error:(id)arg3;
+- (void)didDownloadRemoteData:(id)arg1;
 - (void)didEnterBackground;
 - (BOOL)didLoadDocumentFromRevert;
 - (void)didSaveWithEncryptionChange;
 - (id)documentCachePath;
 - (void)documentCacheWasInvalidated;
 - (void)documentDidLoad;
-- (void)enumerateStylesheetsUsingBlock:(id)arg1;
+- (id)documentLanguage;
+- (BOOL)documentLocaleWasUpdated;
+- (void)enumerateStylesheetsUsingBlock:(id /* block */)arg1;
 - (BOOL)exportToPath:(id)arg1 exporter:(id)arg2 delegate:(id)arg3 error:(id*)arg4;
 - (BOOL)exportToPath:(id)arg1 exporter:(id)arg2 error:(id*)arg3;
 - (void)fulfillPasteboardPromises;
@@ -115,6 +114,7 @@
 - (void)insertTextPresetDisplayItemsPreservingGrouping:(id)arg1 insertAtBeginningOfGroup:(BOOL)arg2;
 - (void)invalidateViewState;
 - (BOOL)isClosed;
+- (BOOL)isDocumentCurrentlyImporting;
 - (BOOL)isMultiPageForQuickLook;
 - (void)loadFromArchive:(const struct DocumentArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct DocumentArchive {} *x5; struct RepeatedPtrField<TSWP::TextPresetDisplayItemArchive> { void **x_6_1_1; int x_6_1_2; int x_6_1_3; int x_6_1_4; } x6; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x7; struct Reference {} *x8; struct Reference {} *x9; struct Reference {} *x10; struct Reference {} *x11; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x12; struct Reference {} *x13; struct Reference {} *x14; struct Reference {} *x15; struct Reference {} *x16; bool x17; }*)arg1 unarchiver:(id)arg2;
 - (id)makeIsolatedStyleMapper;
@@ -137,13 +137,13 @@
 - (void)p_replaceStyle:(id)arg1 andChildrenWithVariationOfStyle:(id)arg2;
 - (void)p_replaceStyles:(id)arg1 andChildrenWithVariationOfStyle:(id)arg2;
 - (void)p_updateBuildVersionHistoryWithVersionOfTemplateBundle:(id)arg1;
-- (void)p_updateCreationLanguage;
-- (void)p_updateCreationLanguageAndLocale;
+- (void)p_updateDocumentLanguageToCurrent;
 - (void)p_upgradeCustomFormatList;
 - (void)p_upgradeDocumentCreationLocale;
 - (void)p_upgradeTablesIfNeeded;
 - (id)packageDataForWrite;
 - (void)pauseRecalculation;
+- (void)pauseRecalculationSometimeSoon;
 - (void)performHyperlinkUpgradesIfNecessaryForVersion:(unsigned long long)arg1;
 - (void)performStylesheetUpdatesIfNecessaryForVersion:(unsigned long long)arg1;
 - (void)prepareForSavingAsTemplate;
@@ -155,6 +155,7 @@
 - (id)readBuildVersionHistoryFromDiskHasPreUFFVersion:(BOOL)arg1;
 - (id)referencedStylesOfClass:(Class)arg1;
 - (void)removeWarning:(id)arg1;
+- (void)resetViewState;
 - (void)resumeBackgroundActivities;
 - (void)resumeRecalculation;
 - (void)resumeThumbnailing;
@@ -162,11 +163,12 @@
 - (void)setAnnotationCache:(id)arg1;
 - (void)setBuildVersionHistory:(id)arg1;
 - (void)setCalculationEngine:(id)arg1;
-- (void)setCreationLanguage:(id)arg1;
 - (void)setCustomFormatListToUpgrade:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDidLoadDocumentFromRevert:(BOOL)arg1;
 - (void)setDocumentCreationLocale:(id)arg1;
+- (void)setDocumentCurrentlyImporting:(BOOL)arg1;
+- (void)setDocumentLanguage:(id)arg1;
 - (void)setFunctionBrowserState:(id)arg1;
 - (void)setHasPreUFFVersion:(BOOL)arg1;
 - (void)setNeedsMovieCompatibilityUpgrade:(BOOL)arg1;

@@ -2,28 +2,19 @@
    Image: /System/Library/PrivateFrameworks/AirTrafficDevice.framework/AirTrafficDevice
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class ATAsset, ATClientController, ATDeviceDiskUsageProvider, ATLegacyAssetLink, ATLegacyMessageLink, ATSession, ATUserDefaults, NSDate, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
-
 @interface ATLegacyDeviceSyncManager : ATDeviceSyncManager <ATEnvironmentMonitorObserver, ATLegacyAssetLinkProgressDelegate, ATSessionObserver> {
     ATLegacyAssetLink *_assetLink;
     BOOL _automaticSync;
     struct CacheDeleteToken { } *_cacheDeleteToken;
     ATClientController *_clientController;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _clientProgressCallback;
-
+    id /* block */ _clientProgressCallback;
     ATAsset *_currentAsset;
     NSString *_currentDataclass;
     ATLegacyMessageLink *_currentMessageLink;
     double _currentOverallProgress;
     unsigned int _currentStage;
     NSString *_currentStatus;
+    NSDictionary *_currentSyncHostInfo;
     double _currentSyncProgress;
     NSMutableDictionary *_dataclassTimers;
     NSMutableArray *_dataclasses;
@@ -38,11 +29,12 @@
     NSObject<OS_dispatch_queue> *_workQueue;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-@property(retain) ATSession * syncSession;
+@property (nonatomic, copy) NSDictionary *currentSyncHostInfo;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) ATSession *syncSession;
 
 + (id)legacyDeviceSyncManager;
 
@@ -63,6 +55,7 @@
 - (void)_sendSyncAllowed;
 - (void)assetLink:(id)arg1 didUpdateOverallProgress:(double)arg2;
 - (void)cancelSyncOnMessageLink:(id)arg1;
+- (id)currentSyncHostInfo;
 - (void)environmentMonitorDidChangePower:(id)arg1;
 - (id)init;
 - (void)initiateSyncForLibrary:(id)arg1 onMessageLink:(id)arg2;
@@ -74,6 +67,7 @@
 - (void)session:(id)arg1 willBeginSessionTask:(id)arg2;
 - (void)sessionDidFinish:(id)arg1;
 - (void)sessionWillBegin:(id)arg1;
+- (void)setCurrentSyncHostInfo:(id)arg1;
 - (void)setSyncSession:(id)arg1;
 - (id)syncSession;
 

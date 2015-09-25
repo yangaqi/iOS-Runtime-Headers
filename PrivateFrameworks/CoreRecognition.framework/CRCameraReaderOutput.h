@@ -2,18 +2,18 @@
    Image: /System/Library/PrivateFrameworks/CoreRecognition.framework/CoreRecognition
  */
 
-@class CRCameraReaderOutputInternal, NSString;
-
 @interface CRCameraReaderOutput : NSObject {
     CRCameraReaderOutputInternal *_objectInternal;
 }
 
-@property(retain) CRCameraReaderOutputInternal * objectInternal;
-@property(readonly) NSString * stringValue;
-@property(readonly) NSString * type;
+@property (readonly) NSString *formattedStringValue;
+@property (retain) CRCameraReaderOutputInternal *objectInternal;
+@property (readonly) NSString *stringValue;
+@property (readonly) NSString *type;
 
 - (void).cxx_destruct;
 - (void)dealloc;
+- (id)formattedStringValue;
 - (id)init;
 - (id)objectInternal;
 - (void)setObjectInternal:(id)arg1;

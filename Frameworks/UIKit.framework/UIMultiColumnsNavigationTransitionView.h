@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIColor, UIView;
-
 @interface UIMultiColumnsNavigationTransitionView : UIView <NSCoding> {
     int _columnCount;
     float _columnWidth;
@@ -15,19 +13,20 @@
     float _dividersWidth;
     UIView *_firstResponderViewToRestore;
     NSArray *_fromViews;
-    unsigned int _isTransitioning : 1;
+    unsigned int _isTransitioning;
     NSArray *_toViews;
     int _transition;
     NSArray *_viewsToAdd;
     NSArray *_viewsToRemove;
 }
 
-@property int columnCount;
-@property float columnWidth;
-@property id delegate;
+@property (nonatomic) int columnCount;
+@property (nonatomic) float columnWidth;
+@property (nonatomic) id delegate;
 
 + (double)defaultDurationForTransition:(int)arg1;
 
+- (void).cxx_destruct;
 - (id)_containerViewForView:(id)arg1;
 - (id)_dividerViewForView:(id)arg1;
 - (BOOL)_isTransitioningFromView:(id)arg1;

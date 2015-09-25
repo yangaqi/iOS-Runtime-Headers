@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface AFPreferences : NSObject {
     int _navToken;
     BOOL _navTokenIsValid;
@@ -18,6 +16,7 @@
 - (void).cxx_destruct;
 - (void)_internalPreferencesDidChangeExternally;
 - (void)_languageCodeDidChangeExternally;
+- (id)_localeMappedLanguageFor:(id)arg1;
 - (void)_ouputVoiceDidChangeExternally;
 - (void)_preferencesDidChangeExternally;
 - (void)_registerForInteralPrefs;
@@ -28,23 +27,23 @@
 - (void)_setDictationIsEnabledLocal:(BOOL)arg1;
 - (void)_setLoggingDefaultValue:(id)arg1 forKey:(id)arg2;
 - (BOOL)assistantIsEnabled;
-- (id)birthCertificateDataForLanguageCode:(id)arg1;
+- (id)bestSupportedLanguageCodeForLanguageCode:(id)arg1;
 - (int)bugReportingMode;
 - (void)dealloc;
 - (BOOL)debugButtonIsEnabled;
 - (BOOL)dictationIsEnabled;
-- (void)didShowReadyForLanguageCode:(id)arg1;
 - (BOOL)disableAssistantWhilePasscodeLocked;
 - (BOOL)fileLoggingIsEnabled;
+- (void)getOfflineDictationStatusWithCompletion:(id /* block */)arg1;
 - (int)handsFreeMode;
 - (BOOL)ignoreServerManualEndpointingThreshold;
 - (id)init;
 - (id)languageCode;
-- (id)languagesMissingBirthCertificates;
 - (id)manualEndpointingThreshold;
+- (BOOL)offlineDictationOverride;
 - (id)outputVoice;
+- (BOOL)respectsSystemMute;
 - (void)setAssistantIsEnabled:(BOOL)arg1;
-- (void)setBirthCertificateData:(id)arg1 forLanguageCode:(id)arg2;
 - (void)setBugReportingMode:(int)arg1;
 - (void)setDebugButtonIsEnabled:(BOOL)arg1;
 - (void)setDictationIsEnabled:(BOOL)arg1;
@@ -54,15 +53,18 @@
 - (void)setIgnoreServerManualEndpointingThreshold:(BOOL)arg1;
 - (void)setLanguageCode:(id)arg1;
 - (void)setManualEndpointingThreshold:(id)arg1;
+- (void)setOfflineDictationOverride:(BOOL)arg1;
 - (void)setOutputVoice:(id)arg1;
-- (void)setShouldShowReadyForLanguageCode:(id)arg1;
+- (void)setRespectsSystemMute:(BOOL)arg1;
+- (void)setShowsHoldToTalkIndicator:(BOOL)arg1;
 - (void)setStreamingDictationEnabled:(BOOL)arg1;
+- (void)setUseDeviceSpeakerForTTS:(int)arg1;
 - (void)setValue:(id)arg1 forSessionContextKey:(id)arg2;
-- (BOOL)shouldShowReadyForLanguageCode:(id)arg1;
+- (BOOL)showsHoldToTalkIndicator;
 - (BOOL)streamingDictationEnabled;
 - (void)synchronize;
 - (void)synchronizeVoiceServicesLanguageCode;
+- (int)useDeviceSpeakerForTTS;
 - (id)valueForSessionContextPreferenceKey:(id)arg1;
-- (id)whitelistedLanguages;
 
 @end

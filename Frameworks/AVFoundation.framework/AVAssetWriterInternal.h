@@ -2,11 +2,10 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetWriterHelper, AVWeakReference, NSObject<OS_dispatch_queue>;
-
 @interface AVAssetWriterInternal : NSObject {
     AVAssetWriterHelper *helper;
     NSObject<OS_dispatch_queue> *helperReadWriteQueue;
+    AVKeyPathDependencyManager *keyPathDependencyManager;
     AVWeakReference *weakReference;
 }
 

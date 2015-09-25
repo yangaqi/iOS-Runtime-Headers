@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class TSDDrawableInfo;
-
 @interface TSWPDrawableAttachment : TSWPAttachment {
     TSDDrawableInfo *_drawableInfo;
     float _hOffset;
@@ -17,12 +10,12 @@
     int _vOffsetType;
 }
 
-@property(readonly) float descent;
-@property(retain,readonly) TSDDrawableInfo * drawable;
-@property float hOffset;
-@property int hOffsetType;
-@property float vOffset;
-@property int vOffsetType;
+@property (nonatomic, readonly) float descent;
+@property (nonatomic, readonly, retain) TSDDrawableInfo *drawable;
+@property (nonatomic) float hOffset;
+@property (nonatomic) int hOffsetType;
+@property (nonatomic) float vOffset;
+@property (nonatomic) int vOffsetType;
 
 + (void)setPositionerClass:(Class)arg1;
 
@@ -38,7 +31,6 @@
 - (float)hOffset;
 - (int)hOffsetType;
 - (void)infoChanged;
-- (id)init;
 - (id)initFromUnarchiver:(id)arg1;
 - (id)initWithContext:(id)arg1 drawable:(id)arg2;
 - (void)invalidate;

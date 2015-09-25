@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@class CLLocation, NSDate, NSDecimalNumber, NSNumber, NSString, PKMerchant;
-
 @interface PKPaymentTransaction : NSObject <NSSecureCoding> {
     NSString *_administrativeArea;
     NSDecimalNumber *_amount;
@@ -18,7 +16,9 @@
     double _locationLongitude;
     double _locationVerticalAccuracy;
     PKMerchant *_merchant;
-    NSNumber *_persistentIdentifier;
+    BOOL _processedForLocation;
+    BOOL _processedForMerchantCleanup;
+    NSString *_serviceIdentifier;
     int _technologyType;
     NSDate *_transactionDate;
     NSString *_transactionIdentifier;
@@ -27,30 +27,32 @@
     int _transactionType;
 }
 
-@property(retain) NSString * administrativeArea;
-@property(copy) NSDecimalNumber * amount;
-@property(copy) NSString * currencyCode;
-@property(readonly) NSString * displayLocation;
-@property BOOL hasAssociatedPaymentApplication;
-@property(readonly) BOOL hasLocalDeviceSource;
-@property(readonly) BOOL hasNotificationServiceSource;
-@property(copy) NSString * identifier;
-@property(retain) NSString * locality;
-@property(retain) CLLocation * location;
-@property double locationAltitude;
-@property(retain) NSDate * locationDate;
-@property double locationHorizontalAccuracy;
-@property double locationLatitude;
-@property double locationLongitude;
-@property double locationVerticalAccuracy;
-@property(retain) PKMerchant * merchant;
-@property(copy) NSNumber * persistentIdentifier;
-@property int technologyType;
-@property(copy) NSDate * transactionDate;
-@property(copy) NSString * transactionIdentifier;
-@property unsigned int transactionSources;
-@property int transactionStatus;
-@property int transactionType;
+@property (nonatomic, retain) NSString *administrativeArea;
+@property (nonatomic, copy) NSDecimalNumber *amount;
+@property (nonatomic, copy) NSString *currencyCode;
+@property (nonatomic, readonly) NSString *displayLocation;
+@property (nonatomic) BOOL hasAssociatedPaymentApplication;
+@property (nonatomic, readonly) BOOL hasLocalDeviceSource;
+@property (nonatomic, readonly) BOOL hasNotificationServiceSource;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, retain) NSString *locality;
+@property (nonatomic, retain) CLLocation *location;
+@property (nonatomic) double locationAltitude;
+@property (nonatomic, retain) NSDate *locationDate;
+@property (nonatomic) double locationHorizontalAccuracy;
+@property (nonatomic) double locationLatitude;
+@property (nonatomic) double locationLongitude;
+@property (nonatomic) double locationVerticalAccuracy;
+@property (nonatomic, retain) PKMerchant *merchant;
+@property (nonatomic) BOOL processedForLocation;
+@property (nonatomic) BOOL processedForMerchantCleanup;
+@property (nonatomic, copy) NSString *serviceIdentifier;
+@property (nonatomic) int technologyType;
+@property (nonatomic, copy) NSDate *transactionDate;
+@property (nonatomic, copy) NSString *transactionIdentifier;
+@property (nonatomic) unsigned int transactionSources;
+@property (nonatomic) int transactionStatus;
+@property (nonatomic) int transactionType;
 
 + (id)paymentTransactionFromSource:(unsigned int)arg1;
 + (id)paymentTransactionFromSource:(unsigned int)arg1 withDictionary:(id)arg2;
@@ -81,7 +83,9 @@
 - (double)locationLongitude;
 - (double)locationVerticalAccuracy;
 - (id)merchant;
-- (id)persistentIdentifier;
+- (BOOL)processedForLocation;
+- (BOOL)processedForMerchantCleanup;
+- (id)serviceIdentifier;
 - (void)setAdministrativeArea:(id)arg1;
 - (void)setAmount:(id)arg1;
 - (void)setCurrencyCode:(id)arg1;
@@ -96,7 +100,9 @@
 - (void)setLocationLongitude:(double)arg1;
 - (void)setLocationVerticalAccuracy:(double)arg1;
 - (void)setMerchant:(id)arg1;
-- (void)setPersistentIdentifier:(id)arg1;
+- (void)setProcessedForLocation:(BOOL)arg1;
+- (void)setProcessedForMerchantCleanup:(BOOL)arg1;
+- (void)setServiceIdentifier:(id)arg1;
 - (void)setTechnologyType:(int)arg1;
 - (void)setTransactionDate:(id)arg1;
 - (void)setTransactionIdentifier:(id)arg1;

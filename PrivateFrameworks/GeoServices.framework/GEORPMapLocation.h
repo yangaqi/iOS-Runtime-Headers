@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOLatLng, GEOPDViewportInfo, NSData;
-
 @interface GEORPMapLocation : PBCodable <NSCopying> {
     GEOLatLng *_coordinate;
     struct { 
@@ -14,15 +12,18 @@
     float _zoomLevel;
 }
 
-@property(retain) GEOLatLng * coordinate;
-@property(readonly) BOOL hasCoordinate;
-@property(readonly) BOOL hasImage;
-@property(readonly) BOOL hasViewportInfo;
-@property BOOL hasZoomLevel;
-@property(retain) NSData * image;
-@property(retain) GEOPDViewportInfo * viewportInfo;
-@property float zoomLevel;
+@property (nonatomic, retain) GEOLatLng *coordinate;
+@property (nonatomic, readonly) BOOL hasCoordinate;
+@property (nonatomic, readonly) BOOL hasImage;
+@property (nonatomic, readonly) BOOL hasViewportInfo;
+@property (nonatomic) BOOL hasZoomLevel;
+@property (nonatomic, retain) NSData *image;
+@property (nonatomic, retain) GEOPDViewportInfo *viewportInfo;
+@property (nonatomic) float zoomLevel;
 
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
+- (void)_setMapMode:(int)arg1 region:(id)arg2;
 - (id)coordinate;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -46,5 +47,9 @@
 - (id)viewportInfo;
 - (void)writeTo:(id)arg1;
 - (float)zoomLevel;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (void)_setMapType:(unsigned int)arg1 region:(id)arg2;
 
 @end

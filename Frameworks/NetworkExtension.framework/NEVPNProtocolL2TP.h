@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
  */
 
-@class NEIdentityKeychainItem, NEKeychainItem, NSData, NSString;
-
 @interface NEVPNProtocolL2TP : NEVPNProtocolPPP {
     NSString *_localIdentifier;
     int _machineAuthenticationMethod;
@@ -13,14 +11,14 @@
     NEKeychainItem *_sharedSecretKeychainItem;
 }
 
-@property(copy) NSString * localIdentifier;
+@property (copy) NSString *localIdentifier;
 @property int machineAuthenticationMethod;
-@property(retain) NEIdentityKeychainItem * machineIdentity;
+@property (retain) NEIdentityKeychainItem *machineIdentity;
 @property BOOL machineIdentityDataImported;
-@property(copy) NSData * machineIdentityDataInternal;
-@property(copy) NSData * machineIdentityReference;
-@property(copy) NEKeychainItem * sharedSecretKeychainItem;
-@property(copy) NSData * sharedSecretReference;
+@property (copy) NSData *machineIdentityDataInternal;
+@property (copy) NSData *machineIdentityReference;
+@property (copy) NEKeychainItem *sharedSecretKeychainItem;
+@property (copy) NSData *sharedSecretReference;
 
 + (BOOL)supportsSecureCoding;
 
@@ -29,7 +27,7 @@
 - (id)copyLegacyIPSecDictionary;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (struct __SCNetworkInterface { }*)createInterface;
-- (id)descriptionWithIndent:(int)arg1;
+- (id)descriptionWithIndent:(int)arg1 options:(unsigned int)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;

@@ -2,38 +2,21 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class IKViewElementStyle, NSArray, NSMutableArray, NSMutableDictionary, NSMutableIndexSet;
-
 @interface IKStyleFactory : NSObject {
-    IKViewElementStyle *_globalStyle;
-    NSArray *_orderedStyles;
-    NSMutableArray *_reusableArray;
-    NSMutableIndexSet *_reusableIndexSet;
-    NSMutableDictionary *_stylesMap;
-    NSMutableDictionary *_stylesOrderMap;
+    NSMutableDictionary *_styleListsByClassSelector;
+    IKStylesGroup *_stylesGroup;
 }
 
-@property(retain) IKViewElementStyle * globalStyle;
-@property(retain) NSArray * orderedStyles;
-@property(retain) NSMutableArray * reusableArray;
-@property(retain) NSMutableIndexSet * reusableIndexSet;
-@property(retain) NSMutableDictionary * stylesMap;
-@property(retain) NSMutableDictionary * stylesOrderMap;
+@property (nonatomic, readonly, retain) NSMutableDictionary *styleListsByClassSelector;
+@property (nonatomic, readonly, retain) IKStylesGroup *stylesGroup;
+
++ (id)styleFactoryWithMarkup:(id)arg1 filterBlockedStyles:(BOOL)arg2;
 
 - (void).cxx_destruct;
-- (id)globalStyle;
-- (id)initWithStyles:(id)arg1;
-- (id)orderedStyles;
-- (id)reusableArray;
-- (id)reusableIndexSet;
-- (void)setGlobalStyle:(id)arg1;
-- (void)setOrderedStyles:(id)arg1;
-- (void)setReusableArray:(id)arg1;
-- (void)setReusableIndexSet:(id)arg1;
-- (void)setStylesMap:(id)arg1;
-- (void)setStylesOrderMap:(id)arg1;
-- (id)styleForClassSelector:(id)arg1;
-- (id)stylesMap;
-- (id)stylesOrderMap;
+- (id)_collapsedStyleListForSelectors:(id)arg1 targetSelector:(id)arg2 stylesGroup:(id)arg3;
+- (id)initWithStylesGroup:(id)arg1;
+- (id)styleListForClassSelector:(id)arg1;
+- (id)styleListsByClassSelector;
+- (id)stylesGroup;
 
 @end

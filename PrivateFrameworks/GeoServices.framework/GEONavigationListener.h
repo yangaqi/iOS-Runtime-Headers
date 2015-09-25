@@ -2,40 +2,40 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSObject<OS_dispatch_queue>, NSObject<OS_xpc_object>;
-
-@interface GEONavigationListener : NSObject {
-    NSObject<OS_xpc_object> *_connection;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _guidanceStateUpdatedHandler;
-
+@interface GEONavigationListener : NSObject <GEONavigationServerObserverXPCInterface> {
+    NSXPCConnection *_connection;
+    id /* block */ _guidanceStateUpdatedHandler;
+    int _navigationStartedToken;
+    int _navigationStoppedToken;
     NSObject<OS_dispatch_queue> *_queue;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _routeSummaryUpdatedHandler;
-
+    id /* block */ _routeSummaryUpdatedHandler;
+    id /* block */ _transitSummaryUpdatedHandler;
 }
 
-@property(copy) id guidanceStateUpdatedHandler;
-@property(copy) id routeSummaryUpdatedHandler;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) id /* block */ guidanceStateUpdatedHandler;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) id /* block */ routeSummaryUpdatedHandler;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) id /* block */ transitSummaryUpdatedHandler;
 
-- (void)_closeConnection;
-- (void)_createConnection;
-- (void)_request:(id)arg1;
+- (void)_connectToDaemonIfNeeded;
+- (void)close;
 - (void)dealloc;
-- (id)guidanceStateUpdatedHandler;
+- (id /* block */)guidanceStateUpdatedHandler;
 - (id)initWithQueue:(id)arg1;
+- (void)open;
 - (void)requestGuidanceState;
 - (void)requestRouteSummary;
-- (id)routeSummaryUpdatedHandler;
-- (void)setGuidanceStateUpdatedHandler:(id)arg1;
-- (void)setRouteSummaryUpdatedHandler:(id)arg1;
+- (void)requestTransitSummary;
+- (id /* block */)routeSummaryUpdatedHandler;
+- (void)routeSummaryUpdatedWithGuidanceStateData:(id)arg1;
+- (void)routeSummaryUpdatedWithNavigationRouteSummaryData:(id)arg1;
+- (void)routeSummaryUpdatedWithTransitSummaryData:(id)arg1;
+- (void)setGuidanceStateUpdatedHandler:(id /* block */)arg1;
+- (void)setRouteSummaryUpdatedHandler:(id /* block */)arg1;
+- (void)setTransitSummaryUpdatedHandler:(id /* block */)arg1;
+- (id /* block */)transitSummaryUpdatedHandler;
 
 @end

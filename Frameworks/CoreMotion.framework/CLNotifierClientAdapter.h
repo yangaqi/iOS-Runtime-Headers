@@ -2,17 +2,19 @@
    Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface CLNotifierClientAdapter : NSObject <CLNotifierServiceClientProtocol> {
     struct CLNotifierClientBase { int (**x1)(); } *_client;
     BOOL _valid;
 }
 
-@property BOOL valid;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL valid;
+
++ (void)becameFatallyBlocked:(id)arg1;
++ (void)performSyncOnSilo:(id)arg1 invoker:(id /* block */)arg2;
 
 - (id)debugDescription;
 - (id)init;

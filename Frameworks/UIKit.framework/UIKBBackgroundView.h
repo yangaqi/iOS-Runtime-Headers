@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSObject, NSString, UIKBRenderConfig, UIKBTree, UITextInputTraits;
-
 @interface UIKBBackgroundView : UIKBSplitImageView <UIKBCacheableView> {
     BOOL _centerFilled;
     NSObject *_geometryCacheKey;
@@ -56,17 +54,18 @@
     int _visualStyle;
 }
 
-@property(readonly) BOOL cacheDeferable;
-@property(readonly) NSString * cacheKey;
-@property(readonly) float cachedWidth;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) NSObject * geometryCacheKey;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL keepNonPersistent;
-@property(retain) UIKBRenderConfig * renderConfig;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) BOOL cacheDeferable;
+@property (nonatomic, readonly) NSString *cacheKey;
+@property (nonatomic, readonly) float cachedWidth;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSObject *geometryCacheKey;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL keepNonPersistent;
+@property (nonatomic, retain) UIKBRenderConfig *renderConfig;
+@property (readonly) Class superclass;
 
+- (BOOL)_canDrawContent;
 - (BOOL)cacheDeferable;
 - (id)cacheKey;
 - (id)cacheKeysForRenderFlags:(id)arg1;
@@ -74,11 +73,9 @@
 - (void)dealloc;
 - (void)displayLayer:(id)arg1;
 - (void)drawContentsOfRenderers:(id)arg1;
-- (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)geometryCacheKey;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)keepNonPersistent;
-- (void)layoutSubviews;
 - (void)refreshStyleForKeyplane:(id)arg1 inputTraits:(id)arg2;
 - (id)renderConfig;
 - (void)setGeometryCacheKey:(id)arg1;

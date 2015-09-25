@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection;
-
 @interface EDLink : NSObject {
     EDCollection *mExternalNames;
     int mType;
@@ -12,6 +10,7 @@
 + (id)linkWithType:(int)arg1;
 
 - (void)dealloc;
+- (id)description;
 - (id)externalNames;
 - (id)initWithType:(int)arg1;
 - (void)setType:(int)arg1;

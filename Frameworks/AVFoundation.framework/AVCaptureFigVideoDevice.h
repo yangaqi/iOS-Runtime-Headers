@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureDeviceControlRequestQueue, AVCaptureDeviceFormat, AVWeakReference, NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
-
 @interface AVCaptureFigVideoDevice : AVCaptureDevice <MCProfileConnectionObserver> {
     float _ISOKVO;
     AVCaptureDeviceFormat *_activeFormat;
@@ -30,7 +28,21 @@
     BOOL _automaticallyEnablesLowLightBoostWhenAvailable;
     NSArray *_availableBoxedMetadataFormatDescriptions;
     AVCaptureDeviceControlRequestQueue *_biasedExposureControlRequests;
+    NSMutableDictionary *_cachedFigCaptureSourceProperties;
     BOOL _cachesFigCaptureSourceConfigurationChanges;
+    struct CGRect { 
+        struct CGPoint { 
+            float x; 
+            float y; 
+        } origin; 
+        struct CGSize { 
+            float width; 
+            float height; 
+        } size; 
+    } _cameraFaceResult29;
+    BOOL _cameraFaceResult30;
+    BOOL _cameraOption10;
+    BOOL _cameraOption9;
     NSMutableArray *_captureSourceSupportedMetadata;
     float _contrast;
     NSObject<OS_dispatch_queue> *_devicePropsQueue;
@@ -103,11 +115,13 @@
     AVCaptureDeviceControlRequestQueue *_manualWhiteBalanceControlRequests;
     NSObject<OS_dispatch_queue> *_observedHighFrequencyPropertiesQueue;
     NSMutableDictionary *_observedHighFrequencyPropertyCounts;
+    int _origin;
     int _position;
     NSMutableDictionary *_propertyToFigCaptureSourcePropertyMap;
     BOOL _providesStortorgetMetadata;
     float _saturation;
     BOOL _sceneIsHighDynamicRange;
+    NSObject<OS_dispatch_semaphore> *_serverConnectionDiedSemaphore;
     NSDictionary *_sessionPresetCompressionSettings;
     BOOL _smileDetectionEnabled;
     BOOL _smoothAutoFocusEnabled;
@@ -129,22 +143,22 @@
     unsigned long _wbCalibrationCount;
     double **_wbCalibrationMatrices;
     struct { float x1; float x2; } *_wbCalibrationTemperatures;
-    double _wbLastTargetMix;
+    double _wbLastPredictedTemp;
     int _wbMode;
-    double _wbSeedMix;
-    double _wbSeedScale;
+    BOOL _wbSeedEnabled;
+    double _wbSeedTemp;
+    unsigned long _wbTemperatureIterations;
     AVWeakReference *_weakReference;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (BOOL)_cameraAccessIsEnabled;
 + (id)_devices;
 + (id)_newFigCaptureSources;
-+ (id)alloc;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (void)initialize;
 
@@ -155,7 +169,7 @@
 - (id)_copyFigCaptureSourceProperty:(struct __CFString { }*)arg1;
 - (id)_copyFormatsArray;
 - (void)_decrementObserverCountForHighFrequencyProperty:(id)arg1;
-- (struct { float x1; float x2; float x3; })_deviceWhiteBalanceGainsForChromaticityValues:(struct { float x1; float x2; })arg1 temperature:(float)arg2;
+- (struct { float x1; float x2; float x3; })_deviceWhiteBalanceGainsForChromaticityValues:(struct { float x1; float x2; })arg1 temperature:(double)arg2;
 - (void)_drainManualControlRequestQueue:(id)arg1;
 - (void)_drainManualControlRequestQueues;
 - (BOOL)_ensureWhiteBalanceCalibrationUnpacked;
@@ -165,8 +179,11 @@
 - (BOOL)_hasKeyValueObserversForHighFrequencyProperty:(id)arg1;
 - (void)_incrementObserverCountForHighFrequencyProperty:(id)arg1;
 - (id)_initWithFigCaptureSource:(struct OpaqueFigCaptureSource { }*)arg1;
-- (void)_performBlockOnMainThread:(id)arg1;
-- (double)_predictedMixForGains:(struct { float x1; float x2; float x3; })arg1;
+- (BOOL)_isWBSeedEnabled;
+- (void)_performBlockOnMainThread:(id /* block */)arg1;
+- (double)_predictedTempForGains:(struct { float x1; float x2; float x3; })arg1;
+- (void)_restoreFigCaptureSourceProperties;
+- (void)_setActiveFormat:(id)arg1 resetVideoZoomFactorAndMinMaxFrameDurations:(BOOL)arg2;
 - (void)_setActiveVideoMaxFrameDuration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (long)_setActiveVideoMaxFrameDurationInternal:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (void)_setActiveVideoMinFrameDuration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
@@ -178,6 +195,7 @@
 - (long)_setFaceDetectionFeatureEnabled:(BOOL)arg1 enabledState:(BOOL*)arg2;
 - (void)_setFigCaptureSource:(struct OpaqueFigCaptureSource { }*)arg1;
 - (long)_setFigCaptureSourceProperty:(struct __CFString { }*)arg1 withValue:(id)arg2;
+- (long)_setFigCaptureSourceProperty:(struct __CFString { }*)arg1 withValue:(id)arg2 cacheOnly:(BOOL)arg3;
 - (void)_setFlashActive:(BOOL)arg1;
 - (void)_setFlashAvailable:(BOOL)arg1;
 - (long)_setFocusWithMode:(int)arg1 lensPosition:(float)arg2 requestID:(int)arg3;
@@ -191,9 +209,14 @@
 - (long)_setTorchMode:(int)arg1 withLevel:(float)arg2;
 - (void)_setVideoHDREnabled:(BOOL)arg1;
 - (void)_setVideoZoomFactor:(float)arg1;
+- (void)_setWBSeedEnabled:(BOOL)arg1;
 - (long)_setWhiteBalanceWithMode:(int)arg1 gains:(struct { float x1; float x2; float x3; })arg2 requestID:(int)arg3;
 - (id)_supportedOptionalFaceDetectionFeaturesDictionary;
 - (void)_updateFigCaptureSourceObserverCounts;
+- (void)_waitForServerConnectionDiedHandlerToFinish;
+- (unsigned long)_wbTemperatureIterations;
+- (double)_whiteBalanceMixingFactorForTemperature:(double)arg1;
+- (double)_whiteBalanceTemperatureForMixingFactor:(double)arg1;
 - (id)activeFormat;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })activeVideoMaxFrameDuration;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })activeVideoMinFrameDuration;
@@ -210,6 +233,7 @@
 - (void)dealloc;
 - (struct OpaqueCMClock { }*)deviceClock;
 - (id)deviceFormatForSessionPreset:(id)arg1 videoFormat:(int)arg2;
+- (int)deviceSourceOrigin;
 - (struct { float x1; float x2; float x3; })deviceWhiteBalanceGains;
 - (struct { float x1; float x2; float x3; })deviceWhiteBalanceGainsForChromaticityValues:(struct { float x1; float x2; })arg1;
 - (struct { float x1; float x2; float x3; })deviceWhiteBalanceGainsForTemperatureAndTintValues:(struct { float x1; float x2; })arg1;
@@ -258,6 +282,7 @@
 - (BOOL)isHighDynamicRangeSceneDetectionSupported;
 - (BOOL)isImageControlModeSupported:(int)arg1;
 - (BOOL)isInUseByAnotherApplication;
+- (BOOL)isLensStabilizationSupported;
 - (BOOL)isLockedForConfiguration;
 - (BOOL)isLowLightBoostEnabled;
 - (BOOL)isLowLightBoostSupported;
@@ -284,6 +309,8 @@
 - (struct { int x1; int x2; })maxH264VideoDimensions;
 - (float)maxWhiteBalanceGain;
 - (float)minExposureTargetBias;
+- (int)minMacroblocksForHighProfileAbove30fps;
+- (int)minMacroblocksForHighProfileUpTo30fps;
 - (id)modelID;
 - (int)position;
 - (void)profileConnectionDidReceiveEffectiveSettingsChangedNotification:(id)arg1 userInfo:(id)arg2;
@@ -302,15 +329,15 @@
 - (void)setCachesFigCaptureSourceConfigurationChanges:(BOOL)arg1;
 - (void)setContrast:(float)arg1;
 - (void)setExposureMode:(int)arg1;
-- (void)setExposureModeCustomWithDuration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1 ISO:(float)arg2 completionHandler:(id)arg3;
+- (void)setExposureModeCustomWithDuration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1 ISO:(float)arg2 completionHandler:(id /* block */)arg3;
 - (void)setExposurePointOfInterest:(struct CGPoint { float x1; float x2; })arg1;
-- (void)setExposureTargetBias:(float)arg1 completionHandler:(id)arg2;
+- (void)setExposureTargetBias:(float)arg1 completionHandler:(id /* block */)arg2;
 - (void)setEyeClosedDetectionEnabled:(BOOL)arg1;
 - (void)setEyeDetectionEnabled:(BOOL)arg1;
 - (void)setFaceDetectionDrivenImageProcessingEnabled:(BOOL)arg1;
 - (void)setFlashMode:(int)arg1;
 - (void)setFocusMode:(int)arg1;
-- (void)setFocusModeLockedWithLensPosition:(float)arg1 completionHandler:(id)arg2;
+- (void)setFocusModeLockedWithLensPosition:(float)arg1 completionHandler:(id /* block */)arg2;
 - (void)setFocusPointOfInterest:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setHighDynamicRangeSceneDetectionEnabled:(BOOL)arg1;
 - (void)setImageControlMode:(int)arg1;
@@ -328,7 +355,7 @@
 - (void)setVideoZoomRampAcceleration:(float)arg1;
 - (void)setVideoZoomUpscaleStageHint:(int)arg1;
 - (void)setWhiteBalanceMode:(int)arg1;
-- (void)setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:(struct { float x1; float x2; float x3; })arg1 completionHandler:(id)arg2;
+- (void)setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:(struct { float x1; float x2; float x3; })arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)smileDetectionEnabled;
 - (id)supportedMetadataObjectIdentifiers;
 - (BOOL)supportsAVCaptureSessionPreset:(id)arg1;

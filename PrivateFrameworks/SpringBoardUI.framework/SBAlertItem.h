@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUI.framework/SpringBoardUI
  */
 
-@class NSArray, NSString, UIAlertView;
-
 @interface SBAlertItem : NSObject <UIAlertViewDelegate> {
     UIAlertView *_alertSheet;
     BOOL _allowInCar;
@@ -11,6 +9,7 @@
     BOOL _allowMessageInCar;
     NSArray *_allowedBundleIDs;
     BOOL _didEverActivate;
+    BOOL _didEverDeactivate;
     BOOL _didPlayPresentationSound;
     BOOL _ignoreIfAlreadyDisplaying;
     BOOL _orderOverSBAlert;
@@ -19,23 +18,25 @@
     BOOL _preventLockOver;
 }
 
-@property BOOL allowInCar;
-@property BOOL allowInSetup;
-@property BOOL allowMessageInCar;
-@property(retain) NSArray * allowedBundleIDs;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property BOOL ignoreIfAlreadyDisplaying;
-@property BOOL pendInSetupIfNotAllowed;
-@property BOOL pendWhileKeyBagLocked;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL allowInCar;
+@property (nonatomic) BOOL allowInSetup;
+@property (nonatomic) BOOL allowMessageInCar;
+@property (nonatomic, retain) NSArray *allowedBundleIDs;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL ignoreIfAlreadyDisplaying;
+@property (nonatomic) BOOL pendInSetupIfNotAllowed;
+@property (nonatomic) BOOL pendWhileKeyBagLocked;
+@property (readonly) Class superclass;
 
 + (id)_alertItemsController;
 + (void)activateAlertItem:(id)arg1;
 
 - (BOOL)_didEverActivate;
+- (BOOL)_didEverDeactivate;
 - (BOOL)_dismissesOverlaysOnLockScreen;
+- (void)_noteDeactivated;
 - (void)_playPresentationSound;
 - (id)alertController;
 - (id)alertItemNotificationDate;

@@ -2,14 +2,8 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSCondition, NSMutableArray, NSString, TNChartFormulaStorage, TNMutableChartFormulaStorage, TSCECalculationEngine, TSCEFormulaRewriteSpec, TSUIntToIntDictionary;
-
 @interface TNChartMediator : TSCHChartMediator <TSCECalculationEngineRegistration, TSCEFormulaOwning> {
+    TNChartFormulaStorage *mCleanFormulaStorage;
     TNMutableChartFormulaStorage *mEditingAccumulatedFormulas;
     TNMutableChartFormulaStorage *mEditingActiveFormulas;
     BOOL mEditingHasIsPhantomOverride;
@@ -29,19 +23,19 @@
     BOOL mShouldFixAreaFormula;
 }
 
-@property(readonly) TSCECalculationEngine * calculationEngine;
-@property(readonly) BOOL categoryLabelFormulasAreAllStatic;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) int direction;
-@property(readonly) struct __CFUUID { }* entityID;
-@property(readonly) BOOL hasBlittedSinceConditionVarSet;
-@property(readonly) unsigned int hash;
-@property BOOL isEditing;
-@property(readonly) BOOL labelFormulasAreAllStatic;
-@property(readonly) int scatterFormat;
-@property(readonly) BOOL seriesLabelFormulasAreAllStatic;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) TSCECalculationEngine *calculationEngine;
+@property (nonatomic, readonly) BOOL categoryLabelFormulasAreAllStatic;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) int direction;
+@property (nonatomic, readonly) struct __CFUUID { }*entityID;
+@property (nonatomic, readonly) BOOL hasBlittedSinceConditionVarSet;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isEditing;
+@property (nonatomic, readonly) BOOL labelFormulasAreAllStatic;
+@property (nonatomic, readonly) int scatterFormat;
+@property (nonatomic, readonly) BOOL seriesLabelFormulasAreAllStatic;
+@property (readonly) Class superclass;
 
 + (id)defaultErrorBarFormulaWrapper;
 + (id)propertiesThatInvalidateMediator;
@@ -77,6 +71,7 @@
 - (id)errorBarCustomFormulaForSeriesIndex:(unsigned int)arg1 dataType:(int)arg2;
 - (id)expandSingleRangeForProposedCategoryLabels:(struct { struct TSCERangeCoordinate { struct { unsigned short x_1_2_1; unsigned char x_1_2_2; unsigned char x_1_2_3; } x_1_1_1; struct { unsigned short x_2_2_1; unsigned char x_2_2_2; unsigned char x_2_2_3; } x_1_1_2; } x1; struct __CFUUID {} *x2; })arg1;
 - (unsigned int)formulaIndexForSeriesDimension:(id)arg1;
+- (struct __CFUUID { }*)formulaOwnerID;
 - (id)formulaStorage;
 - (id)formulaStorageFromTable:(id)arg1 selection:(id)arg2 direction:(int)arg3;
 - (unsigned int)formulaTypeFromDataType:(int)arg1;
@@ -96,10 +91,10 @@
 - (unsigned int)labelIndexForSeriesNameSeriesIndex:(unsigned int)arg1;
 - (void)localizeFormulaLiteralsWithBundle:(id)arg1;
 - (id)objectToArchiveInDependencyTracker;
+- (id)ownerUIDMapper;
 - (id)p_commandToSetSeriesNameFormulaWrapper:(id)arg1 seriesIndex:(unsigned int)arg2;
 - (void)p_copyValuesIntoChartModelFromPair:(id)arg1;
 - (void)p_copyValuesIntoToChartModel:(id)arg1 formulaMap:(id)arg2;
-- (void)p_detectAndRepairDeletedFormulas:(id)arg1 forRewriteSpec:(id)arg2;
 - (void)p_detectAndRepairInsertedCategoryConditionFromPreviousState:(id)arg1 andEditingState:(id)arg2;
 - (void)p_detectAndRepairInsertedSeriesConditionFromPreviousState:(id)arg1 andEditingState:(id)arg2;
 - (void)p_disconnectLabelsInMap:(id)arg1 ofType:(unsigned int)arg2;
@@ -111,6 +106,7 @@
 - (void)p_registerAreaFormulaForMap:(id)arg1 withCalcEngine:(id)arg2;
 - (void)p_registerFormulaeWithCalcEngine:(id)arg1;
 - (void)p_registerHubFormulaWithCalcEngine:(id)arg1;
+- (void)p_removeDeletedFormulas:(id)arg1;
 - (void)p_repairMissingCategoryLabelsInMap:(id)arg1;
 - (void)p_repairMissingStaticCategoryLabelsInMap:(id)arg1;
 - (void)p_repairMissingTabularCategoryLabelsIrregularInMap:(id)arg1;
@@ -123,6 +119,8 @@
 - (id)p_tstFormulaFromForumulaWrapper:(id)arg1;
 - (void)p_unregisterAllFormulaeFromCalcEngine:(id)arg1;
 - (id)p_untitledLabelWithIndex:(unsigned int)arg1;
+- (void)p_updateForTableIDHistoryWithCalcEngine:(id)arg1;
+- (id)rawFormulaStorage;
 - (struct { BOOL x1; BOOL x2; BOOL x3; })recalculateForCalculationEngine:(id)arg1 formulaID:(struct { unsigned int x1 : 24; unsigned int x2 : 8; })arg2 isInCycle:(BOOL)arg3 hasCalculatedPrecedents:(BOOL)arg4;
 - (id)referencedEntities;
 - (id)referencedEntitiesInMap:(id)arg1;
@@ -145,6 +143,7 @@
 - (id)seriesNameFormulaForSeriesIndex:(unsigned int)arg1;
 - (void)setEditingIsPhantomOverride:(BOOL)arg1;
 - (void)setEditingStorageOverride:(id)arg1;
+- (void)setFormulaOwnerID:(struct __CFUUID { }*)arg1;
 - (void)setFormulaStorage:(id)arg1;
 - (void)setFormulaStorage:(id)arg1 doRegistration:(BOOL)arg2;
 - (void)setImportUpgradeCondition:(id)arg1;
@@ -154,6 +153,7 @@
 - (void)unregisterFromCalculationEngine:(id)arg1;
 - (id)untitledLabelOfType:(unsigned int)arg1 formulaMap:(id)arg2 existingLabels:(id)arg3 runningIndex:(unsigned int*)arg4;
 - (void)wasAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
+- (void)willBeAddedToDocumentRoot:(id)arg1 dolcContext:(id)arg2;
 - (void)willBeRemovedFromDocumentRoot:(id)arg1;
 - (void)writeResultsForCalculationEngine:(id)arg1;
 

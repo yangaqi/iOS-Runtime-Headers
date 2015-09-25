@@ -2,66 +2,48 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSDate, NSMutableOrderedSet, NSObject<OS_dispatch_queue>, PCPersistentTimer;
-
 @interface EKTravelEngineThrottle : NSObject {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _adviceBlock;
-
+    id /* block */ _emissionBlock;
     PCPersistentTimer *_emissionTimer;
     NSDate *_nextEmissionDate;
-    unsigned int _numberOfThrottleAdviceObjectsToEmitLater;
     BOOL _running;
+    NSString *_throttleIdentifier;
     NSObject<OS_dispatch_queue> *_throttleQueue;
-    NSMutableOrderedSet *_throttledAdviceQueue;
 }
 
-@property(copy) id adviceBlock;
-@property(retain) PCPersistentTimer * emissionTimer;
-@property(retain) NSDate * nextEmissionDate;
-@property unsigned int numberOfThrottleAdviceObjectsToEmitLater;
-@property BOOL running;
-@property NSObject<OS_dispatch_queue> * throttleQueue;
-@property(retain) NSMutableOrderedSet * throttledAdviceQueue;
+@property (nonatomic, copy) id /* block */ emissionBlock;
+@property (nonatomic, retain) PCPersistentTimer *emissionTimer;
+@property (nonatomic, retain) NSDate *nextEmissionDate;
+@property (nonatomic) BOOL running;
+@property (nonatomic, retain) NSString *throttleIdentifier;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *throttleQueue;
 
-+ (id)_throttleIdentifier;
-+ (double)_throttlePeriodInSeconds;
++ (double)emissionThresholdTimeInterval;
 
-- (void)_analyzeQueueAndPrepareForEmission;
+- (void).cxx_destruct;
 - (void)_emissionTimerFired:(id)arg1;
-- (void)_emitAdviceObjects:(id)arg1;
+- (void)_fireEmissionBlock;
 - (void)_registerForNotificationObservation;
 - (void)_significantTimeChangeNotificationReceived;
 - (void)_uninstallEmissionTimer;
 - (void)_unregisterForNotificationObservation;
-- (void)_updateEmissionTimerWithEmissionDate:(id)arg1;
-- (id)adviceBlock;
+- (void)_updateEmissionDate:(id)arg1;
 - (void)dealloc;
 - (id)description;
+- (id /* block */)emissionBlock;
 - (id)emissionTimer;
 - (id)init;
-- (void)injectAdvice:(id)arg1 forEventWithExternalURL:(id)arg2;
 - (id)nextEmissionDate;
-- (unsigned int)numberOfThrottleAdviceObjectsToEmitLater;
-- (void)removeAllThrottledAdvice;
-- (void)removeThrottledAdviceForEventWithExternalURL:(id)arg1;
 - (BOOL)running;
-- (void)setAdviceBlock:(id)arg1;
+- (void)setEmissionBlock:(id /* block */)arg1;
 - (void)setEmissionTimer:(id)arg1;
 - (void)setNextEmissionDate:(id)arg1;
-- (void)setNumberOfThrottleAdviceObjectsToEmitLater:(unsigned int)arg1;
 - (void)setRunning:(BOOL)arg1;
+- (void)setThrottleIdentifier:(id)arg1;
 - (void)setThrottleQueue:(id)arg1;
-- (void)setThrottledAdviceQueue:(id)arg1;
-- (void)start;
-- (void)stop;
+- (void)tearDown;
+- (id)throttleIdentifier;
 - (id)throttleQueue;
-- (id)throttledAdviceQueue;
+- (void)updatePredictedDepartureDate:(id)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@class <BSFileLoggerDelegate>, NSDateFormatter, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
-
 @interface BSFileLogger : NSObject <BSLogging> {
     <BSFileLoggerDelegate> *_delegate;
     BOOL _enabledByPreference;
@@ -14,36 +12,40 @@
     NSMutableArray *_recentLogs;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <BSFileLoggerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(getter=isEnabled,readonly) BOOL enabled;
-@property(readonly) unsigned int hash;
-@property(readonly) unsigned int logDestinations;
-@property(readonly) NSString * logPath;
-@property(readonly) NSString * logPreferenceDomain;
-@property(readonly) NSString * logPreferenceName;
-@property(readonly) int maxLogCount;
-@property(readonly) unsigned int maxLogLinesInMemory;
-@property(readonly) int maxLogSize;
-@property(readonly) NSString * name;
-@property(retain,readonly) NSObject<OS_dispatch_queue> * queue;
-@property(readonly) BOOL shouldEnableOnInternalBuilds;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <BSFileLoggerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (getter=isEnabled, nonatomic, readonly) BOOL enabled;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int level;
+@property (nonatomic, readonly) unsigned int logDestinations;
+@property (nonatomic, readonly) NSString *logPath;
+@property (nonatomic, readonly) NSString *logPreferenceDomain;
+@property (nonatomic, readonly) NSString *logPreferenceName;
+@property (nonatomic, readonly) int maxLogCount;
+@property (nonatomic, readonly) unsigned int maxLogLinesInMemory;
+@property (nonatomic, readonly) int maxLogSize;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly, retain) NSObject<OS_dispatch_queue> *queue;
+@property (nonatomic, readonly) BOOL shouldEnableOnInternalBuilds;
+@property (readonly) Class superclass;
 
-- (void)_appendLogForCategory:(id)arg1 withFormat:(id)arg2 arguments:(void*)arg3;
+- (void)_appendLogForLevel:(int)arg1 category:(id)arg2 withFormat:(id)arg3 arguments:(void*)arg4;
 - (void)_disableLogCategory:(id)arg1;
 - (void)_enableLogCategory:(id)arg1;
-- (void)_queue_appendLogForCategory:(id)arg1 withFormat:(id)arg2 arguments:(void*)arg3;
+- (void)_queue_appendLogForLevel:(int)arg1 category:(id)arg2 withFormat:(id)arg3 arguments:(void*)arg4;
 - (BOOL)_queue_isEnabledForCategory:(id)arg1;
+- (void)_reloadFromDefaultsDictionary:(id)arg1;
 - (void)_setEnabled:(BOOL)arg1;
-- (void)_setEnabled:(BOOL)arg1 fromDefaults:(BOOL)arg2;
+- (void)_setLevel:(int)arg1;
+- (void)_setLevel:(int)arg1 fromDefaults:(BOOL)arg2;
 - (id)composedLogForCategory:(id)arg1 destination:(unsigned int)arg2 format:(id)arg3 arguments:(void*)arg4;
 - (void)dealloc;
 - (id)delegate;
 - (id)init;
 - (BOOL)isEnabled;
 - (BOOL)isEnabledForCategory:(id)arg1;
+- (int)level;
 - (unsigned int)logDestinations;
 - (id)logPath;
 - (id)logPreferenceDomain;

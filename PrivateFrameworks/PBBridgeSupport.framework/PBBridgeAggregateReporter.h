@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/PBBridgeSupport.framework/PBBridgeSupport
  */
 
-@interface PBBridgeAggregateReporter : NSObject {
-}
+@interface PBBridgeAggregateReporter : NSObject
 
++ (void)activationServerRespondedAtPage:(unsigned int)arg1;
 + (id)descriptionForCommTimingType:(unsigned int)arg1;
 + (id)descriptionForSuccessType:(unsigned int)arg1;
 + (id)descriptionForTimingType:(unsigned int)arg1;

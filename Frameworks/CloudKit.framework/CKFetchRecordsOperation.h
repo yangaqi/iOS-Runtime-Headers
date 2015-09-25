@@ -2,33 +2,16 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray, NSDictionary, NSMutableDictionary;
-
 @interface CKFetchRecordsOperation : CKDatabaseOperation {
     NSArray *_desiredKeys;
     NSDictionary *_desiredPackageFileIndices;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _fetchRecordsCompletionBlock;
-
+    id /* block */ _fetchRecordsCompletionBlock;
     BOOL _isFetchCurrentUserOperation;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _perRecordCompletionBlock;
-
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _perRecordProgressBlock;
-
+    id /* block */ _perRecordCompletionBlock;
+    id /* block */ _perRecordProgressBlock;
     NSMutableDictionary *_recordErrors;
     NSArray *_recordIDs;
+    NSDictionary *_recordIDsToETags;
     NSMutableDictionary *_recordIDsToRecords;
     NSDictionary *_recordIDsToVersionETags;
     BOOL _shouldFetchAssetContent;
@@ -36,19 +19,22 @@
     NSDictionary *_webSharingIdentityDataByRecordID;
 }
 
-@property(copy) NSArray * desiredKeys;
-@property(copy) NSDictionary * desiredPackageFileIndices;
-@property(copy) id fetchRecordsCompletionBlock;
-@property BOOL isFetchCurrentUserOperation;
-@property(copy) id perRecordCompletionBlock;
-@property(copy) id perRecordProgressBlock;
-@property(retain) NSMutableDictionary * recordErrors;
-@property(copy) NSArray * recordIDs;
-@property(retain) NSMutableDictionary * recordIDsToRecords;
-@property(retain) NSDictionary * recordIDsToVersionETags;
-@property BOOL shouldFetchAssetContent;
-@property(retain) NSMutableDictionary * signaturesOfAssetsByRecordIDAndKey;
-@property(retain) NSDictionary * webSharingIdentityDataByRecordID;
+@property (nonatomic, copy) NSArray *desiredKeys;
+@property (nonatomic, copy) NSDictionary *desiredPackageFileIndices;
+@property (nonatomic, copy) id /* block */ fetchRecordsCompletionBlock;
+@property (nonatomic) BOOL isFetchCurrentUserOperation;
+@property (nonatomic, copy) id /* block */ perRecordCompletionBlock;
+@property (nonatomic, copy) id /* block */ perRecordProgressBlock;
+@property (nonatomic, retain) NSMutableDictionary *recordErrors;
+@property (nonatomic, copy) NSArray *recordIDs;
+@property (nonatomic, retain) NSDictionary *recordIDsToETags;
+@property (nonatomic, retain) NSMutableDictionary *recordIDsToRecords;
+@property (nonatomic, retain) NSDictionary *recordIDsToVersionETags;
+@property (nonatomic) BOOL shouldFetchAssetContent;
+@property (nonatomic, retain) NSMutableDictionary *signaturesOfAssetsByRecordIDAndKey;
+@property (nonatomic, retain) NSDictionary *webSharingIdentityDataByRecordID;
+
+// Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
 
 + (id)fetchCurrentUserRecordOperation;
 
@@ -56,28 +42,31 @@
 - (BOOL)CKOperationShouldRun:(id*)arg1;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleProgressCallback:(id)arg1;
+- (unsigned long long)activityStart;
 - (id)desiredKeys;
 - (id)desiredPackageFileIndices;
-- (id)fetchRecordsCompletionBlock;
+- (id /* block */)fetchRecordsCompletionBlock;
 - (void)fillOutOperationInfo:(id)arg1;
 - (id)init;
 - (id)initWithRecordIDs:(id)arg1;
 - (BOOL)isFetchCurrentUserOperation;
-- (id)perRecordCompletionBlock;
-- (id)perRecordProgressBlock;
+- (id /* block */)perRecordCompletionBlock;
+- (id /* block */)perRecordProgressBlock;
 - (void)performCKOperation;
 - (id)recordErrors;
 - (id)recordIDs;
+- (id)recordIDsToETags;
 - (id)recordIDsToRecords;
 - (id)recordIDsToVersionETags;
 - (void)setDesiredKeys:(id)arg1;
 - (void)setDesiredPackageFileIndices:(id)arg1;
-- (void)setFetchRecordsCompletionBlock:(id)arg1;
+- (void)setFetchRecordsCompletionBlock:(id /* block */)arg1;
 - (void)setIsFetchCurrentUserOperation:(BOOL)arg1;
-- (void)setPerRecordCompletionBlock:(id)arg1;
-- (void)setPerRecordProgressBlock:(id)arg1;
+- (void)setPerRecordCompletionBlock:(id /* block */)arg1;
+- (void)setPerRecordProgressBlock:(id /* block */)arg1;
 - (void)setRecordErrors:(id)arg1;
 - (void)setRecordIDs:(id)arg1;
+- (void)setRecordIDsToETags:(id)arg1;
 - (void)setRecordIDsToRecords:(id)arg1;
 - (void)setRecordIDsToVersionETags:(id)arg1;
 - (void)setShouldFetchAssetContent:(BOOL)arg1;
@@ -86,5 +75,9 @@
 - (BOOL)shouldFetchAssetContent;
 - (id)signaturesOfAssetsByRecordIDAndKey;
 - (id)webSharingIdentityDataByRecordID;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (void)ic_removeAllCompletionBlocks;
 
 @end

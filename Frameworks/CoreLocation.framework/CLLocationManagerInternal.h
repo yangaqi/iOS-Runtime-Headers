@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
  */
 
-@class <CLLocationManagerDelegate>, NSMutableSet, NSString;
-
 @interface CLLocationManagerInternal : NSObject {
     int fActivityType;
+    BOOL fAllowsBackgroundLocationUpdates;
     BOOL fAllowsLocationPrompts;
     BOOL fAllowsMapCorrection;
     BOOL fBatchingLocation;
@@ -45,9 +44,9 @@
         double rawCourse; 
         int floor; 
         unsigned int integrity; 
+        int referenceFrame; 
     } fLocation;
     NSString *fLocationEventType;
-    double fLocationRequestAccuracy;
     double fLocationRequestTimeout;
     struct __CFRunLoopTimer { } *fLocationRequestTimer;
     BOOL fMatchInfoEnabled;
@@ -64,14 +63,16 @@
     BOOL fUpdatingVehicleSpeed;
 }
 
-@property(readonly) NSMutableSet * rangedRegions;
+@property (nonatomic, readonly) NSMutableSet *rangedRegions;
 
 - (int)PausesLocationUpdatesAutomatically;
+- (BOOL)allowsBackgroundLocationUpdates;
 - (void)cancelLocationRequest;
 - (void)dealloc;
 - (id)initWithInfo:(id)arg1 bundleIdentifier:(id)arg2 bundle:(id)arg3;
 - (void)performCourtesyPromptIfNeeded;
 - (id)rangedRegions;
+- (void)setAllowsBackgroundLocationUpdates:(BOOL)arg1;
 - (void)setPausesLocationUpdatesAutomatically:(int)arg1;
 - (void)stopUpdatingLocationAutoPaused;
 

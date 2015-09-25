@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/ATFoundation.framework/ATFoundation
  */
 
-@class ATPError;
-
 @interface ATPResponse : PBCodable <NSCopying> {
     ATPError *_error;
 }
 
-@property(retain) ATPError * error;
-@property(readonly) BOOL hasError;
+@property (nonatomic, retain) ATPError *error;
+@property (nonatomic, readonly) BOOL hasError;
 
 - (void).cxx_destruct;
 - (void)copyTo:(id)arg1;
@@ -20,6 +18,7 @@
 - (BOOL)hasError;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
+- (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
 - (void)setError:(id)arg1;
 - (void)writeTo:(id)arg1;

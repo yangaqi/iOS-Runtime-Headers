@@ -2,27 +2,27 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAUIColor : AceObject <SAAceSerializable>
 
-@interface SAUIColor : AceObject <SAAceSerializable> {
-}
-
-@property int blueValue;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property int greenValue;
-@property(readonly) unsigned int hash;
-@property int redValue;
-@property(readonly) Class superclass;
+@property (nonatomic, copy) NSNumber *alpha;
+@property (nonatomic) int blueValue;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) int greenValue;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int redValue;
+@property (readonly) Class superclass;
 
 + (id)color;
 + (id)colorWithDictionary:(id)arg1 context:(id)arg2;
 
+- (id)alpha;
 - (int)blueValue;
 - (id)encodedClassName;
 - (int)greenValue;
 - (id)groupIdentifier;
 - (int)redValue;
+- (void)setAlpha:(id)arg1;
 - (void)setBlueValue:(int)arg1;
 - (void)setGreenValue:(int)arg1;
 - (void)setRedValue:(int)arg1;

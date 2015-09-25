@@ -2,9 +2,9 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@interface PUPhotosGridViewControllerPhoneImagePickerSpec : PUPhotosGridViewControllerPhoneSpec {
-}
+@interface PUPhotosGridViewControllerPhoneImagePickerSpec : PUPhotosGridViewControllerPhoneSpec
 
+- (BOOL)canCommitPreview;
 - (BOOL)canDisplaySearchActionInNavigationBar;
 - (BOOL)displaysAvalancheStacks;
 

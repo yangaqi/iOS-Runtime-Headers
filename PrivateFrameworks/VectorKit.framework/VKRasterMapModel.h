@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSMutableArray, NSString;
-
 @interface VKRasterMapModel : VKMapTileModel <VKMapLayer> {
     struct unique_ptr<ggl::RenderState, std::__1::default_delete<ggl::RenderState> > { 
         struct __compressed_pair<ggl::RenderState *, std::__1::default_delete<ggl::RenderState> > { 
@@ -28,20 +21,20 @@
     } _renderState;
     BOOL _showingNoDataPlaceholders;
     NSMutableArray *_sortedTiles;
-    struct shared_ptr<md::StyleQuery> { 
+    struct shared_ptr<gss::StyleQuery> { 
         struct StyleQuery {} *__ptr_; 
         struct __shared_weak_count {} *__cntrl_; 
     } _styleQuery;
-    struct Pos2DUVMesh { int (**x1)(); char *x2; int (**x3)(); struct ResourceManager {} *x4; struct RenderResource {} *x5; struct shared_ptr<ggl::VertexData> { struct VertexData {} *x_6_1_1; struct __shared_weak_count {} *x_6_1_2; } x6; struct shared_ptr<ggl::IndexData> { struct IndexData {} *x_7_1_1; struct __shared_weak_count {} *x_7_1_2; } x7; struct shared_ptr<ggl::Texture::Pos2DUVVertexData> { struct Pos2DUVVertexData {} *x_8_1_1; struct __shared_weak_count {} *x_8_1_2; } x8; } *_unitMesh;
+    struct Pos2DUVMesh { int (**x1)(); char *x2; int (**x3)(); struct ResourceManager {} *x4; struct RenderResource {} *x5; struct MeshCReflection {} *x6; struct vector<std::__1::shared_ptr<ggl::VertexData>, std::__1::allocator<std::__1::shared_ptr<ggl::VertexData> > > { struct shared_ptr<ggl::VertexData> {} *x_7_1_1; struct shared_ptr<ggl::VertexData> {} *x_7_1_2; struct __compressed_pair<std::__1::shared_ptr<ggl::VertexData> *, std::__1::allocator<std::__1::shared_ptr<ggl::VertexData> > > { struct shared_ptr<ggl::VertexData> {} *x_3_2_1; } x_7_1_3; } x7; struct shared_ptr<ggl::IndexData> { struct IndexData {} *x_8_1_1; struct __shared_weak_count {} *x_8_1_2; } x8; } *_unitMesh;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property unsigned long long mapLayerPosition;
-@property BOOL rasterViewer;
-@property(getter=isShowingNoDataPlaceholders,readonly) BOOL showingNoDataPlaceholders;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned long long mapLayerPosition;
+@property (nonatomic) BOOL rasterViewer;
+@property (getter=isShowingNoDataPlaceholders, readonly) BOOL showingNoDataPlaceholders;
+@property (readonly) Class superclass;
 
 + (BOOL)reloadOnStylesheetChange;
 
@@ -59,7 +52,7 @@
 - (void)setMapLayerPosition:(unsigned long long)arg1;
 - (void)setRasterViewer:(BOOL)arg1;
 - (BOOL)shouldEnableCLUT;
-- (id)styleManager;
+- (struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; })styleManager;
 - (void)stylesheetDidChange;
 
 @end

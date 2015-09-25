@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOLocation, NSString;
-
 @interface GEOAddressCorrectionInitResponse : PBCodable <NSCopying> {
+    NSMutableArray *_address;
     NSString *_addressID;
     GEOLocation *_addressLocation;
     struct { 
@@ -15,17 +14,23 @@
     int _statusCode;
 }
 
-@property(retain) NSString * addressID;
-@property(retain) GEOLocation * addressLocation;
-@property(readonly) BOOL hasAddressID;
-@property(readonly) BOOL hasAddressLocation;
-@property BOOL hasNumberOfVisitsBucketSize;
-@property BOOL hasStatusCode;
-@property unsigned int numberOfVisitsBucketSize;
-@property int statusCode;
+@property (nonatomic, retain) NSMutableArray *address;
+@property (nonatomic, retain) NSString *addressID;
+@property (nonatomic, retain) GEOLocation *addressLocation;
+@property (nonatomic, readonly) BOOL hasAddressID;
+@property (nonatomic, readonly) BOOL hasAddressLocation;
+@property (nonatomic) BOOL hasNumberOfVisitsBucketSize;
+@property (nonatomic) BOOL hasStatusCode;
+@property (nonatomic) unsigned int numberOfVisitsBucketSize;
+@property (nonatomic) int statusCode;
 
+- (void)addAddress:(id)arg1;
+- (id)address;
+- (id)addressAtIndex:(unsigned int)arg1;
+- (unsigned int)addressCount;
 - (id)addressID;
 - (id)addressLocation;
+- (void)clearAddress;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
@@ -40,6 +45,7 @@
 - (void)mergeFrom:(id)arg1;
 - (unsigned int)numberOfVisitsBucketSize;
 - (BOOL)readFrom:(id)arg1;
+- (void)setAddress:(id)arg1;
 - (void)setAddressID:(id)arg1;
 - (void)setAddressLocation:(id)arg1;
 - (void)setHasNumberOfVisitsBucketSize:(BOOL)arg1;

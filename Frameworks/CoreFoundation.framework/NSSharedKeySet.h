@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@class NSSharedKeySet;
-
-@interface NSSharedKeySet : NSObject <NSCoding, NSCopying, NSFastEnumeration> {
+@interface NSSharedKeySet : NSObject <NSCopying, NSFastEnumeration, NSSecureCoding> {
     unsigned int _M;
     double _c;
     unsigned int _factor;
@@ -20,28 +18,28 @@
 @property unsigned int M;
 @property double c;
 @property unsigned int factor;
-@property char * g;
-@property id* keys;
+@property char *g;
+@property id*keys;
 @property unsigned int numKey;
-@property void* rankTable;
-@property unsigned int* seeds;
+@property void*rankTable;
+@property unsigned int*seeds;
 @property unsigned char select;
-@property(retain) NSSharedKeySet * subSharedKeySet;
+@property (retain) NSSharedKeySet *subSharedKeySet;
 
 + (id)keySetWithKeys:(id)arg1;
++ (BOOL)supportsSecureCoding;
 
 - (unsigned int)M;
 - (id)allKeys;
 - (double)c;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)factor;
 - (void)finalize;
 - (char *)g;
-- (id)generateSubclassCode:(id)arg1 printChainOfKeySetIfPossible:(BOOL)arg2 printSpecialCode:(unsigned int)arg3;
 - (unsigned int)hash;
 - (unsigned int)indexForKey:(id)arg1;
 - (id)init;

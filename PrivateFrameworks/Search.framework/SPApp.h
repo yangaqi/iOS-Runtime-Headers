@@ -2,14 +2,25 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSString, NSURL;
+@interface SPApp : SPProxyObject <PRSApp, SearchUICardPunchout>
 
-@interface SPApp : SPProxyObject <PRSApp> {
-}
+@property (nonatomic, retain) NSString *bundle_id;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSURL *installURL;
+@property (nonatomic, retain) NSURL *install_url;
+@property (nonatomic, retain) NSString *label;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, readonly) NSString *punchoutLabel;
+@property (nonatomic, readonly) NSURL *punchoutURL;
+@property (nonatomic, retain) NSURL *punchout_uri;
+@property (readonly) Class superclass;
 
-@property(retain) NSString * bundle_id;
-@property(retain) NSURL * install_url;
-@property(retain) NSString * name;
-@property(retain) NSURL * punchout_uri;
+// Image: /System/Library/PrivateFrameworks/SpotlightUI.framework/SpotlightUI
+
+- (id)installURL;
+- (id)punchoutLabel;
+- (id)punchoutURL;
 
 @end

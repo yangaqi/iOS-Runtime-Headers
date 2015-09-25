@@ -2,10 +2,11 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSUTemporaryDocumentCacheManager : TSUTemporaryDirectoryManager {
-}
+@interface TSUTemporaryDocumentCacheManager : TSUTemporaryDirectoryManager
 
 + (id)baseDirectoryURL;
 + (id)sharedManager;
+
+- (id)newDirectoryForDocumentUUID:(id)arg1;
 
 @end

@@ -2,19 +2,22 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class CLLocation, NSString;
+@interface EKStructuredLocation : EKObject <NSCopying>
 
-@interface EKStructuredLocation : EKObject <NSCopying> {
-}
+@property (nonatomic, retain) NSString *address;
+@property (nonatomic, copy) NSString *addressBookEntityID;
+@property (nonatomic, retain) CLLocation *geoLocation;
+@property (nonatomic, readonly) BOOL hasKnownSpatialData;
+@property (nonatomic, readonly) BOOL isStructured;
+@property (nonatomic, copy) NSData *mapKitHandle;
+@property (nonatomic) double radius;
+@property (nonatomic, retain) NSString *routing;
+@property (nonatomic, retain) NSString *title;
 
-@property(retain) NSString * address;
-@property(copy) NSString * addressBookEntityID;
-@property(retain) CLLocation * geoLocation;
-@property(readonly) BOOL isStructured;
-@property double radius;
-@property(retain) NSString * routing;
-@property(retain) NSString * title;
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
 
++ (id)_stringByStrippingCongtrolCharactersFromString:(id)arg1;
++ (id)locationWithMapItem:(id)arg1;
 + (id)locationWithTitle:(id)arg1;
 
 - (id)_asCalLocation;
@@ -25,19 +28,27 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)geoLocation;
-- (id)humanReadableContactString;
+- (id)geoURLString;
+- (BOOL)hasKnownSpatialData;
 - (id)init;
 - (BOOL)isEqualToLocation:(id)arg1;
 - (BOOL)isStructured;
+- (id)mapKitHandle;
 - (double)radius;
 - (id)routing;
 - (void)setAddress:(id)arg1;
 - (void)setAddressBookEntityID:(id)arg1;
 - (void)setGeoLocation:(id)arg1;
+- (void)setMapKitHandle:(id)arg1;
 - (void)setRadius:(double)arg1;
 - (void)setRouting:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (id)title;
+- (void)updateFromMapItem:(id)arg1;
 - (void)updatePersistentObject;
+
+// Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+
+- (id)humanReadableContactString;
 
 @end

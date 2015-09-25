@@ -2,11 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIColor, UIImage, UILabel, UITableView, UIView, _UITableViewHeaderFooterViewLabel;
-
 @interface UITableViewHeaderFooterView : UIView <UITableViewSubviewReusing> {
     UIImage *_backgroundImage;
     UIView *_backgroundView;
+    <UITableViewConstants> *_constants;
     UIView *_contentView;
     _UITableViewHeaderFooterViewLabel *_detailLabel;
     struct CGRect { 
@@ -26,6 +25,8 @@
         unsigned int floating : 1; 
         unsigned int stripPadding : 1; 
         unsigned int isTopHeader : 1; 
+        unsigned int didSetSectionHeader : 1; 
+        unsigned int didSetupDefaults : 1; 
     } _headerFooterFlags;
     _UITableViewHeaderFooterViewLabel *_label;
     float _maxTitleWidth;
@@ -42,56 +43,63 @@
     UIColor *_tintColor;
 }
 
-@property(retain) UIImage * backgroundImage;
-@property(retain) UIView * backgroundView;
-@property(retain,readonly) UIView * contentView;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain,readonly) UILabel * detailTextLabel;
-@property BOOL floating;
-@property(readonly) unsigned int hash;
-@property(getter=_marginWidth,setter=_setMarginWidth:) float marginWidth;
-@property float maxTitleWidth;
-@property(copy) NSString * reuseIdentifier;
-@property(getter=_rightMarginWidth,setter=_setRightMarginWidth:) float rightMarginWidth;
-@property BOOL sectionHeader;
-@property(getter=_stripPadding,setter=_setStripPadding:) BOOL stripPadding;
-@property(readonly) Class superclass;
-@property UITableView * tableView;
-@property int tableViewStyle;
-@property(copy) NSString * text;
-@property int textAlignment;
-@property(retain,readonly) UILabel * textLabel;
-@property(retain) UIColor * tintColor;
-@property(getter=_isTopHeader,setter=_setTopHeader:) BOOL topHeader;
+@property (nonatomic, retain) UIImage *backgroundImage;
+@property (nonatomic, retain) UIView *backgroundView;
+@property (getter=_constants, setter=_setConstants:, nonatomic, retain) <UITableViewConstants> *constants;
+@property (nonatomic, readonly) UIView *contentView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) UILabel *detailTextLabel;
+@property (nonatomic) BOOL floating;
+@property (readonly) unsigned int hash;
+@property (getter=_marginWidth, setter=_setMarginWidth:, nonatomic) float marginWidth;
+@property (nonatomic) float maxTitleWidth;
+@property (nonatomic, copy) NSString *reuseIdentifier;
+@property (getter=_rightMarginWidth, setter=_setRightMarginWidth:, nonatomic) float rightMarginWidth;
+@property (nonatomic) BOOL sectionHeader;
+@property (getter=_stripPadding, setter=_setStripPadding:, nonatomic) BOOL stripPadding;
+@property (readonly) Class superclass;
+@property (nonatomic) UITableView *tableView;
+@property (nonatomic) int tableViewStyle;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) int textAlignment;
+@property (nonatomic, readonly) UILabel *textLabel;
+@property (nonatomic, retain) UIColor *tintColor;
+@property (getter=_isTopHeader, setter=_setTopHeader:, nonatomic) BOOL topHeader;
 
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
++ (id)_defaultFontForHeaderFooterView:(id)arg1;
 + (id)_defaultFontForTableViewStyle:(int)arg1 isSectionHeader:(BOOL)arg2;
-+ (id)_defaultPlainHeaderFooterFont;
 + (id)_defaultTextColorForTableViewStyle:(int)arg1 isSectionHeader:(BOOL)arg2;
 
+- (void).cxx_destruct;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_backgroundRect;
+- (id)_constants;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_detailLabelFrame;
 - (struct CGSize { float x1; float x2; })_detailTextSizeForWidth:(float)arg1;
 - (void)_invalidateDetailLabelBackgroundColor;
 - (void)_invalidateLabelBackgroundColor;
 - (BOOL)_isTopHeader;
+- (BOOL)_isTransparentFocusRegion;
 - (id)_label:(BOOL)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_labelFrame;
 - (float)_marginWidth;
 - (float)_rightMarginWidth;
 - (id)_scriptingInfo;
 - (void)_setBackgroundViewColor:(id)arg1;
+- (void)_setConstants:(id)arg1;
 - (void)_setMarginWidth:(float)arg1;
 - (void)_setRightMarginWidth:(float)arg1;
 - (void)_setStripPadding:(BOOL)arg1;
 - (void)_setTopHeader:(BOOL)arg1;
 - (void)_setupBackgroundView;
+- (void)_setupDefaultsIfNecessary;
 - (void)_setupLabelAppearance;
 - (struct CGSize { float x1; float x2; })_sizeThatFits:(struct CGSize { float x1; float x2; })arg1 stripPaddingForAbuttingView:(BOOL)arg2 isTopHeader:(BOOL)arg3;
 - (BOOL)_stripPadding;
 - (void)_tableViewDidUpdateMarginWidth;
 - (struct CGSize { float x1; float x2; })_textSizeForWidth:(float)arg1;
-- (BOOL)_transparentFocusContainer;
 - (void)_updateBackgroundImage;
 - (void)_updateContentAndBackgroundView;
 - (void)_updateDetailLabelBackgroundColor;
@@ -103,12 +111,13 @@
 - (id)backgroundImage;
 - (id)backgroundView;
 - (id)contentView;
-- (void)dealloc;
 - (id)detailTextLabel;
 - (BOOL)floating;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frame;
+- (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithReuseIdentifier:(id)arg1;
+- (void)layoutMarginsDidChange;
 - (void)layoutSubviews;
 - (float)maxTitleWidth;
 - (void)prepareForReuse;
@@ -137,5 +146,9 @@
 - (int)textAlignment;
 - (id)textLabel;
 - (id)tintColor;
+
+// Image: /System/Library/Frameworks/ContactsUI.framework/ContactsUI
+
+- (void)_cnui_applyContactStyle;
 
 @end

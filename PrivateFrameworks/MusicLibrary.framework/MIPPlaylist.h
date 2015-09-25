@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/MusicLibrary.framework/MusicLibrary
  */
 
-@class MIPMultiverseIdentifier, MIPSmartPlaylistInfo, NSMutableArray, NSString;
-
 @interface MIPPlaylist : PBCodable <NSCopying> {
     NSMutableArray *_childIdentifiers;
     NSString *_cloudGlobalId;
+    BOOL _cloudIsCuratorPlaylist;
+    BOOL _cloudIsSubscribed;
     int _distinguishedKind;
     MIPMultiverseIdentifier *_geniusSeedTrackIdentifier;
     struct { 
@@ -14,6 +14,8 @@
         unsigned int distinguishedKind : 1; 
         unsigned int sortType : 1; 
         unsigned int type : 1; 
+        unsigned int cloudIsCuratorPlaylist : 1; 
+        unsigned int cloudIsSubscribed : 1; 
         unsigned int hidden : 1; 
         unsigned int reversedSorting : 1; 
     } _has;
@@ -28,30 +30,34 @@
     int _type;
 }
 
-@property(retain) NSMutableArray * childIdentifiers;
-@property(retain) NSString * cloudGlobalId;
-@property int distinguishedKind;
-@property(retain) MIPMultiverseIdentifier * geniusSeedTrackIdentifier;
-@property(readonly) BOOL hasCloudGlobalId;
-@property BOOL hasDistinguishedKind;
-@property(readonly) BOOL hasGeniusSeedTrackIdentifier;
-@property BOOL hasHidden;
-@property(readonly) BOOL hasName;
-@property(readonly) BOOL hasParentIdentifier;
-@property BOOL hasReversedSorting;
-@property(readonly) BOOL hasSmartPlaylistInfo;
-@property BOOL hasSortType;
-@property BOOL hasStoreId;
-@property BOOL hasType;
-@property BOOL hidden;
-@property(retain) NSMutableArray * items;
-@property(retain) NSString * name;
-@property(retain) MIPMultiverseIdentifier * parentIdentifier;
-@property BOOL reversedSorting;
-@property(retain) MIPSmartPlaylistInfo * smartPlaylistInfo;
-@property int sortType;
-@property long long storeId;
-@property int type;
+@property (nonatomic, retain) NSMutableArray *childIdentifiers;
+@property (nonatomic, retain) NSString *cloudGlobalId;
+@property (nonatomic) BOOL cloudIsCuratorPlaylist;
+@property (nonatomic) BOOL cloudIsSubscribed;
+@property (nonatomic) int distinguishedKind;
+@property (nonatomic, retain) MIPMultiverseIdentifier *geniusSeedTrackIdentifier;
+@property (nonatomic, readonly) BOOL hasCloudGlobalId;
+@property (nonatomic) BOOL hasCloudIsCuratorPlaylist;
+@property (nonatomic) BOOL hasCloudIsSubscribed;
+@property (nonatomic) BOOL hasDistinguishedKind;
+@property (nonatomic, readonly) BOOL hasGeniusSeedTrackIdentifier;
+@property (nonatomic) BOOL hasHidden;
+@property (nonatomic, readonly) BOOL hasName;
+@property (nonatomic, readonly) BOOL hasParentIdentifier;
+@property (nonatomic) BOOL hasReversedSorting;
+@property (nonatomic, readonly) BOOL hasSmartPlaylistInfo;
+@property (nonatomic) BOOL hasSortType;
+@property (nonatomic) BOOL hasStoreId;
+@property (nonatomic) BOOL hasType;
+@property (nonatomic) BOOL hidden;
+@property (nonatomic, retain) NSMutableArray *items;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) MIPMultiverseIdentifier *parentIdentifier;
+@property (nonatomic) BOOL reversedSorting;
+@property (nonatomic, retain) MIPSmartPlaylistInfo *smartPlaylistInfo;
+@property (nonatomic) int sortType;
+@property (nonatomic) long long storeId;
+@property (nonatomic) int type;
 
 - (void).cxx_destruct;
 - (void)addChildIdentifiers:(id)arg1;
@@ -62,6 +68,8 @@
 - (void)clearChildIdentifiers;
 - (void)clearItems;
 - (id)cloudGlobalId;
+- (BOOL)cloudIsCuratorPlaylist;
+- (BOOL)cloudIsSubscribed;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
@@ -69,6 +77,8 @@
 - (int)distinguishedKind;
 - (id)geniusSeedTrackIdentifier;
 - (BOOL)hasCloudGlobalId;
+- (BOOL)hasCloudIsCuratorPlaylist;
+- (BOOL)hasCloudIsSubscribed;
 - (BOOL)hasDistinguishedKind;
 - (BOOL)hasGeniusSeedTrackIdentifier;
 - (BOOL)hasHidden;
@@ -92,8 +102,12 @@
 - (BOOL)reversedSorting;
 - (void)setChildIdentifiers:(id)arg1;
 - (void)setCloudGlobalId:(id)arg1;
+- (void)setCloudIsCuratorPlaylist:(BOOL)arg1;
+- (void)setCloudIsSubscribed:(BOOL)arg1;
 - (void)setDistinguishedKind:(int)arg1;
 - (void)setGeniusSeedTrackIdentifier:(id)arg1;
+- (void)setHasCloudIsCuratorPlaylist:(BOOL)arg1;
+- (void)setHasCloudIsSubscribed:(BOOL)arg1;
 - (void)setHasDistinguishedKind:(BOOL)arg1;
 - (void)setHasHidden:(BOOL)arg1;
 - (void)setHasReversedSorting:(BOOL)arg1;

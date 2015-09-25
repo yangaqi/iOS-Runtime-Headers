@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSRegularExpression;
-
 @interface CalDAVConcreteServerVersion : CalDAVServerVersion {
     NSRegularExpression *_regularExpression;
 }
 
-@property(retain) NSRegularExpression * regularExpression;
+@property (nonatomic, retain) NSRegularExpression *regularExpression;
 
 + (id)prototypes;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)regularExpression;
 - (void)setRegularExpression:(id)arg1;
 

@@ -2,19 +2,17 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKShareePickerViewControllerDelegate>, EKCalendarShareePicker, NSArray, NSString;
-
 @interface EKShareePickerViewController : UIViewController <EKEventAttendeePickerDelegate> {
     <EKShareePickerViewControllerDelegate> *_delegate;
     EKCalendarShareePicker *_picker;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <EKShareePickerViewControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) NSArray * sharees;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKShareePickerViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *sharees;
+@property (readonly) Class superclass;
 
 + (BOOL)_shouldForwardViewWillTransitionToSize;
 
@@ -24,8 +22,8 @@
 - (void)add;
 - (void)cancel;
 - (id)delegate;
-- (void)eventAttendeePicker:(id)arg1 cacheValidationStatus:(int)arg2 forEmail:(id)arg3;
-- (int)eventAttendeePicker:(id)arg1 getValidationStatusForEmailAddress:(id)arg2;
+- (void)eventAttendeePicker:(id)arg1 cacheValidationStatus:(unsigned int)arg2 forEmail:(id)arg3;
+- (unsigned int)eventAttendeePicker:(id)arg1 getValidationStatusForEmailAddress:(id)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)setDelegate:(id)arg1;

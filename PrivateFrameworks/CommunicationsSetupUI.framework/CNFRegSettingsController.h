@@ -2,22 +2,10 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray, NSMutableArray, NSNumber, NSString, PSSpecifier, TUAccountsController;
-
-@interface CNFRegSettingsController : CNFRegListController <CNFRegFirstRunDelegate, CNFRegViewAccountControllerDelegate, CNFRegWizardControllerDelegate> {
+@interface CNFRegSettingsController : CNFRegListController <AKAppleIDAuthenticationDelegate, CNFRegFirstRunDelegate, CNFRegViewAccountControllerDelegate, CNFRegWizardControllerDelegate> {
     NSArray *_accountGroupSpecifiers;
-    TUAccountsController *_accountsController;
     PSSpecifier *_addAddressButtonSpecifier;
     NSMutableArray *_addresses;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _alertHandler;
-
     NSArray *_aliasGroupSpecifiers;
     NSArray *_blacklistGroupSpecifiers;
     PSSpecifier *_blankAddressSpecifier;
@@ -38,18 +26,17 @@
     BOOL _showReceiveRelayCalls;
 }
 
-@property(retain) TUAccountsController * accountsController;
-@property(copy) id alertHandler;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * pendingAddress;
-@property BOOL showEnableSwitch;
-@property(readonly) BOOL showReceiveRelayCalls;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *pendingAddress;
+@property (nonatomic) BOOL showEnableSwitch;
+@property (nonatomic, readonly) BOOL showReceiveRelayCalls;
+@property (readonly) Class superclass;
 
 + (BOOL)_shouldForwardViewWillTransitionToSize;
 
+- (void).cxx_destruct;
 - (BOOL)_allAccountsAreDeactivated;
 - (id)_appleIDAccounts;
 - (void)_buildSpecifierCache:(id)arg1;
@@ -57,6 +44,7 @@
 - (void)_cacheSpecifierGroup:(id)arg1 withSpecifiers:(id)arg2;
 - (BOOL)_canDeselectAlias:(id)arg1;
 - (void)_clearBlankAliasField;
+- (void)_handleAccountRegistrarChanged;
 - (void)_handleDeactivation:(id)arg1;
 - (void)_handleFaceTimeCTRegistrationStatusChanged;
 - (void)_handleFaceTimeEntitlementStatusChanged;
@@ -65,13 +53,14 @@
 - (void)_handleOutgoingRelayCallerIDChanged;
 - (void)_handleRelayCapabilitiesChanged;
 - (void)_handleSuccessfulAccountReactivation:(id)arg1;
+- (void)_handleThumperCapabilitiesChanged;
 - (void)_hideLocaleChooser;
 - (id)_localeChooserForAccount:(id)arg1;
 - (id)_operationalAccounts;
 - (id)_operationalAccountsForService:(int)arg1;
 - (BOOL)_popFromSettingsAnimated:(BOOL)arg1;
 - (void)_refreshFaceTimeSettingsDelayed:(id)arg1;
-- (void)_reloadSpecifier:(id)arg1 withBlock:(id)arg2;
+- (void)_reloadSpecifier:(id)arg1 withBlock:(id /* block */)arg2;
 - (void)_setupAccountHandlers;
 - (void)_setupAccountHandlersForDisabledOperation;
 - (void)_setupAccountHandlersForDisabling;
@@ -81,6 +70,7 @@
 - (BOOL)_shouldUseDisabledHandlers;
 - (void)_showAccountAlertForAccount:(id)arg1;
 - (void)_showAliasValidationError:(id)arg1;
+- (void)_showAuthKitSignInIfNecessary;
 - (void)_showLocaleChooserWithAccount:(id)arg1;
 - (void)_showSignInController;
 - (void)_showViewAccountControllerForAccount:(id)arg1;
@@ -94,15 +84,13 @@
 - (id)_useableAccounts;
 - (id)accountSpecifiers;
 - (void)accountTappedWithSpecifier:(id)arg1;
-- (id)accountsController;
 - (void)addAddressTapped:(id)arg1;
 - (BOOL)additionalAliasesAvailable;
-- (id)alertHandler;
-- (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (id)aliasDetailControllerForSpecifier:(id)arg1;
 - (id)aliasForSpecifier:(id)arg1;
 - (id)aliasSpecifiers;
 - (id)aliasWithIdentifier:(id)arg1;
+- (BOOL)authenticationController:(id)arg1 shouldContinueWithAuthenticationResults:(id)arg2 error:(id)arg3 forContext:(id)arg4;
 - (id)blankAliasTextField;
 - (id)bundle;
 - (id)callerIdAliasSpecifiers;
@@ -145,8 +133,6 @@
 - (void)refreshFaceTimeSettingsWithDelayAnimated:(BOOL)arg1;
 - (void)refreshReceiveRelayCallsSettingsAnimated:(BOOL)arg1;
 - (void)returnKeyPressed:(id)arg1;
-- (void)setAccountsController:(id)arg1;
-- (void)setAlertHandler:(id)arg1;
 - (void)setAliasSelected:(id)arg1;
 - (void)setCallerId:(id)arg1;
 - (void)setFaceTimeEnabled:(id)arg1 specifier:(id)arg2;
@@ -158,6 +144,7 @@
 - (BOOL)shouldReloadSpecifiersOnResume;
 - (BOOL)shouldShowBlacklistSettings;
 - (BOOL)shouldShowReceiveRelayCalls;
+- (BOOL)shouldShowReceiveThumperCalls;
 - (BOOL)shouldShowReplyWithMessage;
 - (BOOL)showAccounts:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)showAddAliasButton:(BOOL)arg1 animated:(BOOL)arg2;

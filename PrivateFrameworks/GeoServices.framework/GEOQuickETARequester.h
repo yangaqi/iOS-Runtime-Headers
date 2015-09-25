@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEODirectionsRouteRequest, GEOETARequest, GEOQuickETARequest, NSString;
-
 @interface GEOQuickETARequester : NSObject {
     GEODirectionsRouteRequest *_directionsETARequest;
     NSString *_loggingFacility;
@@ -11,12 +9,12 @@
     GEOETARequest *_simpleETARequest;
 }
 
-@property(copy) NSString * loggingFacility;
+@property (nonatomic, copy) NSString *loggingFacility;
 
-- (void)_calculateRoutingETAWithHandler:(id)arg1;
-- (void)_calculateSimpleETAWithHandler:(id)arg1;
-- (void)calculateETALocalizedDescriptionFromOrigin:(id)arg1 toPLOI:(id)arg2 handler:(id)arg3;
-- (void)calculateETAWithResponseHandler:(id)arg1;
+- (void)_calculateRoutingETAWithHandler:(id /* block */)arg1;
+- (void)_calculateSimpleETAFromAPI:(BOOL)arg1 WithHandler:(id /* block */)arg2;
+- (void)calculateETAFromAPI:(BOOL)arg1 WithResponseHandler:(id /* block */)arg2;
+- (void)calculateETAWithResponseHandler:(id /* block */)arg1;
 - (void)cancel;
 - (void)dealloc;
 - (id)initWithRequest:(id)arg1;

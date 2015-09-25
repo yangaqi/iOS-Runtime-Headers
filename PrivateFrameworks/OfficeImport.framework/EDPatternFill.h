@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDColorReference;
-
 @interface EDPatternFill : EDFill {
     EDColorReference *mBackColorReference;
     EDColorReference *mForeColorReference;
@@ -19,6 +17,7 @@
 - (id)backColorReference;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)foreColor;
 - (id)foreColorReference;
 - (unsigned int)hash;

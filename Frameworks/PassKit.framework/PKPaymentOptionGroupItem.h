@@ -2,24 +2,24 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class NSString;
-
 @interface PKPaymentOptionGroupItem : NSObject {
+    BOOL _deletable;
     NSString *_detail;
     BOOL _editable;
     NSString *_groupType;
     id _referenceObject;
+    BOOL _selectable;
     NSString *_title;
 }
 
-@property(readonly) NSString * detail;
-@property(getter=isEditable) BOOL editable;
-@property(readonly) NSString * groupType;
-@property(readonly) BOOL isDeletable;
-@property(readonly) BOOL isSelectable;
-@property(readonly) id referenceObject;
-@property(readonly) Class tableViewCellClass;
-@property(readonly) NSString * title;
+@property (getter=isDeletable, nonatomic) BOOL deletable;
+@property (nonatomic, readonly) NSString *detail;
+@property (getter=isEditable, nonatomic) BOOL editable;
+@property (nonatomic, readonly) NSString *groupType;
+@property (nonatomic, readonly) id referenceObject;
+@property (getter=isSelectable, nonatomic) BOOL selectable;
+@property (nonatomic, readonly) Class tableViewCellClass;
+@property (nonatomic, readonly) NSString *title;
 
 + (id)_singleLineGroupTypes;
 
@@ -34,7 +34,9 @@
 - (BOOL)isEqualToOptionGroupItem:(id)arg1;
 - (BOOL)isSelectable;
 - (id)referenceObject;
+- (void)setDeletable:(BOOL)arg1;
 - (void)setEditable:(BOOL)arg1;
+- (void)setSelectable:(BOOL)arg1;
 - (Class)tableViewCellClass;
 - (id)title;
 

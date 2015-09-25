@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class WDParagraph;
-
 @interface WDRun : NSObject {
     WDParagraph *mParagraph;
 }
 
 - (void)clearProperties;
 - (void)dealloc;
+- (id)description;
 - (id)init;
 - (id)initWithParagraph:(id)arg1;
 - (BOOL)isEmpty;

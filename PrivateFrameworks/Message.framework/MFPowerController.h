@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class CDSession, NSCountedSet, NSObject<OS_dispatch_queue>, NSString;
-
 @interface MFPowerController : NSObject <MFDiagnosticsGenerator> {
     unsigned int _appState;
     CDSession *_duetSession;
@@ -16,10 +14,10 @@
     NSObject<OS_dispatch_queue> *_queue;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (void)powerlog:(id)arg1 eventData:(id)arg2;
 + (id)sharedInstance;
@@ -30,6 +28,7 @@
 - (void)_deleteDuetAttributesForAccountWithUniqueId:(id)arg1;
 - (id)_duetAttributeForAccountWithUniqueId:(id)arg1 discretionary:(BOOL)arg2;
 - (void)_initDuet;
+- (void)_lowPowerModeChangedNotification:(id)arg1;
 - (void)_releaseAssertion_nts;
 - (void)_retainAssertion_nts;
 - (void)_setPluggedIn:(unsigned int)arg1;
@@ -38,10 +37,12 @@
 - (void)dealloc;
 - (id)duetIdentifier;
 - (id)init;
+- (BOOL)isBatterySaverModeEnabled;
 - (BOOL)isPluggedIn;
 - (void)recordDuetEventForAccount:(id)arg1 event:(id)arg2;
 - (void)releaseAssertionWithIdentifier:(id)arg1;
 - (void)retainAssertionWithIdentifier:(id)arg1;
 - (void)retainAssertionWithIdentifier:(id)arg1 withAccount:(id)arg2;
+- (void)startListeningForBatterySaverNotifications;
 
 @end

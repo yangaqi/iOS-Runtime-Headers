@@ -2,38 +2,17 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSString, PSLanguageSelector;
-
-@interface PSInternationalLanguageSetupController : PSSetupController <UIActionSheetDelegate, UIAlertViewDelegate> {
+@interface PSInternationalLanguageSetupController : PSSetupController {
     PSLanguageSelector *_languageSelector;
-    NSString *_languageToSet;
-    BOOL _notOfficialLanguage;
-    BOOL _useOfficialLanguages;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) PSLanguageSelector * languageSelector;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) PSLanguageSelector *languageSelector;
 
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
-- (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
-- (void)changeLanguageWithIndex:(unsigned int)arg1 tag:(unsigned int)arg2;
+- (void).cxx_destruct;
 - (void)commit;
-- (void)dealloc;
-- (void)didFinishCommit;
-- (BOOL)disablesAutomaticKeyboardDismissal;
-- (id)init;
-- (id)initWithOfficialLanguages;
-- (id)language:(id)arg1;
 - (id)languageSelector;
-- (void)saveLanguage:(BOOL)arg1;
 - (void)setLanguage:(id)arg1 specifier:(id)arg2;
 - (void)setLanguageSelector:(id)arg1;
-- (void)setNotOfficialLanguage:(BOOL)arg1;
 - (void)setupController;
-- (void)showBlackViewWithLabel:(id)arg1 moveLanguageToTop:(BOOL)arg2 withLanguageIdentifier:(id)arg3;
-- (BOOL)useOfficialLanguages;
 
 @end

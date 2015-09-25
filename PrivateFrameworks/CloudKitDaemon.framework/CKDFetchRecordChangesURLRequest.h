@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class CKRecordZoneID, NSArray, NSData, NSMutableArray;
-
 @interface CKDFetchRecordChangesURLRequest : CKDURLRequest {
     int _changeTypes;
     CKRecordZoneID *_recordZoneID;
@@ -16,21 +14,23 @@
     NSData *_resultServerChangeTokenData;
     unsigned int _resultsLimit;
     NSData *_serverChangeTokenData;
+    BOOL _shouldFetchAssetContent;
     int _status;
 }
 
-@property int changeTypes;
-@property(retain) CKRecordZoneID * recordZoneID;
-@property(retain) NSArray * requestedFields;
-@property(readonly) NSArray * resultChangedRecords;
-@property(readonly) NSArray * resultChangedShares;
-@property(retain) NSData * resultClientChangeTokenData;
-@property(readonly) NSArray * resultDeletedRecordIdentifiers;
-@property(readonly) NSArray * resultDeletedShareIdentifiers;
-@property(retain) NSData * resultServerChangeTokenData;
-@property unsigned int resultsLimit;
-@property(retain) NSData * serverChangeTokenData;
-@property int status;
+@property (nonatomic) int changeTypes;
+@property (nonatomic, retain) CKRecordZoneID *recordZoneID;
+@property (nonatomic, retain) NSArray *requestedFields;
+@property (nonatomic, readonly) NSArray *resultChangedRecords;
+@property (nonatomic, readonly) NSArray *resultChangedShares;
+@property (nonatomic, retain) NSData *resultClientChangeTokenData;
+@property (nonatomic, readonly) NSArray *resultDeletedRecordIdentifiers;
+@property (nonatomic, readonly) NSArray *resultDeletedShareIdentifiers;
+@property (nonatomic, retain) NSData *resultServerChangeTokenData;
+@property (nonatomic) unsigned int resultsLimit;
+@property (nonatomic, retain) NSData *serverChangeTokenData;
+@property (nonatomic) BOOL shouldFetchAssetContent;
+@property (nonatomic) int status;
 
 - (void).cxx_destruct;
 - (int)changeTypes;
@@ -56,7 +56,9 @@
 - (void)setResultServerChangeTokenData:(id)arg1;
 - (void)setResultsLimit:(unsigned int)arg1;
 - (void)setServerChangeTokenData:(id)arg1;
+- (void)setShouldFetchAssetContent:(BOOL)arg1;
 - (void)setStatus:(int)arg1;
+- (BOOL)shouldFetchAssetContent;
 - (int)status;
 - (id)zoneIDsToLock;
 

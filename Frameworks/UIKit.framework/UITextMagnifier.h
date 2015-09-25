@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIResponder<UITextInput>, UITextMagnifierTimeWeightedPoint, UIView;
-
 @interface UITextMagnifier : UIView {
     struct CGPoint { 
         float x; 
@@ -26,23 +24,25 @@
     UITextMagnifierTimeWeightedPoint *_weightedPoint;
 }
 
-@property struct CGPoint { float x1; float x2; } animationPoint;
-@property struct CGPoint { float x1; float x2; } magnificationPoint;
-@property(retain) UIView * target;
-@property(readonly) struct CGPoint { float x1; float x2; } terminalPoint;
-@property(readonly) BOOL terminalPointPlacedCarefully;
-@property(retain) UIResponder<UITextInput> * text;
+@property (nonatomic) struct CGPoint { float x1; float x2; } animationPoint;
+@property (nonatomic, readonly) BOOL isHorizontal;
+@property (nonatomic) struct CGPoint { float x1; float x2; } magnificationPoint;
+@property (nonatomic, retain) UIView *target;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } terminalPoint;
+@property (nonatomic, readonly) BOOL terminalPointPlacedCarefully;
+@property (nonatomic, retain) UIResponder<UITextInput> *text;
 
 + (id)getLoupeBackgroundColor:(id)arg1;
 
+- (void).cxx_destruct;
 - (void)animateToAutoscrollRenderer;
 - (void)animateToMagnifierRenderer;
 - (struct CGPoint { float x1; float x2; })animationPoint;
 - (void)autoscrollWillNotStart;
 - (void)beginMagnifyingTarget:(id)arg1 text:(id)arg2 magnificationPoint:(struct CGPoint { float x1; float x2; })arg3 offset:(struct CGPoint { float x1; float x2; })arg4 animated:(BOOL)arg5;
-- (void)dealloc;
 - (void)detectLostTouches:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (BOOL)isHorizontal;
 - (struct CGPoint { float x1; float x2; })magnificationPoint;
 - (void)postAutoscrollPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)remove;

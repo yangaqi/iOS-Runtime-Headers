@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
  */
 
-@class NSDictionary, NSString;
-
-@interface FigCaptureStillImageSettings : NSObject <NSCoding> {
+@interface FigCaptureStillImageSettings : NSObject <NSCoding, NSCopying> {
     int _HDRMode;
     float *_ISOs;
     int _SISMode;
@@ -14,6 +12,7 @@
     struct { long long x1; int x2; unsigned int x3; long long x4; } *_exposureDurations;
     float *_exposureTargetBiases;
     int _flashMode;
+    BOOL _lensStabilizationDuringBracketEnabled;
     BOOL _noiseReductionEnabled;
     unsigned int _outputFormat;
     unsigned int _outputHeight;
@@ -25,7 +24,9 @@
     float _scaleFactor;
     long long _settingsID;
     unsigned int _shutterSound;
-    long long _stillImageStartTime;
+    BOOL _squareCropEnabled;
+    long long _stillImageCaptureStartTime;
+    long long _stillImageRequestTime;
     BOOL _thumbnailEnabled;
     unsigned int _thumbnailFormat;
     unsigned int _thumbnailHeight;
@@ -37,38 +38,41 @@
     NSString *_yCbCrMatrix;
 }
 
-@property int HDRMode;
-@property(readonly) float* ISOs;
-@property int SISMode;
-@property(readonly) unsigned int bracketImageCount;
-@property(readonly) int bracketType;
-@property(copy) NSString * colorPrimaries;
-@property(readonly) struct { long long x1; int x2; unsigned int x3; long long x4; }* exposureDurations;
-@property(readonly) float* exposureTargetBiases;
-@property int flashMode;
-@property BOOL noiseReductionEnabled;
-@property unsigned int outputFormat;
-@property unsigned int outputHeight;
-@property BOOL outputMirroring;
-@property int outputOrientation;
-@property(readonly) NSDictionary * outputPixelBufferAttributes;
-@property unsigned int outputWidth;
-@property int payloadType;
-@property BOOL providesEV0Image;
-@property float scaleFactor;
-@property long long settingsID;
-@property unsigned int shutterSound;
-@property long long stillImageStartTime;
-@property BOOL thumbnailEnabled;
-@property unsigned int thumbnailFormat;
-@property unsigned int thumbnailHeight;
-@property BOOL thumbnailMirroring;
-@property int thumbnailOrientation;
-@property(readonly) NSDictionary * thumbnailPixelBufferAttributes;
-@property unsigned int thumbnailWidth;
-@property(copy) NSString * transferFunction;
-@property(copy) NSDictionary * vtCompressionProperties;
-@property(copy) NSString * yCbCrMatrix;
+@property (nonatomic) int HDRMode;
+@property (nonatomic, readonly) float*ISOs;
+@property (nonatomic) int SISMode;
+@property (nonatomic, readonly) unsigned int bracketImageCount;
+@property (nonatomic, readonly) int bracketType;
+@property (nonatomic, copy) NSString *colorPrimaries;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; }*exposureDurations;
+@property (nonatomic, readonly) float*exposureTargetBiases;
+@property (nonatomic) int flashMode;
+@property (nonatomic) BOOL lensStabilizationDuringBracketEnabled;
+@property (nonatomic) BOOL noiseReductionEnabled;
+@property (nonatomic) unsigned int outputFormat;
+@property (nonatomic) unsigned int outputHeight;
+@property (nonatomic) BOOL outputMirroring;
+@property (nonatomic) int outputOrientation;
+@property (nonatomic, readonly) NSDictionary *outputPixelBufferAttributes;
+@property (nonatomic) unsigned int outputWidth;
+@property (nonatomic) int payloadType;
+@property (nonatomic) BOOL providesEV0Image;
+@property (nonatomic) float scaleFactor;
+@property (nonatomic) long long settingsID;
+@property (nonatomic) unsigned int shutterSound;
+@property (nonatomic) BOOL squareCropEnabled;
+@property (nonatomic) long long stillImageCaptureStartTime;
+@property (nonatomic) long long stillImageRequestTime;
+@property (nonatomic) BOOL thumbnailEnabled;
+@property (nonatomic) unsigned int thumbnailFormat;
+@property (nonatomic) unsigned int thumbnailHeight;
+@property (nonatomic) BOOL thumbnailMirroring;
+@property (nonatomic) int thumbnailOrientation;
+@property (nonatomic, readonly) NSDictionary *thumbnailPixelBufferAttributes;
+@property (nonatomic) unsigned int thumbnailWidth;
+@property (nonatomic, copy) NSString *transferFunction;
+@property (nonatomic, copy) NSDictionary *vtCompressionProperties;
+@property (nonatomic, copy) NSString *yCbCrMatrix;
 
 - (int)HDRMode;
 - (float*)ISOs;
@@ -77,6 +81,7 @@
 - (unsigned int)bracketImageCount;
 - (int)bracketType;
 - (id)colorPrimaries;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
@@ -85,6 +90,7 @@
 - (int)flashMode;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
+- (BOOL)lensStabilizationDuringBracketEnabled;
 - (BOOL)noiseReductionEnabled;
 - (unsigned int)outputFormat;
 - (unsigned int)outputHeight;
@@ -99,6 +105,7 @@
 - (void)setColorPrimaries:(id)arg1;
 - (void)setFlashMode:(int)arg1;
 - (void)setHDRMode:(int)arg1;
+- (void)setLensStabilizationDuringBracketEnabled:(BOOL)arg1;
 - (void)setNoiseReductionEnabled:(BOOL)arg1;
 - (void)setOutputFormat:(unsigned int)arg1;
 - (void)setOutputHeight:(unsigned int)arg1;
@@ -111,7 +118,9 @@
 - (void)setScaleFactor:(float)arg1;
 - (void)setSettingsID:(long long)arg1;
 - (void)setShutterSound:(unsigned int)arg1;
-- (void)setStillImageStartTime:(long long)arg1;
+- (void)setSquareCropEnabled:(BOOL)arg1;
+- (void)setStillImageCaptureStartTime:(long long)arg1;
+- (void)setStillImageRequestTime:(long long)arg1;
 - (void)setThumbnailEnabled:(BOOL)arg1;
 - (void)setThumbnailFormat:(unsigned int)arg1;
 - (void)setThumbnailHeight:(unsigned int)arg1;
@@ -123,7 +132,9 @@
 - (void)setYCbCrMatrix:(id)arg1;
 - (long long)settingsID;
 - (unsigned int)shutterSound;
-- (long long)stillImageStartTime;
+- (BOOL)squareCropEnabled;
+- (long long)stillImageCaptureStartTime;
+- (long long)stillImageRequestTime;
 - (BOOL)thumbnailEnabled;
 - (unsigned int)thumbnailFormat;
 - (unsigned int)thumbnailHeight;

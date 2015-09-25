@@ -2,19 +2,20 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TSWPPadding;
-
 @interface TSTTextEngineDelegate : NSObject <TSWPTextDelegate> {
+    TSULocale *mLocale;
     float mMaxWidthForChildren;
     TSWPPadding *mPadding;
     int mVerticalAlignment;
 }
 
-@property float maxWidthForChildren;
+@property (nonatomic, readonly) TSULocale *locale;
+@property (nonatomic) float maxWidthForChildren;
 
 - (void)dealloc;
 - (BOOL)forceWesternLineBreaking;
-- (id)initWithPadding:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1 verticalAlignment:(int)arg2;
+- (id)initWithPadding:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1 verticalAlignment:(int)arg2 locale:(id)arg3;
+- (id)locale;
 - (float)maxWidthForChildren;
 - (id)padding;
 - (void)setMaxWidthForChildren:(float)arg1;

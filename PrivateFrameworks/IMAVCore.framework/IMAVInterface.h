@@ -6,24 +6,24 @@
     id _delegate;
 }
 
-@property(readonly) id _controller;
-@property(readonly) unsigned long long capabilities;
-@property(readonly) unsigned long long capabilitiesOfCPU;
-@property(readonly) unsigned long long capabilitiesOfNetwork;
-@property(readonly) id controller;
+@property (nonatomic, readonly) id _controller;
+@property (nonatomic, readonly) unsigned long long capabilities;
+@property (nonatomic, readonly) unsigned long long capabilitiesOfCPU;
+@property (nonatomic, readonly) unsigned long long capabilitiesOfNetwork;
+@property (nonatomic, readonly) id controller;
 @property id delegate;
-@property(readonly) BOOL isAVInterfaceReady;
-@property void* localVideoBackLayer;
-@property void* localVideoLayer;
-@property unsigned int maxBitrate;
-@property(readonly) unsigned int overallChatState;
-@property BOOL shouldKeepCameraRunning;
-@property(readonly) BOOL supportsLayers;
-@property(readonly) BOOL supportsRelay;
-@property(readonly) BOOL systemCanAudioChat;
-@property(readonly) BOOL systemCanVideoChat;
-@property(readonly) BOOL systemSupportsBackFacingCamera;
-@property(readonly) BOOL systemSupportsFrontFacingCamera;
+@property (nonatomic, readonly) BOOL isAVInterfaceReady;
+@property (nonatomic) void*localVideoBackLayer;
+@property (nonatomic) void*localVideoLayer;
+@property (nonatomic) unsigned int maxBitrate;
+@property (nonatomic, readonly) unsigned int overallChatState;
+@property (nonatomic) BOOL shouldKeepCameraRunning;
+@property (nonatomic, readonly) BOOL supportsLayers;
+@property (nonatomic, readonly) BOOL supportsRelay;
+@property (nonatomic, readonly) BOOL systemCanAudioChat;
+@property (nonatomic, readonly) BOOL systemCanVideoChat;
+@property (nonatomic, readonly) BOOL systemSupportsBackFacingCamera;
+@property (nonatomic, readonly) BOOL systemSupportsFrontFacingCamera;
 
 + (id)alloc;
 + (id)sharedInstance;
@@ -52,6 +52,7 @@
 - (unsigned long long)capabilities;
 - (unsigned long long)capabilitiesOfCPU;
 - (unsigned long long)capabilitiesOfNetwork;
+- (void)chatRelayedStatusChanged:(id)arg1;
 - (void)chatStateUpdated;
 - (void)cleanupAVInterface;
 - (id)controller;
@@ -87,9 +88,12 @@
 - (void)setRemoteVideoBackLayer:(void*)arg1 forChat:(id)arg2;
 - (void)setRemoteVideoLayer:(void*)arg1 forChat:(id)arg2;
 - (void)setRemoteVideoLayersFromChat:(id)arg1 toChat:(id)arg2;
+- (void)setRemoteVideoPresentationSize:(struct CGSize { float x1; float x2; })arg1 forChat:(id)arg2;
+- (void)setRemoteVideoPresentationState:(unsigned int)arg1 forChat:(id)arg2;
 - (void)setShouldKeepCameraRunning:(BOOL)arg1;
 - (BOOL)shouldKeepCameraRunning;
 - (void)startInterruptionForChat:(id)arg1;
+- (void)startInterruptionForChat:(id)arg1 withSource:(id)arg2;
 - (BOOL)startPreviewWithError:(id*)arg1;
 - (BOOL)stopPreview;
 - (BOOL)supportsLayers;

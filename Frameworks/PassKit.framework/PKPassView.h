@@ -2,22 +2,12 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <WLCardViewDelegate>, NSString, PKPass, PKPassBackFaceView, PKPassColorProfile, PKPassFaceView, PKPassFrontFaceView, UITapGestureRecognizer;
-
-@interface PKPassView : UIView <PKPassFaceDelegate, UIGestureRecognizerDelegate> {
+@interface PKPassView : UIView <PKPassFaceDelegate, PKPasscodeLockManagerObserver, UIGestureRecognizerDelegate> {
     PKPassBackFaceView *_backFace;
     BOOL _backFaceIsTall;
     PKPassColorProfile *_colorProfile;
     int _contentMode;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _delayedContentModeCanceller;
-
+    id /* block */ _delayedContentModeCanceller;
     struct CGRect { 
         struct CGPoint { 
             float x; 
@@ -36,37 +26,43 @@
     BOOL _isFrontmostPassView;
     PKPassFaceView *_otherFace;
     PKPass *_pass;
+    PKPasscodeLockManager *_passcodeLockManager;
     int _priorContentMode;
     unsigned int _suppressedContent;
     UITapGestureRecognizer *_tapRecognizer;
     PKPassFaceView *_visibleFace;
 }
 
-@property BOOL backFaceIsTall;
-@property int contentMode;
-@property(copy,readonly) NSString * debugDescription;
-@property <WLCardViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) BOOL frontFaceBodyContentCreated;
-@property(readonly) unsigned int hash;
-@property BOOL isFrontmostPassView;
-@property(retain,readonly) PKPass * pass;
-@property(readonly) BOOL showingFront;
-@property(readonly) Class superclass;
-@property unsigned int suppressedContent;
-@property(readonly) NSString * uniqueID;
+@property (nonatomic) BOOL backFaceIsTall;
+@property (nonatomic) int contentMode;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <WLCardViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL frontFaceBodyContentCreated;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isForcedFrontFaceResized;
+@property (nonatomic, readonly) BOOL isFrontFaceResized;
+@property (nonatomic) BOOL isFrontmostPassView;
+@property (nonatomic, readonly, retain) PKPass *pass;
+@property (nonatomic, readonly) BOOL showingFront;
+@property (readonly) Class superclass;
+@property (nonatomic) unsigned int suppressedContent;
+@property (nonatomic, readonly) NSString *uniqueID;
 
 - (void)_applyContentMode:(BOOL)arg1;
 - (void)_flipPass:(BOOL)arg1 fromLeft:(BOOL)arg2 notify:(BOOL)arg3;
 - (int)_frontFaceBackgroundModeForContentMode;
 - (unsigned int)_regionsForCurrentModes;
+- (void)_resizePassAnimated:(BOOL)arg1 notify:(BOOL)arg2;
 - (void)_updateBackFaceSuppressedContent;
 - (void)_updateFrontFaceSuppressedContent;
+- (void)_updateResizeIfNecessary;
 - (BOOL)_visibleFaceShouldClipForCurrentViewMode:(float*)arg1;
 - (void)aidUpdated:(id)arg1;
 - (void)applicationDidEnterBackground:(id)arg1;
 - (BOOL)backFaceIsTall;
 - (BOOL)canFlip;
+- (BOOL)canResize;
 - (int)contentMode;
 - (void)createBackFaceIfNecessary;
 - (void)dealloc;
@@ -79,17 +75,23 @@
 - (id)hitTest:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (id)initWithPass:(id)arg1;
 - (id)initWithPass:(id)arg1 content:(int)arg2;
+- (BOOL)isForcedFrontFaceResized;
+- (BOOL)isFrontFaceResized;
 - (BOOL)isFrontmostPassView;
 - (id)item;
 - (void)layoutSubviews;
 - (id)pass;
+- (BOOL)passFaceBarcodeButtonEnabled;
+- (void)passFaceBarcodeButtonPressed:(id)arg1;
 - (BOOL)passFaceDeleteButtonEnabled;
 - (void)passFaceDeleteButtonPressed:(id)arg1;
 - (void)passFaceFlipButtonPressed:(id)arg1;
 - (void)passFaceShareButtonPressed:(id)arg1;
+- (void)passcodeLockManager:(id)arg1 didReceivePasscodeSet:(BOOL)arg2;
 - (void)prepareForFlip;
-- (void)presentDiff:(id)arg1 completion:(id)arg2;
+- (void)presentDiff:(id)arg1 completion:(id /* block */)arg2;
 - (void)registerForEnterBackgroundNotification;
+- (void)resizePassAnimated:(BOOL)arg1 notify:(BOOL)arg2;
 - (void)setBackFaceIsTall:(BOOL)arg1;
 - (void)setContentMode:(int)arg1;
 - (void)setContentMode:(int)arg1 animated:(BOOL)arg2;

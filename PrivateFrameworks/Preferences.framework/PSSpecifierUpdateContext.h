@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSDictionary;
-
 @interface PSSpecifierUpdateContext : NSObject <NSCopying> {
     BOOL _animated;
     BOOL _updateModelOnly;
     NSDictionary *_userInfo;
 }
 
-@property BOOL animated;
-@property BOOL updateModelOnly;
-@property(copy) NSDictionary * userInfo;
+@property (nonatomic) BOOL animated;
+@property (nonatomic) BOOL updateModelOnly;
+@property (nonatomic, copy) NSDictionary *userInfo;
 
 + (id)context;
 + (id)contextWithUserInfo:(id)arg1;
 
+- (void).cxx_destruct;
 - (BOOL)animated;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (void)setAnimated:(BOOL)arg1;
 - (void)setUpdateModelOnly:(BOOL)arg1;

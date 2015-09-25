@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <NSObject><NSCopying>, AVWeakReference, NSLocale, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
-
 @interface AVChapterMetadataItemInternal : NSObject {
     NSString *chapterDataType;
     long chapterGroupIndex;
@@ -16,8 +14,9 @@
         unsigned int flags; 
         long long epoch; 
     } duration;
+    NSString *extendedLanguageTag;
     struct OpaqueFigAsset { } *figAsset;
-    NSLocale *locale;
+    NSString *languageCode;
     NSObject<OS_dispatch_queue> *readWriteQueue;
     struct { 
         long long value; 

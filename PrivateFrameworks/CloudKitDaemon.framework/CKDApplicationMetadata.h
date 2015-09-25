@@ -2,21 +2,23 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class NSString;
-
 @interface CKDApplicationMetadata : NSObject {
     NSString *_apsEnvironmentString;
     int _isApplication;
+    BOOL _isCKSystemService;
 }
 
-@property(retain) NSString * apsEnvironmentString;
-@property int isApplication;
+@property (nonatomic, retain) NSString *apsEnvironmentString;
+@property (nonatomic) int isApplication;
+@property (nonatomic) BOOL isCKSystemService;
 
 - (void).cxx_destruct;
 - (id)apsEnvironmentString;
 - (id)init;
 - (int)isApplication;
+- (BOOL)isCKSystemService;
 - (void)setApsEnvironmentString:(id)arg1;
 - (void)setIsApplication:(int)arg1;
+- (void)setIsCKSystemService:(BOOL)arg1;
 
 @end

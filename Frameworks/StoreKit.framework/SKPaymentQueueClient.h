@@ -2,12 +2,11 @@
    Image: /System/Library/Frameworks/StoreKit.framework/StoreKit
  */
 
-@class NSNumber, NSString;
-
 @interface SKPaymentQueueClient : NSObject <NSCopying> {
     BOOL _allowsBootstrapCellularData;
     NSString *_bundleIdentifier;
     NSString *_bundleVersion;
+    int _environmentType;
     BOOL _hidesConfirmationDialogs;
     BOOL _ignoresInAppPurchaseRestriction;
     NSString *_receiptDirectoryPath;
@@ -17,16 +16,17 @@
     NSString *_vendorIdentifier;
 }
 
-@property BOOL allowsBootstrapCellularData;
-@property(copy) NSString * bundleIdentifier;
-@property(copy) NSString * bundleVersion;
-@property BOOL hidesConfirmationDialogs;
-@property BOOL ignoresInAppPurchaseRestriction;
-@property(copy) NSString * receiptDirectoryPath;
-@property BOOL requiresAuthenticationForPayment;
-@property(copy) NSNumber * storeExternalVersion;
-@property(copy) NSNumber * storeItemIdentifier;
-@property(copy) NSString * vendorIdentifier;
+@property (nonatomic) BOOL allowsBootstrapCellularData;
+@property (nonatomic, copy) NSString *bundleIdentifier;
+@property (nonatomic, copy) NSString *bundleVersion;
+@property (nonatomic) int environmentType;
+@property (nonatomic) BOOL hidesConfirmationDialogs;
+@property (nonatomic) BOOL ignoresInAppPurchaseRestriction;
+@property (nonatomic, copy) NSString *receiptDirectoryPath;
+@property (nonatomic) BOOL requiresAuthenticationForPayment;
+@property (nonatomic, copy) NSNumber *storeExternalVersion;
+@property (nonatomic, copy) NSNumber *storeItemIdentifier;
+@property (nonatomic, copy) NSString *vendorIdentifier;
 
 - (BOOL)allowsBootstrapCellularData;
 - (id)bundleIdentifier;
@@ -34,6 +34,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)copyXPCEncoding;
 - (void)dealloc;
+- (int)environmentType;
 - (BOOL)hidesConfirmationDialogs;
 - (BOOL)ignoresInAppPurchaseRestriction;
 - (id)initWithXPCEncoding:(id)arg1;
@@ -42,6 +43,7 @@
 - (void)setAllowsBootstrapCellularData:(BOOL)arg1;
 - (void)setBundleIdentifier:(id)arg1;
 - (void)setBundleVersion:(id)arg1;
+- (void)setEnvironmentType:(int)arg1;
 - (void)setHidesConfirmationDialogs:(BOOL)arg1;
 - (void)setIgnoresInAppPurchaseRestriction:(BOOL)arg1;
 - (void)setReceiptDirectoryPath:(id)arg1;

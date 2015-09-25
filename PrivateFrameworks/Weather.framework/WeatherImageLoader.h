@@ -2,28 +2,26 @@
    Image: /System/Library/PrivateFrameworks/Weather.framework/Weather
  */
 
-@class CPBitmapStore, NSCache;
-
 @interface WeatherImageLoader : NSObject {
     NSCache *_conditionImagesCache;
     float _scale;
     CPBitmapStore *_store;
 }
 
-@property(retain) NSCache * conditionImagesCache;
-@property(retain) CPBitmapStore * store;
+@property (nonatomic, retain) NSCache *conditionImagesCache;
+@property (nonatomic, retain) CPBitmapStore *store;
 
 + (void)cacheImageIfNecessary:(id)arg1;
-+ (id)cachedImageNamed:(id)arg1 completion:(id)arg2;
++ (id)cachedImageNamed:(id)arg1 completion:(id /* block */)arg2;
 + (id)conditionImageBundle;
 + (id)conditionImageNameWithConditionIndex:(int)arg1;
 + (id)conditionImageNamed:(id)arg1;
 + (id)conditionImageWithConditionIndex:(int)arg1;
 + (id)sharedImageLoader;
 
+- (void).cxx_destruct;
 - (id)cachedImageForKey:(id)arg1;
 - (id)conditionImagesCache;
-- (void)dealloc;
 - (id)init;
 - (void)setConditionImagesCache:(id)arg1;
 - (void)setImage:(id)arg1 forKey:(id)arg2;

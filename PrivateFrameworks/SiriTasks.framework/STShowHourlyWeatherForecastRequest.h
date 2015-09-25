@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/SiriTasks.framework/SiriTasks
  */
 
-@class AFCity, NSArray, STWeatherAttributes;
-
 @interface STShowHourlyWeatherForecastRequest : AFSiriRequest {
-    AFCity *_city;
+    STCity *_city;
     STWeatherAttributes *_currentAttributes;
     int _forecastType;
     NSArray *_hourlyAttributes;

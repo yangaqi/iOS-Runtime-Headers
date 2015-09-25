@@ -2,11 +2,11 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@interface CalendarMessageUIProxy : NSObject {
-}
+@interface CalendarMessageUIProxy : NSObject
 
 + (Class)CalendarComposeRecipientClass;
 + (Class)ComposeRecipientViewClass;
++ (Class)MFAutocompleteResultsTableViewController;
 + (Class)MFContactsSearchManagerClass;
 + (Class)MFContactsSearchResultsModelClass;
 + (Class)MFMailComposeViewControllerClass;

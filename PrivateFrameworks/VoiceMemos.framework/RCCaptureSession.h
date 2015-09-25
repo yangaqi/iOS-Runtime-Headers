@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
  */
 
-@class NSDate, NSHashTable, NSObject<OS_dispatch_group>, NSString, RCAVState, RCAudioSessionRoutingAssertion, RCCaptureInputDevice, RCCaptureInputWaveformDataSource, RCCaptureOutputWriter;
-
 @interface RCCaptureSession : NSObject <RCCaptureOutputWriterDelegate, RCWaveformDataSourceObserver> {
     unsigned int _backgroundTaskIdentifier;
     BOOL _captureBeginSoundEffectDisabled;
@@ -23,18 +21,19 @@
     NSHashTable *_weakObservers;
 }
 
-@property(readonly) RCAVState * AVState;
-@property(readonly) double captureDestinationComposedDuration;
-@property(readonly) RCCaptureInputWaveformDataSource * captureWaveformDataSource;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) RCCaptureInputDevice * inputDevice;
-@property(readonly) BOOL isCaptureSessionFinished;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) RCAVState *AVState;
+@property (nonatomic, readonly) double captureDestinationComposedDuration;
+@property (nonatomic, readonly) RCCaptureInputWaveformDataSource *captureWaveformDataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) RCCaptureInputDevice *inputDevice;
+@property (nonatomic, readonly) BOOL isCaptureSessionFinished;
+@property (readonly) double storeDemoTimeLimit;
+@property (readonly) Class superclass;
 
-+ (void)playCaptureDidFinishSoundEffectWithCompletionBlock:(id)arg1;
-+ (void)playCaptureWillStartSoundEffectWithCompletionBlock:(id)arg1;
++ (void)playCaptureDidFinishSoundEffectWithCompletionBlock:(id /* block */)arg1;
++ (void)playCaptureWillStartSoundEffectWithCompletionBlock:(id /* block */)arg1;
 
 - (void).cxx_destruct;
 - (id)AVState;
@@ -45,12 +44,12 @@
 - (void)_captureInputDeviceRouteDidChangeNotification:(id)arg1;
 - (void)_closeCaptureSession;
 - (void)_deleteCaptureDestinationAndPostDidEndNotification:(id)arg1;
-- (void)_enumerateCaptureSessionObserversWithBlock:(id)arg1;
+- (void)_enumerateCaptureSessionObserversWithBlock:(id /* block */)arg1;
 - (void)_handleCaptureSessionDidError:(id)arg1;
 - (BOOL)_handleFinishWritingByRestartingCaptureForError:(id)arg1 testOnly:(BOOL)arg2;
 - (void)_onMainQueueHandleCaptureDidFinishCapturingAfterCompletionSound;
 - (BOOL)_openAVCaptureSessionAndWaitUntilRunning;
-- (void)_postToObserversWithBlock:(id)arg1;
+- (void)_postToObserversWithBlock:(id /* block */)arg1;
 - (void)_setDisableSBMediaHUD:(BOOL)arg1;
 - (void)_setPostPrepareRequestedState:(int)arg1;
 - (void)addCaptureSessionObserver:(id)arg1;
@@ -70,6 +69,7 @@
 - (void)disableCaptureBeginSoundEffect;
 - (void)disableCaptureEndSoundEffect;
 - (void)finishCapturing;
+- (id)init;
 - (id)initWithInputDevice:(id)arg1 captureWaveformDataSource:(id)arg2;
 - (id)inputDevice;
 - (BOOL)isCaptureActive;
@@ -77,9 +77,10 @@
 - (BOOL)isCaptureSessionFinished;
 - (BOOL)isPreparing;
 - (void)pauseCapturing;
-- (void)prepareToCaptureWithPreparedHandler:(id)arg1;
+- (void)prepareToCaptureWithPreparedHandler:(id /* block */)arg1;
 - (void)removeCaptureSessionObserver:(id)arg1;
 - (void)resumeCapturing;
+- (double)storeDemoTimeLimit;
 - (void)waveformDataSource:(id)arg1 didLoadWaveformSegment:(id)arg2;
 - (void)waveformDataSourceDidFinishLoading:(id)arg1;
 

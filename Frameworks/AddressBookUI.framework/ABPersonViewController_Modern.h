@@ -2,21 +2,19 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABPersonViewControllerDelegate>, ABContactViewController, NSArray, NSString, UIFont, UIImage, UIView;
-
-@interface ABPersonViewController_Modern : UIViewController <ABContactViewControllerDelegate, UIViewControllerRestoration> {
-    void *_addressBook;
+@interface ABPersonViewController_Modern : UIViewController <ABContactViewControllerDelegate, CNContactViewControllerPrivateDelegate, UIViewControllerRestoration> {
+    const void *_addressBook;
     BOOL _allowsActions;
     BOOL _allowsAddToFavorites;
     BOOL _allowsConferencing;
     BOOL _allowsContactBlocking;
+    BOOL _allowsDeletion;
     BOOL _allowsEditing;
-    BOOL _allowsOnlyFaceTimeActions;
-    BOOL _allowsOnlyPhoneActions;
     BOOL _allowsSharing;
     BOOL _badgeEmailPropertiesForMailVIP;
+    CNContactViewController *_cnContactViewController;
     ABContactViewController *_contactViewController;
-    void *_displayedPerson;
+    const void *_displayedPerson;
     NSArray *_displayedProperties;
     BOOL _highlightedImportant;
     int _highlightedMultiValueIdentifier;
@@ -27,51 +25,50 @@
     int _style;
 }
 
-@property void* addressBook;
-@property BOOL allowsActions;
-@property BOOL allowsAddToFavorites;
-@property BOOL allowsCancel;
-@property BOOL allowsConferencing;
-@property BOOL allowsContactBlocking;
-@property BOOL allowsDeletion;
-@property BOOL allowsEditing;
-@property BOOL allowsOnlyFaceTimeActions;
-@property BOOL allowsOnlyPhoneActions;
-@property BOOL allowsSharing;
-@property BOOL allowsSounds;
-@property BOOL allowsVibrations;
-@property(copy) NSString * attribution;
-@property BOOL badgeEmailPropertiesForMailVIP;
-@property(retain) ABContactViewController * contactViewController;
-@property(retain) UIView * customFooterView;
-@property(retain) UIView * customHeaderView;
-@property(retain) UIView * customMessageView;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property void* displayedPerson;
-@property(copy) NSArray * displayedProperties;
-@property(readonly) unsigned int hash;
-@property BOOL highlightedImportant;
-@property int highlightedMultiValueIdentifier;
-@property int highlightedProperty;
-@property(copy) NSString * message;
-@property(copy) NSString * messageDetail;
-@property(retain) UIFont * messageDetailFont;
-@property(retain) UIFont * messageFont;
-@property(retain) UIView * personHeaderView;
-@property <ABPersonViewControllerDelegate> * personViewDelegate;
-@property(retain) UIImage * shareLocationSnapshotImage;
-@property(copy) NSString * shareLocationURL;
-@property(copy) NSString * shareMessageBody;
-@property BOOL shareMessageBodyIsHTML;
-@property(copy) NSString * shareMessageSubject;
-@property BOOL shouldAlignPersonHeaderViewToImage;
-@property BOOL shouldShowLinkedPeople;
-@property int style;
-@property(readonly) Class superclass;
-@property(readonly) UIView * tableHeaderView;
-@property(copy) id willTweetLocationCallback;
-@property(copy) id willWeiboLocationCallback;
+@property (nonatomic) const void*addressBook;
+@property (nonatomic) BOOL allowsActions;
+@property (nonatomic) BOOL allowsAddToFavorites;
+@property (nonatomic) BOOL allowsCancel;
+@property (nonatomic) BOOL allowsConferencing;
+@property (nonatomic) BOOL allowsContactBlocking;
+@property (nonatomic) BOOL allowsDeletion;
+@property (nonatomic) BOOL allowsEditing;
+@property (nonatomic) BOOL allowsSharing;
+@property (nonatomic) BOOL allowsSounds;
+@property (nonatomic) BOOL allowsVibrations;
+@property (nonatomic, copy) NSString *attribution;
+@property (nonatomic) BOOL badgeEmailPropertiesForMailVIP;
+@property (nonatomic, retain) CNContactViewController *cnContactViewController;
+@property (nonatomic, retain) ABContactViewController *contactViewController;
+@property (nonatomic, retain) UIView *customFooterView;
+@property (nonatomic, retain) UIView *customHeaderView;
+@property (nonatomic, retain) UIView *customMessageView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) const void*displayedPerson;
+@property (nonatomic, copy) NSArray *displayedProperties;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL highlightedImportant;
+@property (nonatomic) int highlightedMultiValueIdentifier;
+@property (nonatomic) int highlightedProperty;
+@property (nonatomic, copy) NSString *message;
+@property (nonatomic, copy) NSString *messageDetail;
+@property (nonatomic, retain) UIFont *messageDetailFont;
+@property (nonatomic, retain) UIFont *messageFont;
+@property (nonatomic, retain) UIView *personHeaderView;
+@property (nonatomic) <ABPersonViewControllerDelegate> *personViewDelegate;
+@property (nonatomic, retain) UIImage *shareLocationSnapshotImage;
+@property (nonatomic, copy) NSString *shareLocationURL;
+@property (nonatomic, copy) NSString *shareMessageBody;
+@property (nonatomic) BOOL shareMessageBodyIsHTML;
+@property (nonatomic, copy) NSString *shareMessageSubject;
+@property (nonatomic) BOOL shouldAlignPersonHeaderViewToImage;
+@property (nonatomic) BOOL shouldShowLinkedPeople;
+@property (nonatomic) int style;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UIView *tableHeaderView;
+@property (nonatomic, copy) id /* block */ willTweetLocationCallback;
+@property (nonatomic, copy) id /* block */ willWeiboLocationCallback;
 
 + (id)viewControllerWithRestorationIdentifierPath:(id)arg1 coder:(id)arg2;
 
@@ -81,7 +78,7 @@
 - (float)ab_heightToFitForViewInPopoverView;
 - (void)addActionWithTitle:(id)arg1 target:(id)arg2 selector:(SEL)arg3 forProperty:(int)arg4 withActionGrouping:(int)arg5 ordering:(int)arg6;
 - (void)addActionWithTitle:(id)arg1 target:(id)arg2 selector:(SEL)arg3 location:(int)arg4 destructive:(BOOL)arg5;
-- (void*)addressBook;
+- (const void*)addressBook;
 - (void)addressBookChangedLocally:(struct __CFDictionary { }*)arg1;
 - (BOOL)allowsActions;
 - (BOOL)allowsAddToFavorites;
@@ -90,8 +87,6 @@
 - (BOOL)allowsContactBlocking;
 - (BOOL)allowsDeletion;
 - (BOOL)allowsEditing;
-- (BOOL)allowsOnlyFaceTimeActions;
-- (BOOL)allowsOnlyPhoneActions;
 - (BOOL)allowsSettingAsPreferredCardForName;
 - (BOOL)allowsSharing;
 - (BOOL)allowsSounds;
@@ -100,14 +95,15 @@
 - (id)attribution;
 - (BOOL)badgeEmailPropertiesForMailVIP;
 - (void)cancelEditing:(BOOL)arg1;
+- (id)cnContactViewController;
 - (id)contactViewController;
-- (id)contactViewController:(id)arg1 highlightColorForPropertyItem:(id)arg2 contact:(id)arg3;
 - (BOOL)contactViewController:(id)arg1 shouldPerformDefaultActionForContact:(id)arg2 property:(id)arg3 labeledValue:(id)arg4;
+- (BOOL)contactViewController:(id)arg1 shouldPerformDefaultActionForContactProperty:(id)arg2;
 - (id)customFooterView;
 - (id)customHeaderView;
 - (id)customMessageView;
 - (void)dealloc;
-- (void*)displayedPerson;
+- (const void*)displayedPerson;
 - (id)displayedProperties;
 - (id)displayedUIPerson;
 - (id)editDelegate;
@@ -135,6 +131,7 @@
 - (id)personHeaderView;
 - (void)personViewController:(id)arg1 willSetEditing:(BOOL)arg2 animated:(BOOL)arg3;
 - (id)personViewDelegate;
+- (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)reloadContactViewController;
 - (void)removeActionWithSelector:(SEL)arg1 target:(id)arg2 forProperty:(int)arg3 withActionGrouping:(int)arg4 ordering:(int)arg5;
 - (void)removeActionWithSelector:(SEL)arg1 target:(id)arg2 location:(int)arg3;
@@ -147,8 +144,6 @@
 - (void)setAllowsContactBlocking:(BOOL)arg1;
 - (void)setAllowsDeletion:(BOOL)arg1;
 - (void)setAllowsEditing:(BOOL)arg1;
-- (void)setAllowsOnlyFaceTimeActions:(BOOL)arg1;
-- (void)setAllowsOnlyPhoneActions:(BOOL)arg1;
 - (void)setAllowsSettingAsPreferredCardForName:(BOOL)arg1;
 - (void)setAllowsSharing:(BOOL)arg1;
 - (void)setAllowsSounds:(BOOL)arg1;
@@ -158,6 +153,7 @@
 - (void)setAttribution:(id)arg1 target:(id)arg2 selector:(SEL)arg3;
 - (void)setBadgeEmailPropertiesForMailVIP:(BOOL)arg1;
 - (void)setCardContentProvider:(id)arg1;
+- (void)setCnContactViewController:(id)arg1;
 - (void)setContactViewController:(id)arg1;
 - (void)setCustomFooterView:(id)arg1;
 - (void)setCustomHeaderView:(id)arg1;
@@ -189,8 +185,8 @@
 - (void)setShouldShowLinkingUIOnCard:(BOOL)arg1;
 - (void)setStyle:(int)arg1;
 - (void)setStyleProvider:(id)arg1;
-- (void)setWillTweetLocationCallback:(id)arg1;
-- (void)setWillWeiboLocationCallback:(id)arg1;
+- (void)setWillTweetLocationCallback:(id /* block */)arg1;
+- (void)setWillWeiboLocationCallback:(id /* block */)arg1;
 - (void)shareContactByEmail:(id)arg1;
 - (id)shareLocationSnapshotImage;
 - (id)shareLocationURL;
@@ -203,7 +199,8 @@
 - (int)style;
 - (id)styleProvider;
 - (id)tableHeaderView;
-- (id)willTweetLocationCallback;
-- (id)willWeiboLocationCallback;
+- (void)viewDidAppear:(BOOL)arg1;
+- (id /* block */)willTweetLocationCallback;
+- (id /* block */)willWeiboLocationCallback;
 
 @end

@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class IKDOMDocument, IKDOMNode, IKDOMNodeData, IKDOMNodeList, JSManagedValue, NSHashTable, NSMutableDictionary, NSString;
-
 @interface IKDOMNode : IKJSObject <IKJSDOMEventTarget, IKJSDOMNode> {
+    int _ITMLID;
     NSHashTable *_domObservers;
     NSMutableDictionary *_eventListenersMap;
     JSManagedValue *_managedChildNodeList;
@@ -14,24 +13,25 @@
     struct _xmlNode { void *x1; int x2; char *x3; struct _xmlNode {} *x4; struct _xmlNode {} *x5; struct _xmlNode {} *x6; struct _xmlNode {} *x7; struct _xmlNode {} *x8; struct _xmlDoc {} *x9; struct _xmlNs {} *x10; char *x11; struct _xmlAttr {} *x12; struct _xmlNs {} *x13; void *x14; unsigned short x15; unsigned short x16; } *_nodePtr;
 }
 
-@property(retain,readonly) IKDOMNodeList * childNodes;
-@property(retain) NSHashTable * domObservers;
-@property(retain) NSMutableDictionary * eventListenersMap;
-@property(retain,readonly) IKDOMNode * firstChild;
-@property(retain,readonly) IKDOMNodeData * jsNodeData;
-@property(retain,readonly) IKDOMNode * lastChild;
-@property(retain) JSManagedValue * managedChildNodeList;
-@property(retain) JSManagedValue * managedOwnerDocument;
-@property(retain) JSManagedValue * managedParent;
-@property(retain,readonly) JSManagedValue * managedSelf;
-@property(readonly) IKDOMNode * nextSibling;
-@property(retain,readonly) NSString * nodeName;
-@property(readonly) int nodeType;
-@property(retain) NSString * nodeValue;
-@property(readonly) IKDOMDocument * ownerDocument;
-@property(readonly) IKDOMNode * parentNode;
-@property(readonly) IKDOMNode * previousSibling;
-@property(retain) NSString * textContent;
+@property (nonatomic) int ITMLID;
+@property (nonatomic, readonly, retain) IKDOMNodeList *childNodes;
+@property (nonatomic, retain) NSHashTable *domObservers;
+@property (nonatomic, retain) NSMutableDictionary *eventListenersMap;
+@property (nonatomic, readonly, retain) IKDOMNode *firstChild;
+@property (nonatomic, readonly, retain) IKDOMNodeData *jsNodeData;
+@property (nonatomic, readonly, retain) IKDOMNode *lastChild;
+@property (nonatomic, retain) JSManagedValue *managedChildNodeList;
+@property (nonatomic, retain) JSManagedValue *managedOwnerDocument;
+@property (nonatomic, retain) JSManagedValue *managedParent;
+@property (nonatomic, readonly, retain) JSManagedValue *managedSelf;
+@property (nonatomic, readonly) IKDOMNode *nextSibling;
+@property (nonatomic, readonly, retain) NSString *nodeName;
+@property (nonatomic, readonly) int nodeType;
+@property (nonatomic, retain) NSString *nodeValue;
+@property (nonatomic, readonly) IKDOMDocument *ownerDocument;
+@property (nonatomic, readonly) IKDOMNode *parentNode;
+@property (nonatomic, readonly) IKDOMNode *previousSibling;
+@property (nonatomic, retain) NSString *textContent;
 
 + (id)_eventListenerMapKeyForType:(id)arg1 useCapture:(BOOL)arg2;
 + (void)handleNodeParentDidChange:(struct _xmlNode { void *x1; int x2; char *x3; struct _xmlNode {} *x4; struct _xmlNode {} *x5; struct _xmlNode {} *x6; struct _xmlNode {} *x7; struct _xmlNode {} *x8; struct _xmlDoc {} *x9; struct _xmlNs {} *x10; char *x11; struct _xmlAttr {} *x12; struct _xmlNs {} *x13; void *x14; unsigned short x15; unsigned short x16; }*)arg1;
@@ -39,6 +39,7 @@
 + (id)nodeWithAppContext:(id)arg1 nodePtr:(struct _xmlNode { void *x1; int x2; char *x3; struct _xmlNode {} *x4; struct _xmlNode {} *x5; struct _xmlNode {} *x6; struct _xmlNode {} *x7; struct _xmlNode {} *x8; struct _xmlDoc {} *x9; struct _xmlNs {} *x10; char *x11; struct _xmlAttr {} *x12; struct _xmlNs {} *x13; void *x14; unsigned short x15; unsigned short x16; }*)arg2;
 
 - (void).cxx_destruct;
+- (int)ITMLID;
 - (struct _xmlNode { void *x1; int x2; char *x3; struct _xmlNode {} *x4; struct _xmlNode {} *x5; struct _xmlNode {} *x6; struct _xmlNode {} *x7; struct _xmlNode {} *x8; struct _xmlDoc {} *x9; struct _xmlNs {} *x10; char *x11; struct _xmlAttr {} *x12; struct _xmlNs {} *x13; void *x14; unsigned short x15; unsigned short x16; }*)_appendNode:(struct _xmlNode { void *x1; int x2; char *x3; struct _xmlNode {} *x4; struct _xmlNode {} *x5; struct _xmlNode {} *x6; struct _xmlNode {} *x7; struct _xmlNode {} *x8; struct _xmlDoc {} *x9; struct _xmlNs {} *x10; char *x11; struct _xmlAttr {} *x12; struct _xmlNs {} *x13; void *x14; unsigned short x15; unsigned short x16; }*)arg1;
 - (struct _xmlNode { void *x1; int x2; char *x3; struct _xmlNode {} *x4; struct _xmlNode {} *x5; struct _xmlNode {} *x6; struct _xmlNode {} *x7; struct _xmlNode {} *x8; struct _xmlDoc {} *x9; struct _xmlNs {} *x10; char *x11; struct _xmlAttr {} *x12; struct _xmlNs {} *x13; void *x14; unsigned short x15; unsigned short x16; }*)_insertNode:(struct _xmlNode { void *x1; int x2; char *x3; struct _xmlNode {} *x4; struct _xmlNode {} *x5; struct _xmlNode {} *x6; struct _xmlNode {} *x7; struct _xmlNode {} *x8; struct _xmlDoc {} *x9; struct _xmlNs {} *x10; char *x11; struct _xmlAttr {} *x12; struct _xmlNs {} *x13; void *x14; unsigned short x15; unsigned short x16; }*)arg1 refNode:(struct _xmlNode { void *x1; int x2; char *x3; struct _xmlNode {} *x4; struct _xmlNode {} *x5; struct _xmlNode {} *x6; struct _xmlNode {} *x7; struct _xmlNode {} *x8; struct _xmlDoc {} *x9; struct _xmlNs {} *x10; char *x11; struct _xmlAttr {} *x12; struct _xmlNs {} *x13; void *x14; unsigned short x15; unsigned short x16; }*)arg2 operation:(unsigned int)arg3;
 - (void)_linkManagedObjects;
@@ -56,8 +57,9 @@
 - (id)cloneNode:(BOOL)arg1;
 - (void)dealloc;
 - (id)description;
+- (BOOL)dispatchEvent:(id)arg1;
 - (id)domObservers;
-- (void)enumerateEventListernersForType:(id)arg1 xmlAttribute:(id)arg2 phase:(int)arg3 usingBlock:(id)arg4;
+- (void)enumerateEventListernersForType:(id)arg1 xmlAttribute:(id)arg2 phase:(int)arg3 usingBlock:(id /* block */)arg4;
 - (id)eventListenersMap;
 - (id)firstChild;
 - (id)firstElementChild;
@@ -92,6 +94,7 @@
 - (id)replaceChild:(id)arg1 :(id)arg2;
 - (void)setDomObservers:(id)arg1;
 - (void)setEventListenersMap:(id)arg1;
+- (void)setITMLID:(int)arg1;
 - (void)setManagedChildNodeList:(id)arg1;
 - (void)setManagedOwnerDocument:(id)arg1;
 - (void)setManagedParent:(id)arg1;

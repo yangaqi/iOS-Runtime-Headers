@@ -2,68 +2,84 @@
    Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
  */
 
-@class HMHome, HMMessageDispatcher, NSMutableArray, NSObject<OS_dispatch_queue>, NSSet, NSString, NSUUID;
-
-@interface HMActionSet : NSObject <HMMessageReceiver, NSSecureCoding> {
-    NSMutableArray *_currentActions;
+@interface HMActionSet : NSObject <HMMessageReceiver, HMObjectMerge, NSSecureCoding> {
+    NSString *_actionSetType;
+    NSObject<OS_dispatch_queue> *_clientQueue;
+    HMThreadSafeMutableArrayCollection *_currentActions;
+    HMDelegateCaller *_delegateCaller;
     BOOL _executing;
     HMHome *_home;
     HMMessageDispatcher *_msgDispatcher;
     NSString *_name;
+    NSObject<OS_dispatch_queue> *_propertyQueue;
+    NSUUID *_uniqueIdentifier;
     NSUUID *_uuid;
-    NSObject<OS_dispatch_queue> *_workQueue;
 }
 
-@property(copy,readonly) NSSet * actions;
-@property(retain) NSMutableArray * currentActions;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(getter=isExecuting,readonly) BOOL executing;
-@property(readonly) unsigned int hash;
-@property HMHome * home;
-@property(readonly) NSObject<OS_dispatch_queue> * messageReceiveQueue;
-@property(readonly) NSUUID * messageTargetUUID;
-@property(retain) HMMessageDispatcher * msgDispatcher;
-@property(copy,readonly) NSString * name;
-@property(readonly) Class superclass;
-@property(retain) NSUUID * uuid;
-@property(retain) NSObject<OS_dispatch_queue> * workQueue;
+@property (nonatomic, readonly, copy) NSString *actionSetType;
+@property (nonatomic, readonly, copy) NSSet *actions;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *clientQueue;
+@property (nonatomic, retain) HMThreadSafeMutableArrayCollection *currentActions;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) HMDelegateCaller *delegateCaller;
+@property (readonly, copy) NSString *description;
+@property (getter=isExecuting, nonatomic, readonly) BOOL executing;
+@property (readonly) unsigned int hash;
+@property (nonatomic) HMHome *home;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *messageReceiveQueue;
+@property (nonatomic, readonly) NSUUID *messageTargetUUID;
+@property (nonatomic, retain) HMMessageDispatcher *msgDispatcher;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *propertyQueue;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSUUID *uniqueIdentifier;
+@property (nonatomic, readonly) NSUUID *uuid;
 
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (void)_addAction:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_configure:(id)arg1 messageDispatcher:(id)arg2 clientQueue:(id)arg3 delegateCaller:(id)arg4;
+- (void)_handleActionAddedNotification:(id)arg1;
+- (void)_handleActionRemovedNotification:(id)arg1;
+- (void)_handleActionSetRenamedNotification:(id)arg1;
+- (void)_handleActionUpdatedNotification:(id)arg1;
+- (void)_invalidate;
+- (id)_lookupActionWithInfo:(id)arg1;
+- (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 - (void)_registerNotificationHandlers;
+- (void)_removeAction:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_unconfigure;
+- (void)_updateAction:(id)arg1 changes:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)_updateName:(id)arg1 completionHandler:(id /* block */)arg2;
+- (id)actionSetType;
 - (id)actions;
-- (void)addAction:(id)arg1 completionHandler:(id)arg2;
-- (void)configure:(id)arg1 uuid:(id)arg2 messageDispatcher:(id)arg3;
+- (void)addAction:(id)arg1 completionHandler:(id /* block */)arg2;
+- (id)clientQueue;
 - (id)currentActions;
 - (void)dealloc;
+- (id)delegateCaller;
 - (void)encodeWithCoder:(id)arg1;
-- (void)handleActionAddedNotification:(id)arg1;
-- (void)handleActionRemovedNotification:(id)arg1;
-- (void)handleActionSetRenamedNotification:(id)arg1;
-- (void)handleActionUpdatedNotification:(id)arg1;
 - (id)home;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithName:(id)arg1;
-- (void)invalidate;
+- (id)initWithName:(id)arg1 type:(id)arg2 uuid:(id)arg3;
 - (BOOL)isExecuting;
-- (id)lookupActionWithInfo:(id)arg1;
 - (id)messageReceiveQueue;
 - (id)messageTargetUUID;
 - (id)msgDispatcher;
 - (id)name;
-- (void)removeAction:(id)arg1 completionHandler:(id)arg2;
+- (id)propertyQueue;
+- (void)removeAction:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)setClientQueue:(id)arg1;
 - (void)setCurrentActions:(id)arg1;
+- (void)setDelegateCaller:(id)arg1;
 - (void)setHome:(id)arg1;
 - (void)setMsgDispatcher:(id)arg1;
-- (void)setUuid:(id)arg1;
-- (void)setWorkQueue:(id)arg1;
-- (void)unconfigure;
-- (void)updateAction:(id)arg1 changes:(id)arg2 completionHandler:(id)arg3;
-- (void)updateName:(id)arg1 completionHandler:(id)arg2;
+- (void)setName:(id)arg1;
+- (void)setPropertyQueue:(id)arg1;
+- (id)uniqueIdentifier;
+- (void)updateName:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)uuid;
-- (id)workQueue;
 
 @end

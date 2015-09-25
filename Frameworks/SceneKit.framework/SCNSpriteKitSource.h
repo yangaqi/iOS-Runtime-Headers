@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
  */
 
-@class SKScene;
-
 @interface SCNSpriteKitSource : SCNImageSource {
     SKScene *_scene;
 }
 
-@property(retain) SKScene * scene;
+@property (nonatomic, retain) SKScene *scene;
 
 - (void)dealloc;
 - (BOOL)isOpaque;
 - (id)scene;
 - (void)setScene:(id)arg1;
-- (id)textureSourceForContext:(void*)arg1;
+- (id)textureSource;
 
 @end

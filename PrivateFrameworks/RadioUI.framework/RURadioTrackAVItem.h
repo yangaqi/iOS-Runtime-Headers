@@ -2,21 +2,20 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class NSString;
-
 @interface RURadioTrackAVItem : RURadioAVItem {
     NSString *_assetFlavor;
+    NSString *_preferredAssetFlavor;
 }
 
++ (id)_currentPreferredAssetFlavor;
+
 - (void).cxx_destruct;
-- (id)_bestRadioTrackAssetWithAvailableAssets:(id)arg1;
+- (id)_bestRadioTrackAssetWithPreferredAssetFlavor:(id)arg1 availableAssets:(id)arg2;
 - (void)_saveDownloadKeyCookie:(id)arg1 forURL:(id)arg2;
-- (void)_sendLikeOrBanRequestWithStatus:(int)arg1;
 - (id)_sinfsByRemovingEmptyPinfsFromSinfs:(id)arg1;
 - (id)assetFlavor;
+- (BOOL)isValidPlayerSubstituteForItem:(id)arg1;
 - (void)loadAssetAndPlayerItem;
-- (void)setIsBanned:(BOOL)arg1;
-- (void)setIsLiked:(BOOL)arg1;
 - (BOOL)supportsRadioTrackActions;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/NanoMediaRemote.framework/NanoMediaRemote
  */
 
-@class NSString;
-
 @interface _NMRCommandInfoProtobuf : PBCodable <NSCopying> {
     BOOL _active;
     int _command;
@@ -12,6 +10,7 @@
         unsigned int command : 1; 
         unsigned int maximumRating : 1; 
         unsigned int minimumRating : 1; 
+        unsigned int presentationStyle : 1; 
         unsigned int repeatMode : 1; 
         unsigned int shuffleMode : 1; 
         unsigned int active : 1; 
@@ -26,6 +25,7 @@
         unsigned int count; 
         unsigned int size; 
     } _preferredIntervals;
+    int _presentationStyle;
     int _repeatMode;
     int _shuffleMode;
     struct { 
@@ -35,28 +35,30 @@
     } _supportedRates;
 }
 
-@property BOOL active;
-@property int command;
-@property BOOL enabled;
-@property BOOL hasActive;
-@property BOOL hasCommand;
-@property BOOL hasEnabled;
-@property(readonly) BOOL hasLocalizedShortTitle;
-@property(readonly) BOOL hasLocalizedTitle;
-@property BOOL hasMaximumRating;
-@property BOOL hasMinimumRating;
-@property BOOL hasRepeatMode;
-@property BOOL hasShuffleMode;
-@property(retain) NSString * localizedShortTitle;
-@property(retain) NSString * localizedTitle;
-@property float maximumRating;
-@property float minimumRating;
-@property(readonly) double* preferredIntervals;
-@property(readonly) unsigned int preferredIntervalsCount;
-@property int repeatMode;
-@property int shuffleMode;
-@property(readonly) float* supportedRates;
-@property(readonly) unsigned int supportedRatesCount;
+@property (nonatomic) BOOL active;
+@property (nonatomic) int command;
+@property (nonatomic) BOOL enabled;
+@property (nonatomic) BOOL hasActive;
+@property (nonatomic) BOOL hasCommand;
+@property (nonatomic) BOOL hasEnabled;
+@property (nonatomic, readonly) BOOL hasLocalizedShortTitle;
+@property (nonatomic, readonly) BOOL hasLocalizedTitle;
+@property (nonatomic) BOOL hasMaximumRating;
+@property (nonatomic) BOOL hasMinimumRating;
+@property (nonatomic) BOOL hasPresentationStyle;
+@property (nonatomic) BOOL hasRepeatMode;
+@property (nonatomic) BOOL hasShuffleMode;
+@property (nonatomic, retain) NSString *localizedShortTitle;
+@property (nonatomic, retain) NSString *localizedTitle;
+@property (nonatomic) float maximumRating;
+@property (nonatomic) float minimumRating;
+@property (nonatomic, readonly) double*preferredIntervals;
+@property (nonatomic, readonly) unsigned int preferredIntervalsCount;
+@property (nonatomic) int presentationStyle;
+@property (nonatomic) int repeatMode;
+@property (nonatomic) int shuffleMode;
+@property (nonatomic, readonly) float*supportedRates;
+@property (nonatomic, readonly) unsigned int supportedRatesCount;
 
 - (void).cxx_destruct;
 - (BOOL)active;
@@ -78,6 +80,7 @@
 - (BOOL)hasLocalizedTitle;
 - (BOOL)hasMaximumRating;
 - (BOOL)hasMinimumRating;
+- (BOOL)hasPresentationStyle;
 - (BOOL)hasRepeatMode;
 - (BOOL)hasShuffleMode;
 - (unsigned int)hash;
@@ -90,6 +93,7 @@
 - (double)preferredIntervalAtIndex:(unsigned int)arg1;
 - (double*)preferredIntervals;
 - (unsigned int)preferredIntervalsCount;
+- (int)presentationStyle;
 - (BOOL)readFrom:(id)arg1;
 - (int)repeatMode;
 - (void)setActive:(BOOL)arg1;
@@ -100,6 +104,7 @@
 - (void)setHasEnabled:(BOOL)arg1;
 - (void)setHasMaximumRating:(BOOL)arg1;
 - (void)setHasMinimumRating:(BOOL)arg1;
+- (void)setHasPresentationStyle:(BOOL)arg1;
 - (void)setHasRepeatMode:(BOOL)arg1;
 - (void)setHasShuffleMode:(BOOL)arg1;
 - (void)setLocalizedShortTitle:(id)arg1;
@@ -107,6 +112,7 @@
 - (void)setMaximumRating:(float)arg1;
 - (void)setMinimumRating:(float)arg1;
 - (void)setPreferredIntervals:(double*)arg1 count:(unsigned int)arg2;
+- (void)setPresentationStyle:(int)arg1;
 - (void)setRepeatMode:(int)arg1;
 - (void)setShuffleMode:(int)arg1;
 - (void)setSupportedRates:(float*)arg1 count:(unsigned int)arg2;

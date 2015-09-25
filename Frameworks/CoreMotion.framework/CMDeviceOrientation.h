@@ -6,7 +6,7 @@
     int fOrientation;
 }
 
-@property(readonly) int orientation;
+@property (nonatomic, readonly) int orientation;
 
 + (BOOL)supportsSecureCoding;
 
@@ -17,6 +17,5 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithOrientation:(int)arg1 andTimestamp:(double)arg2;
 - (int)orientation;
-- (id)orientationString;
 
 @end

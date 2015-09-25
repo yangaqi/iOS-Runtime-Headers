@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVMediaFileType, NSArray, NSURL;
-
 @interface AVAssetWriterConfigurationState : NSObject {
     NSURL *_URL;
     NSURL *_directoryForTemporaryFiles;
@@ -18,6 +16,12 @@
         long long epoch; 
     } _movieFragmentInterval;
     int _movieTimeScale;
+    struct { 
+        long long value; 
+        int timescale; 
+        unsigned int flags; 
+        long long epoch; 
+    } _overallDurationHint;
     float _preferredRate;
     struct CGAffineTransform { 
         float a; 
@@ -31,18 +35,19 @@
     BOOL _shouldOptimizeForNetworkUse;
 }
 
-@property(copy) NSURL * URL;
-@property(copy) NSURL * directoryForTemporaryFiles;
-@property(copy) NSArray * inputGroups;
-@property(copy) NSArray * inputs;
-@property(copy) AVMediaFileType * mediaFileType;
-@property(copy) NSArray * metadataItems;
-@property struct { long long x1; int x2; unsigned int x3; long long x4; } movieFragmentInterval;
-@property int movieTimeScale;
-@property float preferredRate;
-@property struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } preferredTransform;
-@property float preferredVolume;
-@property BOOL shouldOptimizeForNetworkUse;
+@property (nonatomic, copy) NSURL *URL;
+@property (nonatomic, copy) NSURL *directoryForTemporaryFiles;
+@property (nonatomic, copy) NSArray *inputGroups;
+@property (nonatomic, copy) NSArray *inputs;
+@property (nonatomic, copy) AVMediaFileType *mediaFileType;
+@property (nonatomic, copy) NSArray *metadataItems;
+@property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } movieFragmentInterval;
+@property (nonatomic) int movieTimeScale;
+@property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } overallDurationHint;
+@property (nonatomic) float preferredRate;
+@property (nonatomic) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } preferredTransform;
+@property (nonatomic) float preferredVolume;
+@property (nonatomic) BOOL shouldOptimizeForNetworkUse;
 
 - (id)URL;
 - (void)dealloc;
@@ -53,6 +58,7 @@
 - (id)metadataItems;
 - (struct { long long x1; int x2; unsigned int x3; long long x4; })movieFragmentInterval;
 - (int)movieTimeScale;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })overallDurationHint;
 - (float)preferredRate;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })preferredTransform;
 - (float)preferredVolume;
@@ -63,6 +69,7 @@
 - (void)setMetadataItems:(id)arg1;
 - (void)setMovieFragmentInterval:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (void)setMovieTimeScale:(int)arg1;
+- (void)setOverallDurationHint:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (void)setPreferredRate:(float)arg1;
 - (void)setPreferredTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
 - (void)setPreferredVolume:(float)arg1;

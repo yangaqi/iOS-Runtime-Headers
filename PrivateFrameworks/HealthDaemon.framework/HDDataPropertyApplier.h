@@ -2,48 +2,50 @@
    Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class HDMetadataValueStatement, HDSQLiteDatabase, NSArray, NSDictionary, NSMutableDictionary;
-
 @interface HDDataPropertyApplier : NSObject {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _authorizationFilter;
-
+    id /* block */ _authorizationFilter;
     HDSQLiteDatabase *_database;
+    NSMutableDictionary *_deviceByPersistentIDCache;
+    NSNumber *_deviceID;
     HDMetadataValueStatement *_metadataValueStatement;
-    NSArray *_propertyOrder;
+    NSArray *_orderedProperties;
+    NSArray *_orderedSetters;
     NSDictionary *_propertySetters;
     NSMutableDictionary *_sourceByPersistentIDCache;
-    unsigned int _sourcePropertyIndex;
+    NSNumber *_sourceID;
+    NSMutableDictionary *_sourceRevisionsDictionaryBySourceCache;
+    NSString *_sourceVersion;
 }
 
-@property(copy,readonly) id authorizationFilter;
-@property(readonly) HDSQLiteDatabase * database;
-@property(retain) HDMetadataValueStatement * metadataValueStatement;
-@property(copy,readonly) NSArray * propertyOrder;
-@property(copy,readonly) NSDictionary * propertySetters;
-@property(retain) NSMutableDictionary * sourceByPersistentIDCache;
-@property unsigned int sourcePropertyIndex;
+@property (nonatomic, readonly, copy) id /* block */ authorizationFilter;
+@property (nonatomic, readonly) HDSQLiteDatabase *database;
+@property (nonatomic, retain) NSMutableDictionary *deviceByPersistentIDCache;
+@property (nonatomic, retain) HDMetadataValueStatement *metadataValueStatement;
+@property (nonatomic, readonly, copy) NSArray *orderedProperties;
+@property (nonatomic, readonly, copy) NSArray *orderedSetters;
+@property (nonatomic, readonly, copy) NSDictionary *propertySetters;
+@property (nonatomic, retain) NSMutableDictionary *sourceByPersistentIDCache;
+@property (nonatomic, retain) NSMutableDictionary *sourceRevisionsDictionaryBySourceCache;
 
 - (void).cxx_destruct;
+- (id)_deviceForPersistentID:(id)arg1 healthDaemon:(id)arg2 error:(id*)arg3;
 - (id)_sourceForPersistentID:(id)arg1 healthDaemon:(id)arg2 error:(id*)arg3;
-- (void)applyPropertiesToObject:(id)arg1 entity:(id)arg2 values:(id*)arg3 healthDaemon:(id)arg4;
-- (id)authorizationFilter;
+- (id)_sourceRevisionForPersistentID:(id)arg1 sourceVersion:(id)arg2 healthDaemon:(id)arg3 error:(id*)arg4;
+- (void)applyPropertiesToObject:(id)arg1 entity:(id)arg2 row:(struct HDSQLiteRow { }*)arg3 healthDaemon:(id)arg4;
+- (id /* block */)authorizationFilter;
 - (id)database;
+- (id)deviceByPersistentIDCache;
 - (void)finish;
-- (id)initWithPropertyOrder:(id)arg1 propertySetters:(id)arg2 authorizationFilter:(id)arg3 database:(id)arg4;
+- (id)initWithPropertyOrder:(id)arg1 propertySetters:(id)arg2 authorizationFilter:(id /* block */)arg3 database:(id)arg4;
 - (id)metadataValueStatement;
-- (id)propertyOrder;
+- (id)orderedProperties;
+- (id)orderedSetters;
 - (id)propertySetters;
+- (void)setDeviceByPersistentIDCache:(id)arg1;
 - (void)setMetadataValueStatement:(id)arg1;
 - (void)setSourceByPersistentIDCache:(id)arg1;
-- (void)setSourcePropertyIndex:(unsigned int)arg1;
+- (void)setSourceRevisionsDictionaryBySourceCache:(id)arg1;
 - (id)sourceByPersistentIDCache;
-- (unsigned int)sourcePropertyIndex;
+- (id)sourceRevisionsDictionaryBySourceCache;
 
 @end

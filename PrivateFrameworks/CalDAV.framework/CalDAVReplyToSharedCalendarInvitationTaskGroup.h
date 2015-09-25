@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class <CoreDAVTaskGroupDelegate>, CalDAVCalendarServerInviteNotificationItem, NSString, NSURL;
-
 @interface CalDAVReplyToSharedCalendarInvitationTaskGroup : CoreDAVTaskGroup <CoreDAVPostTaskDelegate> {
     BOOL _acceptInvitation;
     NSURL *_calendarHomeURL;
@@ -11,20 +9,19 @@
     NSURL *_sharedAs;
 }
 
-@property BOOL acceptInvitation;
-@property(retain) NSURL * calendarHomeURL;
-@property(copy,readonly) NSString * debugDescription;
-@property <CoreDAVTaskGroupDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) CalDAVCalendarServerInviteNotificationItem * invitation;
-@property(retain) NSURL * sharedAs;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL acceptInvitation;
+@property (nonatomic, retain) NSURL *calendarHomeURL;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CoreDAVTaskGroupDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) CalDAVCalendarServerInviteNotificationItem *invitation;
+@property (nonatomic, retain) NSURL *sharedAs;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (BOOL)acceptInvitation;
 - (id)calendarHomeURL;
-- (void)dealloc;
-- (id)description;
 - (id)generateReply;
 - (id)initWithAccountInfoProvider:(id)arg1 taskManager:(id)arg2;
 - (id)initWithInvitation:(id)arg1 acceptInvitation:(BOOL)arg2 atCalendarHomeURL:(id)arg3 accountInfoProvider:(id)arg4 taskManager:(id)arg5;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class <CoreDAVTaskGroupDelegate>, CoreDAVPropFindTask, NSString, NSURL;
-
 @interface CalDAVUpdateFreeBusySetTaskGroup : CoreDAVTaskGroup <CoreDAVPropFindTaskDelegate, CoreDAVPropPatchTaskDelegate> {
     CoreDAVPropFindTask *_fetchTask;
     NSURL *_inboxURL;
@@ -12,21 +10,21 @@
     NSURL *_urlToAdd;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <CoreDAVTaskGroupDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(retain) CoreDAVPropFindTask * fetchTask;
-@property(readonly) unsigned int hash;
-@property(retain) NSURL * inboxURL;
-@property int state;
-@property(retain) NSString * suffixToFilterOut;
-@property(readonly) Class superclass;
-@property(retain) NSURL * urlToAdd;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CoreDAVTaskGroupDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) CoreDAVPropFindTask *fetchTask;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSURL *inboxURL;
+@property (nonatomic) int state;
+@property (nonatomic, retain) NSString *suffixToFilterOut;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) NSURL *urlToAdd;
 
+- (void).cxx_destruct;
 - (void)_finishWithError:(id)arg1 state:(int)arg2;
 - (void)_startFetchFreeBusySet;
 - (void)_startPropPatchWithURLs:(id)arg1;
-- (void)dealloc;
 - (id)fetchTask;
 - (id)inboxURL;
 - (id)initWithAccountInfoProvider:(id)arg1 inboxURL:(id)arg2 urlToAdd:(id)arg3 suffixToFilterOut:(id)arg4 taskManager:(id)arg5;

@@ -2,17 +2,20 @@
    Image: /System/Library/PrivateFrameworks/Weather.framework/Weather
  */
 
-@class City, UIView;
-
-@interface WeatherView : UIView <CityUpdaterDelegate> {
+@interface WeatherView : UIView <CityUpdateObserver> {
     City *_city;
     BOOL _showWind;
     BOOL _showingDay;
     UIView *_windView;
 }
 
-@property(setter=showCity:,retain) City * city;
+@property (setter=showCity:, nonatomic, retain) City *city;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (BOOL)_setCity:(id)arg1 associateAsDelegate:(BOOL)arg2;
 - (id)bundle;
 - (id)city;

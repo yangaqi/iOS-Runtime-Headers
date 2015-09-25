@@ -2,18 +2,15 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSMutableSet;
-
 @interface CalDAVCalendarServerInviteItem : CoreDAVItem {
     NSMutableSet *_users;
 }
 
-@property(retain) NSMutableSet * users;
+@property (nonatomic, retain) NSMutableSet *users;
 
+- (void).cxx_destruct;
 - (void)addUser:(id)arg1;
 - (id)copyParseRules;
-- (void)dealloc;
-- (id)description;
 - (id)init;
 - (id)initWithNameSpace:(id)arg1 andName:(id)arg2;
 - (void)setUsers:(id)arg1;

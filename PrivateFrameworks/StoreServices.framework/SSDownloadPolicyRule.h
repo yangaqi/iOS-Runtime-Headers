@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
  */
 
-@class NSSet, NSString;
-
 @interface SSDownloadPolicyRule : NSObject <NSCoding, NSCopying, SSXPCCoding> {
     NSSet *_applicationStates;
     float _batteryLevel;
@@ -13,25 +11,28 @@
     int _powerStates;
     int _registrationStates;
     int _timeLimitStates;
+    NSSet *_userDefaultStates;
 }
 
-@property(copy) NSSet * applicationStates;
-@property float batteryLevel;
-@property(getter=isCellularAllowed,readonly) BOOL cellularAllowed;
-@property int cellularDataStates;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property long long downloadSizeLimit;
-@property(readonly) unsigned int hash;
-@property(copy) NSSet * networkTypes;
-@property int powerStates;
-@property int registrationStates;
-@property(readonly) Class superclass;
-@property int timeLimitStates;
-@property(getter=isWiFiAllowed,readonly) BOOL wiFiAllowed;
+@property (nonatomic, copy) NSSet *applicationStates;
+@property (nonatomic) float batteryLevel;
+@property (getter=isCellularAllowed, nonatomic, readonly) BOOL cellularAllowed;
+@property (nonatomic) int cellularDataStates;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) long long downloadSizeLimit;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSSet *networkTypes;
+@property (nonatomic) int powerStates;
+@property (nonatomic) int registrationStates;
+@property (readonly) Class superclass;
+@property (nonatomic) int timeLimitStates;
+@property (nonatomic, copy) NSSet *userDefaultStates;
+@property (getter=isWiFiAllowed, nonatomic, readonly) BOOL wiFiAllowed;
 
 - (void)addApplicationState:(id)arg1;
 - (void)addNetworkType:(int)arg1;
+- (void)addUserDefaultState:(id)arg1;
 - (id)applicationStates;
 - (float)batteryLevel;
 - (int)cellularDataStates;
@@ -58,7 +59,9 @@
 - (void)setPowerStates:(int)arg1;
 - (void)setRegistrationStates:(int)arg1;
 - (void)setTimeLimitStates:(int)arg1;
+- (void)setUserDefaultStates:(id)arg1;
 - (int)timeLimitStates;
 - (void)unionPolicyRule:(id)arg1;
+- (id)userDefaultStates;
 
 @end

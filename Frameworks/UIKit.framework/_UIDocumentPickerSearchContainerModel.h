@@ -2,20 +2,22 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface _UIDocumentPickerSearchContainerModel : _UIDocumentPickerURLContainerModel {
     NSString *_queryString;
 }
 
-@property(copy) NSString * queryString;
+@property (nonatomic, copy) NSString *queryString;
 
+- (void).cxx_destruct;
 - (void)_updateObserverForQuery;
-- (void)dealloc;
+- (void)arrayController:(id)arg1 modelChanged:(id)arg2 differences:(id)arg3;
 - (id)displayTitle;
+- (id)initWithPickableTypes:(id)arg1 mode:(unsigned int)arg2;
+- (id)initWithURL:(id)arg1 pickableTypes:(id)arg2 mode:(unsigned int)arg3;
 - (id)queryString;
 - (id)scopes;
 - (void)setQueryString:(id)arg1;
+- (BOOL)shouldShowTopLevelContainers;
 - (void)startMonitoringChanges;
 
 @end

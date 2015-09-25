@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class NSString, NSURL;
-
 @interface CKAttachmentItem : NSObject <QLPreviewItem> {
+    NSURL *_appendedBundleURL;
     NSURL *_fileURL;
     NSString *_guid;
+    BOOL _isIrisAsset;
     NSURL *_previewURL;
     struct CGSize { 
         float width; 
@@ -14,16 +14,17 @@
     } _size;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(copy) NSURL * fileURL;
-@property(copy) NSString * guid;
-@property(readonly) unsigned int hash;
-@property(readonly) NSString * previewItemTitle;
-@property(readonly) NSURL * previewItemURL;
-@property(retain) NSURL * previewURL;
-@property(readonly) struct CGSize { float x1; float x2; } size;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSURL *fileURL;
+@property (nonatomic, copy) NSString *guid;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isIrisAsset;
+@property (nonatomic, readonly) NSString *previewItemTitle;
+@property (nonatomic, readonly) NSURL *previewItemURL;
+@property (nonatomic, retain) NSURL *previewURL;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
+@property (readonly) Class superclass;
 
 + (id)UTITypes;
 + (struct CGSize { float x1; float x2; })defaultSize;
@@ -32,21 +33,29 @@
 + (unsigned int)pxWidth;
 
 - (id)UTIType;
+- (id)_getIrisBundleURL;
+- (id)_getTempIrisBundleLocation;
+- (id)_getTempIrisFolder;
+- (void)_removeAppendedBundle;
 - (void)_savePreview:(id)arg1;
 - (id)_savedPreviewFromURL:(id)arg1;
 - (id)cachedPreview;
 - (void)dealloc;
 - (id)description;
 - (id)fileURL;
-- (void)generatePreviewWithCompletion:(id)arg1;
+- (void)generatePreviewWithCompletion:(id /* block */)arg1;
+- (id)getIrisVideoPath;
 - (id)guid;
 - (id)imageData;
 - (id)initWithFileURL:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2 guid:(id)arg3;
+- (BOOL)isEqual:(id)arg1;
+- (BOOL)isIrisAsset;
 - (id)pasteboardItem;
 - (id)previewItemURL;
 - (id)previewURL;
 - (void)setFileURL:(id)arg1;
 - (void)setGuid:(id)arg1;
+- (void)setIsIrisAsset:(BOOL)arg1;
 - (void)setPreviewURL:(id)arg1;
 - (struct CGSize { float x1; float x2; })size;
 - (void)startDeferredSetup;

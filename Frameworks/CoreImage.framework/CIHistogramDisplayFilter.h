@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIImage, NSNumber;
-
 @interface CIHistogramDisplayFilter : CIFilter {
     NSNumber *inputHeight;
     NSNumber *inputHighLimit;
@@ -11,21 +9,19 @@
     NSNumber *inputLowLimit;
 }
 
-@property(retain) NSNumber * inputHeight;
-@property(retain) NSNumber * inputHighLimit;
-@property(retain) CIImage * inputImage;
-@property(retain) NSNumber * inputLowLimit;
+@property (nonatomic, retain) NSNumber *inputHeight;
+@property (nonatomic, retain) NSNumber *inputHighLimit;
+@property (nonatomic, retain) CIImage *inputImage;
+@property (nonatomic, retain) NSNumber *inputLowLimit;
 
 + (id)customAttributes;
 
 - (id)_kernel;
-- (id)customAttributes;
 - (id)inputHeight;
 - (id)inputHighLimit;
 - (id)inputImage;
 - (id)inputLowLimit;
 - (id)outputImage;
-- (void)setDefaults;
 - (void)setInputHeight:(id)arg1;
 - (void)setInputHighLimit:(id)arg1;
 - (void)setInputImage:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CallHistory.framework/CallHistory
  */
 
-@class <SyncManagerProtocol>, NSArray, NSDate, NSPredicate, NSString;
-
 @interface CHManager : CHSynchronizedLoggable {
     id _addressBookChangedNotificationRef;
     BOOL _cacheIsDirty;
@@ -18,35 +16,33 @@
     BOOL _reCoalesce;
     NSArray *_recentCalls;
     BOOL _showsFaceTimeAudioCalls;
-    BOOL _showsFaceTimeCalls;
     BOOL _showsFaceTimeVideoCalls;
     BOOL _showsTelephonyCalls;
     <SyncManagerProtocol> *_syncManager;
     NSArray *_uncoalescedRecentCalls;
     NSArray *_uncoalescedUnFilteredRecentCalls;
-    int _unreadCallCount;
+    NSNumber *_unreadCallCount;
 }
 
-@property(retain) id addressBookChangedNotificationRef;
+@property (retain) id addressBookChangedNotificationRef;
 @property BOOL cacheIsDirty;
-@property(copy) NSString * coalescingStrategy;
-@property(retain) id databaseChangedNotificationRef;
+@property (nonatomic, copy) NSString *coalescingStrategy;
+@property (retain) id databaseChangedNotificationRef;
 @property BOOL generateSyncTransactions;
-@property unsigned int limitingCallTypes;
-@property(copy) NSDate * limitingEndDate;
-@property(copy) NSDate * limitingStartDate;
+@property (nonatomic) unsigned int limitingCallTypes;
+@property (nonatomic, copy) NSDate *limitingEndDate;
+@property (nonatomic, copy) NSDate *limitingStartDate;
 @property int numberOfUnseenMissedCalls;
-@property(copy) NSPredicate * postFetchingPredicate;
+@property (nonatomic, copy) NSPredicate *postFetchingPredicate;
 @property BOOL reCoalesce;
-@property(retain) NSArray * recentCalls;
-@property BOOL showsFaceTimeAudioCalls;
-@property BOOL showsFaceTimeCalls;
-@property BOOL showsFaceTimeVideoCalls;
-@property BOOL showsTelephonyCalls;
-@property(retain) <SyncManagerProtocol> * syncManager;
-@property(getter=uncoalescedRecentCallsSync,retain) NSArray * uncoalescedRecentCalls;
-@property(retain) NSArray * uncoalescedUnFilteredRecentCalls;
-@property int unreadCallCount;
+@property (nonatomic, retain) NSArray *recentCalls;
+@property (nonatomic) BOOL showsFaceTimeAudioCalls;
+@property (nonatomic) BOOL showsFaceTimeVideoCalls;
+@property (nonatomic) BOOL showsTelephonyCalls;
+@property (retain) <SyncManagerProtocol> *syncManager;
+@property (getter=uncoalescedRecentCallsSync, nonatomic, retain) NSArray *uncoalescedRecentCalls;
+@property (retain) NSArray *uncoalescedUnFilteredRecentCalls;
+@property (retain) NSNumber *unreadCallCount;
 
 + (unsigned int)CHCallStatusForCallWithDuration:(double)arg1 isOriginated:(BOOL)arg2 isAnswered:(BOOL)arg3;
 
@@ -95,6 +91,7 @@
 - (void)setCacheIsDirty:(BOOL)arg1;
 - (void)setCoalescingStrategy:(id)arg1;
 - (void)setDatabaseChangedNotificationRef:(id)arg1;
+- (void)setDefaultInitValues;
 - (void)setGenerateSyncTransactions:(BOOL)arg1;
 - (void)setLimitingCallTypes:(unsigned int)arg1;
 - (void)setLimitingCallTypesSync:(unsigned int)arg1;
@@ -105,15 +102,13 @@
 - (void)setReCoalesce:(BOOL)arg1;
 - (void)setRecentCalls:(id)arg1;
 - (void)setShowsFaceTimeAudioCalls:(BOOL)arg1;
-- (void)setShowsFaceTimeCalls:(BOOL)arg1;
 - (void)setShowsFaceTimeVideoCalls:(BOOL)arg1;
 - (void)setShowsTelephonyCalls:(BOOL)arg1;
 - (void)setSyncManager:(id)arg1;
 - (void)setUncoalescedRecentCalls:(id)arg1;
 - (void)setUncoalescedUnFilteredRecentCalls:(id)arg1;
-- (void)setUnreadCallCount:(int)arg1;
+- (void)setUnreadCallCount:(id)arg1;
 - (BOOL)showsFaceTimeAudioCalls;
-- (BOOL)showsFaceTimeCalls;
 - (BOOL)showsFaceTimeVideoCalls;
 - (BOOL)showsTelephonyCalls;
 - (id)syncManager;
@@ -121,7 +116,7 @@
 - (void)unRegisterForNotifications;
 - (id)uncoalescedRecentCallsSync;
 - (id)uncoalescedUnFilteredRecentCalls;
-- (int)unreadCallCount;
+- (id)unreadCallCount;
 - (void)updateBytesOfDataUsedFor:(id)arg1 with:(id)arg2;
 
 @end

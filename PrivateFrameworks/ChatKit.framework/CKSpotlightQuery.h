@@ -2,40 +2,33 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSMutableDictionary, NSObject<OS_dispatch_group>, SPDaemonQueryToken, SPSearchResultSection;
-
-@interface CKSpotlightQuery : NSObject <SPDaemonQueryDelegate> {
+@interface CKSpotlightQuery : NSObject <MDSearchQueryDelegate> {
     BOOL _cancelled;
     NSMutableDictionary *_chatGUIDToLatestSearchResult;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completion;
-
+    id /* block */ _completion;
+    MDSearchQuery *_currentQuery;
     BOOL _processing;
-    SPDaemonQueryToken *_queryToken;
     unsigned int _resultIndex;
     NSObject<OS_dispatch_group> *_searchResultLoadingGroup;
-    SPSearchResultSection *_searchResults;
+    NSArray *_searchResults;
 }
 
-@property(copy) id completion;
+@property (nonatomic, copy) id /* block */ completion;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_callCompletionIfNecessary;
 - (void)_cleanup;
 - (void)_processSearchResults;
 - (void)cancel;
-- (id)completion;
+- (id /* block */)completion;
 - (void)dealloc;
-- (id)initWithSearchText:(id)arg1 completionBlock:(id)arg2;
-- (void)searchDaemonQuery:(id)arg1 addedResults:(id)arg2;
-- (void)searchDaemonQuery:(id)arg1 encounteredError:(id)arg2;
-- (void)searchDaemonQueryCompleted:(id)arg1;
-- (void)searchDaemonQueryReset:(id)arg1;
-- (void)setCompletion:(id)arg1;
+- (id)initWithSearchText:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)searchQuery:(id)arg1 didFailWithError:(id)arg2;
+- (void)searchQuery:(id)arg1 didReturnItems:(id)arg2;
+- (void)searchQuery:(id)arg1 statusChanged:(unsigned int)arg2;
+- (void)setCompletion:(id /* block */)arg1;
 
 @end

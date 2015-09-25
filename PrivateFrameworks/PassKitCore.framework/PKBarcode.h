@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
  */
 
-@class NSData, NSDictionary, NSString;
-
 @interface PKBarcode : NSObject <NSSecureCoding> {
     NSString *_altText;
     int _format;
@@ -11,24 +9,23 @@
     NSDictionary *_options;
 }
 
-@property(copy) NSString * altText;
-@property int format;
-@property(readonly) BOOL isTall;
-@property(copy) NSData * messageData;
-@property(copy) NSDictionary * options;
+@property (nonatomic, copy) NSString *altText;
+@property (nonatomic) int format;
+@property (nonatomic, readonly) BOOL isTall;
+@property (nonatomic, copy) NSData *messageData;
+@property (nonatomic, copy) NSDictionary *options;
+
+// Image: /System/Library/PrivateFrameworks/PassKitCore.framework/PassKitCore
 
 + (BOOL)supportsSecureCoding;
 
-- (id)_imageFromBarcodeMessage;
-- (id)_imageFromTextMessage;
 - (id)altText;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (int)format;
 - (unsigned int)hash;
-- (id)image;
-- (id)initWithBarcodeDictionary:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithPassDictionary:(id)arg1 bundle:(id)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isTall;
 - (id)messageData;
@@ -37,5 +34,10 @@
 - (void)setFormat:(int)arg1;
 - (void)setMessageData:(id)arg1;
 - (void)setOptions:(id)arg1;
+
+// Image: /System/Library/Frameworks/PassKit.framework/PassKit
+
+- (id)_imageFromBarcodeMessage;
+- (id)image;
 
 @end

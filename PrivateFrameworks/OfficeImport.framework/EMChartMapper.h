@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDAxis, CHDChart, CHDChartType, CHDSeries, CMState, EDResources;
-
 @interface EMChartMapper : CMMapper {
     CHDAxis *mBaseAxis;
     CHDChart *mChart;
@@ -28,9 +26,10 @@
     CMState *mState;
 }
 
+@property (readonly) CMDrawableMapper *parent;
+
 + (struct CGColor { }*)newColorWithCalibratedRed:(float)arg1 green:(float)arg2 blue:(float)arg3 alpha:(float)arg4;
 
-- (id).cxx_construct;
 - (void)_addCategoryAxis:(id)arg1 series:(id)arg2 state:(id)arg3 toDescription:(id)arg4;
 - (void)_addGraphicProperties:(id)arg1 toDescription:(id)arg2 withState:(id)arg3;
 - (void)_addStandardSeries:(id)arg1 toDescription:(id)arg2 withState:(id)arg3;

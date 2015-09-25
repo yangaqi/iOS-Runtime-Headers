@@ -7,9 +7,9 @@
     double _lng;
 }
 
-@property(readonly) struct { double x1; double x2; } coordinate;
-@property double lat;
-@property double lng;
+@property (nonatomic, readonly) struct { double x1; double x2; } coordinate;
+@property (nonatomic) double lat;
+@property (nonatomic) double lng;
 
 - (struct { double x1; double x2; })coordinate;
 - (void)copyTo:(id)arg1;
@@ -17,6 +17,8 @@
 - (id)description;
 - (id)dictionaryRepresentation;
 - (unsigned int)hash;
+- (id)initWithCoordinate:(struct { double x1; double x2; })arg1;
+- (id)initWithLatitude:(double)arg1 longitude:(double)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (double)lat;
 - (double)lng;

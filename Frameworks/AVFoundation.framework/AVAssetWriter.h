@@ -2,35 +2,37 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAssetWriterHelper, AVAssetWriterInternal, NSArray, NSError, NSString, NSURL;
-
-@interface AVAssetWriter : NSObject {
+@interface AVAssetWriter : NSObject <AVKeyPathDependencyHost, AVWeakObservable> {
     AVAssetWriterInternal *_internal;
 }
 
-@property(readonly) NSArray * availableMediaTypes;
-@property(copy) NSURL * directoryForTemporaryFiles;
-@property(readonly) NSError * error;
-@property(getter=_helper,retain,readonly) AVAssetWriterHelper * helper;
-@property(readonly) NSArray * inputs;
-@property(copy) NSArray * metadata;
-@property(copy,readonly) NSString * outputFileType;
-@property(copy,readonly) NSURL * outputURL;
-@property BOOL shouldOptimizeForNetworkUse;
-@property(readonly) int status;
+@property (nonatomic, readonly) NSArray *availableMediaTypes;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSURL *directoryForTemporaryFiles;
+@property (readonly) NSError *error;
+@property (readonly) unsigned int hash;
+@property (getter=_helper, readonly, retain) AVAssetWriterHelper *helper;
+@property (nonatomic, readonly) NSArray *inputs;
+@property (nonatomic, copy) NSArray *metadata;
+@property (nonatomic, readonly, copy) NSString *outputFileType;
+@property (nonatomic, readonly, copy) NSURL *outputURL;
+@property (nonatomic) BOOL shouldOptimizeForNetworkUse;
+@property (readonly) int status;
+@property (readonly) Class superclass;
 
 + (id)_errorForOSStatus:(long)arg1;
 + (id)assetWriterWithURL:(id)arg1 fileType:(id)arg2 error:(id*)arg3;
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
++ (void)declareKeyPathDependenciesWithRegistry:(id)arg1;
 + (void)initialize;
-+ (id)keyPathsForValuesAffectingError;
-+ (id)keyPathsForValuesAffectingStatus;
 
 - (id)_helper;
 - (BOOL)_setHelper:(id)arg1 ifCurrentHelper:(id)arg2;
-- (BOOL)_setHelper:(id)arg1 ifCurrentHelper:(id)arg2 withBlock:(id)arg3;
+- (BOOL)_setHelper:(id)arg1 ifCurrentHelper:(id)arg2 withBlock:(id /* block */)arg3;
 - (BOOL)_supportsSampleReferencesReturningError:(id*)arg1;
 - (void)_transitionToFailedStatusWithError:(id)arg1;
+- (void)addCallbackToCancelDuringDeallocation:(id)arg1;
 - (void)addInput:(id)arg1;
 - (void)addInputGroup:(id)arg1;
 - (id)availableMediaTypes;
@@ -45,7 +47,7 @@
 - (id)error;
 - (void)finalize;
 - (BOOL)finishWriting;
-- (void)finishWritingWithCompletionHandler:(id)arg1;
+- (void)finishWritingWithCompletionHandler:(id /* block */)arg1;
 - (id)init;
 - (id)initWithURL:(id)arg1 fileType:(id)arg2 error:(id*)arg3;
 - (id)inputGroups;
@@ -55,6 +57,7 @@
 - (int)movieTimeScale;
 - (id)outputFileType;
 - (id)outputURL;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })overallDurationHint;
 - (float)preferredRate;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })preferredTransform;
 - (float)preferredVolume;
@@ -62,6 +65,7 @@
 - (void)setMetadata:(id)arg1;
 - (void)setMovieFragmentInterval:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (void)setMovieTimeScale:(int)arg1;
+- (void)setOverallDurationHint:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1;
 - (void)setPreferredRate:(float)arg1;
 - (void)setPreferredTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg1;
 - (void)setPreferredVolume:(float)arg1;

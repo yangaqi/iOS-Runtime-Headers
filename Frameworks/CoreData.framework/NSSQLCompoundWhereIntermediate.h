@@ -2,16 +2,19 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSMutableArray;
-
 @interface NSSQLCompoundWhereIntermediate : NSSQLWhereIntermediate {
+    NSSQLEntity *_disambiguatingEntity;
     NSMutableArray *_subclauses;
 }
 
+@property (nonatomic) NSSQLEntity *disambiguatingEntity;
+
 - (id)_generateMulticlauseStringInContext:(id)arg1;
 - (void)dealloc;
+- (id)disambiguatingEntity;
 - (id)generateSQLStringInContext:(id)arg1;
 - (id)initWithPredicate:(id)arg1 inScope:(id)arg2 inContext:(id)arg3;
 - (BOOL)isOrScoped;
+- (void)setDisambiguatingEntity:(id)arg1;
 
 @end

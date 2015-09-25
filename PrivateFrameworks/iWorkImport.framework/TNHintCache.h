@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class TNPageController, TNPageCoordinateDictionary, TSDDrawableInfo;
-
 @interface TNHintCache : NSObject {
     TNPageCoordinateDictionary *mHintCacheEntryDictionary;
     TSDDrawableInfo *mInfo;
@@ -24,10 +22,9 @@
     } mPageRange;
 }
 
-@property(retain) TSDDrawableInfo * info;
-@property(readonly) TNPageController * pageController;
+@property (retain) TSDDrawableInfo *info;
+@property (readonly) TNPageController *pageController;
 
-- (id).cxx_construct;
 - (void)dealloc;
 - (id)info;
 - (id)initWithInfo:(id)arg1 pageController:(id)arg2;

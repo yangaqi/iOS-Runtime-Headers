@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CIDivideBlendMode : CIBlendModeFilter {
-}
+@interface CIDivideBlendMode : CIBlendModeFilter
 
-+ (id)_filter_display_name;
 + (id)_kernel;
++ (id)customAttributes;
 
 @end

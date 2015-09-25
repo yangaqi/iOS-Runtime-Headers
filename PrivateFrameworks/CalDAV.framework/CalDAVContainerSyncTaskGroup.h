@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class <CalDAVCalendar>, NSDateComponents;
-
 @interface CalDAVContainerSyncTaskGroup : CoreDAVContainerSyncTaskGroup {
     <CalDAVCalendar> *_calendar;
     NSDateComponents *_eventFilterEndDate;
@@ -19,18 +17,19 @@
     NSDateComponents *_todoFilterStartDate;
 }
 
-@property(retain) <CalDAVCalendar> * calendar;
-@property(retain) NSDateComponents * eventFilterEndDate;
-@property(retain) NSDateComponents * eventFilterStartDate;
-@property BOOL fallbackOnMultiGetError;
-@property BOOL getScheduleChanges;
-@property BOOL getScheduleTags;
-@property BOOL supportsExtendedCalendarQuery;
-@property BOOL syncEvents;
-@property BOOL syncTodos;
-@property(retain) NSDateComponents * todoFilterEndDate;
-@property(retain) NSDateComponents * todoFilterStartDate;
+@property (nonatomic, retain) <CalDAVCalendar> *calendar;
+@property (nonatomic, retain) NSDateComponents *eventFilterEndDate;
+@property (nonatomic, retain) NSDateComponents *eventFilterStartDate;
+@property (nonatomic) BOOL fallbackOnMultiGetError;
+@property (nonatomic) BOOL getScheduleChanges;
+@property (nonatomic) BOOL getScheduleTags;
+@property (nonatomic) BOOL supportsExtendedCalendarQuery;
+@property (nonatomic) BOOL syncEvents;
+@property (nonatomic) BOOL syncTodos;
+@property (nonatomic, retain) NSDateComponents *todoFilterEndDate;
+@property (nonatomic, retain) NSDateComponents *todoFilterStartDate;
 
+- (void).cxx_destruct;
 - (BOOL)_shouldFetchEventsForState:(int)arg1;
 - (BOOL)_shouldFetchTodosForState:(int)arg1;
 - (void)applyAdditionalPropertiesFromPostTask:(id)arg1;
@@ -42,7 +41,6 @@
 - (id)copyMultiGetTaskWithURLs:(id)arg1;
 - (id)copyPutTaskWithPayloadItem:(id)arg1 forAction:(id)arg2;
 - (id)dataContentType;
-- (void)dealloc;
 - (id)eventFilterEndDate;
 - (id)eventFilterStartDate;
 - (BOOL)fallbackOnMultiGetError;

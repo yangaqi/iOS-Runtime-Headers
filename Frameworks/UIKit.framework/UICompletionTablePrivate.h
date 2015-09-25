@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIShadowView, UITableView, UIView;
-
 @interface UICompletionTablePrivate : NSObject {
     id _delegate;
     UIShadowView *_shadowView;
@@ -11,6 +9,6 @@
     UIView *_topStrokeView;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 
 @end

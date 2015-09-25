@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMCore.framework/IMCore
  */
 
-@class NSArray, NSDictionary, NSMutableArray, NSMutableDictionary, NSMutableSet;
-
 @interface IMFileTransferCenter : NSObject {
     NSMutableDictionary *_accountIDToTransferGUIDsMap;
     NSMutableSet *_activeTransfers;
@@ -14,13 +12,13 @@
     NSMutableArray *_preauthorizedInfos;
 }
 
-@property(readonly) NSArray * activeTransferGUIDs;
-@property(readonly) NSArray * activeTransfers;
-@property(readonly) BOOL hasActiveFileTransfers;
-@property(readonly) BOOL hasPendingFileTransfers;
-@property(readonly) NSArray * orderedTransfers;
-@property(readonly) NSArray * orderedTransfersGUIDs;
-@property(readonly) NSDictionary * transfers;
+@property (nonatomic, readonly) NSArray *activeTransferGUIDs;
+@property (nonatomic, readonly) NSArray *activeTransfers;
+@property (nonatomic, readonly) BOOL hasActiveFileTransfers;
+@property (nonatomic, readonly) BOOL hasPendingFileTransfers;
+@property (nonatomic, readonly) NSArray *orderedTransfers;
+@property (nonatomic, readonly) NSArray *orderedTransfersGUIDs;
+@property (nonatomic, readonly) NSDictionary *transfers;
 
 + (Class)fileTransferClass;
 + (void)setTransferCenterClass:(Class)arg1;
@@ -62,9 +60,12 @@
 - (id)orderedTransfersGUIDs;
 - (void)preauthorizeFileTransferFromOtherPerson:(id)arg1 account:(id)arg2 filename:(id)arg3 saveToPath:(id)arg4;
 - (BOOL)registerGUID:(id)arg1 forNewOutgoingTransferWithLocalURL:(id)arg2;
+- (void)registerTransferWithDaemon:(id)arg1;
 - (void)removeTransfer:(id)arg1;
 - (void)retargetTransfer:(id)arg1 toPath:(id)arg2;
 - (void)sendTransfer:(id)arg1;
+- (void)setAuxImageForTransfer:(id)arg1 value:(BOOL)arg2;
+- (void)setAuxVideoForTransfer:(id)arg1 value:(BOOL)arg2;
 - (void)stopTransfer:(id)arg1;
 - (id)transferForGUID:(id)arg1;
 - (id)transferForGUID:(id)arg1 includeRemoved:(BOOL)arg2;

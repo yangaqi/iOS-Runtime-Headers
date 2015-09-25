@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, NSString;
-
 @interface WDFont : NSObject <NSCopying> {
     NSMutableArray *mAlternateNames;
     int mCharacterSet;
@@ -19,6 +17,7 @@
 - (int)characterSet;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (int)fontFamily;
 - (unsigned long)hash;
 - (id)init;

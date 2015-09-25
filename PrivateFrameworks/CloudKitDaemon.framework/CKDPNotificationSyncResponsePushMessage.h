@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class NSData, NSString;
-
 @interface CKDPNotificationSyncResponsePushMessage : PBCodable <NSCopying> {
     int _badgeCount;
+    NSString *_category;
     NSString *_dialog;
     struct { 
         unsigned int badgeCount : 1; 
@@ -19,29 +18,33 @@
     NSString *_uuid;
 }
 
-@property int badgeCount;
-@property(retain) NSString * dialog;
-@property BOOL hasBadgeCount;
-@property(readonly) BOOL hasDialog;
-@property BOOL hasIsRead;
-@property(readonly) BOOL hasPayload;
-@property(readonly) BOOL hasSound;
-@property BOOL hasSource;
-@property(readonly) BOOL hasUuid;
-@property BOOL isRead;
-@property(retain) NSData * payload;
-@property(retain) NSString * sound;
-@property int source;
-@property(retain) NSString * uuid;
+@property (nonatomic) int badgeCount;
+@property (nonatomic, retain) NSString *category;
+@property (nonatomic, retain) NSString *dialog;
+@property (nonatomic) BOOL hasBadgeCount;
+@property (nonatomic, readonly) BOOL hasCategory;
+@property (nonatomic, readonly) BOOL hasDialog;
+@property (nonatomic) BOOL hasIsRead;
+@property (nonatomic, readonly) BOOL hasPayload;
+@property (nonatomic, readonly) BOOL hasSound;
+@property (nonatomic) BOOL hasSource;
+@property (nonatomic, readonly) BOOL hasUuid;
+@property (nonatomic) BOOL isRead;
+@property (nonatomic, retain) NSData *payload;
+@property (nonatomic, retain) NSString *sound;
+@property (nonatomic) int source;
+@property (nonatomic, retain) NSString *uuid;
 
 - (void).cxx_destruct;
 - (int)badgeCount;
+- (id)category;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dialog;
 - (id)dictionaryRepresentation;
 - (BOOL)hasBadgeCount;
+- (BOOL)hasCategory;
 - (BOOL)hasDialog;
 - (BOOL)hasIsRead;
 - (BOOL)hasPayload;
@@ -55,6 +58,7 @@
 - (id)payload;
 - (BOOL)readFrom:(id)arg1;
 - (void)setBadgeCount:(int)arg1;
+- (void)setCategory:(id)arg1;
 - (void)setDialog:(id)arg1;
 - (void)setHasBadgeCount:(BOOL)arg1;
 - (void)setHasIsRead:(BOOL)arg1;

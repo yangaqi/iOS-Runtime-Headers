@@ -2,28 +2,27 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSNumber, NSString, SASportsTeam;
+@interface SASportsAthlete : SASportsEntity
 
-@interface SASportsAthlete : SASportsEntity {
-}
+@property (nonatomic, retain) SASportsTeam *activeTeam;
+@property (nonatomic, copy) NSArray *athleteMetadata;
+@property (nonatomic, copy) NSArray *careerStatistics;
+@property (nonatomic, copy) NSString *firstName;
+@property (nonatomic, copy) NSArray *formattedMetadata;
+@property (nonatomic, copy) NSArray *formattedMetadataTypes;
+@property (nonatomic, copy) NSString *gender;
+@property (nonatomic, copy) NSString *height;
+@property (nonatomic, copy) NSNumber *injured;
+@property (nonatomic, copy) NSString *jerseyNumber;
+@property (nonatomic, copy) NSArray *lastGameStatistics;
+@property (nonatomic, copy) NSString *lastName;
+@property (nonatomic, copy) NSString *nickname;
+@property (nonatomic, copy) NSString *position;
+@property (nonatomic, copy) NSArray *previousTeams;
+@property (nonatomic, copy) NSArray *statistics;
+@property (nonatomic, copy) NSString *weight;
 
-@property(retain) SASportsTeam * activeTeam;
-@property(copy) NSArray * athleteMetadata;
-@property(copy) NSArray * careerStatistics;
-@property(copy) NSString * firstName;
-@property(copy) NSArray * formattedMetadata;
-@property(copy) NSArray * formattedMetadataTypes;
-@property(copy) NSString * gender;
-@property(copy) NSString * height;
-@property(copy) NSNumber * injured;
-@property(copy) NSString * jerseyNumber;
-@property(copy) NSArray * lastGameStatistics;
-@property(copy) NSString * lastName;
-@property(copy) NSString * nickname;
-@property(copy) NSString * position;
-@property(copy) NSArray * previousTeams;
-@property(copy) NSArray * statistics;
-@property(copy) NSString * weight;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)athlete;
 + (id)athleteWithDictionary:(id)arg1 context:(id)arg2;
@@ -63,7 +62,10 @@
 - (void)setStatistics:(id)arg1;
 - (void)setWeight:(id)arg1;
 - (id)statistics;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 - (id)weight;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (void)siriui_enumerateEntitiesWithGroupHandler:(id /* block */)arg1 teamHandler:(id /* block */)arg2 athleteHandler:(id /* block */)arg3;
 
 @end

@@ -2,15 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, SAGKDirectAnswer;
+@interface SAGKOpenEndedDomainObject : SAGKDomainObject
 
-@interface SAGKOpenEndedDomainObject : SAGKDomainObject {
-}
-
-@property(retain) SAGKDirectAnswer * directAnswer;
-@property(copy) NSArray * image;
-@property(copy) NSArray * linkedAnswerGroups;
-@property(copy) NSArray * structuredAnswers;
+@property (nonatomic, retain) SAGKDirectAnswer *directAnswer;
+@property (nonatomic, copy) NSArray *image;
+@property (nonatomic, copy) NSArray *linkedAnswerGroups;
+@property (nonatomic, copy) NSArray *structuredAnswers;
 
 + (id)openEndedDomainObject;
 + (id)openEndedDomainObjectWithDictionary:(id)arg1 context:(id)arg2;
@@ -25,6 +22,5 @@
 - (void)setLinkedAnswerGroups:(id)arg1;
 - (void)setStructuredAnswers:(id)arg1;
 - (id)structuredAnswers;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

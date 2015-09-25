@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSData, NSString;
-
 @interface OADSound : OCDDelayedMedia {
     NSString *mName;
     long mSizeInBytes;
@@ -12,7 +10,6 @@
 
 - (void)dealloc;
 - (id)description;
-- (id)init;
 - (bool)isLoaded;
 - (id)name;
 - (void)setName:(id)arg1;

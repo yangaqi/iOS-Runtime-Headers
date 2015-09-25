@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class <UICollectionViewDelegate>, MPUExtrasMainMenuSectionMetrics, NSLayoutConstraint, NSString, UICollectionView, UICollectionViewFlowLayout, UIView;
-
 @interface MPUExtrasMainTemplateViewController : MPUExtrasTemplateViewController <MPUExtrasMainMenuSectionMetricsDataSource, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout> {
     NSLayoutConstraint *_collectionViewHeightConstraint;
     UICollectionViewFlowLayout *_collectionViewLayout;
@@ -14,12 +12,14 @@
     UIView *_menuBarView;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property <UICollectionViewDelegate> * didSelectDelegate;
-@property(readonly) unsigned int hash;
-@property(readonly) UIView * menuBarView;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) float collectionViewHeight;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) <UICollectionViewDelegate> *didSelectDelegate;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSIndexPath *indexPathOfFeaturedItem;
+@property (nonatomic, readonly) UIView *menuBarView;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (BOOL)_collectionView:(id)arg1 indexPathShouldDisplayAsSelected:(id)arg2;
@@ -38,8 +38,10 @@
 - (int)collectionView:(id)arg1 numberOfItemsInSection:(int)arg2;
 - (BOOL)collectionView:(id)arg1 shouldSelectItemAtIndexPath:(id)arg2;
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
+- (float)collectionViewHeight;
 - (void)dealloc;
 - (id)didSelectDelegate;
+- (id)indexPathOfFeaturedItem;
 - (id)initWithDocument:(id)arg1 options:(id)arg2 context:(id)arg3;
 - (id)menuBarView;
 - (int)numberOfItemsForSectionMetrics:(id)arg1;

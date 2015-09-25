@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSTimer, UITableViewCell;
-
 @interface PSTableCellHighlightContext : NSObject {
     BOOL _animateUnhighlight;
     UITableViewCell *_cell;
@@ -12,13 +10,14 @@
     BOOL _valid;
 }
 
-@property(readonly) BOOL animateUnhighlight;
-@property UITableViewCell * cell;
-@property int originalSelectionStyle;
-@property(readonly) BOOL valid;
+@property (nonatomic, readonly) BOOL animateUnhighlight;
+@property (nonatomic) UITableViewCell *cell;
+@property (nonatomic) int originalSelectionStyle;
+@property (nonatomic, readonly) BOOL valid;
 
 + (id)contextWithCell:(id)arg1;
 
+- (void).cxx_destruct;
 - (void)_killTimer;
 - (void)_timerFired;
 - (BOOL)animateUnhighlight;

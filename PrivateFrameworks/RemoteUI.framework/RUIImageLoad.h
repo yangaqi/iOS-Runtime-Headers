@@ -2,28 +2,19 @@
    Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
  */
 
-@class NSMutableData, NSString, NSURL, NSURLConnection;
-
-@interface RUIImageLoad : NSObject <NSURLConnectionDelegate> {
+@interface RUIImageLoad : NSObject {
     NSURL *_URL;
-    NSURLConnection *_connection;
-    NSMutableData *_imageData;
-    BOOL _invalidResponse;
+    NSURLSessionDataTask *_dataTask;
+    NSURLSession *_urlSession;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (nonatomic, copy) NSURL *URL;
 
 - (void).cxx_destruct;
-- (void)_createImage;
-- (void)_loadFinished;
-- (void)connection:(id)arg1 didFailWithError:(id)arg2;
-- (void)connection:(id)arg1 didReceiveData:(id)arg2;
-- (void)connection:(id)arg1 didReceiveResponse:(id)arg2;
-- (void)connectionDidFinishLoading:(id)arg1;
+- (id)URL;
+- (void)dealloc;
 - (BOOL)receivedValidResponse:(id)arg1;
+- (void)setURL:(id)arg1;
 - (void)start;
 
 @end

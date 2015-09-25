@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, NSMutableDictionary, WDCharacterProperties, WDDocument, WDParagraphProperties, WDStyle;
-
 @interface WDStyleSheet : NSObject {
     WDCharacterProperties *mDefaultCharacterProperties;
     WDStyle *mDefaultCharacterStyle;
@@ -29,6 +27,7 @@
 - (id)defaultParagraphProperties;
 - (id)defaultParagraphStyle;
 - (id)defaultTableStyle;
+- (id)description;
 - (id)document;
 - (id)initWithDocument:(id)arg1;
 - (void)initializeDefaultProperties;

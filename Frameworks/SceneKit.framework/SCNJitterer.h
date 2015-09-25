@@ -2,19 +2,16 @@
    Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
  */
 
-@class <SCNJittererDelegate>, NSObject<OS_dispatch_source>;
-
 @interface SCNJitterer : NSObject {
     <SCNJittererDelegate> *_delegate;
     BOOL _enabled;
     unsigned int _iteration;
-    BOOL _jitteringSupported;
     NSObject<OS_dispatch_source> *_restartSource;
     BOOL _restartSourceIsSuspended;
     unsigned int _state;
 }
 
-@property(getter=isEnabled) BOOL enabled;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
 
 + (void)initialize;
 

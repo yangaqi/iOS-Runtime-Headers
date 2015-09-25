@@ -2,69 +2,78 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UITextInputDelegate>, <UITextInputTokenizer>, <UITextViewDelegate>, NSAttributedString, NSDictionary, NSString, UIColor, UIFont, UITextPosition, UITextRange, UIView;
-
-@interface _UICompatibilityTextView : UIScrollView <UITextInput, UITextLinkInteraction> {
+@interface _UICompatibilityTextView : UIScrollView <UIPreviewItemDelegate, UITextInput, UITextLinkInteraction, WebPolicyDelegate> {
     id _private;
     BOOL m_editing;
     UIView *m_inputView;
 }
 
-@property BOOL allowsEditingTextAttributes;
-@property(copy) NSAttributedString * attributedText;
-@property int autocapitalizationType;
-@property int autocorrectionType;
-@property(readonly) UITextPosition * beginningOfDocument;
-@property BOOL clearsOnInsertion;
-@property unsigned int dataDetectorTypes;
-@property(copy,readonly) NSString * debugDescription;
-@property <UITextViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(getter=isEditable) BOOL editable;
-@property(getter=isEditing) BOOL editing;
-@property BOOL enablesReturnKeyAutomatically;
-@property(readonly) UITextPosition * endOfDocument;
-@property(retain) UIFont * font;
-@property(readonly) unsigned int hash;
-@property(retain) UIView * inputAccessoryView;
-@property <UITextInputDelegate> * inputDelegate;
-@property(retain) UIView * inputView;
-@property int keyboardAppearance;
-@property int keyboardType;
-@property(readonly) UITextRange * markedTextRange;
-@property(copy) NSDictionary * markedTextStyle;
-@property int returnKeyType;
-@property(getter=isSecureTextEntry) BOOL secureTextEntry;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } selectedRange;
-@property(copy) UITextRange * selectedTextRange;
-@property int selectionAffinity;
-@property int spellCheckingType;
-@property(readonly) Class superclass;
-@property(copy) NSString * text;
-@property int textAlignment;
-@property(retain) UIColor * textColor;
-@property(readonly) UIView * textInputView;
-@property(readonly) <UITextInputTokenizer> * tokenizer;
-@property(copy) NSDictionary * typingAttributes;
+@property (nonatomic) BOOL allowsEditingTextAttributes;
+@property (nonatomic, copy) NSAttributedString *attributedText;
+@property (nonatomic) int autocapitalizationType;
+@property (nonatomic) int autocorrectionType;
+@property (nonatomic, readonly) UITextPosition *beginningOfDocument;
+@property (nonatomic) BOOL clearsOnInsertion;
+@property (nonatomic) unsigned int dataDetectorTypes;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UITextViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (getter=isEditable, nonatomic) BOOL editable;
+@property (getter=isEditing, nonatomic) BOOL editing;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (nonatomic, readonly) UITextPosition *endOfDocument;
+@property (nonatomic, retain) UIFont *font;
+@property (readonly) unsigned int hash;
+@property (retain) UIView *inputAccessoryView;
+@property (nonatomic) <UITextInputDelegate> *inputDelegate;
+@property (retain) UIView *inputView;
+@property (nonatomic) int keyboardAppearance;
+@property (nonatomic) int keyboardType;
+@property (nonatomic, readonly) UITextRange *markedTextRange;
+@property (nonatomic, copy) NSDictionary *markedTextStyle;
+@property (nonatomic) int returnKeyType;
+@property (getter=isSecureTextEntry, nonatomic) BOOL secureTextEntry;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } selectedRange;
+@property (copy) UITextRange *selectedTextRange;
+@property (nonatomic) int selectionAffinity;
+@property (nonatomic) int spellCheckingType;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) int textAlignment;
+@property (nonatomic, retain) UIColor *textColor;
+@property (nonatomic, readonly) UIView *textInputView;
+@property (nonatomic, readonly) <UITextInputTokenizer> *tokenizer;
+@property (nonatomic, copy) NSDictionary *typingAttributes;
 
 + (id)_bestInterpretationForDictationResult:(id)arg1;
 + (BOOL)_isCompatibilityTextView;
 + (id)excludedElementsForHTML;
 + (void)initialize;
 
+- (void).cxx_destruct;
 - (void)_addShortcut:(id)arg1;
 - (unsigned int)_allowedLinkTypes;
 - (BOOL)_alwaysHandleScrollerMouseEvent;
 - (id)_automationValue;
+- (id)_dataForPreviewItemController:(id)arg1 atPosition:(struct CGPoint { float x1; float x2; })arg2 type:(int*)arg3;
 - (void)_dealloc;
 - (void)_define:(id)arg1;
+- (BOOL)_interactionShouldBeginFromPreviewItemController:(id)arg1 forPosition:(struct CGPoint { float x1; float x2; })arg2;
+- (void)_interactionStartedFromPreviewItemController:(id)arg1;
+- (void)_interactionStoppedFromPreviewItemController:(id)arg1;
 - (id)_keyboardResponder;
+- (void)_lookup:(struct CGPoint { float x1; float x2; })arg1;
+- (BOOL)_ownsInputAccessoryView;
 - (void)_populateArchivedSubviews:(id)arg1;
+- (id)_presentationRectsForPreviewItemController:(id)arg1;
+- (id)_presentationSnapshotForPreviewItemController:(id)arg1;
 - (Class)_printFormatterClass;
 - (void)_promptForReplace:(id)arg1;
 - (id)_proxyTextInput;
 - (BOOL)_requiresKeyboardWhenFirstResponder;
+- (BOOL)_restoreFirstResponder;
 - (void)_setDictationResult:(id)arg1 withCorrectionIdentifier:(id)arg2;
+- (void)_share:(id)arg1;
 - (void)_showTextStyleOptions:(id)arg1;
 - (void)_transferAttribute:(id)arg1 fromString:(id)arg2 andSetPropertyWith:(SEL)arg3 usingValueClass:(Class)arg4;
 - (void)_transferTextViewPropertiesFromText:(id)arg1;
@@ -133,6 +142,7 @@
 - (BOOL)isEditing;
 - (BOOL)isFirstResponder;
 - (BOOL)isInteractingWithLink;
+- (BOOL)isPreviewing;
 - (void)keyboardDidShow:(id)arg1;
 - (BOOL)keyboardInput:(id)arg1 shouldInsertText:(id)arg2 isMarkedText:(BOOL)arg3;
 - (BOOL)keyboardInput:(id)arg1 shouldReplaceTextInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 replacementText:(id)arg3;
@@ -229,6 +239,7 @@
 - (id)styleString;
 - (id)supportedPasteboardTypesForCurrentSelection;
 - (void)tapLinkAtPoint:(struct CGPoint { float x1; float x2; })arg1;
+- (id)targetForAction:(SEL)arg1 withSender:(id)arg2;
 - (id)text;
 - (int)textAlignment;
 - (id)textColor;

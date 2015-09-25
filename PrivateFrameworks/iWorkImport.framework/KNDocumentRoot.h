@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <KNDocumentRootDelegate>, KNRecordingSyncMaintainer, KNShow, KNSlidePreviewManager, KNThumbnailManager, NSString;
-
 @interface KNDocumentRoot : TSADocumentRoot <TSKModel, TSTResolverContainerNameProvider> {
     BOOL _isShowcastAllowed;
     BOOL mIsObservingRecording;
@@ -18,13 +11,14 @@
     KNThumbnailManager *mThumbnailManager;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <KNDocumentRootDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isShowcastAllowed;
-@property(retain) KNShow * show;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <KNDocumentRootDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isShowcastAllowed;
+@property (nonatomic, readonly) KNRecordingSyncMaintainer *recordingSyncMaintainer;
+@property (nonatomic, retain) KNShow *show;
+@property (readonly) Class superclass;
 
 + (void)localizeModelObject:(id)arg1 withTemplateBundle:(id)arg2;
 
@@ -43,6 +37,7 @@
 - (BOOL)isShowcastAllowed;
 - (void)loadFromArchive:(const struct DocumentArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct DocumentArchive {} *x5; struct Reference {} *x6; struct Reference {} *x7; }*)arg1 unarchiver:(id)arg2;
 - (id)nameForResolverContainer:(id)arg1;
+- (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
 - (void)p_applicationDidBecomeActive:(id)arg1;
 - (void)p_applicationWillResignActive:(id)arg1;
 - (void)p_hyperlinkAndBreadcrumbUpgradeForUnity20SlideNodes:(id)arg1;
@@ -50,6 +45,7 @@
 - (void)prepareForSavingAsTemplate;
 - (void)preprocessForSaveAsTheme;
 - (id)protected_defaultTextPresetOrdering;
+- (id)recordingSyncMaintainer;
 - (id)resolverContainerForName:(id)arg1 caseSensitive:(BOOL)arg2;
 - (id)resolverContainerNameForResolver:(id)arg1;
 - (id)resolverContainerNamesMatchingPrefix:(id)arg1;
@@ -69,13 +65,14 @@
 - (BOOL)shouldShowComments;
 - (id)show;
 - (id)slideNodeForClearedShow;
+- (id)stylesToNotResizeInStylesheet:(id)arg1;
 - (id)stylesheet;
 - (id)theme;
 - (void)upgradeTextStylesForUnityAfterSingleStylesheetUpgrade;
 - (BOOL)validateUIState:(id)arg1;
 - (id)warningLocationDescriptionForAffectedObjects:(id)arg1 sortingInfo:(id*)arg2;
 - (void)willClose;
-- (void)withRootSearchTargetAtIndex:(unsigned int)arg1 executeBlock:(id)arg2;
+- (void)withRootSearchTargetAtIndex:(unsigned int)arg1 executeBlock:(id /* block */)arg2;
 - (unsigned int)writingDirection;
 - (unsigned int)writingDirectionForStorage;
 

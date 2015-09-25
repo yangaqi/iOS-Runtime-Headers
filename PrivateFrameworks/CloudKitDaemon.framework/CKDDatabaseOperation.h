@@ -6,8 +6,9 @@
     int _databaseScope;
 }
 
-@property int databaseScope;
+@property (nonatomic) int databaseScope;
 
+- (unsigned long long)activityStart;
 - (void)configureRequest:(id)arg1;
 - (int)databaseScope;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;

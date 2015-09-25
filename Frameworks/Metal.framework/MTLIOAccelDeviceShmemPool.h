@@ -2,19 +2,17 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@class MTLIOAccelDevice, MTLIOAccelDeviceShmem;
-
 @interface MTLIOAccelDeviceShmemPool : NSObject {
-    struct _MTLIOAccelDeviceShmemPoolPrivate { 
+    /* Warning: unhandled struct encoding: '{_MTLIOAccelDeviceShmemPoolPrivate="queue"{shmemPoolQueue="tqh_first"@"MTLIOAccelDeviceShmem""tqh_last"^@}"lock"i"count"i"shmemClass"#"device"@"MTLIOAccelDevice""shmemSize"I}' */ struct _MTLIOAccelDeviceShmemPoolPrivate { 
         struct shmemPoolQueue { 
             MTLIOAccelDeviceShmem *tqh_first; 
             id *tqh_last; 
+            int lock; 
+            int count; 
+            Class shmemClass; 
+            MTLIOAccelDevice *device; 
+            unsigned int shmemSize; 
         } queue; 
-        int lock; 
-        int count; 
-        Class shmemClass; 
-        MTLIOAccelDevice *device; 
-        unsigned int shmemSize; 
     } _priv;
 }
 
@@ -22,6 +20,7 @@
 - (void)dealloc;
 - (id)initWithDevice:(id)arg1 resourceClass:(Class)arg2 shmemSize:(unsigned int)arg3 options:(id)arg4;
 - (void)prune;
+- (void)purge;
 - (void)setShmemSize:(unsigned int)arg1;
 - (unsigned int)shmemSize;
 

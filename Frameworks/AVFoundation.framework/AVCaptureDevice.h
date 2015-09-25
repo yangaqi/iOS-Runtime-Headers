@@ -2,29 +2,30 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureDeviceFormat, AVCaptureDeviceInternal, NSArray, NSString;
-
 @interface AVCaptureDevice : NSObject {
     AVCaptureDeviceInternal *_internal;
 }
 
-@property(retain) AVCaptureDeviceFormat * activeFormat;
-@property struct { long long x1; int x2; unsigned int x3; long long x4; } activeVideoMaxFrameDuration;
-@property struct { long long x1; int x2; unsigned int x3; long long x4; } activeVideoMinFrameDuration;
-@property(getter=isConnected,readonly) BOOL connected;
-@property(readonly) NSArray * formats;
-@property(readonly) NSString * localizedName;
-@property(readonly) NSString * modelID;
-@property(readonly) NSString * uniqueID;
+@property (nonatomic, retain) AVCaptureDeviceFormat *activeFormat;
+@property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } activeVideoMaxFrameDuration;
+@property (nonatomic) struct { long long x1; int x2; unsigned int x3; long long x4; } activeVideoMinFrameDuration;
+@property (getter=isConnected, nonatomic, readonly) BOOL connected;
+@property (nonatomic, readonly) NSArray *formats;
+@property (nonatomic, readonly) NSString *localizedName;
+@property (nonatomic, readonly) NSString *modelID;
+@property (nonatomic, readonly) NSString *uniqueID;
+
+// Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
 
 + (id)_devices;
++ (void)_registerOnceForServerConnectionDiedNotification;
 + (int)authorizationStatusForMediaType:(id)arg1;
 + (id)defaultDeviceWithMediaType:(id)arg1;
 + (id)deviceWithUniqueID:(id)arg1;
 + (id)devices;
 + (id)devicesWithMediaType:(id)arg1;
 + (void)initialize;
-+ (void)requestAccessForMediaType:(id)arg1 completionHandler:(id)arg2;
++ (void)requestAccessForMediaType:(id)arg1 completionHandler:(id /* block */)arg2;
 
 - (id)AVVideoSettingsForSessionPreset:(id)arg1;
 - (float)ISO;
@@ -51,6 +52,7 @@
 - (void)dealloc;
 - (id)description;
 - (struct OpaqueCMClock { }*)deviceClock;
+- (int)deviceSourceOrigin;
 - (struct { float x1; float x2; float x3; })deviceWhiteBalanceGains;
 - (struct { float x1; float x2; float x3; })deviceWhiteBalanceGainsForChromaticityValues:(struct { float x1; float x2; })arg1;
 - (struct { float x1; float x2; float x3; })deviceWhiteBalanceGainsForTemperatureAndTintValues:(struct { float x1; float x2; })arg1;
@@ -98,6 +100,7 @@
 - (BOOL)isHighDynamicRangeSceneDetectionSupported;
 - (BOOL)isImageControlModeSupported:(int)arg1;
 - (BOOL)isInUseByAnotherApplication;
+- (BOOL)isLensStabilizationSupported;
 - (BOOL)isLockedForConfiguration;
 - (BOOL)isLowLightBoostEnabled;
 - (BOOL)isLowLightBoostSupported;
@@ -124,6 +127,8 @@
 - (struct { int x1; int x2; })maxH264VideoDimensions;
 - (float)maxWhiteBalanceGain;
 - (float)minExposureTargetBias;
+- (int)minMacroblocksForHighProfileAbove30fps;
+- (int)minMacroblocksForHighProfileUpTo30fps;
 - (id)modelID;
 - (BOOL)open:(id*)arg1;
 - (int)position;
@@ -140,15 +145,15 @@
 - (void)setCachesFigCaptureSourceConfigurationChanges:(BOOL)arg1;
 - (void)setContrast:(float)arg1;
 - (void)setExposureMode:(int)arg1;
-- (void)setExposureModeCustomWithDuration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1 ISO:(float)arg2 completionHandler:(id)arg3;
+- (void)setExposureModeCustomWithDuration:(struct { long long x1; int x2; unsigned int x3; long long x4; })arg1 ISO:(float)arg2 completionHandler:(id /* block */)arg3;
 - (void)setExposurePointOfInterest:(struct CGPoint { float x1; float x2; })arg1;
-- (void)setExposureTargetBias:(float)arg1 completionHandler:(id)arg2;
+- (void)setExposureTargetBias:(float)arg1 completionHandler:(id /* block */)arg2;
 - (void)setEyeClosedDetectionEnabled:(BOOL)arg1;
 - (void)setEyeDetectionEnabled:(BOOL)arg1;
 - (void)setFaceDetectionDrivenImageProcessingEnabled:(BOOL)arg1;
 - (void)setFlashMode:(int)arg1;
 - (void)setFocusMode:(int)arg1;
-- (void)setFocusModeLockedWithLensPosition:(float)arg1 completionHandler:(id)arg2;
+- (void)setFocusModeLockedWithLensPosition:(float)arg1 completionHandler:(id /* block */)arg2;
 - (void)setFocusPointOfInterest:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setHighDynamicRangeSceneDetectionEnabled:(BOOL)arg1;
 - (void)setImageControlMode:(int)arg1;
@@ -162,7 +167,7 @@
 - (void)setVideoHDREnabled:(BOOL)arg1;
 - (void)setVideoZoomFactor:(float)arg1;
 - (void)setWhiteBalanceMode:(int)arg1;
-- (void)setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:(struct { float x1; float x2; float x3; })arg1 completionHandler:(id)arg2;
+- (void)setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:(struct { float x1; float x2; float x3; })arg1 completionHandler:(id /* block */)arg2;
 - (BOOL)smileDetectionEnabled;
 - (BOOL)startUsingDevice:(id*)arg1;
 - (void)stopUsingDevice;
@@ -175,5 +180,17 @@
 - (void)unlockForConfiguration;
 - (float)videoZoomFactor;
 - (int)whiteBalanceMode;
+
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
+- (void)cam_debugExposureState;
+- (void)cam_debugFocusAndExposureState;
+- (void)cam_debugFocusState;
+- (id)cameraPanoramaFormatForConfiguration:(id)arg1;
+- (id)cameraStillImageFormat;
+- (int)cameraVideoConfigurationForDeviceFormat:(id)arg1;
+- (int)cameraVideoConfigurationForSessionPreset:(id)arg1;
+- (id)cameraVideoFormatForVideoConfiguration:(int)arg1;
+- (id)cameraVideoPresetForVideoConfiguration:(int)arg1;
 
 @end

@@ -2,12 +2,14 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
  */
 
-@interface SGDSuggestManagerInterface : NSObject {
-}
+@interface SGDSuggestManagerInterface : NSObject
 
-+ (id)_buildXPCInterface;
++ (void)_registerWhitelistBlock:(id /* block */)arg1 forProtocol:(id)arg2;
++ (void)_whitelistXPCInterface:(id)arg1 forProtocol:(id)arg2 alreadyWhitelisted:(id)arg3;
++ (void)initialize;
 + (void)interface:(id)arg1 returns:(Class)arg2 forSelector:(SEL)arg3;
 + (void)interface:(id)arg1 returnsArrayOf:(Class)arg2 forSelector:(SEL)arg3;
 + (id)xpcInterface;
++ (id)xpcInterfaceForProtocol:(id)arg1;
 
 @end

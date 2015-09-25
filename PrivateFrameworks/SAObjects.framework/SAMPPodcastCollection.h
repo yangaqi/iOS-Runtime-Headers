@@ -2,15 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSNumber, NSString;
+@interface SAMPPodcastCollection : SAMPCollection
 
-@interface SAMPPodcastCollection : SAMPCollection {
-}
-
-@property(copy) NSString * artist;
-@property(copy) NSArray * preferredPlayOrder;
-@property(copy) NSString * sortArtist;
-@property(copy) NSNumber * subscribed;
+@property (nonatomic, copy) NSString *artist;
+@property (nonatomic, copy) NSArray *preferredPlayOrder;
+@property (nonatomic, copy) NSString *sortArtist;
+@property (nonatomic, copy) NSNumber *subscribed;
 
 + (id)podcastCollection;
 + (id)podcastCollectionWithDictionary:(id)arg1 context:(id)arg2;
@@ -25,6 +22,5 @@
 - (void)setSubscribed:(id)arg1;
 - (id)sortArtist;
 - (id)subscribed;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

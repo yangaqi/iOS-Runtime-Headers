@@ -2,13 +2,10 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKPassFaceDelegate>, CAFilter, NSArray, NSMutableArray, NSMutableSet, PKBarcodeStickerView, PKPass, PKPassColorProfile, PKPassFaceTemplate, UIImage, UIImageView, UIView;
-
 @interface PKPassFaceView : WLEasyToHitCustomView {
     BOOL _allowBackgroundPlaceHolders;
     int _backgroundMode;
     UIImageView *_backgroundView;
-    PKBarcodeStickerView *_barcodeView;
     NSMutableArray *_bodyBucketViews;
     NSMutableSet *_bodyContentViews;
     NSMutableSet *_bodyInvariantViews;
@@ -34,24 +31,24 @@
     unsigned int _visibleRegions;
 }
 
-@property BOOL allowBackgroundPlaceHolders;
-@property int backgroundMode;
-@property(readonly) PKBarcodeStickerView * barcodeView;
-@property(readonly) BOOL bodyContentCreated;
-@property(retain,readonly) NSArray * buckets;
-@property float clippedContentHeight;
-@property BOOL clipsContent;
-@property(readonly) PKPassColorProfile * colorProfile;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } contentBounds;
-@property(readonly) struct CGSize { float x1; float x2; } contentSize;
-@property(readonly) UIView * contentView;
-@property <PKPassFaceDelegate> * delegate;
-@property(retain) NSMutableArray * headerBucketViews;
-@property(readonly) BOOL isFrontFace;
-@property(readonly) PKPass * pass;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } shadowInsets;
-@property int style;
-@property unsigned int visibleRegions;
+@property (nonatomic) BOOL allowBackgroundPlaceHolders;
+@property (nonatomic) int backgroundMode;
+@property (nonatomic, readonly) BOOL bodyContentCreated;
+@property (nonatomic, readonly, retain) NSArray *buckets;
+@property (nonatomic) float clippedContentHeight;
+@property (nonatomic) BOOL clipsContent;
+@property (nonatomic, readonly) PKPassColorProfile *colorProfile;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } contentBounds;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } contentSize;
+@property (nonatomic, readonly) UIView *contentView;
+@property (nonatomic) <PKPassFaceDelegate> *delegate;
+@property (nonatomic, readonly) PKPassFaceTemplate *faceTemplate;
+@property (nonatomic, retain) NSMutableArray *headerBucketViews;
+@property (nonatomic, readonly) BOOL isFrontFace;
+@property (nonatomic, readonly) PKPass *pass;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } shadowInsets;
+@property (nonatomic) int style;
+@property (nonatomic) unsigned int visibleRegions;
 
 + (Class)_faceClassForStyle:(int)arg1 front:(BOOL)arg2;
 + (id)newBackFaceViewForStyle:(int)arg1 tall:(BOOL)arg2;
@@ -61,7 +58,6 @@
 - (void)_createInvariantViewsForRegions:(unsigned int)arg1;
 - (void)_flushContentViewsForRegions:(unsigned int)arg1;
 - (void)_handleTimeOrLocaleChange:(id)arg1;
-- (void)_positionBarcodeView;
 - (id)_relevantBuckets;
 - (void)_setContentViewsAlpha:(float)arg1;
 - (void)_setShowsBackgroundView:(BOOL)arg1;
@@ -72,8 +68,6 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
 - (BOOL)allowBackgroundPlaceHolders;
 - (int)backgroundMode;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })barcodeFrame;
-- (id)barcodeView;
 - (BOOL)bodyContentCreated;
 - (id)buckets;
 - (float)clippedContentHeight;
@@ -89,6 +83,7 @@
 - (void)createHeaderInvariantViews;
 - (void)dealloc;
 - (id)delegate;
+- (id)faceTemplate;
 - (id)headerBucketViews;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)insertContentView:(id)arg1 ofType:(int)arg2;
@@ -97,7 +92,7 @@
 - (id)pass;
 - (id)passFaceTemplate;
 - (void)prepareForFlip;
-- (void)presentDiff:(id)arg1 completion:(id)arg2;
+- (void)presentDiff:(id)arg1 completion:(id /* block */)arg2;
 - (void)removeContentView:(id)arg1 ofType:(int)arg2;
 - (void)setAllowBackgroundPlaceHolders:(BOOL)arg1;
 - (void)setBackgroundMode:(int)arg1;

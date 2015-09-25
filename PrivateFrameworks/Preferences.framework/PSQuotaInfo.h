@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSMutableDictionary;
-
 @interface PSQuotaInfo : NSObject {
     NSMutableDictionary *_mediaKindDict;
-    unsigned int _totalStorage;
-    unsigned int _usedStorage;
+    unsigned long long _totalStorage;
+    unsigned long long _usedStorage;
 }
 
-@property unsigned int totalStorage;
-@property unsigned int usedStorage;
+@property (nonatomic) unsigned long long totalStorage;
+@property (nonatomic) unsigned long long usedStorage;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)init;
 - (void)setStorageInUse:(unsigned int)arg1 forMediaKind:(int)arg2;
-- (void)setTotalStorage:(unsigned int)arg1;
-- (void)setUsedStorage:(unsigned int)arg1;
+- (void)setTotalStorage:(unsigned long long)arg1;
+- (void)setUsedStorage:(unsigned long long)arg1;
 - (unsigned int)storageInUseForMediaKind:(int)arg1;
-- (unsigned int)totalStorage;
-- (unsigned int)usedStorage;
+- (unsigned long long)totalStorage;
+- (unsigned long long)usedStorage;
 
 @end

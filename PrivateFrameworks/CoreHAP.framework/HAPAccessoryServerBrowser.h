@@ -2,20 +2,21 @@
    Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
  */
 
-@class <HAPKeyStore>, NSObject<OS_dispatch_queue>;
-
 @interface HAPAccessoryServerBrowser : NSObject {
     <HAPKeyStore> *_keyStore;
+    int _linkType;
     NSObject<OS_dispatch_queue> *_workQueue;
 }
 
-@property(retain) <HAPKeyStore> * keyStore;
-@property(retain) NSObject<OS_dispatch_queue> * workQueue;
+@property (nonatomic, retain) <HAPKeyStore> *keyStore;
+@property (nonatomic, readonly) int linkType;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *workQueue;
 
 - (void).cxx_destruct;
 - (void)discoverAccessoryServerWithIdentifier:(id)arg1;
 - (id)initWithQueue:(id)arg1;
 - (id)keyStore;
+- (int)linkType;
 - (void)setDelegate:(id)arg1 queue:(id)arg2;
 - (void)setKeyStore:(id)arg1;
 - (void)setWorkQueue:(id)arg1;

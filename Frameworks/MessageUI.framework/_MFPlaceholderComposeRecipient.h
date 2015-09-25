@@ -2,11 +2,7 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class NSString;
-
-@interface _MFPlaceholderComposeRecipient : MFComposeRecipient {
-    NSString *_displayString;
-}
+@interface _MFPlaceholderComposeRecipient : MFComposeRecipient
 
 - (void)dealloc;
 - (id)displayString;

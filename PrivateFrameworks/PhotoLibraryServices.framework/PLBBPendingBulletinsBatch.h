@@ -2,23 +2,19 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class <PLBBPendingBulletinsBatchDelegate>, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, PLXPCTransaction;
-
 @interface PLBBPendingBulletinsBatch : NSObject {
     NSObject<OS_dispatch_source> *_coalescingTimerSource;
-    PLXPCTransaction *_coalescingTimerTransaction;
     int _currentState;
     <PLBBPendingBulletinsBatchDelegate> *_delegate;
     BOOL _downloadTimerExpired;
     NSObject<OS_dispatch_source> *_downloadTimerSource;
-    PLXPCTransaction *_downloadTimerTransaction;
     NSObject<OS_dispatch_queue> *_isolationQueue;
     NSMutableArray *_pendingBulletins;
 }
 
-@property(readonly) BOOL canAcceptMergeBulletins;
-@property(readonly) BOOL canAcceptNewBulletins;
-@property <PLBBPendingBulletinsBatchDelegate> * delegate;
+@property (readonly) BOOL canAcceptMergeBulletins;
+@property (readonly) BOOL canAcceptNewBulletins;
+@property <PLBBPendingBulletinsBatchDelegate> *delegate;
 
 - (void)_cancelCoalescingTimer;
 - (void)_cancelDownloadTimer;

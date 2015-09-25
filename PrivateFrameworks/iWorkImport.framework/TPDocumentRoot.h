@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSString, TPDocumentSettings, TPDrawablesZOrder, TPFloatingDrawables, TPInteractiveCanvasController, TPPageLayoutNotifier, TPPaginatedPageController, TPSection, TPTOCController, TPTheme, TSDThumbnailController, TSSStylesheet, TSWPChangeSession, TSWPStorage;
-
 @interface TPDocumentRoot : TSADocumentRoot <TSCEResolverContainer, TSDInfoUUIDPathPrefixComponentsProvider, TSDThumbnailProducer, TSTResolverContainerNameProvider, TSWPChangeSessionManager, TSWPChangeVisibility, TSWPDrawableOLC, TSWPStorageParent> {
     TSWPChangeSession *_activeChangeSession;
     TSWPStorage *_bodyStorage;
@@ -50,55 +48,54 @@
     BOOL initiallyShowRuler;
 }
 
-@property(retain) TSWPChangeSession * activeChangeSession;
-@property(retain,readonly) TSWPStorage * bodyStorage;
-@property float bottomMargin;
-@property(retain) NSArray * changeSessionHistory;
-@property(getter=isChangeTrackingEnabled) BOOL changeTrackingEnabled;
-@property(getter=isChangeTrackingPaused) BOOL changeTrackingPaused;
-@property(retain) NSMutableDictionary * chartsUIState;
-@property(readonly) int contentWritingDirection;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) TPDrawablesZOrder * drawablesZOrder;
-@property(retain,readonly) TPSection * firstSection;
-@property(retain) TPFloatingDrawables * floatingDrawables;
-@property float footerMargin;
-@property(readonly) BOOL hasTrackedChanges;
-@property(readonly) unsigned int hash;
-@property float headerMargin;
-@property BOOL initiallyShowRuler;
-@property TPInteractiveCanvasController * interactiveCanvasController;
-@property(readonly) BOOL isNewDocument;
-@property(readonly) BOOL isTrackingChanges;
-@property BOOL layoutBodyVertically;
-@property float leftMargin;
-@property(retain) TSWPChangeSession * mostRecentChangeSession;
-@property(retain,readonly) NSArray * nonHiddenSections;
-@property unsigned int orientation;
-@property float pageScale;
-@property struct CGSize { float x1; float x2; } pageSize;
-@property(readonly) TPPaginatedPageController * paginatedPageController;
-@property(copy) NSString * paperID;
-@property(readonly) struct CGSize { float x1; float x2; } paperSize;
-@property(copy) NSString * printerID;
-@property float rightMargin;
-@property(retain,readonly) NSArray * sections;
-@property(retain,readonly) TPDocumentSettings * settings;
-@property(retain) TSSStylesheet * stylesheet;
-@property(readonly) Class superclass;
-@property(retain) TPTheme * theme;
-@property(readonly) TSDThumbnailController * thumbnailController;
-@property(retain) TPTOCController * tocController;
-@property float topMargin;
-@property(getter=isTrackingChanges,readonly) BOOL trackingChanges;
-@property BOOL usesSingleHeaderFooter;
+@property (nonatomic, retain) TSWPChangeSession *activeChangeSession;
+@property (nonatomic, readonly, retain) TSWPStorage *bodyStorage;
+@property (nonatomic) float bottomMargin;
+@property (nonatomic, retain) NSArray *changeSessionHistory;
+@property (getter=isChangeTrackingEnabled, nonatomic) BOOL changeTrackingEnabled;
+@property (getter=isChangeTrackingPaused, nonatomic) BOOL changeTrackingPaused;
+@property (nonatomic, retain) NSMutableDictionary *chartsUIState;
+@property (nonatomic, readonly) int contentWritingDirection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) TPDrawablesZOrder *drawablesZOrder;
+@property (nonatomic, readonly, retain) TPSection *firstSection;
+@property (nonatomic, retain) TPFloatingDrawables *floatingDrawables;
+@property (nonatomic) float footerMargin;
+@property (nonatomic, readonly) BOOL hasTrackedChanges;
+@property (readonly) unsigned int hash;
+@property (nonatomic) float headerMargin;
+@property (nonatomic) BOOL initiallyShowRuler;
+@property (nonatomic) TPInteractiveCanvasController *interactiveCanvasController;
+@property (nonatomic, readonly) BOOL isNewDocument;
+@property (nonatomic, readonly) BOOL isTrackingChanges;
+@property (nonatomic) BOOL layoutBodyVertically;
+@property (nonatomic) float leftMargin;
+@property (nonatomic, retain) TSWPChangeSession *mostRecentChangeSession;
+@property (nonatomic, readonly, retain) NSArray *nonHiddenSections;
+@property (nonatomic) unsigned int orientation;
+@property (nonatomic) float pageScale;
+@property (nonatomic) struct CGSize { float x1; float x2; } pageSize;
+@property (nonatomic, readonly) TPPaginatedPageController *paginatedPageController;
+@property (nonatomic, copy) NSString *paperID;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } paperSize;
+@property (nonatomic, copy) NSString *printerID;
+@property (nonatomic) float rightMargin;
+@property (nonatomic, readonly, retain) NSArray *sections;
+@property (nonatomic, readonly, retain) TPDocumentSettings *settings;
+@property (nonatomic, retain) TSSStylesheet *stylesheet;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) TPTheme *theme;
+@property (nonatomic, readonly) TSDThumbnailController *thumbnailController;
+@property (nonatomic, retain) TPTOCController *tocController;
+@property (nonatomic) float topMargin;
+@property (getter=isTrackingChanges, nonatomic, readonly) BOOL trackingChanges;
+@property (nonatomic) BOOL usesSingleHeaderFooter;
 
 + (void)localizeTextStorage:(id)arg1 withTemplateBundle:(id)arg2;
 + (struct CGSize { float x1; float x2; })pageSizeFromPaperSize:(struct CGSize { float x1; float x2; })arg1 pageScale:(float)arg2 orientation:(unsigned int)arg3;
 + (struct CGSize { float x1; float x2; })previewImageSizeForType:(unsigned int)arg1;
 
-- (id).cxx_construct;
 - (id)UIStateForChart:(id)arg1;
 - (id)activeChangeSession;
 - (unsigned int)applicationType;
@@ -149,7 +146,7 @@
 - (id)makeIsolatedStyleMapper;
 - (id)makeStyleMapper;
 - (id)markStringForFootnoteReferenceStorage:(id)arg1;
-- (id)modelEnumeratorWithFlags:(unsigned int)arg1 forObjectsPassingTest:(id)arg2;
+- (id)modelEnumeratorWithFlags:(unsigned int)arg1 forObjectsPassingTest:(id /* block */)arg2;
 - (id)modelPathComponentForChild:(id)arg1;
 - (id)mostRecentChangeSession;
 - (id)nameForResolverContainer:(id)arg1;
@@ -170,6 +167,7 @@
 - (id)p_realTOCEntryStyleFromFakeTOCEntryStyle:(id)arg1 context:(id)arg2;
 - (void)p_uniquifyTableNames;
 - (void)p_upgradeBodyTOC;
+- (void)p_upgradeTOCModelForUnity20;
 - (void)p_upgradeTOCStyles;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })pageBoundsWithinMargins;
 - (void)pageCountDidChangeForPageController:(id)arg1;

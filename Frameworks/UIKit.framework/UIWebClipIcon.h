@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSURL;
-
 @interface UIWebClipIcon : NSObject {
     struct CGSize { 
         float width; 
@@ -14,14 +12,14 @@
     NSURL *_url;
 }
 
-@property struct CGSize { float x1; float x2; } bestSize;
-@property(getter=isPrecomposed) BOOL precomposed;
-@property(getter=isSiteWide) BOOL siteWide;
-@property(retain) NSURL * url;
+@property (nonatomic) struct CGSize { float x1; float x2; } bestSize;
+@property (getter=isPrecomposed, nonatomic) BOOL precomposed;
+@property (getter=isSiteWide, nonatomic) BOOL siteWide;
+@property (nonatomic, retain) NSURL *url;
 
+- (void).cxx_destruct;
 - (struct CGSize { float x1; float x2; })bestSize;
 - (int)compare:(id)arg1 preferringDeviceIconSizes:(BOOL)arg2;
-- (void)dealloc;
 - (BOOL)isPrecomposed;
 - (BOOL)isSiteWide;
 - (void)setBestSize:(struct CGSize { float x1; float x2; })arg1;

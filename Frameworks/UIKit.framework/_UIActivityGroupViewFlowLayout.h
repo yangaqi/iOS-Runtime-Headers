@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSIndexPath, UILongPressGestureRecognizer, _UIActivityGroupActivityCell;
-
 @interface _UIActivityGroupViewFlowLayout : UICollectionViewLayout {
     struct UIOffset { 
         float horizontal; 
@@ -31,27 +29,28 @@
     NSArray *_preparedUpdateItems;
 }
 
-@property struct UIOffset { float x1; float x2; } draggingOffset;
-@property(retain) _UIActivityGroupActivityCell * draggingView;
-@property(retain) UILongPressGestureRecognizer * editingGestureRecognizer;
-@property struct CGSize { float x1; float x2; } evaluatedContentSize;
-@property float evaluatedHorizontalItemOffset;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } evaluatedInset;
-@property struct CGSize { float x1; float x2; } evaluatedItemSize;
-@property(copy) NSIndexPath * indexPathForDraggedItem;
-@property(copy) NSArray * preparedLayoutAttributes;
-@property(copy) NSArray * preparedUpdateItems;
+@property (nonatomic) struct UIOffset { float x1; float x2; } draggingOffset;
+@property (nonatomic, retain) _UIActivityGroupActivityCell *draggingView;
+@property (nonatomic, retain) UILongPressGestureRecognizer *editingGestureRecognizer;
+@property (nonatomic) struct CGSize { float x1; float x2; } evaluatedContentSize;
+@property (nonatomic) float evaluatedHorizontalItemOffset;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } evaluatedInset;
+@property (nonatomic) struct CGSize { float x1; float x2; } evaluatedItemSize;
+@property (nonatomic, copy) NSIndexPath *indexPathForDraggedItem;
+@property (nonatomic, copy) NSArray *preparedLayoutAttributes;
+@property (nonatomic, copy) NSArray *preparedUpdateItems;
 
-- (float)_evaluateHorizontalItemOffsetForItemSize:(struct CGSize { float x1; float x2; })arg1 inset:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2;
+- (void).cxx_destruct;
+- (float)_evaluateHorizontalItemOffsetForItemSize:(struct CGSize { float x1; float x2; })arg1 inset:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg2 offscreenPeekInFactor:(float)arg3;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_evaluateInsetForSectionAtIndex:(int)arg1;
 - (struct CGSize { float x1; float x2; })_evaluatePreferredItemSizeForItemsAtIndexPaths:(id)arg1;
 - (id)_indexPathsForItemsInSection:(int)arg1;
-- (id)_layoutAttributesForItemAtIndexPath:(id)arg1;
+- (id)_layoutAttributesForItemAtIndexPath:(id)arg1 numberOfItemsInSection:(unsigned int)arg2;
+- (BOOL)_shouldScrollToContentBeginningInRightToLeft;
 - (id)adjustLayoutAttributesForDraggingIfNeeded:(id)arg1;
 - (void)beginDraggingForGesture:(id)arg1;
 - (void)cancelDraggingForGesture:(id)arg1;
 - (struct CGSize { float x1; float x2; })collectionViewContentSize;
-- (void)dealloc;
 - (struct UIOffset { float x1; float x2; })draggingOffset;
 - (id)draggingView;
 - (id)draggingViewForItemAtIndexPath:(id)arg1;
@@ -85,6 +84,7 @@
 - (void)setPreparedUpdateItems:(id)arg1;
 - (BOOL)shouldCancelDraggingForGesture:(id)arg1;
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (BOOL)shouldReverseLayoutDirection;
 - (void)updateDraggingViewForGesture:(id)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface _EditScriptRangedAtom : NSObject {
     struct _NSRange { 
         unsigned int location; 
@@ -12,12 +10,12 @@
     NSString *_replacementText;
 }
 
-@property struct _NSRange { unsigned int x1; unsigned int x2; } editRange;
-@property(retain) NSString * replacementText;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } editRange;
+@property (nonatomic, retain) NSString *replacementText;
 
 + (id)atomWithEditRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 replacementText:(id)arg2;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)description;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })editRange;
 - (id)initWithEditRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 replacementText:(id)arg2;

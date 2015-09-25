@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSArray, NSString;
-
 @interface _GEOPlaceSearchCompletionGroup : NSObject <GEOCompletionGroup> {
     NSArray *_items;
     NSString *_localizedSectionHeader;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) NSArray * items;
-@property(readonly) NSString * localizedSectionHeader;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *items;
+@property (nonatomic, readonly) NSString *localizedSectionHeader;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
-- (id)initWithSection:(id)arg1 traits:(id)arg2 entryListIndex:(int)arg3;
+- (id)initWithSection:(id)arg1 traits:(id)arg2 entryListIndex:(int)arg3 mapItems:(id)arg4;
 - (id)items;
 - (id)localizedSectionHeader;
 

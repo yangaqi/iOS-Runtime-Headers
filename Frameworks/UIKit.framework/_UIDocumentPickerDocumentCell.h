@@ -2,27 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class _UIDocumentPickerContainerItem;
-
 @interface _UIDocumentPickerDocumentCell : _UIDocumentPickerCell {
     BOOL _enabled;
-    _UIDocumentPickerContainerItem *_item;
 }
 
-@property BOOL enabled;
-@property(retain) _UIDocumentPickerContainerItem * item;
+@property (nonatomic) BOOL enabled;
 
 - (void)_showPickableDiagnostic;
-- (void)dealloc;
 - (BOOL)enabled;
-- (id)item;
 - (void)prepareForReuse;
 - (void)reloadItem:(BOOL)arg1;
 - (void)setEnabled:(BOOL)arg1;
-- (void)setItem:(id)arg1;
 - (void)traitCollectionDidChange:(id)arg1;
 - (void)updateContents;
 - (void)updateThumbnail;
-- (id)viewControllerForDisplay;
 
 @end

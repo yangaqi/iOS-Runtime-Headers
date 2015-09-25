@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class TIKeyboardCandidate, UIKBThemedView, UILabel;
-
 @interface UIKBHandwritingCandidateViewCell : UICollectionViewCell {
     TIKeyboardCandidate *_candidate;
     UILabel *_label;
@@ -18,22 +16,24 @@
     } _visualStyling;
 }
 
-@property(copy) TIKeyboardCandidate * candidate;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsets;
-@property(retain) UILabel * label;
-@property(retain) UILabel * secondaryLabel;
-@property(retain) UIKBThemedView * themedView;
-@property struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
+@property (nonatomic, copy) TIKeyboardCandidate *candidate;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } edgeInsets;
+@property (nonatomic, retain) UILabel *label;
+@property (nonatomic, retain) UILabel *secondaryLabel;
+@property (nonatomic, retain) UIKBThemedView *themedView;
+@property (nonatomic) struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
 
 + (id)labelFontForText:(id)arg1;
++ (BOOL)needsThemedView;
 + (id)secondaryLabelFont;
++ (float)systemFontSize;
 + (float)widthForCandidate:(id)arg1 visualStyling:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg2;
 
+- (BOOL)_canDrawContent;
 - (void)_setRenderConfig:(id)arg1;
 - (id)candidate;
 - (void)dealloc;
 - (void)didMoveToWindow;
-- (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })edgeInsets;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)label;
@@ -46,6 +46,7 @@
 - (void)setSelected:(BOOL)arg1;
 - (void)setThemedView:(id)arg1;
 - (void)setVisualStyling:(struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; })arg1;
+- (id)textLabelColor;
 - (id)themedView;
 - (void)updateLabels;
 - (void)updateThemedView;

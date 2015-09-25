@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@interface IKDOMFeatureFactory : NSObject {
-}
+@interface IKDOMFeatureFactory : NSObject
 
-+ (id)featureForName:(id)arg1;
++ (id)featureForName:(id)arg1 withDOMNode:(id)arg2;
 + (void)initialize;
 + (void)registerClass:(Class)arg1 forFeatureName:(id)arg2;
 

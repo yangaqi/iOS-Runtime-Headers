@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface _UIPopoverViewArtworkLoader : NSObject {
     NSString *_backgroundSelector;
     int _backgroundStyle;
@@ -11,6 +9,7 @@
 
 + (id)backgroundSelectorForBackgroundStyle:(int)arg1;
 
+- (void).cxx_destruct;
 - (float)arrowBase;
 - (float)arrowHeight;
 - (float)arrowTopGradientEnd;
@@ -23,7 +22,6 @@
 - (float)clampArrowBase;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentRectForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inImageOfSize:(struct CGSize { float x1; float x2; })arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })contentsCenterForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inImageOfSize:(struct CGSize { float x1; float x2; })arg2;
-- (void)dealloc;
 - (id)initWithBackgroundStyle:(int)arg1;
 - (BOOL)modern;
 - (float)noArrowTopGradientEnd;

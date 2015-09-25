@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class GEOPDFlyover, MKMapView, UITapGestureRecognizer;
-
 @interface MKPlaceHeaderBackgroundView_Flyover : MKPlaceHeaderBackgroundView {
     BOOL _animationPaused;
+    BOOL _animationPrepared;
     GEOPDFlyover *_flyover;
     UITapGestureRecognizer *_interactionTapRecognizer;
     MKMapView *_mapView;

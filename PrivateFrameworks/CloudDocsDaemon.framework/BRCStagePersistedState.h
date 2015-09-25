@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-@class BRCAccountSession, NSObject<OS_dispatch_queue>;
-
 @interface BRCStagePersistedState : NSObject <NSSecureCoding> {
     long _latestGCStartTime;
     NSObject<OS_dispatch_queue> *_queue;
     BRCAccountSession *_session;
+    brc_task_tracker *_tracker;
 }
 
-@property(retain) NSObject<OS_dispatch_queue> * queue;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
 
-+ (id)loadFromClientStateInSession:(id)arg1;
++ (id)loadFromClientStateInSession:(id)arg1 tracker:(id)arg2;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;

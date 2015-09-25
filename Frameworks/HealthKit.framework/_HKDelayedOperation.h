@@ -2,26 +2,17 @@
    Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSObject<OS_dispatch_queue>;
-
 @interface _HKDelayedOperation : NSObject {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _block;
-
+    id /* block */ _block;
+    int _blockEnqueued;
     double _lastExecution;
-    int _pendingRunCount;
     NSObject<OS_dispatch_queue> *_queue;
+    NSObject<OS_dispatch_source> *_timerSource;
 }
 
 - (void).cxx_destruct;
 - (void)executeWithDelay:(double)arg1;
-- (id)initWithQueue:(id)arg1 block:(id)arg2;
+- (id)initWithQueue:(id)arg1 block:(id /* block */)arg2;
 - (void)invalidate;
 
 @end

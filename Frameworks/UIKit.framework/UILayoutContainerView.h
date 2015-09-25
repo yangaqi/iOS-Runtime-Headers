@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIView;
-
 @interface UILayoutContainerView : UIView <NSCoding> {
     float _cornerRadius;
     id _delegate;
@@ -14,11 +12,12 @@
     BOOL _usesRoundedCorners;
 }
 
-@property id delegate;
-@property BOOL forwardMoveToWindowCallbacks;
-@property BOOL usesInnerShadow;
-@property BOOL usesRoundedCorners;
+@property (nonatomic) id delegate;
+@property (nonatomic) BOOL forwardMoveToWindowCallbacks;
+@property (nonatomic) BOOL usesInnerShadow;
+@property (nonatomic) BOOL usesRoundedCorners;
 
+- (void).cxx_destruct;
 - (void)_installShadowViews;
 - (void)_tearDownShadowViews;
 - (void)addSubview:(id)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSIndexSet, NSMutableDictionary, NSMutableIndexSet, UICollectionView, UICollectionViewLayout, UICollectionViewLayoutInvalidationContext, UIDynamicAnimator, _UICollectionViewCompositionLayout;
-
 @interface UICollectionViewLayout : NSObject <NSCoding> {
     UIDynamicAnimator *_animator;
     UICollectionView *_collectionView;
@@ -53,23 +51,26 @@
     UICollectionViewLayout *_transitioningToLayout;
 }
 
-@property(readonly) UICollectionView * collectionView;
-@property(getter=_compositionLayout,setter=_setCompositionLayout:) _UICollectionViewCompositionLayout * compositionLayout;
-@property(getter=_elementKinds,setter=_setElementKinds:,copy) NSArray * elementKinds;
-@property(getter=_frame,setter=_setFrame:) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
-@property(getter=_items,setter=_setItems:,copy) NSIndexSet * items;
-@property(getter=_layoutOffset,setter=_setLayoutOffset:) struct CGPoint { float x1; float x2; } layoutOffset;
-@property(getter=_layoutOffsetEdges,setter=_setLayoutOffsetEdges:) unsigned int layoutOffsetEdges;
-@property(getter=_isPrepared,setter=_setPrepared:) BOOL prepared;
-@property(getter=_sections,setter=_setSections:,copy) NSIndexSet * sections;
-@property(getter=_siblingLayout,setter=_setSiblingLayout:) UICollectionViewLayout * siblingLayout;
-@property(getter=_sublayoutType,setter=_setSublayoutType:) int sublayoutType;
+@property (nonatomic, readonly) UICollectionView *collectionView;
+@property (getter=_compositionLayout, setter=_setCompositionLayout:, nonatomic) _UICollectionViewCompositionLayout *compositionLayout;
+@property (getter=_elementKinds, setter=_setElementKinds:, nonatomic, copy) NSArray *elementKinds;
+@property (getter=_frame, setter=_setFrame:, nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
+@property (getter=_items, setter=_setItems:, nonatomic, copy) NSIndexSet *items;
+@property (getter=_layoutOffset, setter=_setLayoutOffset:, nonatomic) struct CGPoint { float x1; float x2; } layoutOffset;
+@property (getter=_layoutOffsetEdges, setter=_setLayoutOffsetEdges:, nonatomic) unsigned int layoutOffsetEdges;
+@property (getter=_isPrepared, setter=_setPrepared:, nonatomic) BOOL prepared;
+@property (getter=_sections, setter=_setSections:, nonatomic, copy) NSIndexSet *sections;
+@property (getter=_siblingLayout, setter=_setSiblingLayout:, nonatomic) UICollectionViewLayout *siblingLayout;
+@property (getter=_sublayoutType, setter=_setSublayoutType:, nonatomic) int sublayoutType;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (Class)invalidationContextClass;
 + (Class)layoutAttributesClass;
 
-- (id)_animationForReusableView:(id)arg1 toLayoutAttributes:(id)arg2;
-- (id)_animationForReusableView:(id)arg1 toLayoutAttributes:(id)arg2 type:(unsigned int)arg3;
+- (void).cxx_destruct;
+- (id /* block */)_animationForReusableView:(id)arg1 toLayoutAttributes:(id)arg2;
+- (id /* block */)_animationForReusableView:(id)arg1 toLayoutAttributes:(id)arg2 type:(unsigned int)arg3;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_bounds;
 - (struct _UICollectionViewCompositionLayout { Class x1; }*)_compositionLayout;
 - (id)_decorationViewForLayoutAttributes:(id)arg1;
@@ -112,6 +113,7 @@
 - (void)_setSections:(id)arg1;
 - (void)_setSiblingLayout:(id)arg1;
 - (void)_setSublayoutType:(int)arg1;
+- (BOOL)_shouldScrollToContentBeginningInRightToLeft;
 - (id)_siblingLayout;
 - (int)_sublayoutType;
 - (BOOL)_supportsAdvancedTransitionAnimations;
@@ -119,7 +121,6 @@
 - (struct CGSize { float x1; float x2; })collectionViewContentSize;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })convertRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 fromLayout:(id)arg2;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })convertRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 toLayout:(id)arg2;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)finalLayoutAttributesForDisappearingDecorationElementOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (id)finalLayoutAttributesForDisappearingItemAtIndexPath:(id)arg1;
@@ -139,9 +140,12 @@
 - (void)invalidateLayout;
 - (void)invalidateLayoutWithContext:(id)arg1;
 - (id)invalidationContextForBoundsChange:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)invalidationContextForEndingInteractiveMovementOfItemsToFinalIndexPaths:(id)arg1 previousIndexPaths:(id)arg2 movementCancelled:(BOOL)arg3;
+- (id)invalidationContextForInteractivelyMovingItems:(id)arg1 withTargetPosition:(struct CGPoint { float x1; float x2; })arg2 previousIndexPaths:(id)arg3 previousPosition:(struct CGPoint { float x1; float x2; })arg4;
 - (id)invalidationContextForPreferredLayoutAttributes:(id)arg1 withOriginalAttributes:(id)arg2;
 - (id)layoutAttributesForDecorationViewOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (id)layoutAttributesForElementsInRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)layoutAttributesForInteractivelyMovingItemAtIndexPath:(id)arg1 withTargetPosition:(struct CGPoint { float x1; float x2; })arg2;
 - (id)layoutAttributesForItemAtIndexPath:(id)arg1;
 - (id)layoutAttributesForSupplementaryViewOfKind:(id)arg1 atIndexPath:(id)arg2;
 - (void)prepareForAnimatedBoundsChange:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -149,7 +153,6 @@
 - (void)prepareForTransitionFromLayout:(id)arg1;
 - (void)prepareForTransitionToLayout:(id)arg1;
 - (void)prepareLayout;
-- (id)pu_layoutAttributesForElementClosestToPoint:(struct CGPoint { float x1; float x2; })arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 passingTest:(id)arg3;
 - (void)registerClass:(Class)arg1 forDecorationViewOfKind:(id)arg2;
 - (void)registerNib:(id)arg1 forDecorationViewOfKind:(id)arg2;
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -157,7 +160,12 @@
 - (id)snapshottedLayoutAttributeForItemAtIndexPath:(id)arg1;
 - (struct CGPoint { float x1; float x2; })targetContentOffsetForProposedContentOffset:(struct CGPoint { float x1; float x2; })arg1;
 - (struct CGPoint { float x1; float x2; })targetContentOffsetForProposedContentOffset:(struct CGPoint { float x1; float x2; })arg1 withScrollingVelocity:(struct CGPoint { float x1; float x2; })arg2;
+- (id)targetIndexPathForInteractivelyMovingItem:(id)arg1 withPosition:(struct CGPoint { float x1; float x2; })arg2;
 - (struct CGPoint { float x1; float x2; })transitionContentOffsetForProposedContentOffset:(struct CGPoint { float x1; float x2; })arg1 keyItemIndexPath:(id)arg2;
 - (struct CGPoint { float x1; float x2; })updatesContentOffsetForProposedContentOffset:(struct CGPoint { float x1; float x2; })arg1;
+
+// Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
+
+- (id)pu_layoutAttributesForElementClosestToPoint:(struct CGPoint { float x1; float x2; })arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 passingTest:(id /* block */)arg3;
 
 @end

@@ -2,19 +2,11 @@
    Image: /System/Library/PrivateFrameworks/GameCenterPrivateUI.framework/GameCenterPrivateUI
  */
 
-@class <UICollectionViewDataSource>, GKColorPalette, GKLoadableContentStateMachine, GKPlaceholderView, GKSearchBar, GKSwipeToEditStateMachine, NSMapTable, NSString, UIActivityIndicatorView, UICollectionViewLayout;
-
-@interface GKCollectionViewController : UICollectionViewController <GKCollectionViewDataSourceDelegate, GKSegmentedSectionDataSourceEventHandler, GKStateMachineDelegate, UISearchBarDelegate, UITextFieldDelegate> {
+@interface GKCollectionViewController : UICollectionViewController <GKCollectionViewDataSourceDelegate, GKSegmentedSectionDataSourceEventHandler, UISearchBarDelegate, UITextFieldDelegate, _GKStateMachineDelegate> {
     BOOL _active;
     GKSearchBar *_activeSearchBar;
     int _appearCount;
     GKColorPalette *_colorPalette;
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
-    } _contentInsetsBeforeKeyboard;
     NSString *_currentSearchText;
     <UICollectionViewDataSource> *_dataSource;
     UICollectionViewLayout *_defaultLayout;
@@ -23,16 +15,11 @@
     BOOL _hasViewFactories;
     UIActivityIndicatorView *_loadingIndicatorView;
     GKLoadableContentStateMachine *_loadingMachine;
+    UINavigationController *_placeholderNavigationController;
     GKPlaceholderView *_placeholderView;
     int _previousOrientation;
     BOOL _readyToDisplayData;
     NSMapTable *_reusableViewsIHaveSeen;
-    struct UIEdgeInsets { 
-        float top; 
-        float left; 
-        float bottom; 
-        float right; 
-    } _scrollInsetsBeforeKeyboard;
     BOOL _shouldSlideInContents;
     BOOL _showSupplementaryViewsWhileLoading;
     BOOL _skipLoadAfterViewDidLoad;
@@ -41,47 +28,47 @@
 }
 
 @property BOOL active;
-@property(retain) GKSearchBar * activeSearchBar;
+@property (nonatomic, retain) GKSearchBar *activeSearchBar;
 @property int appearCount;
-@property(retain) GKColorPalette * colorPalette;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsetsBeforeKeyboard;
-@property(retain) NSString * currentSearchText;
-@property(retain) <UICollectionViewDataSource> * dataSource;
-@property(copy,readonly) NSString * debugDescription;
-@property(retain) UICollectionViewLayout * defaultLayout;
-@property(copy,readonly) NSString * description;
+@property (nonatomic, retain) GKColorPalette *colorPalette;
+@property (nonatomic, retain) NSString *currentSearchText;
+@property (nonatomic, retain) <UICollectionViewDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) UICollectionViewLayout *defaultLayout;
+@property (readonly, copy) NSString *description;
 @property BOOL didSlideIn;
-@property int gkFocusBubbleType;
+@property (nonatomic) int gkFocusBubbleType;
 @property BOOL hasViewFactories;
-@property(readonly) unsigned int hash;
-@property(retain) UIActivityIndicatorView * loadingIndicatorView;
-@property(retain) GKLoadableContentStateMachine * loadingMachine;
-@property(readonly) NSString * loadingState;
-@property(retain) GKPlaceholderView * placeholderView;
-@property int previousOrientation;
-@property(readonly) BOOL readyToDisplayData;
-@property(retain) NSMapTable * reusableViewsIHaveSeen;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } scrollInsetsBeforeKeyboard;
-@property BOOL shouldSlideInContents;
-@property BOOL showSupplementaryViewsWhileLoading;
-@property BOOL skipLoadAfterViewDidLoad;
-@property(readonly) Class superclass;
-@property BOOL supportsMasterSelectionBehavior;
-@property(retain) GKSwipeToEditStateMachine * swipeStateMachine;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIActivityIndicatorView *loadingIndicatorView;
+@property (nonatomic, retain) GKLoadableContentStateMachine *loadingMachine;
+@property (nonatomic, readonly) NSString *loadingState;
+@property (nonatomic, retain) UINavigationController *placeholderNavigationController;
+@property (nonatomic, retain) GKPlaceholderView *placeholderView;
+@property (nonatomic) int previousOrientation;
+@property (nonatomic, readonly) BOOL readyToDisplayData;
+@property (nonatomic, retain) NSMapTable *reusableViewsIHaveSeen;
+@property (nonatomic) BOOL shouldSlideInContents;
+@property (nonatomic) BOOL showSupplementaryViewsWhileLoading;
+@property (nonatomic) BOOL skipLoadAfterViewDidLoad;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL supportsMasterSelectionBehavior;
+@property (nonatomic, retain) GKSwipeToEditStateMachine *swipeStateMachine;
 
 + (BOOL)_shouldForwardViewWillTransitionToSize;
 
-- (void)_applyUpdates:(id)arg1 withCompletionHandler:(id)arg2;
-- (void)_finishUpdates:(id)arg1 withCompletionHandler:(id)arg2;
+- (void)_applyUpdates:(id)arg1 withCompletionHandler:(id /* block */)arg2;
+- (void)_finishUpdates:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (id)_gkRecursiveDescription;
 - (void)_gkRefreshContentsForDataType:(unsigned int)arg1 userInfo:(id)arg2;
-- (void)_gkSetContentsNeedUpdateWithHandler:(id)arg1;
+- (void)_gkSetContentsNeedUpdateWithHandler:(id /* block */)arg1;
 - (BOOL)_gkShouldRefreshContentsForDataType:(unsigned int)arg1 userInfo:(id)arg2;
-- (void)_loadDataWithCompletionHandlerAndError:(id)arg1;
+- (void)_loadDataWithCompletionHandlerAndError:(id /* block */)arg1;
 - (void)_reallyStartLoadingIndicator;
 - (void)_systemContentSizeSettingDidChange:(id)arg1;
 - (BOOL)active;
 - (id)activeSearchBar;
+- (void)addPlaceholderViewToView:(id)arg1;
 - (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
 - (int)appearCount;
 - (void)applyShowMoreLayoutAttributesForShowMoreView:(id)arg1 atIndexPath:(id)arg2;
@@ -92,10 +79,9 @@
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (void)collectionView:(id)arg1 willDisplaySupplementaryView:(id)arg2 forElementKind:(id)arg3 atIndexPath:(id)arg4;
 - (id)colorPalette;
-- (void)completeWhenReadyToDisplayData:(id)arg1;
+- (void)completeWhenReadyToDisplayData:(id /* block */)arg1;
 - (void)configureDataSource;
 - (void)configureViewFactories;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentInsetsBeforeKeyboard;
 - (id)currentSearchTerms;
 - (id)currentSearchText;
 - (id)dataSource;
@@ -108,11 +94,10 @@
 - (void)dataSource:(id)arg1 didRemoveItemsAtIndexPaths:(id)arg2;
 - (void)dataSource:(id)arg1 didRemoveSections:(id)arg2;
 - (void)dataSource:(id)arg1 didUpdatePlaceholderVisibility:(BOOL)arg2;
-- (void)dataSource:(id)arg1 performBatchUpdate:(id)arg2 complete:(id)arg3;
+- (void)dataSource:(id)arg1 performBatchUpdate:(id /* block */)arg2 complete:(id /* block */)arg3;
 - (void)dataSourceDidMoveSectionsWithItems:(id)arg1;
 - (void)dataSourceDidReloadData:(id)arg1;
 - (void)dealloc;
-- (id)defaultBubbleSpec;
 - (id)defaultColorPalette;
 - (id)defaultLayout;
 - (void)didBecomeReadyToDisplayData;
@@ -137,21 +122,19 @@
 - (void)hidePlaceholderAnimated:(BOOL)arg1;
 - (id)initWithCollectionViewLayout:(id)arg1;
 - (void)invalidateSearch;
-- (void)keyboardWasShown:(id)arg1;
-- (void)keyboardWillBeHidden:(id)arg1;
-- (void)loadDataWithCompletionHandlerAndError:(id)arg1;
+- (void)loadDataWithCompletionHandlerAndError:(id /* block */)arg1;
 - (void)loadView;
 - (id)loadingIndicatorView;
 - (id)loadingMachine;
 - (id)loadingState;
 - (id)nearestSelectableIndexPath:(id)arg1;
+- (id)placeholderNavigationController;
 - (id)placeholderView;
 - (id)preservedIndexPathForSelectedItem;
 - (int)previousOrientation;
 - (BOOL)readyToDisplayData;
 - (void)refreshContentsForDataType:(unsigned int)arg1 userInfo:(id)arg2 updateNotifier:(id)arg3;
 - (id)reusableViewsIHaveSeen;
-- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })scrollInsetsBeforeKeyboard;
 - (void)searchBar:(id)arg1 textDidChange:(id)arg2;
 - (void)searchBarCancelButtonClicked:(id)arg1;
 - (void)searchBarSearchButtonClicked:(id)arg1;
@@ -163,7 +146,6 @@
 - (void)setActiveSearchBar:(id)arg1;
 - (void)setAppearCount:(int)arg1;
 - (void)setColorPalette:(id)arg1;
-- (void)setContentInsetsBeforeKeyboard:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setCurrentSearchText:(id)arg1;
 - (void)setDataSource:(id)arg1;
 - (void)setDefaultLayout:(id)arg1;
@@ -174,10 +156,10 @@
 - (void)setLoadingIndicatorView:(id)arg1;
 - (void)setLoadingMachine:(id)arg1;
 - (void)setNeedsReload;
+- (void)setPlaceholderNavigationController:(id)arg1;
 - (void)setPlaceholderView:(id)arg1;
 - (void)setPreviousOrientation:(int)arg1;
 - (void)setReusableViewsIHaveSeen:(id)arg1;
-- (void)setScrollInsetsBeforeKeyboard:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setShouldSlideInContents:(BOOL)arg1;
 - (void)setShowSupplementaryViewsWhileLoading:(BOOL)arg1;
 - (void)setSkipLoadAfterViewDidLoad:(BOOL)arg1;
@@ -187,7 +169,7 @@
 - (void)showCollectionView;
 - (void)showDetailForSelectedItem;
 - (float)showMoreTextMarginAtIndexPath:(id)arg1;
-- (void)showPlaceholderWithTitle:(id)arg1 message:(id)arg2 buttonTitle:(id)arg3 animated:(BOOL)arg4 block:(id)arg5;
+- (void)showPlaceholderWithTitle:(id)arg1 message:(id)arg2 buttonTitle:(id)arg3 animated:(BOOL)arg4 block:(id /* block */)arg5;
 - (BOOL)showSupplementaryViewsWhileLoading;
 - (void)shutActionPaneAnimated:(BOOL)arg1;
 - (BOOL)skipLoadAfterViewDidLoad;
@@ -205,6 +187,7 @@
 - (id)swipeStateMachine;
 - (void)swipeToDeleteCell:(id)arg1;
 - (void)traitCollectionDidChange:(id)arg1;
+- (void)updateDynamicColumnCountsForViewSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)updateLayoutGuideOffsets;
 - (void)updateMetrics;
 - (void)updateSelectionHighlight;

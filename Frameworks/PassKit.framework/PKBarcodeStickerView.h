@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class NSMutableArray, PKBarcode, UIImageView, UILabel, UIView;
-
-@interface PKBarcodeStickerView : UIView {
+@interface PKBarcodeStickerView : UIButton {
     UILabel *_altTextLabel;
     PKBarcode *_barcode;
     UIImageView *_barcodeView;
@@ -16,8 +14,8 @@
     int _validity;
 }
 
-@property(readonly) UIView * matteView;
-@property int validity;
+@property (nonatomic, readonly) UIView *matteView;
+@property (nonatomic) int validity;
 
 + (struct PKBarcodeQuietZone { float x1; float x2; float x3; float x4; })_quiteZoneForBarcode:(id)arg1;
 + (struct CGSize { float x1; float x2; })_sizeForBarcode:(id)arg1;

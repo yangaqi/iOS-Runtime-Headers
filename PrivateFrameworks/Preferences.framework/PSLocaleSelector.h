@@ -2,10 +2,7 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@interface PSLocaleSelector : NSObject {
-}
-
-+ (id)sharedInstance;
+@interface PSLocaleSelector : NSObject
 
 - (id)availableLocaleIdentifiers;
 - (id)currentLocale;

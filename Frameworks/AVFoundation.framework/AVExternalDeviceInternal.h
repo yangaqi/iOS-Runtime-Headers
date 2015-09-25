@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVExternalDeviceDelegate>, AVWeakReference, NSArray, NSData, NSObject<OS_dispatch_queue>;
-
 @interface AVExternalDeviceInternal : NSObject {
     NSArray *_HIDs;
     NSData *_MFiCertSerial;
     <AVExternalDeviceDelegate> *_delegate;
     struct OpaqueFigEndpoint { } *_figEndpoint;
     long _makeHIDsOnlyOnce;
+    long _makeIconsOnlyOnce;
+    NSArray *_oemIcons;
     NSObject<OS_dispatch_queue> *_queue;
     AVWeakReference *_weakReference;
 }

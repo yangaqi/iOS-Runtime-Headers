@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class NSObject<PLAlbumProtocol>, NSString, PHAssetCollection, PHFetchResult, PUPhotosPickerViewController;
-
 @interface PUPhotosAlbumViewController : PUPhotosGridViewController <PUSectionedGridLayoutDelegate> {
     BOOL __hasAccurateCounts;
     BOOL __isCountingAssetTypes;
@@ -12,15 +10,15 @@
     PHAssetCollection *_assetCollection;
 }
 
-@property(setter=_setHasAccurateCounts:) BOOL _hasAccurateCounts;
-@property(setter=_setCountingAssetTypes:) BOOL _isCountingAssetTypes;
-@property(retain) NSObject<PLAlbumProtocol> * album;
-@property(readonly) PHAssetCollection * assetCollection;
-@property(readonly) PHFetchResult * assetCollectionAssets;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (setter=_setHasAccurateCounts:, nonatomic) BOOL _hasAccurateCounts;
+@property (setter=_setCountingAssetTypes:, nonatomic) BOOL _isCountingAssetTypes;
+@property (nonatomic, retain) NSObject<PLAlbumProtocol> *album;
+@property (nonatomic, readonly) PHAssetCollection *assetCollection;
+@property (nonatomic, readonly) PHFetchResult *assetCollectionAssets;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_countAssetTypesIfNeeded;
@@ -30,6 +28,7 @@
 - (void)_setCountingAssetTypes:(BOOL)arg1;
 - (void)_setHasAccurateCounts:(BOOL)arg1;
 - (struct NSObject { Class x1; }*)album;
+- (BOOL)allowSelectAllButton;
 - (id)assetCollection;
 - (id)assetCollectionAssets;
 - (BOOL)canBeginStackCollapseTransition;
@@ -42,6 +41,7 @@
 - (void)handleAddToAlbum:(id)arg1 pickedAssets:(id)arg2;
 - (void)handleTransitionFade:(BOOL)arg1 animate:(BOOL)arg2;
 - (id)initWithSpec:(id)arg1;
+- (BOOL)isCameraRoll;
 - (BOOL)isTrashBinViewController;
 - (id)localizedTitleForAssets:(id)arg1;
 - (id)newGridLayout;

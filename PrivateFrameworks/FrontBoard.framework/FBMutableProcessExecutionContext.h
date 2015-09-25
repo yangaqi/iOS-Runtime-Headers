@@ -2,20 +2,19 @@
    Image: /System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard
  */
 
-@class NSArray, NSDictionary, NSURL;
+@interface FBMutableProcessExecutionContext : FBProcessExecutionContext
 
-@interface FBMutableProcessExecutionContext : FBProcessExecutionContext {
-}
+@property (nonatomic, copy) NSArray *arguments;
+@property (nonatomic) BOOL checkForLeaks;
+@property (nonatomic) BOOL disableASLR;
+@property (nonatomic, copy) NSDictionary *environment;
+@property (nonatomic) int launchIntent;
+@property (nonatomic, retain) NSURL *standardErrorURL;
+@property (nonatomic, retain) NSURL *standardOutputURL;
+@property (nonatomic) BOOL waitForDebugger;
+@property (nonatomic) double watchdogExtension;
+@property (nonatomic) double watchdogScaleFactor;
 
-@property(retain) NSArray * arguments;
-@property BOOL checkForLeaks;
-@property BOOL disableASLR;
-@property(retain) NSDictionary * environment;
-@property unsigned int launchAssertionFlags;
-@property int launchIntent;
-@property(retain) NSURL * standardErrorURL;
-@property(retain) NSURL * standardOutputURL;
-@property BOOL waitForDebugger;
-@property double watchdogExtension;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 
 @end

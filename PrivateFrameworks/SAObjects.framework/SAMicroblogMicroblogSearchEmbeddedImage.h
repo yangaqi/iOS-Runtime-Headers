@@ -2,14 +2,11 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSURL;
+@interface SAMicroblogMicroblogSearchEmbeddedImage : SAMicroblogMicroblogSearchResultPost
 
-@interface SAMicroblogMicroblogSearchEmbeddedImage : SAMicroblogMicroblogSearchResultPost {
-}
-
-@property(copy) NSNumber * height;
-@property(copy) NSURL * imageURL;
-@property(copy) NSNumber * width;
+@property (nonatomic, copy) NSNumber *height;
+@property (nonatomic, copy) NSURL *imageURL;
+@property (nonatomic, copy) NSNumber *width;
 
 + (id)microblogSearchEmbeddedImage;
 + (id)microblogSearchEmbeddedImageWithDictionary:(id)arg1 context:(id)arg2;
@@ -21,7 +18,6 @@
 - (void)setHeight:(id)arg1;
 - (void)setImageURL:(id)arg1;
 - (void)setWidth:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 - (id)width;
 
 @end

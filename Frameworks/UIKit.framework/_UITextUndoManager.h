@@ -2,14 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITextInputController;
-
 @interface _UITextUndoManager : NSUndoManager {
     UITextInputController *_inputController;
 }
 
-@property UITextInputController * inputController;
+@property (nonatomic) UITextInputController *inputController;
 
+- (void).cxx_destruct;
 - (id)inputController;
 - (void)removeAllActions;
 - (void)setInputController:(id)arg1;

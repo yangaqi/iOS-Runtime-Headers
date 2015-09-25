@@ -2,22 +2,15 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString, VKMapModel, VKStyleManager;
-
 @interface VKGridModel : VKModelObject <VKMapLayer, VKStyleManagerObserver> {
-    struct shared_ptr<ggl::GridBase::GridBaseUniformData> { 
-        struct GridBaseUniformData {} *__ptr_; 
+    struct shared_ptr<ggl::ConstantDataTyped<ggl::GridBase::GridView> > { 
+        struct ConstantDataTyped<ggl::GridBase::GridView> {} *__ptr_; 
         struct __shared_weak_count {} *__cntrl_; 
-    } _baseUniformData;
+    } _baseConstantData;
+    struct shared_ptr<ggl::ConstantDataTyped<ggl::Grid::Style> > { 
+        struct ConstantDataTyped<ggl::Grid::Style> {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _constantData;
     struct Matrix<float, 4, 1> { 
         float _e[4]; 
     } _fillColor;
@@ -43,6 +36,10 @@
             struct Setup {} *__first_; 
         } __ptr_; 
     } _shaderSetup;
+    struct shared_ptr<ggl::ConstantDataTyped<ggl::SimpleGrid::Style> > { 
+        struct ConstantDataTyped<ggl::SimpleGrid::Style> {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _simpleConstantData;
     BOOL _simpleGridEnabled;
     struct RenderItem { int (**x1)(); char *x2; struct RenderState {} *x3; struct ShaderSetup {} *x4; unsigned int x5; unsigned int x6; float x7; struct Mesh {} *x8; struct Range { unsigned int x_9_1_1; unsigned int x_9_1_2; } x9; struct Range {} *x10; unsigned int x11; } *_simpleGridRenderItem;
     struct unique_ptr<ggl::RenderState, std::__1::default_delete<ggl::RenderState> > { 
@@ -55,29 +52,21 @@
             struct Setup {} *__first_; 
         } __ptr_; 
     } _simpleShaderSetup;
-    struct shared_ptr<ggl::SimpleGrid::SimpleGridUniformData> { 
-        struct SimpleGridUniformData {} *__ptr_; 
+    struct shared_ptr<ggl::ConstantDataTyped<ggl::Tile::View> > { 
+        struct ConstantDataTyped<ggl::Tile::View> {} *__ptr_; 
         struct __shared_weak_count {} *__cntrl_; 
-    } _simpleUniformData;
-    struct shared_ptr<ggl::Grid::GridUniformData> { 
-        struct GridUniformData {} *__ptr_; 
-        struct __shared_weak_count {} *__cntrl_; 
-    } _uniformData;
-    struct shared_ptr<ggl::Tile::ViewUniformData> { 
-        struct ViewUniformData {} *__ptr_; 
-        struct __shared_weak_count {} *__cntrl_; 
-    } _viewUniformData;
+    } _viewConstantData;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) /* Warning: unhandled struct encoding: '{Matrix<float' */ struct  fillColor; /* unknown property attribute:  1>=[4f]} */
-@property(readonly) unsigned int hash;
-@property VKMapModel * mapModel;
-@property unsigned char renderPass;
-@property BOOL simpleGridEnabled;
-@property(readonly) VKStyleManager * styleManager;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) /* Warning: unhandled struct encoding: '{Matrix<float' */ struct  fillColor; /* unknown property attribute:  1>=[4f]} */
+@property (readonly) unsigned int hash;
+@property (nonatomic) VKMapModel *mapModel;
+@property (nonatomic) unsigned char renderPass;
+@property (nonatomic) BOOL simpleGridEnabled;
+@property (nonatomic, readonly) struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; } styleManager;
+@property (readonly) Class superclass;
 
 + (BOOL)reloadOnStylesheetChange;
 
@@ -96,7 +85,7 @@
 - (void)setSimpleGridEnabled:(BOOL)arg1;
 - (BOOL)shouldLayoutWithoutStyleManager;
 - (BOOL)simpleGridEnabled;
-- (id)styleManager;
+- (struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; })styleManager;
 - (void)stylesheetDidChange;
 - (void)stylesheetDoneChanging;
 - (void)updateGridColor;

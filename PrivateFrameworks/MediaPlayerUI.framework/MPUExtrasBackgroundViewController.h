@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class IKImageElement, MPUArtworkView, NSArray, NSTimer, UIImageView;
-
 @interface MPUExtrasBackgroundViewController : UIViewController {
     NSArray *_backgroundElements;
     IKImageElement *_displayedImageElement;
@@ -14,13 +12,14 @@
     UIImageView *_vignetteView;
 }
 
-@property(readonly) NSArray * backgroundElements;
-@property unsigned int vignetteType;
+@property (nonatomic, readonly) NSArray *backgroundElements;
+@property (nonatomic) unsigned int vignetteType;
 
 + (id)vignetteImageForType:(unsigned int)arg1;
 
 - (void).cxx_destruct;
 - (void)_didReceiveImage:(id)arg1;
+- (void)_initVignette;
 - (void)_invalidateTimer;
 - (void)_scheduleTimerIfNeeded;
 - (void)_updateConstraintsForImageSize:(struct CGSize { float x1; float x2; })arg1 position:(unsigned int)arg2;

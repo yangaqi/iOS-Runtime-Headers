@@ -2,27 +2,23 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@class <SBFWallpaperViewInternalObserver>, <SBFWallpaperViewLegibilityObserver>, NSString, NSTimer, SBFWallpaperParallaxSettings, SBFWallpaperSettings, UIColor, UIImage, UIView, _UILegibilitySettings, _UILegibilitySettingsProvider;
-
-@interface SBFWallpaperView : UIView <_UISettingsKeyObserver> {
+@interface SBFWallpaperView : UIView <SBFLegibilitySettingsProvider, _UISettingsKeyObserver> {
     NSTimer *_colorSampleTimer;
     float _contentScaleFactor;
     UIView *_contentView;
     BOOL _continuousColorSamplingEnabled;
-    float _contrast;
+    <SBFLegibilitySettingsProviderDelegate> *_delegate;
     int _disallowRasterizationBlockCount;
-    BOOL _filtersAverageColor;
     BOOL _generatingBlurredImages;
     <SBFWallpaperViewInternalObserver> *_internalObserver;
     UIColor *_lastAverageColor;
-    <SBFWallpaperViewLegibilityObserver> *_legibilityObserver;
     _UILegibilitySettings *_legibilitySettings;
     _UILegibilitySettingsProvider *_legibilitySettingsProvider;
-    float _parallaxAxisAdjustmentAngle;
     BOOL _parallaxEnabled;
     float _parallaxFactor;
     SBFWallpaperParallaxSettings *_parallaxSettings;
     UIView *_parallaxView;
+    BOOL _rotating;
     BOOL _shouldGenerateBlurredImagesWhenVisible;
     int _variant;
     BOOL _wallpaperAnimationEnabled;
@@ -31,24 +27,23 @@
     float _zoomFactor;
 }
 
-@property(retain) UIView * contentView;
-@property BOOL continuousColorSamplingEnabled;
-@property float contrast;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL filtersAverageColor;
-@property(readonly) unsigned int hash;
-@property <SBFWallpaperViewInternalObserver> * internalObserver;
-@property <SBFWallpaperViewLegibilityObserver> * legibilityObserver;
-@property(retain) _UILegibilitySettings * legibilitySettings;
-@property float parallaxAxisAdjustmentAngle;
-@property BOOL parallaxEnabled;
-@property float parallaxFactor;
-@property(readonly) Class superclass;
-@property int variant;
-@property BOOL wallpaperAnimationEnabled;
-@property(readonly) UIImage * wallpaperImage;
-@property float zoomFactor;
+@property (nonatomic, retain) UIView *contentView;
+@property (nonatomic) BOOL continuousColorSamplingEnabled;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SBFLegibilitySettingsProviderDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) <SBFWallpaperViewInternalObserver> *internalObserver;
+@property (nonatomic, readonly, retain) _UILegibilitySettings *legibilitySettings;
+@property (nonatomic, readonly) BOOL needsImmediateLayoutBeforeRotation;
+@property (nonatomic) BOOL parallaxEnabled;
+@property (nonatomic) float parallaxFactor;
+@property (getter=isRotating, nonatomic) BOOL rotating;
+@property (readonly) Class superclass;
+@property (nonatomic) int variant;
+@property (nonatomic) BOOL wallpaperAnimationEnabled;
+@property (nonatomic, readonly) UIImage *wallpaperImage;
+@property (nonatomic) float zoomFactor;
 
 + (BOOL)_allowsParallax;
 + (BOOL)_allowsRasterization;
@@ -65,7 +60,7 @@
 - (void)_endDisallowRasterizationBlock;
 - (void)_handleVariantChange;
 - (void)_handleVisibilityChange;
-- (id)_imageForBackdropParameters:(struct { int x1; int x2; int x3; })arg1 includeTint:(BOOL)arg2;
+- (id)_imageForBackdropParameters:(struct { int x1; int x2; int x3; float x4; float x5; })arg1 includeTint:(BOOL)arg2;
 - (BOOL)_isVisible;
 - (void)_notifyBlursInvalidated;
 - (void)_notifyGeometryInvalidated;
@@ -94,20 +89,20 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })cropRect;
 - (float)cropZoomScale;
 - (void)dealloc;
+- (id)delegate;
 - (void)didMoveToWindow;
-- (BOOL)filtersAverageColor;
-- (id)imageForBackdropParameters:(struct { int x1; int x2; int x3; })arg1 includeTint:(BOOL)arg2;
+- (id)imageForBackdropParameters:(struct { int x1; int x2; int x3; float x4; float x5; })arg1 includeTint:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 variant:(int)arg2;
 - (id)internalObserver;
 - (void)invalidate;
 - (BOOL)isDisplayingWallpaper:(id)arg1 forVariant:(int)arg2 options:(id)arg3;
+- (BOOL)isRotating;
 - (void)layoutSubviews;
-- (id)legibilityObserver;
 - (id)legibilitySettings;
 - (void)legibilitySettingsDidChange;
 - (BOOL)luminanceInRectRequiresTreatments:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (float)parallaxAxisAdjustmentAngle;
+- (BOOL)needsImmediateLayoutBeforeRotation;
 - (BOOL)parallaxEnabled;
 - (float)parallaxFactor;
 - (void)prepareToAppear;
@@ -115,23 +110,22 @@
 - (void)setContentView:(id)arg1;
 - (void)setContentsRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setContinuousColorSamplingEnabled:(BOOL)arg1;
-- (void)setContrast:(float)arg1;
 - (void)setCropRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 zoomScale:(float)arg2;
-- (void)setFiltersAverageColor:(BOOL)arg1;
+- (void)setDelegate:(id)arg1;
 - (void)setGeneratesBlurredImages:(BOOL)arg1;
 - (void)setHidden:(BOOL)arg1;
 - (void)setInternalObserver:(id)arg1;
-- (void)setLegibilityObserver:(id)arg1;
 - (void)setLegibilitySettings:(id)arg1;
-- (void)setParallaxAxisAdjustmentAngle:(float)arg1;
 - (void)setParallaxEnabled:(BOOL)arg1;
 - (void)setParallaxFactor:(float)arg1;
+- (void)setRotating:(BOOL)arg1;
 - (void)setVariant:(int)arg1;
 - (void)setVariant:(int)arg1 withAnimationFactory:(id)arg2;
 - (void)setVariant:(int)arg1 withAnimationFactory:(id)arg2 forced:(BOOL)arg3;
 - (void)setWallpaperAnimationEnabled:(BOOL)arg1;
 - (void)setZoomFactor:(float)arg1;
 - (void)settings:(id)arg1 changedValueForKey:(id)arg2;
+- (id)snapshotImage;
 - (BOOL)supportsCropping;
 - (void)updateLegibilitySettingsForAverageColor:(id)arg1;
 - (int)variant;

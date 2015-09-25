@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class TIKeyboardCandidate, UITextChecker;
-
 @interface UITextReplacementGeneratorForCorrections : UITextReplacementGenerator {
     TIKeyboardCandidate *_autocorrectionRecord;
     BOOL _forceAutocorrectionGuesses;
@@ -15,21 +13,21 @@
     UITextChecker *_textChecker;
 }
 
-@property(retain) TIKeyboardCandidate * autocorrectionRecord;
-@property BOOL forceAutocorrectionGuesses;
-@property BOOL forceHistoryReplacement;
-@property BOOL forceSpellingGuesses;
-@property unsigned int maxCountAfterAutocorrectionGuesses;
-@property unsigned int maxCountAfterSpellingGuesses;
-@property unsigned int maxEditDistance;
-@property(retain) UITextChecker * textChecker;
+@property (nonatomic, retain) TIKeyboardCandidate *autocorrectionRecord;
+@property (nonatomic) BOOL forceAutocorrectionGuesses;
+@property (nonatomic) BOOL forceHistoryReplacement;
+@property (nonatomic) BOOL forceSpellingGuesses;
+@property (nonatomic) unsigned int maxCountAfterAutocorrectionGuesses;
+@property (nonatomic) unsigned int maxCountAfterSpellingGuesses;
+@property (nonatomic) unsigned int maxEditDistance;
+@property (nonatomic, retain) UITextChecker *textChecker;
 
+- (void).cxx_destruct;
 - (void)addAutocorrectionGuessesToReplacements:(id)arg1;
 - (void)addPreviouslySuggestedAutocorrectionToReplacements:(id)arg1;
 - (id)addReplacementRevertingAutocorrectionToReplacements:(id)arg1;
 - (void)addSpellingGuessesForString:(id)arg1 ToReplacements:(id)arg2;
 - (id)autocorrectionRecord;
-- (void)dealloc;
 - (BOOL)forceAutocorrectionGuesses;
 - (BOOL)forceHistoryReplacement;
 - (BOOL)forceSpellingGuesses;

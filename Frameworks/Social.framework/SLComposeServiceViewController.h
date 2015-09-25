@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Social.framework/Social
  */
 
-@class NSMutableArray, NSNumber, NSObject<SLSheetViewHostProtocol>, NSString, SLSheetContentView, SLSheetMasklayer, SLSheetNavigationController, SLSheetPreviewImageSource, SLSheetRootViewController, UIAlertController, UIImage, UITextView, UIView, UIViewController;
-
 @interface SLComposeServiceViewController : UIViewController <UINavigationControllerDelegate, UITextViewDelegate> {
     UIAlertController *_alertController;
     NSMutableArray *_attachments;
@@ -17,7 +15,6 @@
     BOOL _hasPresentedSheet;
     NSObject<SLSheetViewHostProtocol> *_hostProxy;
     BOOL _inPostButtonTapped;
-    BOOL _isPerformationRotation;
     BOOL _isPresentingActionViewController;
     BOOL _isShowingLocationDeniedAlert;
     UIView *_maskView;
@@ -43,30 +40,32 @@
     unsigned int _unfulfilledItemProviderRepresentations;
     UIViewController *_viewControllerForTrackingSheetSize;
     SLSheetMasklayer *_vignetteLayer;
+    BOOL _waitingForAnimateAlongsideTransitionBlock;
     BOOL _wasPresented;
 }
 
-@property(retain) UIViewController * autoCompletionViewController;
-@property(retain) NSNumber * charactersRemaining;
-@property(retain) NSMutableArray * constraints;
-@property(readonly) NSString * contentText;
-@property(retain) SLSheetContentView * contentView;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property unsigned long maxImageAttachmentSize;
-@property(retain) SLSheetNavigationController * navigationController;
-@property(copy) NSString * placeholder;
-@property BOOL preventSheetPositionChanges;
-@property(retain) SLSheetRootViewController * sheetRootViewController;
-@property(readonly) UIView * sheetView;
-@property(readonly) Class superclass;
-@property BOOL suppressKeyboard;
-@property(readonly) UITextView * textView;
-@property(readonly) BOOL wasPresented;
+@property (nonatomic, retain) UIViewController *autoCompletionViewController;
+@property (nonatomic, retain) NSNumber *charactersRemaining;
+@property (retain) NSMutableArray *constraints;
+@property (nonatomic, readonly) NSString *contentText;
+@property (nonatomic, retain) SLSheetContentView *contentView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned long maxImageAttachmentSize;
+@property (nonatomic, retain) SLSheetNavigationController *navigationController;
+@property (nonatomic, copy) NSString *placeholder;
+@property (nonatomic) BOOL preventSheetPositionChanges;
+@property (nonatomic, retain) SLSheetRootViewController *sheetRootViewController;
+@property (readonly) UIView *sheetView;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL suppressKeyboard;
+@property (nonatomic, readonly) UITextView *textView;
+@property (readonly) BOOL wasPresented;
 
 + (id)_imageAttachmentLoadDownsamplePreviewQueue;
 + (BOOL)_preventsAppearanceProxyCustomization;
++ (BOOL)_shouldForwardViewWillTransitionToSize;
 
 - (void).cxx_destruct;
 - (id)URLAttachments;
@@ -80,7 +79,7 @@
 - (void)_convertExtensionItemProvidersToAttachments:(id)arg1;
 - (void)_downsampleImageAttachment:(id)arg1;
 - (void)_imageAttachmentDataDidLoad:(id)arg1;
-- (struct CGSize { float x1; float x2; })_intrinsicSheetSizeForVerticalSizeClass:(int)arg1;
+- (struct CGSize { float x1; float x2; })_intrinsicSheetSize;
 - (void)_loadImageAttachmentData:(id)arg1;
 - (void)_loadPreviewView;
 - (void)_performCommonInitialization:(id)arg1;
@@ -91,7 +90,7 @@
 - (void)_presentedViewControllerContentSizeDidChange;
 - (int)_previewDisplayFormat;
 - (void)_setViewControllerForTrackingSheetSize:(id)arg1;
-- (float)_sheetMinBottomMarginForVerticalSizeClass:(int)arg1;
+- (float)_sheetMinBottomMarginForVerticalSizeClass;
 - (void)_updateContentViewWithCharactersRemaining;
 - (void)_willAppearInRemoteViewController;
 - (void)addAttachment:(id)arg1;
@@ -110,7 +109,6 @@
 - (void)createPreviewIfNeeded;
 - (void)dealloc;
 - (void)didReceiveMemoryWarning;
-- (void)didRotateFromInterfaceOrientation:(int)arg1;
 - (void)didSelectCancel;
 - (void)didSelectPost;
 - (void)didSendWithSuccess:(BOOL)arg1 error:(id)arg2;
@@ -153,6 +151,7 @@
 - (void)setNavigationController:(id)arg1;
 - (void)setPlaceholder:(id)arg1;
 - (void)setPlaceholderText:(id)arg1;
+- (void)setPostButtonTitle:(id)arg1;
 - (void)setPreventSheetPositionChanges:(BOOL)arg1;
 - (void)setServiceIconImage:(id)arg1;
 - (void)setSheetFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
@@ -160,8 +159,8 @@
 - (void)setSuppressKeyboard:(BOOL)arg1;
 - (void)setTitle:(id)arg1;
 - (id)sheetActions;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })sheetFrameForViewController:(id)arg1 verticalSizeClass:(int)arg2 orientation:(int)arg3;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })sheetFrameForViewController:(id)arg1 verticalSizeClass:(int)arg2 orientation:(int)arg3 topSpaceProportion:(float)arg4 topSpaceOffset:(float)arg5;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })sheetFrameForViewController:(id)arg1;
+- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })sheetFrameForViewController:(id)arg1 topSpaceProportion:(float)arg2 topSpaceOffset:(float)arg3;
 - (id)sheetRootViewController;
 - (id)sheetView;
 - (BOOL)shouldAutorotate;
@@ -174,6 +173,7 @@
 - (id)text;
 - (id)textView;
 - (void)textViewDidChange:(id)arg1;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)updateKeyboardSize;
 - (void)updateSheetForVerticalSizeClass;
 - (void)validateContent;
@@ -182,8 +182,7 @@
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
+- (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 - (BOOL)wasPresented;
-- (void)willAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
-- (void)willRotateToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 
 @end

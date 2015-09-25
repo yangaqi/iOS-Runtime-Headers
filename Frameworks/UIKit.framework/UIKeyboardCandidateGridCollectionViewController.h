@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIKeyboardCandidateGridCollectionViewControllerDelegate>, <UIKeyboardCandidateListDelegate>, NSArray, NSString, TIKeyboardCandidateResultSet, UIButton, UIKBCandidateCollectionView, UIKeyboardCandidateGridCollectionView, UIKeyboardCandidateGridLayout, UIView;
-
 @interface UIKeyboardCandidateGridCollectionViewController : UIViewController <UICollectionViewDataSource, UIKeyboardCandidateGridLayoutDelegate, UIKeyboardCandidateList> {
     BOOL __usesDeemphasizedTextAppearance;
     BOOL _alwaysShowExtensionCandidates;
@@ -12,6 +10,7 @@
     TIKeyboardCandidateResultSet *_candidateSet;
     int _candidatesVisualStyle;
     <UIKeyboardCandidateGridCollectionViewControllerDelegate> *_delegate;
+    NSArray *_filteredCandidates;
     float _groupBarWidth;
     BOOL _hasSecondaryCandidates;
     UIView *_headerView;
@@ -20,7 +19,6 @@
     UIKBCandidateCollectionView *_secondaryCandidatesView;
     BOOL _secondaryCandidatesViewIsCurrent;
     BOOL _showHiddenCandidatesOnly;
-    BOOL _showsExtensionCandidates;
     BOOL _singleLineMode;
     BOOL _supportsNumberKeySelection;
     struct { 
@@ -32,32 +30,31 @@
     } _visualStyling;
 }
 
-@property BOOL _usesDeemphasizedTextAppearance;
-@property BOOL alwaysShowExtensionCandidates;
-@property(retain) NSArray * candidateGroups;
-@property <UIKeyboardCandidateListDelegate> * candidateListDelegate;
-@property(retain) TIKeyboardCandidateResultSet * candidateSet;
-@property int candidatesVisualStyle;
-@property(readonly) UIKeyboardCandidateGridCollectionView * collectionView;
-@property(readonly) UIKeyboardCandidateGridLayout * collectionViewGridLayout;
-@property(copy,readonly) NSString * debugDescription;
-@property <UIKeyboardCandidateGridCollectionViewControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property float groupBarWidth;
-@property(readonly) BOOL hasGroupBar;
-@property BOOL hasSecondaryCandidates;
-@property(readonly) unsigned int hash;
-@property(retain) UIView * headerView;
-@property(readonly) UIButton * padInlineFloatingArrowButton;
-@property float rowHeight;
-@property(retain) UIKBCandidateCollectionView * secondaryCandidatesView;
-@property BOOL secondaryCandidatesViewIsCurrent;
-@property BOOL showHiddenCandidatesOnly;
-@property BOOL showsExtensionCandidates;
-@property BOOL singleLineMode;
-@property(readonly) Class superclass;
-@property BOOL supportsNumberKeySelection;
-@property struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
+@property (nonatomic) BOOL _usesDeemphasizedTextAppearance;
+@property (nonatomic) BOOL alwaysShowExtensionCandidates;
+@property (nonatomic, retain) NSArray *candidateGroups;
+@property (nonatomic) <UIKeyboardCandidateListDelegate> *candidateListDelegate;
+@property (nonatomic, retain) TIKeyboardCandidateResultSet *candidateSet;
+@property (nonatomic) int candidatesVisualStyle;
+@property (nonatomic, readonly) UIKeyboardCandidateGridCollectionView *collectionView;
+@property (nonatomic, readonly) UIKeyboardCandidateGridLayout *collectionViewGridLayout;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIKeyboardCandidateGridCollectionViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSArray *filteredCandidates;
+@property (nonatomic) float groupBarWidth;
+@property (nonatomic) BOOL hasSecondaryCandidates;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIView *headerView;
+@property (nonatomic, readonly) UIButton *padInlineFloatingArrowButton;
+@property (nonatomic) float rowHeight;
+@property (nonatomic, retain) UIKBCandidateCollectionView *secondaryCandidatesView;
+@property (nonatomic) BOOL secondaryCandidatesViewIsCurrent;
+@property (nonatomic) BOOL showHiddenCandidatesOnly;
+@property (nonatomic) BOOL singleLineMode;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL supportsNumberKeySelection;
+@property (nonatomic) struct { unsigned int x1 : 6; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 8; unsigned int x5 : 16; } visualStyling;
 
 - (BOOL)_usesDeemphasizedTextAppearance;
 - (BOOL)alwaysShowExtensionCandidates;
@@ -83,6 +80,7 @@
 - (unsigned int)currentIndex;
 - (void)dealloc;
 - (id)delegate;
+- (id)filteredCandidates;
 - (id)firstCandidateIndexPath;
 - (id)firstCandidateIndexPathInGroupAtIndex:(unsigned int)arg1;
 - (id)groupAtIndex:(unsigned int)arg1;
@@ -90,7 +88,6 @@
 - (unsigned int)groupsCount;
 - (BOOL)handleNumberKey:(unsigned int)arg1;
 - (BOOL)hasCandidates;
-- (BOOL)hasGroupBar;
 - (BOOL)hasNextPage;
 - (BOOL)hasPreviousPage;
 - (BOOL)hasSecondaryCandidates;
@@ -139,7 +136,6 @@
 - (void)setSecondaryCandidatesView:(id)arg1;
 - (void)setSecondaryCandidatesViewIsCurrent:(BOOL)arg1;
 - (void)setShowHiddenCandidatesOnly:(BOOL)arg1;
-- (void)setShowsExtensionCandidates:(BOOL)arg1;
 - (void)setSingleLineMode:(BOOL)arg1;
 - (void)setSupportsNumberKeySelection:(BOOL)arg1;
 - (void)setUIKeyboardCandidateListDelegate:(id)arg1;
@@ -154,7 +150,6 @@
 - (void)showPreviousCandidate;
 - (void)showPreviousPage;
 - (void)showPreviousRow;
-- (BOOL)showsExtensionCandidates;
 - (BOOL)singleLineMode;
 - (id)statisticsIdentifier;
 - (void)stepOneLine:(BOOL)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class NSArray, NSURL;
-
 @interface AVFigAssetInspector : AVAssetInspector {
     struct OpaqueFigAsset { } *_figAsset;
     struct OpaqueFigFormatReader { } *_formatReader;
@@ -12,28 +10,30 @@
     BOOL hasSaveRestriction;
 }
 
-@property(readonly) NSURL * URL;
-@property(readonly) unsigned long long downloadToken;
-@property(getter=_figAsset,readonly) struct OpaqueFigAsset { }* figAsset;
-@property(readonly) NSArray * figChapterGroupInfo;
-@property(readonly) NSArray * figChapters;
-@property(getter=_formatReader,readonly) struct OpaqueFigFormatReader { }* formatReader;
-@property(readonly) BOOL hasProtectedContent;
-@property(readonly) NSURL * resolvedURL;
-@property(getter=_isStreaming,readonly) BOOL streaming;
+@property (nonatomic, readonly) NSURL *URL;
+@property (nonatomic, readonly) unsigned long long downloadToken;
+@property (getter=_figAsset, nonatomic, readonly) struct OpaqueFigAsset { }*figAsset;
+@property (nonatomic, readonly) NSArray *figChapterGroupInfo;
+@property (nonatomic, readonly) NSArray *figChapters;
+@property (getter=_formatReader, nonatomic, readonly) struct OpaqueFigFormatReader { }*formatReader;
+@property (nonatomic, readonly) BOOL hasProtectedContent;
+@property (nonatomic, readonly) NSURL *resolvedURL;
+@property (getter=_isStreaming, nonatomic, readonly) BOOL streaming;
 
 - (id)SHA1Digest;
 - (id)URL;
 - (struct OpaqueFigAsset { }*)_figAsset;
 - (struct OpaqueFigFormatReader { }*)_formatReader;
 - (BOOL)_hasQTSaveRestriction;
+- (id)_instanceIdentifier;
 - (BOOL)_isStreaming;
+- (id)_mediaSelectionGroupDictionaries;
 - (void*)_valueAsCFTypeForProperty:(struct __CFString { }*)arg1;
 - (id)alternateTrackGroups;
 - (id)availableMetadataFormats;
-- (BOOL)canContainMovieFragments;
+- (BOOL)canContainFragments;
 - (id)commonMetadata;
-- (BOOL)containsMovieFragments;
+- (BOOL)containsFragments;
 - (id)creationDate;
 - (void)dealloc;
 - (unsigned long long)downloadToken;
@@ -43,7 +43,9 @@
 - (void)finalize;
 - (BOOL)hasProtectedContent;
 - (unsigned int)hash;
+- (id)identifyingTagClass;
 - (id)initWithFigAsset:(struct OpaqueFigAsset { }*)arg1;
+- (BOOL)isCompatibleWithAirPlayVideo;
 - (BOOL)isCompatibleWithSavedPhotosAlbum;
 - (BOOL)isComposable;
 - (BOOL)isEqual:(id)arg1;
@@ -51,7 +53,6 @@
 - (BOOL)isPlayable;
 - (BOOL)isReadable;
 - (id)lyrics;
-- (id)mediaSelectionGroups;
 - (id)metadataForFormat:(id)arg1;
 - (struct CGSize { float x1; float x2; })naturalSize;
 - (int)naturalTimeScale;

@@ -2,17 +2,17 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class NSNumber, NSString;
-
 @interface AFMetrics : NSObject <NSSecureCoding> {
     int _category;
+    NSDictionary *_context;
     NSNumber *_duration;
     NSString *_originalCommandId;
 }
 
-@property int category;
-@property(retain) NSNumber * duration;
-@property(copy) NSString * originalCommandId;
+@property (nonatomic) int category;
+@property (nonatomic, copy) NSDictionary *context;
+@property (nonatomic, retain) NSNumber *duration;
+@property (nonatomic, copy) NSString *originalCommandId;
 
 + (BOOL)supportsSecureCoding;
 
@@ -21,12 +21,16 @@
 - (id)aceMetrics;
 - (int)category;
 - (id)categoryString;
+- (id)context;
 - (id)description;
 - (id)duration;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (id)initWithOriginalCommandId:(id)arg1 category:(int)arg2 context:(id)arg3 duration:(id)arg4;
+- (id)initWithOriginalCommandId:(id)arg1 category:(int)arg2 duration:(id)arg3;
 - (id)originalCommandId;
 - (void)setCategory:(int)arg1;
+- (void)setContext:(id)arg1;
 - (void)setDuration:(id)arg1;
 - (void)setOriginalCommandId:(id)arg1;
 

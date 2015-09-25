@@ -2,14 +2,7 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AVAudioSessionMediaPlayerOnly, AVPixelBufferAttributeMediator, AVPlayerItem, AVPropertyStorage, AVWeakKeyValueObserverProxy, AVWeakReference, NSArray, NSDictionary, NSError, NSHashTable, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
-
 @interface AVPlayerInternal : NSObject {
-    AVWeakKeyValueObserverProxy *KVOProxy;
     BOOL allowsOutOfBandTextTrackRendering;
     AVAudioSessionMediaPlayerOnly *audioSessionMediaPlayerOnly;
     BOOL autoSwitchStreamVariants;
@@ -19,8 +12,15 @@
         float height; 
     } cachedDisplaySize;
     NSDictionary *cachedFigMediaSelectionCriteriaProperty;
-    NSMutableSet *closedCaptionLayers;
+    NSMutableArray *closedCaptionLayers;
     AVPlayerItem *currentItem;
+    <AVCallbackCancellation> *currentItemPreferredPixelBufferAttributesCallbackInvoker;
+    NSObject<OS_dispatch_queue> *currentItemPropertyUpdateQueue;
+    <AVCallbackCancellation> *currentItemSuppressesVideoLayersCallbackInvoker;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } dimensionsOfReservedVideoMemory;
     NSArray *displaysUsedForPlayback;
     NSError *error;
     NSArray *expectedAssetTypes;
@@ -33,28 +33,30 @@
     BOOL hostApplicationInForeground;
     BOOL iapdExtendedModeIsActive;
     NSMutableSet *items;
+    NSArray *itemsInFigPlayQueue;
     NSObject<OS_dispatch_queue> *ivarAccessQueue;
     AVPlayerItem *lastItem;
     NSObject<OS_dispatch_queue> *layersQ;
     BOOL logPerformanceData;
+    NSString *multichannelAudioStrategy;
     BOOL needsToCreateFigPlayer;
     int nextPrerollIDToGenerate;
+    AVOutputContext *outputContext;
     NSMutableDictionary *pendingFigPlayerProperties;
     int pendingPrerollID;
     AVPixelBufferAttributeMediator *pixelBufferAttributeMediator;
     BOOL preparesItemsForPlaybackAsynchronously;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id prerollCompletionHandler;
-
+    id /* block */ prerollCompletionHandler;
     struct OpaqueFigSimpleMutex { } *prerollIDMutex;
     AVPropertyStorage *propertyStorage;
     struct OpaqueCMTimebase { } *proxyTimebase;
+    NSArray *queueModifications;
     BOOL reevaluateBackgroundPlayback;
+    BOOL shouldReduceResourceUsage;
     NSObject<OS_dispatch_queue> *stateDispatchQueue;
     int status;
-    NSMutableSet *subtitleLayers;
+    NSMutableArray *subtitleLayers;
+    BOOL usesDedicatedNotificationQueueForMediaServices;
     NSDictionary *vibrationPattern;
     struct __CFDictionary { } *videoLayers;
     AVWeakReference *weakReference;

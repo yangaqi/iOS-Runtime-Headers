@@ -2,14 +2,11 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, SALocation, SAPersonAttribute;
+@interface SAFmfGeoFence : SADomainObject
 
-@interface SAFmfGeoFence : SADomainObject {
-}
-
-@property(retain) SAPersonAttribute * friend;
-@property(copy) NSString * geoFenceTrigger;
-@property(retain) SALocation * location;
+@property (nonatomic, retain) SAPersonAttribute *friend;
+@property (nonatomic, copy) NSString *geoFenceTrigger;
+@property (nonatomic, retain) SALocation *location;
 
 + (id)geoFence;
 + (id)geoFenceWithDictionary:(id)arg1 context:(id)arg2;
@@ -22,6 +19,5 @@
 - (void)setFriend:(id)arg1;
 - (void)setGeoFenceTrigger:(id)arg1;
 - (void)setLocation:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUICollectionViewCell<SKUIViewElementView>, SKUIViewElementLayoutContext;
-
 @interface SKUIViewElementPageSection : SKUIStorePageSection <SKUIArtworkRequestDelegate> {
     Class _cellClass;
     struct UIEdgeInsets { 
@@ -20,10 +18,10 @@
     float _sectionBottomInset;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_reloadViewElementProperties;
@@ -44,13 +42,16 @@
 - (void)collectionViewWillDisplayCellForItemAtIndexPath:(id)arg1;
 - (float)contentInsetAdjustmentForCollectionView:(id)arg1;
 - (int)defaultItemPinningStyle;
+- (void)entityProvider:(id)arg1 didInvalidateWithContext:(id)arg2;
 - (void)expandEditorialForLabelElement:(id)arg1 indexPath:(id)arg2;
-- (void)getModalSourceViewForViewElement:(id)arg1 completionBlock:(id)arg2;
+- (void)getModalSourceViewForViewElement:(id)arg1 completionBlock:(id /* block */)arg2;
 - (id)initWithPageComponent:(id)arg1;
 - (int)numberOfCells;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })pinningContentInsetForItemAtIndexPath:(id)arg1;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)prefetchResourcesWithReason:(int)arg1;
+- (id)previewViewControllerForIndexPath:(id)arg1;
+- (BOOL)previewsSupportedForIndexPath:(id)arg1;
 - (void)reloadCellWithIndexPath:(id)arg1 reason:(int)arg2;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })sectionContentInset;
 - (BOOL)updateCellWithIndexPath:(id)arg1 itemState:(id)arg2 animated:(BOOL)arg3;

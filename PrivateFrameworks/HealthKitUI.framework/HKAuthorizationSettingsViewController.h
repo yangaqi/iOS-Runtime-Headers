@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/HealthKitUI.framework/HealthKitUI
  */
 
-@class <HKAuthorizationSettingsViewControllerDelegate>, HKDataCategoryController, HKHealthStore, HKSource, HKSourceAuthorizationController, NSString, UIBarButtonItem;
-
 @interface HKAuthorizationSettingsViewController : UITableViewController <HKSwitchTableViewCellDelegate> {
     UIBarButtonItem *_cancelButtonItem;
     HKDataCategoryController *_dataCategoryController;
@@ -14,24 +12,27 @@
     HKSource *_source;
     HKSourceAuthorizationController *_sourceAuthorizationController;
     int _style;
+    NSSet *_typesToRead;
+    NSSet *_typesToShare;
     NSString *_updateDescription;
 }
 
-@property(retain) UIBarButtonItem * cancelButtonItem;
-@property(retain) HKDataCategoryController * dataCategoryController;
-@property <HKAuthorizationSettingsViewControllerDelegate> * delegate;
-@property(retain) UIBarButtonItem * doneButtonItem;
-@property(readonly) HKHealthStore * healthStore;
-@property(copy) NSString * shareDescription;
-@property(retain) HKSource * source;
-@property(retain) HKSourceAuthorizationController * sourceAuthorizationController;
-@property(readonly) int style;
-@property(copy) NSString * updateDescription;
+@property (nonatomic, retain) UIBarButtonItem *cancelButtonItem;
+@property (nonatomic, retain) HKDataCategoryController *dataCategoryController;
+@property (nonatomic) <HKAuthorizationSettingsViewControllerDelegate> *delegate;
+@property (nonatomic, retain) UIBarButtonItem *doneButtonItem;
+@property (nonatomic, readonly) HKHealthStore *healthStore;
+@property (nonatomic, copy) NSString *shareDescription;
+@property (nonatomic, retain) HKSource *source;
+@property (nonatomic, retain) HKSourceAuthorizationController *sourceAuthorizationController;
+@property (nonatomic, readonly) int style;
+@property (nonatomic, retain) NSSet *typesToRead;
+@property (nonatomic, retain) NSSet *typesToShare;
+@property (nonatomic, copy) NSString *updateDescription;
 
 - (void).cxx_destruct;
 - (void)_addCancelAndDoneButtons;
 - (void)_addHeaderView;
-- (void)_addMessageLabelWithMessage:(id)arg1 size:(float)arg2;
 - (int)_authorizationSectionForSection:(int)arg1;
 - (id)_authorizationSettingCellForRowAtIndexPath:(id)arg1;
 - (void)_configurationFailedWithError:(id)arg1;
@@ -58,6 +59,8 @@
 - (void)setShareDescription:(id)arg1;
 - (void)setSource:(id)arg1;
 - (void)setSourceAuthorizationController:(id)arg1;
+- (void)setTypesToRead:(id)arg1;
+- (void)setTypesToShare:(id)arg1;
 - (void)setUpdateDescription:(id)arg1;
 - (id)shareDescription;
 - (id)source;
@@ -65,9 +68,13 @@
 - (int)style;
 - (void)switchCellValueChanged:(id)arg1 value:(BOOL)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
+- (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (id)tableView:(id)arg1 titleForFooterInSection:(int)arg2;
 - (id)tableView:(id)arg1 titleForHeaderInSection:(int)arg2;
+- (id)typesToRead;
+- (id)typesToShare;
+- (void)updateAllowButtonEnabledState;
 - (id)updateDescription;
 - (void)viewDidLoad;
 

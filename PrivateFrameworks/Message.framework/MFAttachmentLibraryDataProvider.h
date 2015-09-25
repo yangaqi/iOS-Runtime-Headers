@@ -2,17 +2,11 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFMessageLibrary, MFWeakReferenceHolder, NSString;
-
-@interface MFAttachmentLibraryDataProvider : NSObject <MFAttachmentDataProvider> {
+@interface MFAttachmentLibraryDataProvider : MFAttachmentDataProvider {
     MFWeakReferenceHolder *_messageLibraryHolder;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property MFMessageLibrary * messageLibrary;
-@property(readonly) Class superclass;
+@property (nonatomic) MFMessageLibrary *messageLibrary;
 
 - (void)dealloc;
 - (BOOL)fetchDataForAttachment:(id)arg1 withDataConsumer:(id)arg2 error:(id*)arg3;

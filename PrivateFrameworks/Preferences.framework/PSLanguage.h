@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSString;
-
 @interface PSLanguage : NSObject {
     NSString *_languageCode;
     NSString *_languageName;
     NSString *_localizedLanguageName;
 }
 
-@property(retain) NSString * languageCode;
-@property(retain) NSString * languageName;
-@property(retain) NSString * localizedLanguageName;
+@property (nonatomic, retain) NSString *languageCode;
+@property (nonatomic, retain) NSString *languageName;
+@property (nonatomic, retain) NSString *localizedLanguageName;
 
 + (id)languageWithCode:(id)arg1 name:(id)arg2 localizedName:(id)arg3;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (BOOL)displayNamesAreEqual;
 - (id)languageCode;
 - (id)languageName;

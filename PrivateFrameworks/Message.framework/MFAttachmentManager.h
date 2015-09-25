@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFInvocationQueue, NSLock, NSMutableDictionary, NSObject<OS_dispatch_queue>;
-
 @interface MFAttachmentManager : NSObject {
     NSObject<OS_dispatch_queue> *_arrayAccessQueue;
     MFInvocationQueue *_attachmentInvocationQueue;
@@ -14,15 +12,18 @@
     NSMutableDictionary *_providers;
 }
 
+// Image: /System/Library/PrivateFrameworks/Message.framework/Message
+
 + (id)allManagers;
 + (id)defaultManager;
++ (id)supportedDocumentUTIs;
 
 - (void)_callProgressBlockForAttachmentURL:(id)arg1 withBytes:(unsigned int)arg2 expectedSize:(unsigned int)arg3;
 - (id)_contentIDForAttachment:(id)arg1;
 - (id)_dataProviderForAttachmentURL:(id)arg1 error:(id*)arg2;
 - (void)_fetchCompletedForAttachment:(id)arg1 error:(id)arg2;
 - (id)_fetchDataForAttachment:(id)arg1 withProvider:(id)arg2;
-- (void)_fetchInvocationCallUsingBlock:(id)arg1;
+- (void)_fetchInvocationCallUsingBlock:(id /* block */)arg1;
 - (BOOL)_setupAttachment:(id)arg1 error:(id*)arg2;
 - (BOOL)_setupAttachment:(id)arg1 withMimeBody:(id)arg2 error:(id*)arg3;
 - (void)addProvider:(id)arg1 forBaseURL:(id)arg2;
@@ -39,6 +40,7 @@
 - (void)clearMetadataForAttachment:(id)arg1;
 - (void)dealloc;
 - (void)fetchDataForAttachment:(id)arg1;
+- (void)fetchDataForAttachment:(id)arg1 completion:(id /* block */)arg2;
 - (void)fetchDataSynchronouslyForAttachment:(id)arg1;
 - (id)imageScalingQueue;
 - (id)init;
@@ -49,10 +51,13 @@
 - (void)removeAttachmentForURL:(id)arg1;
 - (void)removeProvider:(id)arg1;
 - (void)removeProviderForBaseURL:(id)arg1;
-- (void)setContentIDForAttachment:(id)arg1 toCID:(id)arg2;
+- (void)setContentID:(id)arg1 forAttachment:(id)arg2;
 - (void)setMetadataForAttachment:(id)arg1 toValue:(id)arg2 forKey:(id)arg3;
-- (unsigned long)sizeForScale:(unsigned int)arg1 imagesOnly:(BOOL)arg2 forContext:(id)arg3;
 - (void)updateAttachment:(id)arg1 withNewData:(id)arg2;
 - (void)updatePathWithCurrentFileNameForAttachment:(id)arg1;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
+- (unsigned long)sizeForScale:(unsigned int)arg1 imagesOnly:(BOOL)arg2 forContext:(id)arg3;
 
 @end

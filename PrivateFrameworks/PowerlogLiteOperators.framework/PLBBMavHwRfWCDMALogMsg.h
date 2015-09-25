@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@class NSArray, NSMutableArray, NSMutableDictionary, NSNumber, NSString;
-
 @interface PLBBMavHwRfWCDMALogMsg : PLBasebandMessage {
     NSArray *_DCEqStatCnt;
     NSArray *_DCQsetEqStatCnt;
@@ -14,7 +12,12 @@
     NSArray *_SCQsetEqStatCnt;
     NSArray *_TxPwrBucket;
     NSMutableDictionary *_commonInfo;
+    NSNumber *_cpcEnergy;
+    NSNumber *_cpcRxOnCnt;
+    NSNumber *_cpcRxTxOffCnt;
+    NSNumber *_cpcTimeCnt;
     NSString *_error;
+    NSNumber *_fetCnt;
     NSMutableArray *_groupArrEntries;
     NSString *_groupEntryKey;
     NSString *_groupID;
@@ -23,22 +26,27 @@
     NSNumber *_logDuration;
 }
 
-@property(retain) NSArray * DCEqStatCnt;
-@property(retain) NSArray * DCQsetEqStatCnt;
-@property(retain) NSArray * DurInCarrierMode;
-@property(retain) NSArray * RABModeCnt;
-@property(retain) NSArray * RABTypeCnt;
-@property(retain) NSArray * SCEqStatCnt;
-@property(retain) NSArray * SCQsetEqStatCnt;
-@property(retain) NSArray * TxPwrBucket;
-@property(retain) NSMutableDictionary * commonInfo;
-@property(retain) NSString * error;
-@property(retain) NSMutableArray * groupArrEntries;
-@property(retain) NSString * groupEntryKey;
-@property(retain) NSString * groupID;
-@property unsigned char inited;
-@property(retain) NSMutableDictionary * kvPairs;
-@property(retain) NSNumber * logDuration;
+@property (retain) NSArray *DCEqStatCnt;
+@property (retain) NSArray *DCQsetEqStatCnt;
+@property (retain) NSArray *DurInCarrierMode;
+@property (retain) NSArray *RABModeCnt;
+@property (retain) NSArray *RABTypeCnt;
+@property (retain) NSArray *SCEqStatCnt;
+@property (retain) NSArray *SCQsetEqStatCnt;
+@property (retain) NSArray *TxPwrBucket;
+@property (nonatomic, retain) NSMutableDictionary *commonInfo;
+@property (retain) NSNumber *cpcEnergy;
+@property (retain) NSNumber *cpcRxOnCnt;
+@property (retain) NSNumber *cpcRxTxOffCnt;
+@property (retain) NSNumber *cpcTimeCnt;
+@property (retain) NSString *error;
+@property (retain) NSNumber *fetCnt;
+@property (retain) NSMutableArray *groupArrEntries;
+@property (retain) NSString *groupEntryKey;
+@property (retain) NSString *groupID;
+@property (nonatomic) unsigned char inited;
+@property (nonatomic, retain) NSMutableDictionary *kvPairs;
+@property (retain) NSNumber *logDuration;
 
 + (id)entryEventBackwardDefinitionBBMavHwRfWCDMA;
 
@@ -53,7 +61,12 @@
 - (id)TxPwrBucket;
 - (void)addPairWithKey:(id)arg1 andWithVal:(id)arg2;
 - (id)commonInfo;
+- (id)cpcEnergy;
+- (id)cpcRxOnCnt;
+- (id)cpcRxTxOffCnt;
+- (id)cpcTimeCnt;
 - (id)error;
+- (id)fetCnt;
 - (id)groupArrEntries;
 - (id)groupEntryKey;
 - (id)groupID;
@@ -66,10 +79,15 @@
 - (void)refreshRequest;
 - (void)sendAndLogPLEntry:(id)arg1 withName:(id)arg2 withType:(id)arg3;
 - (void)setCommonInfo:(id)arg1;
+- (void)setCpcEnergy:(id)arg1;
+- (void)setCpcRxOnCnt:(id)arg1;
+- (void)setCpcRxTxOffCnt:(id)arg1;
+- (void)setCpcTimeCnt:(id)arg1;
 - (void)setDCEqStatCnt:(id)arg1;
 - (void)setDCQsetEqStatCnt:(id)arg1;
 - (void)setDurInCarrierMode:(id)arg1;
 - (void)setError:(id)arg1;
+- (void)setFetCnt:(id)arg1;
 - (void)setGroupArrEntries:(id)arg1;
 - (void)setGroupEntryKey:(id)arg1;
 - (void)setGroupID:(id)arg1;

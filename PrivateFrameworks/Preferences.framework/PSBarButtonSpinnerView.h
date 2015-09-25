@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class UIActivityIndicatorView;
-
 @interface PSBarButtonSpinnerView : UIBarButtonItem {
     UIActivityIndicatorView *_spinner;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)init;
 - (void)startAnimating;
 - (void)stopAnimating;

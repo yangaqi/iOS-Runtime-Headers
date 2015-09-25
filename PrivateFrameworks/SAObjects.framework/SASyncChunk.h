@@ -2,32 +2,37 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SASyncChunk : SABaseCommand <SAServerBoundCommand>
 
-@interface SASyncChunk : SABaseCommand <SAServerBoundCommand> {
-}
+@property (nonatomic, copy) NSString *aceId;
+@property (nonatomic, copy) NSString *appBundleId;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *intentSlotName;
+@property (nonatomic, copy) NSString *key;
+@property (nonatomic, copy) NSString *postGen;
+@property (nonatomic, copy) NSString *preGen;
+@property (nonatomic, copy) NSString *refId;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSArray *toAdd;
+@property (nonatomic, copy) NSArray *toRemove;
+@property (nonatomic, copy) NSString *validity;
 
-@property(copy) NSString * aceId;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * key;
-@property(copy) NSString * postGen;
-@property(copy) NSString * preGen;
-@property(copy) NSString * refId;
-@property(readonly) Class superclass;
-@property(copy) NSArray * toAdd;
-@property(copy) NSArray * toRemove;
-@property(copy) NSString * validity;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)chunk;
 + (id)chunkWithDictionary:(id)arg1 context:(id)arg2;
 
+- (id)appBundleId;
 - (id)encodedClassName;
 - (id)groupIdentifier;
+- (id)intentSlotName;
 - (id)key;
 - (id)postGen;
 - (id)preGen;
+- (void)setAppBundleId:(id)arg1;
+- (void)setIntentSlotName:(id)arg1;
 - (void)setKey:(id)arg1;
 - (void)setPostGen:(id)arg1;
 - (void)setPreGen:(id)arg1;
@@ -37,5 +42,9 @@
 - (id)toAdd;
 - (id)toRemove;
 - (id)validity;
+
+// Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+
+- (BOOL)af_bufferingAllowedDuringActiveSession;
 
 @end

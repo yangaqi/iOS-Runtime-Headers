@@ -2,42 +2,45 @@
    Image: /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
  */
 
-@class NEConfiguration, NEConfigurationManager, NEVPNConnection, NEVPNProtocol, NSArray, NSString;
-
-@interface NEVPNManager : NSObject {
+@interface NEVPNManager : NSObject <NEPrettyDescription> {
     NEConfiguration *_configuration;
-    NEConfigurationManager *_configurationManager;
     NEVPNConnection *_connection;
     BOOL _hasLoaded;
 }
 
-@property(copy) NEConfiguration * configuration;
-@property(readonly) NEConfigurationManager * configurationManager;
-@property(readonly) NEVPNConnection * connection;
-@property(getter=isEnabled) BOOL enabled;
+@property (copy) NEConfiguration *configuration;
+@property (readonly) NEVPNConnection *connection;
+@property (getter=isEnabled) BOOL enabled;
 @property BOOL hasLoaded;
-@property(copy) NSString * localizedDescription;
-@property(getter=isOnDemandEnabled) BOOL onDemandEnabled;
-@property(copy) NSArray * onDemandRules;
-@property(retain) NEVPNProtocol * protocol;
+@property (copy) NSString *localizedDescription;
+@property (getter=isOnDemandEnabled) BOOL onDemandEnabled;
+@property (copy) NSArray *onDemandRules;
+@property (retain) NEVPNProtocol *protocol;
+@property (retain) NEVPNProtocol *protocolConfiguration;
 
++ (id)loadedManagers;
++ (id)mapError:(id)arg1;
 + (id)sharedManager;
 
 - (void).cxx_destruct;
+- (void)additionalSetup;
 - (id)configuration;
-- (id)configurationManager;
 - (id)connection;
+- (id)description;
+- (id)descriptionWithIndent:(int)arg1 options:(unsigned int)arg2;
 - (BOOL)hasLoaded;
 - (id)init;
-- (id)initVPNManager;
+- (id)initWithGrade:(int)arg1 connection:(id)arg2;
 - (BOOL)isEnabled;
 - (BOOL)isOnDemandEnabled;
-- (void)loadFromPreferencesWithCompletionHandler:(id)arg1;
+- (BOOL)isProtocolTypeValid:(int)arg1;
+- (void)loadFromPreferencesWithCompletionHandler:(id /* block */)arg1;
 - (id)localizedDescription;
 - (id)onDemandRules;
 - (id)protocol;
-- (void)removeFromPreferencesWithCompletionHandler:(id)arg1;
-- (void)saveToPreferencesWithCompletionHandler:(id)arg1;
+- (id)protocolConfiguration;
+- (void)removeFromPreferencesWithCompletionHandler:(id /* block */)arg1;
+- (void)saveToPreferencesWithCompletionHandler:(id /* block */)arg1;
 - (void)setConfiguration:(id)arg1;
 - (void)setEnabled:(BOOL)arg1;
 - (void)setHasLoaded:(BOOL)arg1;
@@ -45,5 +48,6 @@
 - (void)setOnDemandEnabled:(BOOL)arg1;
 - (void)setOnDemandRules:(id)arg1;
 - (void)setProtocol:(id)arg1;
+- (void)setProtocolConfiguration:(id)arg1;
 
 @end

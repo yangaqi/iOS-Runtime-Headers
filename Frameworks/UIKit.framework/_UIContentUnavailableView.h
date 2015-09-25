@@ -2,20 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSLayoutConstraint, NSMutableArray, NSString, UIButton, UILabel, UIView, _UIBackdropView;
-
 @interface _UIContentUnavailableView : UIView {
     UIButton *_actionButton;
     _UIBackdropView *_backdrop;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _buttonAction;
-
+    id /* block */ _buttonAction;
     NSString *_buttonTitle;
     UIView *_containerView;
     NSMutableArray *_containerViewContraints;
@@ -35,21 +25,28 @@
     NSLayoutConstraint *titleToMessageConstraint;
 }
 
-@property(copy) id buttonAction;
-@property(copy) NSString * buttonTitle;
-@property(copy) NSString * message;
-@property(copy) NSString * title;
-@property unsigned int vibrantOptions;
+@property (nonatomic, copy) id /* block */ buttonAction;
+@property (nonatomic, copy) NSString *buttonTitle;
+@property (nonatomic, copy) NSString *message;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic) unsigned int vibrantOptions;
 
+- (void).cxx_destruct;
 - (void)_actionButtonPressed:(id)arg1;
+- (float)_buttonAlpha;
 - (id)_buttonBackgroundImageForStyle:(unsigned int)arg1 controlState:(unsigned int)arg2;
+- (id)_buttonFont;
+- (struct CGSize { float x1; float x2; })_buttonSize;
+- (float)_buttonVerticalSpacing;
 - (id)_flatTextColor;
 - (BOOL)_hasVibrantButton;
 - (BOOL)_hasVibrantText;
 - (float)_labelAlpha;
+- (float)_labelVerticalSpacing;
+- (id)_titleFont;
 - (void)_updateViewHierarchy;
 - (id)_vibrantBaseColor;
-- (id)buttonAction;
+- (id /* block */)buttonAction;
 - (id)buttonTitle;
 - (void)dealloc;
 - (void)didMoveToWindow;
@@ -58,7 +55,8 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 title:(id)arg2 style:(unsigned int)arg3 includeBackdrop:(BOOL)arg4;
 - (void)layoutSubviews;
 - (id)message;
-- (void)setButtonAction:(id)arg1;
+- (id)preferredFocusedView;
+- (void)setButtonAction:(id /* block */)arg1;
 - (void)setButtonTitle:(id)arg1;
 - (void)setMessage:(id)arg1;
 - (void)setTitle:(id)arg1;

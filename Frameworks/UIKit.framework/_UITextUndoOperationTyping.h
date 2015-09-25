@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableAttributedString;
-
 @interface _UITextUndoOperationTyping : NSUndoTextOperation {
     NSMutableAttributedString *_attributedString;
     struct _NSRange { 
@@ -12,8 +10,8 @@
     } _replacementRange;
 }
 
+- (void).cxx_destruct;
 - (BOOL)coalesceAffectedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 replacementRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 selectedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3 textStorage:(id)arg4;
-- (void)dealloc;
 - (id)initWithAffectedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 inputController:(id)arg2 replacementRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3;
 - (BOOL)supportsCoalescing;
 - (void)undoRedo;

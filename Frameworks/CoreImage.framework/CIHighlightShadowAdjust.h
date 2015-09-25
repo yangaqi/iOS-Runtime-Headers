@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIImage, NSNumber;
-
 @interface CIHighlightShadowAdjust : CIFilter <_CIFilterProperties> {
     NSNumber *inputHighlightAmount;
     CIImage *inputImage;
@@ -11,13 +9,14 @@
     NSNumber *inputShadowAmount;
 }
 
-@property(retain) NSNumber * inputHighlightAmount;
-@property(retain) CIImage * inputImage;
-@property(retain) NSNumber * inputRadius;
-@property(retain) NSNumber * inputShadowAmount;
+@property (nonatomic, retain) NSNumber *inputHighlightAmount;
+@property (nonatomic, retain) CIImage *inputImage;
+@property (nonatomic, retain) NSNumber *inputRadius;
+@property (nonatomic, retain) NSNumber *inputShadowAmount;
 
 + (id)customAttributes;
 
+- (int)_defaultVersion;
 - (id)_initFromProperties:(id)arg1;
 - (BOOL)_isIdentity;
 - (id)_kernelSH_v0;
@@ -27,8 +26,8 @@
 - (id)_kernelSHnoB_v1;
 - (id)_kernelSHnoB_v2;
 - (id)_kernelSnoB_v0;
+- (int)_maxVersion;
 - (id)_outputProperties;
-- (int)bestVersion;
 - (id)inputHighlightAmount;
 - (id)inputImage;
 - (id)inputRadius;

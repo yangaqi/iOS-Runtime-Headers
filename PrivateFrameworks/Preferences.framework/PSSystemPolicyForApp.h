@@ -2,19 +2,18 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSString;
-
 @interface PSSystemPolicyForApp : NSObject {
     NSString *_bundleIdentifier;
     BOOL _forcePolicyOptions;
     unsigned int _policyOptions;
 }
 
-@property(copy) NSString * bundleIdentifier;
+@property (nonatomic, copy) NSString *bundleIdentifier;
 
 + (BOOL)isServiceRestricted:(id)arg1;
 
-- (BOOL)_isBackgroundAppRefreshRestricted;
+- (void).cxx_destruct;
+- (BOOL)_isBackgroundAppRefreshAllowed;
 - (BOOL)_isCellularDataRestricted;
 - (BOOL)_isLocationServicesRestricted;
 - (id)_privacyAccessForService:(struct __CFString { }*)arg1;

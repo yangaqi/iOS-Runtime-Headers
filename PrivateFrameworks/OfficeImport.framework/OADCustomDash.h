@@ -2,26 +2,21 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray;
-
 @interface OADCustomDash : OADDash {
-    unsigned int mAreStopsOverridden : 1;
-    NSMutableArray *mStops;
+    NSArray *mStops;
 }
 
 + (id)defaultProperties;
 
-- (void)addStopWithDash:(float)arg1 space:(float)arg2;
 - (BOOL)areStopsOverridden;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (float)dashAtIndex:(unsigned int)arg1;
 - (void)dealloc;
+- (void)fixPropertiesForChangingParentPreservingEffectiveValues:(id)arg1;
 - (unsigned int)hash;
 - (id)initWithDefaults;
+- (BOOL)isAnythingOverridden;
 - (BOOL)isEqual:(id)arg1;
 - (void)setStops:(id)arg1;
-- (float)spaceAtIndex:(unsigned int)arg1;
-- (unsigned int)stopCount;
 - (id)stops;
 
 @end

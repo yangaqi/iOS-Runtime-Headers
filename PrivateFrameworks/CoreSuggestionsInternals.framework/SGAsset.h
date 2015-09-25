@@ -2,31 +2,25 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSString;
-
 @interface SGAsset : NSObject {
     NSString *_fileName;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _onUpdate;
-
+    id /* block */ _onUpdate;
     NSString *_resourcePath;
 }
 
 + (int)assetVersion;
 + (void)asyncUpdateAssetMetadata;
-+ (void)forEachInstance:(id)arg1;
++ (int)bestNotYetInstalledVersion;
++ (id)bundledAssetsInfoPlistURL;
++ (void)forEachInstance:(id /* block */)arg1;
 + (void)initialize;
++ (void)loadBundledAssetsIfNecessary;
++ (void)setBundledAssetsBundle:(id)arg1;
 + (void)triggerAssetUpdated;
 + (void)updateAssetMetadata;
 
 - (void).cxx_destruct;
-- (id)initWithFileName:(id)arg1 fileExtension:(id)arg2 resourceBundle:(id)arg3 onUpdate:(id)arg4;
+- (id)initWithFileName:(id)arg1 fileExtension:(id)arg2 onUpdate:(id /* block */)arg3;
 - (id)path;
 
 @end

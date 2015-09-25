@@ -2,23 +2,13 @@
    Image: /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
 @interface PKRegion : NSObject <NSCoding, NSCopying> {
-
-  /* Error parsing encoded ivar type info: {vec4="v"} */
     struct vec4 { 
         /* Warning: Unrecognized filer type: '}' using 'void*' */ void*v; 
     } _halfExtent;
-
-
-  /* Error parsing encoded ivar type info: {vec4="v"} */
     struct vec4 { 
         /* Warning: Unrecognized filer type: '}' using 'void*' */ void*v; 
     } _halfExtent2;
-
     bool _isExclusive;
     struct shared_ptr<PKCPathHolder> { 
         struct PKCPathHolder {} *__ptr_; 
@@ -33,7 +23,7 @@
     int _shape2;
 }
 
-@property(readonly) struct CGPath { }* path;
+@property (nonatomic, readonly) struct CGPath { }*path;
 
 + (id)infiniteRegion;
 
@@ -48,6 +38,8 @@
 - (id)initWithRadius:(float)arg1;
 - (id)initWithSize:(struct CGSize { float x1; float x2; })arg1;
 - (id)inverseRegion;
+- (BOOL)isEmpty;
+- (BOOL)isInfinite;
 - (struct CGPath { }*)path;
 - (id)regionByDifferenceFromRegion:(id)arg1;
 - (id)regionByIntersectionWithRegion:(id)arg1;

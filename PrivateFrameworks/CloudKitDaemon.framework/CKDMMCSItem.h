@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class CKAsset, CKPackage, CKRecordID, NSData, NSError, NSMutableArray, NSNumber, NSString, NSURL;
-
 @interface CKDMMCSItem : NSObject {
     CKAsset *_asset;
     NSData *_assetKey;
@@ -12,6 +10,7 @@
     unsigned long _chunkCount;
     NSURL *_contentBaseURL;
     NSNumber *_deviceID;
+    unsigned long long _downloadTokenExpiration;
     NSError *_error;
     NSNumber *_fileID;
     NSURL *_fileURL;
@@ -31,49 +30,55 @@
     NSData *_referenceSignature;
     NSString *_requestor;
     NSMutableArray *_sectionItems;
+    BOOL _shouldReadRawEncryptedData;
     NSData *_signature;
     unsigned long long _size;
+    BOOL _temporary;
     NSString *_trackingUUID;
     NSString *_uploadReceipt;
+    unsigned long long _uploadTokenExpiration;
     NSData *_wrappedAssetKey;
 }
 
-@property(retain) CKAsset * asset;
-@property(retain) NSData * assetKey;
-@property(retain) NSData * authRequest;
-@property(retain) NSString * authToken;
-@property unsigned long chunkCount;
-@property(retain) NSURL * contentBaseURL;
-@property(retain) NSNumber * deviceID;
-@property(retain) NSError * error;
-@property(retain) NSNumber * fileID;
-@property(retain) NSURL * fileURL;
-@property BOOL finished;
-@property(retain) NSNumber * generationID;
-@property BOOL hasOffset;
-@property BOOL hasSize;
-@property unsigned long long itemID;
-@property unsigned long long offset;
-@property(retain) NSString * owner;
-@property(retain) CKPackage * package;
-@property unsigned int packageIndex;
-@property double progress;
-@property(retain) CKRecordID * recordID;
-@property(retain) NSString * recordKey;
-@property(retain) NSString * recordType;
-@property(retain) NSData * referenceSignature;
-@property(retain) NSString * requestor;
-@property(retain) NSMutableArray * sectionItems;
-@property(retain) NSData * signature;
-@property unsigned long long size;
-@property(retain) NSString * trackingUUID;
-@property(retain) NSString * uploadReceipt;
-@property(retain) NSData * wrappedAssetKey;
-
-+ (int)openFileDescriptorForDeviceID:(id)arg1 fileID:(id)arg2 generationID:(id)arg3 path:(id)arg4 error:(id*)arg5;
+@property (nonatomic, retain) CKAsset *asset;
+@property (nonatomic, retain) NSData *assetKey;
+@property (nonatomic, retain) NSData *authRequest;
+@property (nonatomic, retain) NSString *authToken;
+@property (nonatomic) unsigned long chunkCount;
+@property (nonatomic, retain) NSURL *contentBaseURL;
+@property (nonatomic, retain) NSNumber *deviceID;
+@property (nonatomic) unsigned long long downloadTokenExpiration;
+@property (nonatomic, retain) NSError *error;
+@property (nonatomic, retain) NSNumber *fileID;
+@property (nonatomic, retain) NSURL *fileURL;
+@property (nonatomic) BOOL finished;
+@property (nonatomic, retain) NSNumber *generationID;
+@property (nonatomic) BOOL hasOffset;
+@property (nonatomic) BOOL hasSize;
+@property (nonatomic) unsigned long long itemID;
+@property (nonatomic) unsigned long long offset;
+@property (nonatomic, retain) NSString *owner;
+@property (nonatomic, retain) CKPackage *package;
+@property (nonatomic) unsigned int packageIndex;
+@property (nonatomic) double progress;
+@property (nonatomic, retain) CKRecordID *recordID;
+@property (nonatomic, retain) NSString *recordKey;
+@property (nonatomic, retain) NSString *recordType;
+@property (nonatomic, retain) NSData *referenceSignature;
+@property (nonatomic, retain) NSString *requestor;
+@property (nonatomic, retain) NSMutableArray *sectionItems;
+@property (nonatomic) BOOL shouldReadRawEncryptedData;
+@property (nonatomic, retain) NSData *signature;
+@property (nonatomic) unsigned long long size;
+@property (getter=isTemporary, nonatomic) BOOL temporary;
+@property (nonatomic, retain) NSString *trackingUUID;
+@property (nonatomic, retain) NSString *uploadReceipt;
+@property (nonatomic) unsigned long long uploadTokenExpiration;
+@property (nonatomic, retain) NSData *wrappedAssetKey;
 
 - (void).cxx_destruct;
 - (id)CKPropertiesDescription;
+- (id)_openInfo;
 - (id)asset;
 - (id)assetKey;
 - (id)authRequest;
@@ -82,20 +87,25 @@
 - (id)contentBaseURL;
 - (id)description;
 - (id)deviceID;
+- (unsigned long long)downloadTokenExpiration;
 - (id)error;
 - (id)fileID;
 - (id)fileURL;
 - (BOOL)finished;
 - (id)generationID;
-- (BOOL)getFileSize:(unsigned long long*)arg1 error:(id*)arg2;
+- (id)getFileMetadataWithFileHandle:(id)arg1 error:(id*)arg2;
+- (id)getFileSizeWithError:(id*)arg1;
+- (id)getFileSizeWithProxy:(id)arg1 error:(id*)arg2;
 - (BOOL)hasOffset;
 - (BOOL)hasSize;
 - (id)init;
 - (id)initWithAsset:(id)arg1;
 - (id)initWithPackage:(id)arg1;
+- (BOOL)isTemporary;
 - (unsigned long long)itemID;
 - (unsigned long long)offset;
-- (int)openFileDescriptorWithError:(id*)arg1;
+- (id)openWithError:(id*)arg1;
+- (id)openWithProxy:(id)arg1 error:(id*)arg2;
 - (id)owner;
 - (id)package;
 - (unsigned int)packageIndex;
@@ -113,6 +123,7 @@
 - (void)setChunkCount:(unsigned long)arg1;
 - (void)setContentBaseURL:(id)arg1;
 - (void)setDeviceID:(id)arg1;
+- (void)setDownloadTokenExpiration:(unsigned long long)arg1;
 - (void)setError:(id)arg1;
 - (void)setFileID:(id)arg1;
 - (void)setFileURL:(id)arg1;
@@ -132,15 +143,20 @@
 - (void)setReferenceSignature:(id)arg1;
 - (void)setRequestor:(id)arg1;
 - (void)setSectionItems:(id)arg1;
+- (void)setShouldReadRawEncryptedData:(BOOL)arg1;
 - (void)setSignature:(id)arg1;
 - (void)setSize:(unsigned long long)arg1;
+- (void)setTemporary:(BOOL)arg1;
 - (void)setTrackingUUID:(id)arg1;
 - (void)setUploadReceipt:(id)arg1;
+- (void)setUploadTokenExpiration:(unsigned long long)arg1;
 - (void)setWrappedAssetKey:(id)arg1;
+- (BOOL)shouldReadRawEncryptedData;
 - (id)signature;
 - (unsigned long long)size;
 - (id)trackingUUID;
 - (id)uploadReceipt;
+- (unsigned long long)uploadTokenExpiration;
 - (id)wrappedAssetKey;
 
 @end

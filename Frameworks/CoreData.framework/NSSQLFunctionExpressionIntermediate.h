@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@interface NSSQLFunctionExpressionIntermediate : NSSQLExpressionIntermediate {
-}
+@interface NSSQLFunctionExpressionIntermediate : NSSQLExpressionIntermediate
 
 + (BOOL)functionIsAcceptableAsAggregate:(id)arg1;
 
 - (id)_generateArgumentStringForCollection:(id)arg1 inContext:(id)arg2;
 - (id)_generateCorrelatedSubqueryStringWithSymbol:(id)arg1 forExpression:(id)arg2 inContext:(id)arg3;
 - (id)_generateDistinctStringInContext:(id)arg1;
+- (id)_generateLengthStringInContext:(id)arg1;
 - (id)_generateMathStringWithSymbol:(id)arg1 inContext:(id)arg2;
 - (id)_generateNowStringInContext:(id)arg1;
 - (id)_generateSQLForCountInContext:(id)arg1;

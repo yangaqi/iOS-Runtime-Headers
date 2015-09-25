@@ -2,28 +2,30 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSDThumbnailConsumer>, <TSDThumbnailIdentifier>, <TSDThumbnailProducer>, TSUImage;
-
 @interface TSDTGContext : NSObject {
     <TSDThumbnailConsumer> *_consumer;
     BOOL _continueThumbnailing;
+    NSSet *_datasThatNeedDownload;
     <TSDThumbnailProducer> *_producer;
     TSUImage *_thumbnail;
     <TSDThumbnailIdentifier> *_thumbnailId;
 }
 
-@property(readonly) <TSDThumbnailConsumer> * consumer;
-@property BOOL continueThumbnailing;
-@property(readonly) <TSDThumbnailProducer> * producer;
-@property(retain) TSUImage * thumbnail;
-@property <TSDThumbnailIdentifier> * thumbnailId;
+@property (nonatomic, readonly) <TSDThumbnailConsumer> *consumer;
+@property (nonatomic) BOOL continueThumbnailing;
+@property (nonatomic, copy) NSSet *datasThatNeedDownload;
+@property (nonatomic, readonly) <TSDThumbnailProducer> *producer;
+@property (nonatomic, retain) TSUImage *thumbnail;
+@property (nonatomic) <TSDThumbnailIdentifier> *thumbnailId;
 
 - (id)consumer;
 - (BOOL)continueThumbnailing;
+- (id)datasThatNeedDownload;
 - (void)dealloc;
 - (id)initWithConsumer:(id)arg1 producer:(id)arg2;
 - (id)producer;
 - (void)setContinueThumbnailing:(BOOL)arg1;
+- (void)setDatasThatNeedDownload:(id)arg1;
 - (void)setThumbnail:(id)arg1;
 - (void)setThumbnailId:(id)arg1;
 - (id)thumbnail;

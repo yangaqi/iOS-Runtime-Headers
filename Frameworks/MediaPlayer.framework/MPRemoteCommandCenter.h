@@ -2,10 +2,10 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class MPChangePlaybackRateCommand, MPChangeRepeatModeCommand, MPChangeShuffleModeCommand, MPFeedbackCommand, MPPurchaseCommand, MPRatingCommand, MPRemoteCommand, MPSkipIntervalCommand, NSMutableArray, NSObject<OS_dispatch_queue>, NSString;
-
 @interface MPRemoteCommandCenter : NSObject <MPRemoteCommandDelegate> {
     NSMutableArray *_activeCommands;
+    MPFeedbackCommand *_addItemToLibraryCommand;
+    MPFeedbackCommand *_addNowPlayingItemToLibraryCommand;
     MPRemoteCommand *_advanceRepeatModeCommand;
     MPRemoteCommand *_advanceShuffleModeCommand;
     MPFeedbackCommand *_bookmarkCommand;
@@ -18,7 +18,10 @@
     MPChangeRepeatModeCommand *_changeRepeatModeCommand;
     MPChangeShuffleModeCommand *_changeShuffleModeCommand;
     MPRemoteCommand *_createRadioStationCommand;
+    MPRemoteCommand *_disableLanguageOptionCommand;
     MPFeedbackCommand *_dislikeCommand;
+    MPRemoteCommand *_enableLanguageOptionCommand;
+    MPRemoteCommand *_insertIntoPlaybackQueueCommand;
     MPFeedbackCommand *_likeCommand;
     void *_mediaRemoteCommandHandler;
     MPRemoteCommand *_nextTrackCommand;
@@ -31,7 +34,7 @@
     MPRemoteCommand *_seekBackwardCommand;
     MPRemoteCommand *_seekForwardCommand;
     NSObject<OS_dispatch_queue> *_serialQueue;
-    MPRemoteCommand *_setPlaybackQueueCommand;
+    MPSetPlaybackQueueCommand *_setPlaybackQueueCommand;
     MPSkipIntervalCommand *_skipBackwardCommand;
     MPSkipIntervalCommand *_skipForwardCommand;
     MPRemoteCommand *_specialSeekBackwardCommand;
@@ -40,25 +43,27 @@
     MPRemoteCommand *_togglePlayPauseCommand;
 }
 
-@property(readonly) MPFeedbackCommand * bookmarkCommand;
-@property(readonly) MPChangePlaybackRateCommand * changePlaybackRateCommand;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) MPFeedbackCommand * dislikeCommand;
-@property(readonly) unsigned int hash;
-@property(readonly) MPFeedbackCommand * likeCommand;
-@property(readonly) MPRemoteCommand * nextTrackCommand;
-@property(readonly) MPRemoteCommand * pauseCommand;
-@property(readonly) MPRemoteCommand * playCommand;
-@property(readonly) MPRemoteCommand * previousTrackCommand;
-@property(readonly) MPRatingCommand * ratingCommand;
-@property(readonly) MPRemoteCommand * seekBackwardCommand;
-@property(readonly) MPRemoteCommand * seekForwardCommand;
-@property(readonly) MPSkipIntervalCommand * skipBackwardCommand;
-@property(readonly) MPSkipIntervalCommand * skipForwardCommand;
-@property(readonly) MPRemoteCommand * stopCommand;
-@property(readonly) Class superclass;
-@property(readonly) MPRemoteCommand * togglePlayPauseCommand;
+@property (nonatomic, readonly) MPFeedbackCommand *bookmarkCommand;
+@property (nonatomic, readonly) MPChangePlaybackRateCommand *changePlaybackRateCommand;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) MPRemoteCommand *disableLanguageOptionCommand;
+@property (nonatomic, readonly) MPFeedbackCommand *dislikeCommand;
+@property (nonatomic, readonly) MPRemoteCommand *enableLanguageOptionCommand;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) MPFeedbackCommand *likeCommand;
+@property (nonatomic, readonly) MPRemoteCommand *nextTrackCommand;
+@property (nonatomic, readonly) MPRemoteCommand *pauseCommand;
+@property (nonatomic, readonly) MPRemoteCommand *playCommand;
+@property (nonatomic, readonly) MPRemoteCommand *previousTrackCommand;
+@property (nonatomic, readonly) MPRatingCommand *ratingCommand;
+@property (nonatomic, readonly) MPRemoteCommand *seekBackwardCommand;
+@property (nonatomic, readonly) MPRemoteCommand *seekForwardCommand;
+@property (nonatomic, readonly) MPSkipIntervalCommand *skipBackwardCommand;
+@property (nonatomic, readonly) MPSkipIntervalCommand *skipForwardCommand;
+@property (nonatomic, readonly) MPRemoteCommand *stopCommand;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) MPRemoteCommand *togglePlayPauseCommand;
 
 + (id)sharedCommandCenter;
 
@@ -68,14 +73,14 @@
 - (struct __CFArray { }*)_copySupportedCommands;
 - (id)_createRemoteCommandWithConcreteClass:(Class)arg1 mediaRemoteType:(unsigned int)arg2;
 - (id)_pushMediaRemoteCommand:(unsigned int)arg1 withOptions:(struct __CFDictionary { }*)arg2;
-- (void)_pushMediaRemoteCommand:(unsigned int)arg1 withOptions:(struct __CFDictionary { }*)arg2 completion:(id)arg3;
-- (void)_scheduleSupportedCommandsChangedNotify;
+- (void)_pushMediaRemoteCommand:(unsigned int)arg1 withOptions:(struct __CFDictionary { }*)arg2 completion:(id /* block */)arg3;
+- (void)_scheduleSupportedCommandsChanged;
 - (void)_setupMediaRemoteCommandHandler;
-- (void)_setupMediaRemoteControlClient;
 - (void)_setupNotifications;
 - (void)_teardownMediaRemoteCommandHandler;
-- (void)_teardownMediaRemoteControlClient;
 - (void)_teardownNotifications;
+- (id)addItemToLibraryCommand;
+- (id)addNowPlayingItemToLibraryCommand;
 - (id)advanceRepeatModeCommand;
 - (id)advanceShuffleModeCommand;
 - (id)bookmarkCommand;
@@ -88,8 +93,11 @@
 - (id)changeShuffleModeCommand;
 - (id)createRadioStationCommand;
 - (void)dealloc;
+- (id)disableLanguageOptionCommand;
 - (id)dislikeCommand;
+- (id)enableLanguageOptionCommand;
 - (id)init;
+- (id)insertIntoPlaybackQueueCommand;
 - (id)likeCommand;
 - (id)nextTrackCommand;
 - (id)pauseCommand;

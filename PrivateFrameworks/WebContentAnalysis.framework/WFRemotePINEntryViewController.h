@@ -2,23 +2,27 @@
    Image: /System/Library/PrivateFrameworks/WebContentAnalysis.framework/WebContentAnalysis
  */
 
-@class NSObject<WFPINEntryViewControllerProtocol>;
-
 @interface WFRemotePINEntryViewController : _UIRemoteViewController <WFPINEntryViewControllerProtocol> {
     NSObject<WFPINEntryViewControllerProtocol> *_delegate;
 }
 
-@property NSObject<WFPINEntryViewControllerProtocol> * delegate;
+@property (nonatomic) NSObject<WFPINEntryViewControllerProtocol> *delegate;
 
 + (id)exportedInterface;
 + (id)serviceViewControllerInterface;
 
 - (void)dealloc;
 - (id)delegate;
+- (BOOL)isNumericPIN;
+- (BOOL)requiresKeyboard;
 - (void)setDelegate:(id)arg1;
 - (void)setPageTitle:(id)arg1;
 - (void)setURL:(id)arg1;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
+- (BOOL)simplePIN;
+- (unsigned int)supportedInterfaceOrientations;
 - (void)userDidCancel;
 - (void)userEnteredCorrectPIN;
+- (void)viewDidLoad;
 
 @end

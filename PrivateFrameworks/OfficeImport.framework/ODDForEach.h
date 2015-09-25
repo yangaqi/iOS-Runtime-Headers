@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class ODDIteratorSpecification;
-
 @interface ODDForEach : ODDLayoutObjectList {
     ODDIteratorSpecification *mIteratorSpecification;
 }
 
 - (void)dealloc;
+- (id)description;
 - (id)init;
 - (id)iteratorSpecification;
 

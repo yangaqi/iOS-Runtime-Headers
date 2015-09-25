@@ -2,16 +2,18 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-@class BRCAccountSession, CKServerChangeToken, NSDate;
-
 @interface BRCContainerMetadataSyncPersistedState : NSObject <NSSecureCoding> {
     NSDate *_lastSyncDate;
+    BOOL _needsContainerMetadataSync;
+    BOOL _needsSharedDBSync;
     CKServerChangeToken *_serverChangeToken;
     BRCAccountSession *_session;
 }
 
-@property(retain) NSDate * lastSyncDate;
-@property(retain) CKServerChangeToken * serverChangeToken;
+@property (retain) NSDate *lastSyncDate;
+@property (nonatomic) BOOL needsContainerMetadataSync;
+@property (nonatomic) BOOL needsSharedDBSync;
+@property (nonatomic, retain) CKServerChangeToken *serverChangeToken;
 
 + (id)loadFromClientStateInSession:(id)arg1;
 + (BOOL)supportsSecureCoding;
@@ -21,8 +23,12 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)lastSyncDate;
+- (BOOL)needsContainerMetadataSync;
+- (BOOL)needsSharedDBSync;
 - (id)serverChangeToken;
 - (void)setLastSyncDate:(id)arg1;
+- (void)setNeedsContainerMetadataSync:(BOOL)arg1;
+- (void)setNeedsSharedDBSync:(BOOL)arg1;
 - (void)setServerChangeToken:(id)arg1;
 
 @end

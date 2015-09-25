@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class KNAbstractSlide, KNSlideNode, KNSlideTree, NSArray, NSDictionary, NSMutableDictionary, NSString, TSPLazyReference;
-
 @interface KNSlideNode : TSPObject <TSCEResolverContainer, TSKDocumentObject, TSKModel, TSKSearchTarget> {
     unsigned int _eventCount;
     BOOL _eventCountIsUpToDate;
@@ -19,6 +12,7 @@
     NSString *mClassicUniqueID;
     NSString *mCopiedFromSlideIdentifier;
     unsigned int mDepth;
+    NSSet *mDigestsForDatasThatNeedDownloadForThumbnail;
     BOOL mHasBodyInOutlineView;
     BOOL mHasNote;
     BOOL mHasTransition;
@@ -35,38 +29,39 @@
     BOOL mThumbnailsAreDirty;
 }
 
-@property(readonly) NSArray * children;
-@property NSString * classicUniqueID;
-@property(getter=isCollapsed) BOOL collapsed;
-@property(getter=isCollapsedInOutlineView) BOOL collapsedInOutlineView;
-@property(retain) NSString * copiedFromSlideIdentifier;
-@property(copy,readonly) NSString * debugDescription;
-@property unsigned int depth;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int eventCount;
-@property BOOL hasBodyInOutlineView;
-@property(readonly) BOOL hasBuildEvents;
-@property(readonly) BOOL hasChildren;
-@property(readonly) BOOL hasExplicitBuilds;
-@property BOOL hasNote;
-@property BOOL hasTransition;
-@property(readonly) unsigned int hash;
-@property(getter=isHidden) BOOL hidden;
-@property BOOL isSlideNumberVisible;
-@property(readonly) KNSlideNode * next;
-@property(readonly) KNSlideNode * nextSkippingCollapsed;
-@property(readonly) KNSlideNode * nextSkippingHidden;
-@property(readonly) KNSlideNode * previous;
-@property(readonly) KNSlideNode * previousSkippingCollapsed;
-@property(readonly) KNSlideNode * previousSkippingHidden;
-@property(retain) KNAbstractSlide * slide;
-@property(readonly) KNAbstractSlide * slideIfLoaded;
-@property(readonly) NSDictionary * slideSpecificHyperlinkMap;
-@property KNSlideTree * slideTree;
-@property(readonly) Class superclass;
-@property(readonly) NSDictionary * thumbnails;
-@property BOOL thumbnailsAreDirty;
-@property(readonly) NSString * uniqueIdentifier;
+@property (nonatomic, readonly) NSArray *children;
+@property (nonatomic) NSString *classicUniqueID;
+@property (getter=isCollapsed, nonatomic) BOOL collapsed;
+@property (getter=isCollapsedInOutlineView, nonatomic) BOOL collapsedInOutlineView;
+@property (nonatomic, retain) NSString *copiedFromSlideIdentifier;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) unsigned int depth;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) NSSet *digestsForDatasThatNeedDownloadForThumbnail;
+@property (nonatomic, readonly) unsigned int eventCount;
+@property (nonatomic) BOOL hasBodyInOutlineView;
+@property (nonatomic, readonly) BOOL hasBuildEvents;
+@property (nonatomic, readonly) BOOL hasChildren;
+@property (nonatomic, readonly) BOOL hasExplicitBuilds;
+@property (nonatomic) BOOL hasNote;
+@property (nonatomic) BOOL hasTransition;
+@property (readonly) unsigned int hash;
+@property (getter=isHidden, nonatomic) BOOL hidden;
+@property (nonatomic) BOOL isSlideNumberVisible;
+@property (nonatomic, readonly) KNSlideNode *next;
+@property (nonatomic, readonly) KNSlideNode *nextSkippingCollapsed;
+@property (nonatomic, readonly) KNSlideNode *nextSkippingHidden;
+@property (nonatomic, readonly) KNSlideNode *previous;
+@property (nonatomic, readonly) KNSlideNode *previousSkippingCollapsed;
+@property (nonatomic, readonly) KNSlideNode *previousSkippingHidden;
+@property (nonatomic, retain) KNAbstractSlide *slide;
+@property (nonatomic, readonly) KNAbstractSlide *slideIfLoaded;
+@property (nonatomic, readonly) NSDictionary *slideSpecificHyperlinkMap;
+@property (nonatomic) KNSlideTree *slideTree;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) NSDictionary *thumbnails;
+@property (nonatomic) BOOL thumbnailsAreDirty;
+@property (nonatomic, readonly) NSString *uniqueIdentifier;
 
 + (BOOL)needsObjectUUID;
 + (id)parentSlideNodeForInfo:(id)arg1;
@@ -89,6 +84,7 @@
 - (id)descendants;
 - (id)descendantsOmittingSkippedSlideNodes:(BOOL)arg1 omittingCollapsedSlideNodes:(BOOL)arg2;
 - (void)didLoadSlide:(id)arg1;
+- (id)digestsForDatasThatNeedDownloadForThumbnail;
 - (unsigned int)eventCount;
 - (BOOL)hasBodyInOutlineView;
 - (BOOL)hasBuildEvents;
@@ -105,7 +101,7 @@
 - (BOOL)isCollapsedInOutlineView;
 - (BOOL)isHidden;
 - (BOOL)isSlideNumberVisible;
-- (void)loadFromArchive:(const struct SlideNodeArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct RepeatedPtrField<TSP::Reference> { void **x_5_1_1; int x_5_1_2; int x_5_1_3; int x_5_1_4; } x5; struct Reference {} *x6; struct RepeatedPtrField<TSP::DataReference> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; struct RepeatedPtrField<TSP::Size> { void **x_8_1_1; int x_8_1_2; int x_8_1_3; int x_8_1_4; } x8; unsigned int x9; bool x10; bool x11; bool x12; bool x13; bool x14; bool x15; bool x16; bool x17; unsigned int x18; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x19; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x20; unsigned int x21; bool x22; bool x23; bool x24; bool x25; struct RepeatedPtrField<KN::SlideNodeArchive_SlideSpecificHyperlinkMapEntry> { void **x_26_1_1; int x_26_1_2; int x_26_1_3; int x_26_1_4; } x26; struct Reference {} *x27; struct RepeatedPtrField<TSP::Reference> { void **x_28_1_1; int x_28_1_2; int x_28_1_3; int x_28_1_4; } x28; }*)arg1 unarchiver:(id)arg2;
+- (void)loadFromArchive:(const struct SlideNodeArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct RepeatedPtrField<TSP::Reference> { void **x_5_1_1; int x_5_1_2; int x_5_1_3; int x_5_1_4; } x5; struct Reference {} *x6; struct RepeatedPtrField<TSP::DataReference> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; struct RepeatedPtrField<TSP::Size> { void **x_8_1_1; int x_8_1_2; int x_8_1_3; int x_8_1_4; } x8; struct RepeatedPtrField<std::__1::basic_string<char> > { void **x_9_1_1; int x_9_1_2; int x_9_1_3; int x_9_1_4; } x9; unsigned int x10; bool x11; bool x12; bool x13; bool x14; bool x15; bool x16; bool x17; bool x18; unsigned int x19; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x20; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x21; unsigned int x22; bool x23; bool x24; bool x25; bool x26; struct RepeatedPtrField<KN::SlideNodeArchive_SlideSpecificHyperlinkMapEntry> { void **x_27_1_1; int x_27_1_2; int x_27_1_3; int x_27_1_4; } x27; struct Reference {} *x28; struct RepeatedPtrField<TSP::Reference> { void **x_29_1_1; int x_29_1_2; int x_29_1_3; int x_29_1_4; } x29; }*)arg1 unarchiver:(id)arg2;
 - (id)next;
 - (id)nextSkippingCollapsed;
 - (id)nextSkippingHidden;
@@ -133,13 +129,14 @@
 - (unsigned int)safeEventCount;
 - (BOOL)safeHasBuildEvents;
 - (unsigned int)saveNextUntitledResolverIndex;
-- (void)saveToArchive:(struct SlideNodeArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct RepeatedPtrField<TSP::Reference> { void **x_5_1_1; int x_5_1_2; int x_5_1_3; int x_5_1_4; } x5; struct Reference {} *x6; struct RepeatedPtrField<TSP::DataReference> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; struct RepeatedPtrField<TSP::Size> { void **x_8_1_1; int x_8_1_2; int x_8_1_3; int x_8_1_4; } x8; unsigned int x9; bool x10; bool x11; bool x12; bool x13; bool x14; bool x15; bool x16; bool x17; unsigned int x18; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x19; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x20; unsigned int x21; bool x22; bool x23; bool x24; bool x25; struct RepeatedPtrField<KN::SlideNodeArchive_SlideSpecificHyperlinkMapEntry> { void **x_26_1_1; int x_26_1_2; int x_26_1_3; int x_26_1_4; } x26; struct Reference {} *x27; struct RepeatedPtrField<TSP::Reference> { void **x_28_1_1; int x_28_1_2; int x_28_1_3; int x_28_1_4; } x28; }*)arg1 archiver:(id)arg2;
+- (void)saveToArchive:(struct SlideNodeArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct RepeatedPtrField<TSP::Reference> { void **x_5_1_1; int x_5_1_2; int x_5_1_3; int x_5_1_4; } x5; struct Reference {} *x6; struct RepeatedPtrField<TSP::DataReference> { void **x_7_1_1; int x_7_1_2; int x_7_1_3; int x_7_1_4; } x7; struct RepeatedPtrField<TSP::Size> { void **x_8_1_1; int x_8_1_2; int x_8_1_3; int x_8_1_4; } x8; struct RepeatedPtrField<std::__1::basic_string<char> > { void **x_9_1_1; int x_9_1_2; int x_9_1_3; int x_9_1_4; } x9; unsigned int x10; bool x11; bool x12; bool x13; bool x14; bool x15; bool x16; bool x17; bool x18; unsigned int x19; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x20; struct basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > {} *x21; unsigned int x22; bool x23; bool x24; bool x25; bool x26; struct RepeatedPtrField<KN::SlideNodeArchive_SlideSpecificHyperlinkMapEntry> { void **x_27_1_1; int x_27_1_2; int x_27_1_3; int x_27_1_4; } x27; struct Reference {} *x28; struct RepeatedPtrField<TSP::Reference> { void **x_29_1_1; int x_29_1_2; int x_29_1_3; int x_29_1_4; } x29; }*)arg1 archiver:(id)arg2;
 - (void)saveToArchiver:(id)arg1;
 - (void)setClassicUniqueID:(id)arg1;
 - (void)setCollapsed:(BOOL)arg1;
 - (void)setCollapsedInOutlineView:(BOOL)arg1;
 - (void)setCopiedFromSlideIdentifier:(id)arg1;
 - (void)setDepth:(unsigned int)arg1;
+- (void)setDigestsForDatasThatNeedDownloadForThumbnail:(id)arg1;
 - (void)setHasBodyInOutlineView:(BOOL)arg1;
 - (void)setHasNote:(BOOL)arg1;
 - (void)setHasTransition:(BOOL)arg1;

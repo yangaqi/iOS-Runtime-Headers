@@ -3,11 +3,10 @@
  */
 
 @interface NSAttributeDictionary : NSDictionary {
-    struct _NSAttributeDictionaryElement { 
+    /* Warning: unhandled struct encoding: '{_NSAttributeDictionaryElement="hash"I"key"@"value"@}]' */ struct _NSAttributeDictionaryElement { 
         unsigned int hash; 
         id key; 
-        id value; 
-    } elements[1];
+    } elements;
     unsigned int numElements;
 }
 
@@ -15,6 +14,7 @@
 + (void)initialize;
 + (id)newWithDictionary:(id)arg1;
 
+- (void)__apply:(int (*)arg1 context:(void*)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
 - (void)dealloc;

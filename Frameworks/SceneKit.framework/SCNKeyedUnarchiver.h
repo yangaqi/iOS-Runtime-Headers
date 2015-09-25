@@ -2,16 +2,26 @@
    Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
  */
 
-@class NSDictionary;
-
 @interface SCNKeyedUnarchiver : NSKeyedUnarchiver {
+    SCNAssetCatalog *_assetCatalog;
     NSDictionary *_context;
+    id lookUpFoundInstance;
+    NSString *lookUpKey;
 }
 
-@property(retain) NSDictionary * context;
+@property (nonatomic, retain) SCNAssetCatalog *assetCatalog;
+@property (nonatomic, retain) NSDictionary *context;
+@property (nonatomic, retain) id lookUpFoundInstance;
+@property (nonatomic, retain) NSString *lookUpKey;
 
+- (id)assetCatalog;
 - (id)context;
 - (void)dealloc;
+- (id)lookUpFoundInstance;
+- (id)lookUpKey;
+- (void)setAssetCatalog:(id)arg1;
 - (void)setContext:(id)arg1;
+- (void)setLookUpFoundInstance:(id)arg1;
+- (void)setLookUpKey:(id)arg1;
 
 @end

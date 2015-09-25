@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor, UIImageView, UIView, _UIBackdropView, _UINavigationBarAppearanceStorage;
-
 @interface _UINavigationBarBackground : _UIBarBackgroundImageView <_UIBackdropViewGraphicsQualityChangeDelegate> {
     _UIBackdropView *_adaptiveBackdrop;
     _UINavigationBarAppearanceStorage *_appearanceStorage;
@@ -17,13 +15,14 @@
     UIImageView *_shadowView;
 }
 
-@property(setter=_setShadowView:,retain) UIView * _shadowView;
-@property(retain) _UINavigationBarAppearanceStorage * appearanceStorage;
-@property int barStyle;
-@property(retain) UIColor * barTintColor;
-@property BOOL barWantsAdaptiveBackdrop;
-@property(getter=isTranslucent) BOOL translucent;
+@property (setter=_setShadowView:, nonatomic, retain) UIView *_shadowView;
+@property (nonatomic, retain) _UINavigationBarAppearanceStorage *appearanceStorage;
+@property (nonatomic) int barStyle;
+@property (nonatomic, retain) UIColor *barTintColor;
+@property (nonatomic) BOOL barWantsAdaptiveBackdrop;
+@property (getter=isTranslucent, nonatomic) BOOL translucent;
 
+- (void).cxx_destruct;
 - (id)_adaptiveBackdrop;
 - (id)_currentCustomBackground;
 - (id)_currentCustomBackgroundDedicatedToBarMetrics:(int*)arg1 barPosition:(int*)arg2;

@@ -2,23 +2,24 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSDictionary, NSMutableSet;
-
 @interface NSCachingFetchRequest : NSFetchRequest {
-    NSMutableSet *_cachingCoordinators;
+    NSHashTable *_cachingCoordinators;
     BOOL _hasCachedInfo;
     id _identifier;
     NSDictionary *_substitutionVariables;
 }
 
-@property(readonly) id _identifier;
-@property(copy) NSDictionary * substitutionVariables;
+@property (nonatomic, readonly) id _identifier;
+@property (nonatomic, copy) NSDictionary *substitutionVariables;
 
 + (id)_generateIdentifier;
 
+- (id)_copyForDirtyContext;
+- (BOOL)_hasRegisteredCachingCoordinator:(id)arg1;
 - (id)_identifier;
 - (void)_registerCachingCoordinator:(id)arg1;
 - (void)_sanityCheckVariables:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)init;
 - (void)setSubstitutionVariables:(id)arg1;

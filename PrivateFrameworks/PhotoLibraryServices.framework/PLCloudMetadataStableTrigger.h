@@ -2,9 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@interface PLCloudMetadataStableTrigger : PLCloudStatelessTrigger {
-}
-
-- (id)init;
+@interface PLCloudMetadataStableTrigger : PLCloudStatelessTrigger
 
 @end

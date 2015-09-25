@@ -2,10 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GameKitServices.framework/GameKitServices
  */
 
-@class <GKVoiceChatClient>, GKVoiceChatDictionary, GKVoiceChatService, LoopbackSocketTunnel, NSLock, NSRecursiveLock, NSString, VideoConference;
-
 @interface GKVoiceChatServicePrivate : NSObject <VideoConferenceDelegate, VideoConferenceRealTimeChannel> {
-    int bundle;
     int chatMode;
     <GKVoiceChatClient> *client;
     BOOL clientHasRTChannel;
@@ -87,7 +84,6 @@
         int bIfReplaceOnly; 
         struct tagCONNRESULT {} *next; 
     } currentConnResult;
-    int didUseICE;
     BOOL focus;
     BOOL forceNoICE;
     GKVoiceChatDictionary *incomingCallDict;
@@ -95,30 +91,28 @@
     BOOL microphoneMuted;
     GKVoiceChatDictionary *outgoingCallDict;
     BOOL outputMeteringEnabled;
-    NSString *sdp;
     int state;
     NSRecursiveLock *stateLock;
-    LoopbackSocketTunnel *tunnel;
     GKVoiceChatService *wrapperService;
 }
 
 @property int chatMode;
-@property id client;
-@property(getter=isFocus) BOOL focus;
-@property(readonly) float inputMeterLevel;
-@property(getter=isInputMeteringEnabled) BOOL inputMeteringEnabled;
-@property(readonly) double localBitrate;
-@property(readonly) double localFramerate;
-@property void* localVideoLayer;
-@property(getter=isMicrophoneMuted) BOOL microphoneMuted;
-@property(readonly) float outputMeterLevel;
-@property(getter=isOutputMeteringEnabled) BOOL outputMeteringEnabled;
-@property(readonly) double remoteBitrate;
-@property(readonly) double remoteFramerate;
+@property (nonatomic) id client;
+@property (getter=isFocus) BOOL focus;
+@property (nonatomic, readonly) float inputMeterLevel;
+@property (getter=isInputMeteringEnabled) BOOL inputMeteringEnabled;
+@property (readonly) double localBitrate;
+@property (readonly) double localFramerate;
+@property (nonatomic) void*localVideoLayer;
+@property (getter=isMicrophoneMuted) BOOL microphoneMuted;
+@property (nonatomic, readonly) float outputMeterLevel;
+@property (getter=isOutputMeteringEnabled) BOOL outputMeteringEnabled;
+@property (readonly) double remoteBitrate;
+@property (readonly) double remoteFramerate;
 @property float remoteParticipantVolume;
-@property void* remoteVideoLayer;
+@property (nonatomic) void*remoteVideoLayer;
 @property int state;
-@property GKVoiceChatService * wrapperService;
+@property GKVoiceChatService *wrapperService;
 
 + (id)defaultVoiceChatService;
 

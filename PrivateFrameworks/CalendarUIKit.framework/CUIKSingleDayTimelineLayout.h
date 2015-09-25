@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalendarUIKit.framework/CalendarUIKit
  */
 
-@class <CUIKSingleDayTimelineGeometryDelegate>, <CUIKSingleDayTimelineLayoutScreenUtils>, <CUIKSingleDayTimelineViewItem>, NSArray, NSCalendar, NSDate, NSMutableArray;
-
 @interface CUIKSingleDayTimelineLayout : NSObject {
     NSCalendar *_calendar;
     NSMutableArray *_collidingOccurrences;
@@ -37,6 +35,7 @@
 - (void)_capVisibleTextForBucket:(id)arg1;
 - (float)_combinedWidthOfPartitions;
 - (double)_effectiveEndTimeForOccurrence:(id)arg1;
+- (float)_endOfCollisionZoneForY:(float)arg1 occurrence:(id)arg2;
 - (void)_findCollidingOccurrences;
 - (void)_generateNewPartitions;
 - (void)_initializeFirstGridStripe;

@@ -2,37 +2,50 @@
    Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
  */
 
-@class BSSettings, NSSet;
-
-@interface FBSSceneClientSettings : NSObject <NSCopying, NSMutableCopying> {
+@interface FBSSceneClientSettings : NSObject <BSDescriptionProviding, NSCopying, NSMutableCopying> {
     NSSet *_occlusions;
     BSSettings *_otherSettings;
     int _preferredInterfaceOrientation;
     float _preferredLevel;
+    NSString *_preferredSceneHostIdentifier;
 }
 
-@property(copy,readonly) NSSet * occlusions;
-@property(readonly) int preferredInterfaceOrientation;
-@property(readonly) float preferredLevel;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, copy) NSSet *occlusions;
+@property (nonatomic, readonly) int preferredInterfaceOrientation;
+@property (nonatomic, readonly) float preferredLevel;
+@property (nonatomic, readonly, copy) NSString *preferredSceneHostIdentifier;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
 
 + (BOOL)_isMutable;
 + (id)settings;
 
-- (id)_descriptionOfSettingsWithMultilinePrefix:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
+- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
+- (id)descriptionWithMultilinePrefix:(id)arg1;
 - (unsigned int)hash;
 - (id)init;
 - (id)initWithSettings:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (BOOL)isUISubclass;
 - (id)keyDescriptionForSetting:(unsigned int)arg1;
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)occlusions;
 - (id)otherSettings;
 - (int)preferredInterfaceOrientation;
 - (float)preferredLevel;
+- (id)preferredSceneHostIdentifier;
+- (id)succinctDescription;
+- (id)succinctDescriptionBuilder;
 - (id)valueDescriptionForFlag:(int)arg1 object:(id)arg2 ofSetting:(unsigned int)arg3;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
+- (BOOL)isUISubclass;
 
 @end

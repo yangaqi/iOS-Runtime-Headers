@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSNumber, UIColor;
-
 @interface UIStatusBarStyleRequest : NSObject <NSCopying, NSMutableCopying> {
     UIColor *_foregroundColor;
     BOOL _legacy;
@@ -12,15 +10,15 @@
     int _style;
 }
 
-@property(retain,readonly) UIColor * foregroundColor;
-@property(getter=isLegacy,readonly) BOOL legacy;
-@property(readonly) int legibilityStyle;
-@property(retain,readonly) NSNumber * overrideHeight;
-@property(readonly) int style;
+@property (nonatomic, readonly, retain) UIColor *foregroundColor;
+@property (getter=isLegacy, nonatomic, readonly) BOOL legacy;
+@property (nonatomic, readonly) int legibilityStyle;
+@property (nonatomic, readonly, retain) NSNumber *overrideHeight;
+@property (nonatomic, readonly) int style;
 
+- (void).cxx_destruct;
 - (id)_copyWithZone:(struct _NSZone { }*)arg1 class:(Class)arg2;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)foregroundColor;
 - (unsigned int)hash;
 - (id)init;

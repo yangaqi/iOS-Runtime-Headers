@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <TSTCanvasReferenceController>, <TSTTableAnimationController>, <TSTTableChromeProvider>, <TSTTableRepDelegate>, CALayer, CAShapeLayer, NSMutableArray, NSMutableDictionary, NSSet, NSString, TSDKnobTracker<TSTTableKnobTrackerVisitorProtocol>, TSTAnimation, TSTCellSelection, TSTLayout, TSTMasterLayout, TSTSearchReference, TSTSelectionDragController, TSTTableCellTextEditingRep, TSTTableInfo, TSTTableModel, TSTTableReferences, TSWPHyperlinkField, TSWPStorage;
-
 @interface TSTTableRep : TSWPTextHostRep <UITextFieldDelegate> {
     BOOL _settingSelection;
     <TSTTableAnimationController> *mAnimationController;
@@ -92,34 +90,35 @@
     } mZoomToEditVisibleCellRange;
 }
 
-@property(retain) TSTSearchReference * activeSearchReference;
-@property <TSTTableAnimationController> * animationController;
-@property(readonly) <TSTCanvasReferenceController> * canvasReferenceController;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } canvasVisibleRect;
-@property TSTSelectionDragController * cellDragController;
-@property(retain) NSMutableDictionary * childTextReps;
-@property(readonly) TSTAnimation * currentAnimation;
-@property(copy,readonly) NSString * debugDescription;
-@property(readonly) <TSTTableRepDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isZoomToEditOperationInProgress;
-@property(readonly) TSTMasterLayout * masterLayout;
-@property struct { unsigned short x1; unsigned char x2; unsigned char x3; } ratingsDragCellID;
-@property(readonly) TSTCellSelection * selection;
-@property(readonly) int selectionType;
-@property(readonly) Class superclass;
-@property(readonly) <TSTTableChromeProvider> * tableChrome;
-@property(readonly) TSTTableInfo * tableInfo;
-@property(readonly) TSTLayout * tableLayout;
-@property(readonly) TSTTableModel * tableModel;
-@property(getter=isTableNameValid) BOOL tableNameValid;
-@property(readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformFromCanvas;
-@property(readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformToCanvas;
+@property (nonatomic, retain) TSTSearchReference *activeSearchReference;
+@property (nonatomic) <TSTTableAnimationController> *animationController;
+@property (nonatomic, readonly) <TSTCanvasReferenceController> *canvasReferenceController;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } canvasVisibleRect;
+@property (nonatomic) TSTSelectionDragController *cellDragController;
+@property (nonatomic, retain) NSMutableDictionary *childTextReps;
+@property (nonatomic, readonly) TSTAnimation *currentAnimation;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) <TSTTableRepDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isZoomToEditOperationInProgress;
+@property (nonatomic, readonly) TSTMasterLayout *masterLayout;
+@property (nonatomic) struct { unsigned short x1; unsigned char x2; unsigned char x3; } ratingsDragCellID;
+@property (nonatomic, readonly) TSTCellSelection *selection;
+@property (nonatomic, readonly) int selectionType;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) <TSTTableChromeProvider> *tableChrome;
+@property (nonatomic, readonly) TSTTableInfo *tableInfo;
+@property (nonatomic, readonly) TSTLayout *tableLayout;
+@property (nonatomic, readonly) TSTTableModel *tableModel;
+@property (getter=isTableNameValid, nonatomic) BOOL tableNameValid;
+@property (nonatomic, readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformFromCanvas;
+@property (nonatomic, readonly) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } transformToCanvas;
 
++ (float)magicMoveAttributeMatchPercentBetweenOutgoingObject:(id)arg1 incomingObject:(id)arg2 mixingTypeContext:(id)arg3;
++ (unsigned int)p_countOfIdenticalCellsBetweenOutgoingTableModel:(id)arg1 incomingTableModel:(id)arg2;
 + (Class)tableRepDelegateClass;
 
-- (id).cxx_construct;
 - (id)actionForLayer:(id)arg1 forKey:(id)arg2;
 - (void)addAdditionalChildLayersToArray:(id)arg1;
 - (id)animationController;
@@ -178,10 +177,12 @@
 - (void)setChildTextReps:(id)arg1;
 - (void)setRatingsDragCellID:(struct { unsigned short x1; unsigned char x2; unsigned char x3; })arg1;
 - (void)setTableNameValid:(BOOL)arg1;
+- (void)setTextureStage:(unsigned int)arg1;
 - (id)tableChrome;
 - (id)tableInfo;
 - (id)tableLayout;
 - (id)tableModel;
+- (id)textureForContext:(id)arg1;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })transformFromCanvas;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })transformToCanvas;
 - (void)updateChildrenFromLayout;

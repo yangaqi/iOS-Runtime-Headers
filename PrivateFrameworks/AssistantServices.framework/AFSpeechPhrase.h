@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class NSArray;
-
 @interface AFSpeechPhrase : NSObject <NSSecureCoding> {
     NSArray *_interpretations;
     BOOL _isLowConfidence;
 }
 
-@property(copy) NSArray * interpretations;
-@property BOOL isLowConfidence;
+@property (nonatomic, copy) NSArray *interpretations;
+@property (nonatomic) BOOL isLowConfidence;
 
 + (BOOL)supportsSecureCoding;
 
@@ -18,8 +16,10 @@
 - (id)bestInterpretation;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
+- (unsigned int)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)interpretations;
+- (BOOL)isEqual:(id)arg1;
 - (BOOL)isLowConfidence;
 - (void)setInterpretations:(id)arg1;
 - (void)setIsLowConfidence:(BOOL)arg1;

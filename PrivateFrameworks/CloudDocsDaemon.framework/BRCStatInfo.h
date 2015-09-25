@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class BRCItemID, BRFieldCKInfo, NSData, NSString;
-
 @interface BRCStatInfo : NSObject <NSCopying, NSSecureCoding> {
     long long _birthtime;
     BRFieldCKInfo *_ckInfo;
@@ -23,27 +16,25 @@
     NSData *_xattrSignature;
 }
 
-@property(readonly) NSString * _aliasTargetContainerID;
-@property(readonly) BRCItemID * _aliasTargetItemID;
-@property(readonly) NSString * _aliasTargetMangledID;
-@property long long birthtime;
-@property(retain) BRFieldCKInfo * ckInfo;
-@property(readonly) NSString * displayName;
-@property(retain) NSString * filename;
-@property(retain) NSData * finderTags;
-@property(getter=isHiddenExt) BOOL hiddenExt;
-@property(readonly) BOOL iWorkShareable;
-@property(retain) NSData * lazyXattr;
-@property BOOL mode;
-@property(retain) BRCItemID * parentID;
-@property BOOL state;
-@property BOOL type;
-@property(retain) NSData * xattrSignature;
+@property (nonatomic, readonly) BRCItemID *_aliasTargetItemID;
+@property (nonatomic, readonly) NSString *_aliasTargetMangledID;
+@property (nonatomic) long long birthtime;
+@property (nonatomic, retain) BRFieldCKInfo *ckInfo;
+@property (nonatomic, retain) NSData *finderTags;
+@property (getter=isHiddenExt, nonatomic) BOOL hiddenExt;
+@property (nonatomic, readonly) BOOL iWorkShareable;
+@property (nonatomic, retain) NSData *lazyXattr;
+@property (nonatomic, retain) NSString *logicalName;
+@property (nonatomic) BOOL mode;
+@property (nonatomic, retain) BRCItemID *parentID;
+@property (nonatomic) BOOL state;
+@property (nonatomic) BOOL type;
+@property (nonatomic, retain) NSData *xattrSignature;
 
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
-- (id)_aliasTargetContainerID;
+- (id)_aliasTargetContainerIDAndOwner;
 - (id)_aliasTargetItemID;
 - (id)_aliasTargetMangledID;
 - (void)_updateAliasTarget:(id)arg1;
@@ -57,7 +48,6 @@
 - (unsigned long long)diffAgainst:(id)arg1;
 - (id)displayName;
 - (void)encodeWithCoder:(id)arg1;
-- (id)filename;
 - (id)finderTags;
 - (BOOL)iWorkShareable;
 - (id)initFromResultSet:(id)arg1 pos:(int)arg2;
@@ -67,14 +57,15 @@
 - (BOOL)isHiddenExt;
 - (BOOL)isWritable;
 - (id)lazyXattr;
+- (id)logicalName;
 - (BOOL)mode;
 - (id)parentID;
 - (void)setBirthtime:(long long)arg1;
 - (void)setCkInfo:(id)arg1;
-- (void)setFilename:(id)arg1;
 - (void)setFinderTags:(id)arg1;
 - (void)setHiddenExt:(BOOL)arg1;
 - (void)setLazyXattr:(id)arg1;
+- (void)setLogicalName:(id)arg1;
 - (void)setMode:(BOOL)arg1;
 - (void)setParentID:(id)arg1;
 - (void)setState:(BOOL)arg1;

@@ -2,20 +2,18 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class NSString, UINavigationBar, UIProgressIndicator, UITableView, UITextLabel, UIView;
-
 @interface MPAlternateTracksViewController : MPAbstractAlternateTracksViewController <UITableViewDataSource, UITableViewDelegate> {
     UIView *_backgroundView;
     UITextLabel *_loadingLabel;
     UINavigationBar *_navigationBar;
-    UIProgressIndicator *_progressIndicator;
+    UIActivityIndicatorView *_progressIndicator;
     UITableView *_table;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_cancelButtonAction:(id)arg1;

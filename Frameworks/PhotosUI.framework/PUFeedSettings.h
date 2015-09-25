@@ -13,6 +13,9 @@
     int _initialWindowSize;
     int _maximumScrollRegimeForQualityImageFormats;
     float _mediumScrollPreheatingWindowSize;
+    BOOL _parallaxEnabled;
+    float _parallaxFactor;
+    int _parallaxModel;
     float _preheatingMinimumScrollFactor;
     BOOL _shouldPreheatAssets;
     BOOL _shouldPreheatComments;
@@ -30,35 +33,40 @@
     BOOL _useJPEGImageFormats;
     BOOL _useQualityImageFormats;
     BOOL _useSpeedometerFeedback;
+    BOOL _vitalityEnabled;
 }
 
-@property BOOL allowsInfiniteScrolling;
-@property float fastScrollPreheatingWindowSize;
-@property int feedContent;
-@property BOOL forceAllItemsAsVideo;
-@property BOOL forceDefaultPreheatManager;
-@property BOOL ignoresCaptions;
-@property int infiniteScrollingWindowSizeIncrement;
-@property int initialWindowSize;
-@property int maximumScrollRegimeForQualityImageFormats;
-@property float mediumScrollPreheatingWindowSize;
-@property float preheatingMinimumScrollFactor;
-@property BOOL shouldPreheatAssets;
-@property BOOL shouldPreheatComments;
-@property BOOL shouldPreheatCoreData;
-@property BOOL shouldUseJPEGFastFormatForLargeTiles;
-@property BOOL shouldUseJPEGFastFormatForMediumTiles;
-@property BOOL simulateSharedStreamsEnabled;
-@property float slowScrollPreheatingWindowSize;
-@property float smallTileSizeTolerance;
-@property float speedometerFastLowerThreshold;
-@property float speedometerFastUpperThreshold;
-@property float speedometerMediumLowerThreshold;
-@property float speedometerMediumUpperThreshold;
-@property int testInitialWindowSize;
-@property BOOL useJPEGImageFormats;
-@property BOOL useQualityImageFormats;
-@property BOOL useSpeedometerFeedback;
+@property (nonatomic) BOOL allowsInfiniteScrolling;
+@property (nonatomic) float fastScrollPreheatingWindowSize;
+@property (nonatomic) int feedContent;
+@property (nonatomic) BOOL forceAllItemsAsVideo;
+@property (nonatomic) BOOL forceDefaultPreheatManager;
+@property (nonatomic) BOOL ignoresCaptions;
+@property (nonatomic) int infiniteScrollingWindowSizeIncrement;
+@property (nonatomic) int initialWindowSize;
+@property (nonatomic) int maximumScrollRegimeForQualityImageFormats;
+@property (nonatomic) float mediumScrollPreheatingWindowSize;
+@property (nonatomic) BOOL parallaxEnabled;
+@property (nonatomic) float parallaxFactor;
+@property (nonatomic) int parallaxModel;
+@property (nonatomic) float preheatingMinimumScrollFactor;
+@property (nonatomic) BOOL shouldPreheatAssets;
+@property (nonatomic) BOOL shouldPreheatComments;
+@property (nonatomic) BOOL shouldPreheatCoreData;
+@property (nonatomic) BOOL shouldUseJPEGFastFormatForLargeTiles;
+@property (nonatomic) BOOL shouldUseJPEGFastFormatForMediumTiles;
+@property (nonatomic) BOOL simulateSharedStreamsEnabled;
+@property (nonatomic) float slowScrollPreheatingWindowSize;
+@property (nonatomic) float smallTileSizeTolerance;
+@property (nonatomic) float speedometerFastLowerThreshold;
+@property (nonatomic) float speedometerFastUpperThreshold;
+@property (nonatomic) float speedometerMediumLowerThreshold;
+@property (nonatomic) float speedometerMediumUpperThreshold;
+@property (nonatomic) int testInitialWindowSize;
+@property (nonatomic) BOOL useJPEGImageFormats;
+@property (nonatomic) BOOL useQualityImageFormats;
+@property (nonatomic) BOOL useSpeedometerFeedback;
+@property (nonatomic) BOOL vitalityEnabled;
 
 + (id)_localizedStrings;
 + (id)settingsControllerModule;
@@ -74,6 +82,9 @@
 - (int)initialWindowSize;
 - (int)maximumScrollRegimeForQualityImageFormats;
 - (float)mediumScrollPreheatingWindowSize;
+- (BOOL)parallaxEnabled;
+- (float)parallaxFactor;
+- (int)parallaxModel;
 - (float)preheatingMinimumScrollFactor;
 - (void)setAllowsInfiniteScrolling:(BOOL)arg1;
 - (void)setDefaultValues;
@@ -86,6 +97,9 @@
 - (void)setInitialWindowSize:(int)arg1;
 - (void)setMaximumScrollRegimeForQualityImageFormats:(int)arg1;
 - (void)setMediumScrollPreheatingWindowSize:(float)arg1;
+- (void)setParallaxEnabled:(BOOL)arg1;
+- (void)setParallaxFactor:(float)arg1;
+- (void)setParallaxModel:(int)arg1;
 - (void)setPreheatingMinimumScrollFactor:(float)arg1;
 - (void)setShouldPreheatAssets:(BOOL)arg1;
 - (void)setShouldPreheatComments:(BOOL)arg1;
@@ -103,6 +117,7 @@
 - (void)setUseJPEGImageFormats:(BOOL)arg1;
 - (void)setUseQualityImageFormats:(BOOL)arg1;
 - (void)setUseSpeedometerFeedback:(BOOL)arg1;
+- (void)setVitalityEnabled:(BOOL)arg1;
 - (BOOL)shouldPreheatAssets;
 - (BOOL)shouldPreheatComments;
 - (BOOL)shouldPreheatCoreData;
@@ -119,5 +134,6 @@
 - (BOOL)useJPEGImageFormats;
 - (BOOL)useQualityImageFormats;
 - (BOOL)useSpeedometerFeedback;
+- (BOOL)vitalityEnabled;
 
 @end

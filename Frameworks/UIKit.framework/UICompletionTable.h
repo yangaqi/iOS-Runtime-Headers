@@ -2,26 +2,24 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UICompletionTablePrivate;
-
 @interface UICompletionTable : UIView <UITableViewDataSource, UITableViewDelegate> {
     UICompletionTablePrivate *_private;
 }
 
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInset;
-@property(copy,readonly) NSString * debugDescription;
-@property id delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } scrollIndicatorInsets;
-@property(readonly) Class superclass;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInset;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) id delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } scrollIndicatorInsets;
+@property (readonly) Class superclass;
 
 + (id)_cellFont;
 + (id)_shadowImage;
 
+- (void).cxx_destruct;
 - (id)_completionForRow:(int)arg1;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentInset;
-- (void)dealloc;
 - (id)delegate;
 - (id)dequeueReusableCellWithIdentifier:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

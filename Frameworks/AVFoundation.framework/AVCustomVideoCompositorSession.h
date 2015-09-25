@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVVideoCompositing>, AVVideoComposition, AVVideoCompositionRenderContext, AVWeakReference, NSDictionary, NSError, NSObject<OS_dispatch_queue>;
-
 @interface AVCustomVideoCompositorSession : NSObject {
+    void *_callbackContextToken;
     <AVVideoCompositing> *_clientCustomCompositor;
     NSObject<OS_dispatch_queue> *_clientCustomCompositorQ;
     NSError *_clientError;

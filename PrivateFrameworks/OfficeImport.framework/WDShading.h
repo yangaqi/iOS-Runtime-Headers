@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OITSUColor;
-
 @interface WDShading : NSObject <NSCopying> {
     OITSUColor *mBackgroundColor;
     OITSUColor *mForegroundColor;
@@ -17,6 +15,7 @@
 - (id)background;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)foreground;
 - (id)init;
 - (BOOL)isEqual:(id)arg1;

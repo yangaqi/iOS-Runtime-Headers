@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
  */
 
-@class NSData, NSDate, NSString;
-
 @interface CPLRecordChange : NSObject <NSCopying, NSSecureCoding> {
     unsigned int _alterationTypeFlags;
     unsigned int _changeType;
@@ -15,17 +13,19 @@
     NSString *_realIdentifier;
     NSData *_recordChangeData;
     NSDate *_recordModificationDate;
+    BOOL _serverRecordIsCorrupted;
     BOOL _shouldFilterDefaultValuesForNewProperties;
 }
 
-@property unsigned int changeType;
-@property(copy) NSDate * dateDeleted;
-@property(copy) NSString * identifier;
-@property BOOL inExpunged;
-@property BOOL inTrash;
-@property(copy) NSString * realIdentifier;
-@property(copy) NSData * recordChangeData;
-@property(copy) NSDate * recordModificationDate;
+@property (nonatomic) unsigned int changeType;
+@property (nonatomic, copy) NSDate *dateDeleted;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic) BOOL inExpunged;
+@property (nonatomic) BOOL inTrash;
+@property (nonatomic, copy) NSString *realIdentifier;
+@property (nonatomic, copy) NSData *recordChangeData;
+@property (nonatomic, copy) NSDate *recordModificationDate;
+@property (nonatomic) BOOL serverRecordIsCorrupted;
 
 + (id)_descriptionForChangeType:(unsigned int)arg1 isSparseFullChange:(BOOL)arg2;
 + (Class)classForStoredClassName:(id)arg1 forCPLArchiver:(id)arg2;
@@ -46,7 +46,7 @@
 - (BOOL)applyChange:(id)arg1 copyPropertiesToFinalChange:(id)arg2 forChangeType:(unsigned int)arg3 updatedProperty:(id*)arg4;
 - (void)awakeFromStorage;
 - (unsigned int)changeType;
-- (id)checkDefaultValueBlockForPropertyWithSelector:(SEL)arg1;
+- (id /* block */)checkDefaultValueBlockForPropertyWithSelector:(SEL)arg1;
 - (id)compactedChangeWithRelatedChanges:(id)arg1 isOnlyChange:(BOOL)arg2 usingClientCache:(id)arg3;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)cplFullDescription;
@@ -59,6 +59,7 @@
 - (BOOL)hasChangeType:(unsigned int)arg1;
 - (unsigned int)hash;
 - (id)identifier;
+- (id)identifierForQuarantine;
 - (id)identifiersForMapping;
 - (BOOL)inExpunged;
 - (BOOL)inTrash;
@@ -69,6 +70,7 @@
 - (BOOL)isSparseFullChange;
 - (void)markAsSparseFullChange;
 - (id)mergeRecordChangeWithNewRecordChange:(id)arg1;
+- (unsigned long long)originalResourceSize;
 - (void)prepareForStorage;
 - (id)propertiesDescription;
 - (id)propertiesForChangeType:(unsigned int)arg1;
@@ -85,6 +87,7 @@
 - (id)resources;
 - (id)resourcesDescription;
 - (id)secondaryIdentifier;
+- (BOOL)serverRecordIsCorrupted;
 - (void)setAlterationTypeFlags:(unsigned int)arg1;
 - (void)setChangeType:(unsigned int)arg1;
 - (void)setDateDeleted:(id)arg1;
@@ -97,6 +100,7 @@
 - (void)setRelatedIdentifier:(id)arg1;
 - (void)setResources:(id)arg1;
 - (void)setSecondaryIdentifier:(id)arg1;
+- (void)setServerRecordIsCorrupted:(BOOL)arg1;
 - (void)setShouldFilterDefaultValuesForNewProperties:(BOOL)arg1;
 - (BOOL)shouldApplyPropertiesWithSelector:(SEL)arg1;
 - (BOOL)shouldFilterDefaultValuesForNewProperties;

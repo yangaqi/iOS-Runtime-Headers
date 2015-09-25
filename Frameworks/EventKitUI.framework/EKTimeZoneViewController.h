@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKTimeZoneViewControllerDelegate>, NSArray, NSString, NSTimeZone, UISearchController;
-
 @interface EKTimeZoneViewController : UITableViewController <UISearchControllerDelegate> {
     int _chooserStyle;
     NSArray *_cities;
@@ -13,14 +11,14 @@
     NSTimeZone *_timeZone;
 }
 
-@property(readonly) int chooserStyle;
-@property(retain) NSArray * cities;
-@property(copy,readonly) NSString * debugDescription;
-@property <EKTimeZoneViewControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-@property(copy) NSTimeZone * timeZone;
+@property (nonatomic, readonly) int chooserStyle;
+@property (nonatomic, retain) NSArray *cities;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKTimeZoneViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSTimeZone *timeZone;
 
 - (void).cxx_destruct;
 - (int)chooserStyle;
@@ -36,6 +34,7 @@
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
 - (id)timeZone;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)willDismissSearchController:(id)arg1;

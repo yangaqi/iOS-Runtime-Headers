@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSMutableSet;
-
 @interface CalDAVChecksumVersionsItem : CoreDAVItem {
     NSMutableSet *_versionStringsSupported;
 }
 
+- (void).cxx_destruct;
 - (void)addVersionSupported:(id)arg1;
 - (id)copyParseRules;
-- (void)dealloc;
 - (id)init;
 - (BOOL)supportsVersion:(id)arg1;
 

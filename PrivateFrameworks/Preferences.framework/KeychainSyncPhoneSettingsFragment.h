@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class <KeychainSyncPhoneSettingsFragmentDelegate>, KeychainSyncCountryInfo, NSArray, NSString, PSEditableTableCell, PSListController, PSPhoneNumberSpecifier, PSSpecifier;
-
 @interface KeychainSyncPhoneSettingsFragment : NSObject {
     KeychainSyncCountryInfo *_countryInfo;
     PSSpecifier *_countrySpecifier;
@@ -15,13 +13,14 @@
     NSString *_title;
 }
 
-@property(retain) KeychainSyncCountryInfo * countryInfo;
-@property <KeychainSyncPhoneSettingsFragmentDelegate> * delegate;
-@property(retain) NSString * phoneNumber;
-@property(retain,readonly) PSEditableTableCell * phoneNumberCell;
-@property(retain,readonly) NSArray * specifiers;
-@property(retain) NSString * title;
+@property (nonatomic, retain) KeychainSyncCountryInfo *countryInfo;
+@property (nonatomic) <KeychainSyncPhoneSettingsFragmentDelegate> *delegate;
+@property (nonatomic, retain) NSString *phoneNumber;
+@property (nonatomic, readonly) PSEditableTableCell *phoneNumberCell;
+@property (nonatomic, readonly) NSArray *specifiers;
+@property (nonatomic, retain) NSString *title;
 
+- (void).cxx_destruct;
 - (id)countryInfo;
 - (void)dealloc;
 - (id)delegate;

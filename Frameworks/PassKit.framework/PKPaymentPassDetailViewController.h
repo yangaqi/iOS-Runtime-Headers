@@ -2,12 +2,11 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKPassDeleteHandler>, <PKPassLibraryDataProvider>, <PKPaymentVerificationEntryDelegate>, NSArray, NSNumberFormatter, NSObject<OS_dispatch_source>, NSString, PKPaymentPass, PKPaymentPassDetailActivationFooterView, PKPaymentService, PKPaymentVerificationPresentationController, PKPaymentWebService, PKSettingTableCell, PKVerificationRequestRecord, UIColor;
-
-@interface PKPaymentPassDetailViewController : UITableViewController <MFMailComposeViewControllerDelegate, PKPaymentServiceDelegate, PKPaymentVerificationPresentationDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface PKPaymentPassDetailViewController : UITableViewController <MFMailComposeViewControllerDelegate, PKPaymentDataProviderDelegate, PKPaymentVerificationPresentationDelegate, PSStateRestoration, UITableViewDataSource, UITableViewDelegate> {
     PKPaymentPassDetailActivationFooterView *_activationFooter;
-    <PKPassLibraryDataProvider> *_dataProvider;
+    PKSettingTableCell *_automaticPresentationSwitch;
     BOOL _deepLinkingEnabled;
+    PKPaymentApplication *_defaultPaymentApplication;
     <PKPassDeleteHandler> *_deleteOverrider;
     UIColor *_detailTextColor;
     int _detailViewStyle;
@@ -17,33 +16,36 @@
     NSNumberFormatter *_numberFormatter;
     PKPaymentPass *_pass;
     BOOL _passDeletionInProgress;
-    PKPaymentService *_paymentService;
+    <PKPassLibraryDataProvider> *_passLibraryDataProvider;
+    NSArray *_paymentApplications;
+    <PKPaymentDataProvider> *_paymentServiceDataProvider;
     UIColor *_primaryTextColor;
     NSArray *_sections;
     NSObject<OS_dispatch_source> *_transactionTimer;
     NSArray *_transactions;
-    <PKPaymentVerificationEntryDelegate> *_verificationDelegate;
     PKPaymentVerificationPresentationController *_verificationPresenter;
     PKVerificationRequestRecord *_verificationRecord;
     UIColor *_warningTextColor;
     PKPaymentWebService *_webService;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <PKPassDeleteHandler> * deleteOverrider;
-@property(copy,readonly) NSString * description;
-@property UIColor * detailTextColor;
-@property(readonly) unsigned int hash;
-@property UIColor * highlightColor;
-@property UIColor * linkTextColor;
-@property UIColor * primaryTextColor;
-@property(readonly) Class superclass;
-@property(copy) NSArray * transactions;
-@property <PKPaymentVerificationEntryDelegate> * verificationDelegate;
-@property UIColor * warningTextColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PKPassDeleteHandler> *deleteOverrider;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) UIColor *detailTextColor;
+@property (readonly) unsigned int hash;
+@property (nonatomic) UIColor *highlightColor;
+@property (nonatomic) UIColor *linkTextColor;
+@property (nonatomic, retain) NSArray *paymentApplications;
+@property (nonatomic) UIColor *primaryTextColor;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSArray *transactions;
+@property (nonatomic) UIColor *warningTextColor;
 
 - (void)_activationFooterPressed:(id)arg1;
 - (id)_activationFooterView;
+- (id)_automaticPresentationCell;
+- (void)_automaticPresentationSwitchChanged:(id)arg1;
 - (id)_billingAddressCell;
 - (void)_callIssuer;
 - (id)_cardInfoCells;
@@ -56,6 +58,7 @@
 - (void)_didSelectContactBankSection;
 - (void)_didSelectDeleteCard;
 - (void)_didSelectPassStateSection;
+- (void)_didSelectPaymentApplicationSectionRowAtIndexPath:(id)arg1;
 - (void)_didSelectPrivacySectionAtRow:(int)arg1;
 - (void)_didSelectTransactionAtRow:(int)arg1;
 - (BOOL)_doesTableContainSection:(int)arg1;
@@ -76,37 +79,47 @@
 - (void)_notificationSwitchChanged:(id)arg1;
 - (int)_numberOfRowsForPassStateSection;
 - (void)_openIssuerWebsite;
+- (void)_passSettingsChanged:(id)arg1;
+- (id)_paymentApplicationsCellForIndexPath:(id)arg1;
+- (void)_presentMerchantDetailsViewWithTransaction:(id)arg1 forCell:(id)arg2;
 - (id)_privacyTermsCells;
-- (void)_reloadTransactionsWithCompletion:(id)arg1;
+- (void)_reloadPassAndView;
+- (void)_reloadTransactionSection;
+- (void)_reloadTransactionsWithCompletion:(id /* block */)arg1;
 - (void)_reloadView;
 - (void)_setPlaceholderColorForCell:(id)arg1;
 - (void)_setupSections;
+- (BOOL)_shouldShowAutomaticPresentation;
 - (BOOL)_shouldShowContactCell;
 - (BOOL)_shouldShowPrivacyPolicyCell;
 - (BOOL)_shouldShowTermsCell;
 - (id)_subtitleCell;
 - (id)_transactionCellForIndexPath:(id)arg1;
 - (void)_updateTransactionsArrayWithTransaction:(id)arg1;
+- (BOOL)canBeShownFromSuspendedState;
 - (void)dealloc;
 - (id)deleteOverrider;
 - (id)detailTextColor;
 - (void)didChangeVerificationPresentation;
 - (id)highlightColor;
 - (id)initWithPass:(id)arg1 webService:(id)arg2 style:(int)arg3 dataProvider:(id)arg4;
+- (id)initWithPass:(id)arg1 webService:(id)arg2 style:(int)arg3 passLibraryDataProvider:(id)arg4 paymentServiceDataProvider:(id)arg5;
 - (id)linkTextColor;
 - (void)mailComposeController:(id)arg1 didFinishWithResult:(int)arg2 error:(id)arg3;
 - (int)numberOfSectionsInTableView:(id)arg1;
+- (id)paymentApplications;
 - (void)paymentPassWithUniqueIdentifier:(id)arg1 didEnableTransactionService:(BOOL)arg2;
 - (void)paymentPassWithUniqueIdentifier:(id)arg1 didReceiveTransaction:(id)arg2;
-- (void)presentVerificationViewController:(id)arg1 animated:(BOOL)arg2 completion:(id)arg3;
+- (void)paymentPassWithUniqueIdentifier:(id)arg1 didRemoveTransactionWithIdentifier:(id)arg2;
+- (void)presentVerificationViewController:(id)arg1 animated:(BOOL)arg2 completion:(id /* block */)arg3;
 - (id)primaryTextColor;
 - (void)setDeleteOverrider:(id)arg1;
 - (void)setDetailTextColor:(id)arg1;
 - (void)setHighlightColor:(id)arg1;
 - (void)setLinkTextColor:(id)arg1;
+- (void)setPaymentApplications:(id)arg1;
 - (void)setPrimaryTextColor:(id)arg1;
 - (void)setTransactions:(id)arg1;
-- (void)setVerificationDelegate:(id)arg1;
 - (void)setWarningTextColor:(id)arg1;
 - (void)tableView:(id)arg1 accessoryButtonTappedForRowWithIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
@@ -119,7 +132,6 @@
 - (id)tableView:(id)arg1 titleForHeaderInSection:(int)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(int)arg2;
 - (id)transactions;
-- (id)verificationDelegate;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;

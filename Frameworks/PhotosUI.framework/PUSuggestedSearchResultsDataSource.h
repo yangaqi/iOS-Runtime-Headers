@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class <PUSuggestedSearchResultsDelegate>, NSArray, NSObject<OS_dispatch_queue>, NSString, PLPhotoLibrary, PSIDatabase;
-
 @interface PUSuggestedSearchResultsDataSource : NSObject <PUSuggestedSearchDelegate> {
     <PUSuggestedSearchResultsDelegate> *_delegate;
     PLPhotoLibrary *_photoLibrary;
@@ -11,20 +9,21 @@
     NSArray *_recentSearches;
     PSIDatabase *_searchIndex;
     BOOL _shouldReloadRecentSearchChanges;
+    PUSuggestedSearchLastYear *_suggestedSearchLastYear;
     NSArray *_suggestedSearches;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <PUSuggestedSearchResultsDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) PSIDatabase * searchIndex;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PUSuggestedSearchResultsDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) PSIDatabase *searchIndex;
+@property (readonly) Class superclass;
 
 + (void)_clearRecentSearches;
 + (id)_recentSearchObjects;
 + (id)_recentSearches;
-+ (BOOL)_saveRecentSearchWithSearchString:(id)arg1 displayTitle:(id)arg2 uuids:(id)arg3 albumUUID:(id)arg4;
++ (BOOL)saveRecentSearch:(id)arg1 albumUUID:(id)arg2 searchString:(id)arg3 displayTitle:(id)arg4 uuids:(id)arg5;
 
 - (void).cxx_destruct;
 - (void)_reloadRecentSearches;
@@ -32,6 +31,7 @@
 - (void)clearRecentSearches;
 - (void)dealloc;
 - (id)delegate;
+- (void)ensureResultsForLastYearPhotoSearch;
 - (id)initWithSearchIndex:(id)arg1;
 - (void)mergePendingChanges;
 - (id)nonemptySuggestedSearchAtIndex:(unsigned int)arg1;
@@ -40,7 +40,7 @@
 - (unsigned int)numberOfSuggestedSearches;
 - (id)recentSearchAtIndex:(unsigned int)arg1;
 - (id)recentSearches;
-- (void)saveRecentSearchWithSearchString:(id)arg1 displayTitle:(id)arg2 uuids:(id)arg3 albumUUID:(id)arg4;
+- (void)saveRecentSearch:(id)arg1 albumUUID:(id)arg2 searchString:(id)arg3 displayTitle:(id)arg4 uuids:(id)arg5;
 - (id)searchIndex;
 - (void)setDelegate:(id)arg1;
 - (void)setSearchIndex:(id)arg1;

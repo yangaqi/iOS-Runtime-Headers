@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, TSCH3DTexturePool;
-
 @interface TSCH3DSphericalEnvironmentShaderEffect : TSCH3DShaderEffect {
     NSArray *mMaterials;
     TSCH3DTexturePool *mPool;
@@ -18,7 +16,7 @@
 - (id)initWithMaterials:(id)arg1 pool:(id)arg2;
 - (void)inject:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (const struct array<<anonymous>::TextureVariables, 2> { struct TextureVariables { id x_1_1_1; id x_1_1_2; id x_1_1_3; } x1[2]; }*)textureVariablesArray;
+- (const struct array<(anonymous namespace)::TextureVariables, 2>=[2{TextureVariables=@@@ {}*)textureVariablesArray;
 - (void)updateState:(id)arg1 effectsStates:(id)arg2;
 - (void)uploadData:(id)arg1 effectsStates:(id)arg2;
 

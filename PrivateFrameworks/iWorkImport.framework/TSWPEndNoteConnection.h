@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSString;
-
 @interface TSWPEndNoteConnection : NSObject {
     struct { 
         BOOL applicationExists; 
@@ -16,13 +14,12 @@
     NSString *_format;
 }
 
-@property(retain) NSString * format;
+@property (retain) NSString *format;
 
 + (void)applyEndNoteXml:(id)arg1 toCitationRecord:(id)arg2;
 + (id)currentPluginDownloadURL;
 + (id)sharedEndNoteConnection;
 
-- (id).cxx_construct;
 - (BOOL)anyOpenLibraries;
 - (BOOL)anyOpenNonEmptyLibraries;
 - (struct { BOOL x1; BOOL x2; BOOL x3; })availability;

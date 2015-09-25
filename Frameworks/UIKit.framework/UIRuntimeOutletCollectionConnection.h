@@ -2,20 +2,18 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIRuntimeOutletCollectionConnection : UIRuntimeConnection {
     BOOL addsContentToExistingCollection;
     NSString *runtimeCollectionClassName;
 }
 
 @property BOOL addsContentToExistingCollection;
-@property(copy) NSString * runtimeCollectionClassName;
+@property (copy) NSString *runtimeCollectionClassName;
 
+- (void).cxx_destruct;
 - (BOOL)addsContentToExistingCollection;
 - (void)connect;
 - (void)connectForSimulator;
-- (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;

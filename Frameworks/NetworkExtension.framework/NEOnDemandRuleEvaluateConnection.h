@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
  */
 
-@class NSArray;
-
 @interface NEOnDemandRuleEvaluateConnection : NEOnDemandRule {
     NSArray *_connectionRules;
 }
 
-@property(copy) NSArray * connectionRules;
+@property (copy) NSArray *connectionRules;
 
 + (BOOL)supportsSecureCoding;
 
@@ -17,7 +15,7 @@
 - (id)connectionRules;
 - (id)copyLegacyDictionary;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)descriptionWithIndent:(int)arg1;
+- (id)descriptionWithIndent:(int)arg1 options:(unsigned int)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initFromLegacyDictionary:(id)arg1;

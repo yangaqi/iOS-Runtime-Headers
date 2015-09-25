@@ -2,20 +2,18 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImage;
-
 @interface UISliderContent : NSObject {
-    UIImage *maxTrack;
-    UIImage *minTrack;
-    UIImage *thumb;
+    UIImage *_maxTrack;
+    UIImage *_minTrack;
+    UIImage *_thumb;
 }
 
-@property(readonly) BOOL isEmpty;
-@property(retain) UIImage * maxTrack;
-@property(retain) UIImage * minTrack;
-@property(retain) UIImage * thumb;
+@property (nonatomic, readonly) BOOL isEmpty;
+@property (nonatomic, retain) UIImage *maxTrack;
+@property (nonatomic, retain) UIImage *minTrack;
+@property (nonatomic, retain) UIImage *thumb;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (BOOL)isEmpty;
 - (id)maxTrack;
 - (id)minTrack;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Parsec.framework/Parsec
  */
 
-@class <PRSSessionController>, NSMutableData, NSString, NSURLSessionDataTask;
-
 @interface PRSRealQueryTask : PRSQueryTask <PRSParsecDataHandler, PRSTriggerTask> {
     BOOL _allowLocation;
     NSMutableData *_collectedData;
@@ -17,20 +15,20 @@
     double _startTime;
 }
 
-@property BOOL allowLocation;
-@property(retain) NSMutableData * collectedData;
-@property(retain) NSURLSessionDataTask * dataTask;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
+@property (nonatomic) BOOL allowLocation;
+@property (nonatomic, retain) NSMutableData *collectedData;
+@property (nonatomic, retain) NSURLSessionDataTask *dataTask;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property BOOL doCache;
 @property BOOL doResume;
-@property <PRSSessionController> * factory;
+@property (readonly) <PRSSessionController> *factory;
 @property BOOL failed;
-@property(readonly) unsigned int hash;
-@property(retain) NSString * queryString;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *queryString;
 @property float scaleFactor;
-@property double startTime;
-@property(readonly) Class superclass;
+@property (nonatomic) double startTime;
+@property (readonly) Class superclass;
 
 + (id)existingQueryForString:(id)arg1 scaleFactor:(float)arg2 webSearch:(BOOL)arg3 handler:(id)arg4;
 
@@ -48,6 +46,7 @@
 - (BOOL)doResume;
 - (id)factory;
 - (BOOL)failed;
+- (void)gotCachedResultSet:(id)arg1;
 - (id)initWithSession:(id)arg1 handler:(id)arg2 factory:(id)arg3 queue:(id)arg4 scaleFactor:(float)arg5 allowLocation:(BOOL)arg6 feedback:(id)arg7;
 - (id)queryString;
 - (void)resume;
@@ -57,7 +56,6 @@
 - (void)setDataTask:(id)arg1;
 - (void)setDoCache:(BOOL)arg1;
 - (void)setDoResume:(BOOL)arg1;
-- (void)setFactory:(id)arg1;
 - (void)setFailed:(BOOL)arg1;
 - (void)setQueryString:(id)arg1;
 - (void)setScaleFactor:(float)arg1;

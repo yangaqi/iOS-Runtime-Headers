@@ -2,25 +2,28 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class NSDictionary;
-
 @interface IKPlayerStateChangeInfo : NSObject {
     NSDictionary *_jsonValue;
+    int _oldState;
     int _state;
 }
 
-@property double duration;
-@property double elapsedTime;
-@property(copy) NSDictionary * jsonValue;
-@property(readonly) int state;
+@property (nonatomic) double duration;
+@property (nonatomic) double elapsedTime;
+@property (nonatomic, copy) NSDictionary *jsonValue;
+@property (nonatomic, readonly) int oldState;
+@property (nonatomic, readonly) int state;
+
++ (id)stateNameForState:(int)arg1;
 
 - (void).cxx_destruct;
-- (id)_stateNameForState:(int)arg1;
 - (double)duration;
 - (double)elapsedTime;
 - (id)initWithState:(int)arg1;
+- (id)initWithState:(int)arg1 oldState:(int)arg2;
 - (id)jsonValue;
 - (id)objectForKeyedSubscript:(id)arg1;
+- (int)oldState;
 - (void)setDuration:(double)arg1;
 - (void)setElapsedTime:(double)arg1;
 - (void)setJsonValue:(id)arg1;

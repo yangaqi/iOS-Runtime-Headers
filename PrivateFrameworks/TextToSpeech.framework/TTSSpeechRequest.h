@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/TextToSpeech.framework/TextToSpeech
  */
 
-@class <TTSSpeechRequestDelegate>, NSAttributedString, NSString, NSURL, TTSSpeechChannel;
-
 @interface TTSSpeechRequest : NSObject <NSSecureCoding> {
     NSAttributedString *_attributedText;
     unsigned int _audioQueueFlags;
@@ -23,29 +21,31 @@
     TTSSpeechChannel *_speechChannel;
     NSString *_text;
     BOOL _useCustomVoice;
+    BOOL _useMonarchStyleRate;
     BOOL _useVoiceBooster;
     double _volume;
 }
 
-@property(copy) NSAttributedString * attributedText;
-@property unsigned int audioQueueFlags;
-@property unsigned int audioSessionID;
-@property BOOL audioSessionIDIsValid;
-@property double dispatchTime;
-@property int footprint;
-@property int gender;
-@property double handledTime;
-@property(copy) NSString * languageCode;
-@property double latency;
-@property BOOL maintainsInput;
-@property(copy) NSURL * outputPath;
-@property double pitch;
-@property double rate;
-@property(retain) TTSSpeechChannel * speechChannel;
-@property(copy) NSString * text;
-@property BOOL useCustomVoice;
-@property BOOL useVoiceBooster;
-@property double volume;
+@property (nonatomic, copy) NSAttributedString *attributedText;
+@property (nonatomic) unsigned int audioQueueFlags;
+@property (nonatomic) unsigned int audioSessionID;
+@property (nonatomic) BOOL audioSessionIDIsValid;
+@property (nonatomic) double dispatchTime;
+@property (nonatomic) int footprint;
+@property (nonatomic) int gender;
+@property (nonatomic) double handledTime;
+@property (nonatomic, copy) NSString *languageCode;
+@property (nonatomic) double latency;
+@property (nonatomic) BOOL maintainsInput;
+@property (nonatomic, copy) NSURL *outputPath;
+@property (nonatomic) double pitch;
+@property (nonatomic) double rate;
+@property (nonatomic, retain) TTSSpeechChannel *speechChannel;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic) BOOL useCustomVoice;
+@property (nonatomic) BOOL useMonarchStyleRate;
+@property (nonatomic) BOOL useVoiceBooster;
+@property (nonatomic) double volume;
 
 + (BOOL)supportsSecureCoding;
 
@@ -87,6 +87,7 @@
 - (void)setSpeechChannel:(id)arg1;
 - (void)setText:(id)arg1;
 - (void)setUseCustomVoice:(BOOL)arg1;
+- (void)setUseMonarchStyleRate:(BOOL)arg1;
 - (void)setUseVoiceBooster:(BOOL)arg1;
 - (void)setVolume:(double)arg1;
 - (id)speechChannel;
@@ -97,6 +98,7 @@
 - (void)speechRequestMark:(int)arg1 didStartForRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 forService:(id)arg3;
 - (id)text;
 - (BOOL)useCustomVoice;
+- (BOOL)useMonarchStyleRate;
 - (BOOL)useVoiceBooster;
 - (long)vocalizerFootprint;
 - (long)vocalizerGender;

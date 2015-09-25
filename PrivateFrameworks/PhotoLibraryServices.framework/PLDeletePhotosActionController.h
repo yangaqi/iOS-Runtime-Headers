@@ -2,48 +2,29 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray, PLPhotoLibrary, UIAlertController, UIBarButtonItem, UIViewController;
-
 @interface PLDeletePhotosActionController : NSObject {
-    UIBarButtonItem *__referenceBarButtonItem;
     int _action;
     UIAlertController *_actionSheetController;
     NSArray *_additionalAssetsToDelete;
     NSArray *_assets;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completionHandler;
-
-    BOOL _handlesDuplicates;
+    id /* block */ _completionHandler;
+    <PLDeletePhotosActionControllerDelegate> *_delegate;
     UIAlertController *_oneTimeConfirmation;
     UIAlertController *_overQuotaConfirmation;
     PLPhotoLibrary *_photoLibrary;
-    UIViewController *_referenceViewController;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _willDeleteHandler;
-
+    id /* block */ _willDeleteHandler;
 }
 
-@property(setter=_setReferenceBarButtonItem:,retain) UIBarButtonItem * _referenceBarButtonItem;
-@property(readonly) int action;
-@property(readonly) NSArray * assets;
-@property(readonly) BOOL handlesDuplicates;
-@property(readonly) PLPhotoLibrary * photoLibrary;
+@property (nonatomic, readonly) int action;
+@property (nonatomic, readonly, retain) NSArray *assets;
+@property (nonatomic, readonly) <PLDeletePhotosActionControllerDelegate> *delegate;
+@property (nonatomic, readonly, retain) PLPhotoLibrary *photoLibrary;
 
 - (void)_actionSheetDeletePressed:(BOOL)arg1;
 - (void)_didCompleteWithDestructiveAction:(BOOL)arg1;
 - (void)_getDeleteActionSheetTitle:(id*)arg1 destructiveButtonTitle:(id*)arg2 cancelButtonTitle:(id*)arg3 forAssets:(id)arg4 additionalPhotoStreamAssets:(id)arg5;
 - (void)_oneTimeAlertConfirmed;
 - (void)_overQuotaAlertConfirmed:(BOOL)arg1;
-- (id)_referenceBarButtonItem;
-- (void)_setReferenceBarButtonItem:(id)arg1;
 - (void)_setupActionSheet;
 - (void)_setupOnetimeConfirmationSheet;
 - (void)_setupOverQuotaConfirmationSheet;
@@ -52,12 +33,10 @@
 - (int)action;
 - (id)assets;
 - (void)dealloc;
-- (void)dismissAnimated:(BOOL)arg1;
-- (BOOL)handlesDuplicates;
-- (id)initWithPhotoLibrary:(id)arg1 assets:(id)arg2 action:(int)arg3 handleDuplicates:(BOOL)arg4;
+- (id)delegate;
+- (id)initWithPhotoLibrary:(id)arg1 assets:(id)arg2 action:(int)arg3 delegate:(id)arg4;
+- (void)performWithWillDeleteHandler:(id /* block */)arg1 completionHandler:(id /* block */)arg2;
 - (id)photoLibrary;
-- (id)presentInViewController:(id)arg1 fromBarButtonItem:(id)arg2 willDeleteHAndler:(id)arg3 completionHandler:(id)arg4;
-- (void)redisplayInViewController:(id)arg1 fromBarButtonItem:(id)arg2;
-- (void)runDestructiveActionWithCompletion:(id)arg1;
+- (void)runDestructiveActionWithCompletion:(id /* block */)arg1;
 
 @end

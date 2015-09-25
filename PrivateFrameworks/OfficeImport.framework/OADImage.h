@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADMovie, OADOle, OADShapeGeometry;
-
 @interface OADImage : OADGraphic {
     OADShapeGeometry *mGeometry;
     OADMovie *mMovie;
     OADOle *mOle;
 }
 
+- (void)changeParentTextListStylePreservingEffectiveValues:(id)arg1;
 - (id)createImageFill;
 - (void)createPictureFramePresetGeometry;
 - (void)dealloc;

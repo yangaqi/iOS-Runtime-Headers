@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@class BSSettings, NSError, NSString;
-
-@interface BSActionResponse : NSObject <BSSettingDescriptionProvider, BSXPCCoding, NSCopying> {
+@interface BSActionResponse : NSObject <BSDescriptionProviding, BSSettingDescriptionProvider, BSXPCCoding, NSCopying> {
     NSError *_error;
     BSSettings *_info;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain,readonly) NSError * error;
-@property(readonly) unsigned int hash;
-@property(copy,readonly) BSSettings * info;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) NSError *error;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly, copy) BSSettings *info;
+@property (readonly) Class superclass;
 
 + (id)response;
 + (id)responseForError:(id)arg1;
@@ -23,6 +21,7 @@
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
+- (id)descriptionBuilderWithMultilinePrefix:(id)arg1;
 - (id)descriptionWithMultilinePrefix:(id)arg1;
 - (void)encodeWithXPCDictionary:(id)arg1;
 - (id)error;
@@ -33,6 +32,8 @@
 - (id)initWithXPCDictionary:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)keyDescriptionForSetting:(unsigned int)arg1;
+- (id)succinctDescription;
+- (id)succinctDescriptionBuilder;
 - (id)valueDescriptionForFlag:(int)arg1 object:(id)arg2 ofSetting:(unsigned int)arg3;
 
 @end

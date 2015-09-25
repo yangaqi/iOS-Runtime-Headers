@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SiriTasks.framework/SiriTasks
  */
 
-@class NSNumber;
-
-@interface STWeatherCurrentConditions : AFSiriModelObject {
+@interface STWeatherCurrentConditions : STSiriModelObject {
     int _conditionCode;
     NSNumber *_highTemperature;
     NSNumber *_lowTemperature;

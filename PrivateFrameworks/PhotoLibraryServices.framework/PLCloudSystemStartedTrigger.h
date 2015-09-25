@@ -2,21 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
  */
 
-@class PLCloudPhotoLibraryManager;
-
-@interface PLCloudSystemStartedTrigger : PLCloudTrigger {
-    BOOL _activated;
-    PLCloudPhotoLibraryManager *_cloudLibraryManager;
-}
-
-@property(retain,readonly) PLCloudPhotoLibraryManager * cloudLibraryManager;
-
-+ (id)sharedInstance;
-+ (void)triggerWithCloudLibraryManager:(id)arg1;
-
-- (void)activate;
-- (id)cloudLibraryManager;
-- (void)setCloudLibraryManager:(id)arg1;
-- (void)start;
+@interface PLCloudSystemStartedTrigger : PLCloudSystemStartupTrigger
 
 @end

@@ -2,9 +2,11 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class NSTimer, UIScrollView;
-
 @interface PUAutoScroller : NSObject {
+    float _autoScrollerInset;
+    float _autoScrollerMaximumSpeed;
+    double _autoScrollerTimerInterval;
+    <PUAutoScrollerDelegate> *_delegate;
     struct CGPoint { 
         float x; 
         float y; 
@@ -15,12 +17,18 @@
         float y; 
     } _speed;
     NSTimer *_timer;
+    int _updateTrigger;
 }
 
-@property struct CGPoint { float x1; float x2; } distanceFromCenterFrame;
-@property(retain) UIScrollView * scrollView;
-@property struct CGPoint { float x1; float x2; } speed;
-@property(retain) NSTimer * timer;
+@property (nonatomic) float autoScrollerInset;
+@property (nonatomic) float autoScrollerMaximumSpeed;
+@property (nonatomic) double autoScrollerTimerInterval;
+@property (nonatomic) <PUAutoScrollerDelegate> *delegate;
+@property (nonatomic) struct CGPoint { float x1; float x2; } distanceFromCenterFrame;
+@property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic) struct CGPoint { float x1; float x2; } speed;
+@property (nonatomic, retain) NSTimer *timer;
+@property (nonatomic) int updateTrigger;
 
 + (void)_scrollTestFire;
 + (void)performScrollTest:(id)arg1 iterations:(unsigned int)arg2 length:(float)arg3 delta:(float)arg4 vertical:(BOOL)arg5;
@@ -29,17 +37,27 @@
 - (void)_handlerTimer:(id)arg1;
 - (void)_startTimer;
 - (void)_stopTimer;
+- (float)autoScrollerInset;
+- (float)autoScrollerMaximumSpeed;
+- (double)autoScrollerTimerInterval;
 - (void)dealloc;
+- (id)delegate;
 - (struct CGPoint { float x1; float x2; })distanceFromCenterFrame;
 - (id)initWithTargetScrollView:(id)arg1;
 - (id)scrollView;
+- (void)setAutoScrollerInset:(float)arg1;
+- (void)setAutoScrollerMaximumSpeed:(float)arg1;
+- (void)setAutoScrollerTimerInterval:(double)arg1;
+- (void)setDelegate:(id)arg1;
 - (void)setDistanceFromCenterFrame:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setScrollView:(id)arg1;
 - (void)setSpeed:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setTimer:(id)arg1;
+- (void)setUpdateTrigger:(int)arg1;
 - (struct CGPoint { float x1; float x2; })speed;
 - (void)stopAndInvalidate;
 - (id)timer;
+- (int)updateTrigger;
 - (void)updateWithGestureRecognizer:(id)arg1;
 
 @end

@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
  */
 
-@class CUIRenditionMetrics, CUIRenditionSliceInformation;
-
 @interface _CUIRawPixelRendition : CUIThemeRendition {
-    struct CGImage {} *_image[16];
+    struct CGImage {} *_image;
     unsigned int _nimages;
     CUIRenditionMetrics *_renditionMetrics;
     CUIRenditionSliceInformation *_sliceInformation;
@@ -19,6 +17,7 @@
 - (BOOL)isScaled;
 - (id)maskForSliceIndex:(int)arg1;
 - (id)metrics;
+- (int)pixelFormat;
 - (id)sliceInformation;
 - (struct CGImage { }*)unslicedImage;
 

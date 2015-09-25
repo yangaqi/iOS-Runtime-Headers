@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/TextToSpeech.framework/TextToSpeech
  */
 
-@class <TTSSpeechSynthesizerDelegate>, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
-
 @interface TTSSpeechSynthesizer : NSObject <TTSSpeechConnectionDelegate> {
     unsigned int _audioQueueFlags;
     unsigned int _audioSessionID;
@@ -25,23 +23,26 @@
         unsigned int delegateWillSpeakWithRequest : 1; 
         unsigned int willUseInput : 1; 
     } _synthesizerFlags;
+    BOOL _useMonarchStyleRate;
     BOOL _useSharedSession;
     NSString *_voiceIdentifier;
     float _volume;
 }
 
-@property <TTSSpeechSynthesizerDelegate> * delegate;
-@property float pitch;
-@property float rate;
-@property(readonly) NSString * resolvedVoiceIdentifier;
-@property(retain) NSString * voiceIdentifier;
-@property float volume;
+@property (nonatomic) <TTSSpeechSynthesizerDelegate> *delegate;
+@property (nonatomic) float pitch;
+@property (nonatomic) float rate;
+@property (nonatomic, readonly) NSString *resolvedVoiceIdentifier;
+@property (nonatomic, retain) NSString *voiceIdentifier;
+@property (nonatomic) float volume;
 
++ (id)allAvailableVoices;
 + (id)availableLanguageCodes;
 + (id)availableVoices;
 + (id)availableVoicesForLanguageCode:(id)arg1;
 + (void)initialize;
 + (BOOL)isSystemSpeaking;
++ (void)refreshAllAvailableVoices;
 
 - (void).cxx_destruct;
 - (BOOL)_continueSpeakingRequest:(id)arg1 withError:(id*)arg2;
@@ -73,10 +74,12 @@
 - (float)pitch;
 - (float)rate;
 - (id)resolvedVoiceIdentifier;
+- (id)resolvedVoiceIdentifierForLanguageCode:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setFootprint:(int)arg1;
 - (void)setPitch:(float)arg1;
 - (void)setRate:(float)arg1;
+- (void)setUseMonarchStyleRate:(BOOL)arg1;
 - (void)setVoiceIdentifier:(id)arg1;
 - (void)setVolume:(float)arg1;
 - (id)speechString;
@@ -93,6 +96,7 @@
 - (BOOL)stopSpeakingRequest:(id)arg1 atNextBoundary:(int)arg2 error:(id*)arg3;
 - (BOOL)stopSpeakingRequest:(id)arg1 atNextBoundary:(int)arg2 synchronously:(BOOL)arg3 error:(id*)arg4;
 - (void)useAudioQueueFlags:(unsigned int)arg1;
+- (BOOL)useMonarchStyleRate;
 - (void)useSharedAudioSession:(BOOL)arg1;
 - (void)useSpecificAudioSession:(unsigned int)arg1;
 - (id)voiceIdentifier;

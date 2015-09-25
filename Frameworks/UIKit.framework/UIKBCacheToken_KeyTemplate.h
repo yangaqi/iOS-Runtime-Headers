@@ -3,10 +3,13 @@
  */
 
 @interface UIKBCacheToken_KeyTemplate : UIKBCacheToken_Key {
+    NSString *_annotationString;
 }
 
 + (id)tokenTemplateForKey:(id)arg1 name:(id)arg2 style:(int)arg3 size:(struct CGSize { float x1; float x2; })arg4;
 
-- (id)_stringWithAdditionalValues:(id)arg1;
+- (id)_stringWithAdditionalValues:(id /* block */)arg1;
+- (void)annotateWithBool:(BOOL)arg1;
+- (void)dealloc;
 
 @end

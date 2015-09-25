@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@interface _NSPredicateUtilities : NSObject {
-}
+@interface _NSPredicateUtilities : NSObject
 
 + (id)_collapseAndTokenize:(id)arg1 flags:(unsigned int)arg2 locale:(id)arg3;
 + (id)_compoundPredicateClassesForSecureCoding;
@@ -38,6 +37,7 @@
 + (id)from:(id)arg1 subtract:(id)arg2;
 + (id)inverseOrderKey:(id)arg1;
 + (id)leftshift:(id)arg1 by:(id)arg2;
++ (id)length:(id)arg1;
 + (id)ln:(id)arg1;
 + (id)log:(id)arg1;
 + (id)lowercase:(id)arg1;

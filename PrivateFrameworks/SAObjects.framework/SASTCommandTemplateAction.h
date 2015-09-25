@@ -2,23 +2,23 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSString;
+@interface SASTCommandTemplateAction : AceObject <SASTTemplateAction>
 
-@interface SASTCommandTemplateAction : AceObject <SASTTemplateAction> {
-}
-
-@property(copy) NSArray * commands;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (nonatomic, copy) NSArray *commands;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, copy) NSNumber *delayInMilliSeconds;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)commandTemplateAction;
 + (id)commandTemplateActionWithDictionary:(id)arg1 context:(id)arg2;
 
 - (id)commands;
+- (id)delayInMilliSeconds;
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (void)setCommands:(id)arg1;
+- (void)setDelayInMilliSeconds:(id)arg1;
 
 @end

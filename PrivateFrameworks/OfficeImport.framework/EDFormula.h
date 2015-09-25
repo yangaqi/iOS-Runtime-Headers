@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface EDFormula : NSObject <EDFormulaBuilding> {
     struct __CFData { } *mPackedData;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)formula;
 
@@ -30,6 +28,7 @@
 - (bool)copyTokenFromXlPtg:(struct XlPtg { char *x1; int x2; unsigned int x3; unsigned short x4; }*)arg1;
 - (unsigned int)countExtendedDataForTokenAtIndex:(unsigned int)arg1;
 - (void)dealloc;
+- (id)description;
 - (char *)extendedDataForTokenAtIndex:(unsigned int)arg1 extendedDataIndex:(unsigned int)arg2 length:(unsigned int*)arg3;
 - (unsigned int)firstTokenIndexForArgAtIndex:(unsigned int)arg1;
 - (BOOL)fixTableOfConstantsRefs;

@@ -2,12 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIEvent;
-
 @interface UIDelayedControlTargetAction : UIControlTargetAction {
     UIEvent *_event;
 }
 
-- (void)dealloc;
+@property (nonatomic, retain) UIEvent *event;
+
+- (void).cxx_destruct;
+- (id)event;
+- (void)setEvent:(id)arg1;
 
 @end

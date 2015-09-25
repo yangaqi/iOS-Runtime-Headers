@@ -3,17 +3,23 @@
  */
 
 @interface GEODirectionsRouteRequest : GEODirectionsRequest {
+    double _requestTime;
 }
 
-- (void)_commonSetup:(id)arg1;
-- (void)fetchDirectionsWithCompletion:(id)arg1;
+@property (nonatomic) double requestTime;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
 - (id)init;
-- (id)initWithDeparture:(double)arg1;
-- (id)initWithDirectionsRequest:(id)arg1 origin:(id)arg2 destination:(id)arg3 withFeedback:(id)arg4;
 - (id)initWithFeedback:(id)arg1;
-- (id)initWithOrigin:(id)arg1 andDestination:(id)arg2 departure:(double)arg3;
 - (id)initWithQuickETARequest:(id)arg1 withFeedback:(id)arg2;
-- (id)initWithZilch:(id)arg1 departure:(double)arg2;
+- (double)requestTime;
 - (Class)responseClass;
+- (void)setRequestTime:(double)arg1;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (void)_commonSetup:(id)arg1;
+- (id)initWithDirectionsRequest:(id)arg1 origin:(id)arg2 destination:(id)arg3 withFeedback:(id)arg4;
 
 @end

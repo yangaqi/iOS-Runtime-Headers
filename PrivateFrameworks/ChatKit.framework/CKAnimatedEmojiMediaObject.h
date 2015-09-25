@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@interface CKAnimatedEmojiMediaObject : CKAnimatedImageMediaObject {
-}
+@interface CKAnimatedEmojiMediaObject : CKAnimatedImageMediaObject
 
 + (id)UTITypes;
 + (id)attachmentSummary:(unsigned int)arg1;
@@ -11,6 +10,7 @@
 + (BOOL)shouldShadePreview;
 
 - (id)backgroundColorOverride;
+- (id)icon;
 - (id)pasteboardItem;
 - (Class)previewBalloonViewClass;
 - (id)previewForWidth:(float)arg1 orientation:(BOOL)arg2;

@@ -2,38 +2,39 @@
    Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
  */
 
-@class <CLLocationManagerDelegate>, CLHeading, CLLocation, NSSet, NSString;
-
 @interface CLLocationManager : NSObject {
     id _internal;
 }
 
-@property int activityType;
-@property(readonly) double bestAccuracy;
-@property <CLLocationManagerDelegate> * delegate;
-@property double desiredAccuracy;
-@property double distanceFilter;
-@property(getter=isDynamicAccuracyReductionEnabled) BOOL dynamicAccuracyReductionEnabled;
-@property(readonly) double expectedGpsUpdateInterval;
-@property(copy,readonly) CLHeading * heading;
-@property(readonly) BOOL headingAvailable;
-@property double headingFilter;
-@property int headingOrientation;
-@property(readonly) struct __CLClient { }* internalClient;
-@property(copy,readonly) CLLocation * location;
-@property(readonly) BOOL locationServicesApproved;
-@property(readonly) BOOL locationServicesAvailable;
-@property(readonly) BOOL locationServicesEnabled;
-@property(getter=isLocationServicesPreferencesDialogEnabled) BOOL locationServicesPreferencesDialogEnabled;
-@property(getter=isMatchInfoEnabled) BOOL matchInfoEnabled;
-@property(readonly) double maximumRegionMonitoringDistance;
-@property(copy,readonly) NSSet * monitoredRegions;
-@property BOOL pausesLocationUpdatesAutomatically;
-@property(getter=isPersistentMonitoringEnabled) BOOL persistentMonitoringEnabled;
-@property BOOL privateMode;
-@property(copy) NSString * purpose;
-@property(copy,readonly) NSSet * rangedRegions;
-@property BOOL supportInfo;
+@property (nonatomic) int activityType;
+@property (nonatomic) BOOL allowsBackgroundLocationUpdates;
+@property (nonatomic, readonly) double bestAccuracy;
+@property (nonatomic) <CLLocationManagerDelegate> *delegate;
+@property (nonatomic) double desiredAccuracy;
+@property (nonatomic) double distanceFilter;
+@property (getter=isDynamicAccuracyReductionEnabled, nonatomic) BOOL dynamicAccuracyReductionEnabled;
+@property (nonatomic, readonly) double expectedGpsUpdateInterval;
+@property (nonatomic, readonly, copy) CLHeading *heading;
+@property (nonatomic, readonly) BOOL headingAvailable;
+@property (nonatomic) double headingFilter;
+@property (nonatomic) int headingOrientation;
+@property (nonatomic, readonly) struct __CLClient { }*internalClient;
+@property (nonatomic, readonly, copy) CLLocation *location;
+@property (nonatomic, readonly) BOOL locationServicesApproved;
+@property (nonatomic, readonly) BOOL locationServicesAvailable;
+@property (nonatomic, readonly) BOOL locationServicesEnabled;
+@property (getter=isLocationServicesPreferencesDialogEnabled, nonatomic) BOOL locationServicesPreferencesDialogEnabled;
+@property (getter=isMatchInfoEnabled, nonatomic) BOOL matchInfoEnabled;
+@property (nonatomic, readonly) double maximumRegionMonitoringDistance;
+@property (nonatomic, readonly, copy) NSSet *monitoredRegions;
+@property (nonatomic) BOOL pausesLocationUpdatesAutomatically;
+@property (getter=isPersistentMonitoringEnabled, nonatomic) BOOL persistentMonitoringEnabled;
+@property (nonatomic) BOOL privateMode;
+@property (nonatomic, copy) NSString *purpose;
+@property (nonatomic, readonly, copy) NSSet *rangedRegions;
+@property (nonatomic) BOOL supportInfo;
+
+// Image: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
 
 + (int)_authorizationStatus;
 + (int)_authorizationStatusForBundleIdentifier:(id)arg1 bundle:(id)arg2;
@@ -81,6 +82,7 @@
 
 - (int)activityType;
 - (void)allowDeferredLocationUpdatesUntilTraveled:(double)arg1 timeout:(double)arg2;
+- (BOOL)allowsBackgroundLocationUpdates;
 - (id)appsUsingLocation;
 - (id)appsUsingLocationWithDetails;
 - (double)bestAccuracy;
@@ -95,7 +97,6 @@
 - (BOOL)headingAvailable;
 - (double)headingFilter;
 - (int)headingOrientation;
-- (void)historicLocationsFromDate:(id)arg1 forInterval:(double)arg2;
 - (id)init;
 - (id)initWithEffectiveBundle:(id)arg1;
 - (id)initWithEffectiveBundleIdentifier:(id)arg1;
@@ -149,6 +150,7 @@
 - (void)resetApps;
 - (void)resumeLocationUpdates;
 - (void)setActivityType:(int)arg1;
+- (void)setAllowsBackgroundLocationUpdates:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setDesiredAccuracy:(double)arg1;
 - (void)setDistanceFilter:(double)arg1;
@@ -187,5 +189,25 @@
 - (void)stopUpdatingVehicleSpeed;
 - (BOOL)supportInfo;
 - (id)technologiesInUse;
+
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
++ (BOOL)convertAuthStatusToBool:(int)arg1;
++ (int)convertToHMDLocationAuthorization:(int)arg1;
++ (id)hmdLocationAuthorizationAsString:(int)arg1;
++ (id)locationAuthorizationDescription:(int)arg1;
++ (id)referenceFrameDescription:(int)arg1;
++ (id)regionDescription:(id)arg1;
++ (id)regionStateDescription:(int)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
++ (BOOL)convertAuthStatusToBool:(int)arg1;
++ (int)convertToHMDLocationAuthorization:(int)arg1;
++ (id)hmdLocationAuthorizationAsString:(int)arg1;
++ (id)locationAuthorizationDescription:(int)arg1;
++ (id)referenceFrameDescription:(int)arg1;
++ (id)regionDescription:(id)arg1;
++ (id)regionStateDescription:(int)arg1;
 
 @end

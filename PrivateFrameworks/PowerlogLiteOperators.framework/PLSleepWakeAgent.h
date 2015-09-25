@@ -2,20 +2,22 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@class PLSemaphore;
-
 @interface PLSleepWakeAgent : PLAgent {
+    double _apSOCBasePower;
     PLSemaphore *_canSleepSemaphore;
     unsigned int _pmNotifier;
     unsigned int _rootDomainConnect;
     struct IONotificationPort { } *_systemPowerPortRef;
 }
 
-@property(retain) PLSemaphore * canSleepSemaphore;
+@property double apSOCBasePower;
+@property (retain) PLSemaphore *canSleepSemaphore;
 @property unsigned int pmNotifier;
 @property unsigned int rootDomainConnect;
-@property struct IONotificationPort { }* systemPowerPortRef;
+@property struct IONotificationPort { }*systemPowerPortRef;
 
++ (id)entryAggregateDefinitionAPOn;
++ (id)entryAggregateDefinitions;
 + (id)entryEventBackwardDefinitions;
 + (id)entryEventForwardDefinitionPowerState;
 + (id)entryEventForwardDefinitions;
@@ -24,13 +26,15 @@
 + (id)railDefinitions;
 
 - (void).cxx_destruct;
+- (void)aggregateWakeTimeWithLastCompletedDate:(id)arg1 withNow:(id)arg2;
+- (double)apSOCBasePower;
 - (id)canSleepSemaphore;
-- (void)fakeSleep;
-- (void)fakeWake;
 - (id)init;
+- (void)initOperatorDependancies;
 - (void)log;
 - (unsigned int)pmNotifier;
 - (unsigned int)rootDomainConnect;
+- (void)setApSOCBasePower:(double)arg1;
 - (void)setCanSleepSemaphore:(id)arg1;
 - (void)setPmNotifier:(unsigned int)arg1;
 - (void)setRootDomainConnect:(unsigned int)arg1;

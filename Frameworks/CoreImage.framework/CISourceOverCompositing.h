@@ -2,11 +2,8 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CISourceOverCompositing : _CICompositeFilter {
-}
+@interface CISourceOverCompositing : _CICompositeFilter
 
-+ (id)_filter_display_name;
-+ (id)_kernel_name;
 + (id)_kernel_source;
 
 - (id)outputImage;

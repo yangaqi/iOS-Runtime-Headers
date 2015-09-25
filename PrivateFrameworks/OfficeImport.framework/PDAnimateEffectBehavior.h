@@ -2,17 +2,20 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface PDAnimateEffectBehavior : PDAnimateBehavior {
-    NSString *mFilter;
+    BOOL mHasTransition;
+    NSMutableDictionary *mPropertyMap;
     int mTransition;
 }
 
+@property (nonatomic, retain) NSMutableDictionary *propertyMap;
+
 - (void)dealloc;
-- (id)filter;
+- (BOOL)hasProperties;
+- (BOOL)hasTransition;
 - (id)init;
-- (void)setFilter:(id)arg1;
+- (id)propertyMap;
+- (void)setPropertyMap:(id)arg1;
 - (void)setTransition:(int)arg1;
 - (int)transition;
 

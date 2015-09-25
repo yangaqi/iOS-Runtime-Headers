@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSString;
-
 @interface _UIActivityIndicatorViewArtworkItem : NSObject <NSDiscardableContent> {
     NSString *_artKey;
     struct { 
@@ -13,9 +11,10 @@
     NSArray *_images;
 }
 
-@property(readonly) NSString * artKey;
-@property(retain) NSArray * images;
+@property (nonatomic, readonly) NSString *artKey;
+@property (nonatomic, retain) NSArray *images;
 
+- (void).cxx_destruct;
 - (id)artKey;
 - (BOOL)beginContentAccess;
 - (void)dealloc;

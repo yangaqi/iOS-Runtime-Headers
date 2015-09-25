@@ -2,24 +2,21 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSMutableSet;
-
 @interface CalDAVScheduleResponseItem : CoreDAVItem {
     NSMutableSet *_failedResponseItems;
     NSMutableSet *_responses;
     NSMutableSet *_successfulICS;
 }
 
-@property(retain) NSMutableSet * failedResponseItems;
-@property(retain) NSMutableSet * responses;
-@property(retain) NSMutableSet * successfulICS;
+@property (nonatomic, retain) NSMutableSet *failedResponseItems;
+@property (nonatomic, retain) NSMutableSet *responses;
+@property (nonatomic, retain) NSMutableSet *successfulICS;
 
+- (void).cxx_destruct;
 - (void)addNewTopLevelItem:(id)arg1;
 - (id)copyParseRules;
-- (void)dealloc;
 - (id)description;
 - (id)failedResponseItems;
-- (id)initWithNameSpace:(id)arg1 andName:(id)arg2;
 - (id)responses;
 - (void)setFailedResponseItems:(id)arg1;
 - (void)setResponses:(id)arg1;

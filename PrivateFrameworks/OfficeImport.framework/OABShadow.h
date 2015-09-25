@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface OABShadow : NSObject {
-}
+@interface OABShadow : NSObject
 
-+ (id)readShadowFromShapeBaseManager:(id)arg1 colorPalette:(id)arg2;
++ (id)readShadowFromShapeBaseManager:(id)arg1 state:(id)arg2;
 
 @end

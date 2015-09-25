@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/AXRuntime.framework/AXRuntime
  */
 
-@class <AXElementGroupGenerator>, AXElementGroup, NSArray, NSHashTable, NSString;
-
 @interface AXElementGroup : NSArray <AXGroupable> {
+    AXElement *_elementCommunity;
     NSArray *_elementStore;
     <AXElementGroupGenerator> *_generator;
     NSHashTable *_groupObservers;
@@ -14,23 +13,24 @@
     BOOL _rootGroup;
 }
 
-@property(readonly) BOOL allowsChangingExistingGroupingOfContents;
-@property(readonly) BOOL allowsVisualGroupingOfChildren;
-@property(readonly) BOOL canBeGroupedWithOtherGroupables;
-@property(readonly) BOOL canBeReplacedByChildren;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
-@property <AXElementGroupGenerator> * generator;
-@property(retain) NSHashTable * groupObservers;
-@property int groupTraits;
-@property(readonly) unsigned int hash;
-@property(readonly) NSString * label;
-@property(readonly) unsigned int numberOfElements;
-@property AXElementGroup * parentGroup;
-@property(getter=isRootGroup) BOOL rootGroup;
-@property(readonly) BOOL shouldBeUngrouped;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) BOOL allowsChangingExistingGroupingOfContents;
+@property (nonatomic, readonly) BOOL allowsVisualGroupingOfChildren;
+@property (nonatomic, readonly) BOOL canBeGroupedWithOtherGroupables;
+@property (nonatomic, readonly) BOOL canBeReplacedByChildren;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) AXElement *elementCommunity;
+@property (nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } frame;
+@property (nonatomic) <AXElementGroupGenerator> *generator;
+@property (nonatomic, retain) NSHashTable *groupObservers;
+@property (nonatomic) int groupTraits;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *label;
+@property (nonatomic, readonly) unsigned int numberOfElements;
+@property (nonatomic) AXElementGroup *parentGroup;
+@property (getter=isRootGroup, nonatomic) BOOL rootGroup;
+@property (nonatomic, readonly) BOOL shouldBeUngrouped;
+@property (readonly) Class superclass;
 
 + (id)groupWithElements:(id)arg1;
 + (id)groupWithElements:(id)arg1 label:(id)arg2;
@@ -47,23 +47,25 @@
 - (void)_transferStateToGroup:(id)arg1;
 - (BOOL)allowsChangingExistingGroupingOfContents;
 - (BOOL)allowsVisualGroupingOfChildren;
-- (id)ancestorPassingTest:(id)arg1;
+- (id)ancestorPassingTest:(id /* block */)arg1;
 - (BOOL)canBeGroupedWithOtherGroupables;
 - (BOOL)canBeReplacedByChildren;
-- (id)childrenPassingTest:(id)arg1;
+- (id)childrenPassingTest:(id /* block */)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
 - (void)dealloc;
 - (id)debugDescription;
 - (id)debugFullDescription;
-- (id)descendantsPassingTest:(id)arg1;
+- (id)descendantsPassingTest:(id /* block */)arg1;
 - (id)description;
 - (id)descriptionWithLocale:(id)arg1;
+- (id)elementCommunity;
+- (void)enumerateLeafDescendantsUsingBlock:(id /* block */)arg1;
 - (id)firstChild;
 - (id)firstChildMatchingItem:(id)arg1;
-- (id)firstChildPassingTest:(id)arg1;
+- (id)firstChildPassingTest:(id /* block */)arg1;
 - (id)firstDescendantMatchingItem:(id)arg1;
-- (id)firstDescendantPassingTest:(id)arg1;
+- (id)firstDescendantPassingTest:(id /* block */)arg1;
 - (id)firstLeafDescendant;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })frame;
 - (id)generator;
@@ -92,6 +94,7 @@
 - (id)parentGroup;
 - (id)previousSiblingOfChild:(id)arg1 didWrap:(BOOL*)arg2;
 - (void)registerGroupObserver:(id)arg1;
+- (void)setElementCommunity:(id)arg1;
 - (void)setGenerator:(id)arg1;
 - (void)setGroupObservers:(id)arg1;
 - (void)setGroupTraits:(int)arg1;

@@ -2,36 +2,36 @@
    Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
  */
 
-@class <GKGameCenterControllerDelegate>, GKHostedGameCenterViewController, GKRemoteGameCenterViewController, NSMutableDictionary, NSString, UIAlertController;
-
-@interface GKGameCenterViewController : UINavigationController {
+@interface GKGameCenterViewController : UINavigationController <GKExtensionParentViewControllerProtocol> {
     UIAlertController *_alertController;
     <GKGameCenterControllerDelegate> *_gameCenterDelegateWeak;
-    GKHostedGameCenterViewController *_privateViewController;
-    GKRemoteGameCenterViewController *_remoteViewController;
-    NSMutableDictionary *_volatileProperties;
+    NSString *_leaderboardIdentifier;
+    int _leaderboardTimeScope;
+    GKDashboardHostViewController *_remoteViewController;
+    int _viewState;
 }
 
-@property(retain) UIAlertController * alertController;
-@property <GKGameCenterControllerDelegate> * gameCenterDelegate;
-@property(retain) NSString * leaderboardCategory;
-@property(retain) NSString * leaderboardIdentifier;
-@property int leaderboardTimeScope;
-@property(retain) GKHostedGameCenterViewController * privateViewController;
-@property(retain) GKRemoteGameCenterViewController * remoteViewController;
-@property int viewState;
-@property(retain) NSMutableDictionary * volatileProperties;
+@property (nonatomic, retain) UIAlertController *alertController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) <GKGameCenterControllerDelegate> *gameCenterDelegate;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *leaderboardCategory;
+@property (nonatomic, retain) NSString *leaderboardIdentifier;
+@property (nonatomic) int leaderboardTimeScope;
+@property (nonatomic, retain) GKDashboardHostViewController *remoteViewController;
+@property (readonly) Class superclass;
+@property (nonatomic) int viewState;
 
 + (BOOL)_preventsAppearanceProxyCustomization;
 + (BOOL)accessInstanceVariablesDirectly;
 
-- (BOOL)_canSetPropertiesOnRemoteViewController;
-- (void)_flushVolatileProperties;
-- (BOOL)_remoteControllerIsPresented;
 - (void)_setupChildViewController;
+- (void)_setupRemoteViewController;
 - (id)alertController;
 - (BOOL)automaticallyForwardAppearanceAndRotationMethodsToChildViewControllers;
 - (void)dealloc;
+- (void)extensionDidFinishWithError:(id)arg1;
 - (id)gameCenterDelegate;
 - (id)init;
 - (id)leaderboardCategory;
@@ -39,27 +39,27 @@
 - (int)leaderboardTimeScope;
 - (void)loadView;
 - (void)notifyDelegateOnWillFinish;
-- (id)privateViewController;
 - (id)remoteViewController;
 - (void)setAlertController:(id)arg1;
 - (void)setGameCenterDelegate:(id)arg1;
 - (void)setLeaderboardCategory:(id)arg1;
 - (void)setLeaderboardIdentifier:(id)arg1;
+- (void)setLeaderboardIdentifierFromExtension:(id)arg1;
 - (void)setLeaderboardTimeScope:(int)arg1;
-- (void)setPrivateViewController:(id)arg1;
+- (void)setLeaderboardTimeScopeFromExtension:(int)arg1;
 - (void)setRemoteViewController:(id)arg1;
-- (void)setValue:(id)arg1 forKey:(id)arg2;
 - (void)setViewState:(int)arg1;
-- (void)setVolatileProperties:(id)arg1;
+- (void)setViewStateFromExtension:(int)arg1;
 - (BOOL)shouldAutomaticallyForwardAppearanceMethods;
 - (BOOL)shouldAutomaticallyForwardRotationMethods;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
+- (BOOL)shouldShowPlayForChallenge;
+- (BOOL)shouldShowPlayForTurnBasedMatch;
+- (BOOL)shouldShowQuitForTurnBasedMatch;
 - (unsigned int)supportedInterfaceOrientations;
-- (id)valueForKey:(id)arg1;
 - (void)viewDidAppear:(BOOL)arg1;
 - (void)viewDidDisappear:(BOOL)arg1;
 - (int)viewState;
 - (void)viewWillAppear:(BOOL)arg1;
-- (id)volatileProperties;
 
 @end

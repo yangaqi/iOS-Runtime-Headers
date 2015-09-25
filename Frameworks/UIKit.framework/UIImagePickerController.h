@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UINavigationControllerDelegate><UIImagePickerControllerDelegate>, NSArray, NSMutableDictionary, UIView;
-
 @interface UIImagePickerController : UINavigationController <NSCoding> {
     struct CGRect { 
         struct CGPoint { 
@@ -29,31 +27,34 @@
     int _sourceType;
 }
 
-@property BOOL allowsEditing;
-@property BOOL allowsImageEditing;
-@property int cameraCaptureMode;
-@property int cameraDevice;
-@property int cameraFlashMode;
-@property(retain) UIView * cameraOverlayView;
-@property struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } cameraViewTransform;
-@property <UINavigationControllerDelegate><UIImagePickerControllerDelegate> * delegate;
-@property(copy) NSArray * mediaTypes;
-@property BOOL showsCameraControls;
-@property int sourceType;
-@property double videoMaximumDuration;
-@property int videoQuality;
+@property (nonatomic) BOOL allowsEditing;
+@property (nonatomic) BOOL allowsImageEditing;
+@property (nonatomic) int cameraCaptureMode;
+@property (nonatomic) int cameraDevice;
+@property (nonatomic) int cameraFlashMode;
+@property (nonatomic, retain) UIView *cameraOverlayView;
+@property (nonatomic) struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; } cameraViewTransform;
+@property (nonatomic) <UINavigationControllerDelegate><UIImagePickerControllerDelegate> *delegate;
+@property (nonatomic, copy) NSArray *mediaTypes;
+@property (nonatomic) BOOL showsCameraControls;
+@property (nonatomic) int sourceType;
+@property (nonatomic) double videoMaximumDuration;
+@property (nonatomic) int videoQuality;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (BOOL)_isMediaTypeAvailable:(id)arg1 forSource:(int)arg2;
 + (BOOL)_reviewCapturedItems;
-+ (id)aaui_fixedCropRect:(id)arg1 forOriginalImage:(id)arg2;
 + (id)availableCaptureModesForCameraDevice:(int)arg1;
 + (id)availableMediaTypesForSourceType:(int)arg1;
 + (BOOL)isCameraDeviceAvailable:(int)arg1;
 + (BOOL)isFlashAvailableForCameraDevice:(int)arg1;
 + (BOOL)isSourceTypeAvailable:(int)arg1;
 
+- (void).cxx_destruct;
 - (struct CGSize { float x1; float x2; })_adjustedContentSizeForPopover:(struct CGSize { float x1; float x2; })arg1;
 - (BOOL)_allowsImageEditing;
+- (BOOL)_allowsIris;
 - (BOOL)_allowsMultipleSelection;
 - (void)_autoDismiss;
 - (id)_cameraViewController;
@@ -71,6 +72,7 @@
 - (id)_properties;
 - (void)_removeAllChildren;
 - (void)_setAllowsImageEditing:(BOOL)arg1;
+- (void)_setAllowsIris:(BOOL)arg1;
 - (void)_setAllowsMultipleSelection:(BOOL)arg1;
 - (void)_setImagePickerSavingOptions:(unsigned int)arg1;
 - (void)_setProperties:(id)arg1;
@@ -87,8 +89,6 @@
 - (int)cameraFlashMode;
 - (id)cameraOverlayView;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })cameraViewTransform;
-- (BOOL)ckCanDismissWhenSuspending;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
@@ -118,5 +118,13 @@
 - (void)viewWillAppear:(BOOL)arg1;
 - (void)viewWillDisappear:(BOOL)arg1;
 - (void)viewWillUnload;
+
+// Image: /System/Library/PrivateFrameworks/AppleAccountUI.framework/AppleAccountUI
+
++ (id)aaui_fixedCropRect:(id)arg1 forOriginalImage:(id)arg2;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
+- (BOOL)ckCanDismissWhenSuspending;
 
 @end

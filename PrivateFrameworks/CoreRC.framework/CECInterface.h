@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreRC.framework/CoreRC
  */
 
-@class <CECInterfaceDelegate>, NSDictionary;
-
 @interface CECInterface : CoreRCInterface {
     unsigned short _addressMask;
     <CECInterfaceDelegate> *_delegate;
@@ -15,17 +13,20 @@
     BOOL _promiscMode;
 }
 
-@property(readonly) unsigned short addressMask;
-@property <CECInterfaceDelegate> * delegate;
-@property(readonly) BOOL isValid;
-@property(readonly) struct CECFrame { unsigned char x1[16]; unsigned int x2 : 5; unsigned int x3 : 3; } lastReceivedFrame;
-@property(readonly) BOOL promiscMode;
-@property(readonly) NSDictionary * properties;
+@property (nonatomic, readonly) unsigned short addressMask;
+@property (nonatomic) <CECInterfaceDelegate> *delegate;
+@property (nonatomic, readonly) BOOL isValid;
+@property (nonatomic, readonly) struct CECFrame { unsigned char x1[16]; unsigned int x2 : 5; unsigned int x3 : 3; } lastReceivedFrame;
+@property (nonatomic, readonly) BOOL promiscMode;
+@property (nonatomic, readonly) NSDictionary *properties;
 
 - (unsigned short)addressMask;
 - (BOOL)allocateCECAddress:(unsigned char*)arg1 forDeviceType:(unsigned char)arg2 error:(id*)arg3;
+- (BOOL)deallocateCECAddress:(unsigned char)arg1 error:(id*)arg2;
 - (id)delegate;
 - (BOOL)errorIsNack:(id)arg1;
+- (void)hibernationChanged:(BOOL)arg1;
+- (id)init;
 - (BOOL)isValid;
 - (struct CECFrame { unsigned char x1[16]; unsigned int x2 : 5; unsigned int x3 : 3; })lastReceivedFrame;
 - (BOOL)pingTo:(unsigned char)arg1 acknowledged:(BOOL*)arg2 error:(id*)arg3;

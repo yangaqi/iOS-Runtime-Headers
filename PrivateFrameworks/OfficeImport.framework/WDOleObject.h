@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface WDOleObject : WDPicture {
-}
+@interface WDOleObject : WDPicture
 
+- (id)description;
 - (int)runType;
 
 @end

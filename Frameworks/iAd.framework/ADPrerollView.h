@@ -2,31 +2,31 @@
    Image: /System/Library/Frameworks/iAd.framework/iAd
  */
 
-@class <ADPrerollViewDelegate>, ADPrerollBottomBar, ADPrerollTopBar, NSString, NSTimer, UIImageView;
-
 @interface ADPrerollView : UIView <ADPrerollBottomBarDelegate, ADPrerollTopBarDelegate, UIGestureRecognizerDelegate> {
     double _accumulatedViewingTime;
     BOOL _barsVisible;
     ADPrerollBottomBar *_bottomBar;
     <ADPrerollViewDelegate> *_delegate;
+    BOOL _hasAction;
     NSTimer *_passiveWatchingTimer;
     BOOL _skipButtonCountingDown;
     UIImageView *_swooshView;
     ADPrerollTopBar *_topBar;
 }
 
-@property double accumulatedViewingTime;
-@property BOOL barsVisible;
-@property(retain) ADPrerollBottomBar * bottomBar;
-@property(copy,readonly) NSString * debugDescription;
-@property <ADPrerollViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) NSTimer * passiveWatchingTimer;
-@property BOOL skipButtonCountingDown;
-@property(readonly) Class superclass;
-@property(retain) UIImageView * swooshView;
-@property(retain) ADPrerollTopBar * topBar;
+@property (nonatomic) double accumulatedViewingTime;
+@property (nonatomic) BOOL barsVisible;
+@property (nonatomic, retain) ADPrerollBottomBar *bottomBar;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <ADPrerollViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL hasAction;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSTimer *passiveWatchingTimer;
+@property (nonatomic) BOOL skipButtonCountingDown;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIImageView *swooshView;
+@property (nonatomic, retain) ADPrerollTopBar *topBar;
 
 + (Class)layerClass;
 
@@ -47,8 +47,9 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)displayAsPaused:(BOOL)arg1;
-- (void)fadeToBlackWithCompletion:(id)arg1;
+- (void)fadeToBlackWithCompletion:(id /* block */)arg1;
 - (BOOL)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
+- (BOOL)hasAction;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layoutSubviews;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
@@ -58,6 +59,7 @@
 - (void)setBottomBar:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setElapsedTime:(double)arg1 totalTime:(double)arg2;
+- (void)setHasAction:(BOOL)arg1;
 - (void)setPassiveWatchingTimer:(id)arg1;
 - (void)setSkipButtonCountingDown:(BOOL)arg1;
 - (void)setSwooshView:(id)arg1;

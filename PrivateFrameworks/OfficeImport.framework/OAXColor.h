@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface OAXColor : NSObject {
-}
+@interface OAXColor : NSObject
 
 + (id)presetColorEnumMap;
 + (id)presetColorRGBEnumMap;
@@ -21,7 +20,11 @@
 + (id)schemeColorEnumMap;
 + (id)stringSRgbColor:(id)arg1;
 + (id)systemColorEnumMap;
++ (void)writeColor:(id)arg1 to:(id)arg2;
++ (void)writePlaceholderColor:(id)arg1 to:(id)arg2;
 + (void)writePresetColor:(id)arg1 to:(id)arg2;
-+ (void)writeSRgbColor:(id)arg1 to:(id)arg2;
++ (void)writeRgbColor:(id)arg1 to:(id)arg2;
++ (void)writeSchemeColor:(id)arg1 to:(id)arg2;
++ (void)writeSystemColor:(id)arg1 to:(id)arg2;
 
 @end

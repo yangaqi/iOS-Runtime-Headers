@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
  */
 
-@class NSData;
-
 @interface ICSTokenizer : NSObject {
     int _cursor;
     NSData *_data;
@@ -19,6 +17,7 @@
 @property int logCount;
 @property BOOL printedICS;
 
+- (void).cxx_destruct;
 - (BOOL)consumeEOL;
 - (BOOL)consumeEscaped:(const char *)arg1;
 - (BOOL)consumeFolding;

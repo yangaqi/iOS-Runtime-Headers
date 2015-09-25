@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GameCenterPrivateUI.framework/GameCenterPrivateUI
  */
 
-@class CALayer, GKCollectionViewCell, NSArray, NSString;
-
-@interface GKEditActionsView : UIView <UIActionSheetDelegate> {
+@interface GKEditActionsView : UIView {
     NSArray *_actionButtons;
     GKCollectionViewCell *_cell;
     NSArray *_editActionConstraints;
@@ -12,19 +10,13 @@
     float _visibleWidth;
 }
 
-@property(retain) NSArray * actionButtons;
-@property GKCollectionViewCell * cell;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) NSArray * editActionConstraints;
-@property(readonly) unsigned int hash;
-@property(retain) CALayer * maskLayer;
-@property(readonly) Class superclass;
-@property float visibleWidth;
+@property (nonatomic, retain) NSArray *actionButtons;
+@property (nonatomic) GKCollectionViewCell *cell;
+@property (nonatomic, retain) NSArray *editActionConstraints;
+@property (nonatomic, retain) CALayer *maskLayer;
+@property (nonatomic) float visibleWidth;
 
 - (id)actionButtons;
-- (void)actionSheet:(id)arg1 clickedButtonAtIndex:(int)arg2;
-- (void)actionSheet:(id)arg1 willDismissWithButtonIndex:(int)arg2;
 - (id)cell;
 - (void)dealloc;
 - (void)didTouchEditAction:(id)arg1;

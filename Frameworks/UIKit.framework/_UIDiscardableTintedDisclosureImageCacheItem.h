@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor, UIImage;
-
 @interface _UIDiscardableTintedDisclosureImageCacheItem : NSObject <NSDiscardableContent> {
     struct { 
         unsigned int isDiscarded : 1; 
@@ -14,9 +12,10 @@
     UIImage *_tintedImage;
 }
 
-@property(readonly) UIColor * tintColor;
-@property(readonly) UIImage * tintedImage;
+@property (nonatomic, readonly) UIColor *tintColor;
+@property (nonatomic, readonly) UIImage *tintedImage;
 
+- (void).cxx_destruct;
 - (id)_tintedDisclosureImage:(BOOL)arg1;
 - (BOOL)beginContentAccess;
 - (void)dealloc;

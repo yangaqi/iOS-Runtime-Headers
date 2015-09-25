@@ -2,24 +2,15 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <BSLogging>, BSTransaction, NSArray, NSDate, NSHashTable, NSMutableArray, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_queue>, NSSet, NSString;
-
 @interface BSTransaction : NSObject <BSWatchdogProviding> {
-    NSMutableArray *_auditHistory;
-    BOOL _buildAuditHistory;
+    BOOL _aborted;
+    BSAuditHistory *_auditHistory;
     NSMutableArray *_childTransactions;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completionBlock;
-
-    <BSLogging> *_debugLogger;
+    id /* block */ _completionBlock;
+    NSMutableSet *_debugLoggers;
+    BOOL _debugLoggingEnabled;
+    NSError *_error;
     BOOL _failed;
-    NSString *_failureReason;
     BOOL _interrupted;
     NSMutableSet *_lifeAssertions;
     NSMutableSet *_milestones;
@@ -30,32 +21,42 @@
     unsigned int _state;
 }
 
-@property(retain,readonly) NSArray * childTransactions;
-@property(getter=isComplete,readonly) BOOL complete;
-@property(copy) id completionBlock;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(getter=isFailed,readonly) BOOL failed;
-@property(readonly) unsigned int hash;
-@property(getter=isInterruptable,readonly) BOOL interruptable;
-@property(getter=isInterrupted,readonly) BOOL interrupted;
-@property(retain,readonly) NSSet * milestones;
-@property(retain) BSTransaction * parentTransaction;
-@property(retain,readonly) NSObject<OS_dispatch_queue> * queue;
-@property(getter=isRunning,readonly) BOOL running;
-@property(readonly) unsigned int state;
-@property(readonly) Class superclass;
+@property (getter=isAborted, nonatomic, readonly) BOOL aborted;
+@property (nonatomic, readonly, retain) NSArray *allErrors;
+@property (nonatomic) BOOL buildAuditHistory;
+@property (nonatomic, readonly, retain) NSArray *childTransactions;
+@property (getter=isComplete, nonatomic, readonly) BOOL complete;
+@property (nonatomic, copy) id /* block */ completionBlock;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) NSError *error;
+@property (getter=isFailed, nonatomic, readonly) BOOL failed;
+@property (readonly) unsigned int hash;
+@property (getter=isInterrupted, nonatomic, readonly) BOOL interrupted;
+@property (getter=isInterruptible, nonatomic, readonly) BOOL interruptible;
+@property (nonatomic, readonly, retain) NSSet *milestones;
+@property (nonatomic) BSTransaction *parentTransaction;
+@property (nonatomic, readonly, retain) NSObject<OS_dispatch_queue> *queue;
+@property (getter=isRunning, nonatomic, readonly) BOOL running;
+@property (nonatomic, readonly) unsigned int state;
+@property (readonly) Class superclass;
 
+- (void)_abortForError:(id)arg1;
 - (void)_addAuditHistory:(id)arg1;
+- (void)_addAuditHistoryAndDebugLogWithFormat:(id)arg1;
 - (void)_addChildTransaction:(id)arg1;
-- (void)_addLifeAssertion:(id)arg1;
+- (void)_addDebugLogger:(id)arg1;
+- (void)_addLifeAssertion:(id)arg1 ignoringAuditHistory:(BOOL)arg2;
 - (BOOL)_areChildTransactionsComplete;
 - (void)_begin;
 - (BOOL)_canBeInterrupted;
 - (void)_checkAndReportIfCompleted;
 - (void)_childTransactionDidComplete:(id)arg1;
+- (id)_createErrorWithCode:(int)arg1 reason:(id)arg2 description:(id)arg3 precipitatingError:(id)arg4;
 - (id)_customizedDescriptionProperties;
 - (void)_debugLogWithFormat:(id)arg1;
+- (id)_debugLoggers;
+- (BOOL)_debugLoggingEnabled;
 - (id)_descriptionForDebugging:(BOOL)arg1 indentLevel:(unsigned int)arg2;
 - (void)_didAddChildTransaction:(id)arg1;
 - (void)_didBegin;
@@ -63,10 +64,13 @@
 - (void)_didInterruptWithReason:(id)arg1;
 - (void)_didRemoveChildTransaction:(id)arg1;
 - (void)_didSatisfyMilestone:(id)arg1;
-- (void)_enumerateChildTransactionsWithBlock:(id)arg1;
-- (void)_enumerateObserversWithBlock:(id)arg1;
+- (void)_enumerateChildTransactionsWithBlock:(id /* block */)arg1;
+- (void)_enumerateObserversWithBlock:(id /* block */)arg1;
 - (void)_evaluateCompletion;
-- (void)_failNow;
+- (void)_failForTimeoutWithDescription:(id)arg1;
+- (void)_failWithError:(id)arg1;
+- (void)_failWithReason:(id)arg1 description:(id)arg2;
+- (void)_failWithReason:(id)arg1 description:(id)arg2 precipitatingError:(id)arg3;
 - (void)_forceInterrupt;
 - (void)_interruptWithReason:(id)arg1 force:(BOOL)arg2;
 - (BOOL)_isParentTransactionComplete;
@@ -78,20 +82,25 @@
 - (void)_noteTransactionStateInAuditHistory;
 - (void)_notifyObserversOfCompletion;
 - (id)_parentTransaction;
-- (void)_preventTransactionCompletionForReason:(id)arg1 andExecuteBlock:(id)arg2;
+- (void)_preventTransactionCompletionForReason:(id)arg1 ignoringAuditHistory:(BOOL)arg2 andExecuteBlock:(id /* block */)arg3;
 - (void)_removeChildTransaction:(id)arg1;
-- (void)_removeLifeAssertion:(id)arg1;
+- (void)_removeDebugLogger:(id)arg1;
+- (void)_removeLifeAssertion:(id)arg1 ignoringAuditHistory:(BOOL)arg2;
 - (BOOL)_removeMilestones:(id)arg1 ignoringAuditHistory:(BOOL)arg2;
+- (BOOL)_revertWithReason:(id)arg1;
 - (void)_setParentTransaction:(id)arg1;
 - (void)_setParentTransaction:(id)arg1 assertIfNecessary:(BOOL)arg2;
 - (void)_setState:(unsigned int)arg1;
 - (BOOL)_shouldComplete;
+- (BOOL)_shouldFailForChildTransaction:(id)arg1;
 - (unsigned int)_state;
 - (id)_stringForInterruptReason:(id)arg1;
 - (id)_stringForMilestones:(id)arg1;
 - (id)_stringForState:(unsigned int)arg1;
+- (void)_terminateNow;
 - (void)_willAddChildTransaction:(id)arg1;
 - (void)_willBegin;
+- (void)_willComplete;
 - (void)_willFailWithReason:(id)arg1;
 - (void)_willInterruptWithReason:(id)arg1;
 - (void)_willRemoveChildTransaction:(id)arg1;
@@ -99,29 +108,32 @@
 - (void)addMilestone:(id)arg1;
 - (void)addMilestones:(id)arg1;
 - (void)addObserver:(id)arg1;
+- (id)allErrors;
 - (id)auditHistory;
 - (void)begin;
 - (BOOL)buildAuditHistory;
 - (id)childTransactions;
 - (id)childTransactionsOfClass:(Class)arg1;
-- (id)completionBlock;
+- (id /* block */)completionBlock;
 - (void)dealloc;
 - (id)debugDescription;
-- (id)debugLogger;
 - (id)description;
-- (void)evaluateMilestone:(id)arg1 withEvaluator:(id)arg2;
+- (id)error;
+- (void)evaluateMilestone:(id)arg1 withEvaluator:(id /* block */)arg2;
 - (void)failWithReason:(id)arg1;
 - (BOOL)hasChildTransactionsOfClass:(Class)arg1;
 - (id)init;
 - (void)interrupt;
 - (void)interruptWithReason:(id)arg1;
+- (BOOL)isAborted;
 - (BOOL)isComplete;
 - (BOOL)isFailed;
 - (BOOL)isInterruptable;
 - (BOOL)isInterrupted;
+- (BOOL)isInterruptible;
 - (BOOL)isRunning;
 - (BOOL)isWaitingForMilestone:(id)arg1;
-- (void)listenForSatisfiedMilestone:(id)arg1 withBlock:(id)arg2;
+- (void)listenForSatisfiedMilestone:(id)arg1 withBlock:(id /* block */)arg2;
 - (id)milestones;
 - (id)parentTransaction;
 - (id)queue;
@@ -134,8 +146,7 @@
 - (void)removeObserver:(id)arg1;
 - (void)satisfyMilestone:(id)arg1;
 - (void)setBuildAuditHistory:(BOOL)arg1;
-- (void)setCompletionBlock:(id)arg1;
-- (void)setDebugLogger:(id)arg1;
+- (void)setCompletionBlock:(id /* block */)arg1;
 - (void)setParentTransaction:(id)arg1;
 - (BOOL)shouldWatchdog:(id*)arg1;
 - (unsigned int)state;

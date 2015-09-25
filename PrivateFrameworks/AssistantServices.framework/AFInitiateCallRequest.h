@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
  */
 
-@class AFCall;
-
 @interface AFInitiateCallRequest : AFSiriRequest {
-    AFCall *_call;
+    STCall *_call;
 }
 
 + (BOOL)supportsSecureCoding;

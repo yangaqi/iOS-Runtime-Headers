@@ -2,24 +2,22 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIButton, UIDictationMeterView, UIKeyboardDicationBackground, _UISiriWaveyView;
-
-@interface UIDictationView : UIView <_UISiriWaveyViewDelegate> {
+@interface UIDictationView : UIView <SUICFlamesViewDelegate> {
     BOOL _automaticAppearanceWasEnabled;
     UIKeyboardDicationBackground *_background;
     UIButton *_endpointButton;
     UIButton *_endpointButtonLandscape;
+    SUICFlamesView *_flamesView;
     BOOL _keyboardInTransition;
     UIDictationMeterView *_meterView;
     int _state;
     UIButton *_waveTapEndpointButton;
-    _UISiriWaveyView *_waveyView;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)activeInstance;
 + (Class)dictationViewClass;
@@ -29,7 +27,7 @@
 
 - (void)applicationEnteredBackground;
 - (void)applicationWillResignActive;
-- (float)audioLevelForWaveyView:(id)arg1;
+- (float)audioLevelForFlamesView:(id)arg1;
 - (struct CGPoint { float x1; float x2; })backgroundOffset;
 - (struct CGPoint { float x1; float x2; })contentOffset;
 - (struct CGSize { float x1; float x2; })currentScreenSize;

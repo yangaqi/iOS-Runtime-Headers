@@ -2,24 +2,13 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CKDClientContext, CKDDatabaseOperation, NSDate, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString;
-
 @interface CKDQueuedFetch : NSObject {
     BOOL _allowsCellularAccess;
     NSObject<OS_dispatch_queue> *_callbackQueue;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _completionHandler;
-
+    id /* block */ _completionHandler;
     NSMutableDictionary *_completionHandlersByItemID;
     CKDClientContext *_context;
     NSString *_deviceIdentifier;
-    CKDDatabaseOperation *_fetchOp;
     BOOL _isFinished;
     NSDate *_lastRequestDate;
     NSOperationQueue *_operationQueue;
@@ -31,40 +20,39 @@
     int _usesBackgroundSession;
 }
 
-@property BOOL allowsCellularAccess;
-@property(retain) NSObject<OS_dispatch_queue> * callbackQueue;
-@property(copy) id completionHandler;
-@property(retain) NSMutableDictionary * completionHandlersByItemID;
-@property CKDClientContext * context;
-@property(retain) NSString * deviceIdentifier;
-@property(retain) CKDDatabaseOperation * fetchOp;
-@property BOOL isFinished;
-@property(retain) NSDate * lastRequestDate;
-@property NSOperationQueue * operationQueue;
-@property int qos;
-@property int scope;
-@property(readonly) BOOL shouldStart;
-@property(retain) NSString * sourceApplicationBundleIdentifier;
-@property(retain) NSString * sourceApplicationSecondaryIdentifier;
-@property(retain) NSDate * startDate;
-@property int usesBackgroundSession;
+@property (nonatomic) BOOL allowsCellularAccess;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *callbackQueue;
+@property (nonatomic, copy) id /* block */ completionHandler;
+@property (nonatomic, retain) NSMutableDictionary *completionHandlersByItemID;
+@property (nonatomic) CKDClientContext *context;
+@property (nonatomic, retain) NSString *deviceIdentifier;
+@property (nonatomic) BOOL isFinished;
+@property (nonatomic, retain) NSDate *lastRequestDate;
+@property (nonatomic) NSOperationQueue *operationQueue;
+@property (nonatomic) int qos;
+@property (nonatomic) int scope;
+@property (nonatomic, readonly) BOOL shouldStart;
+@property (nonatomic, retain) NSString *sourceApplicationBundleIdentifier;
+@property (nonatomic, retain) NSString *sourceApplicationSecondaryIdentifier;
+@property (nonatomic, retain) NSDate *startDate;
+@property (nonatomic) int usesBackgroundSession;
 
 - (void).cxx_destruct;
 - (id)CKPropertiesDescription;
-- (void)addCallbackForItemWithID:(id)arg1 callback:(id)arg2;
+- (void)addCallbackForItemWithID:(id)arg1 callback:(id /* block */)arg2;
 - (id)allItemIDs;
 - (BOOL)allowsCellularAccess;
 - (id)callbackQueue;
 - (id)callbacksForItemWithID:(id)arg1;
 - (BOOL)canBeUsedForOperation:(id)arg1;
-- (id)completionHandler;
+- (id /* block */)completionHandler;
 - (id)completionHandlersByItemID;
 - (id)context;
 - (id)description;
 - (id)deviceIdentifier;
-- (id)fetchOp;
-- (id)fetchOperation;
+- (id)fetchOperationForItemIDs:(id)arg1;
 - (void)finishFetchOperationWithError:(id)arg1;
+- (id)init;
 - (id)initWithOperation:(id)arg1 context:(id)arg2 operationQueue:(id)arg3;
 - (BOOL)isFinished;
 - (id)lastRequestDate;
@@ -78,11 +66,10 @@
 - (int)scope;
 - (void)setAllowsCellularAccess:(BOOL)arg1;
 - (void)setCallbackQueue:(id)arg1;
-- (void)setCompletionHandler:(id)arg1;
+- (void)setCompletionHandler:(id /* block */)arg1;
 - (void)setCompletionHandlersByItemID:(id)arg1;
 - (void)setContext:(id)arg1;
 - (void)setDeviceIdentifier:(id)arg1;
-- (void)setFetchOp:(id)arg1;
 - (void)setIsFinished:(BOOL)arg1;
 - (void)setLastRequestDate:(id)arg1;
 - (void)setOperationQueue:(id)arg1;

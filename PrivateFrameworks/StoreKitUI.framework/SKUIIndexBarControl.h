@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIIndexBarControlDataSource>, <SKUIIndexBarControlDelegate>, NSArray, NSDictionary, NSIndexPath, NSMapTable, SKUIIndexBarEntry;
-
 @interface SKUIIndexBarControl : UIControl {
     SKUIIndexBarEntry *_combinedEntry;
     struct UIEdgeInsets { 
@@ -38,6 +36,7 @@
     } _hitTestEdgeInsets;
     NSMapTable *_indexPathToEntryMapTable;
     NSIndexPath *_lastSelectedIndexPath;
+    float _lineSpacing;
     int _numberOfSections;
     NSMapTable *_sectionIndexToNumberOfEntriesMapTable;
     int _totalEntryCount;
@@ -47,11 +46,12 @@
     } _totalSize;
 }
 
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentEdgeInsets;
-@property <SKUIIndexBarControlDataSource> * dataSource;
-@property(copy) NSDictionary * defaultTextAttributes;
-@property <SKUIIndexBarControlDelegate> * delegate;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } hitTestEdgeInsets;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentEdgeInsets;
+@property (nonatomic) <SKUIIndexBarControlDataSource> *dataSource;
+@property (nonatomic, copy) NSDictionary *defaultTextAttributes;
+@property (nonatomic) <SKUIIndexBarControlDelegate> *delegate;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } hitTestEdgeInsets;
+@property (nonatomic, readonly) int numberOfSections;
 
 - (void).cxx_destruct;
 - (id)_allEntries;
@@ -61,10 +61,12 @@
 - (id)_displayEntries;
 - (id)_displayEntriesThatFitInViewForGroupedEntries;
 - (id)_entryAtIndexPath:(id)arg1;
-- (void)_enumerateEntryIndexPathsUsingBlock:(id)arg1;
+- (void)_enumerateEntryIndexPathsUsingBlock:(id /* block */)arg1;
 - (void)_invalidateDisplayEntries;
+- (void)_invalidateForChangedLayoutProperties;
 - (int)_numberOfEntriesInSection:(int)arg1;
 - (int)_numberOfSections;
+- (BOOL)_reloadLineSpacing;
 - (void)_sendSelectionForTouch:(id)arg1 withEvent:(id)arg2;
 - (struct CGSize { float x1; float x2; })_sizeForEntries:(id)arg1;
 - (struct CGSize { float x1; float x2; })_sizeForEntryAtIndexPath:(id)arg1;
@@ -83,6 +85,8 @@
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })hitTestEdgeInsets;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (int)numberOfEntriesInSection:(int)arg1;
+- (int)numberOfSections;
 - (BOOL)pointInside:(struct CGPoint { float x1; float x2; })arg1 withEvent:(id)arg2;
 - (void)reloadCombinedEntry;
 - (void)reloadData;

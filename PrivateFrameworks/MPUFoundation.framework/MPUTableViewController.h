@@ -2,30 +2,32 @@
    Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
  */
 
-@class NSMutableArray, NSString, UITableView;
-
 @interface MPUTableViewController : MPUDataSourceViewController <MPStoreDownloadManagerObserver, MPUActionTableViewDataSource, UITableViewDelegate> {
     Class _cellConfigurationClass;
     BOOL _hasAppearedOnce;
-    int _numberOfActionRows;
+    int _numberOfBottomActionRows;
+    int _numberOfTopActionRows;
     BOOL _shouldDeselectImmediately;
     BOOL _shouldUpdateVisibleCellsWhenVisible;
     UITableView *_tableView;
-    NSMutableArray *_visibleActionRows;
+    NSMutableArray *_visibleBottomActionRows;
+    NSMutableArray *_visibleTopActionRows;
 }
 
-@property(readonly) Class cellConfigurationClass;
-@property(readonly) struct CGPoint { float x1; float x2; } contentOffsetRevealingFirstDataSourceSection;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property BOOL shouldDeselectImmediately;
-@property(readonly) BOOL shouldScrollToFirstDataSourceSectionOnInitialAppearance;
-@property(readonly) Class superclass;
-@property(readonly) UITableView * tableView;
+@property (nonatomic, readonly) Class cellConfigurationClass;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } contentOffsetRevealingFirstDataSourceSection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL shouldDeselectImmediately;
+@property (nonatomic, readonly) BOOL shouldScrollToFirstDataSourceSectionOnInitialAppearance;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) UITableView *tableView;
 
 + (Class)_tableViewClass;
 + (id)actionCellConfigurationClasses;
++ (id)actionCellConfigurationClassesForLocation:(unsigned int)arg1;
++ (id)allActionCellConfigurationClasses;
 + (Class)invalidationContextClass;
 + (BOOL)usesCellConfigurations;
 + (id)viewControllerWithRestorationIdentifierPath:(id)arg1 coder:(id)arg2;
@@ -57,7 +59,9 @@
 - (id)initWithDataSource:(id)arg1 cellConfigurationClass:(Class)arg2;
 - (BOOL)isTableViewLoaded;
 - (int)numberOfActionRowsInTableView:(id)arg1;
+- (int)numberOfBottomActionRowsInTableView:(id)arg1;
 - (int)numberOfSectionsInTableView:(id)arg1;
+- (int)numberOfTopActionRowsInTableView:(id)arg1;
 - (void)reloadActionRowsAnimated:(BOOL)arg1;
 - (void)reloadData;
 - (BOOL)respondsToSelector:(SEL)arg1;

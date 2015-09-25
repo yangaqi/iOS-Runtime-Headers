@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMDrawableMapper, NSAffineTransform, NSMutableArray;
-
 @interface CMDrawingContext : NSObject {
     NSMutableArray *_actions;
     struct CGContext { } *_cgContext;
@@ -35,7 +33,6 @@
     NSMutableArray *_transforms;
 }
 
-- (id).cxx_construct;
 - (void)_addTransform:(id)arg1;
 - (void)_applyTransform:(id)arg1;
 - (struct CGContext { }*)_cgContext;

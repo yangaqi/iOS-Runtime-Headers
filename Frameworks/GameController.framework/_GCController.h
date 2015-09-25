@@ -2,20 +2,13 @@
    Image: /System/Library/Frameworks/GameController.framework/GameController
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <GCNamedProfile>, NSString;
-
 @interface _GCController : GCController <NSSecureCoding> {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _controllerPausedHandler;
-
+    NSMutableArray *_allDeviceRefs;
+    id /* block */ _controllerPausedHandler;
+    char *_deviceHIDReportBuffer;
     unsigned int _deviceHash;
     struct __IOHIDDevice { } *_deviceRef;
+    NSObject<OS_dispatch_queue> *_handlerQueue;
     int _playerIndex;
     <GCNamedProfile> *_profile;
     unsigned int _service;
@@ -25,24 +18,32 @@
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (void)addDeviceRefs:(id)arg1;
 - (void)clearDeviceRef;
-- (id)controllerPausedHandler;
+- (id /* block */)controllerPausedHandler;
 - (void)dealloc;
 - (id)description;
 - (unsigned int)deviceHash;
 - (struct __IOHIDDevice { }*)deviceRef;
+- (id)deviceRefs;
 - (void)encodeWithCoder:(id)arg1;
 - (id)extendedGamepad;
 - (id)gamepad;
+- (id)handlerQueue;
+- (char *)hidReportBuffer;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDeviceRef:(struct __IOHIDDevice { }*)arg1;
 - (id)initWithProfile:(id)arg1;
 - (BOOL)isAttachedToDevice;
+- (BOOL)isEqualToController:(id)arg1;
 - (id)motion;
 - (int)playerIndex;
 - (id)profile;
+- (void)removeDeviceRef:(struct __IOHIDDevice { }*)arg1;
 - (unsigned int)service;
-- (void)setControllerPausedHandler:(id)arg1;
+- (void)setControllerPausedHandler:(id /* block */)arg1;
+- (void)setHandlerQueue:(id)arg1;
+- (void)setHidReportBuffer:(char *)arg1;
 - (void)setPlayerIndex:(int)arg1;
 - (void)setProfile:(id)arg1;
 - (id)vendorName;

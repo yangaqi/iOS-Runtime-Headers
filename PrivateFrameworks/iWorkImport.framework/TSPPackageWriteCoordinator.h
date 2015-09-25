@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSHashTable, NSMutableArray, NSObject<OS_dispatch_group>, NSObject<OS_dispatch_queue>, NSString, NSURL, TSPArchiverManager, TSPComponentExternalReferenceMap, TSPDataAttributesSnapshot, TSPDocumentRevision, TSPObject, TSPObjectContainer, TSPObjectContext, TSPPackageMetadata, TSUPathSet;
-
-@interface TSPPackageWriteCoordinator : NSObject <TSPArchiverManagerDelegate, TSPComponentWriterDelegate, TSPDataArchiver, TSPExternalReferenceDelegate, TSPObjectModifyDelegate> {
+@interface TSPPackageWriteCoordinator : NSObject <TSPArchiverManagerDelegate, TSPComponentWriterDelegate, TSPDataArchiver, TSPExternalReferenceDelegate, TSPObjectModifyDelegate, TSPPersistedObjectUUIDMapDelegate> {
     TSPArchiverManager *_archiverManager;
     BOOL _captureSnapshots;
     NSObject<OS_dispatch_group> *_completionGroup;
@@ -58,6 +56,7 @@
     unsigned char _packageIdentifier;
     TSUPathSet *_packageLocatorPathSet;
     TSPPackageMetadata *_packageMetadata;
+    TSPPersistedObjectUUIDMap *_persistedUUIDMap;
     int _preferredPackageType;
     unsigned long long _readVersion;
     NSHashTable *_referencedDatas;
@@ -171,28 +170,28 @@
     } _writtenObjects;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) TSPPackageMetadata * packageMetadata;
-@property(readonly) NSURL * relativeURLForExternalData;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) TSPPackageMetadata *packageMetadata;
+@property (nonatomic, readonly) NSURL *relativeURLForExternalData;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
-- (void)addDataFinalizeHandlerForSuccessfulSave:(id)arg1;
-- (void)addDelayedObject:(id)arg1 forComponentRootObject:(id)arg2 claimingComponent:(id)arg3 assertOnFailure:(BOOL)arg4 completion:(id)arg5;
+- (void)addDataFinalizeHandlerForSuccessfulSave:(id /* block */)arg1;
+- (void)addDelayedObject:(id)arg1 forComponentRootObject:(id)arg2 claimingComponent:(id)arg3 assertOnFailure:(BOOL)arg4 completion:(id /* block */)arg5;
 - (void)archiveComponent:(id)arg1 locator:(id)arg2 storeOutsideObjectArchive:(BOOL)arg3 rootObject:(id)arg4 withPackageWriter:(id)arg5;
 - (void)calculateExternalReferences;
 - (id)componentForObjectIdentifier:(long long)arg1 objectOrNil:(id)arg2;
 - (long long)componentIdentifierForObjectIdentifier:(long long)arg1 objectOrNil:(id)arg2 objectUUIDOrNil:(id)arg3;
-- (void)componentWriter:(id)arg1 canSkipArchivingStronglyReferencedObject:(id)arg2 fromComponentRootObject:(id)arg3 completion:(id)arg4;
-- (void)componentWriter:(id)arg1 locatorForClaimingComponent:(id)arg2 queue:(id)arg3 completion:(id)arg4;
+- (void)componentWriter:(id)arg1 canSkipArchivingStronglyReferencedObject:(id)arg2 fromComponentRootObject:(id)arg3 completion:(id /* block */)arg4;
+- (void)componentWriter:(id)arg1 locatorForClaimingComponent:(id)arg2 queue:(id)arg3 completion:(id /* block */)arg4;
 - (BOOL)componentWriter:(id)arg1 object:(id)arg2 belongsToLinkedComponent:(id)arg3;
-- (void)componentWriter:(id)arg1 wantsComponentOfObject:(id)arg2 queue:(id)arg3 completion:(id)arg4;
+- (void)componentWriter:(id)arg1 wantsComponentOfObject:(id)arg2 queue:(id)arg3 completion:(id /* block */)arg4;
 - (id)componentWriter:(id)arg1 wantsExplicitComponentRootObjectForObject:(id)arg2 archiverOrNil:(id)arg3 claimingComponent:(id)arg4 hasArchiverAccessLock:(BOOL)arg5;
 - (void)componentWriterNeedsDocumentRecovery:(id)arg1;
-- (void)componentWriterWantsDelayedObjects:(id)arg1 queue:(id)arg2 completion:(id)arg3;
+- (void)componentWriterWantsDelayedObjects:(id)arg1 queue:(id)arg2 completion:(id /* block */)arg3;
 - (void)copyComponent:(id)arg1 locator:(id)arg2 packageWriter:(id)arg3;
 - (id)createPackageMetadataWritingDatasWithPackageWriter:(id)arg1 saveOperationState:(id)arg2;
 - (void)dealloc;
@@ -201,9 +200,9 @@
 - (BOOL)didWriteData:(id)arg1;
 - (BOOL)didWriteObject:(id)arg1 claimingComponent:(id*)arg2;
 - (void)enqueueComponent:(id)arg1 rootObjectOrNil:(id)arg2 forceArchive:(BOOL)arg3;
-- (void)enqueueRootObject:(id)arg1 forceArchive:(BOOL)arg2 completion:(id)arg3;
-- (void)enqueueRootObjectImpl:(id)arg1 forceArchive:(BOOL)arg2 completion:(id)arg3;
-- (void)enumerateWrittenObjectsWithBlock:(id)arg1;
+- (void)enqueueRootObject:(id)arg1 forceArchive:(BOOL)arg2 completion:(id /* block */)arg3;
+- (void)enqueueRootObjectImpl:(id)arg1 forceArchive:(BOOL)arg2 completion:(id /* block */)arg3;
+- (void)enumerateWrittenObjectsWithBlock:(id /* block */)arg1;
 - (id)explicitComponentRootObjectForObject:(id)arg1;
 - (id)explicitComponentRootObjectForObject:(id)arg1 archiverOrNil:(id)arg2 claimingComponent:(id)arg3 isInComponentQueue:(BOOL)arg4 hasArchiverAccessLock:(BOOL)arg5;
 - (id)init;
@@ -212,13 +211,14 @@
 - (BOOL)isComponentExternal:(id)arg1 wasWritten:(BOOL*)arg2 wasCopied:(BOOL*)arg3;
 - (BOOL)isComponentPersisted:(id)arg1;
 - (BOOL)isObjectInExternalPackage:(id)arg1 claimingComponent:(id*)arg2;
-- (void)nextComponentAndRootObjectForComponentWriteWithCompletion:(id)arg1;
+- (void)nextComponentAndRootObjectForComponentWriteWithCompletion:(id /* block */)arg1;
 - (id)objectContainer;
 - (id)objectContainerImpl;
 - (id)objectForIdentifier:(long long)arg1;
 - (id)packageMetadata;
+- (id)persistedObjectUUIDMap:(id)arg1 needsDescriptionForComponentIdentifier:(long long)arg2 objectIdentifier:(long long)arg3;
 - (id)relativeURLForExternalData;
-- (void)setArchivedObjects:(id)arg1 objectUUIDToIdentifierDictionary:(id)arg2 externalStrongReferences:(id)arg3 externalWeakReferences:(id)arg4 readVersion:(unsigned long long)arg5 writeVersion:(unsigned long long)arg6 dataReferences:(id)arg7 forComponent:(id)arg8;
+- (void)setArchivedObjects:(id)arg1 componentObjectUUIDMap:(id)arg2 externalStrongReferences:(id)arg3 externalWeakReferences:(id)arg4 readVersion:(unsigned long long)arg5 writeVersion:(unsigned long long)arg6 dataReferences:(id)arg7 forComponent:(id)arg8;
 - (BOOL)shouldArchiveComponent:(id)arg1;
 - (BOOL)shouldArchiveComponent:(id)arg1 checkForceArchive:(BOOL)arg2;
 - (BOOL)shouldEnqueueComponent:(id)arg1;
@@ -226,13 +226,13 @@
 - (void)stopCapturingSnapshots;
 - (void)updateExternalReferencesForLinkedComponent:(id)arg1;
 - (void)updateObjectContextForSuccessfulSaveWithPackageWriter:(id)arg1 packageURL:(id)arg2;
-- (void)willModifyObject:(id)arg1 duringReadOperation:(BOOL)arg2;
+- (void)willModifyObject:(id)arg1 duringReadOperation:(BOOL)arg2 shouldCaptureSnapshot:(BOOL)arg3;
 - (void)writeComponent:(id)arg1 rootObjectOrNil:(id)arg2 forceArchive:(BOOL)arg3 withPackageWriter:(id)arg4;
 - (void)writeExternalReferences:(id)arg1 andUpdateLazyReferences:(id)arg2 withPackageWriter:(id)arg3 forComponent:(id)arg4 locator:(id)arg5;
-- (void)writeRemainingComponentsWithPackageWriter:(id)arg1 completionQueue:(id)arg2 completion:(id)arg3;
-- (void)writeRemainingRootObjectsAndRelatedComponents:(id)arg1 withPackageWriter:(id)arg2 completionQueue:(id)arg3 completion:(id)arg4;
-- (void)writeRootObject:(id)arg1 withPackageWriter:(id)arg2 saveOperationState:(id)arg3 completionQueue:(id)arg4 completion:(id)arg5;
+- (void)writeRemainingComponentsWithPackageWriter:(id)arg1 completionQueue:(id)arg2 completion:(id /* block */)arg3;
+- (void)writeRemainingRootObjectsAndRelatedComponents:(id)arg1 withPackageWriter:(id)arg2 completionQueue:(id)arg3 completion:(id /* block */)arg4;
+- (void)writeRootObject:(id)arg1 withPackageWriter:(id)arg2 saveOperationState:(id)arg3 completionQueue:(id)arg4 completion:(id /* block */)arg5;
 - (unsigned int)writeRootObject:(id)arg1 withPackageWriter:(id)arg2 saveOperationState:(id)arg3 error:(id*)arg4;
-- (void)writeRootObjectAndRelatedComponents:(id)arg1 withPackageWriter:(id)arg2 completionQueue:(id)arg3 completion:(id)arg4;
+- (void)writeRootObjectAndRelatedComponents:(id)arg1 withPackageWriter:(id)arg2 completionQueue:(id)arg3 completion:(id /* block */)arg4;
 
 @end

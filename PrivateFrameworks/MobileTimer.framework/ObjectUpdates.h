@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
  */
 
-@class NSMutableArray;
-
 @interface ObjectUpdates : NSObject {
     NSMutableArray *_addedObjects;
     NSMutableArray *_removedObjects;
 }
 
-@property(readonly) NSMutableArray * addedObjects;
-@property(readonly) NSMutableArray * removedObjects;
+@property (nonatomic, readonly) NSMutableArray *addedObjects;
+@property (nonatomic, readonly) NSMutableArray *removedObjects;
 
+- (void).cxx_destruct;
 - (id)addedObjects;
-- (void)dealloc;
 - (id)description;
 - (id)init;
 - (id)removedObjects;

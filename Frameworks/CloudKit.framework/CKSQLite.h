@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@class NSDateFormatter, NSMutableDictionary, NSString;
-
 @interface CKSQLite : NSObject {
     BOOL _corrupt;
     NSDateFormatter *_dateFormatter;
@@ -14,28 +12,33 @@
     NSString *_path;
     NSString *_schema;
     NSString *_schemaVersion;
+    BOOL _shouldVacuum;
     NSMutableDictionary *_statementsBySQL;
+    int _synchronousMode;
     long _userVersion;
 }
 
-@property BOOL corrupt;
-@property(retain) NSDateFormatter * dateFormatter;
-@property struct sqlite3 { }* db;
-@property(readonly) BOOL hasMigrated;
-@property(readonly) BOOL isOpen;
-@property(retain) NSString * objectClassPrefix;
-@property unsigned int openCount;
-@property(readonly) NSString * path;
-@property(readonly) NSString * schema;
-@property(readonly) NSString * schemaVersion;
-@property(readonly) NSMutableDictionary * statementsBySQL;
-@property long userVersion;
+@property (nonatomic) BOOL corrupt;
+@property (nonatomic, retain) NSDateFormatter *dateFormatter;
+@property (nonatomic) struct sqlite3 { }*db;
+@property (nonatomic, readonly) BOOL hasMigrated;
+@property (nonatomic, readonly) BOOL isOpen;
+@property (nonatomic, retain) NSString *objectClassPrefix;
+@property (nonatomic) unsigned int openCount;
+@property (nonatomic, readonly) NSString *path;
+@property (nonatomic, readonly) NSString *schema;
+@property (nonatomic, readonly) NSString *schemaVersion;
+@property (nonatomic) BOOL shouldVacuum;
+@property (nonatomic, readonly) NSMutableDictionary *statementsBySQL;
+@property (nonatomic) int synchronousMode;
+@property (nonatomic) long userVersion;
 
 - (void).cxx_destruct;
 - (id)_boxedPropertyDictionary:(id)arg1 forObjCClass:(id)arg2;
 - (id)_boxedValue:(id)arg1 forObjcCProperty:(id)arg2;
 - (id)_createSchemaHash;
 - (void)_periodicVacuum;
+- (id)_synchronousModeString;
 - (id)_tableNameForClass:(Class)arg1;
 - (id)allTableNames;
 - (void)analyze;
@@ -88,9 +91,13 @@
 - (void)setObjectClassPrefix:(id)arg1;
 - (void)setOpenCount:(unsigned int)arg1;
 - (void)setProperty:(id)arg1 forKey:(id)arg2;
+- (void)setShouldVacuum:(BOOL)arg1;
+- (void)setSynchronousMode:(int)arg1;
 - (void)setUserVersion:(long)arg1;
+- (BOOL)shouldVacuum;
 - (id)statementForSQL:(id)arg1;
 - (id)statementsBySQL;
+- (int)synchronousMode;
 - (long)userVersion;
 - (void)vacuum;
 

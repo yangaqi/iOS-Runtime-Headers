@@ -9,9 +9,8 @@
     } _center;
 }
 
-@property(readonly) struct CGPoint { float x1; float x2; } center;
+@property (readonly) struct CGPoint { float x1; float x2; } center;
 
-- (id).cxx_construct;
 - (struct CGPoint { float x1; float x2; })center;
 - (id)initWithCGImage:(struct CGImage { }*)arg1 scale:(float)arg2 usedAsTextureAndImage:(BOOL)arg3 centerPoint:(struct CGPoint { float x1; float x2; })arg4;
 

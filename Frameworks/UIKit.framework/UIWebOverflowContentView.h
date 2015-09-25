@@ -3,12 +3,18 @@
  */
 
 @interface UIWebOverflowContentView : UIView {
+    CALayer *_webLayer;
 }
 
-- (void)_replaceLayer:(id)arg1;
+@property (nonatomic, retain) CALayer *webLayer;
+
 - (void)_setCachedSubviews:(id)arg1;
 - (void)fixUpViewAfterInsertion;
 - (id)initWithLayer:(id)arg1;
+- (void)replaceLayer:(id)arg1;
+- (void)setWebLayer:(id)arg1;
 - (id)superview;
+- (id)webLayer;
+- (void)willBeRemoved;
 
 @end

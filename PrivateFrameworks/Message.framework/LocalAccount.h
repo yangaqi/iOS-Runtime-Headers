@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@interface LocalAccount : MailAccount {
-}
+@interface LocalAccount : MailAccount
 
 + (id)accountTypeIdentifier;
 + (id)accountTypeString;
++ (id)csAccountTypeString;
 + (id)defaultPathNameForAccountWithHostname:(id)arg1 username:(id)arg2;
 + (id)localAccount;
 

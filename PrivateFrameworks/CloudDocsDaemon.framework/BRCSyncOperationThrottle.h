@@ -2,19 +2,18 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-@class NSString;
-
 @interface BRCSyncOperationThrottle : NSObject <NSSecureCoding> {
     NSString *_containerID;
     double _delay;
+    BOOL _isSyncDown;
     int _lastErrorKind;
     double _nextTry;
 }
 
-@property(retain) NSString * containerID;
-@property(readonly) double delay;
-@property(readonly) int lastErrorKind;
-@property(readonly) double nextTry;
+@property (nonatomic, retain) NSString *containerID;
+@property (nonatomic, readonly) double delay;
+@property (nonatomic, readonly) int lastErrorKind;
+@property (nonatomic, readonly) double nextTry;
 
 + (BOOL)supportsSecureCoding;
 
@@ -25,13 +24,13 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithContainerID:(id)arg1;
+- (id)initWithContainerID:(id)arg1 isSyncDown:(BOOL)arg2;
 - (int)lastErrorKind;
 - (double)nextTry;
 - (void)setContainerID:(id)arg1;
 - (void)updateAfterSchedulingTask;
 - (void)updateAfterSchedulingTaskWithMinimumDelay:(double)arg1;
 - (BOOL)updateForClearingOutOfQuota;
-- (void)updateForError:(id)arg1 isSyncDown:(BOOL)arg2;
+- (void)updateForError:(id)arg1;
 
 @end

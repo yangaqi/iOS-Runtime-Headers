@@ -2,32 +2,30 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class VKRasterTile, VKTile;
-
 @interface VKMapTile : VKTile <NSCopying> {
     struct shared_ptr<vk::LabelMapTile> { 
         struct LabelMapTile {} *__ptr_; 
         struct __shared_weak_count {} *__cntrl_; 
     } _labelMapTile;
     struct { 
-        float x0; 
-        float x1; 
-        float y0; 
-        float y1; 
-    } _localBounds[34];
+        double x0; 
+        double x1; 
+        double y0; 
+        double y1; 
+    } _localBounds;
     float _maximumStyleZ;
     BOOL _needsRasterization;
     VKRasterTile *_rasterized;
-    double _stateDates[34];
-    id _stateMetas[34];
-    unsigned int _states[34];
-    VKTile *_tiles[34];
+    double _stateDates;
+    /* Warning: unhandled array encoding: '[34@]' */ id _stateMetas;
+    unsigned int _states;
+    VKTile *_tiles;
 }
 
-@property struct shared_ptr<vk::LabelMapTile> { struct LabelMapTile {} *x1; struct __shared_weak_count {} *x2; } labelMapTile;
-@property(readonly) float maximumStyleZ;
-@property BOOL needsRasterization;
-@property(retain) VKRasterTile * rasterized;
+@property (nonatomic) struct shared_ptr<vk::LabelMapTile> { struct LabelMapTile {} *x1; struct __shared_weak_count {} *x2; } labelMapTile;
+@property (nonatomic, readonly) float maximumStyleZ;
+@property (nonatomic) BOOL needsRasterization;
+@property (nonatomic, retain) VKRasterTile *rasterized;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -38,7 +36,7 @@
 - (id)detailedDescription;
 - (id)initWithKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1;
 - (struct shared_ptr<vk::LabelMapTile> { struct LabelMapTile {} *x1; struct __shared_weak_count {} *x2; })labelMapTile;
-- (struct { float x1; float x2; float x3; float x4; })localBoundsForLayer:(unsigned long long)arg1;
+- (struct { double x1; double x2; double x3; double x4; })localBoundsForLayer:(unsigned long long)arg1;
 - (float)maximumStyleZ;
 - (BOOL)needsRasterization;
 - (id)rasterized;

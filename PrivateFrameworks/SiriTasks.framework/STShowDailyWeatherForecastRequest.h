@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/SiriTasks.framework/SiriTasks
  */
 
-@class AFCity, NSArray, STWeatherAttributes;
-
 @interface STShowDailyWeatherForecastRequest : AFSiriRequest {
-    AFCity *_city;
+    STCity *_city;
     STWeatherAttributes *_currentAttributes;
     NSArray *_dailyAttributes;
     int _startWeekday;

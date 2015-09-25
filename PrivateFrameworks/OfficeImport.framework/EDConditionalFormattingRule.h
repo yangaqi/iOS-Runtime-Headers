@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDResources, NSMutableArray, NSString;
-
 @interface EDConditionalFormattingRule : NSObject {
     bool mAboveAverage;
     bool mAppliesToDateOnly;
@@ -31,6 +29,7 @@
 - (bool)bottom;
 - (int)compareToOtherRuleUsingPriority:(id)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)differentialStyle;
 - (unsigned int)differentialStyleIndex;
 - (bool)equalAverage;

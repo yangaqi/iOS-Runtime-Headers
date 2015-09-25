@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
  */
 
-@class <BWNodeRenderDelegate>, BWGraph, BWNodeInput, BWNodeOutput, NSArray, NSMutableArray, NSString;
-
 @interface BWNode : NSObject {
     long long _configurationID;
     BWGraph *_graph;
@@ -19,18 +17,18 @@
     BOOL _supportsLiveReconfiguration;
 }
 
-@property BWGraph * graph;
-@property(readonly) BOOL hasNonLiveConfigurationChanges;
-@property(readonly) BWNodeInput * input;
-@property(readonly) NSArray * inputs;
-@property(copy) NSString * name;
-@property(readonly) NSString * nodeSubType;
-@property(readonly) NSString * nodeType;
-@property(readonly) BWNodeOutput * output;
-@property(readonly) NSArray * outputs;
-@property <BWNodeRenderDelegate> * renderDelegate;
-@property BOOL supportsConcurrentLiveInputCallbacks;
-@property BOOL supportsLiveReconfiguration;
+@property (nonatomic) BWGraph *graph;
+@property (nonatomic, readonly) BOOL hasNonLiveConfigurationChanges;
+@property (readonly) BWNodeInput *input;
+@property (readonly) NSArray *inputs;
+@property (nonatomic, copy) NSString *name;
+@property (readonly) NSString *nodeSubType;
+@property (readonly) NSString *nodeType;
+@property (readonly) BWNodeOutput *output;
+@property (readonly) NSArray *outputs;
+@property (nonatomic) <BWNodeRenderDelegate> *renderDelegate;
+@property (nonatomic) BOOL supportsConcurrentLiveInputCallbacks;
+@property (nonatomic) BOOL supportsLiveReconfiguration;
 
 + (void)initialize;
 
@@ -46,6 +44,7 @@
 - (void)didSelectFormat:(id)arg1 forInput:(id)arg2;
 - (id)graph;
 - (void)handleDroppedSample:(id)arg1 forInput:(id)arg2;
+- (void)handleIrisReferenceMovieRequest:(id)arg1 forInput:(id)arg2;
 - (void)handleNodeError:(id)arg1 forInput:(id)arg2;
 - (BOOL)hasNonLiveConfigurationChanges;
 - (id)init;

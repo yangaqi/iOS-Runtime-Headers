@@ -2,11 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface VKGlobeAnnotationTrackingCameraController : VKAnnotationTrackingCameraController {
     struct Anchor { int (**x1)(); } *_anchor;
     struct { 
@@ -25,9 +20,9 @@
     struct GlobeView { int (**x1)(); } *_globeView;
 }
 
-@property struct GlobeView { int (**x1)(); }* globeView;
+@property (nonatomic) struct GlobeView { int (**x1)(); }*globeView;
 
-- (id).cxx_construct;
+- (struct Vector2i { int x1; int x2; })_centerCursor;
 - (void)_goToAnnotationAnimated:(BOOL)arg1 duration:(double)arg2 isInitial:(BOOL)arg3;
 - (void)_rotateToHeadingAnimated:(BOOL)arg1 duration:(double)arg2;
 - (void)dealloc;

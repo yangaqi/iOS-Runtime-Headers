@@ -2,18 +2,20 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKAuthenticatorDelegate>, LAContext, NSObject<OS_dispatch_queue>;
-
-@interface PKAuthenticator : NSObject <LAUIDelegate> {
-    LAContext *_context;
+@interface PKAuthenticator : NSObject {
+    unsigned int _authenticationIdentifier;
+    PKAuthenticatorEvaluationContext *_context;
     NSObject<OS_dispatch_queue> *_contextMutationQueue;
-    <PKAuthenticatorDelegate> *_delegate;
-    BOOL _fingerPresent;
-    unsigned int _presentationFlag;
+    double _fingerPresentTimeout;
+    PKWeakReference *_weakDelegate;
 }
 
-@property <PKAuthenticatorDelegate> * delegate;
-@property BOOL fingerPresent;
+@property (nonatomic, readonly) unsigned int authenticationIdentifier;
+@property (nonatomic) <PKAuthenticatorDelegate> *delegate;
+@property (nonatomic, readonly) BOOL fingerPresent;
+@property (nonatomic) double fingerPresentTimeout;
+@property (nonatomic, readonly) BOOL fingerPresentTimeoutExpired;
+@property (nonatomic, readonly) BOOL fingerPresentTimeoutRequired;
 
 + (unsigned int)currentStateForPolicy:(int)arg1;
 + (void)preheatAuthenticator;
@@ -21,26 +23,27 @@
 
 - (id)_compareAndSwapWithCompareContext:(id)arg1 replacementContext:(id)arg2;
 - (id)_context;
+- (void)_contextChanged;
 - (BOOL)_contextMatchesContext:(id)arg1;
-- (BOOL)_delegateSupportsPasscodeDismissal;
 - (BOOL)_delegateSupportsPasscodePresentation;
-- (BOOL)_delegateSupportsPassphraseDismissal;
 - (BOOL)_delegateSupportsPassphrasePresentation;
 - (id)_swapContext:(id)arg1;
+- (unsigned int)authenticationIdentifier;
 - (void)cancelEvaluation;
 - (void)dealloc;
 - (id)delegate;
-- (void)evaluatePolicy:(int)arg1 completion:(id)arg2;
-- (void)evaluateRequest:(id)arg1 withCompletionHandler:(id)arg2;
-- (void)event:(int)arg1 params:(id)arg2 reply:(id)arg3;
+- (void)evaluatePolicy:(int)arg1 completion:(id /* block */)arg2;
+- (void)evaluateRequest:(id)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)fallbackToSystemPasscodeUI;
 - (BOOL)fingerPresent;
-- (void)handlePasscodeEvent:(int)arg1 params:(id)arg2;
-- (void)handlePassphraseEvent:(int)arg1 params:(id)arg2;
-- (void)handleTouchIDEvent:(int)arg1 params:(id)arg2;
+- (double)fingerPresentTimeout;
+- (BOOL)fingerPresentTimeoutExpired;
+- (BOOL)fingerPresentTimeoutRequired;
 - (id)init;
 - (id)initWithDelegate:(id)arg1;
+- (void)restartEvaluation;
 - (void)setDelegate:(id)arg1;
-- (void)setFingerPresent:(BOOL)arg1;
+- (void)setFingerPresentTimeout:(double)arg1;
+- (void)setFingerPresentTimeout:(double)arg1 preventRestart:(BOOL)arg2;
 
 @end

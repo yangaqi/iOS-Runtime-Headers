@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDictionary, NSSet, NSString, UIBarButtonItem, UIColor, UIImage, UINavigationItem;
-
 @interface UINavigationButton : UIButton {
     struct UIEdgeInsets { 
         float top; 
@@ -12,6 +10,7 @@
         float right; 
     } __additionalSelectionInsets;
     BOOL __barItemHidden;
+    UIColor *_accessibilityBackgroundTintColor;
     Class _appearanceGuideClass;
     id _appearanceStorage;
     int _barStyle;
@@ -30,36 +29,38 @@
     UINavigationItem *_originatingNavigationItem;
     NSSet *_possibleSystemItems;
     NSSet *_possibleTitles;
-    unsigned int _size : 2;
+    unsigned int _size;
     int _style;
     NSDictionary *_stylesForSizingTitles;
     BOOL _wantsBlendModeForAccessibilityBackgrounds;
-    unsigned int _wantsLetterpressContent : 1;
+    unsigned int _wantsLetterpressContent;
 }
 
-@property(setter=_setAdditionalSelectionInsets:) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _additionalSelectionInsets;
-@property(setter=_setAppearanceGuideClass:) Class _appearanceGuideClass;
-@property(setter=_setBarItemHidden:) BOOL _barItemHidden;
-@property(setter=_setButtonItemStyle:) int _buttonItemStyle;
-@property(setter=_setCreatedByBarButtonItem:) BOOL _createdByBarButtonItem;
-@property(setter=_setFontScaleAdjustment:) float _fontScaleAdjustment;
-@property(setter=_setFontScaleInvalid:) BOOL _isFontScaleInvalid;
-@property(setter=_setStylesForSizingTitles:,copy) NSDictionary * _stylesForSizingTitles;
-@property(setter=_setWantsBlendModeForAccessibilityBackgrounds:) BOOL _wantsBlendModeForAccessibilityBackgrounds;
-@property int barStyle;
-@property int controlSize;
-@property(retain) UIImage * image;
-@property float maximumWidth;
-@property float minimumWidth;
-@property UIBarButtonItem * originatingButtonItem;
-@property UINavigationItem * originatingNavigationItem;
-@property int style;
-@property(retain) UIColor * tintColor;
-@property(retain) NSString * title;
+@property (setter=_setAccessibilityBackgroundTintColor:, nonatomic, retain) UIColor *_accessibilityBackgroundTintColor;
+@property (setter=_setAdditionalSelectionInsets:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _additionalSelectionInsets;
+@property (setter=_setAppearanceGuideClass:, nonatomic, retain) Class _appearanceGuideClass;
+@property (setter=_setBarItemHidden:, nonatomic) BOOL _barItemHidden;
+@property (setter=_setButtonItemStyle:, nonatomic) int _buttonItemStyle;
+@property (setter=_setCreatedByBarButtonItem:, nonatomic) BOOL _createdByBarButtonItem;
+@property (setter=_setFontScaleAdjustment:, nonatomic) float _fontScaleAdjustment;
+@property (setter=_setFontScaleInvalid:, nonatomic) BOOL _isFontScaleInvalid;
+@property (setter=_setStylesForSizingTitles:, nonatomic, copy) NSDictionary *_stylesForSizingTitles;
+@property (setter=_setWantsBlendModeForAccessibilityBackgrounds:, nonatomic) BOOL _wantsBlendModeForAccessibilityBackgrounds;
+@property (nonatomic) int barStyle;
+@property (nonatomic) int controlSize;
+@property (nonatomic, retain) UIImage *image;
+@property (nonatomic) float maximumWidth;
+@property (nonatomic) float minimumWidth;
+@property (nonatomic) UIBarButtonItem *originatingButtonItem;
+@property (nonatomic) UINavigationItem *originatingNavigationItem;
+@property (nonatomic) int style;
+@property (nonatomic, retain) UIColor *tintColor;
+@property (nonatomic, retain) NSString *title;
 
-+ (void)_resetRenderingModesForBackgroundImageView:(id)arg1 inBarStyle:(int)arg2 isEnabled:(BOOL)arg3 withAccessibilityBackground:(BOOL)arg4 wantsBlendModeForAccessibilityBackgrounds:(BOOL)arg5;
++ (void)_resetRenderingModesForBackgroundImageView:(id)arg1 inBarStyle:(int)arg2 isEnabled:(BOOL)arg3 withAccessibilityBackground:(BOOL)arg4 wantsBlendModeForAccessibilityBackgrounds:(BOOL)arg5 accessibilityBackgroundTintColor:(id)arg6;
 + (id)defaultFont;
 
+- (void).cxx_destruct;
 - (void)_UIAppearance_setBackButtonBackgroundImage:(id)arg1 forState:(unsigned int)arg2 barMetrics:(int)arg3;
 - (void)_UIAppearance_setBackButtonBackgroundVerticalPositionAdjustment:(float)arg1 forBarMetrics:(int)arg2;
 - (void)_UIAppearance_setBackButtonTitlePositionAdjustment:(struct UIOffset { float x1; float x2; })arg1 forBarMetrics:(int)arg2;
@@ -69,8 +70,11 @@
 - (void)_UIAppearance_setTintColor:(id)arg1;
 - (void)_UIAppearance_setTitlePositionAdjustment:(struct UIOffset { float x1; float x2; })arg1 forBarMetrics:(int)arg2;
 - (void)_UIAppearance_setTitleTextAttributes:(id)arg1 forState:(unsigned int)arg2;
+- (id)_accessibilityBackgroundTintColor;
 - (void)_accessibilityButtonShapesDidChangeNotification:(id)arg1;
 - (void)_accessibilityButtonShapesParametersDidChange;
+- (int)_activeBarMetrics;
+- (id)_activeVisualStyle;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_additionalSelectionInsets;
 - (void)_adjustBounds;
 - (id)_adjustedDefaultTitleFont;
@@ -105,6 +109,7 @@
 - (id)_scriptingInfo;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_selectedIndicatorBounds;
 - (void)_sendSetNeedsLayoutToSuperviewOnTitleAnimationCompletionIfNecessary;
+- (void)_setAccessibilityBackgroundTintColor:(id)arg1;
 - (void)_setAdditionalSelectionInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)_setAppearanceGuideClass:(Class)arg1;
 - (void)_setBackButtonBackgroundImage:(id)arg1 forState:(unsigned int)arg2 barMetrics:(int)arg3;
@@ -120,6 +125,7 @@
 - (void)_setFontScaleAdjustment:(float)arg1;
 - (void)_setFontScaleInvalid:(BOOL)arg1;
 - (void)_setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 deferLayout:(BOOL)arg2;
+- (void)_setGroupName:(id)arg1 forNavigationBar:(id)arg2;
 - (void)_setStylesForSizingTitles:(id)arg1;
 - (void)_setTintColor:(id)arg1;
 - (void)_setTitleFrozen:(BOOL)arg1;
@@ -137,6 +143,7 @@
 - (void)_updateStyle;
 - (void)_updateTitleColorsForState:(unsigned int)arg1;
 - (void)_updateTitleForLetterpress;
+- (id)_visualStyleForMetrics:(int)arg1;
 - (BOOL)_wantsAccessibilityButtonShapes;
 - (BOOL)_wantsBlendModeForAccessibilityBackgrounds;
 - (int)barStyle;

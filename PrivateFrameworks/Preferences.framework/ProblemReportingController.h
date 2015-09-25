@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSArray, PSSpecifier, PrefsUILinkLabel;
-
 @interface ProblemReportingController : PSListController {
     PrefsUILinkLabel *_aboutDiagnosticsLinkLabel;
     NSArray *_appActivitySpecifiers;
@@ -12,15 +10,15 @@
     PSSpecifier *_spinnerSpecifier;
 }
 
-@property(readonly) NSArray * appActivitySpecifiers;
-@property(readonly) PSSpecifier * filesystemMetadataSnapshotSpecifier;
-@property(readonly) PSSpecifier * spinnerSpecifier;
+@property (readonly) NSArray *appActivitySpecifiers;
+@property (readonly) PSSpecifier *filesystemMetadataSnapshotSpecifier;
+@property (readonly) PSSpecifier *spinnerSpecifier;
 
 + (BOOL)isProblemReportingEnabled;
 
+- (void).cxx_destruct;
 - (id)appActivitySpecifiers;
 - (void)checkDiagnosticsSessionAvailability;
-- (void)dealloc;
 - (void)dismissAboutSheet:(id)arg1;
 - (id)filesystemMetadataSnapshotSpecifier;
 - (void)launchDiagnosticsSession:(id)arg1;

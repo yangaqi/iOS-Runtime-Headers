@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class <CKTranscriptManagementNameFieldDelegate>, NSString, UILabel, UITextField, UIView, _UIBackdropView;
-
 @interface CKTranscriptManagementNameField : UIView <UITextFieldDelegate> {
     _UIBackdropView *_backdropView;
     UIView *_bottomSeparator;
@@ -15,23 +13,22 @@
     UIView *_topSeparator;
 }
 
-@property(retain) _UIBackdropView * backdropView;
-@property(retain) UIView * bottomSeparator;
-@property(copy,readonly) NSString * debugDescription;
-@property <CKTranscriptManagementNameFieldDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(getter=isEnabled) BOOL enabled;
-@property(retain) UILabel * fieldLabel;
-@property(copy) NSString * groupName;
-@property(readonly) unsigned int hash;
-@property BOOL isOverlay;
-@property(readonly) Class superclass;
-@property(retain) UITextField * textField;
-@property(retain) UIView * topSeparator;
+@property (nonatomic, retain) _UIBackdropView *backdropView;
+@property (nonatomic, retain) UIView *bottomSeparator;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CKTranscriptManagementNameFieldDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
+@property (nonatomic, retain) UILabel *fieldLabel;
+@property (nonatomic, copy) NSString *groupName;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isOverlay;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UITextField *textField;
+@property (nonatomic, retain) UIView *topSeparator;
 
 + (float)preferredHeight;
 
-- (BOOL)_useRightToLeftLayout;
 - (id)backdropView;
 - (id)bottomSeparator;
 - (void)commitGroupName;
@@ -42,6 +39,7 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)isEnabled;
 - (BOOL)isOverlay;
+- (void)layoutMarginsDidChange;
 - (void)layoutSubviews;
 - (void)setBackdropView:(id)arg1;
 - (void)setBottomSeparator:(id)arg1;

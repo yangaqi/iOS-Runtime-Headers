@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreData.framework/CoreData
  */
 
-@class NSData, NSString;
-
 @interface NSAttributeDescription : NSPropertyDescription {
     struct __attributeDescriptionFlags { 
         unsigned int _hasMaxValueInExtraIvars : 1; 
@@ -20,10 +18,10 @@
 
 @property BOOL allowsExternalBinaryDataStorage;
 @property unsigned int attributeType;
-@property(copy) NSString * attributeValueClassName;
-@property(retain) id defaultValue;
-@property(copy) NSString * valueTransformerName;
-@property(copy,readonly) NSData * versionHash;
+@property (copy) NSString *attributeValueClassName;
+@property (retain) id defaultValue;
+@property (copy) NSString *valueTransformerName;
+@property (readonly, copy) NSData *versionHash;
 
 + (id)_classNameForType:(unsigned int)arg1;
 + (void)initialize;
@@ -40,6 +38,7 @@
 - (unsigned int)_propertyType;
 - (id)_rawValidationPredicates;
 - (id)_rawValidationWarnings;
+- (void)_sortOutDefaultNumericValuesBecauseDoublesAndFloatsDontCompareEqualAndThatBreaksTests;
 - (void)_versionHash:(char *)arg1 inStyle:(unsigned int)arg2;
 - (void)_writeIntoData:(id)arg1 propertiesDict:(id)arg2 uniquedPropertyNames:(id)arg3 uniquedStrings:(id)arg4 uniquedData:(id)arg5 entitiesSlots:(id)arg6 fetchRequests:(id)arg7;
 - (BOOL)allowsExternalBinaryDataStorage;

@@ -13,20 +13,18 @@
     BOOL _showResetToolButton;
     BOOL _simulateDownload;
     BOOL _simulateDownloadFailure;
-    BOOL _useOldPhotosEditor2;
 }
 
-@property BOOL allowAnyPlugin;
-@property BOOL autoCropEnabled;
-@property BOOL cropMaskBlurred;
-@property double cropRecomposeDelay;
-@property float cropSideMargins;
-@property float cropWheelSize;
-@property BOOL showLevelIndicator;
-@property BOOL showResetToolButton;
-@property BOOL simulateDownload;
-@property BOOL simulateDownloadFailure;
-@property BOOL useOldPhotosEditor2;
+@property (nonatomic) BOOL allowAnyPlugin;
+@property (nonatomic) BOOL autoCropEnabled;
+@property (nonatomic) BOOL cropMaskBlurred;
+@property (nonatomic) double cropRecomposeDelay;
+@property (nonatomic) float cropSideMargins;
+@property (nonatomic) float cropWheelSize;
+@property (nonatomic) BOOL showLevelIndicator;
+@property (nonatomic) BOOL showResetToolButton;
+@property (nonatomic) BOOL simulateDownload;
+@property (nonatomic) BOOL simulateDownloadFailure;
 
 + (id)settingsControllerModule;
 + (id)sharedInstance;
@@ -48,11 +46,9 @@
 - (void)setShowResetToolButton:(BOOL)arg1;
 - (void)setSimulateDownload:(BOOL)arg1;
 - (void)setSimulateDownloadFailure:(BOOL)arg1;
-- (void)setUseOldPhotosEditor2:(BOOL)arg1;
 - (BOOL)showLevelIndicator;
 - (BOOL)showResetToolButton;
 - (BOOL)simulateDownload;
 - (BOOL)simulateDownloadFailure;
-- (BOOL)useOldPhotosEditor2;
 
 @end

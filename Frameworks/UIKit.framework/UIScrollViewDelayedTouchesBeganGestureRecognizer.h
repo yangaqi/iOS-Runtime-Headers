@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIDelayedAction;
-
 @interface UIScrollViewDelayedTouchesBeganGestureRecognizer : UIGestureRecognizer {
     struct CGPoint { 
         float x; 
@@ -12,6 +10,7 @@
     UIDelayedAction *_touchDelay;
 }
 
+- (void).cxx_destruct;
 - (void)_resetGestureRecognizer;
 - (void)clearTimer;
 - (void)dealloc;

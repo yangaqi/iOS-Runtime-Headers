@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface OADTextWarp : NSObject {
-}
+@interface OADTextWarp : NSObject
 
 + (id)nullWarp;
 
+- (id)description;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 

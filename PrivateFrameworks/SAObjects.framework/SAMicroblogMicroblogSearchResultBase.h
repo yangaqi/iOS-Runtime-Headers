@@ -2,12 +2,9 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class SAMicroblogTwitterPostAuthor;
+@interface SAMicroblogMicroblogSearchResultBase : SADomainObject
 
-@interface SAMicroblogMicroblogSearchResultBase : SADomainObject {
-}
-
-@property(retain) SAMicroblogTwitterPostAuthor * author;
+@property (nonatomic, retain) SAMicroblogTwitterPostAuthor *author;
 
 + (id)microblogSearchResultBase;
 + (id)microblogSearchResultBaseWithDictionary:(id)arg1 context:(id)arg2;
@@ -16,6 +13,5 @@
 - (id)encodedClassName;
 - (id)groupIdentifier;
 - (void)setAuthor:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

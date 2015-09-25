@@ -2,42 +2,49 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSArray, NSIndexPath, NSString, SKUIPageComponent, SKUIProductPageOverlayController, SKUIStorePageSectionContext;
-
 @interface SKUIStorePageSection : NSObject <SKUIProductPageOverlayDelegate> {
+    IKColor *_backgroundColorForSection;
     BOOL _bottomSection;
     SKUIPageComponent *_component;
     SKUIStorePageSectionContext *_context;
+    BOOL _hasValidRelevantEntityProviders;
+    NSArray *_indexPathsForBackgroundItems;
     SKUIProductPageOverlayController *_overlayController;
+    NSSet *_relevantEntityProviders;
     int _sectionIndex;
     BOOL _topSection;
 }
 
-@property(getter=isBottomSection) BOOL bottomSection;
-@property(readonly) SKUIStorePageSectionContext * context;
-@property(copy,readonly) NSString * debugDescription;
-@property(readonly) int defaultItemPinningStyle;
-@property(copy,readonly) NSString * description;
-@property(readonly) NSIndexPath * firstAppearanceIndexPath;
-@property(readonly) BOOL fitsToHeight;
-@property(readonly) unsigned int hash;
-@property(readonly) NSArray * indexPathsForPinningItems;
-@property(readonly) int numberOfCells;
-@property(readonly) SKUIPageComponent * pageComponent;
-@property(readonly) struct CGSize { float x1; float x2; } preferredContentSize;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } sectionContentInset;
-@property int sectionIndex;
-@property(readonly) Class superclass;
-@property(getter=isTopSection) BOOL topSection;
+@property (nonatomic, readonly) IKColor *backgroundColorForSection;
+@property (getter=isBottomSection, nonatomic) BOOL bottomSection;
+@property (nonatomic, readonly) SKUIStorePageSectionContext *context;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, readonly) int defaultItemPinningStyle;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSIndexPath *firstAppearanceIndexPath;
+@property (nonatomic, readonly) BOOL fitsToHeight;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *indexPathsForBackgroundItems;
+@property (nonatomic, readonly) NSArray *indexPathsForPinningItems;
+@property (nonatomic, readonly) int numberOfCells;
+@property (nonatomic, readonly) SKUIPageComponent *pageComponent;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } preferredContentSize;
+@property (nonatomic, readonly, copy) NSSet *relevantEntityProviders;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } sectionContentInset;
+@property (nonatomic) int sectionIndex;
+@property (readonly) Class superclass;
+@property (getter=isTopSection, nonatomic) BOOL topSection;
 
 - (void).cxx_destruct;
 - (id)_clickEventWithElementName:(id)arg1 index:(int)arg2 fieldData:(id)arg3;
 - (int)_itemPinningStyle;
-- (void)_sendXEventWithDictionary:(id)arg1 completionBlock:(id)arg2;
+- (void)_recursivelyAddRelevantEntityProvidersForViewElement:(id)arg1 toSet:(id)arg2;
+- (void)_sendXEventWithDictionary:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)_setContext:(id)arg1;
 - (void)addImpressionsForIndexPath:(id)arg1 toSession:(id)arg2;
 - (int)applyUpdateType:(int)arg1;
 - (id)backgroundColorForIndexPath:(id)arg1;
+- (id)backgroundColorForSection;
 - (id)cellForIndexPath:(id)arg1;
 - (struct CGSize { float x1; float x2; })cellSizeForIndexPath:(id)arg1;
 - (id)clickEventWithItem:(id)arg1 elementName:(id)arg2 index:(int)arg3;
@@ -46,6 +53,7 @@
 - (void)collectionViewDidConfirmButtonElement:(id)arg1 forItemAtIndexPath:(id)arg2;
 - (void)collectionViewDidConfirmItemOfferAtIndexPath:(id)arg1;
 - (void)collectionViewDidEndDisplayingCellForItemAtIndexPath:(id)arg1;
+- (void)collectionViewDidLongPressItemAtIndexPath:(id)arg1;
 - (void)collectionViewDidSelectItemAtIndexPath:(id)arg1;
 - (void)collectionViewDidTapVideoAtIndexPath:(id)arg1;
 - (BOOL)collectionViewShouldHighlightItemAtIndexPath:(id)arg1;
@@ -60,10 +68,12 @@
 - (int)defaultItemPinningStyle;
 - (void)deselectItemsAnimated:(BOOL)arg1;
 - (void)didAppearInContext:(id)arg1;
+- (void)entityProvider:(id)arg1 didInvalidateWithContext:(id)arg2;
 - (void)expandEditorialForLabelElement:(id)arg1 indexPath:(id)arg2;
 - (id)firstAppearanceIndexPath;
 - (BOOL)fitsToHeight;
-- (void)getModalSourceViewForViewElement:(id)arg1 completionBlock:(id)arg2;
+- (void)getModalSourceViewForViewElement:(id)arg1 completionBlock:(id /* block */)arg2;
+- (id)indexPathsForBackgroundItems;
 - (id)indexPathsForPinningItems;
 - (id)initWithPageComponent:(id)arg1;
 - (void)invalidateCachedLayoutInformation;
@@ -82,14 +92,17 @@
 - (void)playVideoWithURL:(id)arg1;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)prefetchResourcesWithReason:(int)arg1;
+- (id)previewViewControllerForIndexPath:(id)arg1;
+- (BOOL)previewsSupportedForIndexPath:(id)arg1;
 - (void)productPageOverlayDidDismiss:(id)arg1;
+- (id)relevantEntityProviders;
 - (void)reloadCellWithIndexPath:(id)arg1 reason:(int)arg2;
 - (void)reloadVisibleCellsWithReason:(int)arg1;
 - (BOOL)requestLayoutWithReloadReason:(int)arg1;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })sectionContentInset;
 - (int)sectionIndex;
-- (void)sendXEventWithItem:(id)arg1 completionBlock:(id)arg2;
-- (void)sendXEventWithLink:(id)arg1 completionBlock:(id)arg2;
+- (void)sendXEventWithItem:(id)arg1 completionBlock:(id /* block */)arg2;
+- (void)sendXEventWithLink:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)setBottomSection:(BOOL)arg1;
 - (void)setSectionIndex:(int)arg1;
 - (void)setTopSection:(BOOL)arg1;

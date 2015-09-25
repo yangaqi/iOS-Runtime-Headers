@@ -2,17 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSIndexSet, NSMutableIndexSet;
-
 @interface EmojiSectionHeaderLayoutInvalidationContext : UICollectionViewFlowLayoutInvalidationContext {
     struct __CFDictionary { } *_headerWidthDict;
     NSMutableIndexSet *_invalidatedSections;
 }
 
-@property(readonly) NSIndexSet * invalidatedSections;
+@property (nonatomic, readonly) NSIndexSet *invalidatedSections;
 
 - (void)dealloc;
-- (void)invalidateSectionHeaderInSection:(int)arg1 withPreferredWidth:(float)arg2;
 - (id)invalidatedSections;
 - (float)preferredWidthForHeaderInSection:(int)arg1;
 

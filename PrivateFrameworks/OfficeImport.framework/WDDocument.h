@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSDate, NSMutableArray, NSMutableSet, NSString, OADBackground, OADTheme, WDCitationTable, WDFontTable, WDListDefinitionTable, WDListTable, WDRevisionAuthorTable, WDStyleSheet, WDText;
-
 @interface WDDocument : OCDDocument {
-    unsigned int mAutoHyphenate : 1;
-    unsigned int mBookFold : 1;
-    unsigned int mBorderSurroundFooter : 1;
-    unsigned int mBorderSurroundHeader : 1;
+    unsigned int mAutoHyphenate;
+    unsigned int mBookFold;
+    unsigned int mBorderSurroundFooter;
+    unsigned int mBorderSurroundHeader;
     NSMutableArray *mChangeTrackingEditAuthors;
     NSMutableArray *mChangeTrackingEditDates;
     WDCitationTable *mCitationTable;
+    OADColorMap *mColorMap;
     NSDate *mCreationDate;
     unsigned short mDefaultTabWidth;
     OADBackground *mDocumentBackground;
@@ -22,7 +21,7 @@
     int mEndnotePosition;
     int mEndnoteRestart;
     WDText *mEndnoteSeparator;
-    unsigned int mEvenAndOddHeaders : 1;
+    unsigned int mEvenAndOddHeaders;
     WDFontTable *mFontTable;
     WDText *mFootnoteContinuationNotice;
     WDText *mFootnoteContinuationSeparator;
@@ -36,30 +35,28 @@
     NSMutableArray *mImageBullets;
     NSString *mKinsokuAltBreakAfter;
     NSString *mKinsokuAltBreakBefore;
-    unsigned int mKinsokuStrict : 1;
+    unsigned int mKinsokuStrict;
+    NSString *mLanguage;
     WDListDefinitionTable *mListDefinitionTable;
     WDListTable *mListTable;
-    unsigned int mMirrorMargins : 1;
+    unsigned int mMirrorMargins;
     NSDate *mModificationDate;
-    unsigned int mNoTabForHangingIndents : 1;
+    unsigned int mNoTabForHangingIndents;
     NSMutableSet *mObjPointers;
     NSString *mOleFilename;
     WDRevisionAuthorTable *mRevisionAuthorTable;
     NSMutableArray *mSections;
-    unsigned int mShowComments : 1;
-    unsigned int mShowFormatting : 1;
-    unsigned int mShowInsertionsAndDeletions : 1;
-    unsigned int mShowMarkup : 1;
-    unsigned int mShowOutline : 1;
-    unsigned int mShowRevisionMarksOnScreen : 1;
+    unsigned int mShowComments;
+    unsigned int mShowFormatting;
+    unsigned int mShowInsertionsAndDeletions;
+    unsigned int mShowMarkup;
+    unsigned int mShowOutline;
+    unsigned int mShowRevisionMarksOnScreen;
     WDStyleSheet *mStyleSheet;
-    OADTheme *mTheme;
-    unsigned int mTrackChanges : 1;
+    unsigned int mTrackChanges;
     NSString *mVersion;
     short mZoomPercentage;
 }
-
-+ (id)impliedColorMap;
 
 - (void)addChangeTrackingEditAtDate:(id)arg1 authorIndex:(int)arg2;
 - (void)addCitation:(id)arg1 forID:(id)arg2;
@@ -80,6 +77,7 @@
 - (unsigned int)citationCount;
 - (id)citationFor:(id)arg1;
 - (id)citationTable;
+- (id)colorMap;
 - (id)creationDate;
 - (void)dealloc;
 - (unsigned short)defaultTabWidth;
@@ -114,11 +112,13 @@
 - (id)kinsokuAltBreakAfter;
 - (id)kinsokuAltBreakBefore;
 - (BOOL)kinsokuStrict;
+- (id)language;
 - (id)lastModDate;
 - (id)lastSection;
 - (id)listDefinitionTable;
 - (id)listDefinitionWithListDefinitionId:(long)arg1;
 - (id)listDefinitionWithListId:(long)arg1;
+- (id)listLevelWithListId:(long)arg1 levelIndex:(unsigned char)arg2;
 - (id)listTable;
 - (id)listWithListId:(long)arg1;
 - (id)mainBlocksIterator;
@@ -149,6 +149,7 @@
 - (void)setBookFold:(BOOL)arg1;
 - (void)setBorderSurroundFooter:(BOOL)arg1;
 - (void)setBorderSurroundHeader:(BOOL)arg1;
+- (void)setColorMap:(id)arg1;
 - (void)setCreationDate:(id)arg1;
 - (void)setDefaultTabWidth:(unsigned short)arg1;
 - (void)setDocumentBackground:(id)arg1;
@@ -164,6 +165,7 @@
 - (void)setKinsokuAltBreakAfter:(id)arg1;
 - (void)setKinsokuAltBreakBefore:(id)arg1;
 - (void)setKinsokuStrict:(BOOL)arg1;
+- (void)setLanguage:(id)arg1;
 - (void)setLastModDate:(id)arg1;
 - (void)setMirrorMargins:(BOOL)arg1;
 - (void)setNoTabForHangingIndents:(BOOL)arg1;
@@ -184,7 +186,6 @@
 - (BOOL)showOutline;
 - (BOOL)showRevisionMarksOnScreen;
 - (id)styleSheet;
-- (id)theme;
 - (BOOL)trackChanges;
 - (id)version;
 - (short)zoomPercentage;

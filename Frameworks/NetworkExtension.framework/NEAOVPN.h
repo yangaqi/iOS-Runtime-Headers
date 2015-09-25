@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
  */
 
-@class NSDictionary;
-
 @interface NEAOVPN : NSObject <NEConfigurationValidating, NEPrettyDescription, NSCopying, NSSecureCoding> {
     BOOL _allowAllCaptiveNetworkPlugins;
     BOOL _allowCaptiveWebSheet;
@@ -14,13 +12,13 @@
     BOOL _toggleEnabled;
 }
 
-@property(getter=isAllowAllCaptiveNetworkPlugins) BOOL allowAllCaptiveNetworkPlugins;
-@property(getter=isAllowCaptiveWebSheet) BOOL allowCaptiveWebSheet;
-@property(copy) NSDictionary * allowedCaptiveNetworkPlugins;
-@property(getter=isEnabled) BOOL enabled;
-@property(copy) NSDictionary * interfaceProtocolMapping;
-@property(copy) NSDictionary * serviceExceptions;
-@property(getter=isToggleEnabled) BOOL toggleEnabled;
+@property (getter=isAllowAllCaptiveNetworkPlugins) BOOL allowAllCaptiveNetworkPlugins;
+@property (getter=isAllowCaptiveWebSheet) BOOL allowCaptiveWebSheet;
+@property (copy) NSDictionary *allowedCaptiveNetworkPlugins;
+@property (getter=isEnabled) BOOL enabled;
+@property (copy) NSDictionary *interfaceProtocolMapping;
+@property (copy) NSDictionary *serviceExceptions;
+@property (getter=isToggleEnabled) BOOL toggleEnabled;
 
 + (BOOL)supportsSecureCoding;
 
@@ -28,7 +26,7 @@
 - (id)allowedCaptiveNetworkPlugins;
 - (BOOL)checkValidityAndCollectErrors:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (id)descriptionWithIndent:(int)arg1;
+- (id)descriptionWithIndent:(int)arg1 options:(unsigned int)arg2;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)interfaceProtocolMapping;

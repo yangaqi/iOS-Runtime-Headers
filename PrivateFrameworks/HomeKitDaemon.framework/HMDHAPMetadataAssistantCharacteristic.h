@@ -2,23 +2,23 @@
    Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
  */
 
-@class NSDictionary, NSString;
-
 @interface HMDHAPMetadataAssistantCharacteristic : NSObject <NSSecureCoding> {
     NSString *_format;
     NSString *_name;
+    NSDictionary *_outValues;
     NSString *_readHAPCharacteristicName;
     BOOL _supportsLocalization;
     NSDictionary *_values;
     NSString *_writeHAPCharacteristicName;
 }
 
-@property(retain) NSString * format;
-@property(retain) NSString * name;
-@property(retain) NSString * readHAPCharacteristicName;
-@property BOOL supportsLocalization;
-@property(retain) NSDictionary * values;
-@property(retain) NSString * writeHAPCharacteristicName;
+@property (nonatomic, retain) NSString *format;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSDictionary *outValues;
+@property (nonatomic, retain) NSString *readHAPCharacteristicName;
+@property (nonatomic) BOOL supportsLocalization;
+@property (nonatomic, retain) NSDictionary *values;
+@property (nonatomic, retain) NSString *writeHAPCharacteristicName;
 
 + (BOOL)supportsSecureCoding;
 
@@ -28,12 +28,15 @@
 - (void)encodeWithCoder:(id)arg1;
 - (id)format;
 - (id)generateDictionary;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithName:(id)arg1 readHAPCharacteristic:(id)arg2 writeHAPCharacteristic:(id)arg3 format:(id)arg4;
 - (id)name;
+- (id)outValues;
 - (id)readHAPCharacteristicName;
 - (void)setFormat:(id)arg1;
 - (void)setName:(id)arg1;
+- (void)setOutValues:(id)arg1;
 - (void)setReadHAPCharacteristicName:(id)arg1;
 - (void)setSupportsLocalization:(BOOL)arg1;
 - (void)setValues:(id)arg1;

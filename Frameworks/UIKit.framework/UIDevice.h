@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, NSUUID;
-
 @interface UIDevice : NSObject {
     float _batteryLevel;
     struct { 
@@ -13,49 +11,52 @@
         unsigned int orientation : 3; 
         unsigned int batteryState : 2; 
         unsigned int proximityState : 1; 
+        unsigned int hasTouchPadOverride : 1; 
+        unsigned int hasTouchPad : 1; 
     } _deviceFlags;
     int _numDeviceOrientationObservers;
 }
 
-@property(setter=_setBacklightLevel:) float _backlightLevel;
-@property(readonly) float batteryLevel;
-@property(getter=isBatteryMonitoringEnabled) BOOL batteryMonitoringEnabled;
-@property(readonly) int batteryState;
-@property(retain,readonly) NSString * buildVersion;
-@property(getter=isGeneratingDeviceOrientationNotifications,readonly) BOOL generatesDeviceOrientationNotifications;
-@property(retain,readonly) NSUUID * identifierForVendor;
-@property(retain,readonly) NSString * localizedModel;
-@property(retain,readonly) NSString * model;
-@property(getter=isMultitaskingSupported,readonly) BOOL multitaskingSupported;
-@property(retain,readonly) NSString * name;
-@property int orientation;
-@property(readonly) int orientation;
-@property(getter=isProximityMonitoringEnabled) BOOL proximityMonitoringEnabled;
-@property(readonly) BOOL proximityState;
-@property(retain,readonly) NSString * systemName;
-@property(retain,readonly) NSString * systemVersion;
-@property(readonly) int userInterfaceIdiom;
+@property (setter=_setBacklightLevel:, nonatomic) float _backlightLevel;
+@property (nonatomic, readonly) float batteryLevel;
+@property (getter=isBatteryMonitoringEnabled, nonatomic) BOOL batteryMonitoringEnabled;
+@property (nonatomic, readonly) int batteryState;
+@property (nonatomic, readonly, retain) NSString *buildVersion;
+@property (getter=isGeneratingDeviceOrientationNotifications, nonatomic, readonly) BOOL generatesDeviceOrientationNotifications;
+@property (nonatomic, readonly) NSUUID *identifierForVendor;
+@property (nonatomic, readonly) NSString *localizedModel;
+@property (nonatomic, readonly) NSString *model;
+@property (getter=isMultitaskingSupported, nonatomic, readonly) BOOL multitaskingSupported;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic) int orientation;
+@property (nonatomic, readonly) int orientation;
+@property (getter=isProximityMonitoringEnabled, nonatomic) BOOL proximityMonitoringEnabled;
+@property (nonatomic, readonly) BOOL proximityState;
+@property (nonatomic, readonly) NSString *systemName;
+@property (nonatomic, readonly) NSString *systemVersion;
+@property (nonatomic, readonly) int userInterfaceIdiom;
 
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
++ (BOOL)_isLowEnd;
 + (BOOL)_isWatch;
 + (BOOL)_isWatchCompanion;
 + (id)currentDevice;
 + (int)currentDeviceOrientationAllowingAmbiguous:(BOOL)arg1;
 + (id)modelSpecificLocalizedStringKeyForKey:(id)arg1;
-+ (id)platformString;
-+ (id)platformString;
 
 - (float)_backlightLevel;
 - (void)_clearGraphicsQualityOverride;
-- (id)_currentProduct;
-- (id)_deviceInfoForKey:(struct __CFString { }*)arg1;
 - (id)_deviceInfoForKey:(struct __CFString { }*)arg1;
 - (void)_enableDeviceOrientationEvents:(BOOL)arg1;
 - (int)_graphicsQuality;
-- (int)_graphicsQualityIncludingMediumN41:(BOOL)arg1;
 - (BOOL)_hasGraphicsQualityOverride;
+- (BOOL)_hasTouchPad;
+- (BOOL)_isSystemSoundEnabled;
 - (BOOL)_isTTYEnabled;
 - (int)_keyboardGraphicsQuality;
-- (id)_mediumQualityProductsIncludingN41:(BOOL)arg1;
+- (void)_playInputDeleteSound;
+- (void)_playInputSelectSound;
 - (void)_playSystemSound:(unsigned long)arg1;
 - (int)_predictionGraphicsQuality;
 - (void)_registerForSystemSounds:(id)arg1;
@@ -65,8 +66,12 @@
 - (void)_setBatteryState:(int)arg1;
 - (void)_setExpectsFaceContactInLandscape:(BOOL)arg1;
 - (void)_setGraphicsQualityOverride:(int)arg1;
+- (void)_setHasTouchPad:(BOOL)arg1;
 - (void)_setProximityState:(BOOL)arg1;
 - (float)_softwareDimmingAlpha;
+- (BOOL)_supportsForceTouch;
+- (BOOL)_supportsHapticFeedback;
+- (id)_tapticEngine;
 - (void)_unregisterForSystemSounds:(id)arg1;
 - (void)_updateSystemSoundActiveStatus:(id)arg1;
 - (float)batteryLevel;
@@ -85,8 +90,6 @@
 - (int)orientation;
 - (void)playInputClick;
 - (BOOL)proximityState;
-- (int)sbf_bannerGraphicsQuality;
-- (int)sbf_controlCenterGraphicsQuality;
 - (void)setBatteryMonitoringEnabled:(BOOL)arg1;
 - (void)setOrientation:(int)arg1;
 - (void)setOrientation:(int)arg1 animated:(BOOL)arg2;
@@ -95,5 +98,33 @@
 - (id)systemVersion;
 - (id)uniqueIdentifier;
 - (int)userInterfaceIdiom;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (struct CGSize { float x1; float x2; })_notesDeviceDrawingSize;
+- (BOOL)_notesDeviceSupportsBodyLettpress;
+- (BOOL)_notesLowEndHardware;
+- (id)_notesProductType;
+
+// Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
+
++ (id)platformString;
+
+// Image: /System/Library/PrivateFrameworks/SlideshowKit.framework/Frameworks/OpusFoundation.framework/OpusFoundation
+
++ (id)platform;
+
+// Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+
+- (id)_currentProduct;
+- (id)_deviceInfoForKey:(struct __CFString { }*)arg1;
+- (int)_graphicsQualityIncludingMediumN41:(BOOL)arg1;
+- (id)_mediumQualityProductsIncludingN41:(BOOL)arg1;
+- (int)sbf_bannerGraphicsQuality;
+- (int)sbf_controlCenterGraphicsQuality;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
++ (id)platformString;
 
 @end

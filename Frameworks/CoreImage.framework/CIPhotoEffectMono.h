@@ -2,11 +2,9 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CIPhotoEffectMono : CIPhotoEffect {
-}
+@interface CIPhotoEffectMono : CIPhotoEffect
 
-+ (id)customAttributes;
-
-- (void)setDefaults;
+- (int)_defaultVersion;
+- (int)_maxVersion;
 
 @end

@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/CoreRecognition.framework/CoreRecognition
  */
 
-@class NSArray, NSNumber, NSString;
-
 @interface CRCameraReaderOutputInternal : NSObject {
     NSNumber *_dayValue;
+    NSString *_formattedStringValue;
     NSNumber *_monthValue;
     NSString *_stringValue;
     NSString *_type;
@@ -13,17 +12,20 @@
     NSNumber *_yearValue;
 }
 
-@property(retain) NSNumber * dayValue;
-@property(retain) NSNumber * monthValue;
-@property(retain) NSString * stringValue;
-@property(retain) NSString * type;
-@property(retain) NSArray * vertices;
-@property(retain) NSNumber * yearValue;
+@property (retain) NSNumber *dayValue;
+@property (retain) NSString *formattedStringValue;
+@property (retain) NSNumber *monthValue;
+@property (retain) NSString *stringValue;
+@property (retain) NSString *type;
+@property (retain) NSArray *vertices;
+@property (retain) NSNumber *yearValue;
 
 - (void).cxx_destruct;
 - (id)dayValue;
+- (id)formattedStringValue;
 - (id)monthValue;
 - (void)setDayValue:(id)arg1;
+- (void)setFormattedStringValue:(id)arg1;
 - (void)setMonthValue:(id)arg1;
 - (void)setStringValue:(id)arg1;
 - (void)setType:(id)arg1;

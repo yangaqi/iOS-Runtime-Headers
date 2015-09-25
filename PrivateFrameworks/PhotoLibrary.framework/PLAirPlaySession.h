@@ -2,13 +2,9 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class <PLAirPlaySessionDataSource>, AirPlayRemoteSlideshow, MediaControlClient, NSDictionary, NSMutableArray;
-
 @interface PLAirPlaySession : NSObject {
     <PLAirPlaySessionDataSource> *_dataSource;
-    MediaControlClient *_mediaControlClient;
     NSDictionary *_pickedRoute;
-    AirPlayRemoteSlideshow *_remoteSlideshow;
     BOOL _sentPhoto;
     NSMutableArray *_streamedPhotoUuids;
     BOOL _streamingLocalSlideShow;
@@ -17,19 +13,14 @@
     BOOL _supportsPhotoCaching;
 }
 
-@property <PLAirPlaySessionDataSource> * dataSource;
-@property BOOL streamingLocalSlideShow;
+@property (nonatomic) <PLAirPlaySessionDataSource> *dataSource;
+@property (nonatomic) BOOL streamingLocalSlideShow;
 
 + (void)beginNetworkAssertion;
 + (BOOL)canDisplayMedia:(id)arg1;
 + (void)endNetworkAssertion;
 
-- (id)_fixLegacyEvent:(id)arg1;
-- (void)_reallySendPhotoData:(id)arg1 forPhotoWithUUID:(id)arg2 withTransition:(id)arg3 andAction:(id)arg4;
 - (BOOL)_shouldCachePhotos;
-- (void)_streamPhoto:(id)arg1 withTransition:(id)arg2 andAction:(id)arg3;
-- (void)_streamPhotosAdjacentToPhoto:(id)arg1 withTransition:(id)arg2;
-- (BOOL)_streaming;
 - (id)dataSource;
 - (void)dealloc;
 - (id)initWithPickedRoute:(id)arg1 mediaControlClient:(id)arg2 airplayRemoteSlideshow:(id)arg3;

@@ -9,10 +9,10 @@
     BOOL showsCandidateInline;
 }
 
-@property BOOL caretBlinks;
-@property BOOL receivedCandidatesInCurrentInputMode;
-@property BOOL showsCandidateBar;
-@property BOOL showsCandidateInline;
+@property (nonatomic) BOOL caretBlinks;
+@property (nonatomic) BOOL receivedCandidatesInCurrentInputMode;
+@property (nonatomic) BOOL showsCandidateBar;
+@property (nonatomic) BOOL showsCandidateInline;
 
 - (BOOL)_isAutomaticKeyboard;
 - (void)activate;
@@ -23,6 +23,7 @@
 - (void)implBoundsHeightChangeDone:(float)arg1 suppressNotification:(BOOL)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)isActive;
+- (BOOL)isAutomatic;
 - (void)maximize;
 - (void)minimize;
 - (void)prepareForImplBoundsHeightChange:(float)arg1 suppressNotification:(BOOL)arg2;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class MFPGraphicsState;
-
 @interface MFPGraphicsContainer : NSObject {
     struct CGAffineTransform { 
         float a; 
@@ -16,7 +14,6 @@
     MFPGraphicsState *mParentGraphicsState;
 }
 
-- (id).cxx_construct;
 - (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })containerTransform;
 - (void)dealloc;
 - (id)initWithParentGraphicsState:(id)arg1 containerTransform:(struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })arg2;

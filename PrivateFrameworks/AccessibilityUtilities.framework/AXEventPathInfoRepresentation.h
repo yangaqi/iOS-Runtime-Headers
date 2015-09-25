@@ -3,6 +3,7 @@
  */
 
 @interface AXEventPathInfoRepresentation : NSObject <NSCopying, NSSecureCoding> {
+    float _orbValue;
     float _pathDensity;
     unsigned int _pathEventMask;
     unsigned char _pathIdentity;
@@ -22,28 +23,31 @@
     unsigned long _pathWindowContextID;
 }
 
-@property float pathDensity;
-@property unsigned int pathEventMask;
-@property unsigned char pathIdentity;
-@property unsigned char pathIndex;
-@property struct CGPoint { float x1; float x2; } pathLocation;
-@property float pathMajorRadius;
-@property float pathMajorRadiusTolerance;
-@property float pathMinorRadius;
-@property float pathPressure;
-@property unsigned char pathProximity;
-@property float pathQuality;
-@property float pathTwist;
-@property void* pathWindow;
-@property unsigned long pathWindowContextID;
+@property (nonatomic) float orbValue;
+@property (nonatomic) float pathDensity;
+@property (nonatomic) unsigned int pathEventMask;
+@property (nonatomic) unsigned char pathIdentity;
+@property (nonatomic) unsigned char pathIndex;
+@property (nonatomic) struct CGPoint { float x1; float x2; } pathLocation;
+@property (nonatomic) float pathMajorRadius;
+@property (nonatomic) float pathMajorRadiusTolerance;
+@property (nonatomic) float pathMinorRadius;
+@property (nonatomic) float pathPressure;
+@property (nonatomic) unsigned char pathProximity;
+@property (nonatomic) float pathQuality;
+@property (nonatomic) float pathTwist;
+@property (nonatomic) void*pathWindow;
+@property (nonatomic) unsigned long pathWindowContextID;
 
 + (id)representationWithPathInfo:(struct { unsigned char x1; unsigned char x2; unsigned char x3; float x4; float x5; struct CGPoint { float x_6_1_1; float x_6_1_2; } x6; unsigned int x7; void *x8; }*)arg1;
 + (BOOL)supportsSecureCoding;
 
+- (id)_tabularDescription;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
+- (float)orbValue;
 - (float)pathDensity;
 - (unsigned int)pathEventMask;
 - (unsigned char)pathIdentity;
@@ -58,6 +62,7 @@
 - (float)pathTwist;
 - (void*)pathWindow;
 - (unsigned long)pathWindowContextID;
+- (void)setOrbValue:(float)arg1;
 - (void)setPathDensity:(float)arg1;
 - (void)setPathEventMask:(unsigned int)arg1;
 - (void)setPathIdentity:(unsigned char)arg1;

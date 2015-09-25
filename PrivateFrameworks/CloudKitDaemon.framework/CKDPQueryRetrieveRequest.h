@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class CKDPQuery, CKDPRecordZoneIdentifier, CKDPRequestedFields, NSData;
-
 @interface CKDPQueryRetrieveRequest : PBRequest <NSCopying> {
+    CKDPAssetsToDownload *_assetsToDownload;
     NSData *_continuationMarker;
     struct { 
         unsigned int limit : 1; 
@@ -15,25 +14,29 @@
     CKDPRecordZoneIdentifier *_zoneIdentifier;
 }
 
-@property(retain) NSData * continuationMarker;
-@property(readonly) BOOL hasContinuationMarker;
-@property BOOL hasLimit;
-@property(readonly) BOOL hasQuery;
-@property(readonly) BOOL hasRequestedFields;
-@property(readonly) BOOL hasZoneIdentifier;
-@property unsigned int limit;
-@property(retain) CKDPQuery * query;
-@property(retain) CKDPRequestedFields * requestedFields;
-@property(retain) CKDPRecordZoneIdentifier * zoneIdentifier;
+@property (nonatomic, retain) CKDPAssetsToDownload *assetsToDownload;
+@property (nonatomic, retain) NSData *continuationMarker;
+@property (nonatomic, readonly) BOOL hasAssetsToDownload;
+@property (nonatomic, readonly) BOOL hasContinuationMarker;
+@property (nonatomic) BOOL hasLimit;
+@property (nonatomic, readonly) BOOL hasQuery;
+@property (nonatomic, readonly) BOOL hasRequestedFields;
+@property (nonatomic, readonly) BOOL hasZoneIdentifier;
+@property (nonatomic) unsigned int limit;
+@property (nonatomic, retain) CKDPQuery *query;
+@property (nonatomic, retain) CKDPRequestedFields *requestedFields;
+@property (nonatomic, retain) CKDPRecordZoneIdentifier *zoneIdentifier;
 
 + (id)options;
 
 - (void).cxx_destruct;
+- (id)assetsToDownload;
 - (id)continuationMarker;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (BOOL)hasAssetsToDownload;
 - (BOOL)hasContinuationMarker;
 - (BOOL)hasLimit;
 - (BOOL)hasQuery;
@@ -48,6 +51,7 @@
 - (unsigned int)requestTypeCode;
 - (id)requestedFields;
 - (Class)responseClass;
+- (void)setAssetsToDownload:(id)arg1;
 - (void)setContinuationMarker:(id)arg1;
 - (void)setHasLimit:(BOOL)arg1;
 - (void)setLimit:(unsigned int)arg1;

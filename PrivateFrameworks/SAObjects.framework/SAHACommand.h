@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, SAHAFilter;
+@interface SAHACommand : SADomainCommand
 
-@interface SAHACommand : SADomainCommand {
-}
+@property (nonatomic, copy) NSArray *actions;
+@property (nonatomic, retain) SAHAFilter *filter;
 
-@property(copy) NSArray * actions;
-@property(retain) SAHAFilter * filter;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)command;
 + (id)commandWithDictionary:(id)arg1 context:(id)arg2;
@@ -20,5 +19,9 @@
 - (BOOL)requiresResponse;
 - (void)setActions:(id)arg1;
 - (void)setFilter:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

@@ -2,28 +2,35 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSString, NSUndoManager, NSUserActivity, UIInputViewController, UIResponder, UIResponder<UITextInput>, UITextInputMode, UIView, UIView<UITextInputPrivate>;
-
-@interface UIResponder : NSObject <UITextInputAdditions, UITextInput_Internal, _UIStateRestorationContinuation> {
+@interface UIResponder : NSObject <UITextInputAdditions, UITextInput_Internal, _UIStateRestorationContinuation, _UITouchable> {
+    BOOL _hasAlternateNextResponder;
+    BOOL _hasInputAssistantItem;
 }
 
-@property(getter=_proxyTextInput,readonly) UIResponder<UITextInput> * __content;
-@property(readonly) UIResponder * _editingDelegate;
-@property(readonly) UIResponder * _responderForEditing;
-@property(readonly) UIView<UITextInputPrivate> * _textSelectingContainer;
-@property(getter=_caretRect,readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } caretRect;
-@property(getter=isEditable,readonly) BOOL editable;
-@property(getter=isEditing,readonly) BOOL editing;
-@property(retain,readonly) UIView * inputAccessoryView;
-@property(retain,readonly) UIInputViewController * inputAccessoryViewController;
-@property(retain,readonly) UIView * inputView;
-@property(retain,readonly) UIInputViewController * inputViewController;
-@property(readonly) NSArray * keyCommands;
-@property(copy) NSString * restorationIdentifier;
-@property(retain,readonly) NSString * textInputContextIdentifier;
-@property(retain,readonly) UITextInputMode * textInputMode;
-@property(readonly) NSUndoManager * undoManager;
-@property(retain) NSUserActivity * userActivity;
+@property (getter=_proxyTextInput, nonatomic, readonly) UIResponder<UITextInput> *__content;
+@property (nonatomic, readonly) UIResponder *_editingDelegate;
+@property (nonatomic, readonly) UIResponder *_responderForEditing;
+@property (nonatomic, readonly) UIView<UITextInputPrivate> *_textSelectingContainer;
+@property (getter=_caretRect, nonatomic, readonly) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } caretRect;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (getter=isEditable, nonatomic, readonly) BOOL editable;
+@property (getter=isEditing, nonatomic, readonly) BOOL editing;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) UIView *inputAccessoryView;
+@property (nonatomic, readonly) UIInputViewController *inputAccessoryViewController;
+@property (nonatomic, readonly) UITextInputAssistantItem *inputAssistantItem;
+@property (nonatomic, readonly) UIView *inputView;
+@property (nonatomic, readonly) UIInputViewController *inputViewController;
+@property (nonatomic, readonly) NSArray *keyCommands;
+@property (nonatomic, copy) NSString *restorationIdentifier;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) NSString *textInputContextIdentifier;
+@property (nonatomic, readonly) UITextInputMode *textInputMode;
+@property (nonatomic, readonly) NSUndoManager *undoManager;
+@property (nonatomic, retain) NSUserActivity *userActivity;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (void)_cleanupAllStateRestorationTables;
 + (void)_cleanupStateRestorationObjectIdentifierTrackingTables;
@@ -35,7 +42,6 @@
 + (void)_updateStateRestorationIdentifierMap;
 + (void)clearTextInputContextIdentifier:(id)arg1;
 + (id)objectWithRestorationIdentifierPath:(id)arg1;
-+ (id)tswp_currentFirstResponder;
 
 - (id)_asTextSelection;
 - (void)_becomeFirstResponder;
@@ -68,6 +74,7 @@
 - (void)_deleteForwardAndNotify:(BOOL)arg1;
 - (void)_deleteToEndOfLine;
 - (void)_deleteToStartOfLine;
+- (void)_didChangeDeepestUnambiguousResponder;
 - (void)_didChangeToFirstResponder:(id)arg1;
 - (BOOL)_disableAutomaticKeyboardBehavior;
 - (BOOL)_disableAutomaticKeyboardUI;
@@ -78,11 +85,12 @@
 - (void)_expandSelectionToStartOfWordsBeforeCaretSelection:(int)arg1;
 - (void)_extendCurrentSelection:(int)arg1;
 - (id)_findPleasingWordBoundaryFromPosition:(id)arg1;
-- (void)_finishResignFirstResponder;
+- (BOOL)_finishResignFirstResponder;
 - (id)_firstResponder;
 - (id)_fontForCaretSelection;
 - (id)_fullRange;
 - (id)_fullText;
+- (void)_handleGameControllerEvent:(id)arg1;
 - (void)_handleKeyEvent:(struct __GSEvent { }*)arg1;
 - (void)_handleKeyUIEvent:(id)arg1;
 - (BOOL)_hasMarkedText;
@@ -94,7 +102,9 @@
 - (BOOL)_isTransitioningFromView:(id)arg1;
 - (BOOL)_isViewController;
 - (id)_keyCommandForEvent:(id)arg1;
+- (id)_keyCommandForEvent:(id)arg1 target:(id*)arg2;
 - (id)_keyCommands;
+- (id)_keyCommandsInChainPassingTest:(id /* block */)arg1;
 - (id)_keyInput;
 - (id)_keyboardResponder;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_lastRectForRange:(id)arg1;
@@ -115,23 +125,31 @@
 - (id)_newPhraseBoundaryGestureRecognizer;
 - (id)_nextKeyResponder;
 - (id)_nextResponderOverride;
-- (id)_nextViewControllerInResponderChain;
+- (void)_nonDestructivelyResignFirstResponder;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })_nsrangeForTextRange:(id)arg1;
+- (int)_opposingDirectionFromDirection:(int)arg1;
 - (void)_overrideInputAccessoryViewNextResponderWithResponder:(id)arg1;
 - (void)_overrideInputViewNextResponderWithResponder:(id)arg1;
+- (BOOL)_ownsInputAccessoryView;
 - (void)_phraseBoundaryGesture:(id)arg1;
 - (void)_physicalButtonsBegan:(id)arg1 withEvent:(id)arg2;
 - (void)_physicalButtonsCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)_physicalButtonsEnded:(id)arg1 withEvent:(id)arg2;
 - (id)_positionAtStartOfWords:(unsigned int)arg1 beforePosition:(id)arg2;
 - (id)_positionFromPosition:(id)arg1 inDirection:(int)arg2 offset:(int)arg3 withAffinityDownstream:(BOOL)arg4;
+- (id)_positionFromPosition:(id)arg1 pastTextUnit:(int)arg2 inDirection:(int)arg3;
+- (id)_positionWithinRange:(id)arg1 farthestInDirection:(int)arg2;
+- (void)_preserveResponderOverridesWhilePerforming:(id /* block */)arg1;
 - (id)_previousKeyResponder;
 - (id)_primaryContentResponder;
 - (id)_proxyTextInput;
 - (id)_rangeOfEnclosingWord:(id)arg1;
 - (id)_rangeOfLineEnclosingPosition:(id)arg1;
 - (id)_rangeOfParagraphEnclosingPosition:(id)arg1;
+- (id)_rangeOfSentenceEnclosingPosition:(id)arg1;
 - (id)_rangeOfText:(id)arg1 endingAtPosition:(id)arg2;
+- (id)_rangeOfTextUnit:(int)arg1 enclosingPosition:(id)arg2;
+- (id)_rangeSpanningTextUnit:(int)arg1 andPosition:(id)arg2;
 - (void)_rebuildStateRestorationIdentifierPath;
 - (void)_replaceCurrentWordWithText:(id)arg1;
 - (BOOL)_requiresKeyboardResetOnReload;
@@ -147,6 +165,7 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_responderSelectionRectForWindow:(id)arg1;
 - (id)_responderWindow;
 - (id)_restorationIdentifierPath;
+- (BOOL)_restoreFirstResponder;
 - (void)_scrollRectToVisible:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 animated:(BOOL)arg2;
 - (void)_selectAll;
 - (id)_selectableText;
@@ -167,7 +186,7 @@
 - (id)_showServiceForText:(id)arg1 type:(int)arg2 fromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 inView:(id)arg4;
 - (BOOL)_supportsBecomeFirstResponderWhenPossible;
 - (void)_tagAsRestorableResponder;
-- (id)_targetForAction:(SEL)arg1 withSender:(id)arg2 canPerformActionBlock:(id)arg3;
+- (id)_targetForAction:(SEL)arg1 withSender:(id)arg2 canPerformActionBlock:(id /* block */)arg3;
 - (id)_textColorForCaretSelection;
 - (id)_textSelectingContainer;
 - (void)_unmarkText;
@@ -195,6 +214,7 @@
 - (void)gestureStarted:(struct __GSEvent { }*)arg1;
 - (id)inputAccessoryView;
 - (id)inputAccessoryViewController;
+- (id)inputAssistantItem;
 - (id)inputView;
 - (id)inputViewController;
 - (id)interactionAssistant;
@@ -207,6 +227,10 @@
 - (void)motionEnded:(int)arg1 withEvent:(id)arg2;
 - (id)nextFirstResponder;
 - (id)nextResponder;
+- (void)pressesBegan:(id)arg1 withEvent:(id)arg2;
+- (void)pressesCancelled:(id)arg1 withEvent:(id)arg2;
+- (void)pressesChanged:(id)arg1 withEvent:(id)arg2;
+- (void)pressesEnded:(id)arg1 withEvent:(id)arg2;
 - (void)reloadInputViews;
 - (void)reloadInputViewsWithoutReset;
 - (void)remoteControlReceivedWithEvent:(id)arg1;
@@ -217,18 +241,34 @@
 - (int)selectionAffinity;
 - (void)setRestorationIdentifier:(id)arg1;
 - (void)setUserActivity:(id)arg1;
+- (BOOL)sholdReloadInputViews;
 - (id)targetForAction:(SEL)arg1 withSender:(id)arg2;
 - (id)textInputContextIdentifier;
 - (id)textInputMode;
 - (id)textInputView;
-- (id)tk_firstViewControllerInResponderChain;
 - (void)touchesBegan:(id)arg1 withEvent:(id)arg2;
 - (void)touchesCancelled:(id)arg1 withEvent:(id)arg2;
 - (void)touchesEnded:(id)arg1 withEvent:(id)arg2;
+- (void)touchesEstimatedPropertiesUpdated:(id)arg1;
 - (void)touchesMoved:(id)arg1 withEvent:(id)arg2;
-- (void)tswp_findFirstResponder:(id)arg1;
 - (id)undoManager;
 - (void)updateUserActivityState:(id)arg1;
 - (id)userActivity;
+
+// Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
+
++ (id)currentFirstResponder;
+
+- (void)findFirstResponder:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/ToneKit.framework/ToneKit
+
+- (id)tk_firstViewControllerInResponderChain;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
++ (id)tswp_currentFirstResponder;
+
+- (void)tswp_findFirstResponder:(id)arg1;
 
 @end

@@ -2,17 +2,14 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardUI.framework/SpringBoardUI
  */
 
-@class NSString;
+@interface SBUIBannerItem : NSObject <SBUIQuietModePlayability>
 
-@interface SBUIBannerItem : NSObject <SBUIQuietModePlayability> {
-}
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-
-- (id)action;
+- (id /* block */)action;
 - (id)actionWithIdentifier:(id)arg1;
 - (BOOL)canShowInAssistant;
 - (BOOL)canShowWhileLocked;
@@ -23,6 +20,7 @@
 - (BOOL)isSticky;
 - (id)lockScreenActionContextWithContext:(id)arg1;
 - (id)message;
+- (BOOL)overridesPocketMode;
 - (BOOL)overridesQuietMode;
 - (unsigned int)priority;
 - (id)pullDownNotification;

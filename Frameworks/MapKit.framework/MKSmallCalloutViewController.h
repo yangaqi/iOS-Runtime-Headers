@@ -2,26 +2,24 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKSmallCalloutViewControllerDelegate>, MKCalloutBackgroundView, MKSmallCalloutView, NSString, UIView;
-
 @interface MKSmallCalloutViewController : UIViewController <CalloutViewControllerProtocol> {
     <MKSmallCalloutViewControllerDelegate> *_delegate;
     MKSmallCalloutView *_smallCalloutView;
 }
 
-@property(retain) MKCalloutBackgroundView * calloutBackgroundView;
-@property(copy) NSString * calloutSubtitle;
-@property(copy) NSString * calloutTitle;
-@property(copy,readonly) NSString * debugDescription;
-@property <MKSmallCalloutViewControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(retain) UIView * detailView;
-@property(readonly) unsigned int hash;
-@property(retain) UIView * leftView;
-@property unsigned int mapDisplayStyle;
-@property float maximumWidth;
-@property(retain) UIView * rightView;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) MKCalloutBackgroundView *calloutBackgroundView;
+@property (nonatomic, copy) NSString *calloutSubtitle;
+@property (nonatomic, copy) NSString *calloutTitle;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <MKSmallCalloutViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIView *detailView;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIView *leftView;
+@property (nonatomic) struct { unsigned char x1; unsigned char x2; unsigned char x3; } mapDisplayStyle;
+@property (nonatomic) float maximumWidth;
+@property (nonatomic, retain) UIView *rightView;
+@property (readonly) Class superclass;
 
 + (struct CGSize { float x1; float x2; })defaultSize;
 
@@ -37,7 +35,7 @@
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)leftView;
 - (void)loadView;
-- (unsigned int)mapDisplayStyle;
+- (struct { unsigned char x1; unsigned char x2; unsigned char x3; })mapDisplayStyle;
 - (float)maximumWidth;
 - (struct CGSize { float x1; float x2; })preferredContentSize;
 - (void)reset;
@@ -51,7 +49,7 @@
 - (void)setDetailView:(id)arg1 animated:(BOOL)arg2;
 - (void)setLeftView:(id)arg1;
 - (void)setLeftView:(id)arg1 animated:(BOOL)arg2;
-- (void)setMapDisplayStyle:(unsigned int)arg1;
+- (void)setMapDisplayStyle:(struct { unsigned char x1; unsigned char x2; unsigned char x3; })arg1;
 - (void)setMaximumWidth:(float)arg1;
 - (void)setRightView:(id)arg1;
 - (void)setRightView:(id)arg1 animated:(BOOL)arg2;

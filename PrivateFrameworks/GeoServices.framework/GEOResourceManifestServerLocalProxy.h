@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class <GEOResourceManifestServerProxyDelegate>, GEOActiveTileGroup, GEOResourceLoader, GEOResourceManifestConfiguration, GEOResourceManifestDownload, NSError, NSLock, NSMutableArray, NSMutableData, NSString, NSTimer, NSURLConnection;
-
 @interface GEOResourceManifestServerLocalProxy : NSObject <GEOResourceManifestServerProxy, NSURLConnectionDelegate> {
     GEOActiveTileGroup *_activeTileGroup;
     NSString *_authToken;
@@ -11,6 +9,7 @@
     GEOResourceManifestConfiguration *_configuration;
     NSURLConnection *_connection;
     <GEOResourceManifestServerProxyDelegate> *_delegate;
+    double _lastManifestRequestStartTime;
     double _lastManifestRetryTimestamp;
     NSError *_lastResourceManifestLoadError;
     double _lastTileGroupRetryTimestamp;
@@ -29,15 +28,16 @@
     BOOL _wantsTileGroupUpdateOnReachabilityChange;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <GEOResourceManifestServerProxyDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) GEOActiveTileGroup *activeTileGroup;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <GEOResourceManifestServerProxyDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_activeTileGroupOverridesChanged:(id)arg1;
 - (void)_cancelConnection;
-- (void)_changeActiveTileGroup:(id)arg1 flushTileCache:(BOOL)arg2 completionHandler:(id)arg3;
+- (void)_changeActiveTileGroup:(id)arg1 flushTileCache:(BOOL)arg2 completionHandler:(id /* block */)arg3;
 - (void)_cleanupConnection;
 - (void)_considerChangingActiveTileGroup;
 - (void)_countryProvidersDidChange:(id)arg1;
@@ -45,6 +45,7 @@
 - (id)_idealTileGroupToUse;
 - (void)_loadFromDisk;
 - (id)_manifestURL;
+- (void)_networkDefaultsDidChange:(id)arg1;
 - (void)_notifyManifestUpdateCompletionHandlers:(id)arg1;
 - (void)_purgeOldRegionalResources;
 - (void)_purgeOldResources;
@@ -55,11 +56,12 @@
 - (void)_startServer;
 - (void)_tileGroupTimerFired:(id)arg1;
 - (void)_updateManifest;
-- (void)_updateManifest:(id)arg1;
-- (BOOL)_updateManifestIfNecessary:(id)arg1;
+- (void)_updateManifest:(id /* block */)arg1;
+- (BOOL)_updateManifestIfNecessary:(id /* block */)arg1;
 - (void)_updateTimerFired:(id)arg1;
-- (void)_writeActiveTileGroupToDisk:(id)arg1;
-- (void)_writeManifestToDisk:(id)arg1;
+- (BOOL)_writeActiveTileGroupToDisk:(id)arg1 error:(id*)arg2;
+- (BOOL)_writeManifestToDisk:(id)arg1 error:(id*)arg2;
+- (id)activeTileGroup;
 - (id)authToken;
 - (void)closeConnection;
 - (id)configuration;
@@ -69,15 +71,15 @@
 - (void)connectionDidFinishLoading:(id)arg1;
 - (void)dealloc;
 - (id)delegate;
-- (void)forceUpdate:(id)arg1;
-- (void)getResourceManifestWithHandler:(id)arg1;
+- (void)forceUpdate:(id /* block */)arg1;
+- (void)getResourceManifestWithHandler:(id /* block */)arg1;
 - (id)initWithDelegate:(id)arg1 configuration:(id)arg2;
 - (void)openConnection;
 - (oneway void)resetActiveTileGroup;
 - (id)serverQueue;
 - (oneway void)setActiveTileGroupIdentifier:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setManifestToken:(id)arg1 completionHandler:(id)arg2;
-- (void)updateIfNecessary:(id)arg1;
+- (void)setManifestToken:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)updateIfNecessary:(id /* block */)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
  */
 
-@class <HDDaemonDeviceManager>, <HDHealthDataCollectionManager>, <HDHealthDataManager>, <HDHealthDatabase>, <HDHealthMetadataManager>, <HDHealthSourceManager>, <HDSyncEngine>, HDBackgroundTaskScheduler, HDContentProtectionManager, HDProcessStateManager, HDUserCharacteristicsManager, NSString;
-
 @interface HDMockDaemon : NSObject <HDHealthDaemon> {
     HDBackgroundTaskScheduler *_backgroundTaskScheduler;
     HDContentProtectionManager *_contentProtectionManager;
@@ -12,46 +10,74 @@
     <HDHealthDatabase> *_healthDatabase;
     <HDDaemonDeviceManager> *_healthDeviceManager;
     <HDHealthMetadataManager> *_healthMetadataManager;
-    <HDHealthSourceManager> *_healthSourceManager;
+    HDDeviceManager *_healthSourceDeviceManager;
+    HDSourceManager *_healthSourceManager;
+    HDPluginManager *_pluginManager;
     <HDSyncEngine> *_syncEngine;
     HDUserCharacteristicsManager *_userCharacteristicsManager;
+    HDAuthorizationManager *authorizationManager;
+    HDDataProvenanceManager *dataProvenanceManager;
+    HDDatabasePruningManager *databasePruningManager;
+    HDNanoSyncManager *nanoSyncManager;
     HDProcessStateManager *processStateManager;
+    HDUnitPreferencesManager *unitPreferencesManager;
+    <HDViewOnWakeService> *viewOnWakeService;
+    HDWorkoutManager *workoutManager;
 }
 
-@property(retain) HDBackgroundTaskScheduler * backgroundTaskScheduler;
-@property(retain) HDContentProtectionManager * contentProtectionManager;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) <HDHealthDataCollectionManager> * healthDataCollectionManager;
-@property(retain) <HDHealthDataManager> * healthDataManager;
-@property(retain) <HDHealthDatabase> * healthDatabase;
-@property(retain) <HDDaemonDeviceManager> * healthDeviceManager;
-@property(retain) <HDHealthMetadataManager> * healthMetadataManager;
-@property(retain) <HDHealthSourceManager> * healthSourceManager;
-@property(readonly) NSString * homeDirectoryPath;
-@property(readonly) HDProcessStateManager * processStateManager;
-@property(readonly) Class superclass;
-@property(retain) <HDSyncEngine> * syncEngine;
-@property(retain) HDUserCharacteristicsManager * userCharacteristicsManager;
+@property (nonatomic, readonly) HDAuthorizationManager *authorizationManager;
+@property (retain) HDBackgroundTaskScheduler *backgroundTaskScheduler;
+@property (retain) HDContentProtectionManager *contentProtectionManager;
+@property (readonly) HDDataProvenanceManager *dataProvenanceManager;
+@property (nonatomic, readonly) HDDatabasePruningManager *databasePruningManager;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (retain) <HDHealthDataCollectionManager> *healthDataCollectionManager;
+@property (retain) <HDHealthDataManager> *healthDataManager;
+@property (retain) <HDHealthDatabase> *healthDatabase;
+@property (retain) <HDDaemonDeviceManager> *healthDeviceManager;
+@property (retain) <HDHealthMetadataManager> *healthMetadataManager;
+@property (retain) HDDeviceManager *healthSourceDeviceManager;
+@property (retain) HDSourceManager *healthSourceManager;
+@property (readonly) NSString *homeDirectoryPath;
+@property (readonly) BOOL isAppleWatch;
+@property (nonatomic, readonly) HDNanoSyncManager *nanoSyncManager;
+@property (retain) HDPluginManager *pluginManager;
+@property (readonly) HDProcessStateManager *processStateManager;
+@property (readonly) Class superclass;
+@property (retain) <HDSyncEngine> *syncEngine;
+@property (nonatomic, readonly) HDUnitPreferencesManager *unitPreferencesManager;
+@property (retain) HDUserCharacteristicsManager *userCharacteristicsManager;
+@property (nonatomic, retain) <HDViewOnWakeService> *viewOnWakeService;
+@property (nonatomic, retain) HDWorkoutManager *workoutManager;
 
 - (void).cxx_destruct;
+- (id)authorizationManager;
 - (id)backgroundTaskScheduler;
 - (void)beginTransaction:(id)arg1;
-- (BOOL)containsActiveWorkouts;
 - (id)contentProtectionManager;
+- (id)dataProvenanceManager;
+- (id)databasePruningManager;
+- (void)didUpdateActiveWorkoutServers;
 - (void)endTransaction:(id)arg1;
+- (BOOL)hasAnyActiveWorkouts;
 - (id)healthDataCollectionManager;
 - (id)healthDataManager;
 - (id)healthDatabase;
 - (id)healthDeviceManager;
 - (id)healthMetadataManager;
+- (id)healthSourceDeviceManager;
 - (id)healthSourceManager;
 - (id)homeDirectoryPath;
-- (void)invalidateActivityAlertSuppressionForBundleIdentifier:(id)arg1;
-- (void)pauseActiveWorkoutsWithCompletion:(id)arg1;
-- (void)performBlockWithPowerAssertionIdentifier:(id)arg1 transactionName:(id)arg2 powerAssertionInterval:(double)arg3 block:(id)arg4;
-- (BOOL)persistAndNotifyDataObject:(id)arg1 error:(id*)arg2;
+- (void)invalidateActivityAlertSuppressionForIdentifier:(id)arg1;
+- (BOOL)isAppleWatch;
+- (id)nanoSyncManager;
+- (void)pauseAllActiveWorkoutsWithCompletion:(id /* block */)arg1;
+- (void)performBlockWithPowerAssertionIdentifier:(id)arg1 transactionName:(id)arg2 powerAssertionInterval:(double)arg3 block:(id /* block */)arg4;
+- (BOOL)persistAndNotifyDataObject:(id)arg1 device:(id)arg2 error:(id*)arg3;
+- (BOOL)persistAndNotifyDataObjects:(id)arg1 device:(id)arg2 error:(id*)arg3;
+- (id)pluginManager;
 - (id)processStateManager;
 - (void)registerForDaemonReady:(id)arg1;
 - (void)registerForLaunchNotification:(const char *)arg1;
@@ -63,14 +89,23 @@
 - (void)setHealthDatabase:(id)arg1;
 - (void)setHealthDeviceManager:(id)arg1;
 - (void)setHealthMetadataManager:(id)arg1;
+- (void)setHealthSourceDeviceManager:(id)arg1;
 - (void)setHealthSourceManager:(id)arg1;
 - (void)setPairedWatchBundleIdentifierProvider:(id)arg1;
+- (void)setPluginManager:(id)arg1;
 - (void)setSyncEngine:(id)arg1;
 - (void)setUserCharacteristicsManager:(id)arg1;
-- (void)suppressActivityAlertsForBundleIdentifier:(id)arg1 reason:(int)arg2;
+- (void)setViewOnWakeService:(id)arg1;
+- (void)setWorkoutManager:(id)arg1;
+- (void)suppressActivityAlertsForIdentifier:(id)arg1 suppressionReason:(int)arg2 timeoutUntilDate:(id)arg3;
 - (id)syncEngine;
+- (void)syncImmediatelyWithReason:(id)arg1;
 - (void)terminate;
+- (id)unitPreferencesManager;
 - (void)unregisterForLaunchNotification:(const char *)arg1;
+- (void)updateActivityCacheForNewWorkoutSamples;
 - (id)userCharacteristicsManager;
+- (id)viewOnWakeService;
+- (id)workoutManager;
 
 @end

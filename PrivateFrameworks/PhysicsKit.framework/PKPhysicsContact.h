@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
  */
 
-@class PKPhysicsBody;
-
 @interface PKPhysicsContact : NSObject {
     PKPhysicsBody *_bodyA;
     PKPhysicsBody *_bodyB;
@@ -20,15 +18,14 @@
     float _impulse;
 }
 
-@property(readonly) PKPhysicsBody * bodyA;
-@property(readonly) PKPhysicsBody * bodyB;
-@property(readonly) float collisionImpulse;
-@property(readonly) struct CGVector { float x1; float x2; } contactNormal;
-@property(readonly) struct CGPoint { float x1; float x2; } contactPoint;
+@property (nonatomic, readonly) PKPhysicsBody *bodyA;
+@property (nonatomic, readonly) PKPhysicsBody *bodyB;
+@property (nonatomic, readonly) float collisionImpulse;
+@property (nonatomic, readonly) struct CGVector { float x1; float x2; } contactNormal;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } contactPoint;
 @property BOOL didBegin;
 @property BOOL didEnd;
 
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (id)bodyA;
 - (id)bodyB;

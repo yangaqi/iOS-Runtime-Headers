@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class <SKUIPickerViewDelegate>, NSArray, NSString, UIPickerView, UIView, _UIBackdropView;
-
 @interface SKUIPickerView : UIView <UIPickerViewDataSource, UIPickerViewDelegate> {
     _UIBackdropView *_backdropView;
     <SKUIPickerViewDelegate> *_delegate;
@@ -12,16 +10,18 @@
     NSArray *_titles;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <SKUIPickerViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property int selectedItemIndex;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <SKUIPickerViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int selectedItemIndex;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)dealloc;
 - (id)delegate;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithTitles:(id)arg1;
 - (void)layoutSubviews;
 - (int)numberOfComponentsInPickerView:(id)arg1;

@@ -2,16 +2,14 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class NSString, PUGridZoomLevelInfo;
-
 @interface PUFullMomentsZoomLevelInfo : PUGridZoomLevelInfo <PUPhotosSectionHeaderViewDelegate, PUSectionedGridLayoutDelegate> {
     PUGridZoomLevelInfo *_transitionOtherLevelInfo;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_fillerViewInsetsForItemAtIndexPath:(id)arg1;
@@ -26,7 +24,6 @@
 - (void)didFinishZoomLevelTransition;
 - (id)displayTitle;
 - (void)headerView:(id)arg1 actionButtonPressed:(id)arg2;
-- (int)imageFormat;
 - (id)newCollectionViewLayout;
 - (void)prepareForTransitionFromZoomLevelInfo:(id)arg1 animated:(BOOL)arg2 interactive:(BOOL)arg3;
 - (void)prepareForTransitionToZoomLevelInfo:(id)arg1 animated:(BOOL)arg2 interactive:(BOOL)arg3;
@@ -34,6 +31,7 @@
 - (void)sectionedGridLayout:(id)arg1 didFinalizePrepareTransitionIsAppearing:(BOOL)arg2;
 - (BOOL)supportsEditMode;
 - (BOOL)supportsIncrementalChangeNotifications;
+- (struct CGSize { float x1; float x2; })thumbnailImageSize;
 - (void)updateLayoutMetricsForWidth:(float)arg1;
 - (BOOL)wantsAssetCountsVisible;
 - (BOOL)wantsAutomaticContentOffsetAdjustment;

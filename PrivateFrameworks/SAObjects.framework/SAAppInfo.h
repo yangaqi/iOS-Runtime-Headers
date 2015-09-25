@@ -2,26 +2,26 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSArray, NSDictionary, NSNumber, NSString, SASiriSupport, SAStarkSupport;
+@interface SAAppInfo : SADomainObject
 
-@interface SAAppInfo : SADomainObject {
-}
-
-@property(copy) NSString * appId;
-@property(copy) NSString * appName;
-@property(copy) NSDictionary * appNameMap;
-@property(copy) NSString * appVersion;
-@property(copy) NSString * displayAppName;
-@property(copy) NSDictionary * displayAppNameMap;
-@property(copy) NSNumber * isNanoApp;
-@property(copy) NSNumber * nowPlayingAppWithBrowsableContent;
-@property(copy) NSString * providerName;
-@property(retain) SASiriSupport * siriSupport;
-@property(copy) NSString * spotlightName;
-@property(copy) NSDictionary * spotlightNameMap;
-@property(retain) SAStarkSupport * starkSupport;
-@property(copy) NSArray * supportedCommands;
-@property(copy) NSArray * supportedSchemes;
+@property (nonatomic, copy) NSString *appId;
+@property (nonatomic, copy) NSString *appName;
+@property (nonatomic, copy) NSDictionary *appNameMap;
+@property (nonatomic, copy) NSString *appVersion;
+@property (nonatomic, copy) NSString *carPlayAlternativeDisplayName;
+@property (nonatomic, copy) NSDictionary *carPlayAlternativeDisplayNameMap;
+@property (nonatomic, copy) NSString *displayAppName;
+@property (nonatomic, copy) NSDictionary *displayAppNameMap;
+@property (nonatomic, retain) SAGlance *glance;
+@property (nonatomic, copy) NSNumber *isNanoApp;
+@property (nonatomic, copy) NSNumber *nowPlayingAppWithBrowsableContent;
+@property (nonatomic, copy) NSString *providerName;
+@property (nonatomic, retain) SASiriSupport *siriSupport;
+@property (nonatomic, copy) NSString *spotlightName;
+@property (nonatomic, copy) NSDictionary *spotlightNameMap;
+@property (nonatomic, retain) SAStarkSupport *starkSupport;
+@property (nonatomic, copy) NSArray *supportedCommands;
+@property (nonatomic, copy) NSArray *supportedSchemes;
 
 + (id)appInfo;
 + (id)appInfoWithDictionary:(id)arg1 context:(id)arg2;
@@ -30,9 +30,12 @@
 - (id)appName;
 - (id)appNameMap;
 - (id)appVersion;
+- (id)carPlayAlternativeDisplayName;
+- (id)carPlayAlternativeDisplayNameMap;
 - (id)displayAppName;
 - (id)displayAppNameMap;
 - (id)encodedClassName;
+- (id)glance;
 - (id)groupIdentifier;
 - (id)isNanoApp;
 - (id)nowPlayingAppWithBrowsableContent;
@@ -41,8 +44,11 @@
 - (void)setAppName:(id)arg1;
 - (void)setAppNameMap:(id)arg1;
 - (void)setAppVersion:(id)arg1;
+- (void)setCarPlayAlternativeDisplayName:(id)arg1;
+- (void)setCarPlayAlternativeDisplayNameMap:(id)arg1;
 - (void)setDisplayAppName:(id)arg1;
 - (void)setDisplayAppNameMap:(id)arg1;
+- (void)setGlance:(id)arg1;
 - (void)setIsNanoApp:(id)arg1;
 - (void)setNowPlayingAppWithBrowsableContent:(id)arg1;
 - (void)setProviderName:(id)arg1;
@@ -58,6 +64,5 @@
 - (id)starkSupport;
 - (id)supportedCommands;
 - (id)supportedSchemes;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

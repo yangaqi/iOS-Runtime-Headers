@@ -2,21 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIImage, _UIActivityUserDefaults;
-
 @interface _UIActivityUserDefaultsViewController : UITableViewController {
     NSArray *_activities;
     UIImage *_placeholderImage;
     _UIActivityUserDefaults *_userDefaults;
 }
 
-@property(copy) NSArray * activities;
-@property(retain) UIImage * placeholderImage;
-@property(retain) _UIActivityUserDefaults * userDefaults;
+@property (nonatomic, copy) NSArray *activities;
+@property (nonatomic, retain) UIImage *placeholderImage;
+@property (nonatomic, retain) _UIActivityUserDefaults *userDefaults;
 
+- (void).cxx_destruct;
 - (id)activities;
 - (id)activityForRowAtIndexPath:(id)arg1;
-- (void)dealloc;
 - (id)initWithActivities:(id)arg1 userDefaults:(id)arg2;
 - (id)placeholderImage;
 - (int)preferredActivityCategory;

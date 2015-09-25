@@ -2,24 +2,25 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class WDCharacterProperties;
-
 @interface WDFieldMarker : WDRun {
+    NSData *mData;
     int mFieldPosition;
     unsigned char mFieldType;
-    unsigned int mHasSeparator : 1;
-    unsigned int mLocked : 1;
+    unsigned int mHasSeparator;
+    unsigned int mLocked;
     int mMarkerType;
-    unsigned int mNested : 1;
-    unsigned int mPrivateResult : 1;
+    unsigned int mNested;
+    unsigned int mPrivateResult;
     WDCharacterProperties *mProperties;
-    unsigned int mResultDirty : 1;
-    unsigned int mResultEdited : 1;
-    unsigned int mZombieEmbed : 1;
+    unsigned int mResultDirty;
+    unsigned int mResultEdited;
+    unsigned int mZombieEmbed;
 }
 
 - (void)clearProperties;
+- (id)data;
 - (void)dealloc;
+- (id)description;
 - (int)fieldMarkerType;
 - (int)fieldPosition;
 - (unsigned char)fieldType;
@@ -32,6 +33,7 @@
 - (BOOL)resultDirty;
 - (BOOL)resultEdited;
 - (int)runType;
+- (void)setData:(id)arg1;
 - (void)setFieldMarkerType:(int)arg1;
 - (void)setFieldPosition:(int)arg1;
 - (void)setFieldType:(unsigned char)arg1;

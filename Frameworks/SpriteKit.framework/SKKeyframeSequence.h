@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@class NSMutableArray;
-
 @interface SKKeyframeSequence : NSObject <NSCoding, NSCopying> {
     struct SKCKeyframeSequence { int x1; int x2; int x3; int x4; float *x5; float *x6; } *_cKeyframeSequence;
     unsigned int _count;
@@ -13,8 +11,8 @@
     NSMutableArray *_values;
 }
 
-@property int interpolationMode;
-@property int repeatMode;
+@property (nonatomic) int interpolationMode;
+@property (nonatomic) int repeatMode;
 
 - (void).cxx_destruct;
 - (struct SKCKeyframeSequence { int x1; int x2; int x3; int x4; float *x5; float *x6; }*)_createSKCKeyframeSequence;
@@ -27,6 +25,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (float)getKeyframeTimeForIndex:(unsigned int)arg1;
 - (id)getKeyframeValueForIndex:(unsigned int)arg1;
+- (id)init;
 - (id)initWithCapacity:(unsigned int)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithCount:(unsigned int)arg1;

@@ -2,18 +2,17 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class NSMutableDictionary;
-
 @interface QLDisplayBundleLoader : NSObject {
     NSMutableDictionary *_displayBundlesById;
 }
 
++ (BOOL)URLIsAudioOnly:(id)arg1;
 + (id)sharedLoader;
 
 - (void)_lookForDisplayBundles;
 - (id)copyDisplayBundleWithPreviewItem:(id)arg1 displayBundleIdentifier:(id)arg2;
 - (void)dealloc;
-- (Class)displayBundleClassForDocumentType:(id)arg1;
+- (Class)displayBundleClassForPreviewItem:(id)arg1;
 - (id)init;
 - (Class)loadDisplayBundle:(id)arg1;
 

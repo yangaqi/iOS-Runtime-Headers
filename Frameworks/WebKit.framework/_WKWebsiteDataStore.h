@@ -2,34 +2,23 @@
    Image: /System/Library/Frameworks/WebKit.framework/WebKit
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString;
-
-@interface _WKWebsiteDataStore : NSObject <WKObject> {
-    struct ObjectStorage<API::Session> { 
-        struct type { 
-            unsigned char __lx[16]; 
-        } data; 
-    } _session;
+@interface _WKWebsiteDataStore : NSObject {
+    struct RetainPtr<WKWebsiteDataStore> { 
+        void *m_ptr; 
+    } _dataStore;
 }
 
-@property(readonly) struct Object { int (**x1)(); id x2; }* _apiObject;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(getter=isNonPersistent,readonly) BOOL nonPersistent;
-@property(readonly) Class superclass;
+@property (getter=isNonPersistent, readonly) BOOL nonPersistent;
 
 + (id)defaultDataStore;
 + (id)nonPersistentDataStore;
 
 - (id).cxx_construct;
-- (struct Object { int (**x1)(); id x2; }*)_apiObject;
-- (void)dealloc;
+- (void).cxx_destruct;
+- (void)fetchDataRecordsOfTypes:(unsigned int)arg1 completionHandler:(id /* block */)arg2;
+- (id)initWithDataStore:(id)arg1;
 - (BOOL)isNonPersistent;
+- (void)removeDataOfTypes:(unsigned int)arg1 forDataRecords:(id)arg2 completionHandler:(id /* block */)arg3;
+- (void)removeDataOfTypes:(unsigned int)arg1 modifiedSince:(id)arg2 completionHandler:(id /* block */)arg3;
 
 @end

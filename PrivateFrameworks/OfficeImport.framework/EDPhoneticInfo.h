@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection, EDResources, NSString;
-
-@interface EDPhoneticInfo : NSObject <EDImmutableObject> {
+@interface EDPhoneticInfo : NSObject <EDImmutableObject, NSCopying> {
     int mAlign;
     bool mDoNotModify;
     unsigned int mFontIndex;
@@ -14,16 +12,18 @@
     int mType;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)phoneticInfoWithResources:(id)arg1;
 
 - (int)align;
 - (void)appendString:(id)arg1;
+- (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)font;
 - (unsigned int)fontIndex;
 - (unsigned int)hash;

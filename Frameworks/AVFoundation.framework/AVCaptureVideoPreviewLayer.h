@@ -2,22 +2,19 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureConnection, AVCaptureSession, AVCaptureVideoPreviewLayerInternal, NSString;
-
 @interface AVCaptureVideoPreviewLayer : CALayer {
     AVCaptureVideoPreviewLayerInternal *_internal;
 }
 
-@property BOOL automaticallyAdjustsMirroring;
-@property(readonly) AVCaptureConnection * connection;
-@property(getter=isMirrored) BOOL mirrored;
-@property(getter=isMirroringSupported,readonly) BOOL mirroringSupported;
-@property int orientation;
-@property(getter=isOrientationSupported,readonly) BOOL orientationSupported;
-@property(retain) AVCaptureSession * session;
-@property(copy) NSString * videoGravity;
+@property (nonatomic) BOOL automaticallyAdjustsMirroring;
+@property (nonatomic, readonly) AVCaptureConnection *connection;
+@property (getter=isMirrored, nonatomic) BOOL mirrored;
+@property (getter=isMirroringSupported, nonatomic, readonly) BOOL mirroringSupported;
+@property (nonatomic) int orientation;
+@property (getter=isOrientationSupported, nonatomic, readonly) BOOL orientationSupported;
+@property (nonatomic, retain) AVCaptureSession *session;
+@property (copy) NSString *videoGravity;
 
-+ (id)alloc;
 + (void)initialize;
 + (id)layerWithSession:(id)arg1;
 + (id)layerWithSessionWithNoConnection:(id)arg1;
@@ -62,8 +59,6 @@
 - (int)orientation;
 - (struct CGPoint { float x1; float x2; })pointForCaptureDevicePointOfInterest:(struct CGPoint { float x1; float x2; })arg1;
 - (float)previewRotationDegrees;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForCaptureDeviceFaceRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
-- (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForMetadataObject:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })rectForMetadataOutputRectOfInterest:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)removeConnection:(id)arg1;
 - (id)session;

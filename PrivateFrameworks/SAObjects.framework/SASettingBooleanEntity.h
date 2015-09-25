@@ -2,13 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber;
+@interface SASettingBooleanEntity : SASettingEntity
 
-@interface SASettingBooleanEntity : SASettingEntity {
-}
-
-@property(copy) NSNumber * previousValue;
-@property BOOL value;
+@property (nonatomic, copy) NSNumber *previousValue;
+@property (nonatomic) BOOL value;
 
 + (id)booleanEntity;
 + (id)booleanEntityWithDictionary:(id)arg1 context:(id)arg2;
@@ -20,7 +17,6 @@
 - (id)previousValue;
 - (void)setPreviousValue:(id)arg1;
 - (void)setValue:(BOOL)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 - (BOOL)value;
 
 @end

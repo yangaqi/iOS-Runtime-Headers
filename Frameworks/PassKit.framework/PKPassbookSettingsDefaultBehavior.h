@@ -2,25 +2,24 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class NSString, PKPassLibraryDefaultDataProvider, PKPaymentOptionsDefaults, PKPaymentService;
-
 @interface PKPassbookSettingsDefaultBehavior : NSObject <PKPassbookSettingsDataSource> {
     PKPaymentOptionsDefaults *_options;
-    PKPassLibraryDefaultDataProvider *_passDataProvider;
-    PKPaymentService *_paymentService;
+    PKPassLibraryDefaultDataProvider *_passLibraryDataProvider;
+    PKPaymentDefaultDataProvider *_paymentDataProvider;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)dealloc;
 - (BOOL)deviceInRestrictedMode;
 - (BOOL)deviceSupportsInAppPayments;
 - (id)init;
 - (id)optionsDelegate;
-- (id)passDataProvider;
+- (id)passLibraryDataProvider;
+- (id)paymentDataProvider;
 - (id)secureElementID;
 - (id)setupDelegate;
 - (BOOL)showPassState;

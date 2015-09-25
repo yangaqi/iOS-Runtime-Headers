@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/IDS.framework/IDS
  */
 
-@class NSHashTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSProtocolChecker, NSString;
-
 @interface IDSDaemonListener : NSObject <IDSDaemonListenerProtocol> {
     NSMutableDictionary *_accountToDevices;
+    NSString *_deviceIdentifier;
     NSHashTable *_handlers;
     BOOL _hidingDisconnect;
     NSObject<OS_dispatch_queue> *_ivarQueue;
@@ -16,18 +15,19 @@
     NSMutableDictionary *_topicToEnabledAccounts;
 }
 
-@property(setter=_setHidingDisconnect:) BOOL _hidingDisconnect;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) BOOL hasPostedSetupComplete;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isSetupComplete;
-@property(readonly) Class superclass;
+@property (setter=_setHidingDisconnect:, nonatomic) BOOL _hidingDisconnect;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly, retain) NSString *deviceIdentifier;
+@property (nonatomic, readonly) BOOL hasPostedSetupComplete;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isSetupComplete;
+@property (readonly) Class superclass;
 
-- (void)_callHandlersAsyncWithBlock:(id)arg1;
-- (void)_callHandlersWithBlock:(id)arg1;
-- (void)_callHandlersWithBlockOnIvarQueue:(id)arg1;
-- (void)_callHandlersWithBlockOnIvarQueue:(id)arg1 cleanup:(id)arg2;
+- (void)_callHandlersAsyncWithBlock:(id /* block */)arg1;
+- (void)_callHandlersWithBlock:(id /* block */)arg1;
+- (void)_callHandlersWithBlockOnIvarQueue:(id /* block */)arg1;
+- (void)_callHandlersWithBlockOnIvarQueue:(id /* block */)arg1 cleanup:(id /* block */)arg2;
 - (void)_deferredSetupOnIvarQueue:(id)arg1;
 - (BOOL)_hidingDisconnect;
 - (void)_noteDisconnected;
@@ -64,6 +64,8 @@
 - (void)dealloc;
 - (id)dependentDevicesForAccount:(id)arg1;
 - (void)device:(id)arg1 nsuuidChanged:(id)arg2;
+- (id)deviceIdentifier;
+- (void)deviceIdentifierDidChange:(id)arg1;
 - (id)enabledAccountsForService:(id)arg1;
 - (void)forwardInvocation:(id)arg1;
 - (BOOL)hasPostedSetupComplete;

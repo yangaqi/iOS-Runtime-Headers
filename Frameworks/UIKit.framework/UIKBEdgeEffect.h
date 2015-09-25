@@ -2,31 +2,35 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIKBGradient;
-
 @interface UIKBEdgeEffect : NSObject <UIKBRenderEffect> {
     NSString *_colorName;
     unsigned int _edges;
     UIKBGradient *_gradient;
-    float _inset;
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _insets;
     float _opacity;
     float _weight;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property unsigned int edges;
-@property(retain) UIKBGradient * gradient;
-@property(readonly) unsigned int hash;
-@property float inset;
-@property(readonly) BOOL isValid;
-@property float opacity;
-@property(readonly) SEL renderSelector;
-@property(readonly) BOOL renderUnder;
-@property(readonly) Class superclass;
-@property float weight;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) unsigned int edges;
+@property (nonatomic, retain) UIKBGradient *gradient;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } insets;
+@property (nonatomic, readonly) BOOL isValid;
+@property (nonatomic) float opacity;
+@property (nonatomic, readonly) SEL renderSelector;
+@property (nonatomic, readonly) BOOL renderUnder;
+@property (readonly) Class superclass;
+@property (nonatomic) float weight;
 
 + (id)effectWithColor:(id)arg1 edges:(unsigned int)arg2 inset:(float)arg3 weight:(float)arg4;
++ (id)effectWithColor:(id)arg1 edges:(unsigned int)arg2 insets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg3 weight:(float)arg4;
 
 - (struct CGColor { }*)CGColor;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -34,8 +38,8 @@
 - (id)description;
 - (unsigned int)edges;
 - (id)gradient;
-- (id)initWithColor:(id)arg1 edges:(unsigned int)arg2 inset:(float)arg3 weight:(float)arg4;
-- (float)inset;
+- (id)initWithColor:(id)arg1 edges:(unsigned int)arg2 insets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg3 weight:(float)arg4;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })insets;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isValid;
 - (float)opacity;
@@ -43,7 +47,7 @@
 - (BOOL)renderUnder;
 - (void)setEdges:(unsigned int)arg1;
 - (void)setGradient:(id)arg1;
-- (void)setInset:(float)arg1;
+- (void)setInsets:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setOpacity:(float)arg1;
 - (void)setWeight:(float)arg1;
 - (float)weight;

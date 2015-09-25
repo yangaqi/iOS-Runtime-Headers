@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
  */
 
-@class <CPLEngineTransportDownloadBatchTask>, <CPLEngineTransportGetAssetCountsTask>, <CPLPullFromTransportTaskDelegate>, NSData, NSObject<OS_dispatch_queue>, NSString;
-
 @interface CPLPullFromTransportTask : CPLEngineSyncTask {
     NSString *_clientCacheIdentifier;
     BOOL _didGetSomeChanges;
@@ -14,14 +12,16 @@
     NSObject<OS_dispatch_queue> *_queue;
     BOOL _resetSyncAnchor;
     BOOL _shouldGetAssetCounts;
+    BOOL _signaledTaskEnd;
 }
 
-@property(retain) <CPLPullFromTransportTaskDelegate> * delegate;
-@property(readonly) BOOL didGetSomeChanges;
-@property BOOL isPostPushPhase;
-@property BOOL shouldGetAssetCounts;
+@property (retain) <CPLPullFromTransportTaskDelegate> *delegate;
+@property (nonatomic, readonly) BOOL didGetSomeChanges;
+@property (nonatomic) BOOL isPostPushPhase;
+@property (nonatomic) BOOL shouldGetAssetCounts;
 
 - (void).cxx_destruct;
+- (void)_checkServerFeatureVersion:(unsigned int)arg1 withCompletionHandler:(id /* block */)arg2;
 - (void)_finishTaskWithErrorAndCleanupIfNecessary:(id)arg1;
 - (void)_handleNewBatch:(id)arg1 newSyncAnchor:(id)arg2;
 - (void)_launch;

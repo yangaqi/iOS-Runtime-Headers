@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, NSMutableDictionary;
-
 @interface UIKeyboardEmojiInputController : NSObject {
     int _currentSequence;
-    int _lastViewedCategory;
+    UIKeyboardEmojiCategory *_lastViewedCategory;
     NSMutableArray *_recents;
     NSMutableDictionary *_skinToneBaseKeyPreferences;
     NSMutableDictionary *_usageHistory;
 }
 
-@property int lastViewedCategory;
+@property UIKeyboardEmojiCategory *lastViewedCategory;
 
 + (id)activeInputView;
 + (Class)classForInputView;
@@ -25,11 +23,12 @@
 - (void)emojiUsed:(id)arg1;
 - (id)initWithInputView:(id)arg1;
 - (BOOL)isAncientSequence:(int)arg1;
-- (int)lastViewedCategory;
+- (id)lastViewedCategory;
+- (int)lastVisibleFirstEmojiIndexforCategory:(id)arg1;
 - (id)recents;
 - (double)scoreForEmoji:(id)arg1;
 - (double)scoreForSequence:(int)arg1;
-- (void)setLastViewedCategory:(int)arg1;
+- (void)setLastViewedCategory:(id)arg1;
 - (id)skinToneBaseKeyPreferences;
 - (void)updateSkinToneBaseKey:(id)arg1 variantUsed:(id)arg2;
 

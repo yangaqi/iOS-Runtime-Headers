@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOMapRegion, GEOPDFlyover, NSString;
-
 @interface GEOAnnouncement : PBCodable <NSCopying> {
     unsigned int _announcementID;
+    int _announcementType;
     NSString *_buttonOneAppURI;
     NSString *_buttonOneMessage;
     NSString *_buttonTwoAppURI;
@@ -14,6 +13,7 @@
     GEOPDFlyover *_flyoverInfo;
     struct { 
         unsigned int announcementID : 1; 
+        unsigned int announcementType : 1; 
         unsigned int displayDestinations : 1; 
         unsigned int releasePhase : 1; 
     } _has;
@@ -23,30 +23,33 @@
     NSString *_userMessage;
 }
 
-@property unsigned int announcementID;
-@property(retain) NSString * buttonOneAppURI;
-@property(retain) NSString * buttonOneMessage;
-@property(retain) NSString * buttonTwoAppURI;
-@property(retain) NSString * buttonTwoMessage;
-@property unsigned int displayDestinations;
-@property(retain) GEOPDFlyover * flyoverInfo;
-@property BOOL hasAnnouncementID;
-@property(readonly) BOOL hasButtonOneAppURI;
-@property(readonly) BOOL hasButtonOneMessage;
-@property(readonly) BOOL hasButtonTwoAppURI;
-@property(readonly) BOOL hasButtonTwoMessage;
-@property BOOL hasDisplayDestinations;
-@property(readonly) BOOL hasFlyoverInfo;
-@property(readonly) BOOL hasMapRegion;
-@property BOOL hasReleasePhase;
-@property(readonly) BOOL hasTitle;
-@property(readonly) BOOL hasUserMessage;
-@property(retain) GEOMapRegion * mapRegion;
-@property int releasePhase;
-@property(retain) NSString * title;
-@property(retain) NSString * userMessage;
+@property (nonatomic) unsigned int announcementID;
+@property (nonatomic) int announcementType;
+@property (nonatomic, retain) NSString *buttonOneAppURI;
+@property (nonatomic, retain) NSString *buttonOneMessage;
+@property (nonatomic, retain) NSString *buttonTwoAppURI;
+@property (nonatomic, retain) NSString *buttonTwoMessage;
+@property (nonatomic) unsigned int displayDestinations;
+@property (nonatomic, retain) GEOPDFlyover *flyoverInfo;
+@property (nonatomic) BOOL hasAnnouncementID;
+@property (nonatomic) BOOL hasAnnouncementType;
+@property (nonatomic, readonly) BOOL hasButtonOneAppURI;
+@property (nonatomic, readonly) BOOL hasButtonOneMessage;
+@property (nonatomic, readonly) BOOL hasButtonTwoAppURI;
+@property (nonatomic, readonly) BOOL hasButtonTwoMessage;
+@property (nonatomic) BOOL hasDisplayDestinations;
+@property (nonatomic, readonly) BOOL hasFlyoverInfo;
+@property (nonatomic, readonly) BOOL hasMapRegion;
+@property (nonatomic) BOOL hasReleasePhase;
+@property (nonatomic, readonly) BOOL hasTitle;
+@property (nonatomic, readonly) BOOL hasUserMessage;
+@property (nonatomic, retain) GEOMapRegion *mapRegion;
+@property (nonatomic) int releasePhase;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *userMessage;
 
 - (unsigned int)announcementID;
+- (int)announcementType;
 - (id)buttonOneAppURI;
 - (id)buttonOneMessage;
 - (id)buttonTwoAppURI;
@@ -59,6 +62,7 @@
 - (unsigned int)displayDestinations;
 - (id)flyoverInfo;
 - (BOOL)hasAnnouncementID;
+- (BOOL)hasAnnouncementType;
 - (BOOL)hasButtonOneAppURI;
 - (BOOL)hasButtonOneMessage;
 - (BOOL)hasButtonTwoAppURI;
@@ -76,6 +80,7 @@
 - (BOOL)readFrom:(id)arg1;
 - (int)releasePhase;
 - (void)setAnnouncementID:(unsigned int)arg1;
+- (void)setAnnouncementType:(int)arg1;
 - (void)setButtonOneAppURI:(id)arg1;
 - (void)setButtonOneMessage:(id)arg1;
 - (void)setButtonTwoAppURI:(id)arg1;
@@ -83,6 +88,7 @@
 - (void)setDisplayDestinations:(unsigned int)arg1;
 - (void)setFlyoverInfo:(id)arg1;
 - (void)setHasAnnouncementID:(BOOL)arg1;
+- (void)setHasAnnouncementType:(BOOL)arg1;
 - (void)setHasDisplayDestinations:(BOOL)arg1;
 - (void)setHasReleasePhase:(BOOL)arg1;
 - (void)setMapRegion:(id)arg1;

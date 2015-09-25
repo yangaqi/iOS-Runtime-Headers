@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class ESDContainer, OABReaderState, OABTableSortedIntArray, OADTable;
-
 @interface OABRTable : NSObject {
     struct OABTable2DArray<OABTableCell> { int x1; int x2; struct OABTableCell {} *x3; } *mCells;
     int mColumnCount;
@@ -26,7 +19,6 @@
     OABTableSortedIntArray *mYCoords;
 }
 
-- (id).cxx_construct;
 - (void)createTargetTableContents;
 - (void)dealloc;
 - (id)initWithSourceTable:(id)arg1 targetTable:(id)arg2 state:(id)arg3;

@@ -2,25 +2,21 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSArray, NSString;
-
 @interface GEOSearchAttributionInfo : NSObject <NSSecureCoding> {
-    NSArray *_attributionApps;
     unsigned int _attributionRequirementsMask;
     NSString *_displayName;
-    NSString *_identifier;
     NSArray *_logoPaths;
     NSArray *_snippetLogoPaths;
-    unsigned int _version;
-    NSString *_webBaseActionURL;
+    GEOSearchAttributionSource *_source;
 }
 
-@property(retain) NSArray * attributionApps;
-@property(retain) NSString * displayName;
-@property(retain) NSString * identifier;
-@property unsigned int requirementsMask;
-@property unsigned int version;
-@property(retain) NSString * webBaseActionURL;
+@property (nonatomic, readonly) NSArray *attributionApps;
+@property (nonatomic, readonly) NSString *displayName;
+@property (nonatomic, readonly) NSString *identifier;
+@property (nonatomic, readonly) unsigned int requirementsMask;
+@property (nonatomic, readonly) GEOSearchAttributionSource *source;
+@property (nonatomic, readonly) unsigned int version;
+@property (nonatomic, readonly) NSString *webBaseActionURL;
 
 + (BOOL)supportsSecureCoding;
 
@@ -38,13 +34,8 @@
 - (id)initWithSource:(id)arg1 localizedAttribution:(id)arg2 logoPaths:(id)arg3 snippetLogoPaths:(id)arg4;
 - (id)logoPathForScale:(float)arg1;
 - (unsigned int)requirementsMask;
-- (void)setAttributionApps:(id)arg1;
-- (void)setDisplayName:(id)arg1;
-- (void)setIdentifier:(id)arg1;
-- (void)setRequirementsMask:(unsigned int)arg1;
-- (void)setVersion:(unsigned int)arg1;
-- (void)setWebBaseActionURL:(id)arg1;
 - (id)snippetLogoPathForScale:(float)arg1;
+- (id)source;
 - (BOOL)supportsActionURLs;
 - (unsigned int)version;
 - (id)webBaseActionURL;

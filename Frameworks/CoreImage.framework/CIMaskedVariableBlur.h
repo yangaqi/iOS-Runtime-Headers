@@ -2,28 +2,29 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIImage, NSNumber;
-
 @interface CIMaskedVariableBlur : CIFilter {
     CIImage *inputImage;
     CIImage *inputMask;
     NSNumber *inputRadius;
 }
 
-@property(retain) CIImage * inputImage;
-@property(retain) CIImage * inputMask;
-@property(retain) NSNumber * inputRadius;
+@property (nonatomic, retain) CIImage *inputImage;
+@property (nonatomic, retain) CIImage *inputMask;
+@property (nonatomic, retain) NSNumber *inputRadius;
 
 + (id)customAttributes;
 
 - (BOOL)_isIdentity;
+- (id)_kernelCombine;
+- (id)_kernelD2;
+- (id)downTwo:(id)arg1;
 - (id)inputImage;
 - (id)inputMask;
 - (id)inputRadius;
 - (id)outputImage;
-- (void)setDefaults;
 - (void)setInputImage:(id)arg1;
 - (void)setInputMask:(id)arg1;
 - (void)setInputRadius:(id)arg1;
+- (id)upCubic:(id)arg1 scale:(float)arg2;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDAxesCollection, CHDChartTypesCollection, OADGraphicProperties;
-
 @interface CHDPlotArea : NSObject {
     CHDAxesCollection *mAxes;
     bool mCategoryAxesReversed;
@@ -17,6 +15,7 @@
 - (id)chartTypes;
 - (bool)containsVolumeStockType;
 - (void)dealloc;
+- (id)description;
 - (id)graphicProperties;
 - (bool)hasSecondaryAxis;
 - (bool)hasSecondaryYAxisDeleted;

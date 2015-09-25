@@ -2,12 +2,9 @@
    Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
  */
 
-@class NSArray, NSString;
-
 @interface HAPMetadataService : NSObject {
     BOOL _allowAssociatedService;
     NSString *_btleuuidStr;
-    NSString *_localizationKey;
     NSArray *_mandatoryCharacteristics;
     NSString *_name;
     NSArray *_optionalCharacteristics;
@@ -15,14 +12,13 @@
     NSString *_uuidStr;
 }
 
-@property BOOL allowAssociatedService;
-@property(retain) NSString * btleuuidStr;
-@property(retain) NSString * localizationKey;
-@property(retain) NSArray * mandatoryCharacteristics;
-@property(retain) NSString * name;
-@property(retain) NSArray * optionalCharacteristics;
-@property(retain) NSString * svcDescription;
-@property(retain) NSString * uuidStr;
+@property (nonatomic) BOOL allowAssociatedService;
+@property (nonatomic, retain) NSString *btleuuidStr;
+@property (nonatomic, retain) NSArray *mandatoryCharacteristics;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSArray *optionalCharacteristics;
+@property (nonatomic, retain) NSString *svcDescription;
+@property (nonatomic, retain) NSString *uuidStr;
 
 - (void).cxx_destruct;
 - (BOOL)allowAssociatedService;
@@ -30,14 +26,12 @@
 - (id)description;
 - (void)dump;
 - (id)generateDictionary:(id)arg1;
-- (id)initWithName:(id)arg1 uuid:(id)arg2 description:(id)arg3 localizationKey:(id)arg4 mandatoryCharacteristics:(id)arg5;
-- (id)localizationKey;
+- (id)initWithName:(id)arg1 uuid:(id)arg2 description:(id)arg3 mandatoryCharacteristics:(id)arg4;
 - (id)mandatoryCharacteristics;
 - (id)name;
 - (id)optionalCharacteristics;
 - (void)setAllowAssociatedService:(BOOL)arg1;
 - (void)setBtleuuidStr:(id)arg1;
-- (void)setLocalizationKey:(id)arg1;
 - (void)setMandatoryCharacteristics:(id)arg1;
 - (void)setName:(id)arg1;
 - (void)setOptionalCharacteristics:(id)arg1;

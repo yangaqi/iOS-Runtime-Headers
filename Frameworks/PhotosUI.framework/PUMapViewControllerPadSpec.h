@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@interface PUMapViewControllerPadSpec : PUMapViewControllerSpec {
-}
+@interface PUMapViewControllerPadSpec : PUMapViewControllerSpec
 
 - (BOOL)alwaysFadeRemoves;
 - (float)borderAnnotationPadding;
 - (void)configureStackView:(id)arg1;
 - (id)gridViewControllerSpec;
 - (float)stackWidth;
-- (int)thumbnailImageFormat;
+- (int)thumbnailContentMode;
+- (struct CGSize { float x1; float x2; })thumbnailSize;
 
 @end

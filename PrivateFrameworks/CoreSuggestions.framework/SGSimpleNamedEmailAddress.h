@@ -2,22 +2,24 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
  */
 
-@class NSString;
-
 @interface SGSimpleNamedEmailAddress : NSObject <NSCopying, NSSecureCoding> {
     NSString *_emailAddress;
     NSString *_name;
 }
 
-@property(readonly) NSString * emailAddress;
-@property(readonly) NSString * name;
+@property (nonatomic, readonly) NSString *emailAddress;
+@property (nonatomic, readonly) NSString *name;
 
++ (id)emailToNameDictionaryWithNamedEmailAddresses:(id)arg1;
++ (id)namedEmailAddressWithCSPerson:(id)arg1;
 + (id)namedEmailAddressWithFieldValue:(id)arg1;
++ (id)namedEmailAddressesWithEmailToNameDictionary:(id)arg1;
 + (id)namedEmailAddressesWithFieldValues:(id)arg1;
 + (id)serializeAll:(id)arg1;
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (id)asCSPerson;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (id)emailAddress;

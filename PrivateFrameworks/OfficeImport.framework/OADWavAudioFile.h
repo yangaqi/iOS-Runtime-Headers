@@ -7,13 +7,14 @@
     BOOL mHasDuration;
 }
 
-@property float duration;
-@property BOOL hasDuration;
+@property (nonatomic) float duration;
+@property (nonatomic) BOOL hasDuration;
 
 - (float)duration;
 - (BOOL)hasDuration;
 - (BOOL)isAudioOnly;
 - (void)setDuration:(float)arg1;
 - (void)setHasDuration:(BOOL)arg1;
+- (void)setIsAudioOnly:(BOOL)arg1;
 
 @end

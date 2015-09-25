@@ -2,19 +2,20 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOETATrafficUpdateResponse : PBCodable <NSCopying> {
     struct { 
         unsigned int status : 1; 
     } _has;
     NSMutableArray *_routes;
+    NSData *_sessionState;
     int _status;
 }
 
-@property BOOL hasStatus;
-@property(retain) NSMutableArray * routes;
-@property int status;
+@property (nonatomic, readonly) BOOL hasSessionState;
+@property (nonatomic) BOOL hasStatus;
+@property (nonatomic, retain) NSMutableArray *routes;
+@property (nonatomic, retain) NSData *sessionState;
+@property (nonatomic) int status;
 
 - (void)addRoute:(id)arg1;
 - (void)clearRoutes;
@@ -23,6 +24,7 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (BOOL)hasSessionState;
 - (BOOL)hasStatus;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
@@ -31,8 +33,10 @@
 - (id)routeAtIndex:(unsigned int)arg1;
 - (id)routes;
 - (unsigned int)routesCount;
+- (id)sessionState;
 - (void)setHasStatus:(BOOL)arg1;
 - (void)setRoutes:(id)arg1;
+- (void)setSessionState:(id)arg1;
 - (void)setStatus:(int)arg1;
 - (int)status;
 - (void)writeTo:(id)arg1;

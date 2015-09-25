@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
  */
 
-@class NSDate, NSObject<OS_dispatch_queue>, NSRunLoop, NSString, PCDispatchTimer;
-
 @interface PCSimpleTimer : NSObject <PCLoggingDelegate> {
     BOOL _disableSystemWaking;
+    double _earlyFireDelta;
     double _fireTime;
     PCDispatchTimer *_fireTimer;
     double _lastUpdateTime;
@@ -24,14 +23,16 @@
     NSRunLoop *_timerRunLoop;
     BOOL _triggerOnGMTChange;
     id _userInfo;
+    BOOL _userVisible;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL disableSystemWaking;
-@property(readonly) unsigned int hash;
-@property(readonly) NSString * loggingIdentifier;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL disableSystemWaking;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *loggingIdentifier;
+@property (readonly) Class superclass;
+@property (getter=isUserVisible, nonatomic) BOOL userVisible;
 
 + (double)currentMachTimeInterval;
 + (id)lastSystemWakeDate;
@@ -39,7 +40,7 @@
 - (void)_fireTimerFired;
 - (id)_getTimerMode;
 - (id)_getTimerRunLoop;
-- (void)_performBlockOnQueue:(id)arg1;
+- (void)_performBlockOnQueue:(id /* block */)arg1;
 - (void)_powerNotificationSleepIsImminent;
 - (void)_powerNotificationSleepIsNotImminent;
 - (void)_preventSleepFired;
@@ -56,12 +57,14 @@
 - (id)initWithFireDate:(id)arg1 serviceIdentifier:(id)arg2 target:(id)arg3 selector:(SEL)arg4 userInfo:(id)arg5;
 - (id)initWithTimeInterval:(double)arg1 serviceIdentifier:(id)arg2 target:(id)arg3 selector:(SEL)arg4 userInfo:(id)arg5;
 - (void)invalidate;
+- (BOOL)isUserVisible;
 - (BOOL)isValid;
 - (id)loggingIdentifier;
 - (void)scheduleInQueue:(id)arg1;
 - (void)scheduleInRunLoop:(id)arg1;
 - (void)scheduleInRunLoop:(id)arg1 inMode:(id)arg2;
 - (void)setDisableSystemWaking:(BOOL)arg1;
+- (void)setUserVisible:(BOOL)arg1;
 - (void)updateFireTime:(double)arg1 triggerOnGMTChange:(BOOL)arg2;
 - (id)userInfo;
 

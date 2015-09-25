@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class MKMapItem;
-
 @interface MKRouteActivityProvider : MKPlaceActivityProvider {
     MKMapItem *_sourceMapItem;
+    unsigned int _transportType;
 }
 
-@property(retain) MKMapItem * destinationMapItem;
-@property(retain) MKMapItem * sourceMapItem;
+@property (nonatomic, retain) MKMapItem *destinationMapItem;
+@property (nonatomic, retain) MKMapItem *sourceMapItem;
+@property (nonatomic) unsigned int transportType;
 
 - (void).cxx_destruct;
 - (id)activitySourceTitle;
@@ -18,6 +18,8 @@
 - (id)initWithSource:(id)arg1 destination:(id)arg2;
 - (void)setDestinationMapItem:(id)arg1;
 - (void)setSourceMapItem:(id)arg1;
+- (void)setTransportType:(unsigned int)arg1;
 - (id)sourceMapItem;
+- (unsigned int)transportType;
 
 @end

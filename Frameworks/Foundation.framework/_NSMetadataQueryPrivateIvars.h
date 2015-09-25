@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class _NSMetadataQueryResultArray;
-
 @interface _NSMetadataQueryPrivateIvars : NSObject {
+    NSObject *pendingKVONotificationArray;
     _NSMetadataQueryResultArray *resultArray;
 }
 

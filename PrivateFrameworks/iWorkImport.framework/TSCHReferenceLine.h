@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSString, NSUUID, TSCHChartAxis, TSCHChartAxisID, TSCHChartModel, TSCHReferenceLineNonStyle, TSCHReferenceLineStyle;
-
 @interface TSCHReferenceLine : NSObject <TSCHPropertyMapsGeneratedProtocol, TSCHStyleOwnerCollaborationSupport, TSCHStyleOwning, TSCHUnretainedParent> {
     TSCHChartAxisID *mAxisID;
     TSCHChartModel *mModel;
@@ -13,21 +11,23 @@
     NSUUID *mUUID;
 }
 
-@property(readonly) TSCHChartAxis * axis;
-@property(copy,readonly) TSCHChartAxisID * axisID;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL labelShowing;
-@property(readonly) BOOL lineShowing;
-@property(readonly) unsigned int styleSwapIndex;
-@property(readonly) Class superclass;
-@property(readonly) NSUUID * uuid;
-@property(readonly) BOOL valueLabelShowing;
+@property (nonatomic, readonly) TSCHChartAxis *axis;
+@property (nonatomic, readonly, copy) TSCHChartAxisID *axisID;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL labelShowing;
+@property (nonatomic, readonly) BOOL lineShowing;
+@property (nonatomic, readonly) unsigned int refLineType;
+@property (nonatomic, readonly) unsigned int styleSwapIndex;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSUUID *uuid;
+@property (nonatomic, readonly) BOOL valueLabelShowing;
 
 + (id)axisIDFromStyleSwapOrStyleOwnerIndex:(unsigned int)arg1;
 + (id)defaultNonStyleWithContext:(id)arg1 referenceLineType:(unsigned int)arg2 axis:(id)arg3;
 + (unsigned int)maxNumberOfReferenceLines;
++ (unsigned int)maxNumberOfReferenceLinesOfType:(unsigned int)arg1;
 + (id)p_lineLabelForType:(unsigned int)arg1;
 + (unsigned int)refLineIndexFromStyleSwapOrStyleOwnerIndex:(unsigned int)arg1;
 + (unsigned char)styleOwnerPathType;
@@ -58,6 +58,7 @@
 - (id)objectValueForProperty:(int)arg1;
 - (id)operationPropertyNameFromGenericProperty:(int)arg1;
 - (id)p_genericToDefaultPropertyMap;
+- (unsigned int)refLineType;
 - (double)referenceLineAxisValue;
 - (void)setStyle:(id)arg1 nonStyle:(id)arg2;
 - (int)specificPropertyForGeneric:(int)arg1;

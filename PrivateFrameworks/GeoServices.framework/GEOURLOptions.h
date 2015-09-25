@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOURLCamera, GEOURLCenterSpan, GEOURLRouteHandle, NSString;
-
 @interface GEOURLOptions : PBCodable <GEOURLSerializable, NSCopying> {
     GEOURLCamera *_camera;
     GEOURLCenterSpan *_centerSpan;
@@ -17,30 +15,35 @@
     int _mapType;
     NSString *_referralIdentifier;
     GEOURLRouteHandle *_routeHandle;
+    GEOURLTimePoint *_timePoint;
     int _transportType;
     int _userTrackingMode;
 }
 
-@property(retain) GEOURLCamera * camera;
-@property(retain) GEOURLCenterSpan * centerSpan;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL enableTraffic;
-@property(readonly) BOOL hasCamera;
-@property(readonly) BOOL hasCenterSpan;
-@property BOOL hasEnableTraffic;
-@property BOOL hasMapType;
-@property(readonly) BOOL hasReferralIdentifier;
-@property(readonly) BOOL hasRouteHandle;
-@property BOOL hasTransportType;
-@property BOOL hasUserTrackingMode;
-@property(readonly) unsigned int hash;
-@property int mapType;
-@property(retain) NSString * referralIdentifier;
-@property(retain) GEOURLRouteHandle * routeHandle;
-@property(readonly) Class superclass;
-@property int transportType;
-@property int userTrackingMode;
+@property (nonatomic, retain) GEOURLCamera *camera;
+@property (nonatomic, retain) GEOURLCenterSpan *centerSpan;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enableTraffic;
+@property (nonatomic, readonly) BOOL hasCamera;
+@property (nonatomic, readonly) BOOL hasCenterSpan;
+@property (nonatomic) BOOL hasEnableTraffic;
+@property (nonatomic) BOOL hasMapType;
+@property (nonatomic, readonly) BOOL hasReferralIdentifier;
+@property (nonatomic, readonly) BOOL hasRouteHandle;
+@property (nonatomic, readonly) BOOL hasTimePoint;
+@property (nonatomic) BOOL hasTransportType;
+@property (nonatomic) BOOL hasUserTrackingMode;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int mapType;
+@property (nonatomic, retain) NSString *referralIdentifier;
+@property (nonatomic, retain) GEOURLRouteHandle *routeHandle;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) GEOURLTimePoint *timePoint;
+@property (nonatomic) int transportType;
+@property (nonatomic) int userTrackingMode;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
 
 - (id)camera;
 - (id)centerSpan;
@@ -56,13 +59,12 @@
 - (BOOL)hasMapType;
 - (BOOL)hasReferralIdentifier;
 - (BOOL)hasRouteHandle;
+- (BOOL)hasTimePoint;
 - (BOOL)hasTransportType;
 - (BOOL)hasUserTrackingMode;
 - (unsigned int)hash;
-- (id)initWithLaunchOptions:(id)arg1;
 - (id)initWithUrlRepresentation:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
-- (id)launchOptions;
 - (int)mapType;
 - (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
@@ -78,11 +80,18 @@
 - (void)setMapType:(int)arg1;
 - (void)setReferralIdentifier:(id)arg1;
 - (void)setRouteHandle:(id)arg1;
+- (void)setTimePoint:(id)arg1;
 - (void)setTransportType:(int)arg1;
 - (void)setUserTrackingMode:(int)arg1;
+- (id)timePoint;
 - (int)transportType;
 - (id)urlRepresentation;
 - (int)userTrackingMode;
 - (void)writeTo:(id)arg1;
+
+// Image: /System/Library/Frameworks/MapKit.framework/MapKit
+
+- (id)initWithLaunchOptions:(id)arg1;
+- (id)launchOptions;
 
 @end

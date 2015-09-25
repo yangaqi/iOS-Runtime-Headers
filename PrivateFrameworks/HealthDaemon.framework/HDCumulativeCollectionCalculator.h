@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
  */
 
-@class <HDHealthDaemon>, HDLastIntervalInfo, NSArray, NSDictionary, NSMutableArray;
-
 @interface HDCumulativeCollectionCalculator : NSObject {
     unsigned int _bucketIndex;
     NSArray *_bucketPeriods;
@@ -57,24 +55,26 @@
         } __tree_; 
     } _lastIntervalSources;
     unsigned int _mergeStrategy;
+    double _mergedSum;
     NSArray *_orderedSourceIds;
 }
 
-@property unsigned int bucketIndex;
-@property(retain) NSArray * bucketPeriods;
-@property unsigned int currPeriod;
-@property long long currentAligned;
-@property(retain) <HDHealthDaemon> * daemon;
-@property unsigned int dataCount;
-@property BOOL detailBySource;
-@property(retain) NSMutableArray * futureBuckets;
-@property(retain) NSMutableArray * futureCounts;
-@property(retain) NSMutableArray * futureIntervals;
-@property BOOL lastBucket;
-@property(readonly) HDLastIntervalInfo * lastIntervalInfo;
-@property unsigned int mergeStrategy;
-@property(retain) NSArray * orderedSourceIds;
-@property(readonly) NSDictionary * sumsBySource;
+@property (nonatomic) unsigned int bucketIndex;
+@property (nonatomic, retain) NSArray *bucketPeriods;
+@property (nonatomic) unsigned int currPeriod;
+@property (nonatomic) long long currentAligned;
+@property (nonatomic, retain) <HDHealthDaemon> *daemon;
+@property (nonatomic) unsigned int dataCount;
+@property (nonatomic) BOOL detailBySource;
+@property (nonatomic, retain) NSMutableArray *futureBuckets;
+@property (nonatomic, retain) NSMutableArray *futureCounts;
+@property (nonatomic, retain) NSMutableArray *futureIntervals;
+@property (nonatomic) BOOL lastBucket;
+@property (nonatomic, readonly) HDLastIntervalInfo *lastIntervalInfo;
+@property (nonatomic) unsigned int mergeStrategy;
+@property (nonatomic, readonly) double mergedSum;
+@property (nonatomic, retain) NSArray *orderedSourceIds;
+@property (nonatomic, readonly) NSDictionary *sumsBySource;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -82,6 +82,7 @@
 - (double)addCurrentBucket;
 - (void)addCurrentValue:(double)arg1 sourceId:(long long)arg2;
 - (void)addSumsBySource:(id)arg1 lastInterval:(id)arg2 currentAligned:(long long)arg3 unit:(id)arg4;
+- (void)addValue:(double)arg1 startDate:(double)arg2 endDate:(double)arg3 valuePerSecond:(double)arg4 seconds:(double)arg5 sourceId:(long long)arg6 sum:(double*)arg7 bucketLength:(double)arg8 bucketStartTime:(double)arg9 bucketEndTime:(double)arg10;
 - (void)advanceBucket;
 - (double)advanceUntilInterval:(long long)arg1;
 - (unsigned int)bucketIndex;
@@ -101,6 +102,7 @@
 - (BOOL)lastBucket;
 - (id)lastIntervalInfo;
 - (unsigned int)mergeStrategy;
+- (double)mergedSum;
 - (id)orderedSourceIds;
 - (void)setBucketIndex:(unsigned int)arg1;
 - (void)setBucketPeriods:(id)arg1;

@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
  */
 
-@class NSString;
-
 @interface MSMMCSProtocol : NSObject <MSStorageProtocol> {
     NSString *_MMCSDirPath;
-    struct __MMCSEngine { } *_engine;
+    struct _mmcs_engine { } *_engine;
     NSString *_engineDirPath;
     NSString *_personID;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) struct __MMCSEngine { }* engine;
-@property(readonly) unsigned int hash;
-@property(readonly) NSString * personID;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) struct _mmcs_engine { }*engine;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSString *personID;
+@property (readonly) Class superclass;
 
 + (id)computeItemIDForAsset:(id)arg1;
 
@@ -31,7 +29,7 @@
 - (void)deactivateRemoveAllFiles:(BOOL)arg1;
 - (void)dealloc;
 - (void)didFinishUsingAssets:(id)arg1;
-- (struct __MMCSEngine { }*)engine;
+- (struct _mmcs_engine { }*)engine;
 - (id)initWithPersonID:(id)arg1 path:(id)arg2;
 - (id)personID;
 

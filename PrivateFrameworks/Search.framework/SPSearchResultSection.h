@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Search.framework/Search
  */
 
-@class NSMutableOrderedSet, NSString;
-
 @interface SPSearchResultSection : PBCodable <NSCopying> {
     NSString *_category;
     NSString *_displayIdentifier;
@@ -13,31 +11,37 @@
         unsigned int domain : 1; 
         unsigned int flags : 1; 
     } _has;
+    NSArray *_hiddenExtResults;
     NSString *_icon;
+    BOOL _isGlanceCategory;
     NSMutableOrderedSet *_resultSet;
     NSString *_scheme;
 }
 
-@property(retain) NSString * category;
-@property(retain) NSString * displayIdentifier;
-@property unsigned int domain;
-@property int flags;
-@property(readonly) BOOL hasCategory;
-@property(readonly) BOOL hasDisplayIdentifier;
-@property BOOL hasDomain;
-@property BOOL hasFlags;
-@property(readonly) BOOL hasIcon;
-@property(readonly) BOOL hasScheme;
-@property(retain) NSString * icon;
-@property(retain) NSString * scheme;
+@property (nonatomic, retain) NSString *category;
+@property (nonatomic, retain) NSString *displayIdentifier;
+@property (nonatomic) unsigned int domain;
+@property (nonatomic) int flags;
+@property (nonatomic, readonly) BOOL hasCategory;
+@property (nonatomic, readonly) BOOL hasDisplayIdentifier;
+@property (nonatomic) BOOL hasDomain;
+@property (nonatomic) BOOL hasFlags;
+@property (nonatomic, readonly) BOOL hasIcon;
+@property (nonatomic, readonly) BOOL hasResults;
+@property (nonatomic, readonly) BOOL hasScheme;
+@property (nonatomic, retain) NSArray *hiddenExtResults;
+@property (nonatomic, retain) NSString *icon;
+@property (nonatomic) BOOL isGlanceCategory;
+@property (nonatomic, retain) NSString *scheme;
 
+- (void).cxx_destruct;
+- (void)addHiddenExtResult:(id)arg1;
 - (void)addResults:(id)arg1;
 - (void)addResults:(id)arg1 atIndex:(unsigned int)arg2;
 - (id)category;
 - (void)clearResults;
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (id)displayIdentifier;
@@ -49,11 +53,14 @@
 - (BOOL)hasEquivalentResults:(id)arg1;
 - (BOOL)hasFlags;
 - (BOOL)hasIcon;
+- (BOOL)hasResults;
 - (BOOL)hasScheme;
 - (unsigned int)hash;
+- (id)hiddenExtResults;
 - (id)icon;
 - (unsigned int)indexOfResult:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isGlanceCategory;
 - (BOOL)readFrom:(id)arg1;
 - (void)removeResultsAtIndex:(unsigned int)arg1;
 - (id)resultSet;
@@ -61,13 +68,17 @@
 - (id)resultsAtIndex:(unsigned int)arg1;
 - (unsigned int)resultsCount;
 - (id)scheme;
+- (void)serializeTo:(id)arg1;
+- (BOOL)serialized;
 - (void)setCategory:(id)arg1;
 - (void)setDisplayIdentifier:(id)arg1;
 - (void)setDomain:(unsigned int)arg1;
 - (void)setFlags:(int)arg1;
 - (void)setHasDomain:(BOOL)arg1;
 - (void)setHasFlags:(BOOL)arg1;
+- (void)setHiddenExtResults:(id)arg1;
 - (void)setIcon:(id)arg1;
+- (void)setIsGlanceCategory:(BOOL)arg1;
 - (void)setScheme:(id)arg1;
 - (void)writeTo:(id)arg1;
 

@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOPDFlyover : PBCodable <NSCopying> {
-    struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; struct { unsigned int x_11_1_1 : 1; unsigned int x_11_1_2 : 1; unsigned int x_11_1_3 : 1; unsigned int x_11_1_4 : 1; unsigned int x_11_1_5 : 1; unsigned int x_11_1_6 : 1; unsigned int x_11_1_7 : 1; unsigned int x_11_1_8 : 1; unsigned int x_11_1_9 : 1; unsigned int x_11_1_10 : 1; } x11; } *_cameraPaths;
+    struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; float x11; struct { unsigned int x_12_1_1 : 1; unsigned int x_12_1_2 : 1; unsigned int x_12_1_3 : 1; unsigned int x_12_1_4 : 1; unsigned int x_12_1_5 : 1; unsigned int x_12_1_6 : 1; unsigned int x_12_1_7 : 1; unsigned int x_12_1_8 : 1; unsigned int x_12_1_9 : 1; unsigned int x_12_1_10 : 1; unsigned int x_12_1_11 : 1; } x12; } *_cameraPaths;
     unsigned int _cameraPathsCount;
     unsigned int _cameraPathsSpace;
     struct { 
@@ -19,24 +17,25 @@
     BOOL _useSplines;
 }
 
-@property(readonly) struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; struct { unsigned int x_11_1_1 : 1; unsigned int x_11_1_2 : 1; unsigned int x_11_1_3 : 1; unsigned int x_11_1_4 : 1; unsigned int x_11_1_5 : 1; unsigned int x_11_1_6 : 1; unsigned int x_11_1_7 : 1; unsigned int x_11_1_8 : 1; unsigned int x_11_1_9 : 1; unsigned int x_11_1_10 : 1; } x11; }* cameraPaths;
-@property(readonly) unsigned int cameraPathsCount;
-@property BOOL hasUseSplines;
-@property(readonly) struct { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }* labelFrames;
-@property(readonly) unsigned int labelFramesCount;
-@property(retain) NSMutableArray * labels;
-@property(retain) NSMutableArray * notificationMessages;
-@property BOOL useSplines;
+@property (nonatomic, readonly) struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; float x11; struct { unsigned int x_12_1_1 : 1; unsigned int x_12_1_2 : 1; unsigned int x_12_1_3 : 1; unsigned int x_12_1_4 : 1; unsigned int x_12_1_5 : 1; unsigned int x_12_1_6 : 1; unsigned int x_12_1_7 : 1; unsigned int x_12_1_8 : 1; unsigned int x_12_1_9 : 1; unsigned int x_12_1_10 : 1; unsigned int x_12_1_11 : 1; } x12; }*cameraPaths;
+@property (nonatomic, readonly) unsigned int cameraPathsCount;
+@property (nonatomic) BOOL hasUseSplines;
+@property (nonatomic, readonly) struct { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }*labelFrames;
+@property (nonatomic, readonly) unsigned int labelFramesCount;
+@property (nonatomic, retain) NSMutableArray *labels;
+@property (nonatomic, retain) NSMutableArray *notificationMessages;
+@property (nonatomic) BOOL useSplines;
 
 + (id)flyoverForPlaceData:(id)arg1;
 
-- (void)addCameraPath:(struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; struct { unsigned int x_11_1_1 : 1; unsigned int x_11_1_2 : 1; unsigned int x_11_1_3 : 1; unsigned int x_11_1_4 : 1; unsigned int x_11_1_5 : 1; unsigned int x_11_1_6 : 1; unsigned int x_11_1_7 : 1; unsigned int x_11_1_8 : 1; unsigned int x_11_1_9 : 1; unsigned int x_11_1_10 : 1; } x11; })arg1;
+- (void)addCameraPath:(struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; float x11; struct { unsigned int x_12_1_1 : 1; unsigned int x_12_1_2 : 1; unsigned int x_12_1_3 : 1; unsigned int x_12_1_4 : 1; unsigned int x_12_1_5 : 1; unsigned int x_12_1_6 : 1; unsigned int x_12_1_7 : 1; unsigned int x_12_1_8 : 1; unsigned int x_12_1_9 : 1; unsigned int x_12_1_10 : 1; unsigned int x_12_1_11 : 1; } x12; })arg1;
 - (void)addLabel:(id)arg1;
 - (void)addLabelFrame:(struct { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
 - (void)addNotificationMessage:(id)arg1;
 - (id)bestLocalizedAnnouncementMessage;
-- (struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; struct { unsigned int x_11_1_1 : 1; unsigned int x_11_1_2 : 1; unsigned int x_11_1_3 : 1; unsigned int x_11_1_4 : 1; unsigned int x_11_1_5 : 1; unsigned int x_11_1_6 : 1; unsigned int x_11_1_7 : 1; unsigned int x_11_1_8 : 1; unsigned int x_11_1_9 : 1; unsigned int x_11_1_10 : 1; } x11; })cameraPathAtIndex:(unsigned int)arg1;
-- (struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; struct { unsigned int x_11_1_1 : 1; unsigned int x_11_1_2 : 1; unsigned int x_11_1_3 : 1; unsigned int x_11_1_4 : 1; unsigned int x_11_1_5 : 1; unsigned int x_11_1_6 : 1; unsigned int x_11_1_7 : 1; unsigned int x_11_1_8 : 1; unsigned int x_11_1_9 : 1; unsigned int x_11_1_10 : 1; } x11; }*)cameraPaths;
+- (id)bestLocalizedLabelAtIndex:(unsigned int)arg1;
+- (struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; float x11; struct { unsigned int x_12_1_1 : 1; unsigned int x_12_1_2 : 1; unsigned int x_12_1_3 : 1; unsigned int x_12_1_4 : 1; unsigned int x_12_1_5 : 1; unsigned int x_12_1_6 : 1; unsigned int x_12_1_7 : 1; unsigned int x_12_1_8 : 1; unsigned int x_12_1_9 : 1; unsigned int x_12_1_10 : 1; unsigned int x_12_1_11 : 1; } x12; })cameraPathAtIndex:(unsigned int)arg1;
+- (struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; float x11; struct { unsigned int x_12_1_1 : 1; unsigned int x_12_1_2 : 1; unsigned int x_12_1_3 : 1; unsigned int x_12_1_4 : 1; unsigned int x_12_1_5 : 1; unsigned int x_12_1_6 : 1; unsigned int x_12_1_7 : 1; unsigned int x_12_1_8 : 1; unsigned int x_12_1_9 : 1; unsigned int x_12_1_10 : 1; unsigned int x_12_1_11 : 1; } x12; }*)cameraPaths;
 - (unsigned int)cameraPathsCount;
 - (void)clearCameraPaths;
 - (void)clearLabelFrames;
@@ -61,7 +60,7 @@
 - (id)notificationMessages;
 - (unsigned int)notificationMessagesCount;
 - (BOOL)readFrom:(id)arg1;
-- (void)setCameraPaths:(struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; struct { unsigned int x_11_1_1 : 1; unsigned int x_11_1_2 : 1; unsigned int x_11_1_3 : 1; unsigned int x_11_1_4 : 1; unsigned int x_11_1_5 : 1; unsigned int x_11_1_6 : 1; unsigned int x_11_1_7 : 1; unsigned int x_11_1_8 : 1; unsigned int x_11_1_9 : 1; unsigned int x_11_1_10 : 1; } x11; }*)arg1 count:(unsigned int)arg2;
+- (void)setCameraPaths:(struct { double x1; double x2; double x3; double x4; double x5; double x6; double x7; double x8; float x9; float x10; float x11; struct { unsigned int x_12_1_1 : 1; unsigned int x_12_1_2 : 1; unsigned int x_12_1_3 : 1; unsigned int x_12_1_4 : 1; unsigned int x_12_1_5 : 1; unsigned int x_12_1_6 : 1; unsigned int x_12_1_7 : 1; unsigned int x_12_1_8 : 1; unsigned int x_12_1_9 : 1; unsigned int x_12_1_10 : 1; unsigned int x_12_1_11 : 1; } x12; }*)arg1 count:(unsigned int)arg2;
 - (void)setHasUseSplines:(BOOL)arg1;
 - (void)setLabelFrames:(struct { float x1; unsigned int x2; float x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }*)arg1 count:(unsigned int)arg2;
 - (void)setLabels:(id)arg1;

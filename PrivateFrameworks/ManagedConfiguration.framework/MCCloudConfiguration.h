@@ -2,23 +2,23 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSDictionary, NSObject<OS_dispatch_queue>;
-
 @interface MCCloudConfiguration : NSObject {
     NSObject<OS_dispatch_queue> *_memberQueue;
     NSDictionary *_memberQueueDetails;
 }
 
-@property(copy) NSDictionary * details;
-@property(retain) NSObject<OS_dispatch_queue> * memberQueue;
-@property(retain) NSDictionary * memberQueueDetails;
+@property (nonatomic, copy) NSDictionary *details;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *memberQueue;
+@property (nonatomic, retain) NSDictionary *memberQueueDetails;
 
 + (id)sharedConfiguration;
 
 - (void).cxx_destruct;
 - (id)details;
 - (id)init;
+- (BOOL)isAwaitingConfiguration;
 - (BOOL)isSupervised;
+- (BOOL)isTeslaEnrolled;
 - (id)memberQueue;
 - (id)memberQueueDetails;
 - (void)refreshDetailsFromDisk;

@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSString;
-
-@interface NSGlyphNameGlyphInfo : NSIdentityGlyphInfo {
+@interface NSGlyphNameGlyphInfo : NSIdentityGlyphInfo <NSSecureCoding> {
     NSString *_name;
 }
 
 + (void)initialize;
++ (BOOL)supportsSecureCoding;
 
 - (void)dealloc;
 - (id)description;

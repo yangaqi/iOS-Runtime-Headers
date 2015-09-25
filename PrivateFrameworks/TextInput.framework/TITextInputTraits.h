@@ -16,25 +16,22 @@
             unsigned int secureTextEntry : 1; 
         } fields; 
     } _mask;
+    NSString *_recentInputIdentifier;
 }
 
-@property unsigned int autocapitalizationType;
-@property unsigned int autocorrectionType;
-@property BOOL enablesReturnKeyAutomatically;
-@property unsigned int keyboardAppearance;
-@property unsigned int keyboardType;
-@property unsigned int returnKeyType;
-@property BOOL secureTextEntry;
-@property unsigned int spellCheckingType;
+@property (nonatomic) unsigned int autocapitalizationType;
+@property (nonatomic) unsigned int autocorrectionType;
+@property (nonatomic) BOOL enablesReturnKeyAutomatically;
+@property (nonatomic) unsigned int keyboardAppearance;
+@property (nonatomic) unsigned int keyboardType;
+@property (nonatomic, copy) NSString *recentInputIdentifier;
+@property (nonatomic) unsigned int returnKeyType;
+@property (nonatomic) BOOL secureTextEntry;
+@property (nonatomic) unsigned int spellCheckingType;
+
+// Image: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
 
 + (BOOL)supportsSecureCoding;
-+ (id)traitsForUITextInputTraits:(id)arg1;
-+ (unsigned int)translateToTextInputAutocapitalizationType:(int)arg1;
-+ (unsigned int)translateToTextInputAutocorrectionType:(int)arg1;
-+ (unsigned int)translateToTextInputKeyboardAppearance:(int)arg1;
-+ (unsigned int)translateToTextInputKeyboardType:(int)arg1;
-+ (unsigned int)translateToTextInputReturnKeyType:(int)arg1;
-+ (unsigned int)translateToTextInputSpellCheckingType:(int)arg1;
 
 - (unsigned int)autocapitalizationType;
 - (unsigned int)autocorrectionType;
@@ -46,6 +43,7 @@
 - (BOOL)isEqual:(id)arg1;
 - (unsigned int)keyboardAppearance;
 - (unsigned int)keyboardType;
+- (id)recentInputIdentifier;
 - (unsigned int)returnKeyType;
 - (BOOL)secureTextEntry;
 - (void)setAutocapitalizationType:(unsigned int)arg1;
@@ -53,9 +51,21 @@
 - (void)setEnablesReturnKeyAutomatically:(BOOL)arg1;
 - (void)setKeyboardAppearance:(unsigned int)arg1;
 - (void)setKeyboardType:(unsigned int)arg1;
+- (void)setRecentInputIdentifier:(id)arg1;
 - (void)setReturnKeyType:(unsigned int)arg1;
 - (void)setSecureTextEntry:(BOOL)arg1;
 - (void)setSpellCheckingType:(unsigned int)arg1;
 - (unsigned int)spellCheckingType;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
+
++ (id)traitsForUITextInputTraits:(id)arg1;
++ (unsigned int)translateToTextInputAutocapitalizationType:(int)arg1;
++ (unsigned int)translateToTextInputAutocorrectionType:(int)arg1;
++ (unsigned int)translateToTextInputKeyboardAppearance:(int)arg1;
++ (unsigned int)translateToTextInputKeyboardType:(int)arg1;
++ (id)translateToTextInputRecentInputIdentifier:(id)arg1;
++ (unsigned int)translateToTextInputReturnKeyType:(int)arg1;
++ (unsigned int)translateToTextInputSpellCheckingType:(int)arg1;
 
 @end

@@ -2,22 +2,19 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIImage, NSNumber;
-
 @interface CIStraightenFilter : CIFilter {
     NSNumber *inputAngle;
     CIImage *inputImage;
 }
 
-@property(retain) NSNumber * inputAngle;
-@property(retain) CIImage * inputImage;
+@property (nonatomic, retain) NSNumber *inputAngle;
+@property (nonatomic, retain) CIImage *inputImage;
 
 + (id)customAttributes;
 
 - (id)inputAngle;
 - (id)inputImage;
 - (id)outputImage;
-- (void)setDefaults;
 - (void)setInputAngle:(id)arg1;
 - (void)setInputImage:(id)arg1;
 

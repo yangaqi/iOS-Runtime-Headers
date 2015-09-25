@@ -2,20 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSData, NSString, UIImage;
-
 @interface UIKBRenderer : NSObject {
     NSString *_cacheKey;
     struct CGContext { } *_cachingContext;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _cachingContextCompletion;
-
+    id /* block */ _cachingContextCompletion;
     BOOL _containsRGBContent;
     struct CGContext { } *_ctx;
     BOOL _opaque;
@@ -28,15 +18,15 @@
     } _size;
 }
 
-@property(retain) NSString * cacheKey;
-@property(readonly) BOOL containsRGBContent;
-@property(readonly) struct CGContext { }* context;
-@property(readonly) NSData * contextData;
-@property(readonly) BOOL opaque;
-@property(readonly) int renderFlags;
-@property(readonly) UIImage * renderedImage;
-@property(readonly) float scale;
-@property(readonly) struct CGSize { float x1; float x2; } size;
+@property (nonatomic, retain) NSString *cacheKey;
+@property (nonatomic, readonly) BOOL containsRGBContent;
+@property (nonatomic, readonly) struct CGContext { }*context;
+@property (nonatomic, readonly) NSData *contextData;
+@property (nonatomic, readonly) BOOL opaque;
+@property (nonatomic, readonly) int renderFlags;
+@property (nonatomic, readonly) UIImage *renderedImage;
+@property (nonatomic, readonly) float scale;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } size;
 
 + (void)clearInternalCaches;
 + (struct CGContext { }*)imageContextWithSize:(struct CGSize { float x1; float x2; })arg1 scale:(float)arg2 opaque:(BOOL)arg3 invert:(BOOL)arg4;
@@ -45,7 +35,7 @@
 - (void)_completeCacheImageWithTraitsIfNecessary:(id)arg1;
 - (struct CGContext { }*)_contextForCacheImageSize:(struct CGSize { float x1; float x2; })arg1;
 - (struct CGPath { }*)_deleteGlyphPaths;
-- (void)_drawKeyImage:(id)arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 withStyle:(id)arg3 force1xImages:(BOOL)arg4;
+- (void)_drawKeyImage:(id)arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 withStyle:(id)arg3 force1xImages:(BOOL)arg4 flipHorizontally:(BOOL)arg5;
 - (BOOL)_drawKeyString:(id)arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 withStyle:(id)arg3;
 - (void)_drawLinearGradient:(id)arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2;
 - (BOOL)_drawSingleSymbol:(id)arg1 inRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 withStyle:(id)arg3;
@@ -70,6 +60,7 @@
 - (id)initWithContext:(struct CGContext { }*)arg1 withSize:(struct CGSize { float x1; float x2; })arg2 withScale:(float)arg3 opaque:(BOOL)arg4 renderFlags:(int)arg5;
 - (BOOL)loadCachedImageForHashString:(id)arg1;
 - (BOOL)opaque;
+- (id)pathForConcaveCornerWithGeometry:(id)arg1;
 - (id)pathForFlickGeometry:(id)arg1;
 - (id)pathForFlickPopupGeometries:(id)arg1;
 - (id)pathForRenderGeometry:(id)arg1;

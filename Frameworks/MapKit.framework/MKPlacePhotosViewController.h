@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class <MKPlaceCardPhotosControllerDelegate>, MKMapItem, NSString, _MKPlacePhotosCollectionView, _MKPlaceViewController;
-
-@interface MKPlacePhotosViewController : UITableViewController <MKPlaceAttributionCellProvider, MKStackingViewControllerPreferredSizeUse, UICollectionViewDataSource, UICollectionViewDelegate> {
+@interface MKPlacePhotosViewController : UITableViewController <MKPlaceAttributionCellProvider, MKPlacePhotosViewDelegate, MKStackingViewControllerPreferredSizeUse, UICollectionViewDataSource, UICollectionViewDelegate> {
     BOOL _hasAttribution;
     MKMapItem *_mapItem;
     _MKPlaceViewController *_owner;
@@ -17,28 +15,29 @@
     BOOL _showMorePhotosButton;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL hasAttribution;
-@property(readonly) unsigned int hash;
-@property(retain) MKMapItem * mapItem;
-@property _MKPlaceViewController * owner;
-@property(retain) _MKPlacePhotosCollectionView * photoGrid;
-@property float photoWidth;
-@property <MKPlaceCardPhotosControllerDelegate> * photosControllerDelegate;
-@property unsigned int photosCount;
-@property(readonly) BOOL requiresPreferredContentSizeInStackingView;
-@property BOOL showAddPhotoButton;
-@property BOOL showAttribution;
-@property(readonly) BOOL showAttributionButtons;
-@property BOOL showMorePhotosButton;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL hasAttribution;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MKMapItem *mapItem;
+@property (nonatomic) _MKPlaceViewController *owner;
+@property (nonatomic, retain) _MKPlacePhotosCollectionView *photoGrid;
+@property (nonatomic) float photoWidth;
+@property (nonatomic) <MKPlaceCardPhotosControllerDelegate> *photosControllerDelegate;
+@property (nonatomic) unsigned int photosCount;
+@property (nonatomic, readonly) BOOL requiresPreferredContentSizeInStackingView;
+@property (nonatomic) BOOL showAddPhotoButton;
+@property (nonatomic) BOOL showAttribution;
+@property (nonatomic, readonly) BOOL showAttributionButtons;
+@property (nonatomic) BOOL showMorePhotosButton;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_addPhoto;
 - (void)_calculatePhotoSizeForSize:(struct CGSize { float x1; float x2; })arg1;
 - (void)_morePhotos;
 - (float)_photoCellHeight;
+- (void)_photoTappedAtIndex:(unsigned int)arg1 fromLincense:(BOOL)arg2;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (void)collectionView:(id)arg1 didSelectItemAtIndexPath:(id)arg2;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })collectionView:(id)arg1 layout:(id)arg2 insetForSectionAtIndex:(int)arg3;
@@ -57,6 +56,9 @@
 - (id)photos;
 - (id)photosControllerDelegate;
 - (unsigned int)photosCount;
+- (void)placePhotoViewer:(id)arg1 attributionTappedForPhotoAtIndex:(unsigned int)arg2;
+- (id)placePhotoViewer:(id)arg1 viewForPhotoAtIndex:(unsigned int)arg2;
+- (id)placePhotoViewerGetDelegatesMapItem:(id)arg1;
 - (BOOL)requiresPreferredContentSizeInStackingView;
 - (void)setHasAttribution:(BOOL)arg1;
 - (void)setMapItem:(id)arg1;

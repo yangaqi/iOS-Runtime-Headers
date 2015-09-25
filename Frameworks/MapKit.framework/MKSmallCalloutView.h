@@ -2,11 +2,10 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class MKCalloutBackgroundView, NSMutableArray, NSString, UILabel, UIView, UIView<_MKCalloutAccessoryView>, _MKSmallCalloutPassthroughButton;
-
 @interface MKSmallCalloutView : UIView <CalloutViewControllerProtocol> {
     MKCalloutBackgroundView *_calloutBackgroundView;
     UIView<_MKCalloutAccessoryView> *_detailView;
+    UILayoutGuide *_detailViewBottomToBottomGuide;
     UIView<_MKCalloutAccessoryView> *_externalLeftView;
     UIView<_MKCalloutAccessoryView> *_externalRightView;
     BOOL _initialDetailViewPositioning;
@@ -15,7 +14,11 @@
     NSMutableArray *_lastConstraints;
     UIView *_leftSpacerView;
     UIView<_MKCalloutAccessoryView> *_leftView;
-    unsigned int _mapDisplayStyle;
+    struct { 
+        unsigned char timePeriod; 
+        unsigned char overlayType; 
+        unsigned char applicationState; 
+    } _mapDisplayStyle;
     _MKSmallCalloutPassthroughButton *_maskedContainerView;
     float _maxWidth;
     struct CGSize { 
@@ -26,27 +29,29 @@
     UIView<_MKCalloutAccessoryView> *_rightView;
     BOOL _shouldPositionTitleForMapsTransitionMovingSideways;
     UILabel *_subtitleLabel;
+    UILayoutGuide *_titleBaselineToDetailViewTopGuide;
     UILabel *_titleLabel;
     UIView *_unmaskedContainerView;
 }
 
-@property(readonly) struct CGSize { float x1; float x2; } _preferredContentSize;
-@property(retain) MKCalloutBackgroundView * calloutBackgroundView;
-@property(copy) NSString * calloutSubtitle;
-@property(copy) NSString * calloutTitle;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) UIView * detailView;
-@property(readonly) unsigned int hash;
-@property(retain) UIView * leftView;
-@property unsigned int mapDisplayStyle;
-@property float maximumWidth;
-@property(retain) UIView * rightView;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) struct CGSize { float x1; float x2; } _preferredContentSize;
+@property (nonatomic, retain) MKCalloutBackgroundView *calloutBackgroundView;
+@property (nonatomic, copy) NSString *calloutSubtitle;
+@property (nonatomic, copy) NSString *calloutTitle;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIView *detailView;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIView *leftView;
+@property (nonatomic) struct { unsigned char x1; unsigned char x2; unsigned char x3; } mapDisplayStyle;
+@property (nonatomic) float maximumWidth;
+@property (nonatomic, retain) UIView *rightView;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_contentSizeCategoryDidChange:(id)arg1;
 - (struct CGSize { float x1; float x2; })_preferredContentSize;
+- (BOOL)_shouldCenterDetailView;
 - (id)_subtitleLabel;
 - (void)_updateAccessoryViewStyles;
 - (void)_updatePreferredContentSize;
@@ -59,7 +64,7 @@
 - (id)detailView;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)leftView;
-- (unsigned int)mapDisplayStyle;
+- (struct { unsigned char x1; unsigned char x2; unsigned char x3; })mapDisplayStyle;
 - (float)maximumWidth;
 - (void)reset;
 - (id)rightView;
@@ -71,7 +76,7 @@
 - (void)setDetailView:(id)arg1 animated:(BOOL)arg2;
 - (void)setLeftView:(id)arg1;
 - (void)setLeftView:(id)arg1 animated:(BOOL)arg2;
-- (void)setMapDisplayStyle:(unsigned int)arg1;
+- (void)setMapDisplayStyle:(struct { unsigned char x1; unsigned char x2; unsigned char x3; })arg1;
 - (void)setMaximumWidth:(float)arg1;
 - (void)setRightView:(id)arg1;
 - (void)setRightView:(id)arg1 animated:(BOOL)arg2;

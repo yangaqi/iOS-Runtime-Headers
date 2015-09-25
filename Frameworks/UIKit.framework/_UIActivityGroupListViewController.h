@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UILabel;
-
 @interface _UIActivityGroupListViewController : UICollectionViewController {
     NSArray *_activityGroupViewControllers;
     BOOL _darkStyleOnLegacyApp;
@@ -12,12 +10,13 @@
     NSArray *_visibleActivityGroupViewControllers;
 }
 
-@property(copy) NSArray * activityGroupViewControllers;
-@property BOOL darkStyleOnLegacyApp;
-@property(getter=isEmbedded) BOOL embedded;
-@property(retain) UILabel * placeholderLabel;
-@property(copy) NSArray * visibleActivityGroupViewControllers;
+@property (nonatomic, copy) NSArray *activityGroupViewControllers;
+@property (nonatomic) BOOL darkStyleOnLegacyApp;
+@property (getter=isEmbedded, nonatomic) BOOL embedded;
+@property (nonatomic, retain) UILabel *placeholderLabel;
+@property (nonatomic, copy) NSArray *visibleActivityGroupViewControllers;
 
+- (void).cxx_destruct;
 - (id)activityGroupViewControllers;
 - (id)collectionView:(id)arg1 cellForItemAtIndexPath:(id)arg2;
 - (struct CGSize { float x1; float x2; })collectionView:(id)arg1 layout:(id)arg2 referenceSizeForFooterInSection:(int)arg3;
@@ -26,9 +25,11 @@
 - (id)collectionView:(id)arg1 viewForSupplementaryElementOfKind:(id)arg2 atIndexPath:(id)arg3;
 - (void)collectionView:(id)arg1 willDisplayCell:(id)arg2 forItemAtIndexPath:(id)arg3;
 - (BOOL)darkStyleOnLegacyApp;
-- (void)dealloc;
 - (float)displayHeight;
 - (id)initWithActivityGroupViewControllers:(id)arg1 embedded:(BOOL)arg2;
+- (id)initWithCoder:(id)arg1;
+- (id)initWithCollectionViewLayout:(id)arg1;
+- (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (BOOL)isAirdropViewController:(id)arg1;
 - (BOOL)isEmbedded;
 - (int)numberOfSectionsInCollectionView:(id)arg1;

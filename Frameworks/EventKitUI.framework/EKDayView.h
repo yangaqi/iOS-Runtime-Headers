@@ -2,13 +2,12 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKDayViewDataSource>, <EKDayViewDelegate>, EKDayAllDayView, EKDayTimeView, EKDayViewContent, EKDayViewSpringLoadedScrollAnimation, EKEvent, NSArray, NSCalendar, NSDate, NSDateComponents, NSString, NSTimer, UIColor, UIImageView, UIPinchGestureRecognizer, UIScrollView, UITapGestureRecognizer, UIView;
-
 @interface EKDayView : UIView <EKDayAllDayViewDelegate, EKDayTimeViewDelegate, EKDayViewContentDelegate, UIScrollViewDelegate> {
     BOOL _alignsMidnightToTop;
     EKDayAllDayView *_allDayView;
     BOOL _allowPinchingHourHeights;
     BOOL _allowsOccurrenceSelection;
+    float _bottomContentInset;
     UIView *_bottomLine;
     UIImageView *_bottomVerticalGridExtension;
     NSCalendar *_calendar;
@@ -37,6 +36,8 @@
     UIPinchGestureRecognizer *_pinchGestureRecognizer;
     BOOL _pinching;
     EKDayViewSpringLoadedScrollAnimation *_scrollAnimation;
+    double _scrollAnimationDurationOverride;
+    BOOL _scrollEventsInToViewIgnoresVisibility;
     BOOL _scrollToOccurrencesOnNextReload;
     BOOL _scrollbarShowsInside;
     struct CGSize { 
@@ -49,52 +50,62 @@
     BOOL _shouldEverShowTimeIndicators;
     NSTimer *_timeMarkerTimer;
     EKDayTimeView *_timeView;
+    float _todayScrollSecondBuffer;
+    float _topContentInset;
     UIImageView *_topVerticalGridExtension;
     BOOL _userScrolling;
     BOOL _usesVibrantGridDrawing;
+    float _verticalContentInset;
 }
 
-@property BOOL alignsMidnightToTop;
-@property(readonly) EKDayAllDayView * allDayView;
-@property BOOL allowPinchingHourHeights;
-@property BOOL allowsOccurrenceSelection;
-@property BOOL allowsScrolling;
-@property BOOL animatesTimeMarker;
-@property(copy) NSCalendar * calendar;
-@property <EKDayViewDataSource> * dataSource;
-@property(readonly) double dayEnd;
-@property(readonly) double dayStart;
-@property(copy,readonly) NSString * debugDescription;
-@property <EKDayViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(retain) EKEvent * dimmedOccurrence;
-@property(copy) NSDateComponents * displayDate;
-@property BOOL eventsFillGrid;
-@property int firstVisibleSecond;
-@property(retain) UIColor * gridLineColor;
-@property(readonly) unsigned int hash;
-@property float hourScale;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } hoursToRender;
-@property BOOL isNowVisible;
-@property(readonly) float leftContentInset;
-@property struct CGPoint { float x1; float x2; } normalizedContentOffset;
-@property int occurrenceBackgroundStyle;
-@property(retain) UIColor * occurrenceLocationColor;
-@property(retain) UIColor * occurrenceTextBackgroundColor;
-@property(retain) UIColor * occurrenceTimeColor;
-@property(retain) UIColor * occurrenceTitleColor;
-@property(readonly) NSArray * occurrenceViews;
-@property int outlineStyle;
-@property(readonly) float scrollBarOffset;
-@property(readonly) float scrollOffset;
-@property BOOL shouldEverShowTimeIndicators;
-@property BOOL showsLeftBorder;
-@property BOOL showsTimeLabel;
-@property BOOL showsTimeLine;
-@property BOOL showsTimeMarker;
-@property(readonly) Class superclass;
-@property(retain) UIColor * timeViewTextColor;
-@property BOOL usesVibrantGridDrawing;
+@property (nonatomic) BOOL alignsMidnightToTop;
+@property (nonatomic, readonly) EKDayAllDayView *allDayView;
+@property (nonatomic) BOOL allowPinchingHourHeights;
+@property (nonatomic) BOOL allowsOccurrenceSelection;
+@property (nonatomic) BOOL allowsScrolling;
+@property (nonatomic) BOOL animatesTimeMarker;
+@property (nonatomic) float bottomContentInset;
+@property (nonatomic, copy) NSCalendar *calendar;
+@property (nonatomic) <EKDayViewDataSource> *dataSource;
+@property (nonatomic, readonly) EKDayViewContent *dayContent;
+@property (nonatomic, readonly) double dayEnd;
+@property (nonatomic, readonly) double dayStart;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKDayViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) EKEvent *dimmedOccurrence;
+@property (nonatomic, copy) NSDateComponents *displayDate;
+@property (nonatomic) BOOL eventsFillGrid;
+@property (nonatomic) int firstVisibleSecond;
+@property (nonatomic, retain) UIColor *gridLineColor;
+@property (readonly) unsigned int hash;
+@property (nonatomic) float hourScale;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } hoursToRender;
+@property (nonatomic) BOOL isNowVisible;
+@property (nonatomic, readonly) float leftContentInset;
+@property (nonatomic) struct CGPoint { float x1; float x2; } normalizedContentOffset;
+@property (nonatomic) int occurrenceBackgroundStyle;
+@property (nonatomic, retain) UIColor *occurrenceLocationColor;
+@property (nonatomic, retain) UIColor *occurrenceTextBackgroundColor;
+@property (nonatomic, retain) UIColor *occurrenceTimeColor;
+@property (nonatomic, retain) UIColor *occurrenceTitleColor;
+@property (nonatomic, readonly) NSArray *occurrenceViews;
+@property (nonatomic) int outlineStyle;
+@property (nonatomic) double scrollAnimationDurationOverride;
+@property (nonatomic, readonly) float scrollBarOffset;
+@property (nonatomic) BOOL scrollEventsInToViewIgnoresVisibility;
+@property (nonatomic, readonly) float scrollOffset;
+@property (nonatomic) BOOL shouldEverShowTimeIndicators;
+@property (nonatomic) BOOL showsLeftBorder;
+@property (nonatomic) BOOL showsTimeLabel;
+@property (nonatomic) BOOL showsTimeLine;
+@property (nonatomic) BOOL showsTimeMarker;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIColor *timeViewTextColor;
+@property (nonatomic) float todayScrollSecondBuffer;
+@property (nonatomic) float topContentInset;
+@property (nonatomic) BOOL usesVibrantGridDrawing;
+@property (nonatomic) float verticalContentInset;
 
 - (void).cxx_destruct;
 - (void)_adjustForDateOrCalendarChange;
@@ -113,7 +124,8 @@
 - (void)_notifyDelegateOfFinishedScrollingToOccurrence;
 - (struct CGPoint { float x1; float x2; })_pinchDistanceForGestureRecognizer:(id)arg1;
 - (float)_positionOfSecond:(int)arg1;
-- (void)_scrollToSecond:(int)arg1 animated:(BOOL)arg2 whenFinished:(id)arg3;
+- (void)_scrollToSecond:(int)arg1 animated:(BOOL)arg2 whenFinished:(id /* block */)arg3;
+- (void)_scrollToSecond:(int)arg1 offset:(float)arg2 animated:(BOOL)arg3 whenFinished:(id /* block */)arg4;
 - (void)_scrollViewWillBeginDragging:(id)arg1;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_scrollerRect;
 - (int)_secondAtPosition:(float)arg1;
@@ -134,6 +146,7 @@
 - (BOOL)allowsOccurrenceSelection;
 - (BOOL)allowsScrolling;
 - (BOOL)animatesTimeMarker;
+- (float)bottomContentInset;
 - (void)bringEventToFront:(id)arg1;
 - (id)calendar;
 - (void)configureOccurrenceViewForGestureController:(id)arg1;
@@ -143,6 +156,7 @@
 - (double)dateAtPoint:(struct CGPoint { float x1; float x2; })arg1 isAllDay:(BOOL*)arg2;
 - (double)dateAtPoint:(struct CGPoint { float x1; float x2; })arg1 isAllDay:(BOOL*)arg2 requireAllDayRegionInsistence:(BOOL)arg3;
 - (void)dayAllDayView:(id)arg1 occurrenceViewClicked:(id)arg2;
+- (id)dayContent;
 - (void)dayContentView:(id)arg1 atPoint:(struct CGPoint { float x1; float x2; })arg2;
 - (double)dayEnd;
 - (void)dayOccurrenceViewClicked:(id)arg1 atPoint:(struct CGPoint { float x1; float x2; })arg2;
@@ -190,12 +204,16 @@
 - (void)reloadData;
 - (void)removeFromSuperview;
 - (void)resetLastSelectedOccurrencePoint;
+- (float)scaledHourHeight;
+- (double)scrollAnimationDurationOverride;
 - (float)scrollBarOffset;
+- (BOOL)scrollEventsInToViewIgnoresVisibility;
 - (void)scrollEventsIntoViewAnimated:(BOOL)arg1;
 - (float)scrollOffset;
-- (void)scrollToDate:(id)arg1 animated:(BOOL)arg2 whenFinished:(id)arg3;
-- (void)scrollToEvent:(id)arg1 animated:(BOOL)arg2 completionBlock:(id)arg3;
-- (void)scrollToNowAnimated:(BOOL)arg1 whenFinished:(id)arg2;
+- (void)scrollToDate:(id)arg1 animated:(BOOL)arg2 whenFinished:(id /* block */)arg3;
+- (void)scrollToDate:(id)arg1 offset:(float)arg2 animated:(BOOL)arg3 whenFinished:(id /* block */)arg4;
+- (void)scrollToEvent:(id)arg1 animated:(BOOL)arg2 completionBlock:(id /* block */)arg3;
+- (void)scrollToNowAnimated:(BOOL)arg1 whenFinished:(id /* block */)arg2;
 - (BOOL)scrollTowardPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)scrollViewDidEndDecelerating:(id)arg1;
 - (void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(BOOL)arg2;
@@ -210,6 +228,8 @@
 - (void)setAllowsOccurrenceSelection:(BOOL)arg1;
 - (void)setAllowsScrolling:(BOOL)arg1;
 - (void)setAnimatesTimeMarker:(BOOL)arg1;
+- (void)setBackgroundColor:(id)arg1;
+- (void)setBottomContentInset:(float)arg1;
 - (void)setCalendar:(id)arg1;
 - (void)setDataSource:(id)arg1;
 - (void)setDelegate:(id)arg1;
@@ -227,8 +247,11 @@
 - (void)setOccurrenceTextBackgroundColor:(id)arg1;
 - (void)setOccurrenceTimeColor:(id)arg1;
 - (void)setOccurrenceTitleColor:(id)arg1;
+- (void)setOpaque:(BOOL)arg1;
 - (void)setOrientation:(int)arg1;
 - (void)setOutlineStyle:(int)arg1;
+- (void)setScrollAnimationDurationOverride:(double)arg1;
+- (void)setScrollEventsInToViewIgnoresVisibility:(BOOL)arg1;
 - (void)setScrollerYInset:(float)arg1 keepingYPointVisible:(float)arg2;
 - (void)setShouldEverShowTimeIndicators:(BOOL)arg1;
 - (void)setShowsLeftBorder:(BOOL)arg1;
@@ -237,7 +260,10 @@
 - (void)setShowsTimeMarker:(BOOL)arg1;
 - (void)setTimeViewTextColor:(id)arg1;
 - (void)setTimeZone:(id)arg1;
+- (void)setTodayScrollSecondBuffer:(float)arg1;
+- (void)setTopContentInset:(float)arg1;
 - (void)setUsesVibrantGridDrawing:(BOOL)arg1;
+- (void)setVerticalContentInset:(float)arg1;
 - (BOOL)shouldEverShowTimeIndicators;
 - (BOOL)showsLeftBorder;
 - (BOOL)showsTimeLabel;
@@ -245,8 +271,11 @@
 - (BOOL)showsTimeMarker;
 - (void)stopScrolling;
 - (id)timeViewTextColor;
+- (float)todayScrollSecondBuffer;
+- (float)topContentInset;
 - (void)updateMarkerPosition;
 - (BOOL)usesVibrantGridDrawing;
+- (float)verticalContentInset;
 - (void)willMoveToSuperview:(id)arg1;
 - (float)yPositionPerhapsMatchingAllDayOccurrence:(id)arg1;
 

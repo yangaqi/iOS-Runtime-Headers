@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class <GQHContext>, GQHTableState, GQHXML, GQSDocument;
-
 @interface GQHState : NSObject {
     int mCachedCellStyleIndex;
     struct __CFDictionary { } *mCachedTableStyles;
@@ -35,7 +33,6 @@
     unsigned int mTextScale;
 }
 
-- (id).cxx_construct;
 - (struct __CFString { }*)addCacheForCellStyle:(id)arg1 fillStyle:(id)arg2 cellClass:(Class)arg3 vectorStyles:(id*)arg4 groupLevel:(unsigned short)arg5 hasFormula:(BOOL)arg6 baseClassString:(struct __CFString { }*)arg7 cssCachedStyle:(id)arg8;
 - (struct __CFString { }*)addCachedClassStringForTextStyle:(id)arg1 implicitStyle:(id)arg2 isColoredBackground:(BOOL)arg3 outlineLevel:(int)arg4 outlineType:(int)arg5 isSpan:(BOOL)arg6 baseClassString:(struct __CFString { }*)arg7 cssCachedStyle:(id)arg8;
 - (void)addCachedStyle:(struct __CFString { }*)arg1;

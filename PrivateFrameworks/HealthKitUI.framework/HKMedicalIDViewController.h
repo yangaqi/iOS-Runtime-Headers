@@ -2,10 +2,7 @@
    Image: /System/Library/PrivateFrameworks/HealthKitUI.framework/HealthKitUI
  */
 
-@class <HKMedicalIDViewControllerDelegate>, HKEmergencyCardContactsTableItem, HKEmergencyCardGroupTableItem, HKHealthStore, NSArray, NSString, _HKMedicalIDData;
-
-@interface HKMedicalIDViewController : UITableViewController <HKEmergencyCardDeletionDelegate, HKEmergencyCardEnabledDelegate, HKEmergencyCardRowHeightChangeDelegate, HKMedicalIDViewControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
-    void *_addressBook;
+@interface HKMedicalIDViewController : UITableViewController <HKEmergencyCardDeletionDelegate, HKEmergencyCardRowHeightChangeDelegate, HKMedicalIDViewControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate> {
     BOOL _allowsEditing;
     HKEmergencyCardContactsTableItem *_contactsItem;
     <HKMedicalIDViewControllerDelegate> *_delegate;
@@ -21,24 +18,24 @@
     NSArray *_tableItems;
 }
 
-@property BOOL allowsEditing;
-@property(copy,readonly) NSString * debugDescription;
-@property <HKMedicalIDViewControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) HKHealthStore * healthStore;
-@property(retain) _HKMedicalIDData * medicalID;
-@property BOOL showsDeleteButton;
-@property BOOL showsDismissButton;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL allowsEditing;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <HKMedicalIDViewControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) HKHealthStore *healthStore;
+@property (nonatomic, retain) _HKMedicalIDData *medicalID;
+@property (nonatomic) BOOL showsDeleteButton;
+@property (nonatomic) BOOL showsDismissButton;
+@property (readonly) Class superclass;
 
 + (BOOL)isSupportedOnThisDevice;
 
 - (void).cxx_destruct;
-- (void*)_addressBook;
 - (void)_buildPresentableTableItems;
 - (void)_buildTableItems;
 - (void)_cancelEditingTapped:(id)arg1;
+- (void)_contactStoreDidChange:(id)arg1;
 - (void)_contentSizeCategoryDidChange:(id)arg1;
 - (void)_doneEditingTapped:(id)arg1;
 - (void)_doneTapped:(id)arg1;
@@ -50,7 +47,6 @@
 - (void)dealloc;
 - (id)delegate;
 - (void)deletionTableItemDidTapDelete:(id)arg1;
-- (void)enabledTableItem:(id)arg1 stateDidChange:(BOOL)arg2;
 - (id)healthStore;
 - (id)initInEditMode:(BOOL)arg1;
 - (void)localeDidChange:(id)arg1;
@@ -58,6 +54,7 @@
 - (void)medicalIDViewControllerDidCancel:(id)arg1;
 - (void)medicalIDViewControllerDidDelete:(id)arg1;
 - (void)medicalIDViewControllerDidSave:(id)arg1;
+- (unsigned int)navigationControllerSupportedInterfaceOrientations:(id)arg1;
 - (int)numberOfSectionsInTableView:(id)arg1;
 - (int)preferredStatusBarStyle;
 - (void)setAllowsEditing:(BOOL)arg1;
@@ -68,6 +65,7 @@
 - (void)setShowsDismissButton:(BOOL)arg1;
 - (BOOL)showsDeleteButton;
 - (BOOL)showsDismissButton;
+- (unsigned int)supportedInterfaceOrientations;
 - (void)tableItem:(id)arg1 heightDidChangeForRowIndex:(int)arg2 keepRectVisible:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 inView:(id)arg4;
 - (BOOL)tableView:(id)arg1 canEditRowAtIndexPath:(id)arg2;
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;

@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class PSSpecifier;
-
 @interface PSListItemsController : PSListController {
     BOOL _deferItemSelection;
     PSSpecifier *_lastSelectedSpecifier;
     BOOL _restrictionList;
+    id _retainedTarget;
     int _rowToSelect;
 }
 
+- (void).cxx_destruct;
 - (void)_addStaticText:(id)arg1;
-- (void)dealloc;
 - (void)didLock;
 - (BOOL)isRestrictionList;
 - (id)itemsFromDataSource;

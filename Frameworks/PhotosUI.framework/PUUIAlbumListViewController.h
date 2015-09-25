@@ -2,29 +2,34 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class NSArray, UIBarButtonItem;
-
 @interface PUUIAlbumListViewController : PUAlbumListViewController {
+    unsigned int __imagePickerAssetTypes;
     NSArray *__imagePickerMediaTypes;
+    BOOL _collectionsFetchResultIsValid;
     UIBarButtonItem *_imagePickerCancelButton;
 }
 
-@property(setter=_setImagePickerMediaTypes:,copy) NSArray * _imagePickerMediaTypes;
+@property (setter=_setImagePickerAssetTypes:, nonatomic) unsigned int _imagePickerAssetTypes;
+@property (setter=_setImagePickerMediaTypes:, nonatomic, copy) NSArray *_imagePickerMediaTypes;
 
 - (void).cxx_destruct;
-- (int)_defaultAlbumListFilter;
 - (void)_handleImagePickerCancel:(id)arg1;
+- (unsigned int)_imagePickerAssetTypes;
 - (id)_imagePickerMediaTypes;
-- (void)_setAlbumList:(struct NSObject { Class x1; }*)arg1 mediaTypes:(id)arg2;
+- (void)_invalidateCollectionsFetchResult;
+- (void)_setImagePickerAssetTypes:(unsigned int)arg1;
 - (void)_setImagePickerMediaTypes:(id)arg1;
+- (void)_updateCollectionsFetchResultIfNeeded;
+- (id)assetsFilterPredicate;
+- (int)estimatedCountForAssetCollection:(id)arg1;
 - (id)init;
 - (void)loadView;
 - (id)newGridViewControllerForAllPhotos;
 - (id)newGridViewControllerForAssetCollection:(id)arg1;
 - (id)newGridViewControllerForFolder:(id)arg1;
 - (BOOL)pu_wantsNavigationBarVisible;
-- (void)setAlbumList:(id)arg1;
 - (BOOL)shouldAllowEmailInAlbumSubtitle;
+- (BOOL)shouldHideEmptyCollections;
 - (BOOL)shouldShowAllPhotosItem;
 - (unsigned int)supportedInterfaceOrientations;
 - (void)updateNavigationBarAnimated:(BOOL)arg1;

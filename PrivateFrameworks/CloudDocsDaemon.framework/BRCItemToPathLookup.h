@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-@class BRCLocalItem, BRCRelativePath, BRCServerItem, BRCServerZone, NSURL;
-
 @interface BRCItemToPathLookup : NSObject {
     BOOL _cleanupFaults;
     struct { 
@@ -25,11 +23,12 @@
     BRCServerZone *_serverZone;
 }
 
-@property(readonly) BRCRelativePath * byFileSystemID;
-@property(readonly) BRCRelativePath * byPath;
-@property(readonly) NSURL * coordinationURL;
-@property(readonly) BOOL fileSystemIDMayStillExist;
-@property(readonly) BRCRelativePath * parentPath;
+@property (nonatomic, readonly) BRCRelativePath *byFileSystemID;
+@property (nonatomic, readonly) BRCRelativePath *byPath;
+@property (nonatomic, readonly) NSURL *coordinatedReadURL;
+@property (nonatomic, readonly) NSURL *coordinatedWriteURL;
+@property (nonatomic, readonly) BOOL fileSystemIDMayStillExist;
+@property (nonatomic, readonly) BRCRelativePath *parentPath;
 
 + (id)_resolveEnclosureWithEnclosureFd:(int)arg1 serverZone:(id)arg2 expectedDocumentID:(unsigned int)arg3 expectedFileName:(id)arg4 cleanupFaults:(BOOL)arg5;
 + (id)lookupForItem:(id)arg1;
@@ -46,7 +45,8 @@
 - (id)byPath;
 - (void)closePaths;
 - (BOOL)computeLogicalPath:(id*)arg1 physicalPath:(id*)arg2 isDirectory:(BOOL*)arg3;
-- (id)coordinationURL;
+- (id)coordinatedReadURL;
+- (id)coordinatedWriteURL;
 - (void)dealloc;
 - (id)description;
 - (BOOL)fileSystemIDMayStillExist;

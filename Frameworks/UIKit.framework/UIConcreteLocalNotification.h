@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CLRegion, NSCalendar, NSData, NSDate, NSString, NSTimeZone;
-
-@interface UIConcreteLocalNotification : UILocalNotification {
+@interface UIConcreteLocalNotification : UILocalNotification <NSSecureCoding> {
     NSString *alertAction;
     NSString *alertBody;
     NSString *alertLaunchImage;
@@ -16,6 +14,7 @@
     NSDate *fireDate;
     BOOL fireNotificationsWhenAppRunning;
     NSString *firedNotificationName;
+    BOOL fromSnooze;
     BOOL hasAction;
     BOOL hideAlertTitle;
     BOOL interruptAudioAndLockDevice;
@@ -33,8 +32,12 @@
     NSTimeZone *timeZone;
     int totalRepeatCount;
     NSData *userInfoData;
+    NSString *vibrationName;
 }
 
++ (BOOL)supportsSecureCoding;
+
+- (void).cxx_destruct;
 - (void)_setUserInfoData:(id)arg1;
 - (id)alertAction;
 - (id)alertBody;
@@ -47,7 +50,6 @@
 - (int)compareFireDates:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)customLockSliderLabel;
-- (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)fireDate;
@@ -60,6 +62,7 @@
 - (id)initWithCoder:(id)arg1;
 - (BOOL)interruptAudioAndLockDevice;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)isFromSnooze;
 - (BOOL)isTransient;
 - (BOOL)isTriggeredByDate;
 - (BOOL)isValid;
@@ -82,6 +85,7 @@
 - (void)setFireDate:(id)arg1;
 - (void)setFireNotificationsWhenAppRunning:(BOOL)arg1;
 - (void)setFiredNotificationName:(id)arg1;
+- (void)setFromSnooze:(BOOL)arg1;
 - (void)setHasAction:(BOOL)arg1;
 - (void)setHideAlertTitle:(BOOL)arg1;
 - (void)setInterruptAudioAndLockDevice:(BOOL)arg1;
@@ -99,6 +103,7 @@
 - (void)setTimeZone:(id)arg1;
 - (void)setTotalRepeatCount:(int)arg1;
 - (void)setUserInfo:(id)arg1;
+- (void)setVibrationName:(id)arg1;
 - (BOOL)showAlarmStatusBarItem;
 - (id)snoozedNotificationName;
 - (id)soundName;
@@ -107,5 +112,6 @@
 - (int)totalRepeatCount;
 - (id)userInfo;
 - (void)validate;
+- (id)vibrationName;
 
 @end

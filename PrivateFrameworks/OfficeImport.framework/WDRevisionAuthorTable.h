@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray, WDDocument;
-
 @interface WDRevisionAuthorTable : NSObject {
     NSMutableArray *mAuthors;
     WDDocument *mDocument;
@@ -15,6 +13,7 @@
 - (unsigned int)authorCount;
 - (id)authors;
 - (void)dealloc;
+- (id)description;
 - (id)initWithDocument:(id)arg1;
 
 @end

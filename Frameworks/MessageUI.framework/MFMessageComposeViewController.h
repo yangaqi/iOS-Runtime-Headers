@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class <MFMessageComposeViewControllerDelegate>, NSArray, NSMutableArray, NSString;
-
 @interface MFMessageComposeViewController : UINavigationController {
     NSArray *_attachments;
     NSString *_body;
@@ -16,17 +14,18 @@
     NSString *_subject;
 }
 
-@property(copy,readonly) NSArray * attachments;
-@property(copy) NSString * body;
-@property unsigned int currentAttachedAudioCount;
-@property unsigned int currentAttachedImageCount;
-@property unsigned int currentAttachedVideoCount;
-@property <MFMessageComposeViewControllerDelegate> * messageComposeDelegate;
-@property(copy) NSMutableArray * mutableAttachmentURLs;
-@property(copy) NSArray * recipients;
-@property(copy) NSString * subject;
+@property (nonatomic, readonly, copy) NSArray *attachments;
+@property (nonatomic, copy) NSString *body;
+@property (nonatomic) unsigned int currentAttachedAudioCount;
+@property (nonatomic) unsigned int currentAttachedImageCount;
+@property (nonatomic) unsigned int currentAttachedVideoCount;
+@property (nonatomic) <MFMessageComposeViewControllerDelegate> *messageComposeDelegate;
+@property (nonatomic, copy) NSMutableArray *mutableAttachmentURLs;
+@property (nonatomic, copy) NSArray *recipients;
+@property (nonatomic, copy) NSString *subject;
 
 + (BOOL)_canSendText;
++ (id)_chatKitBundle;
 + (void)_serviceAvailabilityChanged:(id)arg1;
 + (void)_setupAccountMonitor;
 + (void)_startListeningForAvailabilityNotifications;
@@ -79,6 +78,7 @@
 - (void)smsComposeControllerCancelled:(id)arg1;
 - (void)smsComposeControllerSendStarted:(id)arg1;
 - (id)subject;
+- (void)viewDidAppear:(BOOL)arg1;
 - (void)viewWillAppear:(BOOL)arg1;
 
 @end

@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVWeakReference, NSArray, NSString;
-
 @interface AVAssetInternal : NSObject {
     NSString *anchorChapterType;
+    NSArray *availableChapterLanguages;
     NSArray *availableChapterLocales;
     NSArray *chapterGroupInfo;
     long loadChapterInfoOnce;

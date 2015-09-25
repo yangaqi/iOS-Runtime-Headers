@@ -2,56 +2,45 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class <PKPaymentSetupViewControllerDelegate>, NSString, PKPaymentCredential, UIWebView;
-
 @interface PKPaymentCardIneligibleViewController : UIViewController <UIWebViewDelegate> {
-    PKPaymentCredential *_credential;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _learnMorePresentationHandler;
-
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _preflightCompletion;
-
+    int _context;
+    id /* block */ _learnMorePresentationHandler;
+    NSURL *_learnMoreURL;
+    id /* block */ _preflightCompletion;
     BOOL _preloadLearnMoreWebView;
-    int _setupContext;
+    int _reason;
     <PKPaymentSetupViewControllerDelegate> *_setupDelegate;
     UIWebView *_webView;
 }
 
-@property(retain) PKPaymentCredential * credential;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) id learnMorePresentationHandler;
+@property (nonatomic) int context;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) id /* block */ learnMorePresentationHandler;
+@property (nonatomic, retain) NSURL *learnMoreURL;
 @property BOOL preloadLearnMoreWebView;
-@property int setupContext;
-@property <PKPaymentSetupViewControllerDelegate> * setupDelegate;
-@property(readonly) Class superclass;
+@property (nonatomic) int reason;
+@property (nonatomic) <PKPaymentSetupViewControllerDelegate> *setupDelegate;
+@property (readonly) Class superclass;
 
-- (id)_alertWithLearnMoreURL:(id)arg1 isPreloaded:(BOOL)arg2;
-- (id)_learnMoreURLForEligibiltyStatus:(int)arg1;
+- (id)_alertWithReason:(int)arg1 learnMoreURL:(id)arg2 isPreloaded:(BOOL)arg3;
 - (void)_webViewDidLoad:(BOOL)arg1 withError:(id)arg2;
-- (id)credential;
+- (int)context;
 - (void)dealloc;
 - (void)handleDone:(id)arg1;
-- (id)initWithCredential:(id)arg1 context:(int)arg2 setupDelegate:(id)arg3;
-- (id)learnMorePresentationHandler;
-- (void)preflightWithCompletion:(id)arg1;
+- (id)initWithReason:(int)arg1 context:(int)arg2 setupDelegate:(id)arg3;
+- (id /* block */)learnMorePresentationHandler;
+- (id)learnMoreURL;
+- (void)preflightWithCompletion:(id /* block */)arg1;
 - (BOOL)preloadLearnMoreWebView;
-- (void)setCredential:(id)arg1;
-- (void)setLearnMorePresentationHandler:(id)arg1;
+- (int)reason;
+- (void)setContext:(int)arg1;
+- (void)setLearnMorePresentationHandler:(id /* block */)arg1;
+- (void)setLearnMoreURL:(id)arg1;
 - (void)setPreloadLearnMoreWebView:(BOOL)arg1;
-- (void)setSetupContext:(int)arg1;
+- (void)setReason:(int)arg1;
 - (void)setSetupDelegate:(id)arg1;
-- (int)setupContext;
 - (id)setupDelegate;
 - (void)viewDidLoad;
 - (id)webView;

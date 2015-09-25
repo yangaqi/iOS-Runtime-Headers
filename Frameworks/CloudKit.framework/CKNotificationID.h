@@ -2,18 +2,17 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@class NSString;
-
-@interface CKNotificationID : NSObject <NSCopying, NSSecureCoding> {
+@interface CKNotificationID : NSObject <CKXPCSuitableString, NSCopying, NSSecureCoding> {
     NSString *_notificationUUID;
 }
 
-@property(copy) NSString * notificationUUID;
+@property (nonatomic, copy) NSString *notificationUUID;
 
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (id)CKPropertiesDescription;
+- (id)CKXPCSuitableString;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;

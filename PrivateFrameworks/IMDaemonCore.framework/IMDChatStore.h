@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
  */
 
-@class NSString;
-
 @interface IMDChatStore : NSObject {
     NSString *_lastModificationStamp;
 }
 
-@property(retain) NSString * modificationStamp;
+@property (retain) NSString *modificationStamp;
 
 + (id)sharedInstance;
 
@@ -24,6 +22,7 @@
 - (id)loadAllChats;
 - (id)modificationStamp;
 - (void)removeMessageWithGUID:(id)arg1 fromChat:(id)arg2;
+- (void)setChatIsFiltered:(BOOL)arg1 withChatGuid:(id)arg2;
 - (void)setModificationStamp:(id)arg1;
 - (id)storeChat:(id)arg1;
 - (void)unarchiveChat:(id)arg1;

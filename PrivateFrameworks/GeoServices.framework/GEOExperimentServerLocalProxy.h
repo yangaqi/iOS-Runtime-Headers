@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class <GEOExperimentServerProxyDelegate>, GEOABExperimentRequest, GEOABExperimentResponse, NSLock, NSObject<OS_dispatch_source>, NSString;
-
 @interface GEOExperimentServerLocalProxy : NSObject <GEOExperimentServerProxy, GEOResourceManifestTileGroupObserver> {
     GEOABExperimentRequest *_currentRequest;
     NSLock *_currentRequestLock;
@@ -14,15 +12,16 @@
     NSLock *_updateTimerLock;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <GEOExperimentServerProxyDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) GEOABExperimentResponse * experimentsInfo;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <GEOExperimentServerProxyDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) GEOABExperimentResponse *experimentsInfo;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (void)_debug_setQuerySubstring:(id)arg1 forExperimentType:(int)arg2 dispatcherRequestType:(int)arg3;
 - (void)_invalidateTileCache:(BOOL)arg1 placesCache:(BOOL)arg2;
+- (void)_loadExperimentsConfiguration:(id /* block */)arg1;
 - (BOOL)_removeOldExperimentsInfoIfNecessary;
 - (void)_scheduleUpdateTimer:(double)arg1;
 - (double)_timeToNextUpdate;

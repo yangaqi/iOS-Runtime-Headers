@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMAVCore.framework/IMAVCore
  */
 
-@class CTCallCenter, NSMutableDictionary;
-
 @interface IMAVTelephonyManager : NSObject {
     CTCallCenter *_callCenter;
     struct __CFUUID { } *_ctAudioToken;
@@ -15,13 +13,13 @@
     BOOL _isDesignatedVideoServiceProvider;
 }
 
-@property(readonly) unsigned int callState;
+@property (nonatomic, readonly) unsigned int callState;
 
 + (id)numberToDialForNumber:(id)arg1 dialAssist:(BOOL*)arg2;
 + (id)sharedInstance;
 
 - (void)__handleCallEvent:(id)arg1;
-- (void)_answerCall:(struct __CTCall { }*)arg1;
+- (void)_answerCall:(struct __CTCall { }*)arg1 withSource:(struct __CFString { }*)arg2;
 - (BOOL)_breakCSCallsIfNecessary;
 - (struct __CTCall { }*)_callRefForChat:(id)arg1;
 - (void)_chatStateChanged:(id)arg1;

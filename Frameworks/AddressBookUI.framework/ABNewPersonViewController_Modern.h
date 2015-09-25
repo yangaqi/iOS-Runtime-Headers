@@ -2,11 +2,10 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class <ABNewPersonViewControllerDelegate>, <ABPresenterDelegate>, <ABStyleProvider>, ABContactViewController, ABContactsFilter, ABPersonTableViewDataSource, ABPersonViewControllerHelper, CNContact, NSString, _UIAccessDeniedView;
-
-@interface ABNewPersonViewController_Modern : UIViewController <ABContactViewControllerDelegate> {
+@interface ABNewPersonViewController_Modern : UIViewController <ABContactViewControllerDelegate, CNContactViewControllerPrivateDelegate> {
     _UIAccessDeniedView *_accessDeniedView;
     void *_addressBook;
+    CNContactViewController *_cnContactViewController;
     ABContactViewController *_contactViewController;
     ABPersonTableViewDataSource *_dataSource;
     void *_displayedPerson;
@@ -15,42 +14,44 @@
     CNContact *_mergeContact;
     <ABNewPersonViewControllerDelegate> *_newPersonViewDelegate;
     ABContactsFilter *_parentContactsFilter;
-    void *_parentGroup;
+    const void *_parentGroup;
     void *_parentSource;
-    <ABPresenterDelegate> *_presentingDelegate;
+    <CNPresenterDelegate> *_presentingDelegate;
     <ABStyleProvider> *_styleProvider;
 }
 
-@property(readonly) _UIAccessDeniedView * accessDeniedView;
-@property void* addressBook;
-@property(readonly) ABContactViewController * contactViewController;
-@property(readonly) ABPersonTableViewDataSource * dataSource;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property void* displayedPerson;
-@property(readonly) unsigned int hash;
-@property(readonly) ABPersonViewControllerHelper * helper;
-@property BOOL isRealViewLoaded;
-@property(retain) CNContact * mergeContact;
-@property <ABNewPersonViewControllerDelegate> * newPersonViewDelegate;
-@property(retain) ABContactsFilter * parentContactsFilter;
-@property void* parentGroup;
-@property void* parentSource;
-@property <ABPresenterDelegate> * presentingDelegate;
-@property BOOL savesNewContactOnSuspend;
-@property BOOL showsCancelButton;
-@property(retain) <ABStyleProvider> * styleProvider;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) _UIAccessDeniedView *accessDeniedView;
+@property (nonatomic) const void*addressBook;
+@property (nonatomic, retain) CNContactViewController *cnContactViewController;
+@property (nonatomic, readonly) ABContactViewController *contactViewController;
+@property (nonatomic, readonly) ABPersonTableViewDataSource *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) const void*displayedPerson;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) ABPersonViewControllerHelper *helper;
+@property (nonatomic) BOOL isRealViewLoaded;
+@property (nonatomic, retain) CNContact *mergeContact;
+@property (nonatomic) <ABNewPersonViewControllerDelegate> *newPersonViewDelegate;
+@property (nonatomic, retain) ABContactsFilter *parentContactsFilter;
+@property (nonatomic) const void*parentGroup;
+@property (nonatomic) void*parentSource;
+@property (nonatomic) <CNPresenterDelegate> *presentingDelegate;
+@property (nonatomic) BOOL savesNewContactOnSuspend;
+@property (nonatomic) BOOL showsCancelButton;
+@property (nonatomic, retain) <ABStyleProvider> *styleProvider;
+@property (readonly) Class superclass;
 
 - (void)accessChanged;
 - (id)accessDeniedView;
-- (void*)addressBook;
+- (const void*)addressBook;
+- (id)cnContactViewController;
 - (id)contactViewController;
 - (void)contactViewController:(id)arg1 didCompleteWithContact:(id)arg2;
 - (id)dataSource;
 - (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
-- (void*)displayedPerson;
+- (const void*)displayedPerson;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (id)helper;
 - (id)init;
@@ -64,19 +65,21 @@
 - (id)mergeContact;
 - (id)newPersonViewDelegate;
 - (id)parentContactsFilter;
-- (void*)parentGroup;
+- (const void*)parentGroup;
 - (void*)parentSource;
+- (struct CGSize { float x1; float x2; })preferredContentSize;
 - (id)presentingDelegate;
 - (void)save:(id)arg1;
 - (BOOL)savesNewContactOnSuspend;
 - (void)setAddressBook:(void*)arg1;
+- (void)setCnContactViewController:(id)arg1;
 - (void)setDisplayedPerson:(void*)arg1;
 - (void)setEditing:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setIsRealViewLoaded:(BOOL)arg1;
 - (void)setMergeContact:(id)arg1;
 - (void)setNewPersonViewDelegate:(id)arg1;
 - (void)setParentContactsFilter:(id)arg1;
-- (void)setParentGroup:(void*)arg1;
+- (void)setParentGroup:(const void*)arg1;
 - (void)setParentSource:(void*)arg1;
 - (void)setPresentingDelegate:(id)arg1;
 - (void)setSavesNewContactOnSuspend:(BOOL)arg1;
@@ -84,5 +87,6 @@
 - (void)setStyleProvider:(id)arg1;
 - (BOOL)showsCancelButton;
 - (id)styleProvider;
+- (void)viewDidAppear:(BOOL)arg1;
 
 @end

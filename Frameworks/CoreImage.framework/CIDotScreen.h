@@ -2,12 +2,8 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CIDotScreen : _CIScreenFilter {
-}
+@interface CIDotScreen : _CIScreenFilter
 
-+ (id)customAttributes;
-
-- (id)_kernel_code;
-- (id)_kernel_name;
++ (id)_kernel_code;
 
 @end

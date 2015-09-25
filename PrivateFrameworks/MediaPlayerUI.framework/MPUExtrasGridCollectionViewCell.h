@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class IKLockupElement, MPUContentSizeLayoutConstraint, MPUExtrasConstrainedArtworkContainerView, NSLayoutConstraint, UILabel, UIView;
-
 @interface MPUExtrasGridCollectionViewCell : UICollectionViewCell {
     MPUExtrasConstrainedArtworkContainerView *_artworkContainer;
     NSLayoutConstraint *_artworkContainerHeightConstraint;
     NSLayoutConstraint *_artworkContainerWidthConstraint;
     IKLockupElement *_lockupElement;
-    MPUContentSizeLayoutConstraint *_spacerHeight;
+    NSLayoutConstraint *_spacerHeight;
     NSLayoutConstraint *_spacerTop;
     UIView *_spacerView;
     UILabel *_subtitleLabel;
@@ -18,10 +16,10 @@
     MPUContentSizeLayoutConstraint *_topLineHeight;
 }
 
-@property(readonly) MPUExtrasConstrainedArtworkContainerView * artworkContainer;
-@property IKLockupElement * lockupElement;
-@property(retain) UILabel * subtitleLabel;
-@property(retain) UILabel * titleLabel;
+@property (nonatomic, readonly) MPUExtrasConstrainedArtworkContainerView *artworkContainer;
+@property (nonatomic) IKLockupElement *lockupElement;
+@property (nonatomic, retain) UILabel *subtitleLabel;
+@property (nonatomic, retain) UILabel *titleLabel;
 
 - (void).cxx_destruct;
 - (id)artworkContainer;

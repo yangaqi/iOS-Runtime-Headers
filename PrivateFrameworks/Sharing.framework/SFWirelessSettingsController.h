@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Sharing.framework/Sharing
  */
 
-@class <SFWirelessSettingsControllerDelegate>, NSObject<OS_dispatch_semaphore>;
-
 @interface SFWirelessSettingsController : NSObject {
     BOOL _bluetoothEnabled;
     id _delegate;
@@ -11,15 +9,18 @@
     NSObject<OS_dispatch_semaphore> *_firstCallBackSemaphore;
     BOOL _firstCallbackCompleted;
     struct __SFOperation { } *_information;
+    NSObject<OS_dispatch_queue> *_informationQueue;
     BOOL _wifiEnabled;
     BOOL _wirelessAccessPointEnabled;
+    BOOL _wirelessCarPlayEnabled;
 }
 
-@property(getter=isBluetoothEnabled) BOOL bluetoothEnabled;
-@property <SFWirelessSettingsControllerDelegate> * delegate;
-@property(readonly) BOOL deviceSupportsWAPI;
-@property(getter=isWifiEnabled) BOOL wifiEnabled;
-@property(getter=isWirelessAccessPointEnabled,readonly) BOOL wirelessAccessPointEnabled;
+@property (getter=isBluetoothEnabled) BOOL bluetoothEnabled;
+@property <SFWirelessSettingsControllerDelegate> *delegate;
+@property (readonly) BOOL deviceSupportsWAPI;
+@property (getter=isWifiEnabled) BOOL wifiEnabled;
+@property (getter=isWirelessAccessPointEnabled, readonly) BOOL wirelessAccessPointEnabled;
+@property (getter=isWirelessCarPlayEnabled, readonly) BOOL wirelessCarPlayEnabled;
 
 - (void)dealloc;
 - (id)delegate;
@@ -29,6 +30,7 @@
 - (BOOL)isBluetoothEnabled;
 - (BOOL)isWifiEnabled;
 - (BOOL)isWirelessAccessPointEnabled;
+- (BOOL)isWirelessCarPlayEnabled;
 - (void)repairAppleID;
 - (void)setBluetoothEnabled:(BOOL)arg1;
 - (void)setDelegate:(id)arg1;

@@ -2,22 +2,22 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSArray, NSMutableArray, SKUIApplicationController, SKUIJSTabBarItem;
-
 @interface SKUIJSTabBar : IKJSObject <SKUIJSTabBar> {
     SKUIApplicationController *_applicationController;
     NSMutableArray *_tabBarItems;
     SKUIJSTabBarItem *_transientTabBarItem;
 }
 
-@property(retain) SKUIJSTabBarItem * selectedTab;
-@property(readonly) NSArray * tabs;
-@property(readonly) SKUIJSTabBarItem * transientTab;
+@property (nonatomic, retain) SKUIJSTabBarItem *selectedTab;
+@property (nonatomic, readonly) NSArray *tabs;
+@property (nonatomic, readonly) SKUIJSTabBarItem *transientTab;
 
 - (void).cxx_destruct;
-- (void)_reloadTabBarItems;
+- (void)_reloadTabBarItemsWithPreludeMainThreadWork:(id /* block */)arg1;
+- (id)_selectedTabBarItemForIndex:(int)arg1;
 - (id)initWithAppContext:(id)arg1 controller:(id)arg2;
 - (id)selectedTab;
+- (void)sendOnNeedsContentForTabBarItem:(id)arg1;
 - (void)sendOnUpdate;
 - (void)setSelectedTab:(id)arg1;
 - (id)tabs;

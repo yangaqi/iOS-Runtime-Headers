@@ -2,18 +2,20 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@class NSObject<OS_xpc_object>;
-
 @interface BSXPCReply : NSObject {
-    NSObject<OS_xpc_object> *_message;
+    NSObject<OS_xpc_object> *_reply;
+    int _sent;
 }
 
 + (id)messageWithReply:(id)arg1;
++ (id)replyForMessage:(id)arg1;
 
+- (id)_initWithReply:(id)arg1;
 - (void)dealloc;
+- (id)initForMessage:(id)arg1;
 - (id)initWithReply:(id)arg1;
 - (id)message;
 - (long long)messageKind;
-- (void)sendReply:(id)arg1;
+- (void)sendReply:(id /* block */)arg1;
 
 @end

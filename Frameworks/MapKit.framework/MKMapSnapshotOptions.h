@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class MKMapCamera;
-
-@interface MKMapSnapshotOptions : NSObject <NSCopying> {
+@interface MKMapSnapshotOptions : NSObject <NSCopying, NSSecureCoding> {
     MKMapCamera *_camera;
     struct { 
         struct { 
@@ -36,26 +34,34 @@
         float width; 
         float height; 
     } _size;
+    BOOL _useSnapshotService;
     BOOL _usingRect;
 }
 
-@property(copy) MKMapCamera * camera;
-@property struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } mapRect;
-@property unsigned int mapType;
-@property struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } region;
-@property(getter=_rendersInBackground,setter=_setRendersInBackground:) BOOL rendersInBackground;
-@property float scale;
-@property BOOL showsBuildings;
-@property BOOL showsPointsOfInterest;
-@property struct CGSize { float x1; float x2; } size;
-@property(readonly) BOOL usingRect;
+@property (nonatomic, copy) MKMapCamera *camera;
+@property (nonatomic) struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } mapRect;
+@property (nonatomic) unsigned int mapType;
+@property (nonatomic) struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; } region;
+@property (getter=_rendersInBackground, setter=_setRendersInBackground:, nonatomic) BOOL rendersInBackground;
+@property (nonatomic) float scale;
+@property (nonatomic) BOOL showsBuildings;
+@property (nonatomic) BOOL showsPointsOfInterest;
+@property (nonatomic) struct CGSize { float x1; float x2; } size;
+@property (getter=_useSnapshotService, setter=_setUseSnapshotService:, nonatomic) BOOL useSnapshotService;
+@property (nonatomic, readonly) BOOL usingRect;
+
++ (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
 - (BOOL)_rendersInBackground;
 - (void)_setRendersInBackground:(BOOL)arg1;
+- (void)_setUseSnapshotService:(BOOL)arg1;
+- (BOOL)_useSnapshotService;
 - (id)camera;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (void)encodeWithCoder:(id)arg1;
 - (id)init;
+- (id)initWithCoder:(id)arg1;
 - (struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })mapRect;
 - (unsigned int)mapType;
 - (struct { struct { double x_1_1_1; double x_1_1_2; } x1; struct { double x_2_1_1; double x_2_1_2; } x2; })region;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class MFBrush, MFFont, MFPalette, MFPath, MFPen, MFTransform, NSObject<MFDeviceDriver>, OITSUColor;
-
 @interface MFDeviceContext : NSObject <NSCopying> {
     int m_arcDirection;
     OITSUColor *m_bkColour;
@@ -13,6 +11,8 @@
         float x; 
         float y; 
     } m_brushOrg;
+    BOOL m_clippingIsRestarted;
+    NSMutableArray *m_clippingPaths;
     NSObject<MFDeviceDriver> *m_driver;
     MFFont *m_font;
     double m_miterLimit;
@@ -37,9 +37,13 @@
     MFTransform *m_transform;
 }
 
+@property (nonatomic) BOOL clippingIsRestarted;
+@property (nonatomic, readonly) NSMutableArray *clippingPaths;
+
 + (id)deviceContextWithDriver:(id)arg1;
 
-- (id).cxx_construct;
+- (BOOL)clippingIsRestarted;
+- (id)clippingPaths;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (int)getArcDirection;
@@ -71,6 +75,7 @@
 - (void)setBkMode:(int)arg1;
 - (void)setBrush:(id)arg1;
 - (void)setBrushOrg:(struct CGPoint { float x1; float x2; })arg1;
+- (void)setClippingIsRestarted:(BOOL)arg1;
 - (void)setCurrentTransform:(id)arg1;
 - (void)setFont:(id)arg1;
 - (void)setMiterLimit:(double)arg1;

@@ -7,13 +7,15 @@
     id _table;
 }
 
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
+
 + (BOOL)supportsSecureCoding;
 
 - (void)addObject:(id)arg1;
 - (Class)classForCoder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (unsigned int)countForObject:(id)arg1;
 - (void)dealloc;
 - (id)descriptionWithLocale:(id)arg1;
@@ -30,5 +32,9 @@
 - (id)mutableCopyWithZone:(struct _NSZone { }*)arg1;
 - (id)objectEnumerator;
 - (void)removeObject:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/Message.framework/Message
+
+- (id)mf_debugDescription;
 
 @end

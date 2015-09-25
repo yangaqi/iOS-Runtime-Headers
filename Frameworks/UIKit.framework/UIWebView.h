@@ -2,35 +2,35 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIWebViewDelegate>, NSString, NSURLRequest, UIScrollView, UIWebViewInternal;
-
-@interface UIWebView : UIView <NSCoding, UIScrollViewDelegate> {
+@interface UIWebView : UIView <NSCoding, UIScrollViewDelegate, WebPolicyDelegate> {
     UIWebViewInternal *_internal;
 }
 
-@property BOOL allowsInlineMediaPlayback;
-@property(getter=canGoBack,readonly) BOOL canGoBack;
-@property(getter=canGoForward,readonly) BOOL canGoForward;
-@property unsigned int dataDetectorTypes;
-@property(copy,readonly) NSString * debugDescription;
-@property <UIWebViewDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property BOOL detectsPhoneNumbers;
-@property float gapBetweenPages;
-@property(readonly) unsigned int hash;
-@property BOOL keyboardDisplayRequiresUserAction;
-@property(getter=isLoading,readonly) BOOL loading;
-@property BOOL mediaPlaybackAllowsAirPlay;
-@property BOOL mediaPlaybackRequiresUserAction;
-@property(readonly) unsigned int pageCount;
-@property float pageLength;
-@property int paginationBreakingMode;
-@property int paginationMode;
-@property(retain,readonly) NSURLRequest * request;
-@property BOOL scalesPageToFit;
-@property(retain,readonly) UIScrollView * scrollView;
-@property(readonly) Class superclass;
-@property BOOL suppressesIncrementalRendering;
+@property (nonatomic) BOOL allowsInlineMediaPlayback;
+@property (nonatomic) BOOL allowsLinkPreview;
+@property (nonatomic) BOOL allowsPictureInPictureMediaPlayback;
+@property (getter=canGoBack, nonatomic, readonly) BOOL canGoBack;
+@property (getter=canGoForward, nonatomic, readonly) BOOL canGoForward;
+@property (nonatomic) unsigned int dataDetectorTypes;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIWebViewDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL detectsPhoneNumbers;
+@property (nonatomic) float gapBetweenPages;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL keyboardDisplayRequiresUserAction;
+@property (getter=isLoading, nonatomic, readonly) BOOL loading;
+@property (nonatomic) BOOL mediaPlaybackAllowsAirPlay;
+@property (nonatomic) BOOL mediaPlaybackRequiresUserAction;
+@property (nonatomic, readonly) unsigned int pageCount;
+@property (nonatomic) float pageLength;
+@property (nonatomic) int paginationBreakingMode;
+@property (nonatomic) int paginationMode;
+@property (nonatomic, readonly) NSURLRequest *request;
+@property (nonatomic) BOOL scalesPageToFit;
+@property (nonatomic, readonly) UIScrollView *scrollView;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL suppressesIncrementalRendering;
 
 + (void)_fixPathsForSandboxDirectoryChange;
 + (id)_relativePathFromAbsolutePath:(id)arg1 removingPathComponents:(unsigned int)arg2;
@@ -38,6 +38,8 @@
 + (void)initialize;
 
 - (void)_addShortcut:(id)arg1;
+- (BOOL)_allowsPictureInPictureVideo;
+- (BOOL)_alwaysConstrainsScale;
 - (BOOL)_alwaysDispatchesScrollEvents;
 - (BOOL)_appliesExclusiveTouchToSubviewTree;
 - (unsigned int)_audioSessionCategoryOverride;
@@ -52,6 +54,7 @@
 - (float)_gapBetweenPages;
 - (id)_initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 enableReachability:(BOOL)arg2;
 - (id)_initWithWebView:(id)arg1;
+- (void)_lookup:(struct CGPoint { float x1; float x2; })arg1;
 - (id)_makeAlertView;
 - (id)_networkInterfaceName;
 - (unsigned int)_pageCount;
@@ -64,6 +67,8 @@
 - (void)_reportError:(id)arg1;
 - (void)_rescaleDocument;
 - (id)_scrollView;
+- (void)_setAllowsPictureInPictureVideo:(BOOL)arg1;
+- (void)_setAlwaysConstrainsScale:(BOOL)arg1;
 - (void)_setAlwaysDispatchesScrollEvents:(BOOL)arg1;
 - (void)_setAudioSessionCategoryOverride:(unsigned int)arg1;
 - (void)_setDrawInWebThread:(BOOL)arg1;
@@ -77,15 +82,25 @@
 - (void)_setRichTextReaderViewportSettings;
 - (void)_setScalesPageToFitViewportSettings;
 - (void)_setWebSelectionEnabled:(BOOL)arg1;
+- (void)_share:(id)arg1;
 - (void)_updateBrowserViewExposedScrollViewRect;
 - (void)_updateCheckeredPattern;
 - (void)_updateOpaqueAndBackgroundColor;
 - (void)_updateRequest;
 - (void)_updateScrollerViewForInputView:(id)arg1;
 - (void)_updateViewSettings;
+- (void)_webView:(id)arg1 commitPreview:(id)arg2;
+- (void)_webView:(id)arg1 didDismissPreview:(id)arg2 committing:(BOOL)arg3;
+- (id)_webView:(id)arg1 presentationRectsForPreview:(id)arg2;
+- (id)_webView:(id)arg1 presentationSnapshotForPreview:(id)arg2;
+- (BOOL)_webView:(id)arg1 previewIsAllowedForPosition:(struct CGPoint { float x1; float x2; })arg2;
+- (id)_webView:(id)arg1 previewViewControllerForURL:(id)arg2;
+- (void)_webView:(id)arg1 willPresentPreview:(id)arg2;
 - (void)_webViewCommonInitWithWebView:(id)arg1 scalesPageToFit:(BOOL)arg2;
 - (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (BOOL)allowsInlineMediaPlayback;
+- (BOOL)allowsLinkPreview;
+- (BOOL)allowsPictureInPictureMediaPlayback;
 - (BOOL)canGoBack;
 - (BOOL)canGoForward;
 - (BOOL)canPerformAction:(SEL)arg1 withSender:(id)arg2;
@@ -102,7 +117,6 @@
 - (float)gapBetweenPages;
 - (void)goBack;
 - (void)goForward;
-- (int)highlightAllOccurencesOfString:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)isElementAccessibilityExposedToInterfaceBuilder;
@@ -119,7 +133,6 @@
 - (int)paginationBreakingMode;
 - (int)paginationMode;
 - (void)reload;
-- (void)removeAllHighlights;
 - (id)request;
 - (void)restoreStateFromHistoryItem:(id)arg1 forWebView:(id)arg2;
 - (void)saveStateToHistoryItem:(id)arg1 forWebView:(id)arg2;
@@ -137,6 +150,8 @@
 - (void)select:(id)arg1;
 - (void)selectAll:(id)arg1;
 - (void)setAllowsInlineMediaPlayback:(BOOL)arg1;
+- (void)setAllowsLinkPreview:(BOOL)arg1;
+- (void)setAllowsPictureInPictureMediaPlayback:(BOOL)arg1;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setBounds:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setDataDetectorTypes:(unsigned int)arg1;

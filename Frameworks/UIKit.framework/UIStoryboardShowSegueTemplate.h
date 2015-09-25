@@ -2,20 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIStoryboardShowSegueTemplate : UIStoryboardSegueTemplate {
     NSString *_action;
 }
 
-@property(copy) NSString * action;
+@property (nonatomic, copy) NSString *action;
 
+- (void).cxx_destruct;
 - (id)action;
-- (void)dealloc;
-- (id)defaultSegueClassName;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)segueWithDestinationViewController:(id)arg1;
+- (id /* block */)newDefaultPerformHandlerForSegue:(id)arg1;
 - (void)setAction:(id)arg1;
 
 @end

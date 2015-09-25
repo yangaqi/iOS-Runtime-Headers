@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKUILocationSearchModelDelegate>, ABSearchOperation, CLGeocoder, CLInUseAssertion, CLLocationManager, EKEventStore, EKOccurrenceCacheLocationSearch, EKStructuredLocation, MKLocalSearch, MKLocalSearchCompleter, NSArray, NSCharacterSet, NSMutableArray, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, NSTimer;
-
 @interface EKUILocationSearchModel : NSObject <ABSearchOperationDelegate, CLLocationManagerDelegate, MKSearchCompleterDelegate> {
     ABSearchOperation *_abSearchOperation;
     NSOperationQueue *_abSearchQueue;
@@ -19,7 +17,6 @@
     EKOccurrenceCacheLocationSearch *_eventsSearch;
     NSMutableArray *_eventsSearchResults;
     NSMutableArray *_frequentsSearchResults;
-    NSMutableArray *_geocodedSearchResults;
     CLGeocoder *_geocoder;
     MKLocalSearch *_localSearch;
     CLInUseAssertion *_locationAssertion;
@@ -28,23 +25,21 @@
     NSMutableArray *_mutableConferenceRoomSearchResults;
     NSObject<OS_dispatch_queue> *_recentsQueue;
     NSMutableArray *_recentsSearchResults;
-    NSTimer *_timer;
     NSCharacterSet *_whitespaceAndNewlineCharacterSet;
 }
 
-@property(readonly) NSArray * conferenceRoomSearchResults;
-@property(readonly) NSArray * contactsSearchResults;
-@property(retain) EKStructuredLocation * currentLocation;
-@property(copy,readonly) NSString * debugDescription;
-@property <EKUILocationSearchModelDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) NSArray * eventsSearchResults;
-@property(readonly) NSArray * frequentsSearchResults;
-@property(readonly) NSArray * geocodedSearchResults;
-@property(readonly) unsigned int hash;
-@property(readonly) NSArray * mapCompletionSearchResults;
-@property(readonly) NSArray * recentsSearchResults;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) NSArray *conferenceRoomSearchResults;
+@property (nonatomic, readonly) NSArray *contactsSearchResults;
+@property (nonatomic, retain) EKStructuredLocation *currentLocation;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <EKUILocationSearchModelDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) NSArray *eventsSearchResults;
+@property (nonatomic, readonly) NSArray *frequentsSearchResults;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *mapCompletionSearchResults;
+@property (nonatomic, readonly) NSArray *recentsSearchResults;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (id)CLLocationForDictionary:(id)arg1;
@@ -54,7 +49,6 @@
 - (void)addLocationToRecents:(id)arg1 addressString:(id)arg2;
 - (void)beginSearchForTerm:(id)arg1;
 - (void)cancelSearch;
-- (void)cancelTimer;
 - (void)completerDidUpdateResults:(id)arg1 finished:(BOOL)arg2;
 - (id)conferenceRoomSearchResults;
 - (id)contactsSearchResults;
@@ -65,8 +59,6 @@
 - (id)dictionaryForCLLocation:(id)arg1;
 - (id)eventsSearchResults;
 - (id)frequentsSearchResults;
-- (void)geocodeFallback:(id)arg1;
-- (id)geocodedSearchResults;
 - (void)getCurrentLocation;
 - (id)initWithEventStore:(id)arg1;
 - (void)locationManager:(id)arg1 didFailWithError:(id)arg2;
@@ -86,7 +78,6 @@
 - (void)setCurrentLocation:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)stopUpdatingLocation;
-- (void)timerFired:(id)arg1;
 - (void)updateEventLocations:(id)arg1;
 - (void)updateRecents:(id)arg1;
 

@@ -2,16 +2,14 @@
    Image: /System/Library/PrivateFrameworks/DiagnosticExtensions.framework/DiagnosticExtensions
  */
 
-@class UIImage;
-
 @interface DEAttachmentVideo : DEAttachmentItem {
     UIImage *_thumbnail;
 }
 
-@property(retain) UIImage * thumbnail;
+@property (nonatomic, retain) UIImage *thumbnail;
 
-+ (id)newAttachmentVideoWithAssetURL:(id)arg1 andThumbnail:(id)arg2;
-+ (id)newAttachmentVideoWithURL:(id)arg1;
++ (id)attachmentVideoWithAssetURL:(id)arg1 andThumbnail:(id)arg2;
++ (id)attachmentVideoWithURL:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)generateThumbnailFromURL:(id)arg1;

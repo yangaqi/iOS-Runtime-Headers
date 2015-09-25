@@ -2,29 +2,30 @@
    Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
  */
 
-@class NSArray, NSMutableArray, NSString;
-
 @interface FigCaptureSessionConfiguration : NSObject <FigXPCCoding, NSCopying> {
+    BOOL _allowedToRunInWindowedLayout;
     long long _configurationID;
     BOOL _configuresAppAudioSession;
     NSMutableArray *_connections;
     BOOL _usesAppAudioSession;
 }
 
-@property long long configurationID;
-@property BOOL configuresAppAudioSession;
-@property(readonly) NSArray * connectionConfigurations;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) NSArray * sinkConfigurations;
-@property(readonly) NSArray * sourceConfigurations;
-@property(readonly) Class superclass;
-@property BOOL usesAppAudioSession;
+@property (nonatomic) BOOL allowedToRunInWindowedLayout;
+@property (nonatomic) long long configurationID;
+@property (nonatomic) BOOL configuresAppAudioSession;
+@property (nonatomic, readonly) NSArray *connectionConfigurations;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) NSArray *sinkConfigurations;
+@property (nonatomic, readonly) NSArray *sourceConfigurations;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL usesAppAudioSession;
 
 + (void)initialize;
 
 - (void)addConnectionConfiguration:(id)arg1;
+- (BOOL)allowedToRunInWindowedLayout;
 - (long long)configurationID;
 - (BOOL)configuresAppAudioSession;
 - (id)connectionConfigurations;
@@ -36,6 +37,7 @@
 - (id)initWithXPCEncoding:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (void)removeConnectionConfiguration:(id)arg1;
+- (void)setAllowedToRunInWindowedLayout:(BOOL)arg1;
 - (void)setConfigurationID:(long long)arg1;
 - (void)setConfiguresAppAudioSession:(BOOL)arg1;
 - (void)setUsesAppAudioSession:(BOOL)arg1;

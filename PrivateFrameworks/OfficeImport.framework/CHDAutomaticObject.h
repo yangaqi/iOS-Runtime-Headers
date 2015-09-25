@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface CHDAutomaticObject : NSObject {
     NSString *mName;
 }
@@ -14,6 +12,7 @@
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)initWithName:(id)arg1;
 
 @end

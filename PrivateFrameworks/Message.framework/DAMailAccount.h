@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class DAAccount, MFDAMailbox, MFDAOfflineCache, MFRecursiveLock, NSArray, NSCountedSet, NSLock, NSMutableDictionary, NSObject<ASAccountActorMessages>, NSSet, NSString;
-
 @interface DAMailAccount : MailAccount {
     NSObject<ASAccountActorMessages> *_accountConduit;
     NSString *_cachedAccountID;
@@ -17,6 +15,7 @@
     NSString *_cachedInboxFolderID;
     BOOL _cachedIsActive;
     BOOL _cachedIsHotmailAccount;
+    BOOL _cachedIsManaged;
     NSString *_cachedJunkFolderID;
     BOOL _cachedPerMessageEncryptionEnabled;
     BOOL _cachedRestrictMessageTransfersToOtherAccounts;
@@ -27,6 +26,7 @@
     BOOL _cachedSecureMIMEShouldSign;
     NSString *_cachedSentMessagesFolderID;
     BOOL _cachedSourceIsManaged;
+    BOOL _cachedSupportsMailDrop;
     NSString *_cachedTrashFolderID;
     DAAccount *_daAccount;
     unsigned int _daysToSync;
@@ -52,6 +52,7 @@
 + (Class)_accountConduitClass;
 + (id)accountIDForDirectoryName:(id)arg1 isAccountDirectory:(BOOL*)arg2;
 + (id)accountTypeString;
++ (id)csAccountTypeString;
 + (id)displayedAccountTypeString;
 + (id)displayedShortAccountTypeString;
 + (id)folderIDForRelativePath:(id)arg1 accountID:(id*)arg2;
@@ -69,7 +70,7 @@
 - (void)_loadChildrenForParent:(id)arg1 fromMap:(id)arg2 intoArray:(id)arg3 replacingInbox:(id)arg4 withID:(id)arg5;
 - (id)_newMailboxWithParent:(id)arg1 name:(id)arg2 attributes:(unsigned int)arg3 dictionary:(id)arg4 withCreationOption:(int)arg5;
 - (id)_offlineCache;
-- (void)_performFolderChange:(id)arg1 completion:(id)arg2;
+- (void)_performFolderChange:(id)arg1 completion:(id /* block */)arg2;
 - (void)_reachabilityChanged:(id)arg1;
 - (id)_relativePathForType:(int)arg1;
 - (id)_relativePathSpecialMailboxUidWithType:(int)arg1 create:(BOOL)arg2;
@@ -112,12 +113,13 @@
 - (BOOL)isActive;
 - (BOOL)isEnabledForDataclass:(id)arg1;
 - (BOOL)isMailboxLocalForType:(int)arg1;
+- (BOOL)isManaged;
 - (BOOL)isRunningInDisallowedBundle;
 - (id)mailboxForFolderID:(id)arg1;
 - (id)mailboxPathExtension;
 - (id)mailboxUidForInfo:(id)arg1;
 - (id)meetingStorePersistentID;
-- (BOOL)moveMessages:(id)arg1 fromMailbox:(id)arg2 toMailbox:(id)arg3 markAsRead:(BOOL)arg4 unsuccessfulOnes:(id)arg5 newMessages:(id)arg6;
+- (id)moveMessages:(id)arg1 fromMailbox:(id)arg2 toMailbox:(id)arg3 markAsRead:(BOOL)arg4;
 - (BOOL)newMailboxNameIsAcceptable:(id)arg1 reasonForFailure:(id*)arg2;
 - (BOOL)perMessageEncryptionEnabled;
 - (BOOL)performRequests:(id)arg1 mailbox:(id)arg2 consumers:(id)arg3;
@@ -151,11 +153,12 @@
 - (id)statisticsKind;
 - (void)stopListeningForNotifications;
 - (Class)storeClass;
+- (BOOL)supportsMailDrop;
 - (BOOL)supportsMailboxEditing;
 - (BOOL)supportsMessageFlagging;
 - (BOOL)supportsRemoteAppend;
 - (BOOL)supportsServerSearch;
-- (BOOL)supportsThreadNotifications;
+- (BOOL)supportsThreadOperations;
 - (BOOL)supportsUserPushedMailboxes;
 - (id)syncAnchorForFolderID:(id)arg1 mailbox:(id*)arg2;
 - (id)syncAnchorForMailbox:(id)arg1;

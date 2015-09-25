@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSDictionary;
-
 @interface OADImageRecolorInfo : NSObject {
     NSDictionary *mColors;
     NSDictionary *mFills;
@@ -11,6 +9,7 @@
 
 - (id)colors;
 - (void)dealloc;
+- (id)description;
 - (id)fills;
 - (unsigned int)hash;
 - (id)initWithColors:(id)arg1 fills:(id)arg2;

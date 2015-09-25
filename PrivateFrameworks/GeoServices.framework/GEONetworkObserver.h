@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSLock;
-
 @interface GEONetworkObserver : NSObject {
     NSLock *_lock;
     BOOL _networkNotified;
@@ -24,6 +22,7 @@
 - (id)init;
 - (void)initializeIfNecessary;
 - (BOOL)isCellConnection;
+- (BOOL)isConnectionRequired;
 - (BOOL)isNetworkReachable;
 - (void)removeNetworkReachableObserver:(id)arg1;
 

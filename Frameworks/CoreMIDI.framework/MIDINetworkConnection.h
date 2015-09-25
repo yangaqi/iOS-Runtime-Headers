@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/CoreMIDI.framework/CoreMIDI
  */
 
-@class MIDINetworkHost;
-
 @interface MIDINetworkConnection : NSObject {
-    struct _MIDINetworkConnectionImpl { id x1; } *_impl;
+    void *_imp;
 }
 
-@property(retain,readonly) MIDINetworkHost * host;
+@property (nonatomic, readonly, retain) MIDINetworkHost *host;
 
 + (id)connectionWithHost:(id)arg1;
 

@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface OADNullFill : OADFill {
-}
+@interface OADNullFill : OADFill
 
 + (id)defaultProperties;
 + (id)nullFill;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)initWithDefaults;
-- (void)setParent:(id)arg1;
 - (void)setStyleColor:(id)arg1;
 
 @end

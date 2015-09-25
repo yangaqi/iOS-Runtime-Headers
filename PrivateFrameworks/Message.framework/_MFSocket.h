@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFStream, NSArray, NSCondition, NSData, NSInvocation, NSString;
-
 @interface _MFSocket : NSObject {
     NSString *_accountIdentifier;
     BOOL _allowsTrustPrompt;
     NSArray *_clientCertificates;
     NSCondition *_condition;
     struct __CFString { } *_connectionServiceType;
+    BOOL _disableEphemeralDiffieHellmanCiphers;
     NSInvocation *_eventHandler;
     NSString *_host;
     int _lowThroughputCounter;
@@ -23,20 +22,21 @@
     BOOL _usesOpportunisticSockets;
 }
 
-@property(copy) NSString * accountIdentifier;
-@property BOOL allowsTrustPrompt;
-@property(retain) NSArray * clientCertificates;
-@property(readonly) BOOL isCellularConnection;
-@property(readonly) BOOL isReadable;
-@property(readonly) BOOL isValid;
-@property(readonly) BOOL isWritable;
-@property(readonly) NSString * remoteHostname;
-@property(readonly) unsigned int remotePortNumber;
-@property(readonly) NSArray * serverCertificates;
-@property(copy) NSString * sourceApplicationBundleIdentifier;
-@property(readonly) NSData * sourceIPAddress;
-@property int timeout;
-@property BOOL usesOpportunisticSockets;
+@property (nonatomic, copy) NSString *accountIdentifier;
+@property (nonatomic) BOOL allowsTrustPrompt;
+@property (nonatomic, retain) NSArray *clientCertificates;
+@property (nonatomic) BOOL disableEphemeralDiffieHellmanCiphers;
+@property (nonatomic, readonly) BOOL isCellularConnection;
+@property (nonatomic, readonly) BOOL isReadable;
+@property (nonatomic, readonly) BOOL isValid;
+@property (nonatomic, readonly) BOOL isWritable;
+@property (nonatomic, readonly) NSString *remoteHostname;
+@property (nonatomic, readonly) unsigned int remotePortNumber;
+@property (nonatomic, readonly) NSArray *serverCertificates;
+@property (nonatomic, copy) NSString *sourceApplicationBundleIdentifier;
+@property (nonatomic, readonly) NSData *sourceIPAddress;
+@property (nonatomic) int timeout;
+@property (nonatomic) BOOL usesOpportunisticSockets;
 
 - (unsigned int)_bufferedByteCount;
 - (BOOL)_startSSLHandshakeWithProtocol:(id)arg1 disableSSL2:(BOOL)arg2 errorPtr:(id*)arg3;
@@ -46,6 +46,7 @@
 - (id)clientCertificates;
 - (BOOL)connectToHost:(id)arg1 withPort:(unsigned int)arg2 service:(id)arg3;
 - (void)dealloc;
+- (BOOL)disableEphemeralDiffieHellmanCiphers;
 - (void)enableThroughputMonitoring:(BOOL)arg1;
 - (id)init;
 - (BOOL)isCellularConnection;
@@ -61,6 +62,7 @@
 - (void)setAllowsTrustPrompt:(BOOL)arg1;
 - (void)setClientCertificates:(id)arg1;
 - (void)setConnectionServiceType:(struct __CFString { }*)arg1;
+- (void)setDisableEphemeralDiffieHellmanCiphers:(BOOL)arg1;
 - (void)setEventHandler:(id)arg1;
 - (BOOL)setSecurityProtocol:(id)arg1;
 - (void)setSourceApplicationBundleIdentifier:(id)arg1;

@@ -2,23 +2,22 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDictionary, NSMutableDictionary, UIColor, UIFont;
-
 @interface _UICascadingTextStorage : NSConcreteTextStorage {
     NSMutableDictionary *_defaultAttributes;
 }
 
-@property(copy) NSDictionary * defaultAttributes;
-@property(retain) UIFont * font;
-@property int lineBreakMode;
-@property float shadowBlur;
-@property(retain) UIColor * shadowColor;
-@property struct CGSize { float x1; float x2; } shadowOffset;
-@property int textAlignment;
-@property(retain) UIColor * textColor;
+@property (nonatomic, copy) NSDictionary *defaultAttributes;
+@property (nonatomic, retain) UIFont *font;
+@property (nonatomic) int lineBreakMode;
+@property (nonatomic) float shadowBlur;
+@property (nonatomic, retain) UIColor *shadowColor;
+@property (nonatomic) struct CGSize { float x1; float x2; } shadowOffset;
+@property (nonatomic) int textAlignment;
+@property (nonatomic, retain) UIColor *textColor;
 
 + (id)defaultFont;
 
+- (void).cxx_destruct;
 - (id)_defaultAttributes;
 - (void)_restoreOriginalFontAttribute;
 - (void)_setShadow:(id)arg1;
@@ -29,7 +28,6 @@
 - (id)attribute:(id)arg1 atIndex:(unsigned int)arg2 longestEffectiveRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg4;
 - (id)attributesAtIndex:(unsigned int)arg1 effectiveRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg2;
 - (id)attributesAtIndex:(unsigned int)arg1 longestEffectiveRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg2 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3;
-- (void)dealloc;
 - (id)defaultAttributes;
 - (id)font;
 - (int)lineBreakMode;

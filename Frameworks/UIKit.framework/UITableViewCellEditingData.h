@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITableViewCell, UITableViewCellDeleteConfirmationControl_Legacy, UITableViewCellEditControl, UITableViewCellReorderControl, UIView;
-
 @interface UITableViewCellEditingData : NSObject {
     UITableViewCell *_cell;
     UITableViewCellDeleteConfirmationControl_Legacy *_deleteConfirmationControl;
@@ -13,8 +11,10 @@
     UIView *_reorderSeparatorView;
 }
 
-@property(getter=isDataRequired,readonly) BOOL dataRequired;
+@property (getter=isDataRequired, nonatomic, readonly) BOOL dataRequired;
+@property (nonatomic, readonly) BOOL wantsMaskingWhileAnimatingDisabled;
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)deleteConfirmationControl:(BOOL)arg1;
 - (id)editControl:(BOOL)arg1;
@@ -22,5 +22,6 @@
 - (BOOL)isDataRequired;
 - (id)reorderControl:(BOOL)arg1;
 - (id)reorderSeparatorView:(BOOL)arg1;
+- (BOOL)wantsMaskingWhileAnimatingDisabled;
 
 @end

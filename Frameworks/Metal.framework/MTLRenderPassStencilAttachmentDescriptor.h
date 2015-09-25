@@ -2,14 +2,11 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@interface MTLRenderPassStencilAttachmentDescriptor : MTLRenderPassAttachmentDescriptor {
-}
+@interface MTLRenderPassStencilAttachmentDescriptor : MTLRenderPassAttachmentDescriptor
 
-@property unsigned int clearStencil;
+@property (nonatomic) unsigned int clearStencil;
 
-- (unsigned int)clearStencil;
-- (id)description;
-- (id)init;
-- (void)setClearStencil:(unsigned int)arg1;
++ (id)alloc;
++ (id)allocWithZone:(struct _NSZone { }*)arg1;
 
 @end

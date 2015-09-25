@@ -2,29 +2,27 @@
    Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
  */
 
-@class NSArray, NSDate;
-
 @interface FUUniformBarSeries : FUChartSeries {
     struct CGGradient { } *_barGradient;
-    float _barHeight;
+    float _barSpacing;
     float _barWidth;
     NSDate *_minDate;
     NSArray *_plotPoints;
     float _roundedCornerRadius;
 }
 
-@property struct CGGradient { }* barGradient;
-@property float barHeight;
-@property float barWidth;
-@property NSDate * minDate;
-@property(retain) NSArray * plotPoints;
-@property float roundedCornerRadius;
+@property (nonatomic) struct CGGradient { }*barGradient;
+@property (nonatomic) float barSpacing;
+@property (nonatomic) float barWidth;
+@property (nonatomic) NSDate *minDate;
+@property (nonatomic, retain) NSArray *plotPoints;
+@property (nonatomic) float roundedCornerRadius;
 
 - (void).cxx_destruct;
 - (float)_getXValueForPointFromChartPoint:(id)arg1;
 - (float)_getYValueForPointFromChartPoint:(id)arg1;
 - (struct CGGradient { }*)barGradient;
-- (float)barHeight;
+- (float)barSpacing;
 - (float)barWidth;
 - (void)dealloc;
 - (void)drawLayer:(id)arg1 inContext:(struct CGContext { }*)arg2;
@@ -34,7 +32,7 @@
 - (id)plotPoints;
 - (float)roundedCornerRadius;
 - (void)setBarGradient:(struct CGGradient { }*)arg1;
-- (void)setBarHeight:(float)arg1;
+- (void)setBarSpacing:(float)arg1;
 - (void)setBarWidth:(float)arg1;
 - (void)setMinDate:(id)arg1;
 - (void)setPlotPoints:(id)arg1;

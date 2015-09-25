@@ -2,19 +2,7 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CNFRegController, CNFRegLoadingView, NSMutableArray, NSString, NSTimer, RUILoader, UIAlertView, UIWebView;
-
-@interface CNFRegServerWebViewController : UIViewController <RUIObjectModelDelegate, UIAlertViewDelegate, UIWebViewDelegate> {
-    UIAlertView *_alert;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _alertHandler;
-
+@interface CNFRegServerWebViewController : UIViewController <RUIObjectModelDelegate, UIWebViewDelegate> {
     RUILoader *_loader;
     CNFRegLoadingView *_loadingView;
     NSMutableArray *_objectModels;
@@ -33,18 +21,17 @@
     UIWebView *_webView;
 }
 
-@property(retain) UIAlertView * alert;
-@property(copy) id alertHandler;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isLoaded;
-@property(readonly) BOOL isLoading;
-@property(retain) CNFRegController * regController;
-@property(readonly) Class superclass;
-@property(readonly) BOOL timedOut;
-@property(retain) UIWebView * webView;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isLoaded;
+@property (nonatomic, readonly) BOOL isLoading;
+@property (nonatomic, retain) CNFRegController *regController;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL timedOut;
+@property (nonatomic, retain) UIWebView *webView;
 
+- (void).cxx_destruct;
 - (void)_cleanupLoader;
 - (void)_handleTimeout;
 - (void)_popObjectModelAnimated:(BOOL)arg1;
@@ -52,9 +39,6 @@
 - (void)_startTimeoutWithDuration:(double)arg1;
 - (void)_stopTimeout;
 - (void)_timeoutFired:(id)arg1;
-- (id)alert;
-- (id)alertHandler;
-- (void)alertView:(id)arg1 didDismissWithButtonIndex:(int)arg2;
 - (void)applicationWillSuspend;
 - (BOOL)canSendURLRequest:(id)arg1;
 - (void)cancelButtonPressed:(id)arg1;
@@ -77,8 +61,6 @@
 - (id)parentViewControllerForObjectModel:(id)arg1;
 - (void)receivedStatus:(int)arg1 appleID:(id)arg2 authID:(id)arg3 authToken:(id)arg4;
 - (id)regController;
-- (void)setAlert:(id)arg1;
-- (void)setAlertHandler:(id)arg1;
 - (void)setHeadersForRequest:(id)arg1;
 - (void)setRegController:(id)arg1;
 - (void)setWantsWifi:(BOOL)arg1;

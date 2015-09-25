@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Message.framework/Message
  */
 
-@class MFError, MFLock, MFMailboxUid, MFMessageLibrary, MFWeakObjectCache, NSMutableDictionary, NSString;
-
 @interface MailAccount : MFAccount {
     MFMailboxUid *_archiveMailboxUid;
     int _cachedLibraryID;
@@ -33,8 +31,10 @@
     MFMailboxUid *_trashMailboxUid;
 }
 
-@property(readonly) BOOL shouldArchiveByDefault;
-@property(readonly) BOOL sourceIsManaged;
+@property (readonly) BOOL shouldArchiveByDefault;
+@property (readonly) BOOL sourceIsManaged;
+
+// Image: /System/Library/PrivateFrameworks/Message.framework/Message
 
 + (id)URLForInfo:(id)arg1;
 + (id)_accountContainingEmailAddress:(id)arg1 matchingAddress:(id*)arg2 fullUserName:(id*)arg3 includingInactive:(BOOL)arg4;
@@ -64,6 +64,7 @@
 + (id)allEmailAddressesIncludingFullUserName:(BOOL)arg1 includeReceiveAliases:(BOOL)arg2;
 + (id)allMailboxUids;
 + (BOOL)canMoveMessagesFromAccount:(id)arg1 toAccount:(id)arg2;
++ (id)csAccountTypeString;
 + (id)defaultAccountDirectory;
 + (id)defaultDeliveryAccount;
 + (id)defaultMailAccountForDelivery;
@@ -86,8 +87,6 @@
 + (BOOL)mailboxListingNotificationAreEnabled;
 + (id)mailboxUidForFileSystemPath:(id)arg1 create:(BOOL)arg2;
 + (id)mailboxUidFromActiveAccountsForURL:(id)arg1;
-+ (void)mf_emptyReceivingEmailAddressesCache;
-+ (id)mf_receivingEmailAddressesCache;
 + (id)newAccountWithDictionary:(id)arg1;
 + (id)newAccountWithPath:(id)arg1;
 + (id)outboxMailboxUid;
@@ -237,9 +236,8 @@
 - (id)mailboxUidForURL:(id)arg1;
 - (id)mailboxUidOfType:(int)arg1 createIfNeeded:(BOOL)arg2;
 - (id)meetingStorePersistentID;
-- (id)mf_copyReceivingEmailAddresses;
 - (BOOL)moveMailbox:(id)arg1 intoParent:(id)arg2;
-- (BOOL)moveMessages:(id)arg1 fromMailbox:(id)arg2 toMailbox:(id)arg3 markAsRead:(BOOL)arg4 unsuccessfulOnes:(id)arg5 newMessages:(id)arg6;
+- (id)moveMessages:(id)arg1 fromMailbox:(id)arg2 toMailbox:(id)arg3 markAsRead:(BOOL)arg4;
 - (BOOL)newMailboxNameIsAcceptable:(id)arg1 reasonForFailure:(id*)arg2;
 - (id)newMailboxWithParent:(id)arg1 name:(id)arg2;
 - (void)nowWouldBeAGoodTimeToStartBackgroundSynchronization;
@@ -315,14 +313,17 @@
 - (Class)storeClass;
 - (Class)storeClassForMailbox:(id)arg1;
 - (id)storeForMailboxUid:(id)arg1;
+- (id)suggestionsLostMessageSearchOrderWithLimit:(unsigned int)arg1 wasTruncated:(BOOL*)arg2;
 - (BOOL)supportsAppend;
 - (BOOL)supportsArchiving;
 - (BOOL)supportsContinuationType:(id)arg1;
+- (BOOL)supportsMailDrop;
 - (BOOL)supportsMailboxEditing;
 - (BOOL)supportsMessageFlagging;
+- (BOOL)supportsRangeOperations;
 - (BOOL)supportsRemoteAppend;
 - (BOOL)supportsSyncingReadState;
-- (BOOL)supportsThreadNotifications;
+- (BOOL)supportsThreadOperations;
 - (BOOL)supportsUserPushedMailboxes;
 - (void)systemDidWake;
 - (void)systemWillSleep;
@@ -336,5 +337,12 @@
 - (BOOL)updateEmailAliases;
 - (id)valueInAccountLookAsidePropertiesForKey:(id)arg1;
 - (BOOL)willPerformActionForChokePoint:(id)arg1 coalescePoint:(id)arg2 result:(id*)arg3;
+
+// Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
+
++ (void)mf_emptyReceivingEmailAddressesCache;
++ (id)mf_receivingEmailAddressesCache;
+
+- (id)mf_copyReceivingEmailAddresses;
 
 @end

@@ -2,25 +2,26 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@class NSString;
-
 @interface MCProfileWarning : NSObject <NSSecureCoding> {
     BOOL _isLongForm;
     NSString *_localizedBody;
     NSString *_localizedTitle;
 }
 
-@property BOOL isLongForm;
-@property(retain) NSString * localizedBody;
-@property(retain) NSString * localizedTitle;
+@property (nonatomic) BOOL isLongForm;
+@property (nonatomic, retain) NSString *localizedBody;
+@property (nonatomic, retain) NSString *localizedTitle;
 
 + (BOOL)supportsSecureCoding;
 + (id)warningWithLocalizedTitle:(id)arg1 localizedBody:(id)arg2 isLongForm:(BOOL)arg3;
 
 - (void).cxx_destruct;
 - (void)encodeWithCoder:(id)arg1;
+- (unsigned int)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithLocalizedTitle:(id)arg1 localizedBody:(id)arg2 isLongForm:(BOOL)arg3;
+- (BOOL)isEqual:(id)arg1;
+- (BOOL)isEqualToProfileWarning:(id)arg1;
 - (BOOL)isLongForm;
 - (id)localizedBody;
 - (id)localizedTitle;

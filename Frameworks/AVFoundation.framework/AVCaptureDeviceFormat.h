@@ -2,27 +2,27 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureDeviceFormatInternal, NSArray, NSString;
-
 @interface AVCaptureDeviceFormat : NSObject {
     AVCaptureDeviceFormatInternal *_internal;
 }
 
-@property(readonly) int autoFocusSystem;
-@property(readonly) struct opaqueCMFormatDescription { }* formatDescription;
-@property(readonly) struct { int x1; int x2; } highResolutionStillImageDimensions;
-@property(readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } maxExposureDuration;
-@property(readonly) float maxISO;
-@property(readonly) NSString * mediaType;
-@property(readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } minExposureDuration;
-@property(readonly) float minISO;
-@property(getter=isVideoBinned,readonly) BOOL videoBinned;
-@property(readonly) float videoFieldOfView;
-@property(getter=isVideoHDRSupported,readonly) BOOL videoHDRSupported;
-@property(readonly) float videoMaxZoomFactor;
-@property(getter=isVideoStabilizationSupported,readonly) BOOL videoStabilizationSupported;
-@property(readonly) NSArray * videoSupportedFrameRateRanges;
-@property(readonly) float videoZoomFactorUpscaleThreshold;
+@property (nonatomic, readonly) int autoFocusSystem;
+@property (nonatomic, readonly) struct opaqueCMFormatDescription { }*formatDescription;
+@property (nonatomic, readonly) struct { int x1; int x2; } highResolutionStillImageDimensions;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } maxExposureDuration;
+@property (nonatomic, readonly) float maxISO;
+@property (nonatomic, readonly) NSString *mediaType;
+@property (nonatomic, readonly) struct { long long x1; int x2; unsigned int x3; long long x4; } minExposureDuration;
+@property (nonatomic, readonly) float minISO;
+@property (getter=isVideoBinned, nonatomic, readonly) BOOL videoBinned;
+@property (nonatomic, readonly) float videoFieldOfView;
+@property (getter=isVideoHDRSupported, nonatomic, readonly) BOOL videoHDRSupported;
+@property (nonatomic, readonly) float videoMaxZoomFactor;
+@property (getter=isVideoStabilizationSupported, nonatomic, readonly) BOOL videoStabilizationSupported;
+@property (nonatomic, readonly) NSArray *videoSupportedFrameRateRanges;
+@property (nonatomic, readonly) float videoZoomFactorUpscaleThreshold;
+
+// Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
 
 + (void)initialize;
 
@@ -65,6 +65,7 @@
 - (BOOL)supportsHighProfileH264;
 - (BOOL)supportsHighResolutionStillImageOutput;
 - (BOOL)supportsLowLightBoost;
+- (BOOL)supportsQuadraHighResolutionStillImageOutput;
 - (float)videoFieldOfView;
 - (float)videoMaxZoomFactor;
 - (id)videoSupportedFrameRateRanges;
@@ -72,5 +73,14 @@
 - (id)videoZoomSupportedDownscaleStages;
 - (id)videoZoomSupportedUpscaleStages;
 - (id)vtScalingMode;
+
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
+- (struct { int x1; int x2; })_expectedVideoDimensionsForVideoConfiguration:(int)arg1;
+- (double)_framesPerSecondForVideoConfiguration:(int)arg1;
+- (int)cam_compareUsingDimensions:(id)arg1;
+- (struct { long long x1; int x2; unsigned int x3; long long x4; })cam_frameDurationForVideoConfiguration:(int)arg1;
+- (BOOL)cam_supportsPanoramaConfiguration:(id)arg1;
+- (BOOL)cam_supportsVideoConfiguration:(int)arg1;
 
 @end

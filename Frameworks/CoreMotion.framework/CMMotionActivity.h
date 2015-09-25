@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
  */
 
-@class NSDate;
-
 @interface CMMotionActivity : CMLogItem {
     struct CLMotionActivity { 
         int type; 
@@ -13,24 +11,25 @@
         bool isStanding; 
         float tilt; 
         double timestamp; 
+        bool isVehicleConnected; 
         int exitState; 
         double estExitTime; 
         double startTime; 
     } fState;
 }
 
-@property(readonly) BOOL automotive;
-@property(readonly) int confidence;
-@property(readonly) BOOL cycling;
-@property(readonly) BOOL running;
-@property(readonly) NSDate * startDate;
-@property(readonly) BOOL stationary;
-@property(readonly) BOOL unknown;
-@property(readonly) BOOL walking;
+@property (nonatomic, readonly) BOOL automotive;
+@property (nonatomic, readonly) int confidence;
+@property (nonatomic, readonly) BOOL cycling;
+@property (nonatomic, readonly) BOOL running;
+@property (nonatomic, readonly) NSDate *startDate;
+@property (nonatomic, readonly) BOOL stationary;
+@property (nonatomic, readonly) BOOL unknown;
+@property (getter=isVehicleConnected, nonatomic, readonly) BOOL vehicleConnected;
+@property (nonatomic, readonly) BOOL walking;
 
 + (BOOL)supportsSecureCoding;
 
-- (id).cxx_construct;
 - (BOOL)automotive;
 - (int)confidence;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
@@ -38,7 +37,8 @@
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithMotionActivity:(struct CLMotionActivity { int x1; int x2; int x3; int x4; bool x5; float x6; double x7; int x8; double x9; double x10; })arg1;
+- (id)initWithMotionActivity:(struct CLMotionActivity { int x1; int x2; int x3; int x4; bool x5; float x6; double x7; bool x8; int x9; double x10; double x11; })arg1;
+- (BOOL)isVehicleConnected;
 - (BOOL)running;
 - (id)startDate;
 - (BOOL)stationary;

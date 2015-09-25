@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class WDCharacterRun, WDText;
-
 @interface WDNote : WDRun {
     BOOL mAutomaticNumbering;
     WDCharacterRun *mReference;
@@ -12,6 +10,7 @@
 
 - (BOOL)automaticNumbering;
 - (void)dealloc;
+- (id)description;
 - (id)initWithParagraph:(id)arg1 footnote:(BOOL)arg2;
 - (id)reference;
 - (int)runType;

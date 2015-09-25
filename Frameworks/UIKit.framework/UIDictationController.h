@@ -2,12 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AFDictationConnection, AFDictationOptions, AFPreferences, CADisplayLink, NSArray, NSMutableArray, NSString, NSTimer, UIAlertView, UIDictationStreamingOperations, UIKeyboardInputMode, UIWindow, _UIDictationPrivacySheetController;
-
 @interface UIDictationController : NSObject <_UITouchPhaseChangeDelegate> {
     NSArray *_availableLanguages;
     id _callCenter;
@@ -21,11 +15,7 @@
     BOOL _discardNextHypothesis;
     void *_facetimeCallFrameworkFileHandle;
     id _facetimeCallManager;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _finalResultsOperation;
-
+    id /* block */ _finalResultsOperation;
     BOOL _hasPreheated;
     UIKeyboardInputMode *_inputModeThatInvokedDictation;
     struct _NSRange { 
@@ -47,27 +37,29 @@
     UIDictationStreamingOperations *_streamingOperations;
     NSString *_targetHypothesis;
     int _updatingDocument;
+    BOOL _wantsAvailabilityMonitoringWhenAppActive;
     BOOL _wasDisabledDueToTelephonyActivity;
     BOOL cancelledByWaitingForLocalResults;
     BOOL dictationStartedFromGesture;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) UIWindow * dictationPresenterWindow;
-@property(retain) _UIDictationPrivacySheetController * dictationPrivacySheetController;
-@property BOOL dictationStartedFromGesture;
-@property BOOL discardNextHypothesis;
-@property BOOL hasPreheated;
-@property(readonly) unsigned int hash;
-@property(retain) UIKeyboardInputMode * inputModeThatInvokedDictation;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } insertionRange;
-@property(copy) NSString * lastHypothesis;
-@property(retain) NSMutableArray * pendingEdits;
-@property BOOL performingStreamingEditingOperation;
-@property(copy) NSString * previousHypothesis;
-@property(readonly) Class superclass;
-@property(copy) NSString * targetHypothesis;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIWindow *dictationPresenterWindow;
+@property (nonatomic, retain) _UIDictationPrivacySheetController *dictationPrivacySheetController;
+@property (nonatomic) BOOL dictationStartedFromGesture;
+@property (nonatomic) BOOL discardNextHypothesis;
+@property (nonatomic) BOOL hasPreheated;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) UIKeyboardInputMode *inputModeThatInvokedDictation;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } insertionRange;
+@property (nonatomic, copy) NSString *lastHypothesis;
+@property (nonatomic, retain) NSMutableArray *pendingEdits;
+@property (nonatomic) BOOL performingStreamingEditingOperation;
+@property (nonatomic, copy) NSString *previousHypothesis;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *targetHypothesis;
+@property (nonatomic) BOOL wantsAvailabilityMonitoringWhenAppActive;
 
 + (id)activeConnection;
 + (id)activeInstance;
@@ -116,8 +108,9 @@
 + (id)streamingHypothesisForPhrases:(id)arg1;
 + (id)stringForState:(int)arg1;
 + (id)stringForViewMode:(int)arg1;
-+ (BOOL)takesPhysicalButtonsBegan:(id)arg1 forTextView:(id)arg2;
-+ (BOOL)takesPhysicalButtonsEnded:(id)arg1 forTextView:(id)arg2;
++ (BOOL)takesPressesBegan:(id)arg1 forTextView:(id)arg2;
++ (BOOL)takesPressesChanged:(id)arg1 forTextView:(id)arg2;
++ (BOOL)takesPressesEnded:(id)arg1 forTextView:(id)arg2;
 + (void)updateLandingView;
 + (BOOL)usingServerManualEndpointingThreshold;
 + (BOOL)usingTypeAndTalk;
@@ -134,7 +127,7 @@
 - (id)_rangeByExtendingRange:(id)arg1 backward:(int)arg2 forward:(int)arg3 inputDelegate:(id)arg4;
 - (void)_restartDictation;
 - (void)_runFinalizeOperation;
-- (void)_setFinalResultHandler:(id)arg1;
+- (void)_setFinalResultHandler:(id /* block */)arg1;
 - (BOOL)_shouldDeleteBackwardInInputDelegate:(id)arg1;
 - (BOOL)_shouldInsertText:(id)arg1 inInputDelegate:(id)arg2;
 - (void)_startStreamingAnimations;
@@ -144,7 +137,7 @@
 - (id)assistantCompatibleLanguageCodeForInputMode:(id)arg1;
 - (float)audioLevel;
 - (void)cancelDictation;
-- (void)cancelDictationForTextStoreChanges;
+- (void)cancelDictationForTextStoreChangesInResponder:(id)arg1;
 - (void)cancelRecordingLimitTimer;
 - (void)completeStartConnectionForFileAtURL:(id)arg1 forInputModeIdentifier:(id)arg2;
 - (void)completeStartConnectionForReason:(int)arg1;
@@ -190,7 +183,7 @@
 - (BOOL)needsLeadingSpaceForPhrases:(id)arg1;
 - (BOOL)needsTrailingSpaceForPhrases:(id)arg1;
 - (id)pendingEdits;
-- (void)performIgnoringDocumentChanges:(id)arg1;
+- (void)performIgnoringDocumentChanges:(id /* block */)arg1;
 - (BOOL)performingStreamingEditingOperation;
 - (id)postfixTextForInputDelegate:(id)arg1;
 - (id)prefixTextForInputDelegate:(id)arg1;
@@ -220,6 +213,7 @@
 - (void)setPreviousHypothesis:(id)arg1;
 - (void)setState:(int)arg1;
 - (void)setTargetHypothesis:(id)arg1;
+- (void)setWantsAvailabilityMonitoringWhenAppActive:(BOOL)arg1;
 - (void)setupConnectionOptions;
 - (void)setupForDictationStartForReason:(int)arg1;
 - (void)setupForStreamingDictationStart;
@@ -233,11 +227,12 @@
 - (int)state;
 - (void)stopDictation;
 - (id)streamingOperations;
-- (id)supportedDictationLanguages:(id)arg1;
+- (id)supportedDictationLanguages:(id /* block */)arg1;
 - (BOOL)supportsInputMode:(id)arg1 error:(id*)arg2;
 - (void)switchToDictationInputMode;
 - (void)switchToDictationInputModeWithTouch:(id)arg1;
 - (id)targetHypothesis;
+- (BOOL)wantsAvailabilityMonitoringWhenAppActive;
 - (BOOL)wasDisabledDueToTelephonyActivity;
 
 @end

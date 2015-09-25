@@ -2,19 +2,16 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class NSString;
+@interface EKPersistentSharee : EKPersistentObject <NSCopying>
 
-@interface EKPersistentSharee : EKPersistentObject <NSCopying> {
-}
-
-@property(readonly) NSString * UUID;
-@property(copy) NSString * displayName;
-@property(copy) NSString * emailAddress;
-@property(copy) NSString * externalID;
-@property(copy) NSString * firstName;
-@property(copy) NSString * lastName;
-@property int shareeAccessLevel;
-@property int shareeStatus;
+@property (nonatomic, readonly) NSString *UUID;
+@property (nonatomic, copy) NSString *displayName;
+@property (nonatomic, copy) NSString *emailAddress;
+@property (nonatomic, copy) NSString *externalID;
+@property (nonatomic, copy) NSString *firstName;
+@property (nonatomic, copy) NSString *lastName;
+@property (nonatomic) unsigned int shareeAccessLevel;
+@property (nonatomic) unsigned int shareeStatus;
 
 + (id)defaultPropertiesToLoad;
 + (id)relations;
@@ -41,9 +38,9 @@
 - (void)setFirstName:(id)arg1;
 - (void)setLastName:(id)arg1;
 - (void)setOwner:(id)arg1;
-- (void)setShareeAccessLevel:(int)arg1;
-- (void)setShareeStatus:(int)arg1;
-- (int)shareeAccessLevel;
-- (int)shareeStatus;
+- (void)setShareeAccessLevel:(unsigned int)arg1;
+- (void)setShareeStatus:(unsigned int)arg1;
+- (unsigned int)shareeAccessLevel;
+- (unsigned int)shareeStatus;
 
 @end

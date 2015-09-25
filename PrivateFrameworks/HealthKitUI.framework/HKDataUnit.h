@@ -2,23 +2,21 @@
    Image: /System/Library/PrivateFrameworks/HealthKitUI.framework/HealthKitUI
  */
 
-@class HKObjectType, NSDictionary, NSPredicate, NSString;
-
 @interface HKDataUnit : NSObject <NSCopying> {
-    NSPredicate *_chartingPredicate;
+    NSDictionary *_chartingPredicatesByTimeScope;
     HKObjectType *_dataType;
-    int _keyboardType;
+    HKDataUnitGroup *_dataUnitGroup;
+    NSPredicate *_defaultChartingPredicate;
     NSString *_labelDisplayName;
     float _scalarValue;
     NSDictionary *_singularUnitNameOverrides;
     NSDictionary *_unitNameOverrides;
 }
 
-@property(readonly) NSPredicate * chartingPredicate;
-@property(readonly) HKObjectType * dataType;
-@property int keyboardType;
-@property(readonly) NSString * labelDisplayName;
-@property(readonly) float scalarValue;
+@property (nonatomic, readonly) HKObjectType *dataType;
+@property (nonatomic) HKDataUnitGroup *dataUnitGroup;
+@property (nonatomic, readonly) NSString *labelDisplayName;
+@property (nonatomic, readonly) float scalarValue;
 
 - (void).cxx_destruct;
 - (void)_applyChartingProperties:(id)arg1;
@@ -27,9 +25,11 @@
 - (id)_initAsCopyOf:(id)arg1;
 - (id)adjustedValueForClientValue:(id)arg1;
 - (id)adjustedValueForDaemonValue:(id)arg1;
-- (id)chartingPredicate;
+- (BOOL)allowsManualEntry;
+- (id)chartingPredicateForTimeScope:(int)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)dataType;
+- (id)dataUnitGroup;
 - (id)description;
 - (unsigned int)hash;
 - (id)init;
@@ -37,11 +37,10 @@
 - (BOOL)isCharacteristic;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isNikeFuel;
-- (int)keyboardType;
 - (id)labelDisplayName;
 - (id)sampleType;
 - (float)scalarValue;
-- (void)setKeyboardType:(int)arg1;
+- (void)setDataUnitGroup:(id)arg1;
 - (id)singularUnitDisplayNameOverrideForUnit:(id)arg1;
 - (id)unitDisplayNameOverrideForUnit:(id)arg1;
 

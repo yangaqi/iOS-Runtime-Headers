@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
  */
 
-@class NSString;
-
 @interface SBSAssertion : NSObject {
     NSString *_assertionName;
     struct _opaque_pthread_mutex_t { 
@@ -14,11 +12,12 @@
     NSString *_reason;
 }
 
-@property(readonly) NSString * assertionName;
-@property(readonly) NSString * reason;
+@property (nonatomic, readonly, copy) NSString *assertionName;
+@property (nonatomic, readonly, copy) NSString *reason;
 
 - (id)assertionName;
 - (void)dealloc;
+- (id)init;
 - (id)initWithAssertionName:(id)arg1 reason:(id)arg2 port:(unsigned int)arg3;
 - (void)invalidate;
 - (id)reason;

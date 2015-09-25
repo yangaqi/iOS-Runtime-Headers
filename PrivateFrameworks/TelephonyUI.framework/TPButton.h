@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class _UIBackdropView;
-
 @interface TPButton : UIButton {
     _UIBackdropView *_backdropView;
     BOOL _blursBackground;
@@ -12,9 +10,9 @@
     BOOL _usesOverlayBlendingForContents;
 }
 
-@property BOOL blursBackground;
-@property BOOL roundsCorners;
-@property BOOL usesOverlayBlendingForContents;
+@property (nonatomic) BOOL blursBackground;
+@property (nonatomic) BOOL roundsCorners;
+@property (nonatomic) BOOL usesOverlayBlendingForContents;
 
 + (float)defaultHeight;
 + (float)defaultHeightForColor:(int)arg1;
@@ -23,11 +21,11 @@
 + (float)defaultWidthForSideButton;
 + (float)maxWidthForCenterButton;
 
+- (void).cxx_destruct;
 - (void)_animationDidEnd;
 - (void)_animationWillBegin;
 - (BOOL)blursBackground;
 - (int)buttonColor;
-- (void)dealloc;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithTitle:(id)arg1 icon:(id)arg2 color:(int)arg3 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg4;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;

@@ -2,21 +2,18 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, NSURL, SAUIImageResource;
+@interface SAAISongTag : SADomainObject
 
-@interface SAAISongTag : SADomainObject {
-}
-
-@property(copy) NSString * adamId;
-@property(copy) NSString * album;
-@property(copy) NSString * albumAdamId;
-@property(copy) NSString * artist;
-@property(copy) NSString * artistAdamId;
-@property(copy) NSString * contentRating;
-@property(copy) NSURL * iTunesUri;
-@property(retain) SAUIImageResource * previewImage;
-@property(copy) NSURL * radioStationUri;
-@property(copy) NSString * title;
+@property (nonatomic, copy) NSString *adamId;
+@property (nonatomic, copy) NSString *album;
+@property (nonatomic, copy) NSString *albumAdamId;
+@property (nonatomic, copy) NSString *artist;
+@property (nonatomic, copy) NSString *artistAdamId;
+@property (nonatomic, copy) NSString *contentRating;
+@property (nonatomic, copy) NSURL *iTunesUri;
+@property (nonatomic, retain) SAUIImageResource *previewImage;
+@property (nonatomic, copy) NSURL *radioStationUri;
+@property (nonatomic, copy) NSString *title;
 
 + (id)songTag;
 + (id)songTagWithDictionary:(id)arg1 context:(id)arg2;
@@ -43,6 +40,5 @@
 - (void)setRadioStationUri:(id)arg1;
 - (void)setTitle:(id)arg1;
 - (id)title;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

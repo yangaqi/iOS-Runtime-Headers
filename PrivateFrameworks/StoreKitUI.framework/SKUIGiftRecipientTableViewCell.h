@@ -2,24 +2,22 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class ABPeoplePickerNavigationController, NSArray, NSAttributedString, NSString, SKUIGiftComposeRecipientView, SKUIGiftContactSearchController, UILabel, UIView;
-
 @interface SKUIGiftRecipientTableViewCell : UITableViewCell <ABPeoplePickerNavigationControllerDelegate, MFComposeRecipientViewDelegate, SKUIGiftContactSearchDelegate> {
     void *_addressBook;
     ABPeoplePickerNavigationController *_peoplePickerController;
     UILabel *_placeholderLabel;
-    SKUIGiftComposeRecipientView *_recipientView;
+    MFComposeRecipientView *_recipientView;
     SKUIGiftContactSearchController *_searchController;
     UIView *_topBorderView;
 }
 
-@property(copy) NSAttributedString * attributedPlaceholder;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * label;
-@property(copy) NSArray * recipientAddresses;
-@property(readonly) Class superclass;
+@property (nonatomic, copy) NSAttributedString *attributedPlaceholder;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *label;
+@property (nonatomic, copy) NSArray *recipientAddresses;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void*)_addressBook;

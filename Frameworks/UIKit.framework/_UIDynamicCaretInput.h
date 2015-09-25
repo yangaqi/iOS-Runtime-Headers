@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSTimer, TIHandwritingStrokes, UIDelayedAction, _UIDynamicCaretDot;
-
-@interface _UIDynamicCaretInput : UIView <UIKBHandwritingStrokeEnabled> {
+@interface _UIDynamicCaretInput : UIView {
     TIHandwritingStrokes *_accumulatedStrokes;
     struct CGContext { } *_bitmapContext;
     UIDelayedAction *_committedAction;
@@ -27,14 +25,14 @@
     } _lastViewLoc;
 }
 
-@property(retain) TIHandwritingStrokes * accumulatedStrokes;
-@property(retain) UIDelayedAction * committedAction;
-@property(retain) _UIDynamicCaretDot * dotView;
-@property(retain) NSTimer * fadeTimer;
-@property(readonly) BOOL hasInk;
-@property(readonly) float inkWidth;
-@property(readonly) BOOL isInking;
+@property (nonatomic, retain) TIHandwritingStrokes *accumulatedStrokes;
+@property (nonatomic, retain) UIDelayedAction *committedAction;
+@property (nonatomic, retain) _UIDynamicCaretDot *dotView;
+@property (nonatomic, retain) NSTimer *fadeTimer;
+@property (nonatomic, readonly) BOOL hasInk;
+@property (nonatomic, readonly) BOOL isInking;
 
+- (void).cxx_destruct;
 - (void)_fadeInk;
 - (id)accumulatedStrokes;
 - (void)addInkPoint:(struct CGPoint { float x1; float x2; })arg1 fromLastPoint:(BOOL)arg2;

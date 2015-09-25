@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableArray;
-
 @interface OADPath : NSObject {
     NSMutableArray *mElements;
     int mFillMode;
@@ -14,9 +12,9 @@
     BOOL mStroked;
 }
 
-- (id).cxx_construct;
 - (void)addElement:(id)arg1;
 - (void)dealloc;
+- (id)description;
 - (id)elementAtIndex:(unsigned int)arg1;
 - (unsigned int)elementCount;
 - (int)fillMode;

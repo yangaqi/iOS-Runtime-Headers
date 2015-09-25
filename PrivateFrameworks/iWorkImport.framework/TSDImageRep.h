@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class CALayer, CAShapeLayer, NSCache, NSMutableArray, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_semaphore>, NSRecursiveLock, TSDImageRepSizingState, TSDInstantAlphaTracker, TSDLayoutGeometry;
-
 @interface TSDImageRep : TSDMediaRep <TSDMagicMoveMatching> {
     struct CGAffineTransform { 
         float a; 
@@ -96,6 +94,7 @@
 - (id)p_validatedImageProvider;
 - (id)p_validatedThumbnailImageProvider;
 - (void)setTextureAttributes:(id)arg1;
+- (BOOL)shouldShowCheckerboard;
 - (id)textureForContext:(id)arg1;
 - (void)willBeRemoved;
 

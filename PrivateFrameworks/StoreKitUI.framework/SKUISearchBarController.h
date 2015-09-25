@@ -2,31 +2,28 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUIClientContext, SKUIFocusedTouchGestureRecognizer, SKUISearchBarViewElement, SKUISearchFieldController, UISearchBar, UIViewController;
-
 @interface SKUISearchBarController : NSObject <SKUISearchFieldDelegate, UISearchBarDelegate> {
     SKUIFocusedTouchGestureRecognizer *_cancelTouchGestureRecognizer;
     SKUIClientContext *_clientContext;
     BOOL _displaysSearchBarInNavigationBar;
     UIViewController *_parentViewController;
     UISearchBar *_searchBar;
-    SKUISearchBarViewElement *_searchBarViewElement;
     SKUISearchFieldController *_searchFieldController;
     BOOL _showsResultsForEmptyField;
     BOOL _usesSearchFieldController;
     SKUISearchBarViewElement *_viewElement;
 }
 
-@property(retain) SKUIClientContext * clientContext;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL displaysSearchBarInNavigationBar;
-@property(readonly) unsigned int hash;
-@property UIViewController * parentViewController;
-@property(readonly) UISearchBar * searchBar;
-@property(retain) SKUISearchBarViewElement * searchBarViewElement;
-@property BOOL showsResultsForEmptyField;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) SKUIClientContext *clientContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL displaysSearchBarInNavigationBar;
+@property (readonly) unsigned int hash;
+@property (nonatomic) UIViewController *parentViewController;
+@property (nonatomic, readonly) UISearchBar *searchBar;
+@property (nonatomic, retain) SKUISearchBarViewElement *searchBarViewElement;
+@property (nonatomic) BOOL showsResultsForEmptyField;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_cancelGestureAction:(id)arg1;

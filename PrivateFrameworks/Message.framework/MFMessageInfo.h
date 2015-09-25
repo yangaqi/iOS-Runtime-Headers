@@ -6,29 +6,31 @@
     long long _conversationHash;
     unsigned int _dateReceivedInterval;
     unsigned int _dateSentInterval;
-    unsigned int _deleted : 1;
-    unsigned int _flagged : 1;
+    unsigned int _deleted;
+    unsigned int _flagged;
     long long _generationNumber;
-    unsigned int _hasAttachments : 1;
-    unsigned int _isVIP : 1;
+    unsigned int _hasAttachments;
+    unsigned int _isVIP;
     unsigned int _mailboxID;
-    unsigned int _read : 1;
+    long long _messageID;
+    unsigned int _read;
     unsigned int _uid;
-    unsigned int _uidIsLibraryID : 1;
+    unsigned int _uidIsLibraryID;
 }
 
-@property long long conversationHash;
-@property unsigned int dateReceivedInterval;
-@property unsigned int dateSentInterval;
-@property BOOL deleted;
-@property BOOL flagged;
-@property(readonly) long long generationNumber;
-@property BOOL isVIP;
-@property(getter=isKnownToHaveAttachments) BOOL knownToHaveAttachments;
-@property unsigned int mailboxID;
-@property BOOL read;
-@property unsigned int uid;
-@property BOOL uidIsLibraryID;
+@property (nonatomic) long long conversationHash;
+@property (nonatomic) unsigned int dateReceivedInterval;
+@property (nonatomic) unsigned int dateSentInterval;
+@property (nonatomic) BOOL deleted;
+@property (nonatomic) BOOL flagged;
+@property (nonatomic, readonly) long long generationNumber;
+@property (nonatomic) BOOL isVIP;
+@property (getter=isKnownToHaveAttachments, nonatomic) BOOL knownToHaveAttachments;
+@property (nonatomic) unsigned int mailboxID;
+@property (nonatomic) long long messageID;
+@property (nonatomic) BOOL read;
+@property (nonatomic) unsigned int uid;
+@property (nonatomic) BOOL uidIsLibraryID;
 
 + (long long)newGenerationNumber;
 
@@ -42,11 +44,12 @@
 - (long long)generationNumber;
 - (unsigned int)hash;
 - (id)init;
-- (id)initWithUid:(unsigned int)arg1 mailboxID:(unsigned int)arg2 dateReceivedInterval:(unsigned int)arg3 dateSentInterval:(unsigned int)arg4 conversationHash:(long long)arg5 read:(BOOL)arg6 knownToHaveAttachments:(BOOL)arg7 flagged:(BOOL)arg8 isVIP:(BOOL)arg9;
+- (id)initWithUid:(unsigned int)arg1 mailboxID:(unsigned int)arg2 messageID:(long long)arg3 dateReceivedInterval:(unsigned int)arg4 dateSentInterval:(unsigned int)arg5 conversationHash:(long long)arg6 read:(BOOL)arg7 knownToHaveAttachments:(BOOL)arg8 flagged:(BOOL)arg9 isVIP:(BOOL)arg10;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isKnownToHaveAttachments;
 - (BOOL)isVIP;
 - (unsigned int)mailboxID;
+- (long long)messageID;
 - (BOOL)read;
 - (void)setConversationHash:(long long)arg1;
 - (void)setDateReceivedInterval:(unsigned int)arg1;
@@ -56,6 +59,7 @@
 - (void)setIsVIP:(BOOL)arg1;
 - (void)setKnownToHaveAttachments:(BOOL)arg1;
 - (void)setMailboxID:(unsigned int)arg1;
+- (void)setMessageID:(long long)arg1;
 - (void)setRead:(BOOL)arg1;
 - (void)setUid:(unsigned int)arg1;
 - (void)setUidIsLibraryID:(BOOL)arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface CHXAutoStyling : CHAutoStyling <CHAutoStyling> {
     BOOL __autoChartFillIsHollow;
     BOOL __autoChartStrokeIsHollow;
@@ -11,10 +9,10 @@
 
 @property BOOL _autoChartFillIsHollow;
 @property BOOL _autoChartStrokeIsHollow;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)colorWithSchemeColorId:(int)arg1 shade:(float)arg2;
 + (id)colorWithSchemeColorId:(int)arg1 tint:(float)arg2;
@@ -46,7 +44,7 @@
 - (void)resolveGraphicPropertiesOfTrendline:(id)arg1 forSeriesIndex:(unsigned int)arg2;
 - (void)resolveLegendGraphicProperties:(id)arg1;
 - (void)resolveMajorGridLinesGraphicProperties:(id)arg1;
-- (void)resolveMarker:(id)arg1 withSeriesGraphicProperties:(id)arg2 forSeriesIndex:(unsigned int)arg3;
+- (void)resolveMarker:(id)arg1 withSeriesGraphicProperties:(id)arg2 forSeriesIndex:(unsigned int)arg3 clientGraphicPropertyDefaults:(id /* block */)arg4;
 - (void)resolveMinorGridLinesGraphicProperties:(id)arg1;
 - (void)resolvePlotAreaGraphicProperties:(id)arg1;
 - (void)resolveWallGraphicProperties:(id)arg1;

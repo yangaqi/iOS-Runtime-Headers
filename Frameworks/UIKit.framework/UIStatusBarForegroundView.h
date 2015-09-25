@@ -2,23 +2,23 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, UIStatusBarComposedData, UIStatusBarForegroundStyleAttributes, UIStatusBarLayoutManager;
-
 @interface UIStatusBarForegroundView : UIView {
     NSMutableArray *_actionAnimationStack;
+    UIStatusBarComposedData *_currentData;
     UIStatusBarForegroundStyleAttributes *_foregroundStyle;
     int _idiom;
     int _ignoreDataLevel;
-    BOOL _itemIsEnabled[31];
-    UIStatusBarLayoutManager *_layoutManagers[3];
+    BOOL _itemIsEnabled;
+    UIStatusBarLayoutManager *_layoutManagers;
     int _pendedActions;
     UIStatusBarComposedData *_pendedData;
     BOOL _usesVerticalLayout;
 }
 
-@property(readonly) UIStatusBarForegroundStyleAttributes * foregroundStyle;
-@property int idiom;
+@property (nonatomic, readonly) UIStatusBarForegroundStyleAttributes *foregroundStyle;
+@property (nonatomic) int idiom;
 
+- (void).cxx_destruct;
 - (void)_cleanUpAfterDataChange;
 - (void)_cleanUpAfterSimpleReflow;
 - (id)_computeVisibleItemsPreservingHistory:(BOOL)arg1;

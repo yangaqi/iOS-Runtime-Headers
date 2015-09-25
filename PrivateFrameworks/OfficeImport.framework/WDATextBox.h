@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class WDAContent, WDDocument, WDText;
-
 @interface WDATextBox : NSObject {
     WDDocument *mDocument;
     unsigned long mNextTextBoxId;
@@ -13,6 +11,7 @@
 }
 
 - (void)dealloc;
+- (id)description;
 - (id)document;
 - (id)init;
 - (BOOL)isOle;

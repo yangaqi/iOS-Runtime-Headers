@@ -2,12 +2,7 @@
    Image: /System/Library/Frameworks/WebKit.framework/WebKit
  */
 
-@class WKContentView;
-
 @interface WKSelectPopover : WKFormRotatingAccessoryPopover <WKFormControl> {
-    struct RetainPtr<UIKeyboard> { 
-        void *m_ptr; 
-    } _keyboard;
     struct RetainPtr<WKSelectTableViewController> { 
         void *m_ptr; 
     } _tableViewController;

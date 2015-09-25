@@ -2,18 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray;
-
 @interface _UIDictionaryManager : NSObject {
     NSArray *_availableDefinitionDictionaries;
 }
 
-@property(readonly) NSArray * availableDefinitionDictionaries;
+@property (readonly) NSArray *availableDefinitionDictionaries;
 
 + (id)_filteredDictionaryIDs;
 + (id)assetManager;
 + (void)initialize;
 
+- (void).cxx_destruct;
 - (id)_allAvailableDefinitionDictionariesUsingRemoteInfo:(BOOL)arg1;
 - (id)_availableDictionaryAssets;
 - (id)_availableDictionaryAssetsUsingRemoteInfo:(BOOL)arg1;
@@ -21,7 +20,6 @@
 - (id)_definitionValuesForTerm:(id)arg1;
 - (BOOL)_hasDefinitionForTerm:(id)arg1;
 - (id)availableDefinitionDictionaries;
-- (void)dealloc;
 - (id)init;
 
 @end

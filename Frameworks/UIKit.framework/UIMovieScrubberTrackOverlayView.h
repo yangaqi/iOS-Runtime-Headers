@@ -2,10 +2,8 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImageView;
-
 @interface UIMovieScrubberTrackOverlayView : UIView {
-    unsigned int _editing : 1;
+    unsigned int _editing;
     unsigned int _editingHandle;
     double _endValue;
     UIImageView *_leftFillView;
@@ -14,9 +12,10 @@
     UIImageView *_rightFillView;
     double _startValue;
     double _value;
-    unsigned int _zoomed : 1;
+    unsigned int _zoomed;
 }
 
+- (void).cxx_destruct;
 - (void)_clampValueAndLayout;
 - (void)_updateLeftFill;
 - (void)_updateRightFill;

@@ -2,10 +2,7 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CIFourfoldRotatedTile : CITileFilter {
-}
-
-+ (id)customAttributes;
+@interface CIFourfoldRotatedTile : CITileFilter
 
 - (id)_kernel_name;
 - (id)_kernel_source;

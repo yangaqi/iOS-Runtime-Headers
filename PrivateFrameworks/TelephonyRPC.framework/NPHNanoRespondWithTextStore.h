@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/TelephonyRPC.framework/TelephonyRPC
  */
 
-@class NPSDomainAccessor;
-
 @interface NPHNanoRespondWithTextStore : NSObject {
     NPSDomainAccessor *_domainAccessor;
 }
 
 - (void).cxx_destruct;
-- (id)cannedReplies;
+- (id)cannedRepliesForLanguage:(id)arg1;
 - (unsigned int)count;
 - (id)customReplies;
-- (id)defaultReplies;
+- (id)defaultRepliesForLanguage:(id)arg1;
 - (id)init;
 
 @end

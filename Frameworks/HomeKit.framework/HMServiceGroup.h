@@ -2,63 +2,77 @@
    Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
  */
 
-@class HMHome, HMMessageDispatcher, NSArray, NSMutableArray, NSObject<OS_dispatch_queue>, NSString, NSUUID;
-
-@interface HMServiceGroup : NSObject <HMMessageReceiver, NSSecureCoding> {
-    NSMutableArray *_currentServices;
+@interface HMServiceGroup : NSObject <HMMessageReceiver, HMObjectMerge, NSSecureCoding> {
+    NSObject<OS_dispatch_queue> *_clientQueue;
+    HMThreadSafeMutableArrayCollection *_currentServices;
+    HMDelegateCaller *_delegateCaller;
     HMHome *_home;
     HMMessageDispatcher *_msgDispatcher;
     NSString *_name;
+    NSObject<OS_dispatch_queue> *_propertyQueue;
+    NSUUID *_uniqueIdentifier;
     NSUUID *_uuid;
-    NSObject<OS_dispatch_queue> *_workQueue;
 }
 
-@property(retain) NSMutableArray * currentServices;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property HMHome * home;
-@property(readonly) NSObject<OS_dispatch_queue> * messageReceiveQueue;
-@property(readonly) NSUUID * messageTargetUUID;
-@property(retain) HMMessageDispatcher * msgDispatcher;
-@property(copy,readonly) NSString * name;
-@property(copy,readonly) NSArray * services;
-@property(readonly) Class superclass;
-@property(retain) NSUUID * uuid;
-@property(retain) NSObject<OS_dispatch_queue> * workQueue;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *clientQueue;
+@property (nonatomic, retain) HMThreadSafeMutableArrayCollection *currentServices;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) HMDelegateCaller *delegateCaller;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) HMHome *home;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *messageReceiveQueue;
+@property (nonatomic, readonly) NSUUID *messageTargetUUID;
+@property (nonatomic, retain) HMMessageDispatcher *msgDispatcher;
+@property (nonatomic, readonly, copy) NSString *name;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *propertyQueue;
+@property (nonatomic, readonly, copy) NSArray *services;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly, copy) NSUUID *uniqueIdentifier;
+@property (nonatomic, readonly) NSUUID *uuid;
 
 + (BOOL)supportsSecureCoding;
 
 - (void).cxx_destruct;
+- (void)_addService:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_configure:(id)arg1 messageDispatcher:(id)arg2 clientQueue:(id)arg3 delegateCaller:(id)arg4;
+- (id)_findService:(id)arg1;
+- (void)_handleServiceAddedNotification:(id)arg1;
+- (void)_handleServiceGroupRenamedNotification:(id)arg1;
+- (void)_handleServiceRemovedNotification:(id)arg1;
+- (void)_invalidate;
+- (BOOL)_mergeWithNewObject:(id)arg1 operations:(id)arg2;
 - (void)_registerNotificationHandlers;
-- (void)addService:(id)arg1 completionHandler:(id)arg2;
-- (void)configure:(id)arg1 uuid:(id)arg2 messageDispatcher:(id)arg3;
+- (void)_removeService:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)_removeServices:(id)arg1;
+- (void)_unconfigure;
+- (void)_updateName:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)addService:(id)arg1 completionHandler:(id /* block */)arg2;
+- (id)clientQueue;
 - (id)currentServices;
 - (void)dealloc;
+- (id)delegateCaller;
 - (void)encodeWithCoder:(id)arg1;
-- (void)handleServiceAddedNotification:(id)arg1;
-- (void)handleServiceGroupRenamedNotification:(id)arg1;
-- (void)handleServiceRemovedNotification:(id)arg1;
 - (id)home;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
-- (id)initWithName:(id)arg1;
-- (void)invalidate;
+- (id)initWithName:(id)arg1 uuid:(id)arg2;
 - (id)messageReceiveQueue;
 - (id)messageTargetUUID;
 - (id)msgDispatcher;
 - (id)name;
-- (void)removeService:(id)arg1 completionHandler:(id)arg2;
-- (void)removeServices:(id)arg1;
+- (id)propertyQueue;
+- (void)removeService:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)services;
+- (void)setClientQueue:(id)arg1;
 - (void)setCurrentServices:(id)arg1;
+- (void)setDelegateCaller:(id)arg1;
 - (void)setHome:(id)arg1;
 - (void)setMsgDispatcher:(id)arg1;
-- (void)setUuid:(id)arg1;
-- (void)setWorkQueue:(id)arg1;
-- (void)unconfigure;
-- (void)updateName:(id)arg1 completionHandler:(id)arg2;
+- (void)setName:(id)arg1;
+- (void)setPropertyQueue:(id)arg1;
+- (id)uniqueIdentifier;
+- (void)updateName:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)uuid;
-- (id)workQueue;
 
 @end

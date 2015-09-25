@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@interface MFComposeTypeFactory : NSObject {
-}
+@interface MFComposeTypeFactory : NSObject
 
 + (id)_markupForInlineAttachment:(id)arg1 willBeIncluded:(BOOL)arg2 prependBlankLine:(BOOL)arg3 delegate:(id)arg4;
 + (id)_markupStringForExcludedInlineAttachmentWithFilename:(id)arg1;
@@ -21,6 +20,7 @@
 + (void)addAttachment:(id)arg1 prepend:(BOOL)arg2 withCompositionModel:(id)arg3 delegate:(id)arg4;
 + (id)headersFromDelegate:(id)arg1;
 + (id)headersFromDelegate:(id)arg1 originatingBundleID:(id)arg2 sourceAccountManagement:(int)arg3;
++ (void)hijackThreadFromDelegate:(id)arg1;
 + (unsigned int)imageScaleFromUserDefaults;
 + (id)messageFromDelegate:(id)arg1 originatingBundleID:(id)arg2 sourceAccountManagement:(int)arg3;
 + (id)messageFromDelegate:(id)arg1 withSubstituteDOMDocument:(id)arg2 originatingBundleID:(id)arg3 sourceAccountManagement:(int)arg4;

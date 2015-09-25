@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
  */
 
-@class NSMutableSet;
-
 @interface SBFPasscodeLockAssertionTracker : NSObject {
     NSMutableSet *_assertions;
     struct __MKBAssertion { } *_mkbAssertion;
@@ -14,6 +12,7 @@
 - (id)description;
 - (BOOL)hasActiveAssertions;
 - (id)init;
+- (BOOL)isAssertionValid:(id)arg1;
 - (id)mkbAssertionOptions;
 - (void)removeAssertion:(id)arg1;
 

@@ -2,10 +2,9 @@
    Image: /System/Library/PrivateFrameworks/VisualAlert.framework/VisualAlert
  */
 
-@interface AXVisualAlertSBBulletinSoundController : __AXVisualAlertSBBulletinSoundController_super {
-}
+@interface AXVisualAlertSBBulletinSoundController : __AXVisualAlertSBBulletinSoundController_super
 
-+ (Class)safeCategoryTargetClass;
++ (Class)safeCategoryBaseClass;
 + (id)safeCategoryTargetClassName;
 
 - (BOOL)_playSoundForBulletin:(id)arg1 playedInternally:(BOOL)arg2;

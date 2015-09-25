@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/CloudKit.framework/CloudKit
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>;
-
 @interface CKBehaviorOptions : NSObject {
     NSMutableDictionary *_cachedPrefs;
     NSObject<OS_dispatch_queue> *_cachedPrefsQueue;
 }
 
-@property(retain) NSMutableDictionary * cachedPrefs;
-@property(retain) NSObject<OS_dispatch_queue> * cachedPrefsQueue;
+@property (nonatomic, retain) NSMutableDictionary *cachedPrefs;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *cachedPrefsQueue;
 
 + (id)sharedOptions;
 
@@ -48,11 +46,11 @@
 - (id)customCloudDBBaseURL;
 - (id)customDeviceServiceBaseURL;
 - (id)customShareServiceBaseURL;
-- (int)defaultOperationQualityOfService;
 - (double)defaultRequestTimeout;
 - (double)defaultResourceTimeout;
 - (int)defaultRetryAfter;
 - (BOOL)disableCaching;
+- (BOOL)enableMMCSMetricsWithDefaultValue:(BOOL)arg1;
 - (BOOL)enableMescal;
 - (BOOL)evictRecentAssets;
 - (int)flowControlBudget;
@@ -109,6 +107,7 @@
 - (void)setServerIDExpiryTime:(int)arg1;
 - (void)setSetupBaseURL:(id)arg1;
 - (void)setShouldProfileSQL:(BOOL)arg1;
+- (void)setTestRunIDHeader:(id)arg1;
 - (void)setTrafficLogMaximumDataSize:(int)arg1;
 - (void)setUseBackgroundSessions:(BOOL)arg1;
 - (void)setUseEncryption:(BOOL)arg1;
@@ -117,6 +116,7 @@
 - (BOOL)shouldDecryptRecordsBeforeSave;
 - (BOOL)shouldLogProtobufBinary;
 - (BOOL)shouldProfileSQL;
+- (id)testRunIDHeader;
 - (int)trafficLogMaximumDataSize;
 - (BOOL)useBackgroundSessions;
 - (BOOL)useEncryption;

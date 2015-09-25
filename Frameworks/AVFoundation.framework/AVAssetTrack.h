@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVAsset, AVAssetTrackInternal;
-
 @interface AVAssetTrack : NSObject <AVAsynchronousKeyValueLoading, NSCopying> {
     AVAssetTrackInternal *_track;
 }
 
-@property(readonly) AVAsset * asset;
-@property(readonly) int trackID;
+@property (nonatomic, readonly) AVAsset *asset;
+@property (nonatomic, readonly) int trackID;
 
 + (id)keyPathsForValuesAffectingTimeRange;
-+ (id)mediaTypesForMediaCharacteristics;
++ (id)mediaCharacteristicsForMediaTypes;
 
 - (id)_assetTrackInspector;
 - (id)_fallbackTrack;
@@ -29,8 +27,11 @@
 - (id)_initWithAsset:(id)arg1 trackID:(int)arg2 trackIndex:(long)arg3;
 - (id)_initWithAsset:(id)arg1 trackIndex:(long)arg2;
 - (id)_pairedForcedOnlySubtitlesTrack;
+- (void)_startListeningToFigAssetTrackNotifications;
+- (void)_stopListeningToFigAssetTrackNotifications;
 - (BOOL)_subtitleFormatDescriptionMatchesTextDisplayFlags:(unsigned int)arg1 flagsMask:(unsigned int)arg2;
 - (id)_trackReferences;
+- (id)_weakReference;
 - (int)alternateGroupID;
 - (id)asset;
 - (id)associatedTracksOfType:(id)arg1;
@@ -57,7 +58,7 @@
 - (BOOL)isSelfContained;
 - (id)languageCode;
 - (int)layer;
-- (void)loadValuesAsynchronouslyForKeys:(id)arg1 completionHandler:(id)arg2;
+- (void)loadValuesAsynchronouslyForKeys:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)locale;
 - (id)loudnessInfo;
 - (id)mediaCharacteristics;

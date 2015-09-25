@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
  */
 
-@interface ASAccountActor : DADisableableObject <ASAccountActorMessages> {
-}
+@interface ASAccountActor : DADisableableObject <ASAccountActorMessages>
 
 - (oneway void)_accountPasswordChanged;
 - (oneway void)_daemonDiedNotification:(id)arg1;
@@ -53,6 +52,7 @@
 - (oneway void)stopMonitoringAllFolders;
 - (oneway void)stopMonitoringFoldersForUpdates:(id)arg1;
 - (int)supportsConversations;
+- (int)supportsDraftFolderSync;
 - (int)supportsEmailFlagging;
 - (int)supportsMailboxSearch;
 - (id)unactionableICSRepresentationForMetaData:(id)arg1 inFolderWithId:(id)arg2 outSummary:(id*)arg3;

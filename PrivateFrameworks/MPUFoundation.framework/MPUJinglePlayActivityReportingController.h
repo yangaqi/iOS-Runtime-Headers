@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
  */
 
-@class NSObject<OS_dispatch_queue>, NSString, SSVPlayActivityController;
-
 @interface MPUJinglePlayActivityReportingController : MPUReportingController {
     NSObject<OS_dispatch_queue> *_accessSerialQueue;
     double _nonCatalogAggregatePlayDuration;
@@ -14,22 +12,28 @@
     unsigned int _nonCatalogSourceType;
     unsigned long long _nonCatalogStoreAccountID;
     SSVPlayActivityController *_playActivityController;
+    BOOL _shouldReportAggregateTimePlayActivityEvents;
     BOOL _shouldReportPlayActivityEvents;
 }
 
-@property(readonly) SSVPlayActivityController * playActivityController;
-@property BOOL shouldReportPlayActivityEvents;
+@property (nonatomic, readonly) SSVPlayActivityController *playActivityController;
+@property (nonatomic) BOOL shouldReportAggregateTimePlayActivityEvents;
+@property (nonatomic) BOOL shouldReportPlayActivityEvents;
 
 - (void).cxx_destruct;
 - (void)_applicationWillTerminateNotification:(id)arg1;
 - (id)_captureNonCatalogAggregatePlayActivityEvent;
 - (void)_clearNonCatalogAggregatePlayActivityEventData;
 - (void)_recordReportingEvents:(id)arg1;
+- (void)acquirePendingPlayActivityEventsForStoreAccountID:(unsigned long long)arg1 completionHandler:(id /* block */)arg2;
+- (void)completePendingPlayActivityEvents:(id)arg1 forSessionToken:(unsigned long long)arg2 withResult:(unsigned int)arg3 completionHandler:(id /* block */)arg4;
 - (void)dealloc;
 - (id)init;
 - (id)initWithWritingStyle:(unsigned int)arg1;
 - (id)playActivityController;
+- (void)setShouldReportAggregateTimePlayActivityEvents:(BOOL)arg1;
 - (void)setShouldReportPlayActivityEvents:(BOOL)arg1;
+- (BOOL)shouldReportAggregateTimePlayActivityEvents;
 - (BOOL)shouldReportPlayActivityEvents;
 
 @end

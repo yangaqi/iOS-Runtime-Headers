@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIKeyboardCandidateListDelegate>, NSString, TIKeyboardCandidateResultSet, _UIDynamicCaretAlternatives, _UIDynamicCaretHelpLabel, _UIDynamicCaretInput, _UIDynamicCaretNoContentView;
-
 @interface UIDynamicCaret : UIImageView <UIKeyboardCandidateList, _UIDynamicCaretDocumentContentDelegate> {
     _UIDynamicCaretAlternatives *_alternativesView;
     <UIKeyboardCandidateListDelegate> *_candidateListDelegate;
@@ -15,17 +13,18 @@
     int _selectedIndex;
 }
 
-@property(retain) _UIDynamicCaretAlternatives * alternativesView;
-@property(retain) TIKeyboardCandidateResultSet * candidateSet;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) _UIDynamicCaretHelpLabel * helpLabel;
-@property(retain) _UIDynamicCaretInput * inputView;
-@property BOOL isActive;
-@property(retain) _UIDynamicCaretNoContentView * noContentView;
-@property(readonly) Class superclass;
+@property (nonatomic, retain) _UIDynamicCaretAlternatives *alternativesView;
+@property (nonatomic, retain) TIKeyboardCandidateResultSet *candidateSet;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) _UIDynamicCaretHelpLabel *helpLabel;
+@property (nonatomic, retain) _UIDynamicCaretInput *inputView;
+@property (nonatomic) BOOL isActive;
+@property (nonatomic, retain) _UIDynamicCaretNoContentView *noContentView;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (void)alternativeTappedAtIndex:(int)arg1;
 - (id)alternativesView;
 - (id)backgroundImage;
@@ -33,7 +32,6 @@
 - (id)candidateSet;
 - (id)currentCandidate;
 - (unsigned int)currentIndex;
-- (void)dealloc;
 - (void)didMoveToSuperview;
 - (void)displayAlternatives:(BOOL)arg1;
 - (BOOL)hasCandidates;

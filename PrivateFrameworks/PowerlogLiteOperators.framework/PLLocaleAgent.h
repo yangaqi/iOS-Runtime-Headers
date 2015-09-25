@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@class PLNSNotificationOperatorComposition;
-
 @interface PLLocaleAgent : PLAgent {
-    PLNSNotificationOperatorComposition *_timeNotifications;
+    PLNSNotificationOperatorComposition *_timeNotification;
 }
 
-@property(retain) PLNSNotificationOperatorComposition * timeNotifications;
+@property (retain) PLNSNotificationOperatorComposition *timeNotification;
 
 + (id)accountingGroupDefinitions;
 + (id)entryEventBackwardDefinitions;
@@ -24,7 +22,7 @@
 - (void)log;
 - (void)logEventForwardTimeZone;
 - (void)logEventForwardTimeZoneWithTrigger:(id)arg1;
-- (void)setTimeNotifications:(id)arg1;
-- (id)timeNotifications;
+- (void)setTimeNotification:(id)arg1;
+- (id)timeNotification;
 
 @end

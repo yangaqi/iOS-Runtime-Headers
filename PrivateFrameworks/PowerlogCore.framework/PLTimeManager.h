@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PowerlogCore.framework/PowerlogCore
  */
 
-@class NSDictionary, NSString, PLSQLiteConnection, PLStorageOperator;
-
 @interface PLTimeManager : NSObject <PLTimeReferenceManager> {
     PLSQLiteConnection *_connection;
     NSDictionary *_notificationsToTimeReferences;
@@ -11,14 +9,14 @@
     NSDictionary *_timeReferences;
 }
 
-@property PLSQLiteConnection * connection;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) NSDictionary * notificationsToTimeReferences;
-@property PLStorageOperator * storageOperator;
-@property(readonly) Class superclass;
-@property(retain) NSDictionary * timeReferences;
+@property PLSQLiteConnection *connection;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (retain) NSDictionary *notificationsToTimeReferences;
+@property PLStorageOperator *storageOperator;
+@property (readonly) Class superclass;
+@property (retain) NSDictionary *timeReferences;
 
 + (id)sharedInstance;
 
@@ -31,13 +29,14 @@
 - (void)initializeTimeOffsets;
 - (void)logTimeEntry;
 - (id)notificationsToTimeReferences;
-- (void)registerForTimeChangedCallbackWithIdentifier:(id)arg1 forTimeReference:(int)arg2 usingBlock:(id)arg3;
+- (void)registerForTimeChangedCallbackWithIdentifier:(id)arg1 forTimeReference:(int)arg2 usingBlock:(id /* block */)arg3;
 - (void)setConnection:(id)arg1;
 - (void)setNotificationsToTimeReferences:(id)arg1;
 - (void)setStorageOperator:(id)arg1;
 - (void)setTimeReferences:(id)arg1;
 - (id)storageOperator;
 - (id)storageQueue;
+- (double)timeOffsetForTimeReference:(int)arg1;
 - (id)timeReferences;
 - (void)unregisterForTimeChangedCallbackWithIdentifier:(id)arg1 forTimeReference:(int)arg2;
 

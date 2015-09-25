@@ -2,19 +2,18 @@
    Image: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
  */
 
-@class NSString, WebHTMLRepresentationPrivate;
-
 @interface WebHTMLRepresentation : NSObject <WebDocumentDOM, WebDocumentRepresentation> {
     WebHTMLRepresentationPrivate *_private;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)supportedImageMIMETypes;
 + (id)supportedMIMETypes;
++ (id)supportedMediaMIMETypes;
 + (id)supportedNonImageMIMETypes;
 + (id)unsupportedTextMIMETypes;
 

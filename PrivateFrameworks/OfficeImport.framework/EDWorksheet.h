@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection, EDColumnInfoCollection, EDMergedCellCollection, EDPane, EDReference, EDRowBlocks, EDWarnings, OITSUPointerKeyDictionary;
-
 @interface EDWorksheet : EDSheet {
     EDColumnInfoCollection *mColumnInfos;
     EDCollection *mConditionalFormattings;
@@ -29,6 +27,7 @@
 - (id)conditionalFormattings;
 - (double)defaultColumnWidth;
 - (unsigned short)defaultRowHeight;
+- (id)description;
 - (bool)fitToPage;
 - (bool)hasMergedCells;
 - (BOOL)hasMergedCol;

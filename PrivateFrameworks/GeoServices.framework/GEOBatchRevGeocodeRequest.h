@@ -2,28 +2,20 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class NSMutableArray;
-
 @interface GEOBatchRevGeocodeRequest : PBRequest <NSCopying> {
     struct { 
         int *list; 
         unsigned int count; 
         unsigned int size; 
     } _additionalPlaceTypes;
-    struct { 
-        unsigned int splitIntoClusters : 1; 
-    } _has;
     NSMutableArray *_locations;
     NSMutableArray *_serviceTags;
-    BOOL _splitIntoClusters;
 }
 
-@property(readonly) int* additionalPlaceTypes;
-@property(readonly) unsigned int additionalPlaceTypesCount;
-@property BOOL hasSplitIntoClusters;
-@property(retain) NSMutableArray * locations;
-@property(retain) NSMutableArray * serviceTags;
-@property BOOL splitIntoClusters;
+@property (nonatomic, readonly) int*additionalPlaceTypes;
+@property (nonatomic, readonly) unsigned int additionalPlaceTypesCount;
+@property (nonatomic, retain) NSMutableArray *locations;
+@property (nonatomic, retain) NSMutableArray *serviceTags;
 
 - (void)addAdditionalPlaceType:(int)arg1;
 - (void)addLocation:(id)arg1;
@@ -39,7 +31,6 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
-- (BOOL)hasSplitIntoClusters;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (id)locationAtIndex:(unsigned int)arg1;
@@ -53,11 +44,8 @@
 - (id)serviceTags;
 - (unsigned int)serviceTagsCount;
 - (void)setAdditionalPlaceTypes:(int*)arg1 count:(unsigned int)arg2;
-- (void)setHasSplitIntoClusters:(BOOL)arg1;
 - (void)setLocations:(id)arg1;
 - (void)setServiceTags:(id)arg1;
-- (void)setSplitIntoClusters:(BOOL)arg1;
-- (BOOL)splitIntoClusters;
 - (void)writeTo:(id)arg1;
 
 @end

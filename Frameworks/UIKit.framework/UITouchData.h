@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITouch;
-
 @interface UITouchData : NSObject {
     unsigned int lastTapCount;
     UITouch *lastTouch;
@@ -15,5 +13,7 @@
     } startTouchDownLocation;
     BOOL touchIsValidTap;
 }
+
+- (void).cxx_destruct;
 
 @end

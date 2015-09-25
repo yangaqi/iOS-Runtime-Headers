@@ -2,18 +2,17 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class MFMessageComposeViewController;
-
 @interface UIMessageActivity : UIActivity {
     MFMessageComposeViewController *_messageComposeViewController;
     BOOL _sourceIsManaged;
 }
 
-@property(retain) MFMessageComposeViewController * messageComposeViewController;
-@property BOOL sourceIsManaged;
+@property (nonatomic, retain) MFMessageComposeViewController *messageComposeViewController;
+@property (nonatomic) BOOL sourceIsManaged;
 
 + (int)activityCategory;
 
+- (void).cxx_destruct;
 - (id)_activityImage;
 - (id)_activitySettingsImage;
 - (void)_cleanup;

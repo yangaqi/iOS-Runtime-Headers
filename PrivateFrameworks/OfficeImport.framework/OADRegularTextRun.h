@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSMutableString;
-
 @interface OADRegularTextRun : OADTextRun {
     NSMutableString *mText;
 }
@@ -12,6 +10,7 @@
 - (void)dealloc;
 - (id)init;
 - (BOOL)isEmpty;
+- (BOOL)isSimilarToTextRun:(id)arg1;
 - (id)text;
 
 @end

@@ -2,21 +2,21 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class ACAccountStore, SKUIFacebookLikeStatus, SKUIFacebookPageComponent, SKUIReviewsFacebookView;
-
 @interface SKUIFacebookPageSection : SKUIStorePageSection {
     ACAccountStore *_accountStore;
     BOOL _facebookAccountsExist;
     SKUIReviewsFacebookView *_facebookView;
     BOOL _isLoadingLikeStatus;
+    SKUIViewElementLayoutContext *_layoutContext;
     SKUIFacebookLikeStatus *_likeStatus;
 }
 
-@property(readonly) SKUIFacebookPageComponent * pageComponent;
+@property (nonatomic, readonly) SKUIFacebookPageComponent *pageComponent;
 
 - (void).cxx_destruct;
 - (id)_accountStore;
 - (void)_accountStoreDidChangeNotification:(id)arg1;
+- (void)_applyColorSchemeToFacebookView:(id)arg1;
 - (void)_changeStatusToUserLiked:(BOOL)arg1;
 - (int)_facebookAccountsExist;
 - (id)_facebookView;
@@ -26,6 +26,7 @@
 - (void)_resetState;
 - (void)_toggleLikeAction:(id)arg1;
 - (void)addImpressionsForIndexPath:(id)arg1 toSession:(id)arg2;
+- (int)applyUpdateType:(int)arg1;
 - (id)cellForIndexPath:(id)arg1;
 - (struct CGSize { float x1; float x2; })cellSizeForIndexPath:(id)arg1;
 - (void)collectionViewDidEndDisplayingCellForItemAtIndexPath:(id)arg1;

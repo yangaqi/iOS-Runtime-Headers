@@ -2,12 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSTimer, UIView<UIAutoscrollContainer>;
-
 @interface UIAutoscroll : NSObject {
+    id _target;
     BOOL m_active;
     unsigned int m_count;
     int m_directions;
+    BOOL m_disabled;
     struct CGPoint { 
         float x; 
         float y; 
@@ -18,18 +18,21 @@
     NSTimer *m_timer;
 }
 
-@property BOOL active;
-@property unsigned int count;
-@property int directions;
-@property struct CGPoint { float x1; float x2; } point;
-@property double repeatInterval;
-@property(retain) UIView<UIAutoscrollContainer> * scrollContainer;
-@property(retain) id target;
+@property (nonatomic) BOOL active;
+@property (nonatomic) unsigned int count;
+@property (nonatomic) int directions;
+@property (nonatomic) BOOL disabled;
+@property (nonatomic) struct CGPoint { float x1; float x2; } point;
+@property (nonatomic) double repeatInterval;
+@property (nonatomic, retain) UIView<UIAutoscrollContainer> *scrollContainer;
+@property (nonatomic) id target;
 
+- (void).cxx_destruct;
 - (BOOL)active;
 - (unsigned int)count;
 - (void)dealloc;
 - (int)directions;
+- (BOOL)disabled;
 - (void)invalidate;
 - (struct CGPoint { float x1; float x2; })point;
 - (double)repeatInterval;
@@ -37,6 +40,7 @@
 - (void)setActive:(BOOL)arg1;
 - (void)setCount:(unsigned int)arg1;
 - (void)setDirections:(int)arg1;
+- (void)setDisabled:(BOOL)arg1;
 - (void)setPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)setRepeatInterval:(double)arg1;
 - (void)setScrollContainer:(id)arg1;

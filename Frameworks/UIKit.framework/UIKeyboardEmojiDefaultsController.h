@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableDictionary;
-
 @interface UIKeyboardEmojiDefaultsController : NSObject {
     NSMutableDictionary *_defaults;
+    BOOL _isDefaultDirty;
 }
 
 + (id)sharedController;

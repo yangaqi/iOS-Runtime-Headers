@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray, NSString, OADFill, OADScene3D, OADShape3D;
-
 @interface OADGroupProperties : OADDrawableProperties <OADEffectsParent, OADProperties3DParent> {
     NSArray *mEffects;
     OADFill *mFill;
@@ -11,16 +9,18 @@
     OADShape3D *mShape3D;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)defaultProperties;
 
 - (void)dealloc;
+- (id)description;
 - (id)effects;
 - (id)fill;
+- (void)fixPropertiesForChangingParentPreservingEffectiveValues:(id)arg1;
 - (BOOL)hasEffects;
 - (BOOL)hasFill;
 - (BOOL)hasScene3D;

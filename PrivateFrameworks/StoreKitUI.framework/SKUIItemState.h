@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSNumber, NSString;
-
 @interface SKUIItemState : NSObject <NSCopying> {
     unsigned int _downloadContentFlags;
     NSString *_downloadPhase;
@@ -12,19 +10,21 @@
     unsigned int _libraryContentFlags;
     int _mediaCategory;
     unsigned int _state;
+    SKUIStoreIdentifier *_storeIdentifier;
     NSString *_variantIdentifier;
 }
 
-@property(readonly) BOOL activeStateIsPreview;
-@property(readonly) unsigned int allContentFlags;
-@property unsigned int downloadContentFlags;
-@property(copy) NSString * downloadPhase;
-@property float downloadProgress;
-@property(copy) NSNumber * itemIdentifier;
-@property unsigned int libraryContentFlags;
-@property int mediaCategory;
-@property unsigned int state;
-@property(copy) NSString * variantIdentifier;
+@property (nonatomic, readonly) BOOL activeStateIsPreview;
+@property (nonatomic, readonly) unsigned int allContentFlags;
+@property (nonatomic) unsigned int downloadContentFlags;
+@property (nonatomic, copy) NSString *downloadPhase;
+@property (nonatomic) float downloadProgress;
+@property (nonatomic, copy) NSNumber *itemIdentifier;
+@property (nonatomic) unsigned int libraryContentFlags;
+@property (nonatomic) int mediaCategory;
+@property (nonatomic) unsigned int state;
+@property (nonatomic, copy) SKUIStoreIdentifier *storeIdentifier;
+@property (nonatomic, copy) NSString *variantIdentifier;
 
 - (void).cxx_destruct;
 - (BOOL)activeStateIsPreview;
@@ -44,8 +44,10 @@
 - (void)setLibraryContentFlags:(unsigned int)arg1;
 - (void)setMediaCategory:(int)arg1;
 - (void)setState:(unsigned int)arg1;
+- (void)setStoreIdentifier:(id)arg1;
 - (void)setVariantIdentifier:(id)arg1;
 - (unsigned int)state;
+- (id)storeIdentifier;
 - (id)variantIdentifier;
 
 @end

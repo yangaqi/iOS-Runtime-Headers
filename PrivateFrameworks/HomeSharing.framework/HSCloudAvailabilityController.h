@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
  */
 
-@class NSObject<OS_dispatch_queue>, NSString, RadiosPreferences;
-
 @interface HSCloudAvailabilityController : NSObject <HSCloudAvailability, RadiosPreferencesDelegate> {
     NSObject<OS_dispatch_queue> *_accessQueue;
     BOOL _canShowCloudDownloadButtons;
@@ -17,17 +15,18 @@
     BOOL _isShowingAllVideo;
     BOOL _isUpdateInProgress;
     BOOL _isWiFiEnabled;
+    unsigned int _networkReachabilityObservationCount;
     int _networkType;
     int _preferencesChangedNotifyToken;
     BOOL _preferencesChangedNotifyTokenIsValid;
     RadiosPreferences *_radiosPreferences;
-    struct __SCNetworkReachability { } *reachabilityRef;
+    struct __SCNetworkReachability { } *_reachabilityRef;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedController;
 
@@ -38,6 +37,8 @@
 - (BOOL)_hasWiFiCapability;
 - (BOOL)_isAutoDownloadOnCellularAllowed;
 - (void)_networkTypeDidChangeNotification:(id)arg1;
+- (void)_onQueue_beginObservingReachabilityChanges;
+- (void)_onQueue_endObservingReachabilityChanges;
 - (void)_onQueue_updateCanShowCloudDownloadButtonsWithNotification:(BOOL)arg1;
 - (void)_onQueue_updateCanShowCloudTracksWithNotification:(BOOL)arg1;
 - (void)_setNewIsNetworkReachable:(BOOL)arg1;
@@ -46,10 +47,12 @@
 - (BOOL)_uncachedIsShowingAllVideo;
 - (void)_wifiEnabledDidChangeNotification:(id)arg1;
 - (void)airplaneModeChanged;
+- (void)beginObservingNetworkReachability;
 - (BOOL)canShowCloudDownloadButtons;
 - (BOOL)canShowCloudMusic;
 - (BOOL)canShowCloudVideo;
 - (void)dealloc;
+- (void)endObservingNetworkReachability;
 - (BOOL)hasProperNetworkConditionsToPlayMedia;
 - (id)init;
 - (BOOL)isCellularDataRestricted;

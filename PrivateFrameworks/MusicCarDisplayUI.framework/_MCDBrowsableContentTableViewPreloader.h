@@ -2,51 +2,38 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class MCDBrowsableContentModel, NSIndexPath, NSString, UINavigationController, UIViewController;
-
-@interface _MCDBrowsableContentTableViewPreloader : NSObject <MCDBrowsableContentModelListener> {
+@interface _MCDBrowsableContentTableViewPreloader : NSObject {
     BOOL _cancelled;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _cancelledBlock;
-
+    id /* block */ _cancelledBlock;
+    MCDPCContainer *_container;
+    int _index;
     NSIndexPath *_indexPath;
-    MCDBrowsableContentModel *_model;
-    UINavigationController *_navigationController;
-    BOOL _pushContainerWhenNil;
-    BOOL _pushNowPlayingWhenNil;
+    MCDPCItem *_item;
     UIViewController *_sourceViewController;
 }
 
-@property(getter=isCancelled) BOOL cancelled;
-@property(copy,readonly) id cancelledBlock;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) NSIndexPath * indexPath;
-@property(readonly) MCDBrowsableContentModel * model;
-@property(readonly) UINavigationController * navigationController;
-@property(readonly) UIViewController * sourceViewController;
-@property(readonly) Class superclass;
+@property (getter=isCancelled, nonatomic) BOOL cancelled;
+@property (nonatomic, readonly, copy) id /* block */ cancelledBlock;
+@property (nonatomic, readonly) MCDPCContainer *container;
+@property (nonatomic, readonly) int index;
+@property (nonatomic, readonly) NSIndexPath *indexPath;
+@property (nonatomic, readonly) MCDPCItem *item;
+@property (nonatomic, readonly) UIViewController *sourceViewController;
 
 - (void).cxx_destruct;
 - (void)_deregister;
-- (id)cancelledBlock;
+- (void)_loadContainerAndPush;
+- (void)_pushToPlayback:(id)arg1;
+- (id /* block */)cancelledBlock;
+- (id)container;
 - (void)dealloc;
+- (id)description;
+- (int)index;
 - (id)indexPath;
-- (id)initWithModel:(id)arg1 indexPath:(id)arg2 sourceViewController:(id)arg3 navigationController:(id)arg4 cancelledBlock:(id)arg5;
+- (id)initWithContainer:(id)arg1 index:(int)arg2 sourceViewController:(id)arg3 cancelledBlock:(id /* block */)arg4;
 - (BOOL)isCancelled;
+- (id)item;
 - (void)loadAndPush;
-- (id)model;
-- (void)model:(id)arg1 didInitiatePlaybackOfItemAtIndexPath:(id)arg2 error:(id)arg3;
-- (void)model:(id)arg1 didUpdateContainerAtIndexPath:(id)arg2;
-- (void)model:(id)arg1 didUpdateContentItemsAtIndexPaths:(id)arg2;
-- (id)navigationController;
 - (void)setCancelled:(BOOL)arg1;
 - (id)sourceViewController;
 

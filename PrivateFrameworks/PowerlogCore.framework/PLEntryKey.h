@@ -2,14 +2,13 @@
    Image: /System/Library/PrivateFrameworks/PowerlogCore.framework/PowerlogCore
  */
 
-@class NSString, PLEntryKey;
-
 @interface PLEntryKey : NSObject {
     PLEntryKey *_baseEntryKey;
     NSString *_entryKey;
     NSString *_entryName;
     NSString *_entryType;
     BOOL _isDynamic;
+    Class _operatorClass;
     NSString *_operatorName;
     struct _PLTimeIntervalRange { 
         double location; 
@@ -18,14 +17,15 @@
     NSString *_wildCardName;
 }
 
-@property PLEntryKey * baseEntryKey;
-@property(retain,readonly) NSString * entryKey;
-@property(retain,readonly) NSString * entryName;
-@property(retain,readonly) NSString * entryType;
-@property BOOL isDynamic;
-@property(retain,readonly) NSString * operatorName;
-@property struct _PLTimeIntervalRange { double x1; double x2; } timeIntervalRange;
-@property(copy) NSString * wildCardName;
+@property PLEntryKey *baseEntryKey;
+@property (readonly, retain) NSString *entryKey;
+@property (readonly, retain) NSString *entryName;
+@property (readonly, retain) NSString *entryType;
+@property (nonatomic) BOOL isDynamic;
+@property (readonly, retain) Class operatorClass;
+@property (readonly, retain) NSString *operatorName;
+@property (nonatomic) struct _PLTimeIntervalRange { double x1; double x2; } timeIntervalRange;
+@property (nonatomic, copy) NSString *wildCardName;
 
 + (id)PLEntryAggregateKeysForOperator:(id)arg1;
 + (id)PLEntryAggregateKeysForOperatorClass:(Class)arg1;
@@ -45,9 +45,8 @@
 + (id)entryKeysForOperatorClass:(Class)arg1;
 + (id)entryKeysForOperatorName:(id)arg1;
 + (Class)operatorClassForEntryKey:(id)arg1;
-+ (void)setupEntryObjectsForOperator:(id)arg1;
++ (id)operatorNameForEntryKey:(id)arg1;
 + (void)setupEntryObjectsForOperatorClass:(Class)arg1;
-+ (void)setupEntryObjectsForOperatorName:(id)arg1;
 + (struct _PLTimeIntervalRange { double x1; double x2; })timeIntervalRangeForEntryKey:(id)arg1;
 + (id)timeintervalRangeEntryKeyForEntryKey:(id)arg1 withTimeIntervalRange:(struct _PLTimeIntervalRange { double x1; double x2; })arg2;
 + (id)wildCardForEntryKey:(id)arg1;
@@ -64,6 +63,7 @@
 - (id)entryType;
 - (id)initWithOperatorName:(id)arg1 withEntryType:(id)arg2 withEntryName:(id)arg3;
 - (BOOL)isDynamic;
+- (Class)operatorClass;
 - (id)operatorName;
 - (void)setBaseEntryKey:(id)arg1;
 - (void)setIsDynamic:(BOOL)arg1;

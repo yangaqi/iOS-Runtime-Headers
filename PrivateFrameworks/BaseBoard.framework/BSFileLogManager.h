@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSString;
-
 @interface BSFileLogManager : NSObject <BSFileLoggerDelegate> {
     NSMutableDictionary *_loggersByName;
     NSObject<OS_dispatch_queue> *_queue;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)sharedInstance;
 
@@ -22,6 +20,7 @@
 - (BOOL)_queue_isClass:(Class)arg1 aKindOfClass:(Class)arg2;
 - (void)_queue_registerLogger:(id)arg1;
 - (void)dealloc;
+- (id)debugDescription;
 - (void)flush;
 - (id)init;
 - (void)loggerEnabledStateChanged:(id)arg1;

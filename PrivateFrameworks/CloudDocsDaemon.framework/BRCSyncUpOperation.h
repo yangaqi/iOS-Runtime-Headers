@@ -2,12 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CloudDocsDaemon.framework/CloudDocsDaemon
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class BRCServerZone, NSMutableArray, NSMutableDictionary, NSString;
-
 @interface BRCSyncUpOperation : _BRCOperation <BRCOperationSubclass> {
     NSMutableDictionary *_conflictLosersToResolveByRecordID;
     float _cost;
@@ -19,27 +13,23 @@
     unsigned long long _requestID;
     BRCServerZone *_serverZone;
     NSString *_stageID;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _syncUpCompletionBlock;
-
+    id /* block */ _syncUpCompletionBlock;
 }
 
-@property(retain) NSMutableDictionary * conflictLosersToResolveByRecordID;
-@property(readonly) float cost;
-@property(copy,readonly) NSString * debugDescription;
-@property(retain) NSMutableArray * deletedRecordIDs;
-@property(retain) NSMutableArray * deletedShareIDs;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) NSMutableDictionary * recordIDsToDeleteToEtags;
-@property(retain) NSMutableArray * recordsNeedingSharingInfo;
-@property(retain) NSMutableArray * recordsToSave;
-@property(retain) BRCServerZone * serverZone;
-@property(retain) NSString * stageID;
-@property(readonly) Class superclass;
-@property(copy) id syncUpCompletionBlock;
+@property (nonatomic, retain) NSMutableDictionary *conflictLosersToResolveByRecordID;
+@property (nonatomic, readonly) float cost;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) NSMutableArray *deletedRecordIDs;
+@property (nonatomic, retain) NSMutableArray *deletedShareIDs;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSMutableDictionary *recordIDsToDeleteToEtags;
+@property (nonatomic, retain) NSMutableArray *recordsNeedingSharingInfo;
+@property (nonatomic, retain) NSMutableArray *recordsToSave;
+@property (nonatomic, retain) BRCServerZone *serverZone;
+@property (nonatomic, retain) NSString *stageID;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) id /* block */ syncUpCompletionBlock;
 
 + (id)syncUpOperationForZone:(id)arg1 maxCost:(float)arg2 retryAfter:(unsigned long long*)arg3;
 
@@ -52,6 +42,7 @@
 - (void)finishWithResult:(id)arg1 error:(id)arg2;
 - (id)initWithZone:(id)arg1;
 - (void)main;
+- (void)performAfterUnsharingIfNeeded:(id /* block */)arg1;
 - (BOOL)prepareWithMaxCost:(float)arg1 retryAfter:(unsigned long long*)arg2;
 - (id)recordIDsToDeleteToEtags;
 - (id)recordsNeedingSharingInfo;
@@ -65,9 +56,10 @@
 - (void)setRecordsToSave:(id)arg1;
 - (void)setServerZone:(id)arg1;
 - (void)setStageID:(id)arg1;
-- (void)setSyncUpCompletionBlock:(id)arg1;
+- (void)setSyncUpCompletionBlock:(id /* block */)arg1;
 - (BOOL)shouldRetryForError:(id)arg1;
 - (id)stageID;
-- (id)syncUpCompletionBlock;
+- (unsigned long long)startActivity;
+- (id /* block */)syncUpCompletionBlock;
 
 @end

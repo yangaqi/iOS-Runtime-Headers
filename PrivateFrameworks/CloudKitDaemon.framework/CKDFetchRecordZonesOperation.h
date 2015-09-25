@@ -2,40 +2,35 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSArray;
-
 @interface CKDFetchRecordZonesOperation : CKDDatabaseOperation {
     BOOL _ignorePCSFailures;
     BOOL _isFetchAllRecordZonesOperation;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _recordZoneFetchedProgressBlock;
-
+    id /* block */ _recordZoneFetchedProgressBlock;
     NSArray *_recordZoneIDs;
+    NSObject<OS_dispatch_group> *_zoneFetchGroup;
 }
 
-@property BOOL ignorePCSFailures;
-@property BOOL isFetchAllRecordZonesOperation;
-@property(copy) id recordZoneFetchedProgressBlock;
-@property(retain) NSArray * recordZoneIDs;
+@property (nonatomic) BOOL ignorePCSFailures;
+@property (nonatomic) BOOL isFetchAllRecordZonesOperation;
+@property (nonatomic, copy) id /* block */ recordZoneFetchedProgressBlock;
+@property (nonatomic, retain) NSArray *recordZoneIDs;
+@property (nonatomic, retain) NSObject<OS_dispatch_group> *zoneFetchGroup;
 
 - (void).cxx_destruct;
 - (void)_finishOnCallbackQueueWithError:(id)arg1;
 - (void)_handleRecordZoneFetch:(id)arg1 zoneID:(id)arg2 responseCode:(id)arg3;
+- (unsigned long long)activityStart;
 - (BOOL)ignorePCSFailures;
 - (id)initWithOperationInfo:(id)arg1 clientContext:(id)arg2;
 - (BOOL)isFetchAllRecordZonesOperation;
 - (void)main;
-- (id)recordZoneFetchedProgressBlock;
+- (id /* block */)recordZoneFetchedProgressBlock;
 - (id)recordZoneIDs;
 - (void)setIgnorePCSFailures:(BOOL)arg1;
 - (void)setIsFetchAllRecordZonesOperation:(BOOL)arg1;
-- (void)setRecordZoneFetchedProgressBlock:(id)arg1;
+- (void)setRecordZoneFetchedProgressBlock:(id /* block */)arg1;
 - (void)setRecordZoneIDs:(id)arg1;
+- (void)setZoneFetchGroup:(id)arg1;
+- (id)zoneFetchGroup;
 
 @end

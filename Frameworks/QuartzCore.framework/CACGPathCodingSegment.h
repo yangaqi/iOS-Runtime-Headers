@@ -6,11 +6,10 @@
     struct CGPoint { 
         float x; 
         float y; 
-    } _points[3];
+    } _points;
     int _type;
 }
 
-- (id).cxx_construct;
 - (void)addToCGPath:(struct CGPath { }*)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCGPathElement:(const struct CGPathElement { int x1; struct CGPoint {} *x2; }*)arg1;

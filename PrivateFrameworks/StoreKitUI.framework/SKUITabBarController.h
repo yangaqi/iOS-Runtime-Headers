@@ -2,19 +2,16 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, SKUIFloatingOverlayView, SKUITabBarBackgroundView, UIViewController;
-
 @interface SKUITabBarController : UITabBarController <SKUIMoreNavigationControllerDelegate> {
     SKUIFloatingOverlayView *_floatingOverlayView;
     UIViewController *_floatingOverlayViewController;
     SKUITabBarBackgroundView *_tabBarBackgroundView;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) UIViewController * floatingOverlayViewController;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (Class)_moreNavigationControllerClass;
 
@@ -30,7 +27,6 @@
 - (void)setFloatingOverlayViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)setTabBarBackdropStyle:(int)arg1;
 - (void)setTransientViewController:(id)arg1 animated:(BOOL)arg2;
-- (id)skui_activeNavigationController;
 - (void)viewDidLayoutSubviews;
 - (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 

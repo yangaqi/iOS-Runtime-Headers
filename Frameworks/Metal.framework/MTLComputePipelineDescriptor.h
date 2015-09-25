@@ -2,27 +2,16 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@class <MTLFunction>, NSString;
+@interface MTLComputePipelineDescriptor : NSObject <NSCopying>
 
-@interface MTLComputePipelineDescriptor : NSObject <NSCopying> {
-    struct MTLComputePipelineDescriptorPrivate { id x1; unsigned int x2; unsigned int x3; id x4; } *_private;
-}
+@property (nonatomic, retain) <MTLFunction> *computeFunction;
+@property (nonatomic, copy) NSString *label;
+@property (nonatomic) BOOL threadGroupSizeIsMultipleOfThreadExecutionWidth;
 
-@property(retain) <MTLFunction> * computeFunction;
-@property(copy) NSString * label;
++ (id)alloc;
++ (id)allocWithZone:(struct _NSZone { }*)arg1;
 
-- (const struct MTLComputePipelineDescriptorPrivate { id x1; unsigned int x2; unsigned int x3; id x4; }*)_descriptorPrivate;
-- (id)computeFunction;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
-- (id)description;
-- (unsigned int)hash;
-- (id)init;
-- (BOOL)isEqual:(id)arg1;
-- (id)label;
 - (void)reset;
-- (void)setComputeFunction:(id)arg1;
-- (void)setLabel:(id)arg1;
-- (BOOL)validate;
 
 @end

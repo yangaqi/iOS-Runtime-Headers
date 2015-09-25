@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class KeychainSyncCountryInfo, KeychainSyncDevicePINController, KeychainSyncPhoneSettingsFragment, NSArray, NSString, PSKeychainSyncManager, PSSetupController, PSSpecifier, UIAlertView;
-
 @interface PSAccountSecurityController : PSListController <KeychainSyncPhoneSettingsFragmentDelegate, KeychainSyncViewControllerDelegate, UIAlertViewDelegate> {
     NSString *_SMSTarget;
     KeychainSyncCountryInfo *_SMSTargetCountryInfo;
@@ -21,19 +19,19 @@
     int _securityCodeType;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) NSString * securityCode;
-@property int securityCodeType;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSString *securityCode;
+@property (nonatomic) int securityCodeType;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (void)_setShowsDoneButton:(BOOL)arg1;
 - (void)_showSecurityCodeChangeSheetOnSpecifier:(id)arg1;
 - (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
 - (void)cancelPressed;
 - (void)changeSecurityCode:(id)arg1;
-- (void)dealloc;
 - (void)disableRecovery;
 - (void)handleBurnedRecord;
 - (id)init;

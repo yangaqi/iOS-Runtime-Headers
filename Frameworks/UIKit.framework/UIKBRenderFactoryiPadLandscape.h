@@ -2,14 +2,14 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKBRenderFactoryiPadLandscape : UIKBRenderFactoryiPad {
-}
+@interface UIKBRenderFactoryiPadLandscape : UIKBRenderFactoryiPad
 
 - (float)bottomRowDefaultFontSize;
 - (float)defaultVariantSizeThreshold;
 - (float)deleteKeyFontSize;
 - (id)deleteKeyImageName;
 - (struct CGPoint { float x1; float x2; })deleteKeyOffset;
+- (id)deleteOnKeyImageName;
 - (float)dictationKeyFontSize;
 - (id)dictationKeyImageName;
 - (float)dismissKeyFontSize;
@@ -23,6 +23,7 @@
 - (float)facemarkKeyFontSize;
 - (float)fallbackFontSize;
 - (float)fontSizeAdjustmentForNonAlphanumericKeycaps;
+- (id)globalEmojiKeyImageName;
 - (id)globalKeyImageName;
 - (id)handwritingMoreKeyImageName;
 - (float)internationalKeyFontSize;

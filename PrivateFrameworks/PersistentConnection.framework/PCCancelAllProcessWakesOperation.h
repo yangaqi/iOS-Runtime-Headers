@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
  */
 
-@interface PCCancelAllProcessWakesOperation : NSOperation {
-}
+@interface PCCancelAllProcessWakesOperation : NSOperation
 
-- (BOOL)doesPidMatchCurrentProcessName:(int)arg1;
 - (void)main;
 
 @end

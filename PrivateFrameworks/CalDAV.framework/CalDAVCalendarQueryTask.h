@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSDateComponents;
-
 @interface CalDAVCalendarQueryTask : CoreDAVPropFindTask {
     NSDateComponents *_eventFilterEndDate;
     NSDateComponents *_eventFilterStartDate;
@@ -13,17 +11,17 @@
     NSDateComponents *_todoFilterStartDate;
 }
 
-@property(retain) NSDateComponents * eventFilterEndDate;
-@property(retain) NSDateComponents * eventFilterStartDate;
-@property BOOL syncEvents;
-@property BOOL syncTodos;
-@property(retain) NSDateComponents * todoFilterEndDate;
-@property(retain) NSDateComponents * todoFilterStartDate;
+@property (nonatomic, retain) NSDateComponents *eventFilterEndDate;
+@property (nonatomic, retain) NSDateComponents *eventFilterStartDate;
+@property (nonatomic) BOOL syncEvents;
+@property (nonatomic) BOOL syncTodos;
+@property (nonatomic, retain) NSDateComponents *todoFilterEndDate;
+@property (nonatomic, retain) NSDateComponents *todoFilterStartDate;
 
+- (void).cxx_destruct;
 - (void)_appendComponentFiltersToXMLData:(id)arg1;
 - (void)_appendTimeRangeFilterToXMLData:(id)arg1 startDate:(id)arg2 endDate:(id)arg3;
 - (id)_icsDateStringForNSDateComponents:(id)arg1;
-- (void)dealloc;
 - (id)description;
 - (id)eventFilterEndDate;
 - (id)eventFilterStartDate;

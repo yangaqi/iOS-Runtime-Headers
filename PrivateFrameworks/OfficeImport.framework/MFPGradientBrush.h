@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray;
-
 @interface MFPGradientBrush : MFPBrush {
     NSArray *mBlend;
     NSArray *mColorBlend;
@@ -21,7 +19,6 @@
     int mWrapMode;
 }
 
-- (id).cxx_construct;
 - (id)color;
 - (id)colorAtPosition:(float)arg1;
 - (void)createPhoneBrush;

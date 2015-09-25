@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKit.framework/EventKit
  */
 
-@class NSArray, NSDate, NSString;
-
 @interface EKCalendarEventInvitationNotification : EKCalendarNotification {
     BOOL _allDay;
     BOOL _attendeeReplyChanged;
@@ -21,20 +19,22 @@
     BOOL _timeChanged;
 }
 
-@property(getter=isAllDay) BOOL allDay;
-@property BOOL attendeeReplyChanged;
-@property(retain) NSArray * attendees;
-@property BOOL dateChanged;
-@property(retain) NSDate * endDate;
-@property BOOL hasRecurrenceRules;
-@property(retain) NSString * location;
-@property BOOL locationChanged;
-@property int participationStatus;
-@property(retain) NSDate * participationStatusModifiedDate;
-@property(retain) NSDate * startDate;
-@property(retain) NSDate * startDateForNextOccurrence;
-@property int status;
-@property BOOL timeChanged;
+@property (getter=isAllDay, nonatomic) BOOL allDay;
+@property (nonatomic) BOOL attendeeReplyChanged;
+@property (nonatomic, retain) NSArray *attendees;
+@property (nonatomic) BOOL dateChanged;
+@property (nonatomic, retain) NSDate *endDate;
+@property (nonatomic) BOOL hasRecurrenceRules;
+@property (nonatomic, retain) NSString *location;
+@property (nonatomic) BOOL locationChanged;
+@property (nonatomic) int participationStatus;
+@property (nonatomic, retain) NSDate *participationStatusModifiedDate;
+@property (nonatomic, retain) NSDate *startDate;
+@property (nonatomic, retain) NSDate *startDateForNextOccurrence;
+@property (nonatomic) int status;
+@property (nonatomic) BOOL timeChanged;
+
+// Image: /System/Library/Frameworks/EventKit.framework/EventKit
 
 - (BOOL)attendeeReplyChanged;
 - (id)attendees;
@@ -67,5 +67,19 @@
 - (id)startDateForNextOccurrence;
 - (int)status;
 - (BOOL)timeChanged;
+
+// Image: /System/Library/PrivateFrameworks/CalendarUIKit.framework/CalendarUIKit
+
+- (id)_attachmentString;
+- (id)_attendeeString;
+- (id)_dateString;
+- (id)_errorString;
+- (id)_locationString;
+- (id)_organizerString;
+- (void)_populateStringsForInvitation:(id)arg1 options:(unsigned int)arg2;
+- (void)_populateStringsForReply:(id)arg1 options:(unsigned int)arg2;
+- (id)messageStringForDescriptionWithOptions:(unsigned int)arg1;
+- (id)messageStringsForDescriptionWithOptions:(unsigned int)arg1;
+- (BOOL)supportsDisplay;
 
 @end

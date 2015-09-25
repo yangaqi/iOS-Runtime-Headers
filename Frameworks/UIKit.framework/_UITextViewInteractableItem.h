@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSDictionary, NSString, UITextView, UIWindow, _UIRotatingAlertController;
-
 @interface _UITextViewInteractableItem : NSObject <_UIRotatingAlertControllerDelegate> {
     NSArray *_actions;
     NSDictionary *_defaultAction;
@@ -13,18 +11,24 @@
         unsigned int location; 
         unsigned int length; 
     } _range;
+    struct _NSRange { 
+        unsigned int location; 
+        unsigned int length; 
+    } _subRange;
     UITextView *_textView;
     UIWindow *_windowForActionSheetPresentation;
 }
 
-@property(readonly) NSArray * actions;
-@property(readonly) NSDictionary * defaultAction;
-@property BOOL interactionIsFinished;
-@property(readonly) NSString * localizedTitle;
-@property struct _NSRange { unsigned int x1; unsigned int x2; } range;
-@property UITextView * textView;
-@property(retain) UIWindow * windowForActionSheetPresentation;
+@property (nonatomic, readonly) NSArray *actions;
+@property (nonatomic, readonly) NSDictionary *defaultAction;
+@property (nonatomic) BOOL interactionIsFinished;
+@property (nonatomic, readonly) NSString *localizedTitle;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } range;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } subRange;
+@property (nonatomic) UITextView *textView;
+@property (nonatomic, retain) UIWindow *windowForActionSheetPresentation;
 
+- (void).cxx_destruct;
 - (id)_actionSheet;
 - (void)_cleanupSheet;
 - (void)_cleanupWindowForActionSheetPresentation;
@@ -44,8 +48,10 @@
 - (struct _NSRange { unsigned int x1; unsigned int x2; })range;
 - (void)setInteractionIsFinished:(BOOL)arg1;
 - (void)setRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
+- (void)setSubRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (void)setTextView:(id)arg1;
 - (void)setWindowForActionSheetPresentation:(id)arg1;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })subRange;
 - (id)textView;
 - (id)windowForActionSheetPresentation;
 

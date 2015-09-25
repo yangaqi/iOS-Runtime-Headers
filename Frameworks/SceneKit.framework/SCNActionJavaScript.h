@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
  */
 
-@class NSString;
-
 @interface SCNActionJavaScript : SCNAction {
     NSString *_script;
 }
@@ -16,6 +14,7 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithString:(id)arg1;
 - (BOOL)isCustom;
+- (id)parameters;
 - (id)reversedAction;
 
 @end

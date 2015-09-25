@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <_UIQueuingScrollViewDataSource>, <_UIQueuingScrollViewDelegate>, NSArray, NSMutableArray, UIView;
-
 @interface _UIQueuingScrollView : UIScrollView {
     NSMutableArray *_completionStateQueue;
     struct { 
@@ -38,12 +36,13 @@
     NSArray *_wrapperViews;
 }
 
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } disabledScrollingRegion;
-@property float pageSpacing;
-@property <_UIQueuingScrollViewDataSource> * qDataSource;
-@property <_UIQueuingScrollViewDelegate> * qDelegate;
-@property(readonly) UIView * visibleView;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } disabledScrollingRegion;
+@property (nonatomic) float pageSpacing;
+@property (nonatomic) <_UIQueuingScrollViewDataSource> *qDataSource;
+@property (nonatomic) <_UIQueuingScrollViewDelegate> *qDelegate;
+@property (nonatomic, readonly) UIView *visibleView;
 
+- (void).cxx_destruct;
 - (unsigned int)_abuttedPagingEdges;
 - (void)_adjustContentInsets;
 - (void)_boundsDidChangeToSize:(struct CGSize { float x1; float x2; })arg1;
@@ -56,7 +55,7 @@
 - (void)_didEndProgrammaticScroll;
 - (void)_didEndScroll:(BOOL)arg1;
 - (void)_didScrollWithAnimation:(BOOL)arg1 force:(BOOL)arg2;
-- (void)_enqueueAnimatedScrollInDirection:(int)arg1 withView:(id)arg2 completion:(id)arg3;
+- (void)_enqueueAnimatedScrollInDirection:(int)arg1 withView:(id)arg2 completion:(id /* block */)arg3;
 - (void)_enqueueCompletionState:(id)arg1;
 - (void)_flushView:(id)arg1 animated:(BOOL)arg2;
 - (BOOL)_gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2;
@@ -82,7 +81,7 @@
 - (id)_viewBefore:(BOOL)arg1 view:(id)arg2;
 - (id)_viewBeforeView:(id)arg1;
 - (id)_visibleView;
-- (void)dealloc;
+- (BOOL)canBecomeFocused;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })disabledScrollingRegion;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 navigationOrientation:(int)arg2;
 - (BOOL)isManualScrollInProgress;
@@ -98,7 +97,7 @@
 - (void)setPageSpacing:(float)arg1;
 - (void)setQDataSource:(id)arg1;
 - (void)setQDelegate:(id)arg1;
-- (void)setView:(id)arg1 direction:(int)arg2 animated:(BOOL)arg3 completion:(id)arg4;
+- (void)setView:(id)arg1 direction:(int)arg2 animated:(BOOL)arg3 completion:(id /* block */)arg4;
 - (id)visibleView;
 
 @end

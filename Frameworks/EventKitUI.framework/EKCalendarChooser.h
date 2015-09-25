@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class <EKCalendarChooserDelegate>, <EKStyleProvider>, EKCalendar, EKEventStore, EKSource, NSIndexPath, NSMutableArray, NSMutableDictionary, NSMutableSet, NSSet, UIRefreshControl, UITableView, _UIAccessDeniedView;
-
 @interface EKCalendarChooser : UIViewController {
     _UIAccessDeniedView *_accessDeniedView;
     NSIndexPath *_checkedRow;
@@ -32,6 +30,7 @@
     UIRefreshControl *_refreshControl;
     int _refreshCounter;
     NSMutableSet *_selectedCalendars;
+    BOOL _showDefaultCalendarExplanatoryText;
     BOOL _showDetailAccessories;
     BOOL _showsDeclinedEventsSetting;
     NSMutableDictionary *_storeGroupMap;
@@ -40,35 +39,36 @@
     UITableView *_tableView;
 }
 
-@property(retain) _UIAccessDeniedView * accessDeniedView;
-@property BOOL allowsEdit;
-@property BOOL allowsPullToRefresh;
-@property BOOL allowsRotation;
-@property(retain) NSIndexPath * checkedRow;
-@property int chooserMode;
-@property(retain) NSMutableDictionary * customGroupMap;
-@property <EKCalendarChooserDelegate> * delegate;
-@property BOOL disableCalendarEditing;
-@property unsigned int entityType;
-@property(retain) EKEventStore * eventStore;
-@property struct { unsigned int x1 : 1; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 1; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; } flags;
-@property(retain) NSMutableArray * groups;
-@property int lastAuthorizationStatus;
-@property(retain) EKSource * limitedToSource;
-@property(retain) UIRefreshControl * refreshControl;
-@property int refreshCounter;
-@property(retain) EKCalendar * selectedCalendar;
-@property(retain) NSMutableSet * selectedCalendarSet;
-@property(copy) NSSet * selectedCalendars;
-@property int selectionStyle;
-@property BOOL showDetailAccessories;
-@property BOOL showsCancelButton;
-@property BOOL showsDeclinedEventsSetting;
-@property BOOL showsDoneButton;
-@property BOOL showsRefreshButton;
-@property(retain) NSMutableDictionary * storeGroupMap;
-@property(retain) <EKStyleProvider> * styleProvider;
-@property(retain) UITableView * tableView;
+@property (nonatomic, retain) _UIAccessDeniedView *accessDeniedView;
+@property (nonatomic) BOOL allowsEdit;
+@property (nonatomic) BOOL allowsPullToRefresh;
+@property (nonatomic) BOOL allowsRotation;
+@property (nonatomic, retain) NSIndexPath *checkedRow;
+@property (nonatomic) int chooserMode;
+@property (nonatomic, retain) NSMutableDictionary *customGroupMap;
+@property (nonatomic) <EKCalendarChooserDelegate> *delegate;
+@property (nonatomic) BOOL disableCalendarEditing;
+@property (nonatomic) unsigned int entityType;
+@property (nonatomic, retain) EKEventStore *eventStore;
+@property (nonatomic) struct { unsigned int x1 : 1; unsigned int x2 : 1; unsigned int x3 : 1; unsigned int x4 : 1; unsigned int x5 : 1; unsigned int x6 : 1; unsigned int x7 : 1; unsigned int x8 : 1; unsigned int x9 : 1; unsigned int x10 : 1; unsigned int x11 : 1; } flags;
+@property (nonatomic, retain) NSMutableArray *groups;
+@property (nonatomic) int lastAuthorizationStatus;
+@property (nonatomic, retain) EKSource *limitedToSource;
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property (nonatomic) int refreshCounter;
+@property (nonatomic, retain) EKCalendar *selectedCalendar;
+@property (nonatomic, retain) NSMutableSet *selectedCalendarSet;
+@property (nonatomic, copy) NSSet *selectedCalendars;
+@property (nonatomic) int selectionStyle;
+@property (nonatomic) BOOL showDefaultCalendarExplanatoryText;
+@property (nonatomic) BOOL showDetailAccessories;
+@property (nonatomic) BOOL showsCancelButton;
+@property (nonatomic) BOOL showsDeclinedEventsSetting;
+@property (nonatomic) BOOL showsDoneButton;
+@property (nonatomic) BOOL showsRefreshButton;
+@property (nonatomic, retain) NSMutableDictionary *storeGroupMap;
+@property (nonatomic, retain) <EKStyleProvider> *styleProvider;
+@property (nonatomic, retain) UITableView *tableView;
 
 - (void).cxx_destruct;
 - (void)_applySelection;
@@ -103,6 +103,7 @@
 - (void)_syncCompletedGracePeriodExpired;
 - (void)_syncDidEnd;
 - (void)_syncDidStart;
+- (id)_tableHeaderView;
 - (BOOL)_tableShouldDisplayAllCalendarsSection;
 - (BOOL)_tableShouldDisplayAllCellForGroup:(id)arg1;
 - (BOOL)_tableShouldDisplayNewCalendarCellForGroup:(id)arg1;
@@ -164,6 +165,7 @@
 - (void)setSelectedCalendars:(id)arg1;
 - (void)setSelectionStyle:(int)arg1;
 - (void)setShowAll:(BOOL)arg1;
+- (void)setShowDefaultCalendarExplanatoryText:(BOOL)arg1;
 - (void)setShowDetailAccessories:(BOOL)arg1;
 - (void)setShowsCancelButton:(BOOL)arg1;
 - (void)setShowsDeclinedEventsSetting:(BOOL)arg1;
@@ -173,6 +175,7 @@
 - (void)setStoreGroupMap:(id)arg1;
 - (void)setStyleProvider:(id)arg1;
 - (void)setTableView:(id)arg1;
+- (BOOL)showDefaultCalendarExplanatoryText;
 - (BOOL)showDetailAccessories;
 - (BOOL)showsCancelButton;
 - (BOOL)showsDeclinedEventsSetting;

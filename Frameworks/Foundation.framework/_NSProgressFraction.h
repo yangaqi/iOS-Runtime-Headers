@@ -9,7 +9,7 @@
 }
 
 @property long long completed;
-@property(readonly) BOOL overflowed;
+@property (readonly) BOOL overflowed;
 @property long long total;
 
 + (id)fractionWithCompleted:(long long)arg1 total:(long long)arg2;
@@ -32,7 +32,9 @@
 - (id)initWithCompleted:(long long)arg1 total:(long long)arg2;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isFinished;
+- (BOOL)isFractionCompletedEqual:(id)arg1;
 - (BOOL)isIndeterminate;
+- (BOOL)isNaN;
 - (void)multiplyByFraction:(id)arg1;
 - (BOOL)overflowed;
 - (void)setCompleted:(long long)arg1;

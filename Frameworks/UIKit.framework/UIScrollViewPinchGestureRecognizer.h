@@ -2,16 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIScrollView;
-
 @interface UIScrollViewPinchGestureRecognizer : UIPinchGestureRecognizer {
-    unsigned int _hasParentScrollView : 1;
+    unsigned int _hasParentScrollView;
     UIScrollView *_scrollView;
     SEL _scrollViewAction;
 }
 
-@property UIScrollView * scrollView;
+@property (nonatomic) UIScrollView *scrollView;
 
+- (void).cxx_destruct;
 - (float)_hysteresis;
 - (id)initWithTarget:(id)arg1 action:(SEL)arg2;
 - (void)removeTarget:(id)arg1 action:(SEL)arg2;

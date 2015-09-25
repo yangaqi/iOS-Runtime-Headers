@@ -2,39 +2,36 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/libAVFAudio.dylib
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class <AVVoiceControllerPlaybackDelegate>, <AVVoiceControllerRecordDelegate>, <Endpointer>, NSDictionary, NSString;
-
 @interface AVVoiceController : NSObject {
+    unsigned long long _alertStartTime;
     void *_impl;
 }
 
+@property (readonly) unsigned long long alertStartTime;
 @property float alertVolume;
-@property(getter=isBargeInDetectEnabled) BOOL bargeInDetectEnabled;
-@property(retain) <Endpointer> * endpointerDelegate;
-@property(readonly) unsigned long long lastRecordStartTime;
-@property(getter=isMeteringEnabled) BOOL meteringEnabled;
-@property <AVVoiceControllerPlaybackDelegate> * playbackDelegate;
-@property(readonly) NSDictionary * playbackSettings;
+@property (getter=isBargeInDetectEnabled) BOOL bargeInDetectEnabled;
+@property (retain) <Endpointer> *endpointerDelegate;
+@property (readonly) unsigned long long lastRecordStartTime;
+@property (getter=isMeteringEnabled) BOOL meteringEnabled;
+@property <AVVoiceControllerPlaybackDelegate> *playbackDelegate;
+@property (readonly, copy) NSString *playbackRoute;
+@property (readonly) NSDictionary *playbackSettings;
 @property float playbackVolume;
-@property(getter=isPlaying,readonly) BOOL playing;
-@property <AVVoiceControllerRecordDelegate> * recordDelegate;
+@property (getter=isPlaying, readonly) BOOL playing;
+@property <AVVoiceControllerRecordDelegate> *recordDelegate;
 @property double recordEndWaitTime;
 @property int recordEndpointMode;
 @property double recordInterspeechWaitTime;
-@property(copy,readonly) NSString * recordRoute;
-@property(readonly) NSDictionary * recordSettings;
+@property (readonly, copy) NSString *recordRoute;
+@property (readonly) NSDictionary *recordSettings;
 @property double recordStartWaitTime;
-@property(getter=isRecording,readonly) BOOL recording;
-@property(getter=isStopOnBargeInEnabled) BOOL stopOnBargeInEnabled;
-@property(getter=isStopOnEndpointEnabled) BOOL stopOnEndpointEnabled;
-@property(getter=isSynchronousCallbackEnabled) BOOL synchronousCallbackEnabled;
-@property(readonly) NSDictionary * voiceTriggerInfo;
+@property (getter=isRecording, readonly) BOOL recording;
+@property (getter=isStopOnBargeInEnabled) BOOL stopOnBargeInEnabled;
+@property (getter=isStopOnEndpointEnabled) BOOL stopOnEndpointEnabled;
+@property (getter=isSynchronousCallbackEnabled) BOOL synchronousCallbackEnabled;
+@property (readonly) NSDictionary *voiceTriggerInfo;
 
+- (unsigned long long)alertStartTime;
 - (float)alertVolume;
 - (float)averagePowerForChannel:(unsigned int)arg1;
 - (void)beganPlaying;
@@ -43,6 +40,7 @@
 - (void)beginRecordInterruption;
 - (void)dealloc;
 - (void)decodeError;
+- (long)doStartRecordingAtTime:(unsigned long long)arg1 behavior:(id)arg2;
 - (void)encodeError;
 - (void)endPlaybackInterruption;
 - (void)endRecordInterruption;
@@ -51,6 +49,7 @@
 - (void)finalize;
 - (void)finishedPlaying;
 - (void)finishedRecording;
+- (unsigned long long)getAlertStartTime;
 - (double)getPlaybackBufferDuration;
 - (double)getRecordBufferDuration;
 - (void)handleInterruption:(id)arg1;
@@ -58,7 +57,7 @@
 - (void)handleMediaServerReset:(id)arg1;
 - (void)handleRouteChange:(id)arg1;
 - (void)hardwareConfigChanged;
-- (struct ControllerImpl { int (**x1)(); id x2; id x3; struct CAStreamBasicDescription { double x_4_1_1; unsigned int x_4_1_2; unsigned int x_4_1_3; unsigned int x_4_1_4; unsigned int x_4_1_5; unsigned int x_4_1_6; unsigned int x_4_1_7; unsigned int x_4_1_8; unsigned int x_4_1_9; } x4; double x5; bool x6; struct AudioQueueLevelMeterState {} *x7; struct OpaqueAudioQueue {} *x8; int x9; struct OpaqueAudioConverter {} *x10; unsigned int x11; unsigned int x12; unsigned int x13; unsigned int x14; struct AudioQueueBuffer {} **x15; int x16; unsigned long long x17; unsigned long long x18; bool x19; struct MemorySyncBool { bool x_20_1_1; } x20; bool x21; bool x22; float x23; id x24; struct __CFDictionary {} *x25; unsigned int x26; id x27; id x28; struct CAStreamBasicDescription { double x_29_1_1; unsigned int x_29_1_2; unsigned int x_29_1_3; unsigned int x_29_1_4; unsigned int x_29_1_5; unsigned int x_29_1_6; unsigned int x_29_1_7; unsigned int x_29_1_8; unsigned int x_29_1_9; } x29; double x30; struct OpaqueAudioQueue {} *x31; int x32; id x33; unsigned int x34; struct AudioQueueBuffer {} **x35; int x36; bool x37; bool x38; bool x39; bool x40; struct MemorySyncBool { bool x_41_1_1; } x41; bool x42; float x43; unsigned int x44; struct CAStreamBasicDescription { double x_45_1_1; unsigned int x_45_1_2; unsigned int x_45_1_3; unsigned int x_45_1_4; unsigned int x_45_1_5; unsigned int x_45_1_6; unsigned int x_45_1_7; unsigned int x_45_1_8; unsigned int x_45_1_9; } x45; long long x46; struct OpaqueAudioQueue {} *x47; struct map<AVVoiceAlertType, NSURL *, std::__1::less<AVVoiceAlertType>, std::__1::allocator<std::__1::pair<const AVVoiceAlertType, NSURL *> > > { struct __tree<std::__1::__value_type<AVVoiceAlertType, NSURL *>, std::__1::__map_value_compare<AVVoiceAlertType, std::__1::__value_type<AVVoiceAlertType, NSURL *>, std::__1::less<AVVoiceAlertType>, true>, std::__1::allocator<std::__1::__value_type<AVVoiceAlertType, NSURL *> > > { struct __tree_node<std::__1::__value_type<AVVoiceAlertType, NSURL *>, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<AVVoiceAlertType, NSURL *>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<AVVoiceAlertType, std::__1::__value_type<AVVoiceAlertType, NSURL *>, std::__1::less<AVVoiceAlertType>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_48_1_1; } x48; struct map<AVVoiceAlertType, AudioQueueBuffer *, std::__1::less<AVVoiceAlertType>, std::__1::allocator<std::__1::pair<const AVVoiceAlertType, AudioQueueBuffer *> > > { struct __tree<std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, std::__1::__map_value_compare<AVVoiceAlertType, std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, std::__1::less<AVVoiceAlertType>, true>, std::__1::allocator<std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *> > > { struct __tree_node<std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<AVVoiceAlertType, std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, std::__1::less<AVVoiceAlertType>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_49_1_1; } x49; bool x50; bool x51; int x52; float x53; double x54; unsigned long long x55; float x56; float x57; struct OpaqueAudioQueue {} *x58; id x59; struct OpaqueAudioFileID {} *x60; unsigned int x61; struct AudioFormatListItem {} *x62; unsigned int x63; unsigned int x64; char *x65; struct AudioFilePacketTableInfo { long long x_66_1_1; int x_66_1_2; int x_66_1_3; } x66; long long x67; long long x68; bool x69; int x70; int x71; id x72; bool x73; bool x74; bool x75; bool x76; int x77; double x78; double x79; double x80; bool x81; bool x82; bool x83; id x84; unsigned char x85; int x86; bool x87; int x88; bool x89; unsigned int x90; int x91; id x92; struct _opaque_pthread_mutex_t { long x_93_1_1; BOOL x_93_1_2[40]; } x93[5]; int x94; int x95; int x96; }*)impl;
+- (struct ControllerImpl { int (**x1)(); id x2; struct CAStreamBasicDescription { double x_3_1_1; unsigned int x_3_1_2; unsigned int x_3_1_3; unsigned int x_3_1_4; unsigned int x_3_1_5; unsigned int x_3_1_6; unsigned int x_3_1_7; unsigned int x_3_1_8; unsigned int x_3_1_9; } x3; double x4; bool x5; struct AudioQueueLevelMeterState {} *x6; struct OpaqueAudioQueue {} *x7; int x8; struct OpaqueAudioConverter {} *x9; unsigned int x10; unsigned int x11; unsigned int x12; unsigned int x13; struct AudioQueueBuffer {} **x14; int x15; unsigned long long x16; unsigned long long x17; bool x18; bool x19; bool x20; bool x21; float x22; id x23; struct __CFDictionary {} x24; unsigned int x25; struct AudioTimeStamp { double x_26_1_1; unsigned long long x_26_1_2; double x_26_1_3; unsigned long long x_26_1_4; struct SMPTETime { short x_5_2_1; short x_5_2_2; unsigned int x_5_2_3; unsigned long x_5_2_4; unsigned int x_5_2_5; short x_5_2_6; short x_5_2_7; short x_5_2_8; short x_5_2_9; } x_26_1_5; unsigned int x_26_1_6; unsigned int x_26_1_7; } x26; id x27; struct CAStreamBasicDescription { double x_28_1_1; unsigned int x_28_1_2; unsigned int x_28_1_3; unsigned int x_28_1_4; unsigned int x_28_1_5; unsigned int x_28_1_6; unsigned int x_28_1_7; unsigned int x_28_1_8; unsigned int x_28_1_9; } x28; double x29; struct OpaqueAudioQueue {} *x30; int x31; id x32; struct AudioQueueBuffer {} **x33; int x34; bool x35; bool x36; bool x37; bool x38; bool x39; bool x40; float x41; unsigned int x42; struct CAStreamBasicDescription { double x_43_1_1; unsigned int x_43_1_2; unsigned int x_43_1_3; unsigned int x_43_1_4; unsigned int x_43_1_5; unsigned int x_43_1_6; unsigned int x_43_1_7; unsigned int x_43_1_8; unsigned int x_43_1_9; } x43; long long x44; struct OpaqueAudioQueue {} *x45; struct map<AVVoiceAlertType, NSURL *, std::__1::less<AVVoiceAlertType>, std::__1::allocator<std::__1::pair<const AVVoiceAlertType, NSURL *> > > { struct __tree<std::__1::__value_type<AVVoiceAlertType, NSURL *>, std::__1::__map_value_compare<AVVoiceAlertType, std::__1::__value_type<AVVoiceAlertType, NSURL *>, std::__1::less<AVVoiceAlertType>, true>, std::__1::allocator<std::__1::__value_type<AVVoiceAlertType, NSURL *> > > { struct __tree_node<std::__1::__value_type<AVVoiceAlertType, NSURL *>, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<AVVoiceAlertType, NSURL *>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<AVVoiceAlertType, std::__1::__value_type<AVVoiceAlertType, NSURL *>, std::__1::less<AVVoiceAlertType>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_46_1_1; } x46; struct map<AVVoiceAlertType, AudioQueueBuffer *, std::__1::less<AVVoiceAlertType>, std::__1::allocator<std::__1::pair<const AVVoiceAlertType, AudioQueueBuffer *> > > { struct __tree<std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, std::__1::__map_value_compare<AVVoiceAlertType, std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, std::__1::less<AVVoiceAlertType>, true>, std::__1::allocator<std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *> > > { struct __tree_node<std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, void *> {} *x_1_2_1; struct __compressed_pair<std::__1::__tree_end_node<std::__1::__tree_node_base<void *> *>, std::__1::allocator<std::__1::__tree_node<std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, void *> > > { struct __tree_end_node<std::__1::__tree_node_base<void *> *> { struct __tree_node_base<void *> {} *x_1_4_1; } x_2_3_1; } x_1_2_2; struct __compressed_pair<unsigned long, std::__1::__map_value_compare<AVVoiceAlertType, std::__1::__value_type<AVVoiceAlertType, AudioQueueBuffer *>, std::__1::less<AVVoiceAlertType>, true> > { unsigned long x_3_3_1; } x_1_2_3; } x_47_1_1; } x47; int x48; int x49; int x50; unsigned char x51; unsigned char x52; unsigned char x53; int x54; int x55; float x56; double x57; unsigned long long x58; unsigned long long x59; float x60; float x61; struct OpaqueAudioQueue {} *x62; id x63; struct OpaqueAudioFileID {} x64; unsigned int x65; struct AudioFormatListItem {} *x66; unsigned int x67; unsigned int x68; char *x69; struct AudioFilePacketTableInfo { long long x_70_1_1; int x_70_1_2; int x_70_1_3; } x70; long long x71; long long x72; bool x73; int x74; int x75; id x76; bool x77; bool x78; bool x79; int x80; double x81; double x82; double x83; bool x84; bool x85; bool x86; id x87; int x88; bool x89; bool x90; int x91; bool x92; unsigned int x93; int x94; id x95; /* Warning: Unrecognized filer type: '5' using 'void*' */ void*x96; struct MyMutex {} *x97; void*x98; int x99; int x100; int x101; }*)impl;
 - (id)initWithContext:(id)arg1 error:(id*)arg2;
 - (void)interspeechPointDetected;
 - (BOOL)isBargeInDetectEnabled;
@@ -69,17 +68,20 @@
 - (BOOL)isStopOnEndpointEnabled;
 - (BOOL)isSynchronousCallbackEnabled;
 - (unsigned long long)lastRecordStartTime;
+- (void)lpcmRecordBufferReceived:(struct AudioQueueBuffer { unsigned int x1; void *x2; unsigned int x3; void *x4; unsigned int x5; struct AudioStreamPacketDescription {} *x6; unsigned int x7; }*)arg1 atTime:(unsigned long long)arg2;
 - (float)peakPowerForChannel:(unsigned int)arg1;
 - (BOOL)playAlertSoundForType:(int)arg1;
+- (BOOL)playRecordStartingAlertAndResetEndpointer;
 - (void)playbackBufferReceived:(struct MyAudioQueueBuffer { unsigned int x1; void *x2; unsigned int x3; void *x4; unsigned int x5; struct AudioStreamPacketDescription {} *x6; unsigned int x7; }*)arg1;
 - (id)playbackDelegate;
+- (id)playbackRoute;
 - (id)playbackSettings;
 - (float)playbackVolume;
 - (BOOL)preparePlaybackFromURL:(id)arg1 error:(id*)arg2;
 - (BOOL)preparePlaybackWithSettings:(id)arg1 error:(id*)arg2;
 - (BOOL)prepareRecordWithSettings:(id)arg1 error:(id*)arg2;
 - (void)prewarmAudioSession;
-- (void)recordBufferReceived:(struct MyAudioQueueBuffer { unsigned int x1; void *x2; unsigned int x3; void *x4; unsigned int x5; struct AudioStreamPacketDescription {} *x6; unsigned int x7; }*)arg1;
+- (void)recordBufferReceived:(struct MyAudioQueueBuffer { unsigned int x1; void *x2; unsigned int x3; void *x4; unsigned int x5; struct AudioStreamPacketDescription {} *x6; unsigned int x7; }*)arg1 atTime:(unsigned long long)arg2;
 - (id)recordDelegate;
 - (double)recordEndWaitTime;
 - (int)recordEndpointMode;
@@ -90,6 +92,7 @@
 - (void)releaseAudioSession;
 - (void)releaseAudioSession:(unsigned int)arg1;
 - (void)removeSessionNotifications;
+- (void)resetEndpointer;
 - (BOOL)setAlertSoundFromURL:(id)arg1 forType:(int)arg2;
 - (void)setAlertVolume:(float)arg1;
 - (void)setBargeInDetectEnabled:(BOOL)arg1;
@@ -112,6 +115,8 @@
 - (BOOL)startPlaying;
 - (BOOL)startRecording;
 - (BOOL)startRecording:(id*)arg1;
+- (BOOL)startRecordingAtTime:(unsigned long long)arg1 error:(id*)arg2;
+- (BOOL)startRecordingWithSettings:(id)arg1 error:(id*)arg2;
 - (void)startpointDetected;
 - (void)stopPlaying;
 - (void)stopRecording;

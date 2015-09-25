@@ -2,28 +2,26 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVCaptureSessionInternal, NSArray, NSString;
-
 @interface AVCaptureSession : NSObject {
     AVCaptureSessionInternal *_internal;
 }
 
-@property BOOL automaticallyConfiguresApplicationAudioSession;
-@property(readonly) NSArray * inputs;
-@property(getter=isInterrupted,readonly) BOOL interrupted;
-@property(readonly) struct OpaqueCMClock { }* masterClock;
-@property(readonly) NSArray * outputs;
-@property(getter=isRunning,readonly) BOOL running;
-@property(copy) NSString * sessionPreset;
-@property BOOL usesApplicationAudioSession;
+@property (nonatomic) BOOL automaticallyConfiguresApplicationAudioSession;
+@property (nonatomic, readonly) NSArray *inputs;
+@property (getter=isInterrupted, nonatomic, readonly) BOOL interrupted;
+@property (nonatomic, readonly) struct OpaqueCMClock { }*masterClock;
+@property (nonatomic, readonly) NSArray *outputs;
+@property (getter=isRunning, nonatomic, readonly) BOOL running;
+@property (nonatomic, copy) NSString *sessionPreset;
+@property (nonatomic) BOOL usesApplicationAudioSession;
+
+// Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
 
 + (id)allSessionPresets;
-+ (id)alloc;
 + (BOOL)automaticallyNotifiesObserversOfMasterClock;
 + (BOOL)automaticallyNotifiesObserversOfRunning;
 + (id)dotString;
 + (void)initialize;
-+ (id)publicSessionPresets;
 
 - (void)_addConnection:(id)arg1;
 - (void)_addInputWithNoConnections:(id)arg1;
@@ -55,11 +53,13 @@
 - (void)_notifySessionStopped;
 - (void)_postRuntimeError:(id)arg1;
 - (void)_rebuildGraph;
+- (void)_reconnectAfterServerConnectionDied;
 - (void)_removeAllPreviewLayers;
 - (void)_removeConnection:(id)arg1;
 - (void)_removeConnectionsForInputPort:(id)arg1;
+- (void)_removeInput:(id)arg1;
 - (void)_removeVideoPreviewLayer:(id)arg1;
-- (void)_setInterrupted:(BOOL)arg1;
+- (void)_setInterrupted:(BOOL)arg1 withReason:(int)arg2;
 - (void)_setMasterClock:(struct OpaqueCMClock { }*)arg1;
 - (void)_setRunning:(BOOL)arg1;
 - (BOOL)_startFigCaptureSession;
@@ -105,5 +105,17 @@
 - (BOOL)usesApplicationAudioSession;
 - (id)valueForUndefinedKey:(id)arg1;
 - (BOOL)videoHDREnabledForDevice:(id)arg1 format:(id)arg2 sessionPreset:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/CameraUI.framework/CameraUI
+
+- (BOOL)cam_ensureInputs:(id)arg1;
+- (BOOL)cam_ensureInputs:(id)arg1 exclusively:(BOOL)arg2;
+- (BOOL)cam_ensureOutputs:(id)arg1 exclusively:(BOOL)arg2;
+- (BOOL)cam_ensureOutputs:(id)arg1 whileRemoving:(id)arg2;
+- (BOOL)cam_hasAddedInput:(id)arg1;
+- (BOOL)cam_hasAddedOutput:(id)arg1;
+- (void)cam_removeAllInputs;
+- (void)cam_removeAllOutputs;
+- (void)cam_removeInputs:(id)arg1;
 
 @end

@@ -2,9 +2,6 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CIPhotoEffectProcess : CIPhotoEffect {
-}
-
-+ (id)customAttributes;
+@interface CIPhotoEffectProcess : CIPhotoEffect
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class <CalDAVCalendarPropertyRefreshDelegate>, NSError, NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_group>, NSString;
-
 @interface CalDAVCalendarPropertyRefreshOperation : CalDAVOperation <CoreDAVContainerInfoSyncProvider, CoreDAVContainerInfoTaskGroupDelegate, CoreDAVPropPatchTaskDelegate, CoreDAVTaskGroupDelegate> {
     NSString *_calendarHomeSyncToken;
     NSMutableDictionary *_ctags;
@@ -21,14 +19,17 @@
     BOOL _useCalendarHomeSyncReport;
 }
 
-@property(retain) NSString * calendarHomeSyncToken;
-@property(copy,readonly) NSString * debugDescription;
-@property <CalDAVCalendarPropertyRefreshDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-@property BOOL useCalendarHomeSyncReport;
+@property (nonatomic, retain) NSString *calendarHomeSyncToken;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CalDAVCalendarPropertyRefreshDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL forceClearCalendarHomeSyncToken;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSObject<OS_dispatch_group> *outstandingTasksGroup;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL useCalendarHomeSyncReport;
 
+- (void).cxx_destruct;
 - (void)_continueHandleContainerInfoTask:(id)arg1 completedWithContainers:(id)arg2 error:(id)arg3;
 - (void)_finishRefresh;
 - (id)_generateTimeZoneString:(id)arg1;
@@ -49,10 +50,13 @@
 - (void)containerInfoSyncTask:(id)arg1 completedWithNewSyncToken:(id)arg2 error:(id)arg3;
 - (void)containerInfoSyncTask:(id)arg1 retrievedAddedOrModifiedContainers:(id)arg2 removedContainerURLs:(id)arg3;
 - (void)containerInfoTask:(id)arg1 completedWithContainers:(id)arg2 error:(id)arg3;
-- (void)dealloc;
+- (BOOL)forceClearCalendarHomeSyncToken;
 - (id)initWithPrincipal:(id)arg1;
+- (id)outstandingTasksGroup;
 - (void)refreshCalendarProperties;
 - (void)setCalendarHomeSyncToken:(id)arg1;
+- (void)setForceClearCalendarHomeSyncToken:(BOOL)arg1;
+- (void)setOutstandingTasksGroup:(id)arg1;
 - (void)setUseCalendarHomeSyncReport:(BOOL)arg1;
 - (BOOL)useCalendarHomeSyncReport;
 

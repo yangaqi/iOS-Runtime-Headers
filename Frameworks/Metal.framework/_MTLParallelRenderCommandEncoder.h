@@ -2,30 +2,38 @@
    Image: /System/Library/Frameworks/Metal.framework/Metal
  */
 
-@class <MTLCommandQueue>, <MTLDevice>, MTLRenderPassDescriptor, NSString, _MTLCommandBuffer<MTLCommandBuffer>;
-
 @interface _MTLParallelRenderCommandEncoder : NSObject <MTLParallelRenderCommandEncoder> {
+    BOOL _StatEnabled;
+    unsigned long long _StatLocations;
+    unsigned long long _StatOptions;
     _MTLCommandBuffer<MTLCommandBuffer> *_commandBuffer;
     id *_commandBuffers;
     unsigned long _commandBuffersCount;
     unsigned long _commandBuffersSize;
     <MTLDevice> *_device;
+    unsigned long long _globalTraceObjectID;
     NSString *_label;
+    unsigned long long _labelTraceID;
     struct _opaque_pthread_mutex_t { 
         long __sig; 
         BOOL __opaque[40]; 
     } _lock;
+    unsigned int _numCommands;
+    unsigned int _numRequestedCounters;
+    unsigned int _numThisEncoder;
     <MTLCommandQueue> *_queue;
     MTLRenderPassDescriptor *_renderPassDescriptor;
     BOOL _retainedReferences;
+    unsigned int _type;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) <MTLDevice> * device;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * label;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) <MTLDevice> *device;
+@property (readonly) unsigned long long globalTraceObjectID;
+@property (readonly) unsigned int hash;
+@property (copy) NSString *label;
+@property (readonly) Class superclass;
 
 - (id)_renderCommandEncoderCommon;
 - (id)commandBuffer;
@@ -33,6 +41,7 @@
 - (id)description;
 - (id)device;
 - (void)endEncoding;
+- (unsigned long long)globalTraceObjectID;
 - (id)initWithCommandBuffer:(id)arg1 renderPassDescriptor:(id)arg2;
 - (void)insertDebugSignpost:(id)arg1;
 - (id)label;

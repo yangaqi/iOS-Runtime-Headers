@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CMStyle, OADOrientedBounds, OADTextBody;
-
 @interface PMShapeTextMapper : CMMapper {
     OADOrientedBounds *mBounds;
     BOOL mRectangular;
@@ -16,6 +14,6 @@
 - (BOOL)isTableCellContent;
 - (void)mapAt:(id)arg1 withState:(id)arg2;
 - (void)setRectangular:(BOOL)arg1;
-- (int)textAnchor;
+- (unsigned char)textAnchor;
 
 @end

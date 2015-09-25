@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UITextInputController;
-
 @interface NSUndoTextOperation : NSObject {
     struct _NSRange { 
         unsigned int location; 
@@ -12,9 +10,10 @@
     UITextInputController *_inputController;
 }
 
-@property struct _NSRange { unsigned int x1; unsigned int x2; } affectedRange;
-@property UITextInputController * inputController;
+@property (nonatomic) struct _NSRange { unsigned int x1; unsigned int x2; } affectedRange;
+@property (nonatomic) UITextInputController *inputController;
 
+- (void).cxx_destruct;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })affectedRange;
 - (id)initWithAffectedRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 inputController:(id)arg2;
 - (id)inputController;

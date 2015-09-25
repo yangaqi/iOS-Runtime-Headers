@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSString;
+@interface TSDAnnotationController : NSObject
 
-@interface TSDAnnotationController : NSObject {
-}
-
-@property(readonly) unsigned int annotationCount;
-@property(readonly) NSString * annotationNavigationString;
-@property(readonly) BOOL hasAnnotations;
-@property BOOL textSelectionChangeShouldDismissAnnotations;
+@property (nonatomic, readonly) unsigned int annotationCount;
+@property (nonatomic, readonly) NSString *annotationNavigationString;
+@property (nonatomic, readonly) unsigned int filteredAnnotationCount;
+@property (nonatomic, readonly) BOOL hasAnnotations;
+@property (nonatomic) BOOL textSelectionChangeShouldDismissAnnotations;
 
 + (float)commentFontSize;
 
@@ -22,6 +20,7 @@
 - (id)annotationToolTipTextGoToPrevious;
 - (void)commitCommentText:(id)arg1 forAnnotation:(id)arg2;
 - (void)didShowAnnotation:(id)arg1;
+- (unsigned int)filteredAnnotationCount;
 - (BOOL)hasAnnotations;
 - (void)invalidateAnnotationAuthors;
 - (void)nextAnnotation:(id)arg1;

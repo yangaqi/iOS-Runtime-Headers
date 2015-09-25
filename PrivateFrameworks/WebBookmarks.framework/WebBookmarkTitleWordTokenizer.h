@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
  */
 
-@class NSString, TIWordTokenizer;
-
 @interface WebBookmarkTitleWordTokenizer : NSObject {
     struct _NSRange { 
         unsigned int location; 
@@ -17,8 +15,8 @@
 
 + (void)initialize;
 
+- (void).cxx_destruct;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })advanceToNextToken;
-- (void)dealloc;
 - (id)init;
 - (void)setString:(id)arg1;
 

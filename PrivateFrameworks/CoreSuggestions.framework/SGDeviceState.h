@@ -2,12 +2,16 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
  */
 
-@interface SGDeviceState : NSObject {
-}
+@interface SGDeviceState : NSObject
 
 + (void)blockUntilFirstUnlock;
++ (id)currentOsBuild;
 + (BOOL)isClassCLocked;
++ (BOOL)isConstrainedDevice;
++ (BOOL)isDeviceFormattedForProtection;
 + (BOOL)isUnlocked;
-+ (void)registerBlockForFirstUnlock:(id)arg1;
++ (int)lockState;
++ (void)registerBlockForFirstUnlock:(id /* block */)arg1;
++ (void)registerForLockStateChangeNotifications:(id /* block */)arg1;
 
 @end

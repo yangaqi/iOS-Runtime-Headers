@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class UIActivityIndicatorView;
-
 @interface PSSpinnerTableCell : PSTableCell {
     UIActivityIndicatorView *_spinner;
 }
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (void)layoutSubviews;
 

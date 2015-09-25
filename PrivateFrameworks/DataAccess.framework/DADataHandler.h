@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
  */
 
-@class NSString;
-
 @interface DADataHandler : NSObject {
     NSString *_changeTrackingID;
     void *_container;
 }
 
-@property(copy) NSString * changeTrackingID;
-@property void* container;
+@property (nonatomic, copy) NSString *changeTrackingID;
+@property (nonatomic) void*container;
 
 + (id)newDataHandlerForDataclass:(int)arg1 container:(void*)arg2 changeTrackingID:(id)arg3;
 
@@ -24,6 +22,7 @@
 - (void)dealloc;
 - (void)drainContainer;
 - (void)drainSuperfluousChanges;
+- (id)getDAExceptionObjectWithLocalItem:(void*)arg1 originalEvent:(id)arg2 account:(id)arg3;
 - (id)getDAObjectWithLocalItem:(void*)arg1 serverId:(id)arg2 account:(id)arg3;
 - (int)getIdFromLocalObject:(void*)arg1;
 - (id)initWithContainer:(void*)arg1 changeTrackingID:(id)arg2;

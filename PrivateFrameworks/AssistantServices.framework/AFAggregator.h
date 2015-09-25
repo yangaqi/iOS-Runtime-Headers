@@ -10,8 +10,8 @@
     unsigned int _type;
 }
 
-@property unsigned int connectionType;
-@property BOOL hasActiveRequest;
+@property (nonatomic) unsigned int connectionType;
+@property (nonatomic) BOOL hasActiveRequest;
 
 + (id)_fullAggDKeyWithPrefix:(id)arg1 error:(id)arg2;
 + (id)_stringForGatekeeperType:(unsigned int)arg1;
@@ -20,9 +20,16 @@
 + (void)logDictationStarted;
 + (void)logDictationSucceeded;
 + (void)logHomeButtonPressToActivationDuration:(double)arg1;
++ (void)logLocalFinalSpeechRecognitionWithDuration:(double)arg1;
++ (void)logLocalRecognitionAssetEvictedForLanguage:(id)arg1;
++ (void)logLocalRecognitionLoadedForLanguage:(id)arg1 duration:(double)arg2;
++ (void)logLocalRecognitionLostForLanguage:(id)arg1;
++ (void)logLocalRecognitionWonForLanguage:(id)arg1;
++ (void)logLocalSpeechStartedWithDuration:(double)arg1;
 + (void)logPingTimeout;
 + (void)logRequestCancelAfterSeconds:(double)arg1;
 + (void)logRequestCompletedWithDuration:(double)arg1;
++ (void)logRequestLaunchedApp;
 + (void)logSiriOtherRequestStarted;
 + (void)logSiriRequestCancelled;
 + (void)logSiriRequestFailedWithError:(id)arg1;

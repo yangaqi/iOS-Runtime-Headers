@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class VKGGLTextureManager, VKIconManager, VKResourceManager, VKShieldManager, VKStylesheetVendor, VKTrafficIncidentImageManager;
-
 @interface VKSharedResources : NSObject {
     struct unique_ptr<ggl::AlphaAtlas, std::__1::default_delete<ggl::AlphaAtlas> > { 
         struct __compressed_pair<ggl::AlphaAtlas *, std::__1::default_delete<ggl::AlphaAtlas> > { 
@@ -31,25 +24,25 @@
             struct IsoAlphaAtlas {} *__first_; 
         } __ptr_; 
     } _isoAlphaAtlas;
+    GEOResourceManifestConfiguration *_manifestConfiguration;
     VKResourceManager *_resourceManager;
     VKShieldManager *_shieldManager;
     VKStylesheetVendor *_stylesheetVendor;
-    unsigned int _tileGroupIdentifier;
     VKTrafficIncidentImageManager *_trafficIncidentImageManager;
 }
 
-@property(readonly) struct AlphaAtlas { unsigned int x1; bool x2; unsigned int x3; unsigned int x4; unsigned int x5; float x6; struct Texture2D {} *x7; }* alphaAtlas;
-@property(readonly) struct Device { int (**x1)(); int x2; }* device;
-@property(readonly) VKGGLTextureManager * gglTextureManager;
-@property(readonly) struct IsoAlphaAtlas { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; float x5; struct Texture2D {} *x6; }* highInflationAlphaAtlas;
-@property(readonly) VKIconManager * iconManager;
-@property(readonly) struct IsoAlphaAtlas { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; float x5; struct Texture2D {} *x6; }* isoAlphaAtlas;
-@property(readonly) VKResourceManager * resourceManager;
-@property(readonly) VKShieldManager * shieldManager;
-@property(readonly) VKStylesheetVendor * stylesheetVendor;
-@property(readonly) VKTrafficIncidentImageManager * trafficIncidentImageManager;
+@property (nonatomic, readonly) struct AlphaAtlas { unsigned int x1; bool x2; unsigned int x3; unsigned int x4; unsigned int x5; float x6; struct Texture2D {} *x7; }*alphaAtlas;
+@property (nonatomic, readonly) struct Device { int (**x1)(); int x2; }*device;
+@property (nonatomic, readonly) VKGGLTextureManager *gglTextureManager;
+@property (nonatomic, readonly) struct IsoAlphaAtlas { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; float x5; struct Texture2D {} *x6; }*highInflationAlphaAtlas;
+@property (nonatomic, readonly) VKIconManager *iconManager;
+@property (nonatomic, readonly) struct IsoAlphaAtlas { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; float x5; struct Texture2D {} *x6; }*isoAlphaAtlas;
+@property (nonatomic, readonly) VKResourceManager *resourceManager;
+@property (nonatomic, readonly) VKShieldManager *shieldManager;
+@property (nonatomic, readonly) VKStylesheetVendor *stylesheetVendor;
+@property (nonatomic, readonly) VKTrafficIncidentImageManager *trafficIncidentImageManager;
 
-+ (id)sharedResourcesForTileGroupIdentifier:(unsigned int)arg1;
++ (id)sharedResourcesForConfiguration:(id)arg1;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -59,7 +52,7 @@
 - (id)gglTextureManager;
 - (struct IsoAlphaAtlas { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; float x5; struct Texture2D {} *x6; }*)highInflationAlphaAtlas;
 - (id)iconManager;
-- (id)initWithTileGroupIdentifier:(unsigned int)arg1;
+- (id)initWithConfiguration:(id)arg1;
 - (struct IsoAlphaAtlas { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; float x5; struct Texture2D {} *x6; }*)isoAlphaAtlas;
 - (id)resourceManager;
 - (id)shieldManager;

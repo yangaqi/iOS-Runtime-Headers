@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSArray, NSString;
-
 @interface NSLinguisticTagger : NSObject {
     unsigned int _options;
     id _orthographyArray;
@@ -13,8 +11,10 @@
     id _tokenArray;
 }
 
-@property(retain) NSString * string;
-@property(copy,readonly) NSArray * tagSchemes;
+@property (retain) NSString *string;
+@property (readonly, copy) NSArray *tagSchemes;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)availableTagSchemesForLanguage:(id)arg1;
 + (BOOL)supportsLanguage:(id)arg1;
@@ -25,9 +25,6 @@
 - (void)_analyzeTokensInInterwordRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 paragraphRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (void)_analyzeTokensInWordRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 paragraphRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2;
 - (void)_calculateSentenceRangesForParagraphRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
-- (BOOL)_ngramTagsAndFrequenciesForMisspelledRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 word:(id)arg2 tags:(id*)arg3 frequencies:(id*)arg4;
-- (id)_rankedCandidatesForMisspelledRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 candidates:(id)arg2;
-- (id)_rankedCandidatesForMisspelledRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 candidates:(id)arg2 contextualFrequencies:(id*)arg3 baseFrequencies:(id*)arg4;
 - (id)_tagSchemeForScheme:(id)arg1;
 - (id)_tokenDataForParagraphAtIndex:(unsigned int)arg1 paragraphRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg2 requireLemmas:(BOOL)arg3 requirePartsOfSpeech:(BOOL)arg4 requireNamedEntities:(BOOL)arg5;
 - (id)_tokenDataForParagraphAtIndex:(unsigned int)arg1 paragraphRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg2 tagScheme:(id)arg3;
@@ -35,9 +32,8 @@
 - (void)_tokenizeParagraphAtIndex:(unsigned int)arg1 requireLemmas:(BOOL)arg2 requirePartsOfSpeech:(BOOL)arg3 requireNamedEntities:(BOOL)arg4;
 - (void)dealloc;
 - (id)description;
-- (void)enumerateTagsInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 scheme:(id)arg2 options:(unsigned int)arg3 usingBlock:(id)arg4;
+- (void)enumerateTagsInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 scheme:(id)arg2 options:(unsigned int)arg3 usingBlock:(id /* block */)arg4;
 - (id)initWithTagSchemes:(id)arg1 options:(unsigned int)arg2;
-- (id)languageOfRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 - (id)orthographyAtIndex:(unsigned int)arg1 effectiveRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg2;
 - (id)possibleTagsAtIndex:(unsigned int)arg1 scheme:(id)arg2 tokenRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 sentenceRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg4 scores:(id*)arg5;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })sentenceRangeForRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
@@ -48,5 +44,9 @@
 - (id)tagAtIndex:(unsigned int)arg1 scheme:(id)arg2 tokenRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 sentenceRange:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg4;
 - (id)tagSchemes;
 - (id)tagsInRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1 scheme:(id)arg2 options:(unsigned int)arg3 tokenRanges:(id*)arg4;
+
+// Image: /System/Library/PrivateFrameworks/ResponseKit.framework/ResponseKit
+
+- (id)languageOfRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg1;
 
 @end

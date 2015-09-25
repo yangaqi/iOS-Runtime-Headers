@@ -2,17 +2,18 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/libAVFAudio.dylib
  */
 
-@class NSString;
+@interface AVAudioUnit : AVAudioNode
 
-@interface AVAudioUnit : AVAudioNode {
-}
+@property (nonatomic, readonly) AUAudioUnit *AUAudioUnit;
+@property (nonatomic, readonly) struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; } audioComponentDescription;
+@property (nonatomic, readonly) struct OpaqueAudioComponentInstance { }*audioUnit;
+@property (nonatomic, readonly) NSString *manufacturerName;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) unsigned int version;
 
-@property(readonly) struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; } audioComponentDescription;
-@property(readonly) struct OpaqueAudioComponentInstance { }* audioUnit;
-@property(readonly) NSString * manufacturerName;
-@property(readonly) NSString * name;
-@property(readonly) unsigned int version;
++ (void)instantiateWithComponentDescription:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg1 options:(unsigned long)arg2 completionHandler:(id /* block */)arg3;
 
+- (id)AUAudioUnit;
 - (struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })audioComponentDescription;
 - (struct OpaqueAudioComponentInstance { }*)audioUnit;
 - (id)initWithAudioComponentDescription:(struct AudioComponentDescription { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; })arg1;

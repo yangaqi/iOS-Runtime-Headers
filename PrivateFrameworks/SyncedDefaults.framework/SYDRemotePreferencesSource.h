@@ -2,15 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SyncedDefaults.framework/SyncedDefaults
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, SYDClient;
-
 @interface SYDRemotePreferencesSource : NSObject {
     BOOL _forceNextSynchronization;
     long _generationCount;
+    NSObject<OS_os_transaction> *_isExecutingForClient;
     double _lastAccess;
     long _lastGenerationFromDisk;
     NSObject<OS_dispatch_source> *_memoryWarningSource;
@@ -23,11 +18,7 @@
     long long initialSyncChangeCount;
     unsigned char isInitialSync;
     struct __CFString { } *preferenceID;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id registrationBlock;
-
+    id /* block */ registrationBlock;
     NSObject<OS_dispatch_queue> *registrationQueue;
     long long storageChangeCount;
     struct __CFURL { } *urlOnDisk;
@@ -38,12 +29,14 @@
 + (void)initialize;
 + (void)migrateSyncedDefaultsForBundleIdentifier:(id)arg1;
 + (void)noteAccountChanges:(id)arg1;
-+ (void)resetAllApplicationsWithCompletionHandler:(id)arg1;
++ (void)resetAllApplicationsWithCompletionHandler:(id /* block */)arg1;
 
 - (void)_cachePlistFromDisk;
 - (void)_createMemoryWarningSource;
 - (void)_didReceiveMemoryWarning;
 - (void)_forceRegistrationNow;
+- (void)_locked_syd_end_transaction;
+- (void)_locked_syd_start_transaction;
 - (void)_storeConfiguration:(struct __CFDictionary { }*)arg1;
 - (unsigned char)_synchronizeForced:(unsigned char)arg1;
 - (id)_warningSource;
@@ -66,11 +59,12 @@
 - (long)maximumKeyCount;
 - (long)maximumKeyLength;
 - (long)maximumTotalDataLength;
+- (void)ping;
 - (void)registerForSynchronizedDefaults;
 - (void)scheduleRemoteSynchronization;
 - (id)serverSideDebugDescription;
 - (void)setValue:(void*)arg1 forKey:(struct __CFString { }*)arg2;
-- (void)synchronizationWithCompletionHandler:(id)arg1;
+- (void)synchronizationWithCompletionHandler:(id /* block */)arg1;
 - (unsigned char)synchronize;
 - (unsigned char)synchronizeForced:(unsigned char)arg1;
 - (void)unregisterForSynchronizedDefaults;

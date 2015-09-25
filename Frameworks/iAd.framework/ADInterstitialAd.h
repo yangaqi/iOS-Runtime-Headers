@@ -2,14 +2,13 @@
    Image: /System/Library/Frameworks/iAd.framework/iAd
  */
 
-@class <ADInterstitialAdDelegate>, ADAdSpace, ADInterstitialAdPresentationViewController, ADInterstitialView, NSSet, NSString, UIView, UIViewController;
-
 @interface ADInterstitialAd : NSObject <ADAdRecipient> {
     BOOL _actionInProgress;
     ADAdSpace *_adSpace;
     BOOL _canLoadMoreThanOnce;
     int _creativeType;
     <ADInterstitialAdDelegate> *_delegate;
+    BOOL _dimmingEnabled;
     BOOL _hasLoadedFirstAd;
     <ADInterstitialAdDelegate> *_internalDelegate;
     UIViewController *_internalPresentingViewController;
@@ -19,26 +18,26 @@
     ADInterstitialAdPresentationViewController *_presentationViewController;
 }
 
-@property(getter=isActionInProgress) BOOL actionInProgress;
-@property(retain) ADAdSpace * adSpace;
-@property(readonly) UIView * adSpaceView;
-@property BOOL canLoadMoreThanOnce;
-@property(copy) NSSet * context;
-@property int creativeType;
-@property(copy,readonly) NSString * debugDescription;
-@property <ADInterstitialAdDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property BOOL hasLoadedFirstAd;
-@property(readonly) unsigned int hash;
-@property(readonly) int internalAdType;
-@property <ADInterstitialAdDelegate> * internalDelegate;
-@property UIViewController * internalPresentingViewController;
-@property(retain) ADInterstitialView * interstitialView;
-@property(getter=isLoaded) BOOL loaded;
-@property(readonly) int options;
-@property(retain) ADInterstitialAdPresentationViewController * presentationViewController;
-@property(readonly) UIViewController * presentingViewController;
-@property(readonly) Class superclass;
+@property (getter=isActionInProgress, nonatomic) BOOL actionInProgress;
+@property (nonatomic, retain) ADAdSpace *adSpace;
+@property (nonatomic, readonly) UIView *adSpaceView;
+@property (nonatomic) BOOL canLoadMoreThanOnce;
+@property (nonatomic) int creativeType;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <ADInterstitialAdDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL dimmingEnabled;
+@property (nonatomic) BOOL hasLoadedFirstAd;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) int internalAdType;
+@property (nonatomic) <ADInterstitialAdDelegate> *internalDelegate;
+@property (nonatomic) UIViewController *internalPresentingViewController;
+@property (nonatomic, retain) ADInterstitialView *interstitialView;
+@property (getter=isLoaded, nonatomic) BOOL loaded;
+@property (nonatomic, readonly) int options;
+@property (nonatomic, retain) ADInterstitialAdPresentationViewController *presentationViewController;
+@property (nonatomic, readonly) UIViewController *presentingViewController;
+@property (readonly) Class superclass;
 
 - (BOOL)_considerClosingAdSpace;
 - (void)_dismissModalInterstitial;
@@ -53,6 +52,7 @@
 - (int)creativeType;
 - (void)dealloc;
 - (id)delegate;
+- (BOOL)dimmingEnabled;
 - (BOOL)hasLoadedFirstAd;
 - (id)identifier;
 - (id)init;
@@ -82,6 +82,7 @@
 - (void)setContext:(id)arg1;
 - (void)setCreativeType:(int)arg1;
 - (void)setDelegate:(id)arg1;
+- (void)setDimmingEnabled:(BOOL)arg1;
 - (void)setHasLoadedFirstAd:(BOOL)arg1;
 - (void)setInternalDelegate:(id)arg1;
 - (void)setInternalPresentingViewController:(id)arg1;
@@ -90,6 +91,7 @@
 - (void)setPresentationViewController:(id)arg1;
 - (void)setSection:(id)arg1;
 - (void)setServerURL:(id)arg1;
+- (BOOL)shouldTestVisibilityAtPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)storyboardViewControllerDidPresent;
 
 @end

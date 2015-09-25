@@ -2,12 +2,12 @@
    Image: /System/Library/Frameworks/AVKit.framework/AVKit
  */
 
-@class AVPlayerController, AVPlayerControllerTimeResolver, AVPlayerViewController, NSArray;
-
 @interface AVPlaybackControlsViewController : UIViewController {
     id _AVSystemControllerCurrentRouteHasVolumeControlDidChangeObserver;
     BOOL _gotoEndOfSeekableRangesButtonEnabled;
     AVPlayerControllerTimeResolver *_intervalTimeResolver;
+    NSDictionary *_metadata;
+    BOOL _pictureInPictureButtonEnabled;
     BOOL _playPauseButtonEnabled;
     AVPlayerController *_playerController;
     AVPlayerViewController *_playerViewController;
@@ -23,33 +23,38 @@
     BOOL _showsExitFullScreenButton;
     BOOL _showsLoadingIndicator;
     BOOL _showsMediaSelectionButton;
+    BOOL _showsPictureInPictureButton;
     BOOL _showsScaleButton;
     BOOL _showsStreamingControls;
     BOOL _showsVolumeSlider;
     BOOL _skipBackwardThirtySecondsButtonEnabled;
 }
 
-@property(getter=isGotoEndOfSeekableRangesButtonEnabled) BOOL gotoEndOfSeekableRangesButtonEnabled;
-@property(getter=isPlayPauseButtonEnabled) BOOL playPauseButtonEnabled;
-@property(retain) AVPlayerController * playerController;
-@property AVPlayerViewController * playerViewController;
-@property(getter=isPlaying) BOOL playing;
-@property int scaleButtonType;
-@property(getter=isScanBackwardButtonEnabled) BOOL scanBackwardButtonEnabled;
-@property(getter=isScanForwardButtonEnabled) BOOL scanForwardButtonEnabled;
-@property(getter=isScrubberEnabled) BOOL scrubberEnabled;
-@property(retain) NSArray * scrubberLoadedTimeRanges;
-@property(readonly) float scrubberWidth;
-@property BOOL showsDoneButton;
-@property BOOL showsExitFullScreenButton;
-@property BOOL showsLoadingIndicator;
-@property BOOL showsMediaSelectionButton;
-@property BOOL showsScaleButton;
-@property BOOL showsStreamingControls;
-@property BOOL showsVolumeSlider;
-@property(getter=isSkipBackwardThirtySecondsButtonEnabled) BOOL skipBackwardThirtySecondsButtonEnabled;
+@property (getter=isGotoEndOfSeekableRangesButtonEnabled, nonatomic) BOOL gotoEndOfSeekableRangesButtonEnabled;
+@property (nonatomic, retain) NSDictionary *metadata;
+@property (getter=isPictureInPictureButtonEnabled, nonatomic) BOOL pictureInPictureButtonEnabled;
+@property (getter=isPlayPauseButtonEnabled, nonatomic) BOOL playPauseButtonEnabled;
+@property (nonatomic, retain) AVPlayerController *playerController;
+@property (nonatomic) AVPlayerViewController *playerViewController;
+@property (getter=isPlaying, nonatomic) BOOL playing;
+@property (nonatomic) int scaleButtonType;
+@property (getter=isScanBackwardButtonEnabled, nonatomic) BOOL scanBackwardButtonEnabled;
+@property (getter=isScanForwardButtonEnabled, nonatomic) BOOL scanForwardButtonEnabled;
+@property (getter=isScrubberEnabled, nonatomic) BOOL scrubberEnabled;
+@property (nonatomic, retain) NSArray *scrubberLoadedTimeRanges;
+@property (nonatomic, readonly) float scrubberWidth;
+@property (nonatomic) BOOL showsDoneButton;
+@property (nonatomic) BOOL showsExitFullScreenButton;
+@property (nonatomic) BOOL showsLoadingIndicator;
+@property (nonatomic) BOOL showsMediaSelectionButton;
+@property (nonatomic) BOOL showsPictureInPictureButton;
+@property (nonatomic) BOOL showsScaleButton;
+@property (nonatomic) BOOL showsStreamingControls;
+@property (nonatomic) BOOL showsVolumeSlider;
+@property (getter=isSkipBackwardThirtySecondsButtonEnabled, nonatomic) BOOL skipBackwardThirtySecondsButtonEnabled;
 
 - (void).cxx_destruct;
+- (void)_updatePlaybackProgress;
 - (void)_updateVolumeSliderVisibility;
 - (void)_userInteractionObservationControlTouchDown:(id)arg1;
 - (void)_userInteractionObservationControlTouchUp:(id)arg1;
@@ -65,6 +70,7 @@
 - (void)gotoEndOfSeekableRanges:(id)arg1;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (BOOL)isGotoEndOfSeekableRangesButtonEnabled;
+- (BOOL)isPictureInPictureButtonEnabled;
 - (BOOL)isPlayPauseButtonEnabled;
 - (BOOL)isPlaying;
 - (BOOL)isScanBackwardButtonEnabled;
@@ -72,7 +78,9 @@
 - (BOOL)isScrubberEnabled;
 - (BOOL)isSkipBackwardThirtySecondsButtonEnabled;
 - (void)mediaSelectionButtonTapped:(id)arg1;
+- (id)metadata;
 - (void)observeValueForKeyPath:(id)arg1 ofObject:(id)arg2 change:(id)arg3 context:(void*)arg4;
+- (void)pictureInPictureButtonTapped:(id)arg1;
 - (id)playerController;
 - (id)playerViewController;
 - (void)removeControlForUserInteractionObservation:(id)arg1;
@@ -84,6 +92,8 @@
 - (void)seekChapterBackward:(id)arg1;
 - (void)seekChapterForward:(id)arg1;
 - (void)setGotoEndOfSeekableRangesButtonEnabled:(BOOL)arg1;
+- (void)setMetadata:(id)arg1;
+- (void)setPictureInPictureButtonEnabled:(BOOL)arg1;
 - (void)setPlayPauseButtonEnabled:(BOOL)arg1;
 - (void)setPlayerController:(id)arg1;
 - (void)setPlayerViewController:(id)arg1;
@@ -97,6 +107,7 @@
 - (void)setShowsExitFullScreenButton:(BOOL)arg1;
 - (void)setShowsLoadingIndicator:(BOOL)arg1;
 - (void)setShowsMediaSelectionButton:(BOOL)arg1;
+- (void)setShowsPictureInPictureButton:(BOOL)arg1;
 - (void)setShowsScaleButton:(BOOL)arg1;
 - (void)setShowsStreamingControls:(BOOL)arg1;
 - (void)setShowsVolumeSlider:(BOOL)arg1;
@@ -105,12 +116,14 @@
 - (BOOL)showsExitFullScreenButton;
 - (BOOL)showsLoadingIndicator;
 - (BOOL)showsMediaSelectionButton;
+- (BOOL)showsPictureInPictureButton;
 - (BOOL)showsScaleButton;
 - (BOOL)showsStreamingControls;
 - (BOOL)showsVolumeSlider;
 - (void)skipBackwardThirtySeconds:(id)arg1;
 - (void)togglePlayback:(id)arg1;
 - (void)updateElapsedTimeLabel:(id)arg1;
+- (void)updatePlaybackProgress:(float)arg1;
 - (void)updateRemainingTimeLabel:(id)arg1;
 - (void)updateScrubberMaximumValue:(float)arg1;
 - (void)updateScrubberMinimumValue:(float)arg1;

@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OITSDBezierPath;
-
 @interface MFPhonePath : MFPath {
-    OITSDBezierPath *m_path;
+    TSUBezierPath *m_path;
     int m_state;
 }
 

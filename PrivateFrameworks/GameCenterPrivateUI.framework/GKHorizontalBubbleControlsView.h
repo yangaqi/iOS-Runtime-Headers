@@ -2,18 +2,18 @@
    Image: /System/Library/PrivateFrameworks/GameCenterPrivateUI.framework/GameCenterPrivateUI
  */
 
-@class NSArray;
-
 @interface GKHorizontalBubbleControlsView : UIView {
     NSArray *_bubbleTokens;
     NSArray *_bubbles;
     float _overlap;
 }
 
-@property(retain) NSArray * bubbleTokens;
-@property(retain) NSArray * bubbles;
-@property float overlap;
+@property (nonatomic, retain) NSArray *bubbleTokens;
+@property (nonatomic, retain) NSArray *bubbles;
+@property (nonatomic) float overlap;
 
+- (void)_commonInit;
+- (void)awakeFromNib;
 - (id)bubbleTokens;
 - (id)bubbles;
 - (void)dealloc;

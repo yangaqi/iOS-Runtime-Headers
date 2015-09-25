@@ -2,10 +2,7 @@
    Image: /System/Library/Frameworks/MediaPlayer.framework/MediaPlayer
  */
 
-@class <MPAVRoutingTableViewCellDelegate>, MPAVRoute, UIColor, UILabel, UISwitch, UIView;
-
 @interface MPAVRoutingTableViewCell : UITableViewCell {
-    UIColor *_contentTintColor;
     BOOL _debugCell;
     <MPAVRoutingTableViewCellDelegate> *_delegate;
     UILabel *_mirroringLabel;
@@ -15,10 +12,10 @@
     MPAVRoute *_route;
 }
 
-@property(getter=isDebugCell) BOOL debugCell;
-@property <MPAVRoutingTableViewCellDelegate> * delegate;
-@property BOOL mirroringSwitchVisible;
-@property(retain) MPAVRoute * route;
+@property (getter=isDebugCell, nonatomic) BOOL debugCell;
+@property (nonatomic) <MPAVRoutingTableViewCellDelegate> *delegate;
+@property (nonatomic) BOOL mirroringSwitchVisible;
+@property (nonatomic, retain) MPAVRoute *route;
 
 - (void).cxx_destruct;
 - (void)_configureLabel:(id)arg1;
@@ -34,6 +31,5 @@
 - (void)setMirroringSwitchVisible:(BOOL)arg1;
 - (void)setMirroringSwitchVisible:(BOOL)arg1 animated:(BOOL)arg2;
 - (void)setRoute:(id)arg1;
-- (void)setTintColor:(id)arg1;
 
 @end

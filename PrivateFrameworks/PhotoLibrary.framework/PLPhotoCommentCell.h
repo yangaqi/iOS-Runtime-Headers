@@ -2,19 +2,19 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class PLCloudSharedComment, UILabel, UIView;
-
 @interface PLPhotoCommentCell : UITableViewCell {
     PLCloudSharedComment *_comment;
     UILabel *_commentBylineLabel;
     UILabel *_commentContentLabel;
     UIView *_styledSeparatorView;
+    BOOL _usesCompactSeparators;
 }
 
-@property(copy) PLCloudSharedComment * comment;
-@property(retain,readonly) UILabel * commentBylineLabel;
-@property(retain,readonly) UILabel * commentContentLabel;
-@property(retain,readonly) UIView * styledSeparatorView;
+@property (nonatomic, copy) PLCloudSharedComment *comment;
+@property (nonatomic, readonly, retain) UILabel *commentBylineLabel;
+@property (nonatomic, readonly, retain) UILabel *commentContentLabel;
+@property (nonatomic, readonly, retain) UIView *styledSeparatorView;
+@property (nonatomic) BOOL usesCompactSeparators;
 
 + (id)_attributionStringForComment:(id)arg1;
 + (id)_commentStringForComment:(id)arg1;
@@ -32,6 +32,8 @@
 - (void)layoutSubviews;
 - (void)prepareForReuse;
 - (void)setComment:(id)arg1;
+- (void)setUsesCompactSeparators:(BOOL)arg1;
 - (id)styledSeparatorView;
+- (BOOL)usesCompactSeparators;
 
 @end

@@ -2,10 +2,7 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@interface CILuminosityBlendMode : CIBlendModeFilter {
-}
-
-+ (id)_filter_display_name;
+@interface CILuminosityBlendMode : CIBlendModeFilter
 
 - (id)outputImage;
 

@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/CarKit.framework/CarKit
  */
 
-@class NSData, NSString, NSUUID;
-
 @interface CRVehicle : NSObject <NSSecureCoding> {
+    NSSet *_accessoryProtocols;
     NSString *_bluetoothAddress;
     NSString *_carplayWiFiUUID;
     NSData *_certificateSerialNumber;
@@ -13,19 +12,21 @@
     NSString *_vehicleName;
 }
 
-@property(retain) NSString * bluetoothAddress;
-@property(retain) NSString * carplayWiFiUUID;
-@property(retain) NSData * certificateSerialNumber;
-@property(retain) NSUUID * identifier;
-@property(readonly) BOOL isPaired;
-@property unsigned int pairingStatus;
-@property(retain) NSString * vehicleName;
+@property (nonatomic, retain) NSSet *accessoryProtocols;
+@property (nonatomic, retain) NSString *bluetoothAddress;
+@property (nonatomic, retain) NSString *carplayWiFiUUID;
+@property (nonatomic, retain) NSData *certificateSerialNumber;
+@property (nonatomic, retain) NSUUID *identifier;
+@property (nonatomic, readonly) BOOL isPaired;
+@property (nonatomic) unsigned int pairingStatus;
+@property (nonatomic, retain) NSString *vehicleName;
 
 + (BOOL)supportsSecureCoding;
 + (id)vehicleForVehicleAccessory:(id)arg1;
 
 - (void).cxx_destruct;
 - (id)_pairingDebugDescription;
+- (id)accessoryProtocols;
 - (id)bluetoothAddress;
 - (id)carplayWiFiUUID;
 - (id)certificateSerialNumber;
@@ -39,6 +40,7 @@
 - (BOOL)isPaired;
 - (void)mergeAttributesFromVehicle:(id)arg1;
 - (unsigned int)pairingStatus;
+- (void)setAccessoryProtocols:(id)arg1;
 - (void)setBluetoothAddress:(id)arg1;
 - (void)setCarplayWiFiUUID:(id)arg1;
 - (void)setCertificateSerialNumber:(id)arg1;

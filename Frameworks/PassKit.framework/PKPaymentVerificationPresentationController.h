@@ -2,12 +2,10 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKPaymentVerificationEntryDelegate>, <PKPaymentVerificationPresentationDelegate>, NSNumber, NSString, PKPassView, PKPaymentPass, PKPaymentWebService, PKVerificationRequestRecord;
-
-@interface PKPaymentVerificationPresentationController : NSObject <SKStoreProductViewControllerDelegate> {
+@interface PKPaymentVerificationPresentationController : NSObject <SKStoreProductViewControllerDelegate, UINavigationControllerDelegate> {
     BOOL _bankAppNotFound;
+    int _context;
     <PKPaymentVerificationPresentationDelegate> *_delegate;
-    <PKPaymentVerificationEntryDelegate> *_entryDelegate;
     NSNumber *_inStoreBankAppStoreID;
     NSString *_inStoreBankAppTitle;
     NSString *_installedBankAppBundleID;
@@ -15,21 +13,20 @@
     PKPaymentPass *_pass;
     PKPassView *_passView;
     PKVerificationRequestRecord *_requestRecord;
-    int _setupContext;
     PKPaymentWebService *_webService;
 }
 
-@property(readonly) NSString * alternateMethodButtonTitle;
-@property(readonly) NSString * completeVerificationButtonTitle;
-@property(copy,readonly) NSString * debugDescription;
-@property <PKPaymentVerificationPresentationDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property <PKPaymentVerificationEntryDelegate> * entryDelegate;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-@property(readonly) NSString * verificationBodyString;
-@property(readonly) PKVerificationRequestRecord * verificationRecord;
-@property(readonly) NSString * verificationTitleString;
+@property (readonly) NSString *alternateMethodButtonTitle;
+@property (readonly) NSString *completeVerificationButtonTitle;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <PKPaymentVerificationPresentationDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (readonly) NSString *verificationBodyString;
+@property (readonly) PKVerificationRequestRecord *verificationRecord;
+@property (readonly) NSString *verificationTitleString;
+@property (readonly) BOOL willShowCompleteVerificationButton;
 
 - (id)_bankAppName;
 - (id)_bankAppStoreIDs;
@@ -42,6 +39,7 @@
 - (void)_launchBankApp;
 - (id)_outboundCallPhoneNumber;
 - (void)_performStoreLookupForBankApp;
+- (void)_requestDelegatePresentationOfViewController:(id)arg1 wrapWithPortraitNavigationController:(BOOL)arg2;
 - (id)_textMessageFormattedPhoneNumber:(id)arg1;
 - (id)_voiceCallFormattedPhoneNumber:(id)arg1;
 - (id)alternateMethodButtonTitle;
@@ -50,15 +48,15 @@
 - (id)completeVerificationButtonTitle;
 - (void)dealloc;
 - (id)delegate;
-- (id)entryDelegate;
 - (id)initWithPaymentPass:(id)arg1 passView:(id)arg2 webService:(id)arg3 context:(int)arg4 delegate:(id)arg5;
+- (void)navigationController:(id)arg1 willShowViewController:(id)arg2 animated:(BOOL)arg3;
 - (void)selectOtherVerificationMethod:(id)arg1;
 - (void)setDelegate:(id)arg1;
-- (void)setEntryDelegate:(id)arg1;
 - (void)setRequestRecord:(id)arg1;
 - (void)sharedPaymentServiceChanged:(id)arg1;
 - (id)verificationBodyString;
 - (id)verificationRecord;
 - (id)verificationTitleString;
+- (BOOL)willShowCompleteVerificationButton;
 
 @end

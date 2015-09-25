@@ -10,15 +10,15 @@
     float _yOffset;
 }
 
-@property struct CGPoint { float x1; float x2; } offset;
-@property float yOffset;
+@property (nonatomic) struct CGPoint { float x1; float x2; } offset;
+@property (nonatomic) float yOffset;
 
 + (id)sharedCaretMagnifier;
 
 - (struct CGPoint { float x1; float x2; })animationPoint;
 - (void)beginMagnifyingTarget:(id)arg1 text:(id)arg2 magnificationPoint:(struct CGPoint { float x1; float x2; })arg3 offset:(struct CGPoint { float x1; float x2; })arg4 animated:(BOOL)arg5;
-- (void)dealloc;
 - (id)initWithFrame;
+- (BOOL)isHorizontal;
 - (struct CGPoint { float x1; float x2; })offset;
 - (void)remove;
 - (void)setAnimationPoint:(struct CGPoint { float x1; float x2; })arg1;

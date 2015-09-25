@@ -2,43 +2,50 @@
    Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
  */
 
-@class IMDService, IMDServiceSession, NSDictionary, NSMutableDictionary, NSString;
-
 @interface IMDAccount : NSObject <IMSystemMonitorListener> {
     NSString *_account;
     NSMutableDictionary *_accountDefaults;
+    int _disconnectReason;
     BOOL _isLoading;
     BOOL _isManaged;
     NSDictionary *_lastPostedStatus;
+    unsigned int _loginStatus;
+    NSString *_loginStatusMessage;
     NSMutableDictionary *_myStatus;
     IMDService *_service;
     IMDServiceSession *_session;
 }
 
-@property(retain,readonly) NSDictionary * accountDefaults;
-@property(retain,readonly) NSString * accountID;
-@property(retain,readonly) NSDictionary * accountInfoToPost;
-@property(readonly) BOOL isActive;
-@property(readonly) BOOL isDisabled;
-@property BOOL isLoading;
-@property BOOL isManaged;
-@property(retain,readonly) NSString * loginID;
-@property(retain,readonly) NSDictionary * registrationAlertInfo;
-@property(readonly) int registrationError;
-@property(readonly) int registrationStatus;
-@property(retain,readonly) IMDService * service;
-@property(retain,readonly) IMDServiceSession * session;
-@property(readonly) BOOL shouldPublishNowPlaying;
-@property(retain,readonly) NSDictionary * status;
-@property(retain,readonly) NSDictionary * statusToPost;
-@property(retain,readonly) NSDictionary * statusToSave;
-@property BOOL wasDisabledAutomatically;
+@property (nonatomic, readonly, retain) NSDictionary *accountDefaults;
+@property (nonatomic, readonly, retain) NSString *accountID;
+@property (nonatomic, readonly, retain) NSDictionary *accountInfoToPost;
+@property (nonatomic, readonly) BOOL canMakeDowngradeRoutingChecks;
+@property (nonatomic, readonly) BOOL isActive;
+@property (nonatomic, readonly) BOOL isDisabled;
+@property (nonatomic) BOOL isLoading;
+@property (nonatomic) BOOL isManaged;
+@property (nonatomic, readonly, retain) NSString *loginID;
+@property (nonatomic, readonly, retain) NSDictionary *registrationAlertInfo;
+@property (nonatomic, readonly) int registrationError;
+@property (nonatomic, readonly) int registrationStatus;
+@property (nonatomic, readonly, retain) IMDService *service;
+@property (nonatomic, readonly) int serviceDisconnectReason;
+@property (nonatomic, readonly) unsigned int serviceLoginStatus;
+@property (nonatomic, readonly, retain) NSString *serviceLoginStatusMessage;
+@property (nonatomic, retain) IMDServiceSession *session;
+@property (nonatomic, readonly) BOOL shouldPublishNowPlaying;
+@property (nonatomic, readonly, retain) NSDictionary *status;
+@property (nonatomic, readonly, retain) NSDictionary *statusToPost;
+@property (nonatomic, readonly, retain) NSDictionary *statusToSave;
+@property (nonatomic) BOOL wasDisabledAutomatically;
 
+- (void)_forceSetLoginStatus:(unsigned int)arg1 message:(id)arg2 reason:(int)arg3 properties:(id)arg4;
 - (id)_registrationInfo;
 - (void)_updateIdle;
 - (id)accountDefaults;
 - (id)accountID;
 - (id)accountInfoToPost;
+- (BOOL)canMakeDowngradeRoutingChecks;
 - (void)changeStatus:(id)arg1;
 - (void)createSessionIfNecessary;
 - (void)dealloc;
@@ -55,10 +62,16 @@
 - (int)registrationStatus;
 - (void)releaseSession;
 - (id)service;
+- (int)serviceDisconnectReason;
+- (unsigned int)serviceLoginStatus;
+- (id)serviceLoginStatusMessage;
 - (id)session;
 - (void)setIsLoading:(BOOL)arg1;
 - (void)setIsManaged:(BOOL)arg1;
+- (void)setLoginStatus:(unsigned int)arg1 message:(id)arg2;
+- (void)setLoginStatus:(unsigned int)arg1 message:(id)arg2 reason:(int)arg3 properties:(id)arg4;
 - (void)setRegistrationStatus:(int)arg1 error:(int)arg2 alertInfo:(id)arg3;
+- (void)setSession:(id)arg1;
 - (void)setWasDisabledAutomatically:(BOOL)arg1;
 - (BOOL)shouldPublishNowPlaying;
 - (id)status;

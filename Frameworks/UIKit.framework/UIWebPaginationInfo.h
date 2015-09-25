@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSObject<WebDocumentView>, UIWebDocumentView;
-
 @interface UIWebPaginationInfo : NSObject {
     NSObject<WebDocumentView> *_documentView;
     struct CGSize { 
@@ -15,10 +13,11 @@
     UIWebDocumentView *_webDocumentView;
 }
 
-@property(readonly) float lastPageHeight;
-@property(readonly) unsigned int pageCount;
-@property(retain) UIWebDocumentView * webDocumentView;
+@property (nonatomic, readonly) float lastPageHeight;
+@property (nonatomic, readonly) unsigned int pageCount;
+@property (nonatomic, retain) UIWebDocumentView *webDocumentView;
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)documentView;
 - (id)initWithDocumentView:(id)arg1 scaleFactor:(float)arg2 layoutSize:(struct CGSize { float x1; float x2; })arg3 pageRects:(id)arg4;

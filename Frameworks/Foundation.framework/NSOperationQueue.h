@@ -2,20 +2,20 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSArray, NSObject<OS_dispatch_queue>, NSString;
-
 @interface NSOperationQueue : NSObject {
     id _private;
     void *_reserved;
 }
 
 @property int maxConcurrentOperationCount;
-@property(copy) NSString * name;
-@property(readonly) unsigned int operationCount;
-@property(copy,readonly) NSArray * operations;
+@property (copy) NSString *name;
+@property (readonly) unsigned int operationCount;
+@property (readonly, copy) NSArray *operations;
 @property int qualityOfService;
-@property(getter=isSuspended) BOOL suspended;
-@property NSObject<OS_dispatch_queue> * underlyingQueue;
+@property (getter=isSuspended) BOOL suspended;
+@property NSObject<OS_dispatch_queue> *underlyingQueue;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)currentQueue;
@@ -23,13 +23,11 @@
 
 - (id)__;
 - (void)addOperation:(id)arg1;
-- (void)addOperationWithBlock:(id)arg1;
+- (void)addOperationWithBlock:(id /* block */)arg1;
 - (void)addOperations:(id)arg1 waitUntilFinished:(BOOL)arg2;
 - (void)cancelAllOperations;
-- (void)cancelAllOperationsWithError:(id)arg1;
 - (void)dealloc;
 - (id)description;
-- (void)executeAndWaitForBlock:(id)arg1;
 - (id)init;
 - (BOOL)isSuspended;
 - (int)maxConcurrentOperationCount;
@@ -46,5 +44,22 @@
 - (void)setUnderlyingQueue:(id)arg1;
 - (id)underlyingQueue;
 - (void)waitUntilAllOperationsAreFinished;
+
+// Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
+
+- (void)cancelAllOperationsWithError:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/NotesShared.framework/NotesShared
+
+- (BOOL)containsOperationToDeleteRecordID:(id)arg1;
+- (BOOL)containsOperationToFetchRecordID:(id)arg1;
+- (BOOL)containsOperationToSaveRecordID:(id)arg1;
+- (id)existingOperationToDeleteRecordID:(id)arg1;
+- (id)existingOperationToFetchRecordID:(id)arg1;
+- (id)existingOperationToSaveRecordID:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/SpotlightUI.framework/SpotlightUI
+
+- (void)logStateOperationCountGreaterThan:(int)arg1;
 
 @end

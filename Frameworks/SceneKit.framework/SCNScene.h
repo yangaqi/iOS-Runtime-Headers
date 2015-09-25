@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/SceneKit.framework/SceneKit
  */
 
-@class NSMutableDictionary, SCNAuthoringEnvironment, SCNMaterialProperty, SCNNode, SCNPhysicsWorld, SCNSceneSource;
-
 @interface SCNScene : NSObject <NSSecureCoding> {
     SCNAuthoringEnvironment *_authoringEnvironment;
     SCNMaterialProperty *_background;
@@ -12,26 +10,26 @@
     float _fogEndDistance;
     float _fogStartDistance;
     double _lastEvalTime;
-    struct __C3DLibrary { } *_library;
     BOOL _paused;
+    BOOL _pausedForEditing;
     SCNPhysicsWorld *_physicsWorld;
-    id _reserved;
     SCNNode *_rootNode;
     struct __C3DScene { } *_scene;
     SCNSceneSource *_sceneSource;
     NSMutableDictionary *_userAttributes;
 }
 
-@property(readonly) SCNMaterialProperty * background;
-@property(retain) id fogColor;
-@property float fogDensityExponent;
-@property float fogEndDistance;
-@property float fogStartDistance;
-@property(getter=isPaused) BOOL paused;
-@property(readonly) SCNPhysicsWorld * physicsWorld;
-@property(readonly) SCNNode * rootNode;
+@property (nonatomic, readonly) SCNMaterialProperty *background;
+@property (nonatomic, retain) id fogColor;
+@property (nonatomic) float fogDensityExponent;
+@property (nonatomic) float fogEndDistance;
+@property (nonatomic) float fogStartDistance;
+@property (getter=isPaused, nonatomic) BOOL paused;
+@property (nonatomic, readonly) SCNPhysicsWorld *physicsWorld;
+@property (nonatomic, readonly) SCNNode *rootNode;
 
-+ (id)SCNJSExportProtocol;
++ (BOOL)canImportFileExtension:(id)arg1;
++ (BOOL)canImportFileUTI:(id)arg1;
 + (SEL)jsConstructor;
 + (id)scene;
 + (id)sceneNamed:(id)arg1;
@@ -39,15 +37,20 @@
 + (id)sceneNamed:(id)arg1 options:(id)arg2;
 + (id)sceneWithData:(id)arg1 atIndex:(int)arg2 options:(id)arg3;
 + (id)sceneWithData:(id)arg1 options:(id)arg2;
++ (id)sceneWithMDLAsset:(id)arg1;
 + (id)sceneWithSceneRef:(struct __C3DScene { }*)arg1;
 + (id)sceneWithURL:(id)arg1 atIndex:(int)arg2 options:(id)arg3;
 + (id)sceneWithURL:(id)arg1 options:(id)arg2;
 + (id)sceneWithURL:(id)arg1 options:(id)arg2 error:(id*)arg3;
++ (id)supportedFileUTIsForExport;
++ (id)supportedFileUTIsForImport;
 + (BOOL)supportsSecureCoding;
 
 - (void*)__CFObject;
 - (void)_customDecodingOfSCNScene:(id)arg1;
 - (void)_customEncodingOfSCNScene:(id)arg1;
+- (void)_didDecodeSCNScene:(id)arg1;
+- (void)_didEncodeSCNScene:(id)arg1;
 - (id)_physicsWorldCreateIfNeeded:(BOOL)arg1;
 - (void)_scaleSceneBy:(float)arg1;
 - (id)_scenes;
@@ -57,9 +60,11 @@
 - (void)addSceneAnimation:(id)arg1 forKey:(id)arg2 target:(id)arg3;
 - (id)attributeForKey:(id)arg1;
 - (id)background;
-- (struct __C3DAnimationChannel { struct __CFRuntimeBase { unsigned int x_1_1_1; unsigned char x_1_1_2[4]; } x1; struct __C3DAnimation {} *x2; struct __CFArray {} *x3; void *x4; struct __C3DModelTarget {} *x5; struct __CFString {} *x6; }*)copyAnimationChannelForKeyPath:(id)arg1;
+- (struct __C3DAnimationChannel { struct __CFRuntimeBase { unsigned int x_1_1_1; unsigned char x_1_1_2[4]; } x1; struct __C3DAnimation {} *x2; struct __CFArray {} *x3; void *x4; struct __C3DModelTarget {} *x5; struct __CFString {} *x6; }*)copyAnimationChannelForKeyPath:(id)arg1 animation:(id)arg2;
 - (struct __C3DAnimationChannel { struct __CFRuntimeBase { unsigned int x_1_1_1; unsigned char x_1_1_2[4]; } x1; struct __C3DAnimation {} *x2; struct __CFArray {} *x3; void *x4; struct __C3DModelTarget {} *x5; struct __CFString {} *x6; }*)copyAnimationChannelForKeyPath:(id)arg1 property:(id)arg2;
 - (void)dealloc;
+- (id)debugQuickLookObject;
+- (id)debugQuickLookObjectWithPointOfView:(id)arg1;
 - (void)encodeWithCoder:(id)arg1;
 - (double)endTime;
 - (id)fogColor;
@@ -72,9 +77,9 @@
 - (id)initWithCoder:(id)arg1;
 - (id)initWithSceneRef:(struct __C3DScene { }*)arg1;
 - (BOOL)isPaused;
+- (BOOL)isPausedForEditing;
 - (BOOL)isPausedOrPausedByInheritance;
 - (double)lastEvalTime;
-- (struct __C3DLibrary { }*)library;
 - (void)lock;
 - (id)particleSystems;
 - (id)physicsWorld;
@@ -94,8 +99,8 @@
 - (void)setFogStartDistance:(float)arg1;
 - (void)setFrameRate:(double)arg1;
 - (void)setLastEvalTime:(double)arg1;
-- (void)setLibrary:(struct __C3DLibrary { }*)arg1;
 - (void)setPaused:(BOOL)arg1;
+- (void)setPausedForEditing:(BOOL)arg1;
 - (void)setPlaybackSpeed:(float)arg1;
 - (void)setRootNode:(id)arg1;
 - (void)setSceneSource:(id)arg1;
@@ -106,6 +111,6 @@
 - (struct SCNVector3 { float x1; float x2; float x3; })upAxis;
 - (id)valueForUndefinedKey:(id)arg1;
 - (BOOL)writeToURL:(id)arg1 options:(id)arg2;
-- (BOOL)writeToURL:(id)arg1 options:(id)arg2 delegate:(id)arg3 progressHandler:(id)arg4;
+- (BOOL)writeToURL:(id)arg1 options:(id)arg2 delegate:(id)arg3 progressHandler:(id /* block */)arg4;
 
 @end

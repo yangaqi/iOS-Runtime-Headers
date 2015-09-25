@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/HealthKit.framework/HealthKit
  */
 
-@class NSString, _HKDimension, _HKFactorization;
-
 @interface HKUnit : NSObject <NSCopying, NSSecureCoding> {
     _HKFactorization *_baseUnitReduction;
     _HKFactorization *_dimensionReduction;
@@ -12,10 +10,10 @@
     double _scaleOffset;
 }
 
-@property(readonly) _HKFactorization * _baseUnits;
-@property(readonly) _HKDimension * dimension;
-@property(readonly) double scaleOffset;
-@property(readonly) NSString * unitString;
+@property (nonatomic, readonly) _HKFactorization *_baseUnits;
+@property (nonatomic, readonly) _HKDimension *dimension;
+@property (nonatomic, readonly) double scaleOffset;
+@property (readonly) NSString *unitString;
 
 + (id)_distanceUnitForLocale:(id)arg1;
 + (id)_foodEnergyUnitForLocale:(id)arg1;
@@ -30,6 +28,8 @@
 + (id)calorieUnit;
 + (id)centimeterOfWaterUnit;
 + (id)countUnit;
++ (id)cupImperialUnit;
++ (id)cupUSUnit;
 + (id)dayUnit;
 + (id)degreeCelsiusUnit;
 + (id)degreeFahrenheitUnit;
@@ -75,6 +75,7 @@
 + (id)unitFromLengthFormatterUnit:(int)arg1;
 + (id)unitFromMassFormatterUnit:(int)arg1;
 + (id)unitFromString:(id)arg1;
++ (id)yardUnit;
 
 - (void).cxx_destruct;
 - (id)_baseUnitReduction;

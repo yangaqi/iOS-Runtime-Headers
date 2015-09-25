@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIColor, _UILegibilitySettings;
-
 @interface _UIVibrantSettings : NSObject {
     UIColor *_chevronShimmerColor;
     UIColor *_highlightColor;
@@ -16,22 +14,22 @@
     UIColor *_tintColor;
 }
 
-@property(retain) UIColor * chevronShimmerColor;
-@property(retain) UIColor * highlightColor;
-@property(retain) UIColor * highlightLimitingColor;
-@property(readonly) _UILegibilitySettings * legibilitySettings;
-@property(readonly) UIColor * referenceColor;
-@property(readonly) float referenceContrast;
-@property(retain) UIColor * shimmerColor;
-@property(readonly) int style;
-@property(retain) UIColor * tintColor;
+@property (nonatomic, retain) UIColor *chevronShimmerColor;
+@property (nonatomic, retain) UIColor *highlightColor;
+@property (nonatomic, retain) UIColor *highlightLimitingColor;
+@property (nonatomic, readonly) _UILegibilitySettings *legibilitySettings;
+@property (nonatomic, readonly) UIColor *referenceColor;
+@property (nonatomic, readonly) float referenceContrast;
+@property (nonatomic, retain) UIColor *shimmerColor;
+@property (nonatomic, readonly) int style;
+@property (nonatomic, retain) UIColor *tintColor;
 
 + (id)vibrantSettingsWithReferenceColor:(id)arg1 referenceContrast:(float)arg2 legibilitySettings:(id)arg3;
 
+- (void).cxx_destruct;
 - (id)_computeSourceColorDodgeColorForDestinationColor:(id)arg1 producingLuminanceChange:(float)arg2;
 - (int)_style;
 - (id)chevronShimmerColor;
-- (void)dealloc;
 - (unsigned int)hash;
 - (id)highlightColor;
 - (id)highlightLimitingColor;

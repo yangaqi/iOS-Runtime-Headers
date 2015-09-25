@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CHDTrendlineLabel, EDString, OADGraphicProperties;
-
 @interface CHDTrendline : NSObject {
     double mBackward;
     bool mDisplayEquation;
@@ -23,6 +21,7 @@
 - (double)backward;
 - (void)dealloc;
 - (id)defaultNameWithSeriesName:(id)arg1;
+- (id)description;
 - (double)forward;
 - (id)graphicProperties;
 - (id)init;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
  */
 
-@class NSCalendar, _NSRefcountedPthreadMutex;
-
 @interface _NSCopyOnWriteCalendarWrapper : NSCalendar {
     _NSRefcountedPthreadMutex *_lock;
     NSCalendar *cal;
@@ -13,6 +11,7 @@
 + (id)currentCalendar;
 
 - (void)_copyWrappedCalendar;
+- (id)_init;
 - (id)_initWithCalendar:(id)arg1;
 - (id)calendarIdentifier;
 - (id)components:(unsigned int)arg1 fromDate:(id)arg2;
@@ -21,11 +20,10 @@
 - (id)dateByAddingComponents:(id)arg1 toDate:(id)arg2 options:(unsigned int)arg3;
 - (id)dateFromComponents:(id)arg1;
 - (void)dealloc;
-- (void)enumerateDatesStartingAfterDate:(id)arg1 matchingComponents:(id)arg2 options:(unsigned int)arg3 usingBlock:(id)arg4;
+- (void)enumerateDatesStartingAfterDate:(id)arg1 matchingComponents:(id)arg2 options:(unsigned int)arg3 usingBlock:(id /* block */)arg4;
 - (void)finalize;
 - (unsigned int)firstWeekday;
 - (unsigned int)hash;
-- (id)init;
 - (BOOL)isDateInWeekend:(id)arg1;
 - (id)locale;
 - (struct _NSRange { unsigned int x1; unsigned int x2; })maximumRangeOfUnit:(unsigned int)arg1;

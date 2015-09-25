@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SAHAEntity : SADomainObject
 
-@interface SAHAEntity : SADomainObject {
-}
+@property (nonatomic, copy) NSString *entityType;
+@property (nonatomic, copy) NSString *home;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *room;
+@property (nonatomic, copy) NSString *serviceType;
+@property (nonatomic, copy) NSString *zone;
 
-@property(copy) NSString * entityType;
-@property(copy) NSString * home;
-@property(copy) NSString * name;
-@property(copy) NSString * room;
-@property(copy) NSString * serviceType;
-@property(copy) NSString * zone;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)entity;
 + (id)entityWithDictionary:(id)arg1 context:(id)arg2;
@@ -30,7 +29,10 @@
 - (void)setRoom:(id)arg1;
 - (void)setServiceType:(id)arg1;
 - (void)setZone:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 - (id)zone;
+
+// Image: /System/Library/PrivateFrameworks/HomeKitDaemon.framework/HomeKitDaemon
+
+- (id)shortDescription;
 
 @end

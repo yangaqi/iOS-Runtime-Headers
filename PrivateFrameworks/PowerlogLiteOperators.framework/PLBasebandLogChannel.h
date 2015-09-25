@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@class <PLBasebandLogChannelDelegate>;
-
 @interface PLBasebandLogChannel : NSObject {
     BOOL cachingEnabled;
     <PLBasebandLogChannelDelegate> *delegate;
@@ -11,9 +9,9 @@
     struct __CFMessagePort { } *remotePort;
 }
 
-@property BOOL cachingEnabled;
-@property <PLBasebandLogChannelDelegate> * delegate;
-@property(readonly) BOOL isValid;
+@property (nonatomic) BOOL cachingEnabled;
+@property (nonatomic) <PLBasebandLogChannelDelegate> *delegate;
+@property (nonatomic, readonly) BOOL isValid;
 
 - (BOOL)cachingEnabled;
 - (void)close;
@@ -21,7 +19,7 @@
 - (void)connectionInvalidated:(id)arg1;
 - (void)dealloc;
 - (id)delegate;
-- (void)enableLogCodes:(id)arg1 andEvents:(id)arg2;
+- (void)enableLogCodes:(id)arg1 andEvents:(id)arg2 andExtraCode:(id)arg3;
 - (void)flush;
 - (id)init;
 - (void)invalidate;

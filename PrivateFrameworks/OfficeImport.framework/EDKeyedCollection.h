@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OITSUPointerKeyDictionary;
-
 @interface EDKeyedCollection : EDCollection {
-    OITSUPointerKeyDictionary *mMap;
+    OITSUIntegerKeyDictionary *mMap;
 }
 
 - (unsigned int)addObject:(id)arg1;

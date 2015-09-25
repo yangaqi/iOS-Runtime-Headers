@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIRemoveControlMinusButton, UIView;
-
 @interface UIRemoveControl : UIView {
     id _delegate;
     NSString *_label;
@@ -52,7 +50,7 @@
 - (id)delegate;
 - (void)hideControlsUsingRemoveAnimation;
 - (id)initWithTarget:(id)arg1;
-- (void)isHighlighted;
+- (BOOL)isHighlighted;
 - (BOOL)isRemoveButtonVisible;
 - (BOOL)isRemoveConfirmationVisible;
 - (void)layoutSubviews;

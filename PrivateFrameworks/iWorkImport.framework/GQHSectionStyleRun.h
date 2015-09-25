@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class GQDSStyle;
-
 @interface GQHSectionStyleRun : NSObject {
     struct { 
         int location; 
@@ -12,7 +10,6 @@
     GQDSStyle *mStyle;
 }
 
-- (id).cxx_construct;
 - (void)dealloc;
 
 @end

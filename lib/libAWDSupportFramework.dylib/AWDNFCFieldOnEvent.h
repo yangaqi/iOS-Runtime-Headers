@@ -2,30 +2,33 @@
    Image: /usr/lib/libAWDSupportFramework.dylib
  */
 
-@class NSData;
-
 @interface AWDNFCFieldOnEvent : PBCodable <NSCopying> {
     struct { 
         unsigned int timeDeltaFromReference : 1; 
         unsigned int timestamp : 1; 
+        unsigned int technology : 1; 
     } _has;
+    unsigned int _technology;
     unsigned long long _timeDeltaFromReference;
     unsigned long long _timestamp;
     NSData *_uuidReference;
 }
 
-@property BOOL hasTimeDeltaFromReference;
-@property BOOL hasTimestamp;
-@property(readonly) BOOL hasUuidReference;
-@property unsigned long long timeDeltaFromReference;
-@property unsigned long long timestamp;
-@property(retain) NSData * uuidReference;
+@property (nonatomic) BOOL hasTechnology;
+@property (nonatomic) BOOL hasTimeDeltaFromReference;
+@property (nonatomic) BOOL hasTimestamp;
+@property (nonatomic, readonly) BOOL hasUuidReference;
+@property (nonatomic) unsigned int technology;
+@property (nonatomic) unsigned long long timeDeltaFromReference;
+@property (nonatomic) unsigned long long timestamp;
+@property (nonatomic, retain) NSData *uuidReference;
 
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (BOOL)hasTechnology;
 - (BOOL)hasTimeDeltaFromReference;
 - (BOOL)hasTimestamp;
 - (BOOL)hasUuidReference;
@@ -33,11 +36,14 @@
 - (BOOL)isEqual:(id)arg1;
 - (void)mergeFrom:(id)arg1;
 - (BOOL)readFrom:(id)arg1;
+- (void)setHasTechnology:(BOOL)arg1;
 - (void)setHasTimeDeltaFromReference:(BOOL)arg1;
 - (void)setHasTimestamp:(BOOL)arg1;
+- (void)setTechnology:(unsigned int)arg1;
 - (void)setTimeDeltaFromReference:(unsigned long long)arg1;
 - (void)setTimestamp:(unsigned long long)arg1;
 - (void)setUuidReference:(id)arg1;
+- (unsigned int)technology;
 - (unsigned long long)timeDeltaFromReference;
 - (unsigned long long)timestamp;
 - (id)uuidReference;

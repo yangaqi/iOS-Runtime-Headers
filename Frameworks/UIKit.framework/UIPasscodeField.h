@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableArray, NSMutableString, NSString, UIButton;
-
 @interface UIPasscodeField : UIView <UITextFieldDelegate> {
     BOOL _centerHorizontally;
     id _delegate;
@@ -17,14 +15,15 @@
     NSMutableString *_value;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (float)defaultHeight;
 + (Class)textFieldClass;
 
+- (void).cxx_destruct;
 - (void)_textDidChange;
 - (void)_updateFields;
 - (void)appendString:(id)arg1;

@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
  */
 
-@interface MCLazyInitializationUtilities : NSObject {
-}
+@interface MCLazyInitializationUtilities : NSObject
 
 + (void)initAddressBook;
 + (void)initAppleKeyStore;
@@ -13,8 +12,12 @@
 + (void)initDataAccess;
 + (void)initImageIO;
 + (void)initPowerlog;
++ (void)initServerAccounts;
++ (void)initSetupAssistant;
++ (void)initSpringBoardServices;
++ (void)initSpringBoardUIServices;
 + (void)initVPNUtilities;
-+ (void)loadBundleAtURL:(id)arg1 completionBlock:(id)arg2;
-+ (void)loadNSBundleAtURL:(id)arg1 completionBlock:(id)arg2;
++ (void)loadBundleAtURL:(id)arg1 completionBlock:(id /* block */)arg2;
++ (void)loadNSBundleAtURL:(id)arg1 completionBlock:(id /* block */)arg2;
 
 @end

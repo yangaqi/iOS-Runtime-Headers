@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class CalendarEventAlarmTable, NSArray;
-
 @interface EKCalendarItemAlarmEditItem : EKCalendarItemEditItem {
     CalendarEventAlarmTable *_alarmTable;
     NSArray *_alarms;
@@ -13,6 +11,8 @@
     int _lastSeenAllDayState;
     BOOL _userChangedAlarm;
 }
+
++ (id)_labelTextForIndex:(unsigned int)arg1;
 
 - (void).cxx_destruct;
 - (BOOL)_alarmsMatchCalendarItem;

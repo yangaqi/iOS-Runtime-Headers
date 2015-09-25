@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/SiriTasks.framework/SiriTasks
  */
 
-@class CLLocation, NSData, NSNumber, NSString;
-
-@interface STMapItem : AFSiriModelObject {
+@interface STMapItem : STSiriModelObject {
     NSNumber *_businessID;
     BOOL _isCurrentLocation;
     NSNumber *_localSearchProviderID;

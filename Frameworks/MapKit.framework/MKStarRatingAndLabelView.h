@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class MKStarRatingView, NSArray, NSString, UILabel;
-
 @interface MKStarRatingAndLabelView : UIView {
     BOOL _displaysSourceOfReviews;
+    NSString *_fontStyleOverride;
     unsigned int _numberOfReviews;
     UILabel *_reviewsLabel;
     NSArray *_reviewsLabelConstraints;
@@ -13,25 +12,28 @@
     MKStarRatingView *_starRatingView;
 }
 
-@property unsigned int numberOfReviews;
-@property(readonly) UILabel * reviewsLabel;
-@property(retain) NSString * sourceName;
-@property(readonly) MKStarRatingView * starRatingView;
+@property (nonatomic, retain) NSString *fontStyleOverride;
+@property (nonatomic) unsigned int numberOfReviews;
+@property (nonatomic, readonly) UILabel *reviewsLabel;
+@property (nonatomic, retain) NSString *sourceName;
+@property (nonatomic, readonly) MKStarRatingView *starRatingView;
 
 - (void).cxx_destruct;
 - (void)_mapkit_setCalloutTextColor:(id)arg1;
 - (void)_updateFonts;
 - (void)dealloc;
+- (id)fontStyleOverride;
 - (id)initWithStyle:(int)arg1;
 - (struct CGSize { float x1; float x2; })intrinsicContentSize;
 - (unsigned int)numberOfReviews;
 - (id)reviewsLabel;
 - (void)setDisplaysSourceOfReviews:(BOOL)arg1;
+- (void)setFontStyleOverride:(id)arg1;
 - (void)setNumberOfReviews:(unsigned int)arg1;
 - (void)setSourceName:(id)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (id)sourceName;
 - (id)starRatingView;
-- (id)viewForBaselineLayout;
+- (id)viewForLastBaselineLayout;
 
 @end

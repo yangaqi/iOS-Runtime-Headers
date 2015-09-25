@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TSCH3DRenderProcessor : NSObject {
-}
+@interface TSCH3DRenderProcessor : NSObject
 
++ (void)initialize;
 + (id)processor;
 
 - (BOOL)canRenderPrefilteredLines;

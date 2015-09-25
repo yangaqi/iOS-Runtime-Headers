@@ -2,18 +2,16 @@
    Image: /System/Library/PrivateFrameworks/TelephonyUI.framework/TelephonyUI
  */
 
-@class NSMutableString, NSString;
-
 @interface TPPasscodeView : UIView {
     NSMutableString *_passcodeMutableString;
 }
 
-@property(retain) NSMutableString * passcodeMutableString;
-@property(readonly) NSString * passcodeString;
+@property (retain) NSMutableString *passcodeMutableString;
+@property (readonly) NSString *passcodeString;
 
+- (void).cxx_destruct;
 - (void)appendCharacter:(id)arg1;
 - (void)clear;
-- (void)dealloc;
 - (void)deleteLastCharacter;
 - (void)drawRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

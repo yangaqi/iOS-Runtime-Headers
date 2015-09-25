@@ -2,10 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIPopoverControllerDelegate>, NSArray, NSString, UIBarButtonItem, UIColor, UIDimmingView, UIPanGestureRecognizer, UIPopoverPresentationController, UIView, UIViewController, _UIPopoverLayoutInfo, _UIPopoverView;
-
 @interface UIPopoverController : NSObject <UIAppearanceContainer, UIDimmingViewDelegate, UIGestureRecognizerDelegatePrivate> {
-    BOOL _allowResizePastTargetRect;
     UIColor *_backgroundColor;
     UIViewController *_contentViewController;
     unsigned int _currentArrowDirection;
@@ -72,6 +69,7 @@
     int _presentationState;
     UIView *_presentingView;
     unsigned int _requestedArrowDirections;
+    UIPopoverController *_retainedSelf;
     BOOL _retainsSelfWhilePresented;
     BOOL _showsOrientationMarker;
     BOOL _showsPresentationArea;
@@ -106,31 +104,32 @@
     unsigned int draggingChildScrollViewCount;
 }
 
-@property(setter=_setIgnoresKeyboardNotifications:) BOOL _ignoresKeyboardNotifications;
-@property BOOL allowResizePastTargetRect;
-@property(copy) UIColor * backgroundColor;
-@property(retain) UIViewController * contentViewController;
-@property(copy,readonly) NSString * debugDescription;
-@property <UIPopoverControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(retain) UIDimmingView * dimmingView;
-@property BOOL dismissesOnRotation;
-@property(readonly) unsigned int hash;
-@property(copy) NSArray * passthroughViews;
-@property unsigned int popoverArrowDirection;
-@property(retain) Class popoverBackgroundViewClass;
-@property struct CGSize { float x1; float x2; } popoverContentSize;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } popoverLayoutMargins;
-@property(getter=isPopoverVisible,readonly) BOOL popoverVisible;
-@property(retain) _UIPopoverLayoutInfo * preferredLayoutInfo;
-@property(getter=_presentationController,setter=_setPresentationController:,retain) UIPopoverPresentationController * presentationController;
-@property(getter=_presentationEdge,setter=_setPresentationEdge:) unsigned int presentationEdge;
-@property(getter=_presentingView,setter=_setPresentingView:) UIView * presentingView;
-@property(getter=_retainsSelfWhilePresented,setter=_setRetainsSelfWhilePresented:) BOOL retainsSelfWhilePresented;
-@property BOOL showsOrientationMarker;
-@property BOOL showsPresentationArea;
-@property BOOL showsTargetRect;
-@property(readonly) Class superclass;
+@property (setter=_setIgnoresKeyboardNotifications:, nonatomic) BOOL _ignoresKeyboardNotifications;
+@property (nonatomic, copy) UIColor *backgroundColor;
+@property (nonatomic, retain) UIViewController *contentViewController;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <UIPopoverControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIDimmingView *dimmingView;
+@property (nonatomic) BOOL dismissesOnRotation;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSArray *passthroughViews;
+@property (nonatomic) unsigned int popoverArrowDirection;
+@property (nonatomic, retain) Class popoverBackgroundViewClass;
+@property (nonatomic) struct CGSize { float x1; float x2; } popoverContentSize;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } popoverLayoutMargins;
+@property (getter=isPopoverVisible, nonatomic, readonly) BOOL popoverVisible;
+@property (nonatomic, retain) _UIPopoverLayoutInfo *preferredLayoutInfo;
+@property (getter=_presentationController, setter=_setPresentationController:, nonatomic, retain) UIPopoverPresentationController *presentationController;
+@property (getter=_presentationEdge, setter=_setPresentationEdge:, nonatomic) unsigned int presentationEdge;
+@property (getter=_presentingView, setter=_setPresentingView:, nonatomic) UIView *presentingView;
+@property (getter=_retainsSelfWhilePresented, setter=_setRetainsSelfWhilePresented:, nonatomic) BOOL retainsSelfWhilePresented;
+@property (nonatomic) BOOL showsOrientationMarker;
+@property (nonatomic) BOOL showsPresentationArea;
+@property (nonatomic) BOOL showsTargetRect;
+@property (readonly) Class superclass;
+
+// Image: /System/Library/Frameworks/UIKit.framework/UIKit
 
 + (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_defaultPopoverLayoutMarginsForPopoverControllerStyle:(int)arg1 andContentViewController:(id)arg2;
 + (BOOL)_forceAttemptsToAvoidKeyboard;
@@ -140,6 +139,7 @@
 + (BOOL)_showTargetRectPref;
 + (BOOL)_useLegacyPopoverControllers;
 
+- (void).cxx_destruct;
 - (void)_adjustPopoverForNewContentSizeFromViewController:(id)arg1 allowShrink:(BOOL)arg2;
 - (BOOL)_attemptsToAvoidKeyboard;
 - (void)_beginMapsTransitionToNewViewController:(id)arg1 arrowDirections:(unsigned int)arg2 slideDuration:(double)arg3 expandDuration:(double)arg4;
@@ -147,7 +147,7 @@
 - (BOOL)_canRepresentAutomatically;
 - (struct CGPoint { float x1; float x2; })_centerPointForScale:(float)arg1 frame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 anchor:(struct CGPoint { float x1; float x2; })arg3;
 - (void)_commonPresentPopoverFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inView:(id)arg2 permittedArrowDirections:(unsigned int)arg3 animated:(BOOL)arg4;
-- (id)_completionBlockForDismissalWhenNotifyingDelegate:(BOOL)arg1;
+- (id /* block */)_completionBlockForDismissalWhenNotifyingDelegate:(BOOL)arg1;
 - (void)_containedViewControllerModalStateChanged;
 - (struct CGSize { float x1; float x2; })_currentPopoverContentSize;
 - (Class)_defaultChromeViewClass;
@@ -228,10 +228,8 @@
 - (void)_swipe:(id)arg1;
 - (void)_transitionFromViewController:(id)arg1 toViewController:(id)arg2 animated:(BOOL)arg3;
 - (void)_updateDimmingViewTransformForInterfaceOrientationOfHostingWindow:(id)arg1;
-- (BOOL)allowResizePastTargetRect;
 - (id)backgroundColor;
 - (id)contentViewController;
-- (id)copyScriptPopOver;
 - (void)dealloc;
 - (id)delegate;
 - (id)dimmingView;
@@ -254,7 +252,6 @@
 - (id)preferredLayoutInfo;
 - (void)presentPopoverFromBarButtonItem:(id)arg1 permittedArrowDirections:(unsigned int)arg2 animated:(BOOL)arg3;
 - (void)presentPopoverFromRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 inView:(id)arg2 permittedArrowDirections:(unsigned int)arg3 animated:(BOOL)arg4;
-- (void)setAllowResizePastTargetRect:(BOOL)arg1;
 - (void)setBackgroundColor:(id)arg1;
 - (void)setContentViewController:(id)arg1;
 - (void)setContentViewController:(id)arg1 animated:(BOOL)arg2;
@@ -275,5 +272,9 @@
 - (BOOL)showsOrientationMarker;
 - (BOOL)showsPresentationArea;
 - (BOOL)showsTargetRect;
+
+// Image: /System/Library/PrivateFrameworks/iTunesStoreUI.framework/iTunesStoreUI
+
+- (id)copyScriptPopOver;
 
 @end

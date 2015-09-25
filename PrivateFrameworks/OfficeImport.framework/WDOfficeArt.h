@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADDrawable, WDCharacterProperties;
-
 @interface WDOfficeArt : WDRun {
     OADDrawable *mDrawable;
     bool mFloating;
@@ -16,6 +14,7 @@
 - (void)clearDrawable;
 - (void)clearProperties;
 - (void)dealloc;
+- (id)description;
 - (id)drawable;
 - (id)imageBlipRef;
 - (id)imageData;

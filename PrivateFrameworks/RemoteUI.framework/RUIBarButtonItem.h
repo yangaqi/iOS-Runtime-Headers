@@ -2,12 +2,7 @@
    Image: /System/Library/PrivateFrameworks/RemoteUI.framework/RemoteUI
  */
 
-@class NSDictionary;
-
-@interface RUIBarButtonItem : RUIElement {
-}
-
-@property(retain) NSDictionary * attributes;
+@interface RUIBarButtonItem : RUIElement
 
 - (id)newBarButtonItemWithTarget:(id)arg1 action:(SEL)arg2;
 

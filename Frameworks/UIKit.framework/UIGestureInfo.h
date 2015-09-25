@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIGestureAnimation, UIScrollAnimation;
-
 @interface UIGestureInfo : NSObject {
     struct CGRect { 
         struct CGPoint { 
@@ -74,6 +72,7 @@
     int zoomState;
 }
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)init;
 

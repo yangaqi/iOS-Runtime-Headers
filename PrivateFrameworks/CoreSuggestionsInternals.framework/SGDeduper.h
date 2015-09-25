@@ -2,18 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
  */
 
-@interface SGDeduper : NSObject {
-}
+@interface SGDeduper : NSObject
 
-+ (id)bucketerWithMapping:(id)arg1;
-+ (id)dedupe:(id)arg1 bucketer:(id)arg2 resolver:(id)arg3;
++ (id)_dedupeGenericContactDetails:(id)arg1;
++ (id)_dedupePostalAddresses:(id)arg1;
++ (id /* block */)bucketerWithEqualityTest:(id /* block */)arg1;
++ (id /* block */)bucketerWithLabeledBuckets:(id /* block */)arg1;
++ (id /* block */)bucketerWithMapping:(id /* block */)arg1;
++ (id)dedupe:(id)arg1 bucketer:(id /* block */)arg2 resolver:(id /* block */)arg3;
 + (id)dedupeContactDetails:(id)arg1;
 + (id)nearDuplicateEKEventOfPseudoEventTitle:(id)arg1 inEKEventsWithSameStartTime:(id)arg2;
-+ (id)nearDuplicateOfPseudoEventTitle:(id)arg1 inCuratedEventsWithSameStartTime:(id)arg2;
-+ (id)resolveByPairs:(id)arg1;
-+ (id)resolveByScoreBreakTiesArbitrarily:(id)arg1;
-+ (id)resolveContactDetailUsingIsCuratedFn:(id)arg1 labelLengthFn:(id)arg2;
-+ (id)resolveSGContactDetailsPreferringCuratedDetails;
-+ (id)resolveSGObjectsPreferringCuratedDetails;
++ (id /* block */)resolveByPairs:(id /* block */)arg1;
++ (id /* block */)resolveByScoreBreakTiesArbitrarily:(id /* block */)arg1;
++ (id /* block */)resolveSGContactDetailsPreferringPhraseExtractionsAndLabels;
++ (id)splitContactDetailsByType:(id)arg1;
 
 @end

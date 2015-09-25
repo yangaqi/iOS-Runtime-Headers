@@ -2,9 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VoiceMemos.framework/VoiceMemos
  */
 
-@interface RCGLKViewEAGLLayer : CAEAGLLayer {
-}
-
-- (void)setDrawableProperties:(id)arg1;
+@interface RCGLKViewEAGLLayer : CAEAGLLayer
 
 @end

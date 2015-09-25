@@ -2,10 +2,9 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVMutableScheduledAudioParameters, NSString;
-
 @interface AVAudioMixInputParametersInternal : NSObject {
     NSString *audioTimePitchAlgorithm;
+    AVAudioMixEffectParameters *effectParameters;
     AVMutableScheduledAudioParameters *scheduledAudioParameters;
     struct opaqueMTAudioProcessingTap { } *tap;
     int trackID;

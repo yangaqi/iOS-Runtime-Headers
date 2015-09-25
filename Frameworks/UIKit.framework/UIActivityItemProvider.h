@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIActivityItemProvider : NSOperation <UIActivityItemSource> {
     NSString *_activityType;
     id _placeholderItem;
@@ -12,21 +10,22 @@
     NSString *_status;
 }
 
-@property(readonly) NSString * activityType;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) id placeholderItem;
-@property float progress;
-@property(retain) id providedItem;
-@property(copy) NSString * status;
-@property(readonly) Class superclass;
+@property (nonatomic, copy) NSString *activityType;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) id placeholderItem;
+@property (nonatomic) float progress;
+@property (nonatomic, retain) id providedItem;
+@property (nonatomic, copy) NSString *status;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (void)_setActivityType:(id)arg1;
 - (id)activityType;
 - (id)activityViewController:(id)arg1 itemForActivityType:(id)arg2;
 - (id)activityViewControllerPlaceholderItem:(id)arg1;
-- (void)dealloc;
+- (id)init;
 - (id)initWithPlaceholderItem:(id)arg1;
 - (id)item;
 - (void)main;

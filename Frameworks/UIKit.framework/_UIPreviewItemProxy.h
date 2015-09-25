@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, NSURL;
-
 @interface _UIPreviewItemProxy : NSObject {
     NSURL *_URL;
     NSURL *_URLToDeleteOnDealloc;
@@ -13,12 +11,13 @@
     NSURL *_previewURLOverride;
 }
 
-@property(copy) NSURL * URLToDeleteOnDealloc;
-@property(copy) NSString * previewItemContentType;
-@property(copy) NSString * previewItemTitle;
-@property(copy) NSURL * previewItemURL;
-@property(copy) NSURL * previewItemURLOverride;
+@property (nonatomic, copy) NSURL *URLToDeleteOnDealloc;
+@property (nonatomic, copy) NSString *previewItemContentType;
+@property (nonatomic, copy) NSString *previewItemTitle;
+@property (nonatomic, copy) NSURL *previewItemURL;
+@property (nonatomic, copy) NSURL *previewItemURLOverride;
 
+- (void).cxx_destruct;
 - (id)URLToDeleteOnDealloc;
 - (id)_primitive_previewItemContentType;
 - (void)dealloc;

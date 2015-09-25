@@ -2,17 +2,16 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImage, _UIImageViewPretiledImageCacheKey;
-
 @interface _UIImageViewPretiledImageWrapper : NSObject {
     _UIImageViewPretiledImageCacheKey *_cacheKey;
     UIImage *_pretiledImage;
 }
 
-@property(readonly) UIImage * pretiledImage;
+@property (nonatomic, readonly) UIImage *pretiledImage;
 
 + (id)cacheValueWithPretiledImage:(id)arg1 cacheKey:(id)arg2;
 
+- (void).cxx_destruct;
 - (void)dealloc;
 - (id)description;
 - (unsigned int)hash;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class NSDictionary, NSMutableDictionary, NSObject<OS_dispatch_semaphore>, NSTimer;
-
 @interface WiFiUtils : NSObject {
     BOOL _joinInProgress;
     NSMutableDictionary *_missingBSSIDCounts;
@@ -18,9 +16,9 @@
     struct WiFiShimContext { } *_wifiShim;
 }
 
-@property(retain) NSTimer * _scanTimer;
-@property double periodicScanInterval;
-@property int periodicScanType;
+@property (nonatomic, retain) NSTimer *_scanTimer;
+@property (nonatomic) double periodicScanInterval;
+@property (nonatomic) int periodicScanType;
 
 + (int)barsForRSSI:(int)arg1;
 + (id)copyFilteredNetworks:(id)arg1 ignoreOptions:(int)arg2;
@@ -60,17 +58,17 @@
 + (void)sharedInstanceRelease;
 + (BOOL)stringArray:(id)arg1 containsBSSID:(id)arg2;
 
-- (long)_asyncWiFiScan:(int)arg1 isPeriodic:(BOOL)arg2;
+- (long)_asyncWiFiScan:(id)arg1 wifiType:(int)arg2 merge:(BOOL)arg3 maxAge:(unsigned int)arg4 isPeriodic:(BOOL)arg5;
 - (id)_scanTimer;
 - (void)activateScanning:(BOOL)arg1;
 - (BOOL)airPortIsOn;
-- (long)asyncWiFiScan:(int)arg1;
+- (long)asyncWiFiScan:(id)arg1 wifiType:(int)arg2 merge:(BOOL)arg3 maxAge:(unsigned int)arg4;
 - (void)asyncWiFiScanThread:(id)arg1;
 - (void)cancelAsync;
 - (long)clearScanCacheSync;
 - (long)closeWiFi;
 - (void)dealloc;
-- (long)dissassociateSync;
+- (long)disassociateSync;
 - (BOOL)getAutoJoinState;
 - (id)getCurrentAssociationInfo;
 - (id)getCurrentAssociationInfoOrNil;
@@ -86,8 +84,8 @@
 - (BOOL)isScanningActive;
 - (long)joinNetworkWithNameAsync:(id)arg1 password:(id)arg2 rememberChoice:(int)arg3;
 - (void)joinNetworkWithNameThread:(id)arg1;
-- (long)joinNetworkWithScanInfo:(id)arg1 password:(id)arg2 rememberChoice:(int)arg3;
 - (long)joinNetworkWithScanInfoAsync:(id)arg1 password:(id)arg2 rememberChoice:(int)arg3;
+- (long)joinNetworkWithScanInfoSync:(id)arg1 password:(id)arg2 rememberChoice:(int)arg3;
 - (void)joinNetworkWithScanInfoThread:(id)arg1;
 - (void)mergeScanResults:(id)arg1;
 - (id)mergedScanInfoArray;
@@ -97,9 +95,6 @@
 - (id)resetScanInfosOfType:(int)arg1;
 - (id)scanInfoForMACAddress:(id)arg1;
 - (id)scanInfoForName:(id)arg1 wifiType:(int)arg2;
-- (long)scanInfoViaDirectedScanAsync:(id)arg1 wifiType:(int)arg2 retries:(int)arg3;
-- (long)scanInfoViaDirectedScanSync:(id)arg1 wifiType:(int)arg2 scanInfo:(id*)arg3;
-- (void)scanInfoViaDirectedScanThread:(id)arg1;
 - (void)scanTimerCallback:(id)arg1;
 - (long)setAutoJoinState:(BOOL)arg1;
 - (void)setJoinInProgress:(BOOL)arg1;

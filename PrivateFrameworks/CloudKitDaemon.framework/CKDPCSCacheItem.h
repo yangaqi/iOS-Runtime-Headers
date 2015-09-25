@@ -2,22 +2,20 @@
    Image: /System/Library/PrivateFrameworks/CloudKitDaemon.framework/CloudKitDaemon
  */
 
-@class CKDPCSData, NSError, NSObject<OS_dispatch_group>;
-
 @interface CKDPCSCacheItem : NSObject {
     NSError *_fetchError;
     NSObject<OS_dispatch_group> *_fetchGroup;
     CKDPCSData *_pcsData;
 }
 
-@property(retain) NSError * fetchError;
-@property(retain) NSObject<OS_dispatch_group> * fetchGroup;
-@property(retain) CKDPCSData * pcsData;
+@property (nonatomic, retain) NSError *fetchError;
+@property (nonatomic, retain) NSObject<OS_dispatch_group> *fetchGroup;
+@property (nonatomic, retain) CKDPCSData *pcsData;
 
 - (void).cxx_destruct;
 - (id)fetchError;
 - (id)fetchGroup;
-- (id)initWithFetchGroup:(id)arg1;
+- (id)init;
 - (id)pcsData;
 - (void)setFetchError:(id)arg1;
 - (void)setFetchGroup:(id)arg1;

@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <AVAudioSessionDelegateMediaPlayerOnly>, AVWeakReference, NSString;
-
 @interface AVAudioSessionMediaPlayerOnlyInternal : NSObject {
+    NSDictionary *activationContext;
     NSString *category;
     <AVAudioSessionDelegateMediaPlayerOnly> *delegate;
     struct OpaqueFigPlayer { } *figPlayer;

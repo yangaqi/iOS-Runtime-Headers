@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class ALAsset, ALAssetsLibrary, NSCondition, NSURL;
-
 @interface _UIGetAssetThread : NSThread {
     ALAsset *_asset;
     NSCondition *_condition;
@@ -11,12 +9,12 @@
     NSURL *_url;
 }
 
-@property(retain) ALAsset * asset;
-@property(retain) NSCondition * condition;
+@property (retain) ALAsset *asset;
+@property (retain) NSCondition *condition;
 
+- (void).cxx_destruct;
 - (id)asset;
 - (id)condition;
-- (void)dealloc;
 - (id)initWithURL:(id)arg1 assetsLibrary:(id)arg2;
 - (void)main;
 - (void)setAsset:(id)arg1;

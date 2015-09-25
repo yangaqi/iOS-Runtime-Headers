@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/FamilyCircle.framework/FamilyCircle
  */
 
-@class NSObject<OS_dispatch_queue>;
-
 @interface FALogging : NSObject {
     NSObject<OS_dispatch_queue> *_logQueue;
     BOOL _logToFile;

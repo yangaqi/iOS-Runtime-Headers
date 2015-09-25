@@ -2,15 +2,13 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CAAnimation;
-
 @interface _UIViewAdditiveAnimationAction : NSObject <CAAction> {
     CAAnimation *_pendingAnimation;
 }
 
-@property(retain,readonly) CAAnimation * pendingAnimation;
+@property (nonatomic, readonly, retain) CAAnimation *pendingAnimation;
 
-- (void)dealloc;
+- (void).cxx_destruct;
 - (id)initWithPendingAnimation:(id)arg1;
 - (id)pendingAnimation;
 - (void)runActionForKey:(id)arg1 object:(id)arg2 arguments:(id)arg3;

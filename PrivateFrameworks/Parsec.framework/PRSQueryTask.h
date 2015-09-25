@@ -2,13 +2,14 @@
    Image: /System/Library/PrivateFrameworks/Parsec.framework/Parsec
  */
 
-@class <PRSSearchQueryHandler>, NSObject<OS_dispatch_queue>, NSString, PRSSearchFeedback, PRSSearchSession;
-
 @interface PRSQueryTask : NSObject {
     BOOL _canceled;
+    NSDictionary *_category_stats;
     NSString *_fbq;
     PRSSearchFeedback *_feedback;
     <PRSSearchQueryHandler> *_handler;
+    NSString *_keyboardLanguage;
+    NSArray *_parsecCategoryOrder;
     int _queryId;
     NSObject<OS_dispatch_queue> *_queue;
     id _representedObject;
@@ -17,15 +18,18 @@
     BOOL _webSearch;
 }
 
-@property BOOL canceled;
-@property(retain) NSString * fbq;
-@property(retain) PRSSearchFeedback * feedback;
-@property(retain) <PRSSearchQueryHandler> * handler;
+@property (nonatomic) BOOL canceled;
+@property (nonatomic, retain) NSDictionary *category_stats;
+@property (nonatomic, retain) NSString *fbq;
+@property (retain) PRSSearchFeedback *feedback;
+@property (nonatomic, retain) <PRSSearchQueryHandler> *handler;
+@property (nonatomic, retain) NSString *keyboardLanguage;
+@property (nonatomic, retain) NSArray *parsecCategoryOrder;
 @property int queryId;
-@property(retain) NSObject<OS_dispatch_queue> * queue;
-@property(retain) id representedObject;
-@property PRSSearchSession * session;
-@property BOOL started;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
+@property (nonatomic) id representedObject;
+@property (nonatomic) PRSSearchSession *session;
+@property (nonatomic) BOOL started;
 @property BOOL webSearch;
 
 + (void)initialize;
@@ -35,21 +39,27 @@
 - (void).cxx_destruct;
 - (void)cancel;
 - (BOOL)canceled;
+- (id)category_stats;
 - (id)fbq;
 - (id)feedback;
 - (id)feedbackQueryIdentifier;
 - (id)handler;
 - (id)initWithSession:(id)arg1 handler:(id)arg2 queue:(id)arg3 feedback:(id)arg4;
 - (void)invalidateHandler;
+- (id)keyboardLanguage;
+- (id)parsecCategoryOrder;
 - (int)queryId;
 - (id)queue;
 - (id)representedObject;
 - (void)resume;
 - (id)session;
 - (void)setCanceled:(BOOL)arg1;
+- (void)setCategory_stats:(id)arg1;
 - (void)setFbq:(id)arg1;
 - (void)setFeedback:(id)arg1;
 - (void)setHandler:(id)arg1;
+- (void)setKeyboardLanguage:(id)arg1;
+- (void)setParsecCategoryOrder:(id)arg1;
 - (void)setQueryId:(int)arg1;
 - (void)setQueue:(id)arg1;
 - (void)setRepresentedObject:(id)arg1;

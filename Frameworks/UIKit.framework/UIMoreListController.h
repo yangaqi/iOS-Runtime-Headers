@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSString, UIBarButtonItem, UIMoreListCellLayoutManager, UITableView;
-
 @interface UIMoreListController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     BOOL _allowsCustomizing;
     BOOL _disableCustomizing;
@@ -15,14 +13,15 @@
     UITableView *_table;
 }
 
-@property BOOL allowsCustomizing;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) NSArray * moreViewControllers;
-@property BOOL moreViewControllersChanged;
-@property(readonly) Class superclass;
+@property (nonatomic) BOOL allowsCustomizing;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSArray *moreViewControllers;
+@property (nonatomic) BOOL moreViewControllersChanged;
+@property (readonly) Class superclass;
 
+- (void).cxx_destruct;
 - (BOOL)_isSupportedInterfaceOrientation:(int)arg1;
 - (void)_layoutCells;
 - (id)_targetNavigationController;
@@ -30,7 +29,6 @@
 - (BOOL)_viewControllerWasSelected;
 - (void)_willChangeToIdiom:(int)arg1 onScreen:(id)arg2;
 - (BOOL)allowsCustomizing;
-- (void)dealloc;
 - (void)decodeRestorableStateWithCoder:(id)arg1;
 - (void)encodeRestorableStateWithCoder:(id)arg1;
 - (id)init;

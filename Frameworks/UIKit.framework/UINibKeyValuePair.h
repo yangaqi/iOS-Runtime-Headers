@@ -2,21 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UINibKeyValuePair : NSObject {
     NSString *keyPath;
     id object;
     id value;
 }
 
-@property(readonly) NSString * keyPath;
-@property(readonly) id object;
-@property(readonly) id value;
+@property (nonatomic, readonly, copy) NSString *keyPath;
+@property (nonatomic, readonly) id object;
+@property (nonatomic, readonly) id value;
 
+- (void).cxx_destruct;
 - (void)apply;
 - (void)applyForSimulator;
-- (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithObject:(id)arg1 keyPath:(id)arg2 value:(id)arg3;

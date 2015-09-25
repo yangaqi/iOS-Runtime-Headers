@@ -2,33 +2,23 @@
    Image: /System/Library/PrivateFrameworks/AppLaunchStats.framework/AppLaunchStats
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class AppLaunchStatsSaveAndRestore, AppLaunchStatsState, BKSApplicationStateMonitor, NSMutableDictionary, NSMutableString, NSObject<OS_dispatch_queue>;
-
 @interface AppLaunchStatsSBMonitor : NSObject <DuetLoggerProtocol, DuetSaveAndRestore> {
     BOOL _enableAppSwitcherCheck;
     BOOL _enableWasRecentlyLaunched;
     AppLaunchStatsState *aplsState;
     BKSApplicationStateMonitor *appStateMonitor;
     NSMutableDictionary *blackListed;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id callback;
-
-    NSMutableString *foreGroundApp;
+    id /* block */ callback;
+    NSMutableSet *foreGroundApps;
     NSMutableDictionary *recentList;
     AppLaunchStatsSaveAndRestore *saveAndRestoreContext;
     NSObject<OS_dispatch_queue> *sbMonitorQueue;
     NSMutableDictionary *trendList;
 }
 
-@property(readonly) BOOL enableAppSwitcherCheck;
-@property(readonly) BOOL enableWasRecentlyLaunched;
-@property(readonly) NSMutableString * foreGroundApp;
+@property (nonatomic, readonly) BOOL enableAppSwitcherCheck;
+@property (nonatomic, readonly) BOOL enableWasRecentlyLaunched;
+@property (nonatomic, readonly) NSMutableSet *foreGroundApps;
 
 - (void).cxx_destruct;
 - (void)addToBlackList:(id)arg1;
@@ -37,11 +27,13 @@
 - (void)clearTrendingCache;
 - (BOOL)enableAppSwitcherCheck;
 - (BOOL)enableWasRecentlyLaunched;
-- (id)foreGroundApp;
-- (id)init:(id)arg1 withCallback:(id)arg2;
+- (id)foreGroundApps;
+- (id)foregroundAppsSnapshot;
+- (id)init:(id)arg1 withCallback:(id /* block */)arg2;
 - (void)initListenerForAppStateChange;
 - (bool)isForeGroundApp:(id)arg1;
 - (bool)isRemovedFromAppSwitcher:(id)arg1;
+- (bool)isSiriRunning;
 - (void)logAll:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
 - (void)logLight:(struct __asl_object_s { }*)arg1 withMsg:(struct __asl_object_s { }*)arg2 withLevel:(int)arg3;
 - (void)reloadConfiguration;

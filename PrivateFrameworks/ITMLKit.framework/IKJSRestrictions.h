@@ -2,25 +2,26 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class NSString;
+@interface IKJSRestrictions : IKJSObject <IKJSRestrictions, JSExport>
 
-@interface IKJSRestrictions : IKJSObject <IKJSRestrictions> {
-}
-
-@property(readonly) BOOL allowsErotica;
-@property(readonly) BOOL allowsExplicit;
-@property(readonly) BOOL appInstallationAllowed;
-@property(readonly) int maxAppRank;
-@property(readonly) NSString * maxAppRating;
-@property(readonly) int maxMovieRank;
-@property(readonly) int maxTVShowRank;
+@property (nonatomic, readonly) BOOL allowArtistActivity;
+@property (nonatomic, readonly) BOOL allowsErotica;
+@property (nonatomic, readonly) BOOL allowsExplicit;
+@property (nonatomic, readonly) BOOL appAnalyticsAllowed;
+@property (nonatomic, readonly) BOOL appInstallationAllowed;
+@property (nonatomic, readonly) int maxAppRank;
+@property (nonatomic, readonly) NSString *maxAppRating;
+@property (nonatomic, readonly) int maxMovieRank;
+@property (nonatomic, readonly) int maxTVShowRank;
 
 + (id)restrictionsDidChangeNotificationName;
 
 - (id)_contentRestrictionsCountryCode;
 - (id)_ratingForSetting:(id)arg1 domain:(id)arg2 countryCode:(id)arg3;
+- (BOOL)allowArtistActivity;
 - (BOOL)allowsErotica;
 - (BOOL)allowsExplicit;
+- (BOOL)appAnalyticsAllowed;
 - (BOOL)appInstallationAllowed;
 - (int)maxAppRank;
 - (id)maxAppRating;

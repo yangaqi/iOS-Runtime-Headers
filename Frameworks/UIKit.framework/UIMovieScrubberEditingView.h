@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIImageView;
-
 @interface UIMovieScrubberEditingView : UIView {
     NSArray *_activeImages;
     NSArray *_activeNoEditImages;
@@ -16,17 +14,17 @@
     UIImageView *_rightImageView;
 }
 
-@property float edgeInset;
-@property(getter=isEditing) BOOL editing;
-@property(getter=isEnabled) BOOL enabled;
+@property (nonatomic) float edgeInset;
+@property (getter=isEditing, nonatomic) BOOL editing;
+@property (getter=isEnabled, nonatomic) BOOL enabled;
 
+- (void).cxx_destruct;
 - (float)_bounceValueForFraction:(float)arg1;
 - (id)_handleImages;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_leftHandleRect;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_rightHandleRect;
 - (void)_updateHandleImages;
 - (void)bounce;
-- (void)dealloc;
 - (float)edgeInset;
 - (int)handleForPoint:(struct CGPoint { float x1; float x2; })arg1 hitOffset:(float*)arg2;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKBRenderConfig, UIKeyboardEmojiGraphicsTraits, UIKeyboardEmojiInputController, UIKeyboardEmojiView, UIResponder, UITouch, UIView;
-
 @interface UIKeyboardEmojiCollectionView : UICollectionView {
     UITouch *_activeTouch;
     UIKeyboardEmojiGraphicsTraits *_emojiGraphicsTraits;
@@ -16,16 +14,17 @@
     UIKeyboardEmojiView *_touched;
 }
 
-@property(retain) UITouch * activeTouch;
-@property(retain,readonly) UIKeyboardEmojiGraphicsTraits * emojiGraphicsTraits;
-@property UIResponder * hitTestResponder;
-@property(retain) UIKeyboardEmojiInputController * inputController;
-@property(retain) UIKeyboardEmojiView * onDisplay;
-@property(retain) UIKeyboardEmojiView * pendingDisplay;
-@property(retain) UIKBRenderConfig * renderConfig;
-@property(retain) UIKeyboardEmojiView * touched;
+@property (retain) UITouch *activeTouch;
+@property (readonly, retain) UIKeyboardEmojiGraphicsTraits *emojiGraphicsTraits;
+@property (nonatomic) UIResponder *hitTestResponder;
+@property (retain) UIKeyboardEmojiInputController *inputController;
+@property (retain) UIKeyboardEmojiView *onDisplay;
+@property (retain) UIKeyboardEmojiView *pendingDisplay;
+@property (retain) UIKBRenderConfig *renderConfig;
+@property (retain) UIKeyboardEmojiView *touched;
 
 - (float)_currentScreenScale;
+- (BOOL)_shouldReverseLayoutDirection;
 - (id)activeTouch;
 - (id)closestCellForPoint:(struct CGPoint { float x1; float x2; })arg1;
 - (void)dealloc;

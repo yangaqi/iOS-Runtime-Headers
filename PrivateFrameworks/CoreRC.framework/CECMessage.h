@@ -10,14 +10,14 @@
     } _frame;
 }
 
-@property(readonly) unsigned char destination;
-@property(readonly) struct CECFrame { unsigned char x1[16]; unsigned int x2 : 5; unsigned int x3 : 3; } frame;
-@property(readonly) unsigned char initiator;
-@property(readonly) BOOL isBroadcast;
-@property(readonly) unsigned char length;
-@property(readonly) int messageType;
-@property(readonly) double nominalLatency;
-@property(readonly) BOOL shouldBeIgnored;
+@property (nonatomic, readonly) unsigned char destination;
+@property (nonatomic, readonly) struct CECFrame { unsigned char x1[16]; unsigned int x2 : 5; unsigned int x3 : 3; } frame;
+@property (nonatomic, readonly) unsigned char initiator;
+@property (nonatomic, readonly) BOOL isBroadcast;
+@property (nonatomic, readonly) unsigned char length;
+@property (nonatomic, readonly) int messageType;
+@property (nonatomic, readonly) double nominalLatency;
+@property (nonatomic, readonly) BOOL shouldBeIgnored;
 
 + (id)abortFrom:(unsigned char)arg1 to:(unsigned char)arg2;
 + (id)activeSourceFrom:(unsigned char)arg1 physicalAddress:(unsigned short)arg2;
@@ -36,6 +36,7 @@
 + (id)giveSystemAudioModeStatusFrom:(unsigned char)arg1 to:(unsigned char)arg2;
 + (id)imageViewOnFrom:(unsigned char)arg1 to:(unsigned char)arg2;
 + (id)inactiveSourceFrom:(unsigned char)arg1 to:(unsigned char)arg2 physicalAddress:(unsigned short)arg3;
++ (id)menuStatus:(unsigned char)arg1 from:(unsigned char)arg2 to:(unsigned char)arg3;
 + (id)messageWithFrame:(struct CECFrame { unsigned char x1[16]; unsigned int x2 : 5; unsigned int x3 : 3; })arg1;
 + (id)playWithMode:(unsigned char)arg1 from:(unsigned char)arg2 to:(unsigned char)arg3;
 + (id)pollFrom:(unsigned char)arg1 to:(unsigned char)arg2;
@@ -73,6 +74,7 @@
 - (BOOL)parseFeatureAbortOpcode:(char *)arg1 reason:(unsigned char*)arg2;
 - (BOOL)parseGiveDeckStatusRequest:(unsigned char*)arg1;
 - (BOOL)parseInactiveSourcePhysicalAddress:(unsigned int*)arg1;
+- (BOOL)parseMenuRequest:(unsigned char*)arg1;
 - (BOOL)parsePlayMode:(unsigned int*)arg1;
 - (BOOL)parseReportPhysicalAddress:(unsigned int*)arg1 deviceType:(unsigned int*)arg2;
 - (BOOL)parseReportPowerStatus:(unsigned int*)arg1;

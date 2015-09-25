@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
  */
 
-@class NSMutableArray, NSNumber, NSString, NSThread, NSTimer;
-
 @interface SGRTCLogging : NSObject <NSCoding> {
     struct _opaque_pthread_mutex_t { 
         long __sig; 
@@ -19,25 +17,28 @@
 
 + (BOOL)createEmptyFileAtPath:(id)arg1;
 + (id)defaultLogger;
-+ (id)defaultPath;
 + (id)inMemoryLogger;
 
 - (void).cxx_destruct;
 - (void)dealloc;
 - (void)encodeWithCoder:(id)arg1;
-- (void)enumerateLoggedEvents:(id)arg1;
+- (void)enumerateLoggedEvents:(id /* block */)arg1;
 - (id)getLoggingString;
 - (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFilename:(id)arg1;
 - (id)initWithInMemoryStore;
-- (void)logEventResponseWithTemplateShortName:(id)arg1 latencyInMs:(unsigned long long)arg2;
-- (void)logExceptionFromTemplate:(id)arg1;
+- (void)logEventResponseWithTemplateShortName:(id)arg1 latencyInMs:(unsigned long long)arg2 emailDateReceived:(id)arg3;
+- (void)logExceptionFromTemplate:(id)arg1 errorMessage:(id)arg2 emailDateReceived:(id)arg3;
+- (void)logFailureResolvingAirportCodeFromFlightData:(id)arg1;
+- (void)logKeyValuesFromDictionary:(id)arg1;
+- (void)logOutputIssueFromTemplate:(id)arg1;
 - (id)loggedEvents;
 - (id)metricNameForShortName:(id)arg1;
 - (void)persistLogs;
 - (BOOL)resetLogs;
 - (BOOL)sendLogsUsingRTC;
+- (void)sendMessageToRTC:(id)arg1 category:(unsigned short)arg2 payload:(id)arg3;
 - (id)shortNameForMetricNamed:(id)arg1;
 - (double)storeAge;
 - (BOOL)storeToDisk;

@@ -2,11 +2,11 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSArray;
-
 @interface NSParagraphStyleExtraData : NSObject {
     int _headerLevel;
     float _hyphenationFactor;
+    unsigned long _lineBoundsOptions;
+    unsigned int _lineBreakStrategy;
     float _lineHeightMultiple;
     float _paragraphSpacingBefore;
     NSArray *_textBlocks;

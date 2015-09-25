@@ -2,13 +2,10 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString;
+@interface SATimerObject : SADomainObject
 
-@interface SATimerObject : SADomainObject {
-}
-
-@property(copy) NSString * state;
-@property(copy) NSNumber * timerValue;
+@property (nonatomic, copy) NSString *state;
+@property (nonatomic, copy) NSNumber *timerValue;
 
 + (id)object;
 + (id)objectWithDictionary:(id)arg1 context:(id)arg2;
@@ -19,6 +16,5 @@
 - (void)setTimerValue:(id)arg1;
 - (id)state;
 - (id)timerValue;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
 
 @end

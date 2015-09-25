@@ -2,34 +2,32 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class <PKAddPassesViewControllerDelegate>, NSArray, NSDate, NSURL, PKRemoteAddPassesViewController, _UIAsyncInvocation;
-
 @interface PKAddPassesViewController : UIViewController {
     NSURL *_URL;
     BOOL _allowsPassIngestion;
     _UIAsyncInvocation *_cancelViewServiceRequest;
+    PKAssertion *_contactlessInterfaceAssertion;
     <PKAddPassesViewControllerDelegate> *_delegate;
     NSArray *_passes;
     NSDate *_perfTestingForIngestion;
-    int _previousStatusBarStyle;
     PKRemoteAddPassesViewController *_remoteViewController;
     BOOL _succeeded;
     BOOL _viewHasAppeared;
 }
 
-@property(retain) NSURL * URL;
-@property(retain) _UIAsyncInvocation * cancelViewServiceRequest;
-@property <PKAddPassesViewControllerDelegate> * delegate;
-@property(retain) NSArray * passes;
-@property int previousStatusBarStyle;
-@property(retain) PKRemoteAddPassesViewController * remoteViewController;
+@property (nonatomic, retain) NSURL *URL;
+@property (nonatomic, retain) _UIAsyncInvocation *cancelViewServiceRequest;
+@property (nonatomic) <PKAddPassesViewControllerDelegate> *delegate;
+@property (nonatomic, retain) NSArray *passes;
+@property (nonatomic, retain) PKRemoteAddPassesViewController *remoteViewController;
 
 + (BOOL)_shouldForwardViewWillTransitionToSize;
 + (BOOL)canAddPasses;
 
 - (id)URL;
-- (void)_transitionDidStop:(id)arg1 finished:(id)arg2;
 - (id)cancelViewServiceRequest;
+- (id)childViewControllerForStatusBarHidden;
+- (id)childViewControllerForStatusBarStyle;
 - (void)dealloc;
 - (id)delegate;
 - (void)ingestionDidFinishWithResult:(int)arg1;
@@ -39,13 +37,13 @@
 - (int)modalPresentationStyle;
 - (int)modalTransitionStyle;
 - (id)passes;
-- (int)previousStatusBarStyle;
+- (int)preferredStatusBarStyle;
+- (BOOL)prefersStatusBarHidden;
 - (id)remoteViewController;
 - (void)setAllowsPassIngestion:(BOOL)arg1;
 - (void)setCancelViewServiceRequest:(id)arg1;
 - (void)setDelegate:(id)arg1;
 - (void)setPasses:(id)arg1;
-- (void)setPreviousStatusBarStyle:(int)arg1;
 - (void)setRemoteViewController:(id)arg1;
 - (void)setURL:(id)arg1;
 - (BOOL)shouldAutorotate;
@@ -53,8 +51,6 @@
 - (BOOL)succeeded;
 - (unsigned int)supportedInterfaceOrientations;
 - (void)viewDidAppear:(BOOL)arg1;
-- (void)viewWillAppear:(BOOL)arg1;
-- (void)viewWillDisappear:(BOOL)arg1;
 - (void)viewWillLayoutSubviews;
 
 @end

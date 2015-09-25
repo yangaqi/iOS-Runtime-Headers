@@ -2,25 +2,25 @@
    Image: /System/Library/PrivateFrameworks/ATFoundation.framework/ATFoundation
  */
 
-@class <ATAssetLinkDelegate>, <ATMessageLink>, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSString;
-
 @interface ATConcreteAssetLink : NSObject <ATAssetLink, ATMessageLinkObserver> {
     NSObject<OS_dispatch_queue> *_callbackQueue;
     <ATAssetLinkDelegate> *_delegate;
     NSObject<OS_dispatch_queue> *_fileIOQueue;
-    <ATMessageLink> *_messageLink;
+    ATMessageLink *_messageLink;
     BOOL _open;
     NSMutableArray *_outstandingAssets;
+    int _pendingWriteAmount;
+    NSObject<OS_dispatch_semaphore> *_pendingWriteSemaphore;
     NSObject<OS_dispatch_queue> *_queue;
     NSMutableSet *_readers;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property <ATAssetLinkDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(getter=isOpen,readonly) BOOL open;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <ATAssetLinkDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (getter=isOpen, nonatomic, readonly) BOOL open;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_finishAsset:(id)arg1 withError:(id)arg2;

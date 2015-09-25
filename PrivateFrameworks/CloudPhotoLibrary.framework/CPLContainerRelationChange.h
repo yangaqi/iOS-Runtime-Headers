@@ -2,15 +2,13 @@
    Image: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
  */
 
-@class CPLContainerRelation, NSString;
-
 @interface CPLContainerRelationChange : CPLRecordChange {
     NSString *_itemIdentifier;
     CPLContainerRelation *_relation;
 }
 
-@property(copy) NSString * itemIdentifier;
-@property(retain) CPLContainerRelation * relation;
+@property (nonatomic, copy) NSString *itemIdentifier;
+@property (nonatomic, retain) CPLContainerRelation *relation;
 
 + (id)relationToContainerWithIdentifier:(id)arg1;
 + (id)relationWithItemIdentifier:(id)arg1 containerIdentifier:(id)arg2;
@@ -18,6 +16,7 @@
 - (void).cxx_destruct;
 - (id)compactedChangeWithRelatedChanges:(id)arg1 isOnlyChange:(BOOL)arg2 usingClientCache:(id)arg3;
 - (id)description;
+- (id)identifierForQuarantine;
 - (id)identifiersForMapping;
 - (id)itemIdentifier;
 - (id)relatedIdentifier;

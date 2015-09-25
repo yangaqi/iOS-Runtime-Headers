@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKBRenderFactoryiPhoneLandscape : UIKBRenderFactoryiPhone {
-}
+@interface UIKBRenderFactoryiPhoneLandscape : UIKBRenderFactoryiPhone
 
 - (float)_row4ControlSegmentWidth;
 - (id)_traitsForKey:(id)arg1 onKeyplane:(id)arg2;
@@ -12,9 +11,11 @@
 - (id)copyKeyImageName;
 - (id)cutKeyImageName;
 - (id)deleteKeyImageName;
+- (id)deleteOnKeyImageName;
 - (id)dictationKeyImageName;
 - (id)dismissKeyImageName;
 - (float)emojiPopupDividerKeyOffset;
+- (id)globalEmojiKeyImageName;
 - (id)globalKeyImageName;
 - (BOOL)isTallPopup;
 - (id)leftArrowKeyImageName;

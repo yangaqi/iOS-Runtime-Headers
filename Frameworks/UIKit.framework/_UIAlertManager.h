@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface _UIAlertManager : NSObject {
-}
+@interface _UIAlertManager : NSObject
 
 + (struct CGAffineTransform { float x1; float x2; float x3; float x4; float x5; float x6; })_alertTranslationForInterfaceOrientation:(int)arg1 andTranslation:(float)arg2;
 + (void)_applyAlertTransforms;
@@ -20,14 +19,12 @@
 + (void)hideAlertsForTermination;
 + (void)hideDimmingViewAnimated:(BOOL)arg1;
 + (BOOL)hideTopMostAlertAnimated:(BOOL)arg1;
-+ (void)hideTopmostMiniAlert;
 + (void)initialize;
 + (void)noteOrientationChangingTo:(int)arg1;
 + (void)noteOrientationChangingTo:(int)arg1 animated:(BOOL)arg2;
 + (void)removeFromStack:(id)arg1;
 + (void)reorientAlertWindowTo:(int)arg1 animated:(BOOL)arg2 keyboard:(id)arg3;
 + (void)showDimmingViewAnimated:(BOOL)arg1;
-+ (void)showTopmostMiniAlertWithSynchronizationPort:(unsigned int)arg1;
 + (void)sizeAlertWindowForCurrentOrientation;
 + (BOOL)stackContainsAlert:(id)arg1;
 + (void)tellSpringboardHidingAlert:(id)arg1 animated:(BOOL)arg2 forSpringBoardAlertTransition:(BOOL)arg3;

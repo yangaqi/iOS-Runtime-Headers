@@ -2,17 +2,15 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIImageView;
-
 @interface _UIDocumentPickerManagementViewControllerCell : UITableViewCell {
     UIImageView *_newlyAddedView;
 }
 
-@property(retain) UIImageView * newlyAddedView;
-@property BOOL showNewlyAdded;
+@property (nonatomic, retain) UIImageView *newlyAddedView;
+@property (nonatomic) BOOL showNewlyAdded;
 
+- (void).cxx_destruct;
 - (id)_dotImage;
-- (void)dealloc;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (void)layoutSubviews;
 - (id)newlyAddedView;

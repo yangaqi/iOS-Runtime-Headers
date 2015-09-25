@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class <PSSearchModelDataSource>, NSArray, NSMapTable, NSMutableArray, NSMutableSet, NSObject<OS_dispatch_queue>, NSOperationQueue, NSString, PSSearchOperation, PSSearchResults;
-
 @interface PSSearchModel : NSObject <PSSearchIndexOperationDelegate, PSSearchOperationDelegate, PSSpecifierObserver> {
     PSSearchOperation *_activeSearchOperation;
     NSString *_currentQuery;
@@ -24,39 +22,44 @@
     NSMutableArray *_rootEntries;
     NSOperationQueue *_searchOperationQueue;
     NSObject<OS_dispatch_queue> *_searchStateAccessQueue;
+    BOOL _showSectionInDetailText;
     NSMapTable *_specifierDataSources;
+    BOOL _waitUntilFinished;
 }
 
-@property(retain) PSSearchOperation * activeSearchOperation;
-@property(copy) NSString * currentQuery;
-@property(readonly) PSSearchResults * currentResults;
-@property <PSSearchModelDataSource> * dataSource;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) BOOL hasCompletedIndexing;
-@property(readonly) unsigned int hash;
-@property(getter=isIndexing,readonly) BOOL indexing;
-@property(getter=isLoadingResults,readonly) BOOL loadingResults;
-@property(readonly) int observerType;
-@property(readonly) NSArray * rootEntries;
-@property(readonly) Class superclass;
+@property (retain) PSSearchOperation *activeSearchOperation;
+@property (copy) NSString *currentQuery;
+@property (readonly) PSSearchResults *currentResults;
+@property (nonatomic) <PSSearchModelDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL hasCompletedIndexing;
+@property (readonly) unsigned int hash;
+@property (getter=isIndexing, nonatomic, readonly) BOOL indexing;
+@property (getter=isLoadingResults, nonatomic, readonly) BOOL loadingResults;
+@property (nonatomic, readonly) int observerType;
+@property (nonatomic, readonly) NSArray *rootEntries;
+@property (nonatomic) BOOL showSectionInDetailText;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL waitUntilFinished;
 
 + (id)sharedInstance;
 
-- (void)_addSearchEntries:(id)arg1 parent:(id)arg2 usingBlock:(id)arg3;
+- (void).cxx_destruct;
+- (void)_addSearchEntries:(id)arg1 parent:(id)arg2 usingBlock:(id /* block */)arg3;
 - (void)_addSpecifierDataSource:(id)arg1 forSearchEntry:(id)arg2;
 - (void)_beginIndexingIfNecessary;
 - (void)_beginSearchingEntriesForCurrentQuery:(id)arg1 newSearch:(BOOL)arg2;
 - (void)_cancelAllSearchOperations;
-- (id)_defaultSearchResultsSectionComparator;
-- (void)_enumerateDelegatesUsingBlock:(id)arg1;
+- (id /* block */)_defaultSearchResultsSectionComparator;
+- (void)_enumerateDelegatesUsingBlock:(id /* block */)arg1;
 - (void)_finishedIndexingEntry:(id)arg1;
 - (void)_loadChildrenForEntry:(id)arg1;
 - (void)_performDeferredUpdatesForEntry:(id)arg1;
 - (void)_performSpecifierUpdates:(id)arg1 forSearchEntries:(id)arg2;
 - (void)_reloadSearchEntries:(id)arg1;
-- (void)_removeSearchEntries:(id)arg1 usingBlock:(id)arg2;
-- (void)_removeSearchEntries:(id)arg1 usingBlock:(id)arg2 forReload:(BOOL)arg3;
+- (void)_removeSearchEntries:(id)arg1 usingBlock:(id /* block */)arg2;
+- (void)_removeSearchEntries:(id)arg1 usingBlock:(id /* block */)arg2 forReload:(BOOL)arg3;
 - (id)_rootSpecifiers;
 - (id)_searchEntriesForSpecifierDataSource:(id)arg1;
 - (void)_updateWithNewSearchResults:(id)arg1 forQuery:(id)arg2 newSearch:(BOOL)arg3;
@@ -76,6 +79,7 @@
 - (BOOL)isLoadingResults;
 - (int)observerType;
 - (void)preheat;
+- (id)recursiveDescription;
 - (void)reloadRootSpecifier:(id)arg1;
 - (void)removeDelegate:(id)arg1;
 - (void)removeRootSpecifier:(id)arg1;
@@ -92,5 +96,9 @@
 - (void)setActiveSearchOperation:(id)arg1;
 - (void)setCurrentQuery:(id)arg1;
 - (void)setDataSource:(id)arg1;
+- (void)setShowSectionInDetailText:(BOOL)arg1;
+- (void)setWaitUntilFinished:(BOOL)arg1;
+- (BOOL)showSectionInDetailText;
+- (BOOL)waitUntilFinished;
 
 @end

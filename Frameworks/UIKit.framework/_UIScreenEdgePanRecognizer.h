@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <_UIScreenEdgePanRecognizerDelegate>, NSString, UIDelayedAction, _UIScreenEdgePanRecognizerSettings;
-
 @interface _UIScreenEdgePanRecognizer : NSObject <_UISettingsKeyObserver> {
     <_UIScreenEdgePanRecognizerDelegate> *_delegate;
     float _gestureRestrictionFactor;
@@ -42,27 +40,28 @@
     BOOL _useGrapeFlags;
 }
 
-@property(readonly) struct CGPoint { float x1; float x2; } _lastTouchLocation;
-@property(copy,readonly) NSString * debugDescription;
-@property <_UIScreenEdgePanRecognizerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) unsigned int recognizedRegion;
-@property BOOL requiresFlatThumb;
-@property(getter=isRequiringLongPress,readonly) BOOL requiringLongPress;
-@property struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } screenBounds;
-@property(retain) _UIScreenEdgePanRecognizerSettings * settings;
-@property BOOL shouldUseGrapeFlags;
-@property(readonly) int state;
-@property(readonly) Class superclass;
-@property unsigned int targetEdges;
+@property (nonatomic, readonly) struct CGPoint { float x1; float x2; } _lastTouchLocation;
+@property (readonly, copy) NSString *debugDescription;
+@property <_UIScreenEdgePanRecognizerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) unsigned int recognizedRegion;
+@property (nonatomic) BOOL requiresFlatThumb;
+@property (getter=isRequiringLongPress, nonatomic, readonly) BOOL requiringLongPress;
+@property (nonatomic) struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; } screenBounds;
+@property (nonatomic, retain) _UIScreenEdgePanRecognizerSettings *settings;
+@property (nonatomic) BOOL shouldUseGrapeFlags;
+@property (nonatomic, readonly) int state;
+@property (readonly) Class superclass;
+@property (nonatomic) unsigned int targetEdges;
 
 + (BOOL)_edgeSwipeNavigationGestureEnabled;
 
+- (void).cxx_destruct;
 - (void)_createOrDestoryAnalysisWindowIfNeeded;
 - (void)_idleTimerElapsed:(id)arg1;
-- (void)_incorporateIncrementalSampleAtLocation:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 modifier:(int)arg3 interfaceOrientation:(int)arg4;
-- (void)_incorporateInitialTouchAtLocation:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 modifier:(int)arg3 interfaceOrientation:(int)arg4;
+- (void)_incorporateIncrementalSampleAtLocation:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 modifier:(int)arg3 interfaceOrientation:(int)arg4 forceState:(int)arg5;
+- (void)_incorporateInitialTouchAtLocation:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 modifier:(int)arg3 interfaceOrientation:(int)arg4 forceState:(int)arg5;
 - (struct CGPoint { float x1; float x2; })_lastTouchLocation;
 - (void)_longPressTimerElapsed:(id)arg1;
 - (void)_setState:(int)arg1;
@@ -70,7 +69,7 @@
 - (int)_type;
 - (void)dealloc;
 - (id)delegate;
-- (void)incorporateTouchSampleAtLocation:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 modifier:(int)arg3 interfaceOrientation:(int)arg4;
+- (void)incorporateTouchSampleAtLocation:(struct CGPoint { float x1; float x2; })arg1 timestamp:(double)arg2 modifier:(int)arg3 interfaceOrientation:(int)arg4 forceState:(int)arg5;
 - (id)initWithType:(int)arg1;
 - (BOOL)isRequiringLongPress;
 - (unsigned int)recognizedRegion;

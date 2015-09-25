@@ -2,18 +2,14 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class RURadioPlaybackCoordinator;
-
 @interface RUNowPlayingObserver : MPNowPlayingObserver {
     RURadioPlaybackCoordinator *_playbackCoordinator;
 }
 
 - (void).cxx_destruct;
-- (void)_createNowPlayingInfoForItem:(id)arg1 completionHandler:(id)arg2;
-- (void)_currentStationDidChangeNotfication:(id)arg1;
-- (void)_isBannedDidChangeNotification:(id)arg1;
+- (void)_buyOffersDidChangeNotification:(id)arg1;
+- (void)_createNowPlayingInfoForItem:(id)arg1 completionHandler:(id /* block */)arg2;
 - (void)_isInWishListDidChangeNotification:(id)arg1;
-- (void)_isLikedDidChangeNotification:(id)arg1;
 - (BOOL)_itemNotificationIsRelevantToObservedPlayer:(id)arg1;
 - (void)_radioModelDidChangeNotification:(id)arg1;
 - (void)dealloc;

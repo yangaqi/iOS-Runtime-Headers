@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class PLWallpaperButton, UIView, _UIBackdropView, _UILegibilityLabel;
-
 @interface PLCropOverlayWallpaperBottomBar : UIView {
     _UIBackdropView *_backdropView;
     PLWallpaperButton *_doCancelButton;
@@ -20,19 +18,19 @@
     _UILegibilityLabel *_titleLabel;
 }
 
-@property(retain) _UIBackdropView * backdropView;
-@property(readonly) PLWallpaperButton * doCancelButton;
-@property(readonly) PLWallpaperButton * doSetBothScreenButton;
-@property(readonly) PLWallpaperButton * doSetButton;
-@property(readonly) PLWallpaperButton * doSetHomeScreenButton;
-@property(readonly) PLWallpaperButton * doSetLockScreenButton;
-@property float maxToggleWidth;
-@property(readonly) PLWallpaperButton * motionToggle;
-@property BOOL motionToggleHidden;
-@property(retain) UIView * separatorLine;
-@property BOOL shouldOnlyShowHomeScreenButton;
-@property BOOL shouldOnlyShowLockScreenButton;
-@property(retain) _UILegibilityLabel * titleLabel;
+@property (nonatomic, retain) _UIBackdropView *backdropView;
+@property (nonatomic, readonly, retain) PLWallpaperButton *doCancelButton;
+@property (nonatomic, readonly, retain) PLWallpaperButton *doSetBothScreenButton;
+@property (nonatomic, readonly, retain) PLWallpaperButton *doSetButton;
+@property (nonatomic, readonly, retain) PLWallpaperButton *doSetHomeScreenButton;
+@property (nonatomic, readonly, retain) PLWallpaperButton *doSetLockScreenButton;
+@property (nonatomic) float maxToggleWidth;
+@property (nonatomic, readonly, retain) PLWallpaperButton *motionToggle;
+@property (nonatomic) BOOL motionToggleHidden;
+@property (nonatomic, retain) UIView *separatorLine;
+@property (nonatomic) BOOL shouldOnlyShowHomeScreenButton;
+@property (nonatomic) BOOL shouldOnlyShowLockScreenButton;
+@property (nonatomic, retain) _UILegibilityLabel *titleLabel;
 
 - (void)_commonPLCropOverlayWallpaperBottomBarInitialization;
 - (void)_commonPLCropOverlayWallpaperBottomBarInitializationPad;

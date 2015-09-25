@@ -2,31 +2,31 @@
    Image: /System/Library/PrivateFrameworks/DataDetectorsUI.framework/DataDetectorsUI
  */
 
-@class <DDRemoteActionPresenter>, ABUnknownPersonViewController, DDAction, NSString;
-
-@interface DDAddToContactsViewController : UINavigationController <ABUnknownPersonViewControllerDelegate, DDRemoteActionViewControllerConfiguration> {
+@interface DDAddToContactsViewController : UINavigationController <CNContactViewControllerDelegate, DDRemoteActionViewService> {
     DDAction *_action;
-    ABUnknownPersonViewController *_personViewController;
+    CNContactViewController *_personViewController;
     <DDRemoteActionPresenter> *_proxy;
 }
 
-@property(retain) DDAction * action;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (retain) DDAction *action;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)_exportedInterface;
 + (id)_remoteViewControllerInterface;
++ (id)alternateNameForContact:(id)arg1;
 
 - (void)_augmentRecord:(void*)arg1 withResultsFromAction:(id)arg2;
 - (id)action;
+- (void)adaptForPresentationInPopover:(BOOL)arg1;
 - (void)cancelPressed:(id)arg1;
+- (void)contactViewController:(id)arg1 didCompleteWithContact:(id)arg2;
 - (void)dealloc;
-- (id)init;
+- (void)doneWithAddingContact;
 - (void)prepareForAction:(id)arg1;
 - (void)setAction:(id)arg1;
-- (void)unknownPersonViewController:(id)arg1 didResolveToPerson:(void*)arg2;
-- (BOOL)unknownPersonViewController:(id)arg1 shouldPerformDefaultActionForPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
+- (void)setCancelButtonVisible:(BOOL)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ProgressUI.framework/ProgressUI
  */
 
-@class CAContext, CALayer, NSString;
-
 @interface PUIProgressWindow : NSObject {
     struct CGImage { } *_appleLogo;
     CAContext *_context;
@@ -15,6 +13,12 @@
         float height; 
     } _displaySize;
     BOOL _forceInverted;
+    struct CGSize { 
+        float width; 
+        float height; 
+    } _framebufferSize;
+    struct __IOSurface { } *_ioSurface;
+    CALayer *_ioSurfaceLayer;
     CALayer *_layer;
     NSString *_pluginName;
     CALayer *_pluginNameLayer;
@@ -22,6 +26,7 @@
     float _progressWidth;
     float _progressXDelta;
     float _progressYDelta;
+    BOOL _renderWithIOSurface;
     BOOL _showPluginName;
     BOOL _showsProgressBar;
     BOOL _sideways;
@@ -29,7 +34,7 @@
     BOOL _white;
 }
 
-@property(readonly) CALayer * layer;
+@property (nonatomic, readonly) CALayer *layer;
 
 + (BOOL)_usesPreBoardAppearance;
 + (void)setUsesPreBoardAppearance;
@@ -47,6 +52,7 @@
 - (unsigned int)_nanoDeviceType;
 - (int)_nanoMaterial;
 - (const char *)_productSuffix;
+- (void)_updateIOSurface;
 - (void)dealloc;
 - (void)drawLayer:(id)arg1 inContext:(struct CGContext { }*)arg2;
 - (id)init;

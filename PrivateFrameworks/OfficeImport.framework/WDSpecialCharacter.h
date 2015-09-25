@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class WDCharacterProperties;
-
 @interface WDSpecialCharacter : WDRun {
     WDCharacterProperties *mProperties;
     int mType;
@@ -12,6 +10,7 @@
 - (int)characterType;
 - (void)clearProperties;
 - (void)dealloc;
+- (id)description;
 - (id)initWithParagraph:(id)arg1;
 - (id)properties;
 - (int)runType;

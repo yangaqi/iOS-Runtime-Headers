@@ -2,9 +2,9 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UIKBThemedView, UILabel;
-
 @interface UIKeyboardCandidateBarCell : UICollectionViewCell <UIKBCacheableView> {
+    UILabel *_annotationLabel;
+    NSString *_annotationText;
     BOOL _beginsFirstPage;
     NSString *_candidateText;
     BOOL _endsLastPage;
@@ -13,30 +13,35 @@
     UIKBThemedView *_themedView;
 }
 
-@property BOOL beginsFirstPage;
-@property(readonly) BOOL cacheDeferable;
-@property(readonly) NSString * cacheKey;
-@property(readonly) float cachedWidth;
-@property(copy) NSString * candidateText;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL endsLastPage;
-@property(readonly) unsigned int hash;
-@property BOOL isAtLeftEdge;
-@property(readonly) BOOL keepNonPersistent;
-@property(retain) UILabel * label;
-@property(readonly) Class superclass;
-@property(retain) UIKBThemedView * themedView;
+@property (nonatomic, retain) UILabel *annotationLabel;
+@property (nonatomic, copy) NSString *annotationText;
+@property (nonatomic) BOOL beginsFirstPage;
+@property (nonatomic, readonly) BOOL cacheDeferable;
+@property (nonatomic, readonly) NSString *cacheKey;
+@property (nonatomic, readonly) float cachedWidth;
+@property (nonatomic, copy) NSString *candidateText;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL endsLastPage;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL isAtLeftEdge;
+@property (nonatomic, readonly) BOOL keepNonPersistent;
+@property (nonatomic, retain) UILabel *label;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) UIKBThemedView *themedView;
 
++ (id)annotationFont;
 + (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })cacheInsets;
 + (BOOL)drawsSideBorders;
 + (id)font;
 + (BOOL)highlightAffectsBackground;
 + (id)reuseIdentifier;
 + (id)textColorWithHighlight:(BOOL)arg1 whiteText:(BOOL)arg2;
-+ (float)widthForCandidateText:(id)arg1;
++ (float)widthForCandidate:(id)arg1;
 
 - (void)_setRenderConfig:(id)arg1;
+- (id)annotationLabel;
+- (id)annotationText;
 - (void)applyLayoutAttributes:(id)arg1;
 - (BOOL)beginsFirstPage;
 - (BOOL)cacheDeferable;
@@ -54,6 +59,8 @@
 - (BOOL)keepNonPersistent;
 - (id)label;
 - (void)prepareForReuse;
+- (void)setAnnotationLabel:(id)arg1;
+- (void)setAnnotationText:(id)arg1;
 - (void)setBeginsFirstPage:(BOOL)arg1;
 - (void)setCandidate:(id)arg1;
 - (void)setCandidateText:(id)arg1;

@@ -2,9 +2,7 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABMembersController, CNContact, NSString, _UIAccessDeniedView;
-
-@interface ABMembersViewController : ABAbstractViewController <ABMembersControllerDelegate, ABNewPersonViewControllerDelegate, ABPersonEditDelegate, ABViewControllerBannerViewProtocol> {
+@interface ABMembersViewController : ABAbstractViewController <ABMembersControllerDelegate, ABNewPersonViewControllerDelegate, ABPersonEditDelegate, ABViewControllerBannerViewProtocol, CNContactViewControllerAddContactPresenter> {
     _UIAccessDeniedView *_accessDeniedView;
     id _insertionLabel;
     int _insertionProperty;
@@ -15,16 +13,16 @@
     BOOL _shouldHandleExternalChangeOnPersonViewControllers;
 }
 
-@property(readonly) _UIAccessDeniedView * accessDeniedView;
-@property(readonly) BOOL allowsCancel;
-@property(readonly) BOOL allowsCardEditing;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isSearchingWithNoContactSelected;
-@property(readonly) BOOL shouldShowGroups;
-@property(readonly) Class superclass;
-@property(readonly) CNContact * unsavedContact;
+@property (nonatomic, readonly) _UIAccessDeniedView *accessDeniedView;
+@property (readonly) BOOL allowsCancel;
+@property (readonly) BOOL allowsCardEditing;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) BOOL isSearchingWithNoContactSelected;
+@property (readonly) BOOL shouldShowGroups;
+@property (readonly) Class superclass;
+@property (readonly) CNContact *unsavedContact;
 
 - (void)_applicationEnteringBackground;
 - (void)_applicationEnteringForeground;
@@ -32,8 +30,8 @@
 - (void)_updateForModel;
 - (int)abViewControllerType;
 - (id)accessDeniedView;
+- (id)addContactPresenter;
 - (void)addPerson:(id)arg1;
-- (id)addPersonPresentationTarget;
 - (void)addPersonWithContact:(id)arg1 animated:(BOOL)arg2;
 - (BOOL)allowsCancel;
 - (BOOL)allowsCardEditing;
@@ -73,7 +71,7 @@
 - (void)personWasDeleted;
 - (void)personWasSelected:(void*)arg1;
 - (void)preferredPersonDidChangeToPerson:(void*)arg1;
-- (void)presentAddPersonViewController:(id)arg1 animated:(BOOL)arg2;
+- (void)presentAddContactViewController:(id)arg1 animated:(BOOL)arg2;
 - (void)presentGroupsViewController;
 - (void)reallyHandleExternalChangeOnPersonViewControllers;
 - (void)refreshEverythingNow;

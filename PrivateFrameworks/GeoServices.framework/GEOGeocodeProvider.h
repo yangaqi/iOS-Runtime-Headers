@@ -2,44 +2,22 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
 @interface GEOGeocodeProvider : NSObject {
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _batchSuccessHandler;
-
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _errorHandler;
-
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id _successHandler;
-
+    id /* block */ _batchSuccessHandler;
+    id /* block */ _errorHandler;
 }
 
-@property(copy) id batchSuccessHandler;
-@property(copy) id errorHandler;
-@property(copy) id successHandler;
+@property (nonatomic, copy) id /* block */ batchSuccessHandler;
+@property (nonatomic, copy) id /* block */ errorHandler;
 
 + (id)providerName;
 
-- (void)batchReverseGeocode:(id)arg1 success:(id)arg2 error:(id)arg3;
-- (id)batchSuccessHandler;
+- (void)batchReverseGeocode:(id)arg1 success:(id /* block */)arg2 error:(id /* block */)arg3;
+- (id /* block */)batchSuccessHandler;
 - (void)cancel;
 - (void)dealloc;
-- (id)errorHandler;
-- (void)forwardGeocode:(id)arg1 success:(id)arg2 networkActivity:(id)arg3 error:(id)arg4;
-- (void)reverseGeocode:(id)arg1 success:(id)arg2 error:(id)arg3;
-- (void)setBatchSuccessHandler:(id)arg1;
-- (void)setErrorHandler:(id)arg1;
-- (void)setSuccessHandler:(id)arg1;
-- (id)successHandler;
+- (id /* block */)errorHandler;
+- (void)setBatchSuccessHandler:(id /* block */)arg1;
+- (void)setErrorHandler:(id /* block */)arg1;
 
 @end

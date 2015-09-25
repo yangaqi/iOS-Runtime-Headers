@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIScrollView, UITableView, UIView, _UIModalItemTextFiledBGView;
-
 @interface _UIModalItemAlertContentView : _UIModalItemContentView {
     UIView *_2ButtonsSeparators;
     BOOL _alertViewIsSetup;
@@ -17,7 +15,6 @@
 
 - (void)_prepareViewIfNeeded;
 - (void)_reloadButtons;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)layout;
 - (void)setEnableFirstOtherButton:(BOOL)arg1;

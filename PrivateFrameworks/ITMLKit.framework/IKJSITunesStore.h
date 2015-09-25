@@ -2,24 +2,25 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class ISLoadURLBagOperation, NSDictionary, NSNumber, NSString, SSMetricsController;
-
-@interface IKJSITunesStore : IKJSObject <IKJSITunesStore> {
+@interface IKJSITunesStore : IKJSObject <IKJSITunesStore, JSExport> {
     int _bagOperationLock;
     NSString *_cookieURL;
+    id _isURLBagDidLoadToken;
     NSNumber *_lastAccountDSID;
     SSMetricsController *_metricsController;
     ISLoadURLBagOperation *_pendingBagOperation;
+    id _ssAccountStoreChangedToken;
+    NSString *_storeFrontSuffix;
 }
 
-@property(readonly) NSString * DSID;
-@property(readonly) NSDictionary * accountInfo;
-@property(retain) id cookie;
-@property(retain) NSString * cookieURL;
-@property(readonly) NSString * networkConnectionType;
-@property ISLoadURLBagOperation * pendingBagOperation;
-@property(retain) NSString * storefront;
-@property(readonly) NSString * userAgent;
+@property (nonatomic, readonly) NSString *DSID;
+@property (nonatomic, readonly) NSDictionary *accountInfo;
+@property (nonatomic, retain) id cookie;
+@property (nonatomic, retain) NSString *cookieURL;
+@property (nonatomic, readonly) NSString *networkConnectionType;
+@property (nonatomic) ISLoadURLBagOperation *pendingBagOperation;
+@property (nonatomic, retain) NSString *storefront;
+@property (nonatomic, readonly) NSString *userAgent;
 
 + (id)_URLBagContext;
 + (void)setHeadersForURL:(id)arg1 inRequestProperties:(id)arg2;
@@ -29,6 +30,7 @@
 - (id)DSID;
 - (void)_accountStoreChanged;
 - (void)_bagDidLoadNotification:(id)arg1;
+- (id)_subscriptionStatusDictionaryWithStatus:(id)arg1 isFinal:(BOOL)arg2;
 - (void)_updateBag:(BOOL)arg1;
 - (void)_updateWithBag:(id)arg1;
 - (id)accountInfo;
@@ -37,9 +39,11 @@
 - (id)cookie;
 - (id)cookieURL;
 - (void)dealloc;
+- (id)eligibilityForService:(id)arg1;
 - (void)evaluateScripts:(id)arg1 :(id)arg2;
 - (void)flushUnreportedEvents;
 - (id)getBag;
+- (void)getServiceEligibility:(id)arg1 :(id)arg2;
 - (id)initWithAppContext:(id)arg1;
 - (void)invalidateBag;
 - (void)loadStoreContent:(id)arg1 :(id)arg2;
@@ -53,6 +57,7 @@
 - (void)setStorefront:(id)arg1;
 - (void)signOut;
 - (id)storefront;
+- (void)updateServiceEligibility:(id)arg1;
 - (id)userAgent;
 
 @end

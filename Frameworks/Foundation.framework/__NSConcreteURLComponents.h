@@ -2,24 +2,22 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSNumber, NSString;
-
 @interface __NSConcreteURLComponents : NSURLComponents <NSCopying> {
     NSString *_fragmentComponent;
-    unsigned int _fragmentComponentValid : 1;
+    unsigned int _fragmentComponentValid;
     NSString *_hostComponent;
-    unsigned int _hostComponentValid : 1;
+    unsigned int _hostComponentValid;
     int _lock;
     struct _URIParseInfo { 
-        int userinfoNameOffset; 
-        int userinfoPasswordOffset; 
-        int hostOffset; 
-        int portOffset; 
-        int pathOffset; 
-        int paramOffset; 
-        int queryOffset; 
-        int fragmentOffset; 
-        int endOffset; 
+        unsigned int userinfoNameOffset; 
+        unsigned int userinfoPasswordOffset; 
+        unsigned int hostOffset; 
+        unsigned int portOffset; 
+        unsigned int pathOffset; 
+        unsigned int paramOffset; 
+        unsigned int queryOffset; 
+        unsigned int fragmentOffset; 
+        unsigned int endOffset; 
         unsigned int schemeExists : 1; 
         unsigned int authorityExists : 1; 
         unsigned int userinfoNameExists : 1; 
@@ -31,18 +29,18 @@
         unsigned int fragmentExists : 1; 
     } _parseInfo;
     NSString *_passwordComponent;
-    unsigned int _passwordComponentValid : 1;
+    unsigned int _passwordComponentValid;
     NSString *_pathComponent;
-    unsigned int _pathComponentValid : 1;
+    unsigned int _pathComponentValid;
     NSNumber *_portComponent;
-    unsigned int _portComponentValid : 1;
+    unsigned int _portComponentValid;
     NSString *_queryComponent;
-    unsigned int _queryComponentValid : 1;
+    unsigned int _queryComponentValid;
     NSString *_schemeComponent;
-    unsigned int _schemeComponentValid : 1;
+    unsigned int _schemeComponentValid;
     NSString *_urlString;
     NSString *_userComponent;
-    unsigned int _userComponentValid : 1;
+    unsigned int _userComponentValid;
 }
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
@@ -61,6 +59,7 @@
 - (id)initWithString:(id)arg1;
 - (id)initWithURL:(id)arg1 resolvingAgainstBaseURL:(BOOL)arg2;
 - (BOOL)isEqual:(id)arg1;
+- (BOOL)parseInfoIsValid;
 - (id)password;
 - (id)path;
 - (id)percentEncodedFragment;
@@ -72,6 +71,14 @@
 - (id)port;
 - (id)query;
 - (id)queryItems;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfFragment;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfHost;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfPassword;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfPath;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfPort;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfQuery;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfScheme;
+- (struct _NSRange { unsigned int x1; unsigned int x2; })rangeOfUser;
 - (id)scheme;
 - (void)setFragment:(id)arg1;
 - (void)setHost:(id)arg1;

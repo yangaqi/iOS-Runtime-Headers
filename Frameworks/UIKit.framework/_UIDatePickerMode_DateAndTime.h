@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDateFormatter, NSString;
-
 @interface _UIDatePickerMode_DateAndTime : _UIDatePickerMode {
     NSString *_hourFormat;
     NSString *_minuteFormat;
@@ -22,6 +20,7 @@
 + (int)datePickerMode;
 + (unsigned int)extractableCalendarUnits;
 
+- (void).cxx_destruct;
 - (id)_dateForWeekMonthDayRow:(int)arg1;
 - (void)_resetBaseDateComponentsIfNecessaryFromDate:(id)arg1;
 - (BOOL)_shouldEnableValueForRow:(int)arg1 inComponent:(int)arg2 calendarUnit:(unsigned int)arg3;
@@ -33,7 +32,6 @@
 - (float)componentWidthForDateTimeCalendarUnit:(unsigned int)arg1 font:(id)arg2 maxWidth:(float)arg3;
 - (id)dateForRow:(int)arg1 inCalendarUnit:(unsigned int)arg2;
 - (id)dateFormatForCalendarUnit:(unsigned int)arg1;
-- (void)dealloc;
 - (int)displayedCalendarUnits;
 - (unsigned int*)elements;
 - (BOOL)isWeekdayLast;

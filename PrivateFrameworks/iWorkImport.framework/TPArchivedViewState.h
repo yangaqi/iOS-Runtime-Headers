@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSMutableDictionary, NSString, TSKSelectionPath, TSWPSelection;
-
 @interface TPArchivedViewState : TSPObject {
     TSWPSelection *_bodySelection;
     BOOL _changeTrackingPaused;
@@ -52,8 +50,10 @@
     BOOL _wordCountHUDVisible;
 }
 
-- (id).cxx_construct;
+@property (nonatomic, readonly) NSMutableDictionary *chartUIState;
+
 - (void)captureViewStateWithProvider:(id)arg1;
+- (id)chartUIState;
 - (void)dealloc;
 - (id)initFromUnarchiver:(id)arg1;
 - (void)readViewStateWithConsumer:(id)arg1;

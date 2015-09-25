@@ -2,22 +2,21 @@
    Image: /System/Library/PrivateFrameworks/iTunesStore.framework/iTunesStore
  */
 
-@class ISURLBag, NSString, SSURLBagContext;
-
 @interface ISLoadURLBagOperation : ISOperation <ISStoreURLOperationDelegate> {
     SSURLBagContext *_context;
     ISURLBag *_outputBag;
 }
 
-@property(readonly) ISURLBag * URLBag;
-@property(readonly) SSURLBagContext * context;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly) ISURLBag *URLBag;
+@property (readonly) SSURLBagContext *context;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 - (id)URLBag;
 - (void)_addHeadersToRequestProperties:(id)arg1;
+- (void)_analyzeBagForActiveSystemApps:(id)arg1;
 - (void)_postBagDidLoadNotificationWithURLBag:(id)arg1;
 - (void)_sendPingsForURLBag:(id)arg1;
 - (void)_setOutputURLBag:(id)arg1;

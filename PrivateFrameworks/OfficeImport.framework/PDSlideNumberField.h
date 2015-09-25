@@ -2,7 +2,8 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@interface PDSlideNumberField : OADTextField {
-}
+@interface PDSlideNumberField : OADTextField
+
+- (id)description;
 
 @end

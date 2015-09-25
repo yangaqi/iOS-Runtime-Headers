@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class NSArray, UIColor;
-
 @interface MKOverlayPathRenderer : MKOverlayRenderer {
     UIColor *_fillColor;
     int _lineCap;
@@ -16,15 +14,15 @@
     UIColor *_strokeColor;
 }
 
-@property(retain) UIColor * fillColor;
+@property (retain) UIColor *fillColor;
 @property int lineCap;
-@property(copy) NSArray * lineDashPattern;
+@property (copy) NSArray *lineDashPattern;
 @property float lineDashPhase;
 @property int lineJoin;
 @property float lineWidth;
 @property float miterLimit;
-@property struct CGPath { }* path;
-@property(retain) UIColor * strokeColor;
+@property const struct CGPath { }*path;
+@property (retain) UIColor *strokeColor;
 
 - (void).cxx_destruct;
 - (void)applyFillPropertiesToContext:(struct CGContext { }*)arg1 atZoomScale:(float)arg2;
@@ -42,7 +40,7 @@
 - (int)lineJoin;
 - (float)lineWidth;
 - (float)miterLimit;
-- (struct CGPath { }*)path;
+- (const struct CGPath { }*)path;
 - (void)setFillColor:(id)arg1;
 - (void)setLineCap:(int)arg1;
 - (void)setLineDashPattern:(id)arg1;

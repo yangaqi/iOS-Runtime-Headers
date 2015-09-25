@@ -2,16 +2,15 @@
    Image: /System/Library/PrivateFrameworks/CommunicationsSetupUI.framework/CommunicationsSetupUI
  */
 
-@class UIActivityIndicatorView, UILabel, UINavigationItem;
-
 @interface CNFRegNavigationBarTitleView : UIView {
     UIActivityIndicatorView *_activityIndicator;
     UINavigationItem *_item;
     UILabel *_titleLabel;
 }
 
-@property UINavigationItem * item;
+@property (nonatomic) UINavigationItem *item;
 
+- (void).cxx_destruct;
 - (id)_currentTextColorForBarStyle:(int)arg1;
 - (id)_currentTextShadowColorForBarStyle:(int)arg1;
 - (struct CGSize { float x1; float x2; })_currentTextShadowOffsetForBarStyle:(int)arg1;

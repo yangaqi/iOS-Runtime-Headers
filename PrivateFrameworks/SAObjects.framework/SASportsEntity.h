@@ -2,17 +2,16 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString, NSURL, SASportsLeague, SAUIAppPunchOut;
+@interface SASportsEntity : SADomainObject
 
-@interface SASportsEntity : SADomainObject {
-}
+@property (nonatomic, copy) NSURL *image;
+@property (nonatomic, copy) NSURL *largeImage;
+@property (nonatomic, retain) SASportsLeague *league;
+@property (nonatomic, copy) NSURL *listImage;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, retain) SAUIAppPunchOut *punchout;
 
-@property(copy) NSURL * image;
-@property(copy) NSURL * largeImage;
-@property(retain) SASportsLeague * league;
-@property(copy) NSURL * listImage;
-@property(copy) NSString * name;
-@property(retain) SAUIAppPunchOut * punchout;
+// Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
 
 + (id)entity;
 + (id)entityWithDictionary:(id)arg1 context:(id)arg2;
@@ -31,6 +30,12 @@
 - (void)setListImage:(id)arg1;
 - (void)setName:(id)arg1;
 - (void)setPunchout:(id)arg1;
-- (void)updateUsingSet:(id)arg1 add:(id)arg2 remove:(id)arg3;
+
+// Image: /System/Library/PrivateFrameworks/SiriUI.framework/SiriUI
+
+- (BOOL)siriui_containsAthletes;
+- (BOOL)siriui_containsTeams;
+- (id)siriui_displayName;
+- (void)siriui_enumerateEntitiesWithGroupHandler:(id /* block */)arg1 teamHandler:(id /* block */)arg2 athleteHandler:(id /* block */)arg3;
 
 @end

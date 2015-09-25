@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/GameCenterUI.framework/GameCenterUI
  */
 
-@interface GKTextStylePad : GKTextStyle {
-}
+@interface GKTextStylePad : GKTextStyle
 
 + (float)bubbleTextScale;
 + (float)standardFontSize;
@@ -14,6 +13,7 @@
 - (id)cellActionItem;
 - (id)header1;
 - (id)header2;
+- (id)header3;
 - (id)header4;
 - (id)sectionCaptionSmall;
 - (id)signInTitle;

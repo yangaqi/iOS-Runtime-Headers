@@ -2,27 +2,29 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class NSObject<OS_dispatch_queue>, NSOperationQueue, RadioRequestContext;
-
 @interface RURadioOperationQueue : NSObject {
     NSOperationQueue *_operationQueue;
     RadioRequestContext *_requestContext;
     NSObject<OS_dispatch_queue> *_serialQueue;
 }
 
+@property (nonatomic, copy) RadioRequestContext *requestContext;
+
 + (id)sharedQueue;
 
 - (void).cxx_destruct;
 - (void)_addOperation:(id)arg1;
 - (void)_cancelPlaybackPreparation;
+- (void)_preparePlaybackWithPrepareRadioPlaybackOperation:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)addGetTracksOperation:(id)arg1;
-- (void)addStationWithRequest:(id)arg1 completionBlock:(id)arg2;
+- (void)addStationWithRequest:(id)arg1 completionBlock:(id /* block */)arg2;
 - (void)cancelPlaybackPreparation;
-- (void)getHistoryWithRequest:(id)arg1 completionHandler:(id)arg2;
+- (void)getHistoryWithRequest:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)init;
-- (void)loadRadioConfigurationWithCompletionBlock:(id)arg1;
-- (void)preparePlaybackForStation:(id)arg1 withCompletionBlock:(id)arg2;
-- (void)sendPlayEventCollection:(id)arg1 withCompletionBlock:(id)arg2;
-- (void)warmOperationQueue;
+- (void)loadRadioConfigurationWithCompletionBlock:(id /* block */)arg1;
+- (void)preparePlaybackWithOperation:(id)arg1 withCompletionBlock:(id /* block */)arg2;
+- (id)requestContext;
+- (void)sendPlayEventCollection:(id)arg1 withCompletionBlock:(id /* block */)arg2;
+- (void)setRequestContext:(id)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/WebKit.framework/WebKit
  */
 
-@class NSString, UIColor, UIScrollView, WKBrowsingContextController, WKViewData;
-
 @interface WKView : UIView <UIScrollViewDelegate> {
     BOOL _allowsBackForwardNavigationGestures;
     struct RetainPtr<WKContentView> { 
@@ -37,19 +35,19 @@
     unsigned int _unused;
 }
 
-@property(setter=_setBackgroundExtendsBeyondPage:) BOOL _backgroundExtendsBeyondPage;
-@property(setter=_setObscuredInsets:) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _obscuredInsets;
-@property(readonly) UIColor * _pageExtendedBackgroundColor;
-@property(readonly) WKBrowsingContextController * browsingContextController;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
+@property (setter=_setBackgroundExtendsBeyondPage:, nonatomic) BOOL _backgroundExtendsBeyondPage;
+@property (setter=_setObscuredInsets:, nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } _obscuredInsets;
+@property (readonly) UIColor *_pageExtendedBackgroundColor;
+@property (readonly) WKBrowsingContextController *browsingContextController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
 @property BOOL drawsBackground;
 @property BOOL drawsTransparentBackground;
-@property(readonly) unsigned int hash;
-@property struct CGSize { float x1; float x2; } minimumLayoutSizeOverride;
-@property(readonly) struct OpaqueWKPage { }* pageRef;
-@property(readonly) UIScrollView * scrollView;
-@property(readonly) Class superclass;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct CGSize { float x1; float x2; } minimumLayoutSizeOverride;
+@property (readonly) struct OpaqueWKPage { }*pageRef;
+@property (nonatomic, readonly) UIScrollView *scrollView;
+@property (readonly) Class superclass;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -57,6 +55,7 @@
 - (void)_beginInteractiveObscuredInsetsChange;
 - (void)_commonInitializationWithContextRef:(struct OpaqueWKContext { }*)arg1 pageGroupRef:(struct OpaqueWKPageGroup { }*)arg2 relatedToPage:(struct OpaqueWKPage { }*)arg3;
 - (void)_didFinishScrolling;
+- (void)_didRelaunchProcess;
 - (void)_endInteractiveObscuredInsetsChange;
 - (void)_frameOrBoundsChanged;
 - (void)_keyboardChangedWithInfo:(id)arg1 adjustScrollView:(BOOL)arg2;
@@ -72,6 +71,7 @@
 - (BOOL)allowsBackForwardNavigationGestures;
 - (id)browsingContextController;
 - (void)dealloc;
+- (void)didMoveToWindow;
 - (BOOL)drawsBackground;
 - (BOOL)drawsTransparentBackground;
 - (id)initWithCoder:(id)arg1;

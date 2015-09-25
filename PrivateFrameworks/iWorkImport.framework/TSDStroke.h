@@ -2,13 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class NSString, TSDStrokePattern, TSUColor;
-
 @interface TSDStroke : NSObject <NSCopying, NSMutableCopying, TSDMixing, TSDPathPainter, TSSPropertyCommandSerializing> {
     float mActualWidth;
     int mCap;
@@ -19,34 +12,34 @@
     float mWidth;
 }
 
-@property float actualWidth;
-@property int cap;
-@property(copy) TSUColor * color;
-@property(readonly) float dashSpacing;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) BOOL dontClearBackground;
-@property(readonly) BOOL drawsOutsideStrokeBounds;
-@property(readonly) BOOL empty;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL isDash;
-@property(readonly) BOOL isFrame;
-@property(readonly) BOOL isNearlyWhite;
-@property(readonly) BOOL isNullStroke;
-@property(readonly) BOOL isRoundDash;
-@property int join;
-@property float miterLimit;
-@property(readonly) struct _TSDStrokeOutsets { float x1; float x2; float x3; float x4; } outsets;
-@property(copy) TSDStrokePattern * pattern;
-@property(readonly) BOOL shouldRender;
-@property(readonly) BOOL solid;
-@property(readonly) float suggestedMinimumLineWidth;
-@property(readonly) Class superclass;
-@property(readonly) BOOL supportsColor;
-@property(readonly) BOOL supportsLineOptions;
-@property(readonly) BOOL supportsPattern;
-@property(readonly) BOOL supportsWidth;
-@property float width;
+@property (nonatomic) float actualWidth;
+@property (nonatomic) int cap;
+@property (nonatomic, copy) TSUColor *color;
+@property (nonatomic, readonly) float dashSpacing;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL dontClearBackground;
+@property (nonatomic, readonly) BOOL drawsOutsideStrokeBounds;
+@property (nonatomic, readonly) BOOL empty;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL isDash;
+@property (nonatomic, readonly) BOOL isFrame;
+@property (nonatomic, readonly) BOOL isNearlyWhite;
+@property (nonatomic, readonly) BOOL isNullStroke;
+@property (nonatomic, readonly) BOOL isRoundDash;
+@property (nonatomic) int join;
+@property (nonatomic) float miterLimit;
+@property (nonatomic, readonly) struct _TSDStrokeOutsets { float x1; float x2; float x3; float x4; } outsets;
+@property (nonatomic, copy) TSDStrokePattern *pattern;
+@property (nonatomic, readonly) BOOL shouldRender;
+@property (nonatomic, readonly) BOOL solid;
+@property (nonatomic, readonly) float suggestedMinimumLineWidth;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) BOOL supportsColor;
+@property (nonatomic, readonly) BOOL supportsLineOptions;
+@property (nonatomic, readonly) BOOL supportsPattern;
+@property (nonatomic, readonly) BOOL supportsWidth;
+@property (nonatomic) float width;
 
 + (BOOL)canMixWithNilObjects;
 + (id)emptyStroke;
@@ -87,6 +80,7 @@
 - (BOOL)drawsOutsideStrokeBounds;
 - (BOOL)empty;
 - (unsigned int)hash;
+- (float)horizontalMarginForSwatch;
 - (id)init;
 - (id)initFromPropertyCommandMessage:(const struct Message { int (**x1)(); }*)arg1 unarchiver:(id)arg2;
 - (id)initWithArchive:(const struct StrokeArchive { int (**x1)(); struct UnknownFieldSet { struct vector<google::protobuf::UnknownField, std::__1::allocator<google::protobuf::UnknownField> > {} *x_2_1_1; } x2; unsigned int x3[1]; int x4; struct Color {} *x5; float x6; int x7; int x8; float x9; struct StrokePatternArchive {} *x10; struct SmartStrokeArchive {} *x11; struct FrameArchive {} *x12; struct PatternedStrokeArchive {} *x13; }*)arg1 unarchiver:(id)arg2;

@@ -2,10 +2,10 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIWebFormAccessoryDelegate>, UIBarButtonItem, UISegmentedControl, UIToolbar;
-
 @interface UIWebFormAccessory : UIInputView {
     UIBarButtonItem *_autofill;
+    UIBarButtonItemGroup *_buttonGroupAutoFill;
+    UIBarButtonItemGroup *_buttonGroupNavigation;
     UIBarButtonItem *_clearButton;
     UIBarButtonItem *_doneButton;
     UIBarButtonItem *_flexibleSpaceItem;
@@ -14,15 +14,16 @@
     UIBarButtonItem *_previousItem;
     UIToolbar *_rightToolbar;
     UISegmentedControl *_tab;
+    BOOL _usesUCB;
     <UIWebFormAccessoryDelegate> *delegate;
 }
 
-@property(retain) UIBarButtonItem * _autofill;
-@property(retain) UIBarButtonItem * _clearButton;
-@property(retain) UISegmentedControl * _tab;
-@property <UIWebFormAccessoryDelegate> * delegate;
-@property(getter=isNextEnabled) BOOL nextEnabled;
-@property(getter=isPreviousEnabled) BOOL previousEnabled;
+@property (nonatomic, retain) UIBarButtonItem *_autofill;
+@property (nonatomic, retain) UIBarButtonItem *_clearButton;
+@property (nonatomic, retain) UISegmentedControl *_tab;
+@property (nonatomic) <UIWebFormAccessoryDelegate> *delegate;
+@property (getter=isNextEnabled, nonatomic) BOOL nextEnabled;
+@property (getter=isPreviousEnabled, nonatomic) BOOL previousEnabled;
 
 + (id)toolbarWithItems:(id)arg1;
 
@@ -44,7 +45,8 @@
 - (id)delegate;
 - (void)done:(id)arg1;
 - (void)hideAutoFillButton;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (void)initForUCB:(id)arg1;
+- (id)initWithInputAssistantItem:(id)arg1;
 - (BOOL)isNextEnabled;
 - (BOOL)isPreviousEnabled;
 - (void)layoutSubviews;

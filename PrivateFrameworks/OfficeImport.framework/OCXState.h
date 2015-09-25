@@ -2,18 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class CXNamespace, NSString;
-
 @interface OCXState : NSObject {
     CXNamespace *mOCXDrawingNamespace;
     CXNamespace *mOCXRelationshipsNamespace;
     int mXMLFormat;
 }
 
-@property(retain) CXNamespace * OCXDrawingNamespace;
-@property(retain) CXNamespace * OCXRelationshipsNamespace;
-@property(copy,readonly) NSString * OCXThemeRelationshipType;
-@property(readonly) int xmlFormat;
+@property (nonatomic, retain) CXNamespace *OCXDrawingNamespace;
+@property (nonatomic, retain) CXNamespace *OCXRelationshipsNamespace;
+@property (nonatomic, readonly) int xmlFormat;
 
 - (id)OCXCommentAuthorsRelationshipType;
 - (id)OCXCommentsRelationshipType;
@@ -34,6 +31,8 @@
 - (id)OCXSettingsRelationshipType;
 - (id)OCXSharedStringsRelationshipType;
 - (id)OCXSlideLayoutRelationshipType;
+- (id)OCXSlideMasterRelationshipType;
+- (id)OCXSlideRelationshipType;
 - (id)OCXStylesRelationshipType;
 - (id)OCXTableRelationshipType;
 - (id)OCXTableStylesRelationshipType;

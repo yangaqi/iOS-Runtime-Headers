@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSNumber, PSSpecifier;
-
 @interface PSSpecifierUpdateOperation : NSObject <NSCopying> {
     NSNumber *_index;
     int _operation;
@@ -11,19 +9,19 @@
     NSNumber *_toIndex;
 }
 
-@property(retain) NSNumber * index;
-@property(readonly) int operation;
-@property(retain) PSSpecifier * specifier;
-@property(retain) NSNumber * toIndex;
+@property (nonatomic, retain) NSNumber *index;
+@property (nonatomic, readonly) int operation;
+@property (nonatomic, retain) PSSpecifier *specifier;
+@property (nonatomic, retain) NSNumber *toIndex;
 
 + (id)insertOperationWithSpecifier:(id)arg1 atIndex:(unsigned int)arg2;
 + (id)moveOperationWithSpecifier:(id)arg1 fromIndex:(unsigned int)arg2 toIndex:(unsigned int)arg3;
 + (id)reloadOperationWithSpecifier:(id)arg1 atIndex:(unsigned int)arg2;
 + (id)removeOperationWithSpecifier:(id)arg1 atIndex:(unsigned int)arg2;
 
+- (void).cxx_destruct;
 - (BOOL)applyToArray:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (id)index;
 - (id)initWithOperation:(int)arg1 specifier:(id)arg2 fromIndex:(id)arg3 toIndex:(id)arg4;

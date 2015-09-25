@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/BulletinDistributorCompanion.framework/BulletinDistributorCompanion
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString;
-
 @interface BLTPreviouslySentMessageStore : NSObject {
     BOOL _dirty;
     NSMutableDictionary *_messageDigests;
@@ -12,12 +10,13 @@
     NSObject<OS_dispatch_source> *_saveTimer;
 }
 
-@property BOOL dirty;
+@property (nonatomic) BOOL dirty;
 
 - (void).cxx_destruct;
 - (void)_cancelSave;
 - (void)_enqueueSave;
 - (void)_save;
+- (void)clear;
 - (void)dealloc;
 - (BOOL)dirty;
 - (id)initWithMessageStorePath:(id)arg1;

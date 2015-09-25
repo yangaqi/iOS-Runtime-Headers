@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/ScreenReaderOutputServer.framework/ScreenReaderOutputServer
  */
 
-@class NSAttributedString;
-
 @interface SCROBrailleFormatter : NSObject <NSCopying> {
     BOOL _anyUnread;
     id _appToken;
@@ -21,7 +19,7 @@
     struct __CFDictionary { } *_tokenDictionary;
 }
 
-@property int lineFocus;
+@property (nonatomic) int lineFocus;
 
 - (void)addText:(id)arg1 language:(id)arg2 selection:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 token:(int)arg4 focused:(BOOL)arg5;
 - (void)addText:(id)arg1 language:(id)arg2 selection:(struct _NSRange { unsigned int x1; unsigned int x2; }*)arg3 token:(int)arg4 focused:(BOOL)arg5 technical:(BOOL)arg6;
@@ -37,6 +35,7 @@
 - (BOOL)currentUnread;
 - (void)dealloc;
 - (id)deepCopyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
 - (int)displayMode;
 - (int)firstToken;
 - (id)initWithContractionMode:(int)arg1 showEightDot:(BOOL)arg2 showDotsSevenAndEight:(BOOL)arg3;

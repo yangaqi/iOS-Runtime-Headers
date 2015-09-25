@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@class NSMutableSet, NSTimer, PLEntryNotificationOperatorComposition, PLOperator;
-
 @interface PLAWDNetworkUsage : PLAWDAuxMetrics {
     PLEntryNotificationOperatorComposition *_nameConnectionCallback;
     PLEntryNotificationOperatorComposition *_netEventCallback;
@@ -11,17 +9,13 @@
     NSTimer *_snapshotTimer;
 }
 
-@property(retain) PLEntryNotificationOperatorComposition * nameConnectionCallback;
-@property(retain) PLEntryNotificationOperatorComposition * netEventCallback;
+@property (retain) PLEntryNotificationOperatorComposition *nameConnectionCallback;
+@property (retain) PLEntryNotificationOperatorComposition *netEventCallback;
 @property unsigned int netState;
-@property PLOperator * operator;
-@property(retain) NSMutableSet * runningMetrics;
-@property(retain) NSTimer * snapshotTimer;
+@property (retain) NSTimer *snapshotTimer;
 
++ (id)entryAggregateDefinitionNetUsage;
 + (id)entryAggregateDefinitions;
-+ (id)entryEventPointDefinitions;
-+ (id)entryPointDefinitionAwdNetEnd;
-+ (id)entryPointDefinitionAwdNetStart;
 + (id)getSharedObjWithOperator:(id)arg1;
 
 - (void).cxx_destruct;
@@ -30,9 +24,7 @@
 - (id)nameConnectionCallback;
 - (id)netEventCallback;
 - (unsigned int)netState;
-- (void)resetAllTables;
-- (void)resetEndTable;
-- (void)resetStartTable;
+- (void)resetNetUsageTable;
 - (void)setNameConnectionCallback:(id)arg1;
 - (void)setNetEventCallback:(id)arg1;
 - (void)setNetState:(unsigned int)arg1;

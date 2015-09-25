@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class NSMapTable, NSMutableArray, VKLabelTile;
-
 @interface VKLabelNavTileData : NSObject {
     BOOL _foundTileEdgeJunctions;
     NSMapTable *_geoJunctionToJunctionMap;
@@ -20,9 +18,9 @@
     NSMutableArray *_tileEdgeJunctions;
 }
 
-@property(retain,readonly) NSMutableArray * oppositeCarriagewayJunctions;
-@property BOOL oppositeCarriagewayJunctionsValid;
-@property(retain,readonly) VKLabelTile * tile;
+@property (nonatomic, readonly, retain) NSMutableArray *oppositeCarriagewayJunctions;
+@property (nonatomic) BOOL oppositeCarriagewayJunctionsValid;
+@property (nonatomic, readonly, retain) VKLabelTile *tile;
 
 - (id).cxx_construct;
 - (void).cxx_destruct;
@@ -35,7 +33,7 @@
 - (id)initWithTile:(id)arg1;
 - (void)initializeJunctionInfos;
 - (id)junctionAtCoordinate:(struct Matrix<float, 2, 1> { float x1[2]; })arg1;
-- (id)junctionForGeoJunction:(struct { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; struct { /* ? */ } *x5; }*)arg1;
+- (id)junctionForGeoJunction:(struct { unsigned int x1; unsigned int x2; struct { /* ? */ } *x3; }*)arg1;
 - (id)oppositeCarriagewayJunctions;
 - (BOOL)oppositeCarriagewayJunctionsValid;
 - (void)setOppositeCarriagewayJunctionsValid:(BOOL)arg1;

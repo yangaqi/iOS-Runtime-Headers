@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@class NSArray, SKNode;
-
 @interface SKPhysicsBody : NSObject <NSCoding, NSCopying> {
     BOOL _affectedByGravity;
     BOOL _allowsRotation;
@@ -32,28 +30,28 @@
     } _velocity;
 }
 
-@property BOOL affectedByGravity;
-@property BOOL allowsRotation;
-@property float angularDamping;
-@property float angularVelocity;
-@property(readonly) float area;
-@property unsigned int categoryBitMask;
-@property float charge;
-@property unsigned int collisionBitMask;
-@property unsigned int contactTestBitMask;
-@property float density;
-@property(getter=isDynamic) BOOL dynamic;
-@property unsigned int fieldBitMask;
-@property float friction;
-@property(readonly) NSArray * joints;
-@property float linearDamping;
-@property float mass;
-@property(readonly) SKNode * node;
-@property BOOL pinned;
-@property(getter=isResting) BOOL resting;
-@property float restitution;
-@property BOOL usesPreciseCollisionDetection;
-@property struct CGVector { float x1; float x2; } velocity;
+@property (nonatomic) BOOL affectedByGravity;
+@property (nonatomic) BOOL allowsRotation;
+@property (nonatomic) float angularDamping;
+@property (nonatomic) float angularVelocity;
+@property (nonatomic, readonly) float area;
+@property (nonatomic) unsigned int categoryBitMask;
+@property (nonatomic) float charge;
+@property (nonatomic) unsigned int collisionBitMask;
+@property (nonatomic) unsigned int contactTestBitMask;
+@property (nonatomic) float density;
+@property (getter=isDynamic, nonatomic) BOOL dynamic;
+@property (nonatomic) unsigned int fieldBitMask;
+@property (nonatomic) float friction;
+@property (nonatomic, readonly) NSArray *joints;
+@property (nonatomic) float linearDamping;
+@property (nonatomic) float mass;
+@property (nonatomic, readonly) SKNode *node;
+@property (nonatomic) BOOL pinned;
+@property (getter=isResting, nonatomic) BOOL resting;
+@property (nonatomic) float restitution;
+@property (nonatomic) BOOL usesPreciseCollisionDetection;
+@property (nonatomic) struct CGVector { float x1; float x2; } velocity;
 
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
 + (id)bodyWithBodies:(id)arg1;
@@ -67,10 +65,10 @@
 + (id)bodyWithRectangleOfSize:(struct CGSize { float x1; float x2; })arg1;
 + (id)bodyWithRectangleOfSize:(struct CGSize { float x1; float x2; })arg1 center:(struct CGPoint { float x1; float x2; })arg2;
 + (id)bodyWithTexture:(id)arg1 alphaThreshold:(float)arg2 size:(struct CGSize { float x1; float x2; })arg3;
++ (id)bodyWithTexture:(id)arg1 alphaThreshold:(float)arg2 size:(struct CGSize { float x1; float x2; })arg3 accuracy:(float)arg4;
 + (id)bodyWithTexture:(id)arg1 size:(struct CGSize { float x1; float x2; })arg2;
 + (id)copyWithZone:(struct _NSZone { }*)arg1;
 
-- (id).cxx_construct;
 - (void).cxx_destruct;
 - (BOOL)affectedByGravity;
 - (id)allContactedBodies;

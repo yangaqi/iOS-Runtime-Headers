@@ -2,12 +2,6 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-/* RuntimeBrowser encountered an ivar type encoding it does not handle. 
-   See Warning(s) below.
- */
-
-@class CALayer, CAShapeLayer, NSArray, NSString, TSCHChartDrawableInfo, TSCHChartLayout, TSCHLegendMoveKnob, TSCHRendererLayer, TSCHSearchSelection, TSCHSelectionPath;
-
 @interface TSCHChartRep : TSWPTextHostRep <TSCHChartRepPlatformProtocols, TSCHSupportsRendering> {
     TSCHSearchSelection *_selection;
     TSCHSelectionPath *mActiveTextEditingPath;
@@ -21,16 +15,8 @@
     int mChunkPhase;
     BOOL mChunkTexturesValid;
     int mCurrentChunk;
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id mDrawingOpEndBlock;
-
-
-  /* Unexpected information at end of encoded ivar type: ? */
-  /* Error parsing encoded ivar type info: @? */
-    id mDrawingOpStartBlock;
-
+    id /* block */ mDrawingOpEndBlock;
+    id /* block */ mDrawingOpStartBlock;
     BOOL mDrawingSearchReference;
     TSCHLegendMoveKnob *mDynamicLegendKnob;
     BOOL mEditorIsEditingInfo;
@@ -40,6 +26,7 @@
     unsigned int mInDynamicStandinOperation;
     BOOL mInZoom;
     BOOL mInvalidateLegendLayerForLayerBasedRep;
+    BOOL mIs2DRepFor3DChartRep;
     BOOL mIsKPFExportForMultiData;
     BOOL mIsLayerBasedRep;
     struct CGPoint { 
@@ -57,27 +44,28 @@
     BOOL mWantsPreviewLayout;
 }
 
-@property(retain,readonly) TSCHSelectionPath * activeTextEditingPath;
-@property(readonly) NSString * animationFilter;
-@property(readonly) unsigned int chartDeliveryStyle;
-@property(readonly) TSCHChartDrawableInfo * chartInfo;
-@property(readonly) TSCHChartLayout * chartLayout;
-@property(readonly) BOOL chartRepGoingAway;
-@property BOOL chunkTexturesValid;
-@property(readonly) float contentsScale;
-@property(readonly) int currentChunk;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(copy) id drawingOpEndBlock;
-@property(copy) id drawingOpStartBlock;
-@property(readonly) BOOL drawingSearchReference;
-@property(retain) TSCHLegendMoveKnob * dynamicLegendKnob;
-@property(readonly) BOOL forceRenderBlankBackground;
-@property BOOL forceSeparateLegendLayer;
-@property(readonly) unsigned int hash;
-@property(readonly) TSCHSearchSelection * selection;
-@property(readonly) Class superclass;
-@property(readonly) float viewScale;
+@property (nonatomic, readonly, retain) TSCHSelectionPath *activeTextEditingPath;
+@property (nonatomic, readonly) NSString *animationFilter;
+@property (nonatomic, readonly) unsigned int chartDeliveryStyle;
+@property (nonatomic, readonly) TSCHChartDrawableInfo *chartInfo;
+@property (nonatomic, readonly) TSCHChartLayout *chartLayout;
+@property (nonatomic, readonly) BOOL chartRepGoingAway;
+@property (nonatomic) BOOL chunkTexturesValid;
+@property (nonatomic, readonly) float contentsScale;
+@property (nonatomic, readonly) int currentChunk;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, copy) id /* block */ drawingOpEndBlock;
+@property (nonatomic, copy) id /* block */ drawingOpStartBlock;
+@property (nonatomic, readonly) BOOL drawingSearchReference;
+@property (nonatomic, retain) TSCHLegendMoveKnob *dynamicLegendKnob;
+@property (nonatomic, readonly) BOOL forceRenderBlankBackground;
+@property (nonatomic) BOOL forceSeparateLegendLayer;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL is2DRepFor3DChartRep;
+@property (nonatomic, readonly) TSCHSearchSelection *selection;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) float viewScale;
 
 + (float)magicMoveAttributeMatchPercentBetweenOutgoingObject:(id)arg1 incomingObject:(id)arg2 mixingTypeContext:(id)arg3;
 
@@ -101,8 +89,8 @@
 - (void)displayMessage:(id)arg1 zPosition:(float)arg2 style:(int)arg3;
 - (void)drawInContext:(struct CGContext { }*)arg1;
 - (id)drawableLayout;
-- (id)drawingOpEndBlock;
-- (id)drawingOpStartBlock;
+- (id /* block */)drawingOpEndBlock;
+- (id /* block */)drawingOpStartBlock;
 - (BOOL)drawingSearchReference;
 - (id)dynamicLegendKnob;
 - (void)editor:(id)arg1 isDeselectingInfos:(id)arg2;
@@ -116,6 +104,8 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })geometryFrame;
 - (BOOL)inPrintPreviewMode;
 - (id)initWithLayout:(id)arg1 canvas:(id)arg2;
+- (id)initWithLayout:(id)arg1 canvas:(id)arg2 is2DRepFor3DChartRep:(BOOL)arg3;
+- (BOOL)is2DRepFor3DChartRep;
 - (BOOL)isDrawingIntoPDF;
 - (BOOL)isEditing;
 - (BOOL)isLayerBasedRep;
@@ -123,6 +113,7 @@
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })outerShadowFrame;
 - (int)p_backgroundLikePlaneStateForEffectiveStage:(int)arg1;
 - (BOOL)p_chartShouldDisplayMessage;
+- (void)p_checkFillPropertiesForDataListeningWithChangedProperties:(id)arg1;
 - (void)p_deleteMessageView;
 - (void)p_forceDismissTransientMessage;
 - (BOOL)p_hasBackgroundFill;
@@ -161,8 +152,8 @@
 - (struct CGPoint { float x1; float x2; })scaledSubpixelOffsetFromLayerFrameInScaledCanvas;
 - (id)selection;
 - (void)setChunkTexturesValid:(BOOL)arg1;
-- (void)setDrawingOpEndBlock:(id)arg1;
-- (void)setDrawingOpStartBlock:(id)arg1;
+- (void)setDrawingOpEndBlock:(id /* block */)arg1;
+- (void)setDrawingOpStartBlock:(id /* block */)arg1;
 - (void)setDynamicLegendKnob:(id)arg1;
 - (void)setForceSeparateLegendLayer:(BOOL)arg1;
 - (void)setTextureStage:(unsigned int)arg1;

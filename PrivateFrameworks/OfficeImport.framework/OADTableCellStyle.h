@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OADFill, OADTableCellBorderStyle;
-
 @interface OADTableCellStyle : NSObject {
     OADTableCellBorderStyle *mBorderStyle;
     OADFill *mFill;
@@ -15,6 +13,7 @@
 - (void)applyOverridesFrom:(id)arg1;
 - (id)borderStyle;
 - (void)dealloc;
+- (id)description;
 - (id)fill;
 - (void)setBorderStyle:(id)arg1;
 - (void)setFill:(id)arg1;

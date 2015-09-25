@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/QuickLook.framework/QuickLook
  */
 
-@class <QLPreviewContentDataSource>, <QLPreviewContentDelegate>, NSMapTable, NSString, QLPreviewController, QLPrintPageRenderer, _UIRemoteView;
-
 @interface QLRemotePreviewContentController : _UIRemoteViewController <QLPreviewContentControllerProtocol, QLPrintPageRendererDataSource> {
     int _currentPreviewItemIndex;
     <QLPreviewContentDataSource> *_dataSource;
@@ -18,24 +16,25 @@
     BOOL _statusBarWasHidden;
 }
 
-@property <QLPreviewContentDataSource> * dataSource;
-@property(copy,readonly) NSString * debugDescription;
-@property <QLPreviewContentDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property QLPreviewController * previewController;
+@property <QLPreviewContentDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property <QLPreviewContentDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property QLPreviewController *previewController;
 @property int previewMode;
-@property(readonly) Class superclass;
+@property (readonly) Class superclass;
 
 + (id)exportedInterface;
 + (id)serviceViewControllerInterface;
 
 - (void)_contentWasTappedInPreviewContentController;
 - (void)_didExitFullScreen;
+- (void)_dismissGestureUpdateWithState:(int)arg1 trackingInformation:(id)arg2;
 - (void)_overlayWasTappedInPreviewContentController;
 - (void)_previewContentControllerDidLoadItem:(id)arg1 atIndex:(int)arg2 withError:(id)arg3;
 - (void)_previewContentControllerDidMoveToItemAtIndex:(int)arg1;
-- (void)_previewContentControllerGetPreviewItemAtIndex:(int)arg1 sourceUUID:(int)arg2 handler:(id)arg3;
+- (void)_previewContentControllerGetPreviewItemAtIndex:(int)arg1 sourceUUID:(int)arg2 handler:(id /* block */)arg3;
 - (void)_previewContentControllerReceivedTapOnURL:(id)arg1;
 - (void)_previewContentControllerWillHideOverlayWithDuration:(double)arg1;
 - (void)_previewContentControllerWillMoveToItemAtIndex:(int)arg1;
@@ -55,6 +54,7 @@
 - (id)dataSource;
 - (void)dealloc;
 - (id)delegate;
+- (void)dismissTransitionIsReadyToFinishSynchronizedWithBlock:(id /* block */)arg1;
 - (void)endScrubbing;
 - (void)enterBackground;
 - (void)forceResignFirstResponder;
@@ -75,10 +75,11 @@
 - (void)setDelegate:(id)arg1;
 - (void)setLoadingTextForMissingFiles:(id)arg1;
 - (void)setNumberOfPreviewItems:(int)arg1;
+- (void)setOrbMode:(unsigned int)arg1;
 - (void)setOverlayHidden:(BOOL)arg1 duration:(double)arg2;
 - (void)setPreviewController:(id)arg1;
 - (void)setPreviewMode:(int)arg1;
-- (void)setTransitioning:(BOOL)arg1 synchronizedWithBlock:(id)arg2;
+- (void)setTransitioning:(BOOL)arg1 synchronizedWithBlock:(id /* block */)arg2;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(int)arg1;
 - (void)stopLoadingCurrentPreviewItem;
 - (void)togglePlayState;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>;
-
 @interface _UICache : NSObject {
     NSMutableDictionary *_cache;
     NSObject<OS_dispatch_queue> *_cacheQueue;
@@ -13,9 +11,10 @@
     id _noteObserver;
 }
 
-@property BOOL clearsCacheOnApplicationBackground;
-@property BOOL clearsCacheOnLowMemoryWarnings;
+@property (nonatomic) BOOL clearsCacheOnApplicationBackground;
+@property (nonatomic) BOOL clearsCacheOnLowMemoryWarnings;
 
+- (id)cacheKeys;
 - (BOOL)clearsCacheOnApplicationBackground;
 - (BOOL)clearsCacheOnLowMemoryWarnings;
 - (void)dealloc;

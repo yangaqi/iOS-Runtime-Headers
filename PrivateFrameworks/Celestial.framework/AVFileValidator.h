@@ -2,14 +2,12 @@
    Image: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
  */
 
-@class NSString;
-
 @interface AVFileValidator : NSObject {
-    struct AVFileValidatorPrivate { id x1; id x2; struct FigOpaqueMediaValidator {} *x3; struct FigMediaValidatorDataLocation { unsigned long long x_4_1_1; unsigned long long x_4_1_2; } x4; struct OpaqueCMByteStream {} *x5; BOOL x6; BOOL x7; id x8; } *_priv;
+    struct AVFileValidatorPrivate { id x1; struct FigOpaqueMediaValidator {} *x2; struct FigMediaValidatorDataLocation { unsigned long long x_3_1_1; unsigned long long x_3_1_2; } x3; struct OpaqueCMByteStream {} *x4; BOOL x5; BOOL x6; id x7; /* Warning: Unrecognized filer type: '' using 'void*' */ void*x8; void*x9; void*x10; void*x11; void*x12; void*x13; void*x14; void*x15; void*x16; void*x17; void*x18; void*x19; void*x20; void*x21; void*x22; void*x23; void*x24; void*x25; void*x26; void*x27; } *_priv;
     NSString *_validationRules;
 }
 
-@property(retain) NSString * validationRules;
+@property (retain) NSString *validationRules;
 
 - (void)cancel;
 - (void)dealloc;

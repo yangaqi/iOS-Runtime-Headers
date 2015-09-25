@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@class NSArray, NSMutableArray, NSString, TNTheme, TNUIState, TSKTreeNode, TSSStylesheet;
-
-@interface TNDocumentRoot : TSADocumentRoot <TSTResolverContainerNameProvider> {
+@interface TNDocumentRoot : TSADocumentRoot <TSTFormsSheetProvider, TSTResolverContainerNameProvider> {
     struct CGSize { 
         float width; 
         float height; 
@@ -21,32 +19,32 @@
     TNUIState *mUIState;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property struct CGSize { float x1; float x2; } pageSize;
-@property(copy) NSString * paperID;
-@property(copy) NSString * printerID;
-@property(getter=isPrintingAllSheets) BOOL printingAllSheets;
-@property BOOL removedAllQuickCalcFunctions;
-@property(copy) NSArray * selectedQuickCalcFunctions;
-@property(readonly) NSArray * sheets;
-@property(retain,readonly) TSKTreeNode * sidebarOrder;
-@property(readonly) TSSStylesheet * stylesheet;
-@property(readonly) Class superclass;
-@property(readonly) unsigned int tableCount;
-@property(retain) TNTheme * theme;
-@property(retain) TNUIState * uiState;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) struct CGSize { float x1; float x2; } pageSize;
+@property (nonatomic, copy) NSString *paperID;
+@property (nonatomic, copy) NSString *printerID;
+@property (getter=isPrintingAllSheets, nonatomic) BOOL printingAllSheets;
+@property (nonatomic) BOOL removedAllQuickCalcFunctions;
+@property (nonatomic, copy) NSArray *selectedQuickCalcFunctions;
+@property (nonatomic, readonly) NSArray *sheets;
+@property (nonatomic, readonly, retain) TSKTreeNode *sidebarOrder;
+@property (nonatomic, readonly) TSSStylesheet *stylesheet;
+@property (readonly) Class superclass;
+@property (nonatomic, readonly) unsigned int tableCount;
+@property (nonatomic, retain) TNTheme *theme;
+@property (nonatomic, retain) TNUIState *uiState;
 
 + (struct CGSize { float x1; float x2; })previewImageMaxSizeForType:(unsigned int)arg1;
 + (struct CGSize { float x1; float x2; })previewImageSizeForType:(unsigned int)arg1;
 
-- (id).cxx_construct;
 - (id)UIStateForChart:(id)arg1;
 - (id)activeSheet;
 - (void)addSheet:(id)arg1 dolcContext:(id)arg2;
 - (unsigned int)applicationType;
 - (id)childEnumerator;
+- (BOOL)containsForms;
 - (void)dealloc;
 - (void)documentDidLoad;
 - (void)incrementSheetNameCounter;
@@ -57,6 +55,7 @@
 - (void)insertSheet:(id)arg1 sheetIndex:(unsigned int)arg2 context:(id)arg3;
 - (BOOL)isMultiPageForQuickLook;
 - (BOOL)isPrintingAllSheets;
+- (BOOL)isTableLinkedToAForm:(struct __CFUUID { }*)arg1;
 - (void)moveSheetFromIndex:(unsigned int)arg1 toIndex:(unsigned int)arg2;
 - (id)nameForResolverContainer:(id)arg1;
 - (int)naturalAlignmentAtCharIndex:(unsigned int)arg1 inTextStorage:(id)arg2;
@@ -75,6 +74,7 @@
 - (id)paperID;
 - (void)performDeferredUpgradeImportOperationsOnNewThreadForCharts:(id)arg1;
 - (void)performDeferredUpgradeImportOperationsRequiringCalcEngine;
+- (BOOL)prepareAndValidateSidecarViewStateObjectWithVersionUUIDMismatch:(id)arg1 originalDocumentViewStateObject:(id)arg2;
 - (void)prepareNewDocumentWithTemplateBundle:(id)arg1;
 - (id)previewImageForSize:(struct CGSize { float x1; float x2; })arg1;
 - (id)printerID;
@@ -112,11 +112,11 @@
 - (id)sidebarOrder;
 - (id)stylesheet;
 - (unsigned int)tableCount;
+- (void)tableID:(struct __CFUUID { }*)arg1 changedToTableID:(struct __CFUUID { }*)arg2;
 - (id)theme;
 - (id)uiState;
 - (BOOL)validName:(id)arg1 forRenamingSheet:(id)arg2;
 - (BOOL)validNameForNewSheet:(id)arg1;
-- (void)validateViewState:(id)arg1;
 - (int)verticalAlignmentForTextStorage:(id)arg1;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
  */
 
-@class CUICatalog, CUIStyleEffectConfiguration, NSConcreteNotifyingMutableAttributedString, NSLayoutManager, NSString, NSTextContainer;
-
 @interface NSStringDrawingTextStorage : NSTextStorage <NSLayoutManagerDelegate> {
     float _baselineDelta;
     CUICatalog *_catalog;
@@ -22,14 +20,14 @@
     NSTextContainer *_textContainer;
 }
 
-@property(retain) CUICatalog * cuiCatalog;
-@property(retain) CUIStyleEffectConfiguration * cuiStyleEffects;
-@property(copy,readonly) NSString * debugDescription;
+@property (nonatomic, retain) CUICatalog *cuiCatalog;
+@property (nonatomic, retain) CUIStyleEffectConfiguration *cuiStyleEffects;
+@property (readonly, copy) NSString *debugDescription;
 @property float defaultTighteningFactor;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-@property(getter=_usesSimpleTextEffects,setter=_setUsesSimpleTextEffects:) BOOL usesSimpleTextEffects;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
+@property (getter=_usesSimpleTextEffects, setter=_setUsesSimpleTextEffects:, nonatomic) BOOL usesSimpleTextEffects;
 
 + (BOOL)_hasCustomSettings;
 + (void)_setHasCustomSettings:(BOOL)arg1;
@@ -57,6 +55,7 @@
 - (id)cuiStyleEffects;
 - (struct CGPoint { float x1; float x2; })defaultTextContainerOriginForRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (float)defaultTighteningFactor;
+- (void)drawTextContainer:(id)arg1 range:(struct _NSRange { unsigned int x1; unsigned int x2; })arg2 withRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg3 graphicsContext:(struct CGContext { }*)arg4 baselineMode:(BOOL)arg5 scrollable:(BOOL)arg6 padding:(float)arg7;
 - (void)drawTextContainer:(id)arg1 withRect:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 graphicsContext:(struct CGContext { }*)arg3 baselineMode:(BOOL)arg4 scrollable:(BOOL)arg5 padding:(float)arg6;
 - (void)fontSetChanged;
 - (id)init;

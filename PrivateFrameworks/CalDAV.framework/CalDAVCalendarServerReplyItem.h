@@ -2,17 +2,15 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class CoreDAVLeafItem;
-
 @interface CalDAVCalendarServerReplyItem : CalDAVItemWithRecurrenceChildren {
     CoreDAVLeafItem *_attendee;
 }
 
-@property(retain) CoreDAVLeafItem * attendee;
+@property (nonatomic, retain) CoreDAVLeafItem *attendee;
 
+- (void).cxx_destruct;
 - (id)attendee;
 - (id)copyParseRules;
-- (void)dealloc;
 - (void)setAttendee:(id)arg1;
 
 @end

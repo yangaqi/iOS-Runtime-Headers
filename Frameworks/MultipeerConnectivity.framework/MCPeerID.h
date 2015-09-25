@@ -2,13 +2,11 @@
    Image: /System/Library/Frameworks/MultipeerConnectivity.framework/MultipeerConnectivity
  */
 
-@class MCPeerIDInternal, NSString;
-
 @interface MCPeerID : NSObject <NSCopying, NSSecureCoding> {
     MCPeerIDInternal *_internal;
 }
 
-@property(readonly) NSString * displayName;
+@property (nonatomic, readonly) NSString *displayName;
 
 + (BOOL)supportsSecureCoding;
 
@@ -19,6 +17,7 @@
 - (void)encodeWithCoder:(id)arg1;
 - (unsigned int)hash;
 - (id)idString;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithDisplayName:(id)arg1;
 - (id)initWithIDString:(id)arg1 displayName:(id)arg2;

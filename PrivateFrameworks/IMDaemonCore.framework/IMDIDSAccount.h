@@ -2,15 +2,14 @@
    Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
  */
 
-@class IDSAccount;
-
 @interface IMDIDSAccount : IMDAccount {
     IDSAccount *_idsAccount;
 }
 
-@property(retain,readonly) IDSAccount * idsAccount;
+@property (nonatomic, readonly, retain) IDSAccount *idsAccount;
 
 - (id)accountDefaults;
+- (BOOL)canMakeDowngradeRoutingChecks;
 - (void)dealloc;
 - (id)idsAccount;
 - (id)initWithAccountID:(id)arg1 defaults:(id)arg2 service:(id)arg3 idsAccount:(id)arg4;

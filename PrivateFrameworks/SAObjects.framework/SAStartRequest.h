@@ -2,28 +2,26 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSNumber, NSString, SASStartSpeech;
+@interface SAStartRequest : SABaseCommand <SAServerBoundCommand>
 
-@interface SAStartRequest : SABaseCommand <SAServerBoundCommand> {
-}
-
-@property(copy) NSString * aceId;
-@property BOOL clearContext;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property BOOL eyesFree;
-@property BOOL handsFree;
-@property(copy) NSString * hardwareBuild;
-@property(readonly) unsigned int hash;
-@property(copy) NSNumber * isCarryDevice;
-@property(copy) NSString * motionActivity;
-@property(copy) NSNumber * motionConfidence;
-@property(copy) NSString * origin;
-@property(copy) NSString * refId;
-@property(retain) SASStartSpeech * sourceSpeechRequest;
-@property(readonly) Class superclass;
-@property BOOL talkOnly;
-@property(copy) NSString * utterance;
+@property (nonatomic, copy) NSString *aceId;
+@property (nonatomic) BOOL clearContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL eyesFree;
+@property (nonatomic) BOOL handsFree;
+@property (nonatomic, copy) NSString *hardwareBuild;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSNumber *isCarryDevice;
+@property (nonatomic, copy) NSString *motionActivity;
+@property (nonatomic, copy) NSNumber *motionConfidence;
+@property (nonatomic, copy) NSString *origin;
+@property (nonatomic, copy) NSString *refId;
+@property (nonatomic, retain) SASStartSpeech *sourceSpeechRequest;
+@property (readonly) Class superclass;
+@property (nonatomic) BOOL talkOnly;
+@property (nonatomic) BOOL textToSpeechIsMuted;
+@property (nonatomic, copy) NSString *utterance;
 
 + (id)startRequest;
 + (id)startRequestWithDictionary:(id)arg1 context:(id)arg2;
@@ -48,9 +46,11 @@
 - (void)setOrigin:(id)arg1;
 - (void)setSourceSpeechRequest:(id)arg1;
 - (void)setTalkOnly:(BOOL)arg1;
+- (void)setTextToSpeechIsMuted:(BOOL)arg1;
 - (void)setUtterance:(id)arg1;
 - (id)sourceSpeechRequest;
 - (BOOL)talkOnly;
+- (BOOL)textToSpeechIsMuted;
 - (id)utterance;
 
 @end

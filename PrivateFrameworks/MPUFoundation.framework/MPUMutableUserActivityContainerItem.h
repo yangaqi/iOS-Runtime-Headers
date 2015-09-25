@@ -2,15 +2,14 @@
    Image: /System/Library/PrivateFrameworks/MPUFoundation.framework/MPUFoundation
  */
 
-@class MPMediaEntity;
+@interface MPUMutableUserActivityContainerItem : MPUUserActivityContainerItem
 
-@interface MPUMutableUserActivityContainerItem : MPUUserActivityContainerItem {
-}
-
-@property(retain) MPMediaEntity * selectedMediaEntity;
-@property(retain) MPMediaEntity * visualReferenceMediaEntity;
+@property (nonatomic) int containerItemType;
+@property (nonatomic, retain) MPMediaEntity *selectedMediaEntity;
+@property (nonatomic, retain) MPMediaEntity *visualReferenceMediaEntity;
 
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (void)setContainerItemType:(int)arg1;
 - (void)setSelectedMediaEntity:(id)arg1;
 - (void)setVisualReferenceMediaEntity:(id)arg1;
 

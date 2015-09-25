@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSArray, NSString;
-
 @interface PSMagnifyMode : NSObject <NSCopying> {
     NSString *_localizedName;
     NSString *_name;
@@ -16,17 +14,18 @@
     BOOL _zoomed;
 }
 
-@property(retain) NSString * localizedName;
-@property(retain) NSString * name;
-@property(retain) NSArray * previewHTMLStrings;
-@property(retain) NSArray * previewStyleSheets;
-@property struct CGSize { float x1; float x2; } size;
-@property(getter=isZoomed) BOOL zoomed;
+@property (nonatomic, retain) NSString *localizedName;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSArray *previewHTMLStrings;
+@property (nonatomic, retain) NSArray *previewStyleSheets;
+@property (nonatomic) struct CGSize { float x1; float x2; } size;
+@property (getter=isZoomed, nonatomic) BOOL zoomed;
 
 + (id)magnifyModeWithSize:(struct CGSize { float x1; float x2; })arg1 name:(id)arg2 localizedName:(id)arg3 isZoomed:(BOOL)arg4;
 
+- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
+- (id)description;
 - (unsigned int)hash;
 - (BOOL)isEqual:(id)arg1;
 - (BOOL)isZoomed;

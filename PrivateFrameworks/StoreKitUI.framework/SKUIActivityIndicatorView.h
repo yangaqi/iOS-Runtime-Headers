@@ -2,23 +2,24 @@
    Image: /System/Library/PrivateFrameworks/StoreKitUI.framework/StoreKitUI
  */
 
-@class NSString, UIActivityIndicatorView;
-
 @interface SKUIActivityIndicatorView : SKUIViewReuseView <SKUIViewElementView> {
     unsigned int _alignment;
+    BOOL _animating;
     struct UIEdgeInsets { 
         float top; 
         float left; 
         float bottom; 
         float right; 
     } _contentInset;
+    UIImageView *_imageView;
     UIActivityIndicatorView *_indicatorView;
+    double _period;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (struct CGSize { float x1; float x2; })_activityIndicatorSize;
 + (id)_attributedStringWithLabel:(id)arg1 context:(id)arg2;
@@ -28,6 +29,9 @@
 + (struct CGSize { float x1; float x2; })sizeThatFitsWidth:(float)arg1 viewElement:(id)arg2 context:(id)arg3;
 
 - (void).cxx_destruct;
+- (BOOL)_isAnimating;
+- (void)_startAnimating;
+- (void)_stopAnimating;
 - (void)_updateSpinnerAnimation;
 - (void)didMoveToSuperview;
 - (void)didMoveToWindow;

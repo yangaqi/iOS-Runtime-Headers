@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSData, NSString, NSURL, OCDReader, OITSUProgressContext, TCImportTracing;
-
 @interface OCImporter : OCMapper {
     NSString *_docPassphrase;
     NSData *mData;
@@ -14,9 +12,9 @@
     NSURL *mURL;
 }
 
-@property(retain) NSString * docPassphrase;
-@property(retain) OITSUProgressContext * progressContext;
-@property(readonly) TCImportTracing * tracing;
+@property (nonatomic, retain) NSString *docPassphrase;
+@property (retain) OITSUProgressContext *progressContext;
+@property (nonatomic, readonly) TCImportTracing *tracing;
 
 + (void)initialize;
 
@@ -24,7 +22,7 @@
 - (id)displayName;
 - (id)docPassphrase;
 - (id)filename;
-- (void)finalizeBackgroundTasksWithDocumentState:(id)arg1;
+- (void)finalizeWithDocumentState:(id)arg1;
 - (id)initWithData:(id)arg1;
 - (id)initWithURL:(id)arg1;
 - (BOOL)isDocumentEncryptedUnsupportedVersion:(BOOL*)arg1 errorMessage:(id*)arg2;

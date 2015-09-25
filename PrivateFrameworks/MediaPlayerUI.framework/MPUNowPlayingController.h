@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class <MPUNowPlayingDelegate>, NSDictionary, NSObject<OS_dispatch_source>, NSString, UIImage;
-
 @interface MPUNowPlayingController : NSObject {
     BOOL _cachedArtworkDirty;
     UIImage *_cachedNowPlayingArtwork;
@@ -13,6 +11,7 @@
     BOOL _currentNowPlayingAppIsRunning;
     NSDictionary *_currentNowPlayingInfo;
     <MPUNowPlayingDelegate> *_delegate;
+    BOOL _hasValidCurrentNowPlayingAppDisplayID;
     int _isPlaying;
     BOOL _isRegisteredForNowPlayingNotifications;
     BOOL _isUpdatingNowPlayingApp;
@@ -21,19 +20,23 @@
     BOOL _shouldUpdateNowPlayingArtwork;
     NSObject<OS_dispatch_source> *_timeInformationTimer;
     double _timeInformationUpdateInterval;
+    BOOL _wantsTimeInformationUpdates;
 }
 
-@property(readonly) double currentDuration;
-@property(readonly) double currentElapsed;
-@property(readonly) UIImage * currentNowPlayingArtwork;
-@property(readonly) NSDictionary * currentNowPlayingInfo;
-@property <MPUNowPlayingDelegate> * delegate;
-@property(readonly) BOOL isPlaying;
-@property(readonly) NSString * nowPlayingAppDisplayID;
-@property BOOL shouldUpdateNowPlayingArtwork;
-@property double timeInformationUpdateInterval;
+@property (nonatomic, readonly) double currentDuration;
+@property (nonatomic, readonly) double currentElapsed;
+@property (nonatomic, readonly) BOOL currentNowPlayingAppIsRunning;
+@property (nonatomic, readonly) UIImage *currentNowPlayingArtwork;
+@property (nonatomic, readonly) NSDictionary *currentNowPlayingInfo;
+@property (nonatomic) <MPUNowPlayingDelegate> *delegate;
+@property (nonatomic, readonly) BOOL isPlaying;
+@property (nonatomic, readonly) NSString *nowPlayingAppDisplayID;
+@property (nonatomic, readonly) BOOL nowPlayingAppIsSystemMediaApp;
+@property (nonatomic) BOOL shouldUpdateNowPlayingArtwork;
+@property (nonatomic) double timeInformationUpdateInterval;
 
 - (void).cxx_destruct;
+- (BOOL)_isUpdatingTimeInformation;
 - (void)_registerForNotifications;
 - (void)_startUpdatingTimeInformation;
 - (void)_stopUpdatingTimeInformation;
@@ -41,9 +44,10 @@
 - (void)_updateCurrentNowPlaying;
 - (void)_updateNowPlayingAppDisplayID;
 - (void)_updatePlaybackState;
-- (void)_updateTimeInformation;
+- (void)_updateTimeInformationAndCallDelegate:(BOOL)arg1;
 - (double)currentDuration;
 - (double)currentElapsed;
+- (BOOL)currentNowPlayingAppIsRunning;
 - (id)currentNowPlayingArtwork;
 - (id)currentNowPlayingInfo;
 - (void)dealloc;
@@ -51,6 +55,7 @@
 - (id)init;
 - (BOOL)isPlaying;
 - (id)nowPlayingAppDisplayID;
+- (BOOL)nowPlayingAppIsSystemMediaApp;
 - (void)setDelegate:(id)arg1;
 - (void)setShouldUpdateNowPlayingArtwork:(BOOL)arg1;
 - (void)setTimeInformationUpdateInterval:(double)arg1;

@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/PhotoLibrary.framework/PhotoLibrary
  */
 
-@class CAMBottomBar, PLCropOverlayPreviewBottomBar, PLCropOverlayWallpaperBottomBar;
-
 @interface PLCropOverlayBottomBar : UIView {
-    CAMBottomBar *_cameraBottomBar;
+    CMKBottomBar *_cameraBottomBar;
     BOOL _inPopover;
     BOOL _playingVideo;
     PLCropOverlayPreviewBottomBar *_previewBottomBar;
@@ -13,12 +11,12 @@
     PLCropOverlayWallpaperBottomBar *_wallpaperBottomBar;
 }
 
-@property(retain) CAMBottomBar * cameraBottomBar;
-@property(getter=isInPopover) BOOL inPopover;
-@property(getter=isPlayingVideo) BOOL playingVideo;
-@property(retain) PLCropOverlayPreviewBottomBar * previewBottomBar;
-@property int style;
-@property(retain) PLCropOverlayWallpaperBottomBar * wallpaperBottomBar;
+@property (nonatomic, retain) CMKBottomBar *cameraBottomBar;
+@property (getter=isInPopover, nonatomic) BOOL inPopover;
+@property (getter=isPlayingVideo, nonatomic) BOOL playingVideo;
+@property (nonatomic, retain) PLCropOverlayPreviewBottomBar *previewBottomBar;
+@property (nonatomic) int style;
+@property (nonatomic, retain) PLCropOverlayWallpaperBottomBar *wallpaperBottomBar;
 
 - (void)_commonPLCropOverlayBottomBarInitialization;
 - (BOOL)_isEditingStyle:(int)arg1;

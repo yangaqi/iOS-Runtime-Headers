@@ -2,8 +2,7 @@
    Image: /System/Library/PrivateFrameworks/UIAccessibility.framework/UIAccessibility
  */
 
-@interface UIPasteboard_QSExtras : __UIPasteboard_QSExtras_super {
-}
+@interface UIPasteboard_QSExtras : __UIPasteboard_QSExtras_super
 
 + (id)_accessibilityQuickSpeakPasteboard;
 + (void)_accessibilitySetUseQuickSpeakPasteBoard:(BOOL)arg1;
@@ -11,7 +10,7 @@
 + (id)generalPasteboard;
 + (id)pasteboardWithName:(id)arg1 create:(BOOL)arg2;
 + (id)pasteboardWithUniqueName;
-+ (Class)safeCategoryTargetClass;
++ (Class)safeCategoryBaseClass;
 + (id)safeCategoryTargetClassName;
 
 - (id)URL;

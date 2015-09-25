@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class <CKRecipientSelectionControllerDelegate>, ABPeoplePickerNavigationController, CKComposeRecipientView, CKPendingConversation, CKRecipientSearchListController, MFComposeRecipient, NSArray, NSMutableDictionary, NSString, UIScrollView, UIView;
-
-@interface CKRecipientSelectionController : CKViewController <ABPeoplePickerNavigationControllerDelegate, CKRecipientSearchListControllerDelegate, MFComposeRecipientTextViewDelegate, MFGroupDetailViewControllerDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate> {
+@interface CKRecipientSelectionController : CKViewController <ABPeoplePickerNavigationControllerDelegate, CKRecipientSearchListControllerDelegate, MFComposeRecipientTextViewDelegate, MFGroupDetailViewControllerDelegate> {
     NSArray *_addressBookProperties;
     CKPendingConversation *_conversation;
     <CKRecipientSelectionControllerDelegate> *_delegate;
@@ -26,37 +24,38 @@
     UIScrollView *_toFieldScrollingView;
 }
 
-@property(retain) NSArray * addressBookProperties;
-@property(readonly) float collapsedHeight;
-@property(retain) CKPendingConversation * conversation;
-@property(copy,readonly) NSString * debugDescription;
-@property <CKRecipientSelectionControllerDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property BOOL didShowOneTimeErrorAlert;
-@property(getter=isEditable) BOOL editable;
-@property BOOL forceMMS;
-@property(readonly) unsigned int hash;
-@property(readonly) BOOL homogenizePreferredServiceForiMessage;
-@property(retain) ABPeoplePickerNavigationController * peoplePickerController;
-@property(getter=isPeoplePickerHidden) BOOL peoplePickerHidden;
-@property BOOL preventAtomization;
-@property(retain) MFComposeRecipient * recentContactForPresentedABCard;
-@property(retain) NSMutableDictionary * recipientAvailabilities;
-@property(retain) NSMutableDictionary * recipientAvailibityTimers;
-@property(retain) CKRecipientSearchListController * searchListController;
-@property(getter=isSearchResultsHidden) BOOL searchResultsHidden;
-@property(readonly) BOOL shouldSuppressSearchResultsTable;
-@property(readonly) Class superclass;
-@property(retain) CKComposeRecipientView * toField;
-@property(retain) UIView * toFieldContainerView;
-@property(readonly) BOOL toFieldIsFirstResponder;
-@property(retain) UIScrollView * toFieldScrollingView;
+@property (nonatomic, retain) NSArray *addressBookProperties;
+@property (nonatomic, readonly) float collapsedHeight;
+@property (nonatomic, retain) CKPendingConversation *conversation;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <CKRecipientSelectionControllerDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL didShowOneTimeErrorAlert;
+@property (getter=isEditable, nonatomic) BOOL editable;
+@property (nonatomic) BOOL forceMMS;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) BOOL homogenizePreferredServiceForiMessage;
+@property (nonatomic, retain) ABPeoplePickerNavigationController *peoplePickerController;
+@property (getter=isPeoplePickerHidden, nonatomic) BOOL peoplePickerHidden;
+@property (nonatomic) BOOL preventAtomization;
+@property (nonatomic, retain) MFComposeRecipient *recentContactForPresentedABCard;
+@property (nonatomic, retain) NSMutableDictionary *recipientAvailabilities;
+@property (nonatomic, retain) NSMutableDictionary *recipientAvailibityTimers;
+@property (nonatomic, retain) CKRecipientSearchListController *searchListController;
+@property (getter=isSearchResultsHidden, nonatomic) BOOL searchResultsHidden;
+@property (nonatomic, readonly) BOOL shouldSuppressSearchResultsTable;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) CKComposeRecipientView *toField;
+@property (nonatomic, retain) UIView *toFieldContainerView;
+@property (nonatomic, readonly) BOOL toFieldIsFirstResponder;
+@property (nonatomic, retain) UIScrollView *toFieldScrollingView;
 
 - (void)_adjustToFieldPositionIfNecessary;
 - (id)_alternateAddressesForRecipient:(id)arg1;
 - (id)_alternateiMessagableAddressesForRecipient:(id)arg1;
 - (unsigned int)_atomPresentationOptionsForRecipient:(id)arg1;
 - (BOOL)_availibilityForRecipient:(id)arg1 onService:(id)arg2;
+- (id)_canonicalRecipientAddresses;
 - (void)_dismissPeoplePicker;
 - (void)_handleConversationPreferredServiceDidChangeNotification:(id)arg1;
 - (void)_handleRecipientAvailabilityTimeout:(id)arg1;
@@ -65,16 +64,14 @@
 - (BOOL)_isToFieldPushedUp;
 - (void)_keyboardWillShowOrHide:(id)arg1;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })_navigationBarInsets;
-- (id)_navigationControllerForSearchResults;
 - (id)_recipientCausingTooManyRecipientsError;
 - (void)_refreshActionSheet;
 - (void)_removeAvailabilityTimeoutTimerForRecipient:(id)arg1;
 - (void)_removeRecent;
 - (void)_resetSearchResultsInsets;
-- (BOOL)_shouldShowCardForPerson:(void*)arg1;
 - (void)_showActionSheetForRecipient:(id)arg1 animated:(BOOL)arg2;
 - (void)_showDetailsForGroup:(id)arg1;
-- (void)_showDetailsForRecipient:(id)arg1 canDelete:(BOOL)arg2 presentInPopover:(BOOL)arg3;
+- (void)_showDetailsForRecipient:(id)arg1 canDelete:(BOOL)arg2;
 - (void)_showOneTimeErrorAlertForAddedRecipient:(id)arg1 service:(id)arg2 withError:(BOOL)arg3;
 - (void)_showSearchField;
 - (void)_startAvailabilityTimeoutTimerForRecipient:(id)arg1;
@@ -88,6 +85,8 @@
 - (void)addRecipients:(id)arg1;
 - (id)addressBookProperties;
 - (void)alertView:(id)arg1 clickedButtonAtIndex:(int)arg2;
+- (void)autocompleteResultsController:(id)arg1 didRequestInfoAboutRecipient:(id)arg2;
+- (void)autocompleteResultsController:(id)arg1 didSelectRecipient:(id)arg2 atIndex:(unsigned int)arg3;
 - (float)collapsedHeight;
 - (id)composeRecipientView:(id)arg1 composeRecipientForAddress:(id)arg2;
 - (id)composeRecipientView:(id)arg1 composeRecipientForRecord:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
@@ -121,14 +120,11 @@
 - (BOOL)isPeoplePickerHidden;
 - (BOOL)isSearchResultsHidden;
 - (void)loadView;
-- (void)navigationController:(id)arg1 didShowViewController:(id)arg2 animated:(BOOL)arg3;
 - (void)parentControllerDidResume:(BOOL)arg1 animating:(BOOL)arg2;
 - (id)peoplePickerController;
-- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2;
-- (BOOL)peoplePickerNavigationController:(id)arg1 shouldContinueAfterSelectingPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
+- (void)peoplePickerNavigationController:(id)arg1 didSelectPerson:(const void*)arg2;
+- (void)peoplePickerNavigationController:(id)arg1 didSelectPerson:(void*)arg2 property:(int)arg3 identifier:(int)arg4;
 - (void)peoplePickerNavigationControllerDidCancel:(id)arg1;
-- (void)popoverPresentationController:(id)arg1 willRepositionPopoverToRect:(inout struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; }*)arg2 inView:(inout id*)arg3;
-- (void)popoverPresentationControllerDidDismissPopover:(id)arg1;
 - (unsigned int)presentationOptionsForRecipient:(id)arg1;
 - (BOOL)preventAtomization;
 - (id)recentContactForPresentedABCard;
@@ -140,13 +136,11 @@
 - (void)recipientViewDidResignFirstResponder:(id)arg1;
 - (BOOL)recipientViewShouldIgnoreFirstResponderChanges:(id)arg1;
 - (id)recipients;
-- (void)refreshComposeSendingServiceForAddresses:(id)arg1 withCompletionBlock:(id)arg2;
+- (void)refreshComposeSendingServiceForAddresses:(id)arg1 withCompletionBlock:(id /* block */)arg2;
 - (void)removeRecipient:(id)arg1;
 - (void)reset;
 - (id)searchListController;
-- (void)searchListController:(id)arg1 accessoryPickedForRecipient:(id)arg2;
 - (void)searchListController:(id)arg1 destinationsUpdated:(id)arg2;
-- (void)searchListController:(id)arg1 didSelectRecipient:(id)arg2;
 - (int)searchListController:(id)arg1 idStatusForIDSID:(id)arg2;
 - (void)searchListControllerDidFinishSearch:(id)arg1;
 - (void)searchListControllerDidScroll:(id)arg1;
@@ -173,10 +167,10 @@
 - (id)toFieldContainerView;
 - (BOOL)toFieldIsFirstResponder;
 - (id)toFieldScrollingView;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)viewDidAppearDeferredSetup;
 - (void)viewDidDisappear:(BOOL)arg1;
 - (void)viewDidLoad;
-- (void)viewServiceWillAnimateRotationToInterfaceOrientation:(int)arg1 duration:(double)arg2;
 - (void)viewWillDisappear:(BOOL)arg1;
 - (void)viewWillTransitionToSize:(struct CGSize { float x1; float x2; })arg1 withTransitionCoordinator:(id)arg2;
 

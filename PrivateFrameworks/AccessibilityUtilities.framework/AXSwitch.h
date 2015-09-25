@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities
  */
 
-@class NSString, NSUUID;
-
 @interface AXSwitch : NSObject <NSSecureCoding> {
     int _action;
     int _buttonNumber;
     int _headSwitch;
     unsigned short _keyCode;
+    int _longPressAction;
     NSString *_manufacturerName;
     NSString *_name;
     NSString *_productName;
@@ -17,16 +16,19 @@
     NSUUID *_uuid;
 }
 
-@property int action;
-@property int buttonNumber;
-@property int headSwitch;
-@property unsigned short keyCode;
-@property(copy) NSString * manufacturerName;
-@property(copy) NSString * name;
-@property(copy) NSString * productName;
-@property(retain) NSString * source;
-@property(retain) NSString * type;
-@property(retain) NSUUID * uuid;
+@property (nonatomic) int action;
+@property (nonatomic) int buttonNumber;
+@property (nonatomic, readonly) BOOL hasLongPressAction;
+@property (nonatomic) int headSwitch;
+@property (nonatomic) unsigned short keyCode;
+@property (nonatomic) int longPressAction;
+@property (nonatomic, copy) NSString *manufacturerName;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *productName;
+@property (nonatomic, retain) NSString *source;
+@property (nonatomic, readonly) BOOL supportsLongPress;
+@property (nonatomic, retain) NSString *type;
+@property (nonatomic, retain) NSUUID *uuid;
 
 + (BOOL)supportsSecureCoding;
 + (id)switchWithAction:(int)arg1 name:(id)arg2 source:(struct NSString { Class x1; }*)arg3 type:(struct NSString { Class x1; }*)arg4;
@@ -36,12 +38,14 @@
 - (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
+- (BOOL)hasLongPressAction;
 - (unsigned int)hash;
 - (int)headSwitch;
 - (id)initWithAction:(int)arg1 name:(id)arg2 source:(struct NSString { Class x1; }*)arg3 type:(struct NSString { Class x1; }*)arg4;
 - (id)initWithCoder:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (unsigned short)keyCode;
+- (int)longPressAction;
 - (id)manufacturerName;
 - (id)name;
 - (id)productName;
@@ -49,6 +53,7 @@
 - (void)setButtonNumber:(int)arg1;
 - (void)setHeadSwitch:(int)arg1;
 - (void)setKeyCode:(unsigned short)arg1;
+- (void)setLongPressAction:(int)arg1;
 - (void)setManufacturerName:(id)arg1;
 - (void)setName:(id)arg1;
 - (void)setProductName:(id)arg1;
@@ -56,6 +61,7 @@
 - (void)setType:(struct NSString { Class x1; }*)arg1;
 - (void)setUuid:(id)arg1;
 - (struct NSString { Class x1; }*)source;
+- (BOOL)supportsLongPress;
 - (struct NSString { Class x1; }*)type;
 - (id)uuid;
 

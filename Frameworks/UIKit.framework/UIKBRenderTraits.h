@@ -2,14 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, NSString, UIKBGradient, UIKBRenderGeometry, UIKBRenderTraits, UIKBTextStyle;
-
 @interface UIKBRenderTraits : NSObject <NSCopying> {
     UIKBGradient *_backgroundGradient;
     int _blendForm;
+    BOOL _blurBlending;
     BOOL _controlOpacities;
     UIKBTextStyle *_fallbackSymbolStyle;
-    float _forceOpacity;
     NSMutableArray *_foregroundRenderEffects;
     UIKBRenderGeometry *_geometry;
     NSString *_hashString;
@@ -18,28 +16,32 @@
     UIKBGradient *_layeredBackgroundGradient;
     UIKBGradient *_layeredForegroundGradient;
     NSMutableArray *_renderEffects;
-    UIKBTextStyle *_secondarySymbolStyle;
+    NSArray *_renderFlags;
+    BOOL _renderSecondarySymbolsSeparately;
+    NSArray *_secondarySymbolStyles;
     UIKBTextStyle *_symbolStyle;
     NSArray *_variantGeometries;
     UIKBRenderTraits *_variantTraits;
 }
 
-@property(retain) UIKBGradient * backgroundGradient;
-@property int blendForm;
-@property BOOL controlOpacities;
-@property(retain) UIKBTextStyle * fallbackSymbolStyle;
-@property float forceOpacity;
-@property(readonly) NSArray * foregroundRenderEffects;
-@property(retain) UIKBRenderGeometry * geometry;
-@property(retain) NSString * hashString;
-@property(retain) UIKBRenderTraits * highlightedVariantTraits;
-@property(retain) UIKBGradient * layeredBackgroundGradient;
-@property(retain) UIKBGradient * layeredForegroundGradient;
-@property(readonly) NSArray * renderEffects;
-@property(retain) UIKBTextStyle * secondarySymbolStyle;
-@property(retain) UIKBTextStyle * symbolStyle;
-@property(retain) NSArray * variantGeometries;
-@property(retain) UIKBRenderTraits * variantTraits;
+@property (nonatomic, retain) UIKBGradient *backgroundGradient;
+@property (nonatomic) int blendForm;
+@property (nonatomic) BOOL blurBlending;
+@property (nonatomic) BOOL controlOpacities;
+@property (nonatomic, retain) UIKBTextStyle *fallbackSymbolStyle;
+@property (nonatomic, readonly) NSArray *foregroundRenderEffects;
+@property (nonatomic, retain) UIKBRenderGeometry *geometry;
+@property (nonatomic, retain) NSString *hashString;
+@property (nonatomic, retain) UIKBRenderTraits *highlightedVariantTraits;
+@property (nonatomic, retain) UIKBGradient *layeredBackgroundGradient;
+@property (nonatomic, retain) UIKBGradient *layeredForegroundGradient;
+@property (nonatomic, readonly) NSArray *renderEffects;
+@property (nonatomic, retain) NSArray *renderFlags;
+@property (nonatomic) BOOL renderSecondarySymbolsSeparately;
+@property (nonatomic, retain) NSArray *secondarySymbolStyles;
+@property (nonatomic, retain) UIKBTextStyle *symbolStyle;
+@property (nonatomic, retain) NSArray *variantGeometries;
+@property (nonatomic, retain) UIKBRenderTraits *variantTraits;
 
 + (id)emptyTraits;
 + (id)traitsWithGeometry:(id)arg1;
@@ -49,12 +51,12 @@
 - (void)addRenderEffect:(id)arg1;
 - (id)backgroundGradient;
 - (int)blendForm;
+- (BOOL)blurBlending;
 - (BOOL)controlOpacities;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
 - (id)description;
 - (id)fallbackSymbolStyle;
-- (float)forceOpacity;
 - (id)foregroundRenderEffects;
 - (id)geometry;
 - (id)hashString;
@@ -66,18 +68,22 @@
 - (void)overlayWithTraits:(id)arg1;
 - (void)removeAllRenderEffects;
 - (id)renderEffects;
-- (id)secondarySymbolStyle;
+- (id)renderFlags;
+- (BOOL)renderSecondarySymbolsSeparately;
+- (id)secondarySymbolStyles;
 - (void)setBackgroundGradient:(id)arg1;
 - (void)setBlendForm:(int)arg1;
+- (void)setBlurBlending:(BOOL)arg1;
 - (void)setControlOpacities:(BOOL)arg1;
 - (void)setFallbackSymbolStyle:(id)arg1;
-- (void)setForceOpacity:(float)arg1;
 - (void)setGeometry:(id)arg1;
 - (void)setHashString:(id)arg1;
 - (void)setHighlightedVariantTraits:(id)arg1;
 - (void)setLayeredBackgroundGradient:(id)arg1;
 - (void)setLayeredForegroundGradient:(id)arg1;
-- (void)setSecondarySymbolStyle:(id)arg1;
+- (void)setRenderFlags:(id)arg1;
+- (void)setRenderSecondarySymbolsSeparately:(BOOL)arg1;
+- (void)setSecondarySymbolStyles:(id)arg1;
 - (void)setSymbolStyle:(id)arg1;
 - (void)setVariantGeometries:(id)arg1;
 - (void)setVariantTraits:(id)arg1;

@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/MusicCarDisplayUI.framework/MusicCarDisplayUI
  */
 
-@class <MCDNowPlayingViewControllerDataSource>, <MCDNowPlayingViewControllerDelegate>, MCDNowPlayingView, MCDPlayModeControlView, MCDTransportControlView, UIColor, UITapGestureRecognizer, UIViewController;
-
 @interface MCDNowPlayingViewController : UIViewController {
+    UILabel *_albumArtistLabel;
+    UIImageView *_artworkView;
     UITapGestureRecognizer *_backPressRecognizer;
     <MCDNowPlayingViewControllerDataSource> *_dataSource;
     <MCDNowPlayingViewControllerDelegate> *_delegate;
@@ -14,28 +14,32 @@
     UITapGestureRecognizer *_knobPressRecognizer;
     UIColor *_navbarColor;
     BOOL _navbarHidesShadow;
-    MCDNowPlayingView *_nowPlayingView;
     MCDPlayModeControlView *_playModeControlView;
     UIViewController *_playModeViewController;
+    MCDProgressView *_progressView;
+    MCDTitleView *_titleView;
     MCDTransportControlView *_transportControlView;
     UIViewController *_transportViewController;
 }
 
-@property(readonly) UITapGestureRecognizer * backPressRecognizer;
-@property <MCDNowPlayingViewControllerDataSource> * dataSource;
-@property <MCDNowPlayingViewControllerDelegate> * delegate;
-@property(readonly) UITapGestureRecognizer * knobPressRecognizer;
-@property(readonly) MCDNowPlayingView * nowPlayingView;
-@property(readonly) MCDPlayModeControlView * playModeControlView;
-@property(readonly) MCDTransportControlView * transportControlView;
+@property (nonatomic, readonly) UIImageView *artworkView;
+@property (nonatomic, readonly) UITapGestureRecognizer *backPressRecognizer;
+@property (nonatomic) <MCDNowPlayingViewControllerDataSource> *dataSource;
+@property (nonatomic) <MCDNowPlayingViewControllerDelegate> *delegate;
+@property (nonatomic, readonly) UITapGestureRecognizer *knobPressRecognizer;
+@property (nonatomic, readonly) MCDPlayModeControlView *playModeControlView;
+@property (nonatomic, readonly) MCDProgressView *progressView;
+@property (nonatomic, readonly) MCDTitleView *titleView;
+@property (nonatomic, readonly) MCDTransportControlView *transportControlView;
 
 - (void).cxx_destruct;
+- (void)_didUpdateSupportedCommandsNotification:(id)arg1;
 - (void)_fastForwardButtonTouchDown:(id)arg1;
 - (void)_fastForwardButtonTouchUp:(id)arg1;
-- (void)_geniusButtonTouchUp:(id)arg1;
 - (void)_initializeTransportControls;
 - (void)_leftButtonTouchDown:(id)arg1;
 - (void)_leftButtonTouchUp:(id)arg1;
+- (void)_likeButtonTouchUp:(id)arg1;
 - (void)_playPauseButtonTouchUp:(id)arg1;
 - (void)_repeatButtonTouchUp:(id)arg1;
 - (void)_respondToHeldAction;
@@ -46,17 +50,20 @@
 - (void)_updateRepeatStateWithType:(unsigned int)arg1;
 - (void)_updateShuffleStateWithType:(unsigned int)arg1;
 - (void)_updateTransportControl:(id)arg1 withDefaultImage:(id)arg2 actionType:(int)arg3;
+- (id)artworkView;
 - (id)backPressRecognizer;
 - (id)dataSource;
+- (void)dealloc;
 - (id)delegate;
 - (id)initWithNibName:(id)arg1 bundle:(id)arg2;
 - (id)knobPressRecognizer;
 - (void)loadView;
-- (id)nowPlayingView;
 - (id)playModeControlView;
+- (id)progressView;
 - (void)reloadData;
 - (void)setDataSource:(id)arg1;
 - (void)setDelegate:(id)arg1;
+- (id)titleView;
 - (id)transportControlView;
 - (void)updatePlayControls;
 - (void)viewWillAppear:(BOOL)arg1;

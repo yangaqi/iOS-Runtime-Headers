@@ -2,15 +2,15 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSString;
-
 @interface NSURLQueryItem : NSObject <NSCopying, NSSecureCoding> {
     NSString *_name;
     NSString *_value;
 }
 
-@property(readonly) NSString * name;
-@property(readonly) NSString * value;
+@property (readonly) NSString *name;
+@property (readonly) NSString *value;
+
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (BOOL)automaticallyNotifiesObserversForKey:(id)arg1;
 + (id)queryItemWithName:(id)arg1 value:(id)arg2;
@@ -28,5 +28,9 @@
 - (BOOL)isEqual:(id)arg1;
 - (id)name;
 - (id)value;
+
+// Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+
+- (id)_geo_unescapedValue;
 
 @end

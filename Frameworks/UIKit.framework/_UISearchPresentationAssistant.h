@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <UIViewControllerTransitionCoordinator>, UIDimmingView, UIPresentationController, UIPresentationController<_UISearchControllerPresenting>, UIView;
-
 @interface _UISearchPresentationAssistant : NSObject <UIDimmingViewDelegate> {
     UIPresentationController<_UISearchControllerPresenting> *_adaptivePresentationController;
     UIDimmingView *_dimmingView;
@@ -14,13 +12,14 @@
     <UIViewControllerTransitionCoordinator> *_transitioningToSizeCoordinator;
 }
 
-@property UIPresentationController<_UISearchControllerPresenting> * adaptivePresentationController;
-@property BOOL presentationWasAnimated;
-@property(retain) <UIViewControllerTransitionCoordinator> * transitioningToSizeCoordinator;
+@property (nonatomic) UIPresentationController<_UISearchControllerPresenting> *adaptivePresentationController;
+@property (nonatomic) BOOL presentationWasAnimated;
+@property (nonatomic, retain) <UIViewControllerTransitionCoordinator> *transitioningToSizeCoordinator;
 
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })_containerFrame;
 - (BOOL)_currentTransitionIsRotating;
 - (id)_searchBarContainerSuperview;
+- (id)_searchControllerPresenting;
 - (float)_statusBarHeightChangeDueToRotation;
 - (BOOL)_statusBarPreferredHidden;
 - (BOOL)_statusBarPreferredHiddenForInterfaceOrientation:(int)arg1;

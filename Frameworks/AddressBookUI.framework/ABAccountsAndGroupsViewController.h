@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AddressBookUI.framework/AddressBookUI
  */
 
-@class ABAccountsAndGroupDataSource, ABPeoplePickerNavigationController, NSString, UIRefreshControl;
-
 @interface ABAccountsAndGroupsViewController : ABAbstractViewController <UITableViewDelegate> {
     ABAccountsAndGroupDataSource *_dataSource;
     BOOL _needsReload;
@@ -13,12 +11,12 @@
     BOOL _tableViewNeedsReloadAfterResume;
 }
 
-@property(readonly) ABAccountsAndGroupDataSource * dataSource;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property ABPeoplePickerNavigationController * peoplePickerNavigationController;
-@property(readonly) Class superclass;
+@property (nonatomic, readonly) ABAccountsAndGroupDataSource *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) ABPeoplePickerNavigationController *peoplePickerNavigationController;
+@property (readonly) Class superclass;
 
 - (void)_updateDisplayedContactsFilterFromSelection;
 - (int)abViewControllerType;
@@ -39,6 +37,7 @@
 - (void)setHidesSearchableSources:(BOOL)arg1;
 - (void)setModel:(id)arg1;
 - (void)setPeoplePickerNavigationController:(id)arg1;
+- (void)setStyleProvider:(id)arg1;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
 - (void)tableView:(id)arg1 willDisplayHeaderView:(id)arg2 forSection:(int)arg3;

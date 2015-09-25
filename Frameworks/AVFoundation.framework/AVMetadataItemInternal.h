@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class <NSObject><NSCopying>, NSDictionary, NSLocale, NSString;
-
 @interface AVMetadataItemInternal : NSObject {
     NSString *commonKey;
     NSString *dataType;
@@ -19,8 +17,10 @@
     long itemIndex;
     <NSObject><NSCopying> *key;
     NSString *keySpace;
+    NSString *languageCode;
     NSLocale *locale;
     struct OpaqueFigMetadataReader { } *reader;
+    NSDate *startDate;
     struct { 
         long long value; 
         int timescale; 

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/iAd.framework/iAd
  */
 
-@class <ADAdRecipient>, <ADSAdSpace_RPC><NSObject>, ADAdImpressionPublicAttributes, ADAdSpaceConfiguration, ADAdSpaceRemoteViewController, NSDictionary, NSSet, NSString, NSURL, _ADRemoteViewController, _UIAsyncInvocation;
-
 @interface ADAdSpace : NSObject <ADAdSpaceRemoteViewControllerDelegate, ADAdSpace_RPC, UIViewControllerTransitioningDelegate> {
     BOOL _actionViewControllerReadyForPresentation;
     BOOL _actionViewControllerWantsDismissal;
@@ -12,8 +10,10 @@
     NSString *_authenticationUserName;
     NSSet *_context;
     ADAdSpaceRemoteViewController *_creativeViewController;
+    ADAdActionPublicAttributes *_currentActionPublicAttributes;
     ADAdImpressionPublicAttributes *_currentAdImpressionPublicAttributes;
     NSString *_identifier;
+    BOOL _isModalInterstitial;
     double _lastSlowCheck;
     _ADRemoteViewController *_portraitOnlyViewController;
     <ADAdRecipient> *_recipient;
@@ -26,32 +26,36 @@
     BOOL _visibilityCheckScheduled;
 }
 
-@property BOOL actionViewControllerReadyForPresentation;
-@property BOOL actionViewControllerWantsDismissal;
-@property(retain) NSDictionary * adToLoad;
-@property(copy) NSString * advertisingSection;
-@property(copy) NSString * authenticationUserName;
-@property(readonly) ADAdSpaceConfiguration * configuration;
-@property(readonly) NSString * connectionAssertionIdentifier;
-@property(copy) NSSet * context;
-@property(retain) ADAdSpaceRemoteViewController * creativeViewController;
-@property(retain) ADAdImpressionPublicAttributes * currentAdImpressionPublicAttributes;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * identifier;
-@property double lastSlowCheck;
-@property(retain) _ADRemoteViewController * portraitOnlyViewController;
-@property(readonly) <ADAdRecipient> * recipient;
-@property(retain) _ADRemoteViewController * remoteViewController;
-@property(retain) _UIAsyncInvocation * remoteViewControllerRequestCancelationInvocation;
-@property(copy) NSURL * serverURL;
-@property(readonly) <ADSAdSpace_RPC><NSObject> * serviceAdSpace;
-@property BOOL serviceAdSpaceRequestInProgress;
-@property BOOL shouldPresentActionViewControllerWhenReady;
-@property(readonly) Class superclass;
-@property int visibility;
-@property BOOL visibilityCheckScheduled;
+@property (nonatomic) BOOL actionViewControllerReadyForPresentation;
+@property (nonatomic) BOOL actionViewControllerWantsDismissal;
+@property (nonatomic, retain) NSDictionary *adToLoad;
+@property (nonatomic, copy) NSString *advertisingSection;
+@property (nonatomic, copy) NSString *authenticationUserName;
+@property (nonatomic, readonly) ADAdSpaceConfiguration *configuration;
+@property (nonatomic, readonly) NSString *connectionAssertionIdentifier;
+@property (nonatomic, copy) NSSet *context;
+@property (nonatomic, retain) ADAdSpaceRemoteViewController *creativeViewController;
+@property (nonatomic, retain) ADAdActionPublicAttributes *currentActionPublicAttributes;
+@property (nonatomic, retain) ADAdImpressionPublicAttributes *currentAdImpressionPublicAttributes;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic) BOOL isModalInterstitial;
+@property (nonatomic) double lastSlowCheck;
+@property (nonatomic, retain) _ADRemoteViewController *portraitOnlyViewController;
+@property (nonatomic, readonly) <ADAdRecipient> *recipient;
+@property (nonatomic, retain) _ADRemoteViewController *remoteViewController;
+@property (nonatomic, retain) _UIAsyncInvocation *remoteViewControllerRequestCancelationInvocation;
+@property (nonatomic, copy) NSURL *serverURL;
+@property (nonatomic, readonly) <ADSAdSpace_RPC><NSObject> *serviceAdSpace;
+@property (nonatomic) BOOL serviceAdSpaceRequestInProgress;
+@property (nonatomic) BOOL shouldPresentActionViewControllerWhenReady;
+@property (readonly) Class superclass;
+@property (nonatomic) int visibility;
+@property (nonatomic) BOOL visibilityCheckScheduled;
+
++ (int)_modalTansitionStyleForTransitionType:(int)arg1;
 
 - (void)_clientApplicationDidBecomeActive;
 - (void)_clientApplicationDidEnterBackground;
@@ -84,13 +88,16 @@
 - (id)connectionAssertionIdentifier;
 - (id)context;
 - (id)creativeViewController;
+- (id)currentActionPublicAttributes;
 - (id)currentAdImpressionPublicAttributes;
 - (void)dealloc;
 - (id)description;
+- (void)determineActionForTapAtLocation:(struct CGPoint { float x1; float x2; })arg1 inFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg2 completeHandler:(id /* block */)arg3;
 - (void)executeBannerViewActionFrom:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 withTapLocation:(struct CGPoint { float x1; float x2; })arg2;
 - (id)identifier;
 - (id)initForRecipient:(id)arg1;
 - (void)interstitialWasRemovedFromSuperview;
+- (BOOL)isModalInterstitial;
 - (double)lastSlowCheck;
 - (void)loadAd:(id)arg1;
 - (id)portraitOnlyViewController;
@@ -109,8 +116,10 @@
 - (void)setAuthenticationUserName:(id)arg1;
 - (void)setContext:(id)arg1;
 - (void)setCreativeViewController:(id)arg1;
+- (void)setCurrentActionPublicAttributes:(id)arg1;
 - (void)setCurrentAdImpressionPublicAttributes:(id)arg1;
 - (void)setIdentifier:(id)arg1;
+- (void)setIsModalInterstitial:(BOOL)arg1;
 - (void)setLastSlowCheck:(double)arg1;
 - (void)setPortraitOnlyViewController:(id)arg1;
 - (void)setRemoteViewController:(id)arg1;

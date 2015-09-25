@@ -2,26 +2,28 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class IKViewElementStyle, NSDictionary, NSString;
-
 @interface IKTemplateTreeNode : NSObject {
     NSDictionary *_childNodes;
-    NSString *_inlineStyle;
-    NSString *_selector;
-    IKViewElementStyle *_style;
+    NSString *_nodeName;
+    IKTemplateTreeNode *_parentNode;
+    IKViewElementStyleComposer *_styleComposer;
+    IKViewElementStyle *_styleOverrides;
 }
 
-@property(copy,readonly) NSDictionary * childNodes;
-@property(copy,readonly) NSString * inlineStyle;
-@property(copy,readonly) NSString * selector;
-@property(retain) IKViewElementStyle * style;
+@property (nonatomic, copy) NSDictionary *childNodes;
+@property (nonatomic, readonly, copy) NSString *nodeName;
+@property (nonatomic, readonly) IKTemplateTreeNode *parentNode;
+@property (nonatomic, retain) IKViewElementStyleComposer *styleComposer;
+@property (nonatomic, readonly, copy) IKViewElementStyle *styleOverrides;
 
 - (void).cxx_destruct;
 - (id)childNodes;
-- (id)initWithSelector:(id)arg1 inlineStyle:(id)arg2 childNodes:(id)arg3;
-- (id)inlineStyle;
-- (id)selector;
-- (void)setStyle:(id)arg1;
-- (id)style;
+- (id)initWithNodeName:(id)arg1 styleOverrides:(id)arg2 parentNode:(id)arg3;
+- (id)nodeName;
+- (id)parentNode;
+- (void)setChildNodes:(id)arg1;
+- (void)setStyleComposer:(id)arg1;
+- (id)styleComposer;
+- (id)styleOverrides;
 
 @end

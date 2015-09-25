@@ -2,16 +2,8 @@
    Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
  */
 
-@class NSString;
+@interface SGInhumanDissector : SGPipelineDissector
 
-@interface SGInhumanDissector : NSObject <SGPipelineDissector> {
-}
-
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
-
-- (void)dissect:(id)arg1;
+- (void)dissectInternal:(id)arg1;
 
 @end

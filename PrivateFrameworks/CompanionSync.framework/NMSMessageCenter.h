@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CompanionSync.framework/CompanionSync
  */
 
-@class <NMSMessageCenterDelegate>, IDSService, NMSPersistentDictionary, NMSWindowData, NSDate, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSObject<OS_dispatch_source>, NSString, _NMSDispatchQueue;
-
 @interface NMSMessageCenter : NSObject <IDSServiceDelegate> {
     unsigned int _currentBytesInFlight;
     <NMSMessageCenterDelegate> *_delegate;
@@ -30,22 +28,22 @@
     NSObject<OS_dispatch_source> *_windowTimeout;
 }
 
-@property(readonly) NSObject<OS_dispatch_queue> * actionQ;
-@property(getter=_currentBytesInFlight,readonly) unsigned int currentBytesInFlight;
-@property(copy,readonly) NSString * debugDescription;
-@property <NMSMessageCenterDelegate> * delegate;
-@property BOOL delegateRequiresACKs;
-@property(copy,readonly) NSString * description;
-@property BOOL enableTransmissionWindow;
-@property(readonly) unsigned int hash;
-@property(readonly) IDSService * idsService;
-@property unsigned int maxBytesInFlight;
-@property unsigned int maxMessagesInFlight;
-@property unsigned int minMessagesInFlight;
-@property(retain) NSObject<OS_dispatch_queue> * queue;
-@property(retain) IDSService * service;
-@property(readonly) Class superclass;
-@property double windowResponseTimeout;
+@property (nonatomic, readonly) NSObject<OS_dispatch_queue> *actionQ;
+@property (getter=_currentBytesInFlight, nonatomic, readonly) unsigned int currentBytesInFlight;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <NMSMessageCenterDelegate> *delegate;
+@property (nonatomic) BOOL delegateRequiresACKs;
+@property (readonly, copy) NSString *description;
+@property (nonatomic) BOOL enableTransmissionWindow;
+@property (readonly) unsigned int hash;
+@property (nonatomic, readonly) IDSService *idsService;
+@property (nonatomic) unsigned int maxBytesInFlight;
+@property (nonatomic) unsigned int maxMessagesInFlight;
+@property (nonatomic) unsigned int minMessagesInFlight;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *queue;
+@property (nonatomic, retain) IDSService *service;
+@property (readonly) Class superclass;
+@property (nonatomic) double windowResponseTimeout;
 
 + (BOOL)messageWindowCountEnabled;
 + (void)setMessageWindowCountEnabled:(BOOL)arg1;
@@ -64,9 +62,9 @@
 - (void)_timeoutWindowedMessages;
 - (void)_updateExpireTimerWithDate:(id)arg1;
 - (id)actionQ;
-- (void)addErrorHandlerForMessageID:(unsigned short)arg1 usingBlock:(id)arg2;
-- (void)addRequestHandlerForMessageID:(unsigned short)arg1 usingBlock:(id)arg2;
-- (void)addResponseHandler:(unsigned short)arg1 usingBlock:(id)arg2;
+- (void)addErrorHandlerForMessageID:(unsigned short)arg1 usingBlock:(id /* block */)arg2;
+- (void)addRequestHandlerForMessageID:(unsigned short)arg1 usingBlock:(id /* block */)arg2;
+- (void)addResponseHandler:(unsigned short)arg1 usingBlock:(id /* block */)arg2;
 - (void)dealloc;
 - (id)delegate;
 - (BOOL)delegateRequiresACKs;
@@ -75,7 +73,9 @@
 - (BOOL)enableTransmissionWindow;
 - (id)errorHandlers;
 - (id)idsService;
-- (id)initWithIDSServiceIdentifier:(id)arg1 launchOnDemandNotification:(id)arg2 cacheFolderPath:(id)arg3 loggingFacility:(struct __CFString { }*)arg4;
+- (id)init;
+- (id)initWithIDSServiceIdentifier:(id)arg1;
+- (id)initWithIDSServiceIdentifier:(id)arg1 launchOnDemandNotification:(id)arg2 cacheFolderPath:(id)arg3;
 - (void)mapPBRequest:(Class)arg1 toResponse:(Class)arg2 messageID:(unsigned short)arg3;
 - (unsigned int)maxBytesInFlight;
 - (unsigned int)maxMessagesInFlight;
@@ -84,11 +84,13 @@
 - (id)requestHandlers;
 - (id)responseHandlers;
 - (void)resume;
+- (void)sendFile:(id)arg1;
 - (void)sendRequest:(id)arg1;
 - (id)service;
 - (void)service:(id)arg1 account:(id)arg2 identifier:(id)arg3 didSendWithSuccess:(BOOL)arg4 error:(id)arg5;
 - (void)service:(id)arg1 account:(id)arg2 identifier:(id)arg3 hasBeenDeliveredWithContext:(id)arg4;
 - (void)service:(id)arg1 account:(id)arg2 incomingData:(id)arg3 fromID:(id)arg4 context:(id)arg5;
+- (void)service:(id)arg1 account:(id)arg2 incomingResourceAtURL:(id)arg3 metadata:(id)arg4 fromID:(id)arg5 context:(id)arg6;
 - (void)setDelegate:(id)arg1;
 - (void)setDelegate:(id)arg1 queue:(id)arg2;
 - (void)setDelegateRequiresACKs:(BOOL)arg1;

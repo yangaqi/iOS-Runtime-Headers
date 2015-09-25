@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/FitnessUI.framework/FitnessUI
  */
 
-@class <FUScrollWheelDataSource>, <FUScrollWheelDelegate>, NSMutableArray, NSMutableDictionary, NSString, UIFont, UIImageView, UIScrollView, UIView;
-
 @interface FUScrollWheel : UIView <UIScrollViewDelegate> {
     UIView *_bottomDividerView;
     unsigned int _currentIndex;
@@ -23,23 +21,21 @@
     float _scrollWheelLabelHeight;
     float _scrollWheelLabelPageSize;
     BOOL _shouldRegenerateOpacityMask;
-    BOOL _showsSelectionIndicator;
     UIView *_topDividerView;
     NSMutableDictionary *_usedLabels;
 }
 
-@property unsigned int currentIndex;
-@property <FUScrollWheelDataSource> * dataSource;
-@property(copy,readonly) NSString * debugDescription;
-@property <FUScrollWheelDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(retain) UIFont * font;
-@property(readonly) unsigned int hash;
-@property int itemTitleAligmnent;
-@property(retain) UIScrollView * scrollView;
-@property float scrollWheelLabelPageSize;
-@property BOOL showsSelectionIndicator;
-@property(readonly) Class superclass;
+@property (nonatomic) unsigned int currentIndex;
+@property (nonatomic) <FUScrollWheelDataSource> *dataSource;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <FUScrollWheelDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIFont *font;
+@property (readonly) unsigned int hash;
+@property (nonatomic) int itemTitleAligmnent;
+@property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic) float scrollWheelLabelPageSize;
+@property (readonly) Class superclass;
 
 - (void).cxx_destruct;
 - (void)_alertDidChangeToCurrentIndex:(unsigned int)arg1;
@@ -72,6 +68,7 @@
 - (void)scrollViewDidScroll:(id)arg1;
 - (void)scrollViewWillEndDragging:(id)arg1 withVelocity:(struct CGPoint { float x1; float x2; })arg2 targetContentOffset:(inout struct CGPoint { float x1; float x2; }*)arg3;
 - (float)scrollWheelLabelPageSize;
+- (void)setActiveScrollWheel;
 - (void)setCurrentIndex:(unsigned int)arg1;
 - (void)setDataSource:(id)arg1;
 - (void)setDelegate:(id)arg1;
@@ -81,8 +78,6 @@
 - (void)setItemTitleAligmnent:(int)arg1;
 - (void)setScrollView:(id)arg1;
 - (void)setScrollWheelLabelPageSize:(float)arg1;
-- (void)setShowsSelectionIndicator:(BOOL)arg1;
-- (BOOL)showsSelectionIndicator;
 - (void)willMoveToSuperview:(id)arg1;
 
 @end

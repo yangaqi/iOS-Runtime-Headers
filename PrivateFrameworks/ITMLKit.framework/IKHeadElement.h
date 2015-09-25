@@ -2,20 +2,8 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class NSArray;
+@interface IKHeadElement : IKViewElement
 
-@interface IKHeadElement : IKViewElement {
-    NSArray *_headChildren;
-}
-
-@property(retain) NSArray * headChildren;
-
-+ (BOOL)shouldParseChildDOMElements;
-
-- (void).cxx_destruct;
-- (id)children;
-- (id)headChildren;
-- (id)initWithDOMElement:(id)arg1 parent:(id)arg2 elementFactory:(id)arg3;
-- (void)setHeadChildren:(id)arg1;
++ (BOOL)shouldParseChildDOMElement:(id)arg1;
 
 @end

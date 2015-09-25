@@ -2,42 +2,45 @@
    Image: /System/Library/PrivateFrameworks/VectorKit.framework/VectorKit
  */
 
-@class GEOVectorTile, VKMapTileList, VKSharedResources, VKStyleManager;
-
 @interface VKVectorTile : VKTile {
     float _contentScale;
     VKMapTileList *_fragments;
     float _maximumStyleZ;
     GEOVectorTile *_modelTile;
     VKSharedResources *_sharedResources;
-    VKStyleManager *_styleManager;
+    struct shared_ptr<gss::StyleManager> { 
+        struct StyleManager {} *__ptr_; 
+        struct __shared_weak_count {} *__cntrl_; 
+    } _styleManager;
     float _textureScale;
 }
 
-@property float contentScale;
-@property(readonly) VKMapTileList * fragments;
-@property float maximumStyleZ;
-@property(retain) GEOVectorTile * modelTile;
-@property(retain) VKSharedResources * sharedResources;
-@property(retain) VKStyleManager * styleManager;
-@property float textureScale;
-@property(readonly) int vectorType;
+@property (nonatomic) float contentScale;
+@property (nonatomic, readonly) VKMapTileList *fragments;
+@property (nonatomic) float maximumStyleZ;
+@property (nonatomic, retain) GEOVectorTile *modelTile;
+@property (nonatomic, retain) VKSharedResources *sharedResources;
+@property (nonatomic) struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; } styleManager;
+@property (nonatomic) float textureScale;
+@property (nonatomic, readonly) int vectorType;
 
+- (id).cxx_construct;
+- (void).cxx_destruct;
 - (float)contentScale;
 - (void)dealloc;
 - (id)fragments;
 - (id)initWithKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1;
-- (id)initWithKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1 modelTile:(id)arg2 styleManager:(id)arg3 sharedResources:(id)arg4 contentScale:(float)arg5 device:(struct Device { }*)arg6;
+- (id)initWithKey:(const struct VKTileKey { unsigned int x1; int x2; int x3; unsigned int x4; }*)arg1 modelTile:(id)arg2 styleManager:(struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; })arg3 sharedResources:(id)arg4 contentScale:(float)arg5 device:(struct Device { }*)arg6;
 - (float)maximumStyleZ;
 - (id)modelTile;
 - (void)setContentScale:(float)arg1;
 - (void)setMaximumStyleZ:(float)arg1;
 - (void)setModelTile:(id)arg1;
 - (void)setSharedResources:(id)arg1;
-- (void)setStyleManager:(id)arg1;
+- (void)setStyleManager:(struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; })arg1;
 - (void)setTextureScale:(float)arg1;
 - (id)sharedResources;
-- (id)styleManager;
+- (struct shared_ptr<gss::StyleManager> { struct StyleManager {} *x1; struct __shared_weak_count {} *x2; })styleManager;
 - (float)textureScale;
 - (int)vectorType;
 

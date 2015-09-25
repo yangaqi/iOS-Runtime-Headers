@@ -2,9 +2,9 @@
    Image: /System/Library/PrivateFrameworks/PowerlogLiteOperators.framework/PowerlogLiteOperators
  */
 
-@interface PLEventBackwardBatteryEntry : PLEntry {
-}
+@interface PLEventBackwardBatteryEntry : PLEntry
 
++ (id)absoluteLevelWithRawData:(id)arg1;
 + (id)entryKey;
 + (id)levelWithRawData:(id)arg1;
 + (void)load;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/Photos.framework/Photos
  */
 
-@class NSArray, NSDictionary, NSMapTable, NSMutableDictionary, NSObject<OS_dispatch_queue>, NSSet;
-
 @interface PHChange : NSObject {
     NSObject<OS_dispatch_queue> *_changeDetailIsolation;
     NSMutableDictionary *_changeDetailsForObjects;
@@ -21,9 +19,11 @@
 }
 
 + (id)handlerQueue;
-+ (void)pl_simulateChangeWithAssetContainerList:(id)arg1 handler:(id)arg2;
++ (void)pl_simulateChangeWithAssetContainerList:(id)arg1 handler:(id /* block */)arg2;
 
 - (void).cxx_destruct;
+- (id)_preloadChangeDetailsWithClearCacheForFetchResults:(id)arg1 inManagedObjectContext:(id)arg2;
+- (id)_preloadChangeDetailsWithRefetchForFetchResults:(id)arg1 inManagedObjectContext:(id)arg2;
 - (void)_prepareCachedValuesForEntity:(id)arg1;
 - (BOOL)anyUpdatedObjectsWithChangedAttributes:(unsigned long long)arg1 ofEntity:(id)arg2;
 - (BOOL)anyUpdatedObjectsWithChangedRelationships:(unsigned long long)arg1 ofEntity:(id)arg2;
@@ -31,14 +31,14 @@
 - (id)changeDetailsForObject:(id)arg1;
 - (id)changedAttributesByOID;
 - (id)changedRelationshipsByOID;
-- (BOOL)contentChangedForPHAssetOID:(id)arg1;
+- (BOOL)contentOrThumbnailChangedForPHAssetOID:(id)arg1;
 - (id)deletedObjectIDs;
 - (id)description;
 - (id)init;
 - (id)initWithChangedIdentifiers:(id)arg1 unknownMergeEvent:(BOOL)arg2;
 - (id)insertedObjectIDs;
-- (void)preloadChangeDetailsForFetchResults:(id)arg1 inManagedObjectContext:(id)arg2 handler:(id)arg3;
-- (void)preloadSimulatedChangeDetailsForManualFetchResults:(id)arg1 handler:(id)arg2;
+- (void)preloadChangeDetailsForFetchResults:(id)arg1 inManagedObjectContext:(id)arg2 handler:(id /* block */)arg3;
+- (void)preloadSimulatedChangeDetailsForManualFetchResults:(id)arg1 handler:(id /* block */)arg2;
 - (id)updatedObjectIDs;
 
 @end

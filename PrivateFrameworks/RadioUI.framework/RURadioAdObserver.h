@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/RadioUI.framework/RadioUI
  */
 
-@class ISDialogOperation, MPAVController, MPUReportingPlaybackObserver, NSDate, NSObject<OS_dispatch_queue>, NSString, RUJingleTiltReportingController, RURTCReportingController;
-
 @interface RURadioAdObserver : NSObject <ADBannerViewDelegate, ISDialogOperationDelegate> {
     RURTCReportingController *_RTCReportingController;
     NSObject<OS_dispatch_queue> *_accessQueue;
     BOOL _hasDirtyVisualEngagement;
     BOOL _isSlotAcquisitionInProgress;
+    MPUJinglePlayActivityReportingController *_jinglePlayActivityReportingController;
     RUJingleTiltReportingController *_jingleTiltReportingController;
     int _lastApplicationState;
     double _minDurationToCountAsPlayed;
@@ -16,23 +15,23 @@
     MPAVController *_player;
     int _policyEngineEnabledCount;
     MPUReportingPlaybackObserver *_reportingPlaybackObserver;
-    NSDate *_sapSessionLoadBeginDate;
     double _skipThreshold;
     ISDialogOperation *_slotAcquisitionDialogOperation;
     int _visualEngagementCount;
     BOOL _visuallyEngaged;
 }
 
-@property(retain) RURTCReportingController * RTCReportingController;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) RUJingleTiltReportingController * jingleTiltReportingController;
-@property(readonly) unsigned int numberOfSkippedTracks;
-@property(retain) MPAVController * player;
-@property(retain) MPUReportingPlaybackObserver * reportingPlaybackObserver;
-@property(readonly) Class superclass;
-@property(getter=isVisuallyEngaged,readonly) BOOL visuallyEngaged;
+@property (nonatomic, retain) RURTCReportingController *RTCReportingController;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) MPUJinglePlayActivityReportingController *jinglePlayActivityReportingController;
+@property (nonatomic, retain) RUJingleTiltReportingController *jingleTiltReportingController;
+@property (nonatomic, readonly) unsigned int numberOfSkippedTracks;
+@property (nonatomic, retain) MPAVController *player;
+@property (nonatomic, retain) MPUReportingPlaybackObserver *reportingPlaybackObserver;
+@property (readonly) Class superclass;
+@property (getter=isVisuallyEngaged, nonatomic, readonly) BOOL visuallyEngaged;
 
 + (id)sharedAdObserver;
 
@@ -55,9 +54,8 @@
 - (void)_itemDidFinishLoadingNotification:(id)arg1;
 - (void)_itemWillChangeNotification:(id)arg1;
 - (void)_loadMinDurationToCountAsPlayedFromURLBag;
+- (id)_playActivityFeedEventsForPendingPlayActivityEvents:(id)arg1;
 - (void)_playbackStateDidChangeNotification:(id)arg1;
-- (void)_radioFairPlayControllerSAPSessionDidFinishLoadingNotification:(id)arg1;
-- (void)_radioFairPlayControllerSAPSessionWillBeginLoadingNotification:(id)arg1;
 - (void)_radioStreamTrackAVItemDidReceiveTimedMetadataPingsNotification:(id)arg1;
 - (void)_registerForPlayerNotifications;
 - (void)_reportPlaybackEndedForAdTrack:(id)arg1 withItem:(id)arg2;
@@ -73,13 +71,14 @@
 - (void)didTransitionItemForBan:(id)arg1;
 - (void)endEnablingPolicyEngine;
 - (void)endVisualEngagement;
-- (void)getHistoryWithRequest:(id)arg1 completionHandler:(id)arg2;
-- (void)getTracksWithRequest:(id)arg1 completionHandler:(id)arg2;
+- (void)getHistoryWithRequest:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)getTracksWithRequest:(id)arg1 completionHandler:(id /* block */)arg2;
 - (id)heartbeatTokenReturningError:(id*)arg1;
 - (void)historyDidBeginPlayingAdTrack:(id)arg1 withItem:(id)arg2;
 - (void)historyDidEndPlayingAdTrack:(id)arg1 withItem:(id)arg2;
 - (id)init;
 - (BOOL)isVisuallyEngaged;
+- (id)jinglePlayActivityReportingController;
 - (id)jingleTiltReportingController;
 - (void)noteDidEnterStation:(id)arg1;
 - (unsigned int)numberOfSkippedTracks;
@@ -87,7 +86,8 @@
 - (void)optimalTransmissionWindowDidOpen;
 - (id)player;
 - (id)reportingPlaybackObserver;
-- (void)requestAdsForSlot:(id)arg1 completionHandler:(id)arg2;
+- (void)requestAdsForSlot:(id)arg1 completionHandler:(id /* block */)arg2;
+- (void)setJinglePlayActivityReportingController:(id)arg1;
 - (void)setJingleTiltReportingController:(id)arg1;
 - (void)setPlayer:(id)arg1;
 - (void)setRTCReportingController:(id)arg1;

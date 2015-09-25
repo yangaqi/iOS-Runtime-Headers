@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/PhotosUI.framework/PhotosUI
  */
 
-@class NSAttributedString, NSMutableArray, NSPointerArray, NSString, UILabel, UIView;
-
 @interface PUSearchResultsContentView : UIView {
     NSAttributedString *_attributedTitle;
     NSString *_auxSubtitle;
@@ -30,26 +28,27 @@
     UILabel *_titleLabel;
 }
 
-@property(copy) NSString * auxSubtitle;
-@property float clippingOffsetY;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
-@property float draggingOffsetX;
-@property struct CGSize { float x1; float x2; } imageSize;
-@property unsigned int maxImageCount;
-@property(copy) NSString * subtitle;
-@property(copy) NSAttributedString * title;
-
-+ (id)defaultAttributes;
-+ (id)highlightedAttributes;
-+ (id)subtitleTextColor;
+@property (nonatomic, copy) NSString *auxSubtitle;
+@property (nonatomic) float clippingOffsetY;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentInsets;
+@property (nonatomic) float draggingOffsetX;
+@property (nonatomic) struct CGSize { float x1; float x2; } imageSize;
+@property (nonatomic) unsigned int maxImageCount;
+@property (nonatomic, copy) NSString *subtitle;
+@property (nonatomic, copy) NSAttributedString *title;
 
 - (void).cxx_destruct;
+- (void)_preferredContentSizeChanged:(id)arg1;
+- (void)_updateAuxSubtitleLabel;
 - (void)_updateImageContainers;
-- (void)_updateSubviews;
+- (void)_updateImageView;
+- (void)_updateSubtitleLabel;
+- (void)_updateTitleLabel;
 - (id)auxSubtitle;
 - (void)clearImages;
 - (float)clippingOffsetY;
 - (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })contentInsets;
+- (void)dealloc;
 - (float)draggingOffsetX;
 - (struct CGSize { float x1; float x2; })imageSize;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

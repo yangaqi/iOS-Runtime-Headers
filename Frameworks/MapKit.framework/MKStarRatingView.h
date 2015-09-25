@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/MapKit.framework/MapKit
  */
 
-@class NSMutableArray, UIImage;
-
 @interface MKStarRatingView : UIView {
     UIImage *_emptyStarHighlightedImage;
     UIImage *_emptyStarImage;
@@ -20,19 +18,20 @@
     int _starStyle;
 }
 
-@property(retain) UIImage * emptyStarHighlightedImage;
-@property(retain) UIImage * emptyStarImage;
-@property(retain) UIImage * fullStarHighlightedImage;
-@property(retain) UIImage * fullStarImage;
-@property(retain) UIImage * halfStarHighlightedImage;
-@property(retain) UIImage * halfStarImage;
-@property(getter=isHighlighted) BOOL highlighted;
-@property int numberOfRatingLevels;
-@property float rating;
-@property int starStyle;
+@property (nonatomic, retain) UIImage *emptyStarHighlightedImage;
+@property (nonatomic, retain) UIImage *emptyStarImage;
+@property (nonatomic, retain) UIImage *fullStarHighlightedImage;
+@property (nonatomic, retain) UIImage *fullStarImage;
+@property (nonatomic, retain) UIImage *halfStarHighlightedImage;
+@property (nonatomic, retain) UIImage *halfStarImage;
+@property (getter=isHighlighted, nonatomic) BOOL highlighted;
+@property (nonatomic) int numberOfRatingLevels;
+@property (nonatomic) float rating;
+@property (nonatomic) int starStyle;
 
 - (void).cxx_destruct;
 - (void)_layoutStarViewsCreatingIfNeeded:(BOOL)arg1;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })alignmentRectInsets;
 - (void)commonInit;
 - (void)didMoveToWindow;
 - (id)emptyStarHighlightedImage;
@@ -41,6 +40,7 @@
 - (id)fullStarImage;
 - (id)halfStarHighlightedImage;
 - (id)halfStarImage;
+- (id)imageWithName:(id)arg1 andColor:(id)arg2;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)initWithStyle:(int)arg1;
@@ -62,5 +62,6 @@
 - (void)setStarStyle:(int)arg1;
 - (struct CGSize { float x1; float x2; })sizeThatFits:(struct CGSize { float x1; float x2; })arg1;
 - (int)starStyle;
+- (float)verticalAlignmentCenterPercentage;
 
 @end

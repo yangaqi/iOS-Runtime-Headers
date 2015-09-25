@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/IMDaemonCore.framework/IMDaemonCore
  */
 
-@class IMDAccount, IMDService, IMDServiceSession, IMMessageItem, NSArray, NSDictionary, NSMutableDictionary, NSRecursiveLock, NSString;
-
 @interface IMDChat : NSObject {
     NSString *_accountID;
     NSString *_chatIdentifier;
@@ -11,7 +9,9 @@
     NSString *_displayName;
     NSString *_groupID;
     NSString *_guid;
+    BOOL _hasHadSuccessfulQuery;
     BOOL _isArchived;
+    BOOL _isFiltered;
     NSString *_lastAddressedLocalHandle;
     IMMessageItem *_lastMessage;
     NSRecursiveLock *_lock;
@@ -25,24 +25,26 @@
     unsigned int _unreadCount;
 }
 
-@property(retain,readonly) IMDAccount * account;
-@property(copy) NSString * accountID;
-@property(copy) NSString * chatIdentifier;
-@property(retain,readonly) NSDictionary * chatProperties;
-@property(retain,readonly) NSDictionary * dictionaryRepresentation;
-@property(copy) NSString * displayName;
-@property(copy) NSString * groupID;
-@property(copy) NSString * guid;
-@property(readonly) BOOL isArchived;
-@property(copy) NSString * lastAddressedLocalHandle;
-@property(retain) IMMessageItem * lastMessage;
-@property(copy) NSArray * participants;
-@property(retain) NSDictionary * properties;
-@property(copy) NSString * roomName;
+@property (readonly, retain) IMDAccount *account;
+@property (copy) NSString *accountID;
+@property (copy) NSString *chatIdentifier;
+@property (readonly, retain) NSDictionary *chatProperties;
+@property (readonly, retain) NSDictionary *dictionaryRepresentation;
+@property (copy) NSString *displayName;
+@property (copy) NSString *groupID;
+@property (copy) NSString *guid;
+@property BOOL hasHadSuccessfulQuery;
+@property (readonly) BOOL isArchived;
+@property BOOL isFiltered;
+@property (copy) NSString *lastAddressedLocalHandle;
+@property (retain) IMMessageItem *lastMessage;
+@property (copy) NSArray *participants;
+@property (retain) NSDictionary *properties;
+@property (copy) NSString *roomName;
 @property long long rowID;
-@property(retain,readonly) IMDService * service;
-@property(copy) NSString * serviceName;
-@property(retain,readonly) IMDServiceSession * serviceSession;
+@property (readonly, retain) IMDService *service;
+@property (copy) NSString *serviceName;
+@property (readonly, retain) IMDServiceSession *serviceSession;
 @property int state;
 @property unsigned char style;
 @property unsigned int unreadCount;
@@ -61,11 +63,14 @@
 - (void)dealloc;
 - (id)description;
 - (id)dictionaryRepresentation;
+- (id)dictionaryRepresentationIncludingLastMessage;
 - (id)displayName;
 - (id)groupID;
 - (id)guid;
-- (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 groupID:(id)arg4 chatIdentifier:(id)arg5 participants:(id)arg6 roomName:(id)arg7 displayName:(id)arg8 lastAddressedLocalHandle:(id)arg9 properties:(id)arg10 state:(int)arg11 style:(unsigned char)arg12;
+- (BOOL)hasHadSuccessfulQuery;
+- (id)initWithAccountID:(id)arg1 service:(id)arg2 guid:(id)arg3 groupID:(id)arg4 chatIdentifier:(id)arg5 participants:(id)arg6 roomName:(id)arg7 displayName:(id)arg8 lastAddressedLocalHandle:(id)arg9 properties:(id)arg10 state:(int)arg11 style:(unsigned char)arg12 isFiltered:(BOOL)arg13 hasHadSuccessfulQuery:(BOOL)arg14;
 - (BOOL)isArchived;
+- (BOOL)isFiltered;
 - (id)lastAddressedLocalHandle;
 - (id)lastMessage;
 - (id)participants;
@@ -82,6 +87,8 @@
 - (void)setDisplayName:(id)arg1;
 - (void)setGroupID:(id)arg1;
 - (void)setGuid:(id)arg1;
+- (void)setHasHadSuccessfulQuery:(BOOL)arg1;
+- (void)setIsFiltered:(BOOL)arg1;
 - (void)setLastAddressedLocalHandle:(id)arg1;
 - (void)setLastMessage:(id)arg1;
 - (void)setParticipants:(id)arg1;
@@ -96,6 +103,8 @@
 - (unsigned int)unreadCount;
 - (void)updateDisplayName:(id)arg1;
 - (void)updateGroupID:(id)arg1;
+- (void)updateHasHadSuccessfulQuery:(BOOL)arg1;
+- (void)updateIsFiltered:(BOOL)arg1;
 - (void)updateLastAddressedHandle:(id)arg1;
 - (void)updateProperties:(id)arg1;
 

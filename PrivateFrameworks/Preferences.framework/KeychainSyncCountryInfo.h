@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class NSString;
-
 @interface KeychainSyncCountryInfo : NSObject <NSCopying> {
     NSString *_countryCode;
     NSString *_countryName;
@@ -11,20 +9,20 @@
     NSString *_localizedCountryName;
 }
 
-@property(retain) NSString * countryCode;
-@property(retain) NSString * countryName;
-@property(retain) NSString * dialingPrefix;
-@property(retain) NSString * localizedCountryName;
+@property (nonatomic, retain) NSString *countryCode;
+@property (nonatomic, retain) NSString *countryName;
+@property (nonatomic, retain) NSString *dialingPrefix;
+@property (nonatomic, retain) NSString *localizedCountryName;
 
 + (void)_loadCountriesIfNeeded;
 + (id)allCountries;
 + (id)countryInfoForCountryCode:(id)arg1 dialingPrefix:(id)arg2;
 + (id)countryInfoWithDictionary:(id)arg1;
 
+- (void).cxx_destruct;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)countryCode;
 - (id)countryName;
-- (void)dealloc;
 - (id)description;
 - (id)dialingPrefix;
 - (BOOL)isEqual:(id)arg1;

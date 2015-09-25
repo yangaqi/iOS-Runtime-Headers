@@ -2,16 +2,13 @@
    Image: /System/Library/PrivateFrameworks/HomeSharing.framework/HomeSharing
  */
 
-@class NSArray;
-
 @interface HSItemsResponse : HSResponse {
     NSArray *_items;
 }
 
-@property(copy) NSArray * items;
+@property (nonatomic, copy) NSArray *items;
 
 - (void).cxx_destruct;
-- (void)dealloc;
 - (id)items;
 - (void)setItems:(id)arg1;
 

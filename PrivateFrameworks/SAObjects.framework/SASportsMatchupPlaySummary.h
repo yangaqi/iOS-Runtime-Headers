@@ -2,19 +2,18 @@
    Image: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
  */
 
-@class NSString;
+@interface SASportsMatchupPlaySummary : AceObject <SAAceSerializable>
 
-@interface SASportsMatchupPlaySummary : AceObject <SAAceSerializable> {
-}
-
-@property BOOL appliesToAwayTeam;
-@property BOOL appliesToHomeTeam;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(copy) NSString * summaryDescription;
-@property(readonly) Class superclass;
-@property(copy) NSString * time;
+@property (nonatomic) BOOL appliesToAwayTeam;
+@property (nonatomic) BOOL appliesToHomeTeam;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, copy) NSString *nonFormattedTime;
+@property (nonatomic, retain) SASportsAthlete *offensivePlayer;
+@property (nonatomic, copy) NSString *summaryDescription;
+@property (readonly) Class superclass;
+@property (nonatomic, copy) NSString *time;
 
 + (id)matchupPlaySummary;
 + (id)matchupPlaySummaryWithDictionary:(id)arg1 context:(id)arg2;
@@ -23,8 +22,12 @@
 - (BOOL)appliesToHomeTeam;
 - (id)encodedClassName;
 - (id)groupIdentifier;
+- (id)nonFormattedTime;
+- (id)offensivePlayer;
 - (void)setAppliesToAwayTeam:(BOOL)arg1;
 - (void)setAppliesToHomeTeam:(BOOL)arg1;
+- (void)setNonFormattedTime:(id)arg1;
+- (void)setOffensivePlayer:(id)arg1;
 - (void)setSummaryDescription:(id)arg1;
 - (void)setTime:(id)arg1;
 - (id)summaryDescription;

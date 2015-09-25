@@ -2,21 +2,20 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class CAShapeLayer, UIBezierPath, UIColor;
-
 @interface _UIGlintyShapeView : UIView {
     UIColor *_fillColor;
     UIBezierPath *_path;
     UIColor *_strokeColor;
 }
 
-@property(readonly) UIColor * fillColor;
-@property(readonly) UIBezierPath * path;
-@property(readonly) CAShapeLayer * shapeLayer;
-@property(readonly) UIColor * strokeColor;
+@property (nonatomic, readonly) UIColor *fillColor;
+@property (nonatomic, readonly) UIBezierPath *path;
+@property (nonatomic, readonly) CAShapeLayer *shapeLayer;
+@property (nonatomic, readonly) UIColor *strokeColor;
 
 + (Class)layerClass;
 
+- (void).cxx_destruct;
 - (id)fillColor;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (id)path;

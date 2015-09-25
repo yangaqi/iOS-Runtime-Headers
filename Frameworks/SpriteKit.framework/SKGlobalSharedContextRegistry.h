@@ -2,10 +2,11 @@
    Image: /System/Library/Frameworks/SpriteKit.framework/SpriteKit
  */
 
-@interface SKGlobalSharedContextRegistry : NSObject {
-}
+@interface SKGlobalSharedContextRegistry : NSObject
 
 + (id)globalGLSharedContext;
++ (id)globalMetalDevice;
 + (void)setGlobalGLSharedContext:(id)arg1;
++ (void)setGlobalMetalDevice:(id)arg1;
 
 @end

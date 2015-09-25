@@ -2,9 +2,7 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class <IKAppDocumentDelegate>, IKAppContext, IKDOMDocument, IKHeadElement, IKJSNavigationDocument, IKJSObject, IKViewElement, JSManagedValue, NSError, NSMutableDictionary, NSMutableSet, NSString;
-
-@interface IKAppDocument : NSObject <IKJSDOMDocumentAppBridge> {
+@interface IKAppDocument : NSObject <IKJSDOMDocumentAppBridge, IKStyleMediaQueryEvaluator> {
     IKAppContext *_appContext;
     <IKAppDocumentDelegate> *_delegate;
     NSError *_error;
@@ -14,34 +12,36 @@
     NSMutableSet *_impressions;
     NSMutableDictionary *_impressionsDict;
     IKDOMDocument *_jsDocument;
-    JSManagedValue *_jsManagedDocument;
     IKViewElement *_navigationBarElement;
     IKJSObject *_owner;
+    IKViewElementStyleFactory *_styleFactory;
     BOOL _subtreeUpdated;
     IKViewElement *_templateElement;
+    IKViewElement *_toolbarElement;
     BOOL _updated;
 }
 
-@property(readonly) IKAppContext * appContext;
-@property(copy,readonly) NSString * debugDescription;
-@property <IKAppDocumentDelegate> * delegate;
-@property(copy,readonly) NSString * description;
-@property(retain) NSError * error;
-@property(readonly) unsigned int hash;
-@property(retain) IKHeadElement * headElement;
-@property(retain) NSString * identifier;
-@property double impressionThreshold;
-@property(retain) NSMutableSet * impressions;
-@property(retain) NSMutableDictionary * impressionsDict;
-@property(readonly) IKDOMDocument * jsDocument;
-@property(retain) JSManagedValue * jsManagedDocument;
-@property(retain) IKViewElement * navigationBarElement;
-@property(readonly) IKJSNavigationDocument * navigationDocument;
-@property(readonly) IKJSObject * owner;
-@property(getter=isSubtreeUpdated) BOOL subtreeUpdated;
-@property(readonly) Class superclass;
-@property(retain) IKViewElement * templateElement;
-@property(getter=isUpdated) BOOL updated;
+@property (readonly) IKAppContext *appContext;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic) <IKAppDocumentDelegate> *delegate;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) NSError *error;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) IKHeadElement *headElement;
+@property (nonatomic, retain) NSString *identifier;
+@property (nonatomic) double impressionThreshold;
+@property (nonatomic, retain) NSMutableSet *impressions;
+@property (nonatomic, retain) NSMutableDictionary *impressionsDict;
+@property (nonatomic, readonly) IKDOMDocument *jsDocument;
+@property (nonatomic, retain) IKViewElement *navigationBarElement;
+@property (nonatomic, readonly) IKJSNavigationDocument *navigationDocument;
+@property (nonatomic, readonly) IKJSObject *owner;
+@property (nonatomic, retain) IKViewElementStyleFactory *styleFactory;
+@property (getter=isSubtreeUpdated) BOOL subtreeUpdated;
+@property (readonly) Class superclass;
+@property (nonatomic, retain) IKViewElement *templateElement;
+@property (nonatomic, retain) IKViewElement *toolbarElement;
+@property (getter=isUpdated, nonatomic) BOOL updated;
 
 - (void).cxx_destruct;
 - (BOOL)_clearUpdatesForElement:(id)arg1;
@@ -51,6 +51,7 @@
 - (void)dealloc;
 - (id)delegate;
 - (id)error;
+- (BOOL)evaluateStyleMediaQueryList:(id)arg1;
 - (id)headElement;
 - (id)identifier;
 - (double)impressionThreshold;
@@ -60,16 +61,15 @@
 - (BOOL)isSubtreeUpdated;
 - (BOOL)isUpdated;
 - (id)jsDocument;
-- (id)jsManagedDocument;
 - (id)navigationBarElement;
 - (id)navigationDocument;
 - (void)onAppear;
 - (void)onDisappear;
 - (void)onLoad;
-- (void)onNeedsUpdateWithCompletion:(id)arg1;
+- (void)onNeedsUpdateWithCompletion:(id /* block */)arg1;
 - (void)onUnload;
 - (void)onUpdate;
-- (void)onViewAttributesChangeWithArguments:(id)arg1 completion:(id)arg2;
+- (void)onViewAttributesChangeWithArguments:(id)arg1 completion:(id /* block */)arg2;
 - (id)owner;
 - (void)recordImpressionsForViewElements:(id)arg1;
 - (id)recordedImpressions;
@@ -83,14 +83,18 @@
 - (void)setImpressionThreshold:(double)arg1;
 - (void)setImpressions:(id)arg1;
 - (void)setImpressionsDict:(id)arg1;
-- (void)setJsManagedDocument:(id)arg1;
 - (void)setNavigationBarElement:(id)arg1;
 - (void)setNeedsUpdateForDocument:(id)arg1;
+- (void)setStyleFactory:(id)arg1;
 - (void)setSubtreeUpdated:(BOOL)arg1;
 - (void)setTemplateElement:(id)arg1;
+- (void)setToolbarElement:(id)arg1;
 - (void)setUpdated:(BOOL)arg1;
+- (void)setViewElementStylesDirty;
 - (id)snapshotImpressions;
+- (id)styleFactory;
 - (id)templateElement;
+- (id)toolbarElement;
 - (void)updateForDocument:(id)arg1;
 
 @end

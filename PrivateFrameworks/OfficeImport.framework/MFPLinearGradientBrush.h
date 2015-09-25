@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class OITSUColor;
-
 @interface MFPLinearGradientBrush : MFPGradientBrush {
     struct CGRect { 
         struct CGPoint { 
@@ -19,7 +17,6 @@
     OITSUColor *mStartColor;
 }
 
-- (id).cxx_construct;
 - (void)createShading;
 - (void)dealloc;
 - (id)endColor;

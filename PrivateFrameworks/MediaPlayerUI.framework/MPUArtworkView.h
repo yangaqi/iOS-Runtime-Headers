@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
  */
 
-@class NSLayoutConstraint, UIImage, UIView;
-
 @interface MPUArtworkView : UIImageView {
     NSLayoutConstraint *_aspectConstraint;
     BOOL _automaticallyApplyAspectConstraints;
@@ -12,17 +10,18 @@
     UIImage *_externalImage;
     BOOL _forcesAnimatedUnhighlighting;
     UIView *_highlightView;
+    BOOL _isDeallocating;
     UIImage *_placeholderImage;
 }
 
-@property(readonly) UIImage * _externalImage;
-@property(getter=_aspectConstraintMultiplier,setter=_setAspectConstraintMultiplier:) float aspectConstraintMultiplier;
-@property BOOL automaticallyApplyAspectConstraints;
-@property BOOL dimsWhenHighlighted;
-@property(getter=isDisplayingPlaceholder) BOOL displayingPlaceholder;
-@property BOOL forcesAnimatedUnhighlighting;
-@property(retain) UIImage * placeholderImage;
-@property(readonly) BOOL shouldDisplayPlaceholder;
+@property (nonatomic, readonly) UIImage *_externalImage;
+@property (getter=_aspectConstraintMultiplier, setter=_setAspectConstraintMultiplier:, nonatomic) float aspectConstraintMultiplier;
+@property (nonatomic) BOOL automaticallyApplyAspectConstraints;
+@property (nonatomic) BOOL dimsWhenHighlighted;
+@property (getter=isDisplayingPlaceholder, nonatomic) BOOL displayingPlaceholder;
+@property (nonatomic) BOOL forcesAnimatedUnhighlighting;
+@property (nonatomic, retain) UIImage *placeholderImage;
+@property (nonatomic, readonly) BOOL shouldDisplayPlaceholder;
 
 - (void).cxx_destruct;
 - (float)_aspectConstraintMultiplier;
@@ -33,6 +32,7 @@
 - (BOOL)_shouldShowHighlightView;
 - (void)_updateHighlightViewAnimated:(BOOL)arg1;
 - (BOOL)automaticallyApplyAspectConstraints;
+- (void)dealloc;
 - (BOOL)dimsWhenHighlighted;
 - (BOOL)forcesAnimatedUnhighlighting;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;

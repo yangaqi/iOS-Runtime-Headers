@@ -2,30 +2,28 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class <_UIDocumentPickerOverviewDelegate>, NSArray, NSString;
-
 @interface _UIDocumentPickerOverviewViewController : UITableViewController {
     NSArray *_allPickers;
     NSArray *_auxiliaryOptions;
     NSString *_currentExtensionIdentifier;
+    <_UIDocumentPickerOverviewDelegate> *_delegate;
     NSArray *_fileTypes;
     BOOL _manage;
     unsigned int _mode;
-    <_UIDocumentPickerOverviewDelegate> *_weak_delegate;
 }
 
-@property(retain) NSArray * allPickers;
-@property(retain) NSArray * auxiliaryOptions;
-@property(retain) NSString * currentExtensionIdentifier;
-@property <_UIDocumentPickerOverviewDelegate> * delegate;
-@property(retain) NSArray * fileTypes;
-@property BOOL manage;
-@property unsigned int mode;
+@property (nonatomic, retain) NSArray *allPickers;
+@property (nonatomic, retain) NSArray *auxiliaryOptions;
+@property (nonatomic, retain) NSString *currentExtensionIdentifier;
+@property (nonatomic) <_UIDocumentPickerOverviewDelegate> *delegate;
+@property (nonatomic, retain) NSArray *fileTypes;
+@property (nonatomic) BOOL manage;
+@property (nonatomic) unsigned int mode;
 
+- (void).cxx_destruct;
 - (id)allPickers;
 - (id)auxiliaryOptions;
 - (id)currentExtensionIdentifier;
-- (void)dealloc;
 - (id)delegate;
 - (id)fileTypes;
 - (id)initWithFileTypes:(id)arg1 mode:(unsigned int)arg2 auxiliaryOptions:(id)arg3 includeManagementItem:(BOOL)arg4;
@@ -42,6 +40,8 @@
 - (id)tableView:(id)arg1 cellForRowAtIndexPath:(id)arg2;
 - (void)tableView:(id)arg1 didSelectRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
+- (void)tableView:(id)arg1 willDisplayCell:(id)arg2 forRowAtIndexPath:(id)arg3;
+- (void)traitCollectionDidChange:(id)arg1;
 - (void)updateContents;
 - (void)updatePreferredContentSize;
 - (void)viewDidAppear:(BOOL)arg1;

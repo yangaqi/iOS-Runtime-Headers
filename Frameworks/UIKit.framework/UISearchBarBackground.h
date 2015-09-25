@@ -2,35 +2,34 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSMutableDictionary, NSString, UIColor, UIImage;
-
 @interface UISearchBarBackground : _UIBarBackgroundImageView <_UIBarPositioningInternal> {
-    unsigned int _actingAsNavBar : 1;
+    unsigned int _actingAsNavBar;
     unsigned int _barHasController;
     int _barPosition;
-    unsigned int _barStyle : 3;
+    unsigned int _barStyle;
     UIColor *_barTintColor;
-    unsigned int _barTranslucence : 3;
+    unsigned int _barTranslucence;
     NSMutableDictionary *_customBackgroundImages;
     NSMutableDictionary *_generatedBackgroundImages;
     unsigned int _searchBarStyle;
-    unsigned int _usesContiguousBarBackground : 1;
-    unsigned int _usesEmbeddedAppearance : 1;
+    unsigned int _usesContiguousBarBackground;
+    unsigned int _usesEmbeddedAppearance;
 }
 
-@property(readonly) UIImage * backgroundImage;
-@property(readonly) UIImage * backgroundImagePrompt;
-@property int barStyle;
-@property(retain) UIColor * barTintColor;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property unsigned int searchBarStyle;
-@property(readonly) Class superclass;
-@property(getter=isTranslucent) BOOL translucent;
-@property BOOL usesContiguousBarBackground;
-@property BOOL usesEmbeddedAppearance;
+@property (nonatomic, readonly) UIImage *backgroundImage;
+@property (nonatomic, readonly) UIImage *backgroundImagePrompt;
+@property (nonatomic) int barStyle;
+@property (nonatomic, retain) UIColor *barTintColor;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) unsigned int searchBarStyle;
+@property (readonly) Class superclass;
+@property (getter=isTranslucent, nonatomic) BOOL translucent;
+@property (nonatomic) BOOL usesContiguousBarBackground;
+@property (nonatomic) BOOL usesEmbeddedAppearance;
 
+- (void).cxx_destruct;
 - (id)_backgroundImageForBarPosition:(int)arg1 barMetrics:(int)arg2;
 - (int)_barPosition;
 - (id)_createBackgroundImageForBarStyle:(int)arg1 alpha:(float)arg2;
@@ -44,7 +43,6 @@
 - (id)backgroundImagePrompt;
 - (int)barStyle;
 - (id)barTintColor;
-- (void)dealloc;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)isTranslucent;
 - (unsigned int)searchBarStyle;

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, NSMutableArray, UICollectionViewFlowLayout;
-
 @interface _UIFlowLayoutInfo : NSObject {
     struct CGSize { 
         float width; 
@@ -39,21 +37,21 @@
     } _visibleBounds;
 }
 
-@property struct CGSize { float x1; float x2; } contentSize;
-@property float dimension;
-@property BOOL estimatesSizes;
-@property BOOL horizontal;
-@property(readonly) NSArray * invalidatedIndexPaths;
-@property UICollectionViewFlowLayout * layout;
-@property BOOL leftToRight;
-@property struct { int x1; int x2; int x3; } rowAlignmentOptions;
-@property(readonly) NSMutableArray * sections;
-@property BOOL usesFloatingHeaderFooter;
+@property (nonatomic) struct CGSize { float x1; float x2; } contentSize;
+@property (nonatomic) float dimension;
+@property (nonatomic) BOOL estimatesSizes;
+@property (nonatomic) BOOL horizontal;
+@property (nonatomic, readonly) NSArray *invalidatedIndexPaths;
+@property (nonatomic) UICollectionViewFlowLayout *layout;
+@property (nonatomic) BOOL leftToRight;
+@property (nonatomic) struct { int x1; int x2; int x3; } rowAlignmentOptions;
+@property (nonatomic, readonly) NSMutableArray *sections;
+@property (nonatomic) BOOL usesFloatingHeaderFooter;
 
+- (void).cxx_destruct;
 - (id)addSection;
 - (struct CGSize { float x1; float x2; })contentSize;
 - (id)copy;
-- (void)dealloc;
 - (void)didUpdateSizeForSection:(int)arg1 withDelta:(float)arg2;
 - (float)dimension;
 - (BOOL)estimatesSizes;

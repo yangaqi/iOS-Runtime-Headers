@@ -2,14 +2,17 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-@class NSPointerFunctions;
+@interface NSMapTable : NSObject <NSCoding, NSCopying, NSFastEnumeration, SGHeaderCollection>
 
-@interface NSMapTable : NSObject <NSCoding, NSCopying, NSFastEnumeration> {
-}
+@property (readonly) unsigned int count;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly, copy) NSPointerFunctions *keyPointerFunctions;
+@property (readonly) Class superclass;
+@property (readonly, copy) NSPointerFunctions *valuePointerFunctions;
 
-@property(readonly) unsigned int count;
-@property(copy,readonly) NSPointerFunctions * keyPointerFunctions;
-@property(copy,readonly) NSPointerFunctions * valuePointerFunctions;
+// Image: /System/Library/Frameworks/Foundation.framework/Foundation
 
 + (id)alloc;
 + (id)allocWithZone:(struct _NSZone { }*)arg1;
@@ -18,22 +21,18 @@
 + (id)mapTableWithStrongToWeakObjects;
 + (id)mapTableWithWeakToStrongObjects;
 + (id)mapTableWithWeakToWeakObjects;
-+ (id)newTspStrongObjectsMapTable;
-+ (id)newTspWeakObjectsMapTable;
 + (id)strongToStrongObjectsMapTable;
 + (id)strongToWeakObjectsMapTable;
 + (id)weakToStrongObjectsMapTable;
 + (id)weakToWeakObjectsMapTable;
 
-- (id)CKAllKeys;
-- (id)CKAllValues;
+- (unsigned int)__capacity;
 - (id)allKeys;
 - (id)allValues;
-- (id)bs_takeObjectForKey:(id)arg1;
 - (id)copy;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (unsigned int)count;
-- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long *x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
+- (unsigned int)countByEnumeratingWithState:(struct { unsigned long x1; id *x2; unsigned long x3; unsigned long x4[5]; }*)arg1 objects:(id*)arg2 count:(unsigned int)arg3;
 - (id)description;
 - (id)dictionaryRepresentation;
 - (void)encodeWithCoder:(id)arg1;
@@ -51,7 +50,6 @@
 - (id)mutableDictionary;
 - (id)objectEnumerator;
 - (id)objectForKey:(id)arg1;
-- (id)objectForKeyedSubscript:(id)arg1;
 - (void)removeAllItems;
 - (void)removeAllObjects;
 - (void)removeObjectForKey:(id)arg1;
@@ -60,12 +58,44 @@
 - (void)setItem:(const void*)arg1 forKey:(const void*)arg2;
 - (void)setItem:(const void*)arg1 forKnownAbsentKey:(const void*)arg2;
 - (void)setObject:(id)arg1 forKey:(id)arg2;
+- (id)valuePointerFunctions;
+
+// Image: /System/Library/Frameworks/HomeKit.framework/HomeKit
+
+- (id)allKeys;
+
+// Image: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+
+- (id)bs_takeObjectForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
+
+- (id)allKeys;
+
+// Image: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+
++ (id)sg_headerKeyFunctions;
++ (id)sg_headerValueFunctions;
+
+- (void)sg_addEntriesFromHeadersDictionary:(id)arg1;
+- (id)sg_firstHeaderForKey:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
+
+- (void)_gkEnumerateKeysAndObjectsUsingBlock:(id /* block */)arg1;
+- (id)objectForKeyedSubscript:(id)arg1;
 - (void)setObject:(id)arg1 forKeyedSubscript:(id)arg2;
-- (void)tsp_enumerateIdentifiersAndObjectsUsingBlock:(id)arg1;
-- (void)tsp_enumerateObjectsUsingBlock:(id)arg1;
+
+// Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
+
++ (id)newTspStrongObjectsMapTable;
++ (id)newTspStrongObjectsMapTableWithCapacity:(unsigned int)arg1;
++ (id)newTspWeakObjectsMapTable;
+
+- (void)tsp_enumerateIdentifiersAndObjectsUsingBlock:(id /* block */)arg1;
+- (void)tsp_enumerateObjectsUsingBlock:(id /* block */)arg1;
 - (id)tsp_objectForIdentifier:(long long)arg1;
 - (void)tsp_removeObjectForIdentifier:(long long)arg1;
 - (void)tsp_setObject:(id)arg1 forIdentifier:(long long)arg2;
-- (id)valuePointerFunctions;
 
 @end

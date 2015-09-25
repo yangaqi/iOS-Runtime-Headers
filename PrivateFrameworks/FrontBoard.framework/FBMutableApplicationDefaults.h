@@ -2,13 +2,13 @@
    Image: /System/Library/PrivateFrameworks/FrontBoard.framework/FrontBoard
  */
 
-@interface FBMutableApplicationDefaults : FBApplicationDefaults {
-}
+@interface FBMutableApplicationDefaults : FBApplicationDefaults
 
-@property int backgroundStyle;
-@property int interfaceOrientation;
-@property BOOL statusBarHidden;
-@property BOOL statusBarHiddenWhenVerticallyCompact;
-@property int statusBarStyle;
+@property (nonatomic) int backgroundStyle;
+@property (nonatomic) int interfaceOrientation;
+@property (nonatomic, copy) NSString *launchImageFile;
+@property (nonatomic) BOOL statusBarHidden;
+@property (nonatomic) BOOL statusBarHiddenWhenVerticallyCompact;
+@property (nonatomic) int statusBarStyle;
 
 @end

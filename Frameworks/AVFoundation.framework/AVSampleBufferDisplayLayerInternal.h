@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-@class AVMediaDataRequester, AVWeakReference, CALayer, NSError, NSObject<OS_dispatch_queue>, NSString;
-
 @interface AVSampleBufferDisplayLayerInternal : NSObject {
     BOOL aboveHighWaterLevel;
     BOOL addedToSynchronizer;
@@ -21,6 +19,9 @@
     struct OpaqueCMTimebase { } *controlTimebaseSetByUser;
     BOOL controlTimebaseSetByUserIsInUse;
     NSError *error;
+    NSObject<OS_dispatch_queue> *flushCallbackListQueue;
+    NSObject<OS_dispatch_queue> *flushCallbackQueue;
+    NSMutableArray *flushCallbacks;
     BOOL isRequestingMediaData;
     AVMediaDataRequester *mediaDataRequester;
     BOOL outputObscured;

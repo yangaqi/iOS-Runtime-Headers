@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDResources;
-
 @interface EDBorders : NSObject <NSCopying> {
     unsigned int mBottomBorderIndex;
     unsigned int mDiagonalBorderIndex;
@@ -21,6 +19,7 @@
 
 - (id)bottomBorder;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
+- (id)description;
 - (id)diagonalBorder;
 - (unsigned int)hash;
 - (id)horizontalBorder;

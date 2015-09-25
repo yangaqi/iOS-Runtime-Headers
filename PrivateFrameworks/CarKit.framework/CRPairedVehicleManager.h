@@ -2,20 +2,19 @@
    Image: /System/Library/PrivateFrameworks/CarKit.framework/CarKit
  */
 
-@class <CRCarKitService>, NSMutableArray, NSXPCConnection;
-
 @interface CRPairedVehicleManager : NSObject {
     NSMutableArray *_outstandingSemaphores;
     <CRCarKitService> *_service;
     NSXPCConnection *_serviceConnection;
 }
 
-@property(retain) NSMutableArray * outstandingSemaphores;
-@property(retain) <CRCarKitService> * service;
-@property(retain) NSXPCConnection * serviceConnection;
+@property (nonatomic, retain) NSMutableArray *outstandingSemaphores;
+@property (nonatomic, retain) <CRCarKitService> *service;
+@property (nonatomic, retain) NSXPCConnection *serviceConnection;
 
 - (void).cxx_destruct;
 - (void)_blockOnServiceSemaphore:(id)arg1;
+- (void)_releaseAllServiceSemaphores;
 - (id)_serviceSemaphore;
 - (id)allVehicles;
 - (id)init;
@@ -29,5 +28,6 @@
 - (void)setService:(id)arg1;
 - (void)setServiceConnection:(id)arg1;
 - (id)vehicleForBluetoothAddress:(id)arg1;
+- (id)vehicleNameForWiFiUUID:(id)arg1;
 
 @end

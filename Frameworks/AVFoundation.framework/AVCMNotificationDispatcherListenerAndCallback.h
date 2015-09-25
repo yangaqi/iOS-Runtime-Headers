@@ -2,25 +2,22 @@
    Image: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
-@class AVWeakReference;
-
 @interface AVCMNotificationDispatcherListenerAndCallback : NSObject {
-    int (*_callback)();
+    int (*_callback;
+    void *_callbackContextToken;
     AVWeakReference *_weakReferenceToListener;
 }
 
-@property(readonly) int (* callback;
-@property(readonly) id listener;
+@property (nonatomic, readonly) int (*callback;
+@property (nonatomic) void*callbackContextToken;
+@property (nonatomic, readonly) id listener;
 
-- (int (*)())callback;
+- (int (*)callback;
+- (void*)callbackContextToken;
 - (void)dealloc;
 - (id)init;
-- (id)initWithWeakReferenceToListener:(id)arg1 callback:(int (*)())arg2;
+- (id)initWithWeakReferenceToListener:(id)arg1 callback:(int (*)arg2;
 - (id)listener;
+- (void)setCallbackContextToken:(void*)arg1;
 
 @end

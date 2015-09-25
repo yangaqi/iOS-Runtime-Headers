@@ -2,16 +2,11 @@
    Image: /System/Library/Frameworks/Foundation.framework/Foundation
  */
 
-/* RuntimeBrowser encountered one or more ivar type encodings for a function pointer. 
-   The runtime does not encode function signature information.  We use a signature of: 
-           "int (*funcName)()",  where funcName might be null. 
- */
-
 @interface NSKeyValueContainerClass : NSObject {
-    int (*_cachedObservationInfoImplementation)();
-    int (*_cachedSetObservationInfoImplementation)();
+    int (*_cachedObservationInfoImplementation;
+    int (*_cachedSetObservationInfoImplementation;
     BOOL _cachedSetObservationInfoTakesAnObject;
-    struct { Class x1; Class x2; struct __CFSet {} *x3; struct __CFDictionary {} *x4; } *_notifyingInfo;
+    struct { Class x1; Class x2; struct __CFSet {} *x3; struct __CFDictionary {} *x4; struct _opaque_pthread_mutex_t { long x_5_1_1; BOOL x_5_1_2[40]; } x5; BOOL x6; } *_notifyingInfo;
     Class _originalClass;
 }
 

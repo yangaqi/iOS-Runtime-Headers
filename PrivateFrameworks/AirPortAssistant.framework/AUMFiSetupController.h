@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/AirPortAssistant.framework/AirPortAssistant
  */
 
-@class EasyConfigDevice, NSDictionary, NSMutableSet, NSObject<OS_dispatch_semaphore>, NSString, NSTimer;
-
 @interface AUMFiSetupController : AUSetupController {
     NSDictionary *_accessoryResponseDict;
     NSObject<OS_dispatch_semaphore> *_askUserForPasswordSemaphore;
@@ -53,9 +51,9 @@
     int _waitingForLinkState;
 }
 
-@property(copy) NSString * destinationNetworkPassword;
-@property(retain) NSTimer * linkUpOnDestinationNetworkTimer;
-@property(readonly) NSMutableSet * setupDelegates;
+@property (copy) NSString *destinationNetworkPassword;
+@property (retain) NSTimer *linkUpOnDestinationNetworkTimer;
+@property (nonatomic, readonly) NSMutableSet *setupDelegates;
 
 + (id)setupController;
 
@@ -67,6 +65,7 @@
 - (void)callbackAskUserForPasswordResult:(long)arg1 password:(id)arg2 remember:(int)arg3;
 - (void)callbackAskUserForSetupCodeResult:(long)arg1 password:(id)arg2;
 - (void)callbackAskUserForUncertifiedResult:(long)arg1;
+- (long)cancelSetup;
 - (void)createEasyConfigDeviceConfiguration;
 - (void)dealloc;
 - (id)destinationNetworkPassword;

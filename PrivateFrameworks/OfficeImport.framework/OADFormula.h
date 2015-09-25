@@ -2,18 +2,15 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface OADFormula : NSObject {
     struct OADFormulaArg { 
         int type; 
         int value; 
-    } mArgs[3];
+    } mArgs;
     NSString *mName;
     int mType;
 }
 
-- (id).cxx_construct;
 - (struct OADFormulaArg { int x1; int x2; })argAtIndex:(unsigned int)arg1;
 - (void)dealloc;
 - (id)description;

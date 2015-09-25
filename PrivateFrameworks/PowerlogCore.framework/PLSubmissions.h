@@ -2,15 +2,15 @@
    Image: /System/Library/PrivateFrameworks/PowerlogCore.framework/PowerlogCore
  */
 
-@class PLSQLiteConnection, PLStorageOperator;
-
 @interface PLSubmissions : NSObject {
     PLSQLiteConnection *_connection;
     PLStorageOperator *_storageOperator;
+    PLTimer *_watchdog;
 }
 
-@property(retain) PLSQLiteConnection * connection;
-@property PLStorageOperator * storageOperator;
+@property (retain) PLSQLiteConnection *connection;
+@property PLStorageOperator *storageOperator;
+@property (retain) PLTimer *watchdog;
 
 + (id)sharedInstance;
 
@@ -23,8 +23,12 @@
 - (id)init;
 - (void)setConnection:(id)arg1;
 - (void)setStorageOperator:(id)arg1;
+- (void)setWatchdog:(id)arg1;
+- (void)startWatchdog;
+- (void)stopWatchdog;
 - (id)storageOperator;
 - (id)trimmingQueryForIndex:(int)arg1;
+- (id)watchdog;
 - (id)workQueue;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class UIKBBackdropView;
-
 @interface UIKBInputBackdropView : UIView {
     BOOL _hasEndRect;
     BOOL _hasStartRect;
@@ -37,9 +35,9 @@
     float _transitionLeftOffset;
 }
 
-@property(retain) UIKBBackdropView * inputBackdropFullView;
-@property(retain) UIKBBackdropView * inputBackdropLeftView;
-@property(retain) UIKBBackdropView * inputBackdropRightView;
+@property (nonatomic, retain) UIKBBackdropView *inputBackdropFullView;
+@property (nonatomic, retain) UIKBBackdropView *inputBackdropLeftView;
+@property (nonatomic, retain) UIKBBackdropView *inputBackdropRightView;
 
 + (BOOL)_retroactivelyRequiresConstraintBasedLayout;
 
@@ -61,6 +59,7 @@
 - (void)setInputBackdropFullView:(id)arg1;
 - (void)setInputBackdropLeftView:(id)arg1;
 - (void)setInputBackdropRightView:(id)arg1;
+- (void)setTintOpacity:(float)arg1;
 - (int)textEffectsVisibilityLevel;
 - (void)transitionToStyle:(int)arg1 isSplit:(BOOL)arg2;
 

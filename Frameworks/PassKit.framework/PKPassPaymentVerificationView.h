@@ -2,9 +2,8 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class PKPassView, PKPaymentVerificationPresentationController, UIButton, UILabel, UIView;
-
-@interface PKPassPaymentVerificationView : PKPassPaymentFooterContentView <PKPaymentVerificationPresentationDelegate> {
+@interface PKPassPaymentVerificationView : PKPassFooterContentView <PKPaymentVerificationPresentationDelegate> {
+    UIActivityIndicatorView *_activityIndicator;
     UIButton *_alternateButton;
     UILabel *_bodyLabel;
     UIView *_bottomRule;
@@ -14,15 +13,17 @@
     UILabel *_titleLabel;
 }
 
+- (id)_activityIndicator;
 - (id)_alternateButton;
 - (id)_bodyLabel;
 - (id)_bottomRule;
 - (id)_button;
 - (id)_titleLabel;
+- (void)_updateButton;
 - (void)dealloc;
 - (void)didChangeVerificationPresentation;
 - (id)initWithPass:(id)arg1 passView:(id)arg2;
 - (void)layoutSubviews;
-- (void)presentVerificationViewController:(id)arg1 animated:(BOOL)arg2 completion:(id)arg3;
+- (void)presentVerificationViewController:(id)arg1 animated:(BOOL)arg2 completion:(id /* block */)arg3;
 
 @end

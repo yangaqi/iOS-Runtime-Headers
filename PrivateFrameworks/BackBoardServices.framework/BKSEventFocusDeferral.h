@@ -2,15 +2,15 @@
    Image: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
  */
 
-@class BKSEventFocusDeferralProperties;
-
 @interface BKSEventFocusDeferral : NSObject <NSSecureCoding> {
     BKSEventFocusDeferralProperties *_deferredProperties;
+    int _priority;
     BKSEventFocusDeferralProperties *_properties;
 }
 
-@property(readonly) BKSEventFocusDeferralProperties * deferredProperties;
-@property(readonly) BKSEventFocusDeferralProperties * properties;
+@property (nonatomic, readonly, retain) BKSEventFocusDeferralProperties *deferredProperties;
+@property (nonatomic, readonly) int priority;
+@property (nonatomic, readonly, retain) BKSEventFocusDeferralProperties *properties;
 
 + (BOOL)supportsSecureCoding;
 
@@ -23,7 +23,9 @@
 - (unsigned int)hash;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithProperties:(id)arg1 deferredProperties:(id)arg2;
+- (id)initWithProperties:(id)arg1 deferredProperties:(id)arg2 withPriority:(int)arg3;
 - (BOOL)isEqual:(id)arg1;
+- (int)priority;
 - (id)properties;
 
 @end

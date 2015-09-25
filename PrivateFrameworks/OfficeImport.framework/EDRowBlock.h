@@ -7,11 +7,11 @@
     struct __CFData { } *mPackedData;
 }
 
-@property(readonly) unsigned int firstRowNumber;
-@property(readonly) unsigned int lastRowNumber;
-@property(readonly) unsigned int maxRowNumber;
-@property(readonly) unsigned int minRowNumber;
-@property(readonly) unsigned int rowCount;
+@property (nonatomic, readonly) unsigned int firstRowNumber;
+@property (nonatomic, readonly) unsigned int lastRowNumber;
+@property (nonatomic, readonly) unsigned int maxRowNumber;
+@property (nonatomic, readonly) unsigned int minRowNumber;
+@property (nonatomic, readonly) unsigned int rowCount;
 
 + (id)rowBlock;
 
@@ -22,6 +22,7 @@
 - (struct EDCellHeader { unsigned int x1; unsigned int x2; }*)cellWithColumnNumber:(unsigned int)arg1 rowInfo:(struct EDRowInfo { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned short x6; unsigned char x7; unsigned int x8 : 1; unsigned int x9 : 1; }*)arg2;
 - (void)checkCellOffsetOrThrow:(unsigned long)arg1;
 - (void)dealloc;
+- (id)description;
 - (void)doneWithContent;
 - (unsigned int)expectedIndexOfCellWithColumnNumber:(unsigned int)arg1 rowInfo:(struct EDRowInfo { unsigned int x1; unsigned int x2; unsigned int x3; unsigned int x4; unsigned int x5; unsigned short x6; unsigned char x7; unsigned int x8 : 1; unsigned int x9 : 1; }*)arg2;
 - (unsigned int)firstRowNumber;

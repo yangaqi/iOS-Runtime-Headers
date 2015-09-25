@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString;
-
 @interface UIInterpolatingMotionEffect : UIMotionEffect {
     float _horizontalAccelerationBoostFactor;
     NSString *_keyPath;
@@ -13,11 +11,12 @@
     float _verticalAccelerationBoostFactor;
 }
 
-@property(readonly) NSString * keyPath;
-@property(retain) id maximumRelativeValue;
-@property(retain) id minimumRelativeValue;
-@property(readonly) int type;
+@property (nonatomic, readonly) NSString *keyPath;
+@property (nonatomic, retain) id maximumRelativeValue;
+@property (nonatomic, retain) id minimumRelativeValue;
+@property (nonatomic, readonly) int type;
 
+- (void).cxx_destruct;
 - (float)_horizontalAccelerationBoostFactor;
 - (id)_keyPathsAndRelativeValuesForPose:(id)arg1;
 - (void)_setHorizontalAccelerationBoostFactor:(float)arg1;
@@ -26,9 +25,9 @@
 - (void)_setVerticalAccelerationBoostFactor:(float)arg1;
 - (float)_verticalAccelerationBoostFactor;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
-- (void)dealloc;
 - (id)description;
 - (void)encodeWithCoder:(id)arg1;
+- (id)init;
 - (id)initWithCoder:(id)arg1;
 - (id)initWithKeyPath:(id)arg1 type:(int)arg2;
 - (id)keyPath;

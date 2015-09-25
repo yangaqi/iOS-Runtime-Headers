@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, UILabel;
-
 @interface UIDatePickerWeekMonthDayView : UIView {
     UILabel *_dateLabel;
     struct { 
@@ -15,16 +13,16 @@
     float _weekdayWidth;
 }
 
-@property(readonly) UILabel * dateLabel;
-@property(copy) NSString * formattedDateString;
-@property BOOL isModern;
-@property(readonly) UILabel * weekdayLabel;
-@property BOOL weekdayLast;
-@property float weekdayWidth;
+@property (nonatomic, readonly) UILabel *dateLabel;
+@property (nonatomic, copy) NSString *formattedDateString;
+@property (nonatomic) BOOL isModern;
+@property (nonatomic, readonly) UILabel *weekdayLabel;
+@property (nonatomic) BOOL weekdayLast;
+@property (nonatomic) float weekdayWidth;
 
+- (void).cxx_destruct;
 - (BOOL)_canBeReusedInPickerView;
 - (id)dateLabel;
-- (void)dealloc;
 - (id)formattedDateString;
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (BOOL)isModern;

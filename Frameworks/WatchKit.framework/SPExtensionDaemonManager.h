@@ -2,21 +2,23 @@
    Image: /System/Library/Frameworks/WatchKit.framework/WatchKit
  */
 
-@class NSMutableDictionary, NSMutableSet, NSObject<OS_dispatch_source>;
-
 @interface SPExtensionDaemonManager : NSObject {
     BOOL _active;
     NSMutableDictionary *_coreLocationAsserts;
+    NSObject<OS_dispatch_queue> *_coreLocationAssertsQueue;
     int _refCount;
     NSMutableSet *_transactionObservers;
+    NSObject<OS_dispatch_queue> *_transactionQueue;
     NSObject<OS_dispatch_source> *_transactionTimer;
 }
 
-@property BOOL active;
-@property(retain) NSMutableDictionary * coreLocationAsserts;
-@property int refCount;
-@property(retain) NSMutableSet * transactionObservers;
-@property(retain) NSObject<OS_dispatch_source> * transactionTimer;
+@property (nonatomic) BOOL active;
+@property (nonatomic, retain) NSMutableDictionary *coreLocationAsserts;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *coreLocationAssertsQueue;
+@property (nonatomic) int refCount;
+@property (nonatomic, retain) NSMutableSet *transactionObservers;
+@property (nonatomic, retain) NSObject<OS_dispatch_queue> *transactionQueue;
+@property (nonatomic, retain) NSObject<OS_dispatch_source> *transactionTimer;
 
 + (id)sharedInstance;
 
@@ -25,6 +27,7 @@
 - (void)addTransactionObserver:(id)arg1;
 - (void)beginTransaction;
 - (id)coreLocationAsserts;
+- (id)coreLocationAssertsQueue;
 - (void)endTransaction;
 - (id)init;
 - (void)keepAlive;
@@ -32,11 +35,14 @@
 - (void)removeTransactionObserver:(id)arg1;
 - (void)setActive:(BOOL)arg1;
 - (void)setCoreLocationAsserts:(id)arg1;
+- (void)setCoreLocationAssertsQueue:(id)arg1;
 - (void)setRefCount:(int)arg1;
 - (void)setTransactionObservers:(id)arg1;
+- (void)setTransactionQueue:(id)arg1;
 - (void)setTransactionTimer:(id)arg1;
 - (void)startTransactionTimer;
 - (id)transactionObservers;
+- (id)transactionQueue;
 - (void)transactionTimeOut;
 - (id)transactionTimer;
 

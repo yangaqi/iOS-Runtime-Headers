@@ -2,24 +2,24 @@
    Image: /System/Library/PrivateFrameworks/MobileTimer.framework/MobileTimer
  */
 
-@class NSArray, NSDate, NSMutableArray, NSString;
-
 @interface AlarmManager : NSObject {
     NSMutableArray *_alarms;
     NSString *_defaultSound;
     int _defaultSoundType;
     BOOL _dirty;
+    NSHashTable *_observers;
     BOOL invalidAlarmsDetected;
     NSDate *lastModified;
     NSMutableArray *logMessageList;
 }
 
-@property(retain,readonly) NSArray * alarms;
-@property(readonly) NSString * defaultSound;
-@property(readonly) int defaultSoundType;
-@property BOOL invalidAlarmsDetected;
-@property(retain) NSDate * lastModified;
-@property(retain) NSMutableArray * logMessageList;
+@property (nonatomic, readonly) NSArray *alarms;
+@property (nonatomic, readonly) NSString *defaultSound;
+@property (nonatomic, readonly) int defaultSoundType;
+@property (nonatomic, retain) NSString *defaultVibrationID;
+@property (nonatomic) BOOL invalidAlarmsDetected;
+@property (nonatomic, retain) NSDate *lastModified;
+@property (nonatomic, retain) NSMutableArray *logMessageList;
 
 + (id)copyReadAlarmsFromPreferences;
 + (BOOL)discardOldVersion;
@@ -28,7 +28,9 @@
 + (BOOL)upgrade;
 + (void)writeAlarmsToPreferences:(id)arg1;
 
+- (void).cxx_destruct;
 - (void)addAlarm:(id)arg1 active:(BOOL)arg2;
+- (void)addObserver:(id)arg1;
 - (id)alarmWithId:(id)arg1;
 - (id)alarmWithIdUrl:(id)arg1;
 - (id)alarms;
@@ -37,6 +39,7 @@
 - (void)dealloc;
 - (id)defaultSound;
 - (int)defaultSoundType;
+- (id)defaultVibrationID;
 - (void)handleAlarm:(id)arg1 startedUsingSong:(id)arg2;
 - (void)handleAlarm:(id)arg1 stoppedUsingSong:(id)arg2;
 - (void)handleAnyNotificationChanges;
@@ -55,9 +58,11 @@
 - (void)reloadScheduledNotifications;
 - (void)reloadScheduledNotificationsWithRefreshActive:(BOOL)arg1 cancelUnused:(BOOL)arg2;
 - (void)removeAlarm:(id)arg1;
+- (void)removeObserver:(id)arg1;
 - (void)saveAlarms;
 - (void)setAlarm:(id)arg1 active:(BOOL)arg2;
 - (void)setDefaultSound:(id)arg1 ofType:(int)arg2;
+- (void)setDefaultVibrationID:(id)arg1;
 - (void)setInvalidAlarmsDetected:(BOOL)arg1;
 - (void)setLastModified:(id)arg1;
 - (void)setLogMessageList:(id)arg1;

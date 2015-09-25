@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEONameInfo, GEOTimeCheckpoints, NSMutableArray, NSString;
-
 @interface GEOStep : PBCodable <NSCopying> {
     unsigned int _distance;
     BOOL _endsOnFwy;
@@ -27,6 +25,7 @@
         unsigned int tollPrior : 1; 
     } _has;
     int _hintFirstAnnouncementZilchIndex;
+    GEOInstructionSet *_instructionSet;
     NSString *_instructions;
     struct { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; } *_junctionElements;
     unsigned int _junctionElementsCount;
@@ -52,55 +51,57 @@
     BOOL _tollPrior;
 }
 
-@property unsigned int distance;
-@property BOOL endsOnFwy;
-@property(retain) GEONameInfo * exitNumber;
-@property unsigned int expectedTime;
-@property BOOL hasDistance;
-@property BOOL hasEndsOnFwy;
-@property(readonly) BOOL hasExitNumber;
-@property BOOL hasExpectedTime;
-@property(readonly) BOOL hasHintFirstAnnouncementIndex;
-@property BOOL hasHintFirstAnnouncementZilchIndex;
-@property(readonly) BOOL hasInstructions;
-@property BOOL hasJunctionType;
-@property BOOL hasManeuverEndBasicIndex;
-@property BOOL hasManeuverEndZilchIndex;
-@property BOOL hasManeuverStartZilchIndex;
-@property BOOL hasManeuverType;
-@property(readonly) BOOL hasNotice;
-@property BOOL hasOverrideDrivingSide;
-@property BOOL hasOverrideTransportType;
-@property BOOL hasStepID;
-@property(readonly) BOOL hasTimeCheckpoints;
-@property BOOL hasToFreeway;
-@property BOOL hasTollAhead;
-@property BOOL hasTollPrior;
-@property(readonly) int hintFirstAnnouncementIndex;
-@property int hintFirstAnnouncementZilchIndex;
-@property(retain) NSString * instructions;
-@property(readonly) struct { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }* junctionElements;
-@property(readonly) unsigned int junctionElementsCount;
-@property int junctionType;
-@property(readonly) struct { int x1; unsigned int x2; unsigned int x3; int x4; unsigned int x5; int x6; struct { unsigned int x_7_1_1 : 1; unsigned int x_7_1_2 : 1; unsigned int x_7_1_3 : 1; unsigned int x_7_1_4 : 1; unsigned int x_7_1_5 : 1; unsigned int x_7_1_6 : 1; } x7; }* laneGuidances;
-@property(readonly) unsigned int laneGuidancesCount;
-@property int maneuverEndBasicIndex;
-@property(readonly) unsigned int maneuverEndIndex;
-@property int maneuverEndZilchIndex;
-@property(retain) NSMutableArray * maneuverNames;
-@property(readonly) unsigned int maneuverStartIndex;
-@property int maneuverStartZilchIndex;
-@property int maneuverType;
-@property(retain) NSString * notice;
-@property int overrideDrivingSide;
-@property int overrideTransportType;
-@property(retain) NSMutableArray * signposts;
-@property unsigned int stepID;
-@property(retain) NSMutableArray * substeps;
-@property(retain) GEOTimeCheckpoints * timeCheckpoints;
-@property BOOL toFreeway;
-@property BOOL tollAhead;
-@property BOOL tollPrior;
+@property (nonatomic) unsigned int distance;
+@property (nonatomic) BOOL endsOnFwy;
+@property (nonatomic, retain) GEONameInfo *exitNumber;
+@property (nonatomic) unsigned int expectedTime;
+@property (nonatomic) BOOL hasDistance;
+@property (nonatomic) BOOL hasEndsOnFwy;
+@property (nonatomic, readonly) BOOL hasExitNumber;
+@property (nonatomic) BOOL hasExpectedTime;
+@property (nonatomic, readonly) BOOL hasHintFirstAnnouncementIndex;
+@property (nonatomic) BOOL hasHintFirstAnnouncementZilchIndex;
+@property (nonatomic, readonly) BOOL hasInstructionSet;
+@property (nonatomic, readonly) BOOL hasInstructions;
+@property (nonatomic) BOOL hasJunctionType;
+@property (nonatomic) BOOL hasManeuverEndBasicIndex;
+@property (nonatomic) BOOL hasManeuverEndZilchIndex;
+@property (nonatomic) BOOL hasManeuverStartZilchIndex;
+@property (nonatomic) BOOL hasManeuverType;
+@property (nonatomic, readonly) BOOL hasNotice;
+@property (nonatomic) BOOL hasOverrideDrivingSide;
+@property (nonatomic) BOOL hasOverrideTransportType;
+@property (nonatomic) BOOL hasStepID;
+@property (nonatomic, readonly) BOOL hasTimeCheckpoints;
+@property (nonatomic) BOOL hasToFreeway;
+@property (nonatomic) BOOL hasTollAhead;
+@property (nonatomic) BOOL hasTollPrior;
+@property (nonatomic, readonly) int hintFirstAnnouncementIndex;
+@property (nonatomic) int hintFirstAnnouncementZilchIndex;
+@property (nonatomic, retain) GEOInstructionSet *instructionSet;
+@property (nonatomic, retain) NSString *instructions;
+@property (nonatomic, readonly) struct { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }*junctionElements;
+@property (nonatomic, readonly) unsigned int junctionElementsCount;
+@property (nonatomic) int junctionType;
+@property (nonatomic, readonly) struct { int x1; unsigned int x2; unsigned int x3; int x4; unsigned int x5; int x6; struct { unsigned int x_7_1_1 : 1; unsigned int x_7_1_2 : 1; unsigned int x_7_1_3 : 1; unsigned int x_7_1_4 : 1; unsigned int x_7_1_5 : 1; unsigned int x_7_1_6 : 1; } x7; }*laneGuidances;
+@property (nonatomic, readonly) unsigned int laneGuidancesCount;
+@property (nonatomic) int maneuverEndBasicIndex;
+@property (nonatomic, readonly) unsigned int maneuverEndIndex;
+@property (nonatomic) int maneuverEndZilchIndex;
+@property (nonatomic, retain) NSMutableArray *maneuverNames;
+@property (nonatomic, readonly) unsigned int maneuverStartIndex;
+@property (nonatomic) int maneuverStartZilchIndex;
+@property (nonatomic) int maneuverType;
+@property (nonatomic, retain) NSString *notice;
+@property (nonatomic) int overrideDrivingSide;
+@property (nonatomic) int overrideTransportType;
+@property (nonatomic, retain) NSMutableArray *signposts;
+@property (nonatomic) unsigned int stepID;
+@property (nonatomic, retain) NSMutableArray *substeps;
+@property (nonatomic, retain) GEOTimeCheckpoints *timeCheckpoints;
+@property (nonatomic) BOOL toFreeway;
+@property (nonatomic) BOOL tollAhead;
+@property (nonatomic) BOOL tollPrior;
 
 - (void)addJunctionElement:(struct { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; })arg1;
 - (void)addLaneGuidance:(struct { int x1; unsigned int x2; unsigned int x3; int x4; unsigned int x5; int x6; struct { unsigned int x_7_1_1 : 1; unsigned int x_7_1_2 : 1; unsigned int x_7_1_3 : 1; unsigned int x_7_1_4 : 1; unsigned int x_7_1_5 : 1; unsigned int x_7_1_6 : 1; } x7; })arg1;
@@ -128,6 +129,7 @@
 - (BOOL)hasExpectedTime;
 - (BOOL)hasHintFirstAnnouncementIndex;
 - (BOOL)hasHintFirstAnnouncementZilchIndex;
+- (BOOL)hasInstructionSet;
 - (BOOL)hasInstructions;
 - (BOOL)hasJunctionType;
 - (BOOL)hasManeuverEndBasicIndex;
@@ -145,6 +147,7 @@
 - (unsigned int)hash;
 - (int)hintFirstAnnouncementIndex;
 - (int)hintFirstAnnouncementZilchIndex;
+- (id)instructionSet;
 - (id)instructions;
 - (id)intersectionNameInfo;
 - (BOOL)isEqual:(id)arg1;
@@ -192,6 +195,7 @@
 - (void)setHasTollAhead:(BOOL)arg1;
 - (void)setHasTollPrior:(BOOL)arg1;
 - (void)setHintFirstAnnouncementZilchIndex:(int)arg1;
+- (void)setInstructionSet:(id)arg1;
 - (void)setInstructions:(id)arg1;
 - (void)setJunctionElements:(struct { int x1; int x2; int x3; struct { unsigned int x_4_1_1 : 1; unsigned int x_4_1_2 : 1; unsigned int x_4_1_3 : 1; } x4; }*)arg1 count:(unsigned int)arg2;
 - (void)setJunctionType:(int)arg1;
@@ -211,7 +215,7 @@
 - (void)setToFreeway:(BOOL)arg1;
 - (void)setTollAhead:(BOOL)arg1;
 - (void)setTollPrior:(BOOL)arg1;
-- (void)shieldInfo:(id)arg1;
+- (void)shieldInfo:(id /* block */)arg1;
 - (id)signpostAtIndex:(unsigned int)arg1;
 - (id)signposts;
 - (unsigned int)signpostsCount;

@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreHAP.framework/CoreHAP
  */
 
-@class HAPCharacteristicMetadata, HAPService, NSNumber, NSString;
-
 @interface HAPCharacteristic : NSObject {
     BOOL _eventNotificationsEnabled;
     NSNumber *_instanceID;
@@ -13,17 +11,19 @@
     BOOL _shouldValidateValueAfterReading;
     NSString *_type;
     id _value;
+    unsigned long long _valueUpdateTime;
 }
 
-@property BOOL eventNotificationsEnabled;
-@property(copy) NSNumber * instanceID;
-@property(retain) HAPCharacteristicMetadata * metadata;
-@property unsigned int properties;
-@property HAPService * service;
-@property BOOL shouldValidateValueAfterReading;
-@property(readonly) BOOL supportsAdditionalAuthorizationData;
-@property(copy) NSString * type;
-@property(copy) id value;
+@property (nonatomic) BOOL eventNotificationsEnabled;
+@property (nonatomic, copy) NSNumber *instanceID;
+@property (nonatomic, retain) HAPCharacteristicMetadata *metadata;
+@property (nonatomic) unsigned int properties;
+@property (nonatomic) HAPService *service;
+@property (nonatomic) BOOL shouldValidateValueAfterReading;
+@property (nonatomic, readonly) BOOL supportsAdditionalAuthorizationData;
+@property (nonatomic, copy) NSString *type;
+@property (setter=setValue:, nonatomic, copy) id value;
+@property (nonatomic) unsigned long long valueUpdateTime;
 
 - (void).cxx_destruct;
 - (id)_generateValidMetadata:(id)arg1;
@@ -45,10 +45,12 @@
 - (void)setShouldValidateValueAfterReading:(BOOL)arg1;
 - (void)setType:(id)arg1;
 - (void)setValue:(id)arg1;
+- (void)setValueUpdateTime:(unsigned long long)arg1;
 - (BOOL)shouldValidateValueAfterReading;
 - (BOOL)supportsAdditionalAuthorizationData;
 - (id)type;
 - (id)validateValue:(id)arg1 outValue:(id*)arg2;
 - (id)value;
+- (unsigned long long)valueUpdateTime;
 
 @end

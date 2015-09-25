@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDReference, EDString;
-
 @interface EDHyperlink : NSObject {
     EDString *mDescriptionText;
     EDString *mDosPath;
@@ -17,6 +15,7 @@
 + (id)hyperlink;
 
 - (void)dealloc;
+- (id)description;
 - (id)descriptionText;
 - (id)dosPath;
 - (id)path;

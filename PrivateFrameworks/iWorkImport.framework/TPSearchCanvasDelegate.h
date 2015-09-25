@@ -2,11 +2,9 @@
    Image: /System/Library/PrivateFrameworks/iWorkImport.framework/iWorkImport
  */
 
-@interface TPSearchCanvasDelegate : TSASearchCanvasDelegate {
-}
+@interface TPSearchCanvasDelegate : TSASearchCanvasDelegate
 
 - (void)dealloc;
-- (id)initWithDocumentRoot:(id)arg1;
 - (id)initWithDocumentRoot:(id)arg1 canvas:(id)arg2;
 
 @end

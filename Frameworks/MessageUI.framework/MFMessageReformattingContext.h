@@ -2,11 +2,16 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class DOMDocument, DOMNode, DOMRange, NSArray, NSMutableArray;
-
 @interface MFMessageReformattingContext : NSObject {
+    struct UIEdgeInsets { 
+        float top; 
+        float left; 
+        float bottom; 
+        float right; 
+    } _basePadding;
     DOMNode *_body;
     NSMutableArray *_changes;
+    BOOL _containsUnknownImageDimensions;
     DOMDocument *_document;
     BOOL _documentContainsAnyWebKitTransform;
     DOMRange *_firstTextRange;
@@ -16,30 +21,36 @@
     float _meanWidth;
     BOOL _metricsNeedUpdate;
     float _minimumRescalingFactor;
+    NSArray *_potentialEdgeToEdgeNodes;
     NSArray *_rightFloats;
     float _widthDeviation;
 }
 
-@property(readonly) DOMNode * body;
-@property(readonly) BOOL didChangeDocument;
-@property(readonly) DOMDocument * document;
-@property(retain) DOMRange * firstTextRange;
-@property(readonly) BOOL hasAnyLeftFloat;
-@property(readonly) BOOL hasAnyRightFloat;
-@property(readonly) float maximumWidth;
-@property(readonly) float meanWidth;
-@property float minimumRescalingFactor;
-@property(copy,readonly) NSArray * rightFloats;
-@property(readonly) float widthDeviation;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } basePadding;
+@property (nonatomic, readonly) DOMNode *body;
+@property (nonatomic, readonly) BOOL containsUnknownImageDimensions;
+@property (nonatomic, readonly) BOOL didChangeDocument;
+@property (nonatomic, readonly) DOMDocument *document;
+@property (nonatomic, retain) DOMRange *firstTextRange;
+@property (nonatomic, readonly) BOOL hasAnyLeftFloat;
+@property (nonatomic, readonly) BOOL hasAnyRightFloat;
+@property (nonatomic, readonly) float maximumWidth;
+@property (nonatomic, readonly) float meanWidth;
+@property (nonatomic) float minimumRescalingFactor;
+@property (nonatomic, readonly, copy) NSArray *potentialEdgeToEdgeNodes;
+@property (nonatomic, readonly, copy) NSArray *rightFloats;
+@property (nonatomic, readonly) float widthDeviation;
 
 - (void)_rollBackChange:(id)arg1;
 - (void)_updateFloatsIfNecessary;
 - (void)_updateMetricsIfNecessary;
+- (struct UIEdgeInsets { float x1; float x2; float x3; float x4; })basePadding;
 - (id)body;
 - (struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })boundingBoxOf:(id)arg1;
-- (BOOL)changeMarginOfElement:(id)arg1 priority:(id)arg2 usingBlock:(id)arg3;
+- (BOOL)changeMarginOfElement:(id)arg1 priority:(id)arg2 usingBlock:(id /* block */)arg3;
 - (void)changeProprety:(id)arg1 ofElement:(id)arg2 toValue:(id)arg3 priority:(id)arg4;
-- (BOOL)changeSizeOfElement:(id)arg1 priority:(id)arg2 usingBlock:(id)arg3;
+- (BOOL)changeSizeOfElement:(id)arg1 priority:(id)arg2 usingBlock:(id /* block */)arg3;
+- (BOOL)containsUnknownImageDimensions;
 - (void)dealloc;
 - (BOOL)didChangeDocument;
 - (id)document;
@@ -50,11 +61,13 @@
 - (float)maximumWidth;
 - (float)meanWidth;
 - (float)minimumRescalingFactor;
+- (id)potentialEdgeToEdgeNodes;
 - (BOOL)rescaleElement:(id)arg1 withScale:(float)arg2;
-- (BOOL)resizeElement:(id)arg1 withScale:(float)arg2 verificationBlock:(id)arg3;
+- (BOOL)resizeElement:(id)arg1 withScale:(float)arg2 verificationBlock:(id /* block */)arg3;
 - (id)rightFloats;
 - (void)rollBackAllChanges;
 - (void)rollBackLastChangeForElement:(id)arg1;
+- (void)setBasePadding:(struct UIEdgeInsets { float x1; float x2; float x3; float x4; })arg1;
 - (void)setFirstTextRange:(id)arg1;
 - (void)setMinimumRescalingFactor:(float)arg1;
 - (float)widthDeviation;

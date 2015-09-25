@@ -8,10 +8,9 @@
     struct _renditionkeytoken { 
         unsigned short identifier; 
         unsigned short value; 
-    } _stackKey[16];
+    } _stackKey;
 }
 
-+ (id)_placeHolderKey;
 + (void)initialize;
 + (id)renditionKey;
 + (id)renditionKeyWithKeyList:(const struct _renditionkeytoken { unsigned short x1; unsigned short x2; }*)arg1;

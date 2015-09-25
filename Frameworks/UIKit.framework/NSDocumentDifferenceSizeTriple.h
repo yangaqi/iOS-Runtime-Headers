@@ -2,21 +2,19 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSDocumentDifferenceSize;
-
 @interface NSDocumentDifferenceSizeTriple : NSObject {
     NSDocumentDifferenceSize *_betweenPreservingPreviousVersionAndSaving;
     NSDocumentDifferenceSize *_betweenPreviousSavingAndSaving;
     NSDocumentDifferenceSize *_dueToRecentChangesBeforeSaving;
 }
 
-@property(readonly) NSDocumentDifferenceSize * betweenPreservingPreviousVersionAndSaving;
-@property(readonly) NSDocumentDifferenceSize * betweenPreviousSavingAndSaving;
-@property(readonly) NSDocumentDifferenceSize * dueToRecentChangesBeforeSaving;
+@property (nonatomic, readonly) NSDocumentDifferenceSize *betweenPreservingPreviousVersionAndSaving;
+@property (nonatomic, readonly) NSDocumentDifferenceSize *betweenPreviousSavingAndSaving;
+@property (nonatomic, readonly) NSDocumentDifferenceSize *dueToRecentChangesBeforeSaving;
 
+- (void).cxx_destruct;
 - (id)betweenPreservingPreviousVersionAndSaving;
 - (id)betweenPreviousSavingAndSaving;
-- (void)dealloc;
 - (id)description;
 - (id)dueToRecentChangesBeforeSaving;
 - (id)init;

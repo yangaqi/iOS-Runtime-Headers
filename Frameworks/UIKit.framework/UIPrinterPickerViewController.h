@@ -2,13 +2,12 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSString, PKPrinter, UINavigationController, UIPopoverController, UIPrinterBrowserViewController, UIPrinterPickerController, UIViewController, UIWindow;
-
 @interface UIPrinterPickerViewController : UIViewController <UINavigationControllerDelegate, UIPrinterBrowserOwner> {
     BOOL _animated;
     BOOL _dismissed;
     UINavigationController *_navigationController;
     BOOL _observingRotation;
+    id _originalNavControllerDelegate;
     UIViewController *_originalViewControllerInNav;
     UIViewController *_parentController;
     BOOL _parentHasNoPopover;
@@ -20,13 +19,14 @@
     UIWindow *_window;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(retain) PKPrinter * printer;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) PKPrinter *printer;
+@property (readonly) Class superclass;
 @property BOOL userSelectedPrinter;
 
+- (void).cxx_destruct;
 - (void)_keyWindowWillRotate:(id)arg1;
 - (void)_presentInParentAnimated:(BOOL)arg1;
 - (void)_presentWindow;

@@ -2,18 +2,20 @@
    Image: /System/Library/Frameworks/CoreImage.framework/CoreImage
  */
 
-@class CIImage;
-
 @interface CIPhotoEffect : CIFilter {
     CIImage *inputImage;
 }
 
-@property(retain) CIImage * inputImage;
+@property (nonatomic, retain) CIImage *inputImage;
 
 + (id)customAttributes;
 
+- (int)_defaultVersion;
+- (int)_maxVersion;
+- (id)init;
 - (id)inputImage;
 - (id)outputImage;
+- (void)setDefaults;
 - (void)setInputImage:(id)arg1;
 
 @end

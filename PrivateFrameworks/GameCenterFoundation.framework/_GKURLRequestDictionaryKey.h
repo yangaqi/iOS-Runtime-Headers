@@ -2,13 +2,11 @@
    Image: /System/Library/PrivateFrameworks/GameCenterFoundation.framework/GameCenterFoundation
  */
 
-@class NSURLRequest;
-
 @interface _GKURLRequestDictionaryKey : NSObject <NSCopying> {
     NSURLRequest *_request;
 }
 
-@property(readonly) NSURLRequest * request;
+@property (nonatomic, retain) NSURLRequest *request;
 
 + (id)keyWithRequest:(id)arg1;
 
@@ -19,5 +17,6 @@
 - (id)initWithRequest:(id)arg1;
 - (BOOL)isEqual:(id)arg1;
 - (id)request;
+- (void)setRequest:(id)arg1;
 
 @end

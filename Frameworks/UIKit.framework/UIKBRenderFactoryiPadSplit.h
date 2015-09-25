@@ -2,8 +2,7 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@interface UIKBRenderFactoryiPadSplit : UIKBRenderFactoryiPad {
-}
+@interface UIKBRenderFactoryiPadSplit : UIKBRenderFactoryiPad
 
 - (void)_customizeGeometry:(id)arg1 forKey:(id)arg2 contents:(id)arg3;
 - (void)_customizeSymbolStyle:(id)arg1 forKey:(id)arg2 contents:(id)arg3;
@@ -13,6 +12,7 @@
 - (float)defaultPathWeight;
 - (id)deleteKeyImageName;
 - (struct CGPoint { float x1; float x2; })deleteKeyOffset;
+- (id)deleteOnKeyImageName;
 - (id)dictationKeyImageName;
 - (id)dismissKeyImageName;
 - (struct CGPoint { float x1; float x2; })dismissKeyOffset;

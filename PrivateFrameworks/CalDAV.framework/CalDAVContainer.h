@@ -2,9 +2,8 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class ICSDuration, NSSet, NSString, NSTimeZone, NSURL;
-
 @interface CalDAVContainer : CoreDAVContainer {
+    NSString *_alarms;
     BOOL _autoprovisioned;
     NSString *_calendarColor;
     NSString *_calendarDescription;
@@ -20,6 +19,7 @@
     BOOL _isScheduleTransparent;
     NSString *_languageCode;
     NSString *_locationCode;
+    BOOL _overrideSupportsFreebusy;
     NSURL *_prePublishURL;
     NSURL *_publishURL;
     NSURL *_scheduleDefaultCalendarURL;
@@ -35,52 +35,56 @@
     NSTimeZone *_timeZone;
 }
 
-@property BOOL autoprovisioned;
-@property(retain) NSString * calendarColor;
-@property(retain) NSString * calendarDescription;
-@property(retain) NSString * calendarOrder;
-@property BOOL canBePublished;
-@property BOOL canBeShared;
-@property(retain) NSString * ctag;
-@property(retain) NSString * defaultAllDayAlarms;
-@property(retain) NSString * defaultTimedAlarms;
-@property(retain) NSSet * freeBusySet;
-@property(readonly) BOOL isCalendar;
-@property(readonly) BOOL isEventContainer;
-@property(readonly) BOOL isFamilyCalendar;
-@property(readonly) BOOL isJournalContainer;
-@property BOOL isMarkedImmutableSharees;
-@property BOOL isMarkedUndeletable;
-@property(readonly) BOOL isNotification;
-@property(readonly) BOOL isPollContainer;
-@property(readonly) BOOL isScheduleInbox;
-@property(readonly) BOOL isScheduleOutbox;
-@property BOOL isScheduleTransparent;
-@property(readonly) BOOL isShared;
-@property(readonly) BOOL isSharedOwner;
-@property(readonly) BOOL isSubscribed;
-@property(readonly) BOOL isTaskContainer;
-@property(retain) NSString * languageCode;
-@property(retain) NSString * locationCode;
-@property(retain) NSURL * prePublishURL;
-@property(retain) NSURL * publishURL;
-@property(retain) NSURL * scheduleDefaultCalendarURL;
-@property(retain) NSSet * sharees;
-@property(retain) NSURL * source;
-@property(retain) ICSDuration * subscribedRefreshRate;
-@property BOOL subscribedStripAlarms;
-@property BOOL subscribedStripAttachments;
-@property BOOL subscribedStripTodos;
-@property(retain) NSSet * supportedCalendarComponentSet;
-@property(retain) NSString * supportedCalendarComponentSets;
-@property(readonly) BOOL supportsFreebusy;
-@property(retain) NSString * symbolicColorName;
-@property(retain) NSTimeZone * timeZone;
+@property (nonatomic, retain) NSString *alarms;
+@property (nonatomic) BOOL autoprovisioned;
+@property (nonatomic, retain) NSString *calendarColor;
+@property (nonatomic, retain) NSString *calendarDescription;
+@property (nonatomic, retain) NSString *calendarOrder;
+@property (nonatomic) BOOL canBePublished;
+@property (nonatomic) BOOL canBeShared;
+@property (nonatomic, retain) NSString *ctag;
+@property (nonatomic, retain) NSString *defaultAllDayAlarms;
+@property (nonatomic, retain) NSString *defaultTimedAlarms;
+@property (nonatomic, retain) NSSet *freeBusySet;
+@property (nonatomic, readonly) BOOL isCalendar;
+@property (nonatomic, readonly) BOOL isEventContainer;
+@property (nonatomic, readonly) BOOL isFamilyCalendar;
+@property (nonatomic, readonly) BOOL isJournalContainer;
+@property (nonatomic) BOOL isMarkedImmutableSharees;
+@property (nonatomic) BOOL isMarkedUndeletable;
+@property (nonatomic, readonly) BOOL isNotification;
+@property (nonatomic, readonly) BOOL isPollContainer;
+@property (nonatomic, readonly) BOOL isScheduleInbox;
+@property (nonatomic, readonly) BOOL isScheduleOutbox;
+@property (nonatomic) BOOL isScheduleTransparent;
+@property (nonatomic, readonly) BOOL isShared;
+@property (nonatomic, readonly) BOOL isSharedOwner;
+@property (nonatomic, readonly) BOOL isSubscribed;
+@property (nonatomic, readonly) BOOL isTaskContainer;
+@property (nonatomic, retain) NSString *languageCode;
+@property (nonatomic, retain) NSString *locationCode;
+@property (nonatomic) BOOL overrideSupportsFreebusy;
+@property (nonatomic, retain) NSURL *prePublishURL;
+@property (nonatomic, retain) NSURL *publishURL;
+@property (nonatomic, retain) NSURL *scheduleDefaultCalendarURL;
+@property (nonatomic, retain) NSSet *sharees;
+@property (nonatomic, retain) NSURL *source;
+@property (nonatomic, retain) ICSDuration *subscribedRefreshRate;
+@property (nonatomic) BOOL subscribedStripAlarms;
+@property (nonatomic) BOOL subscribedStripAttachments;
+@property (nonatomic) BOOL subscribedStripTodos;
+@property (nonatomic, retain) NSSet *supportedCalendarComponentSet;
+@property (nonatomic, retain) NSString *supportedCalendarComponentSets;
+@property (nonatomic, readonly) BOOL supportsFreebusy;
+@property (nonatomic, retain) NSString *symbolicColorName;
+@property (nonatomic, retain) NSTimeZone *timeZone;
 
 + (id)copyPropertyMappingsForParser;
 
+- (void).cxx_destruct;
 - (BOOL)_isComponentSupportedForString:(id)arg1;
 - (void)_setTimeZoneFromProperties:(id)arg1 onCalendar:(id)arg2;
+- (id)alarms;
 - (void)applyParsedProperties:(id)arg1;
 - (BOOL)autoprovisioned;
 - (id)calendarColor;
@@ -89,7 +93,6 @@
 - (BOOL)canBePublished;
 - (BOOL)canBeShared;
 - (id)ctag;
-- (void)dealloc;
 - (id)defaultAllDayAlarms;
 - (id)defaultTimedAlarms;
 - (id)description;
@@ -111,9 +114,12 @@
 - (BOOL)isTaskContainer;
 - (id)languageCode;
 - (id)locationCode;
+- (BOOL)overrideSupportsFreebusy;
+- (void)postProcessWithResponseHeaders:(id)arg1;
 - (id)prePublishURL;
 - (id)publishURL;
 - (id)scheduleDefaultCalendarURL;
+- (void)setAlarms:(id)arg1;
 - (void)setAutoprovisioned:(BOOL)arg1;
 - (void)setCalendarColor:(id)arg1;
 - (void)setCalendarDescription:(id)arg1;
@@ -129,6 +135,7 @@
 - (void)setIsScheduleTransparent:(BOOL)arg1;
 - (void)setLanguageCode:(id)arg1;
 - (void)setLocationCode:(id)arg1;
+- (void)setOverrideSupportsFreebusy:(BOOL)arg1;
 - (void)setPrePublishURL:(id)arg1;
 - (void)setPublishURL:(id)arg1;
 - (void)setScheduleDefaultCalendarURL:(id)arg1;

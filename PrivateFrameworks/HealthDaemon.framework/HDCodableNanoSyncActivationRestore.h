@@ -2,10 +2,8 @@
    Image: /System/Library/PrivateFrameworks/HealthDaemon.framework/HealthDaemon
  */
 
-@class NSData, NSMutableArray, NSString;
-
 @interface HDCodableNanoSyncActivationRestore : PBCodable <HDNanoSyncDescription, HDNanoSyncPersistentUserInfoCopying, NSCopying> {
-    NSString *_deviceSourceIdentifier;
+    NSString *_defaultSourceBundleIdentifier;
     struct { 
         unsigned int sequenceNumber : 1; 
         unsigned int statusCode : 1; 
@@ -16,19 +14,19 @@
     int _statusCode;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) NSString * deviceSourceIdentifier;
-@property(readonly) BOOL hasDeviceSourceIdentifier;
-@property(readonly) BOOL hasRestoreIdentifier;
-@property BOOL hasSequenceNumber;
-@property BOOL hasStatusCode;
-@property(readonly) unsigned int hash;
-@property(retain) NSData * restoreIdentifier;
-@property(retain) NSMutableArray * restores;
-@property long long sequenceNumber;
-@property int statusCode;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (nonatomic, retain) NSString *defaultSourceBundleIdentifier;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, readonly) BOOL hasDefaultSourceBundleIdentifier;
+@property (nonatomic, readonly) BOOL hasRestoreIdentifier;
+@property (nonatomic) BOOL hasSequenceNumber;
+@property (nonatomic) BOOL hasStatusCode;
+@property (readonly) unsigned int hash;
+@property (nonatomic, retain) NSData *restoreIdentifier;
+@property (nonatomic, retain) NSMutableArray *restores;
+@property (nonatomic) long long sequenceNumber;
+@property (nonatomic) int statusCode;
+@property (readonly) Class superclass;
 
 + (id)activationRestoreWithRestoreUUID:(id)arg1 sequenceNumber:(long long)arg2 statusCode:(int)arg3;
 + (id)persistentUserInfoKey;
@@ -42,10 +40,10 @@
 - (void)copyTo:(id)arg1;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (id)decodedRestoreUUID;
+- (id)defaultSourceBundleIdentifier;
 - (id)description;
-- (id)deviceSourceIdentifier;
 - (id)dictionaryRepresentation;
-- (BOOL)hasDeviceSourceIdentifier;
+- (BOOL)hasDefaultSourceBundleIdentifier;
 - (BOOL)hasRequiredFields;
 - (BOOL)hasRestoreIdentifier;
 - (BOOL)hasSequenceNumber;
@@ -60,7 +58,7 @@
 - (id)restoresAtIndex:(unsigned int)arg1;
 - (unsigned int)restoresCount;
 - (long long)sequenceNumber;
-- (void)setDeviceSourceIdentifier:(id)arg1;
+- (void)setDefaultSourceBundleIdentifier:(id)arg1;
 - (void)setHasSequenceNumber:(BOOL)arg1;
 - (void)setHasStatusCode:(BOOL)arg1;
 - (void)setRestoreIdentifier:(id)arg1;

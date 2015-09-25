@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSArray, NSString, OADTableStyle;
-
 @interface OADTableProperties : OADDrawableProperties <OADEffectsParent> {
     BOOL mBandColumn;
     BOOL mBandRow;
@@ -16,16 +14,17 @@
     OADTableStyle *mStyle;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) Class superclass;
 
 + (id)defaultProperties;
 
 - (BOOL)bandColumn;
 - (BOOL)bandRow;
 - (void)dealloc;
+- (id)description;
 - (id)effects;
 - (BOOL)firstColumn;
 - (BOOL)firstRow;

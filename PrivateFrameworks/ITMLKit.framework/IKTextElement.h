@@ -2,29 +2,24 @@
    Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
  */
 
-@class NSArray, NSAttributedString, NSMutableArray, UIColor;
-
 @interface IKTextElement : IKViewElement {
-    NSAttributedString *_text;
     NSMutableArray *_textBadges;
+    IKTextParser *_textParser;
     unsigned int _textStyle;
 }
 
-@property(readonly) unsigned int alignment;
-@property(readonly) NSArray * badges;
-@property(readonly) UIColor * color;
-@property(readonly) int maxLines;
-@property(retain,readonly) NSAttributedString * text;
-@property(retain) NSMutableArray * textBadges;
-@property(readonly) unsigned int textStyle;
+@property (nonatomic, readonly) unsigned int alignment;
+@property (nonatomic, readonly) NSArray *badges;
+@property (nonatomic, readonly) UIColor *color;
+@property (nonatomic, readonly) int maxLines;
+@property (nonatomic, readonly, retain) NSAttributedString *text;
+@property (nonatomic, readonly) unsigned int textStyle;
+
+// Image: /System/Library/PrivateFrameworks/ITMLKit.framework/ITMLKit
 
 + (BOOL)shouldParseChildDOMElements;
 
 - (void).cxx_destruct;
-- (id)_attributedStringFromNode:(id)arg1 elementFactory:(id)arg2;
-- (id)_stringFromDateElement:(id)arg1;
-- (id)_stringFromDurationElement:(id)arg1;
-- (id)_stringFromNumberElement:(id)arg1;
 - (unsigned int)_styleForTagName:(id)arg1;
 - (id)accessibilityText;
 - (unsigned int)alignment;
@@ -34,10 +29,11 @@
 - (id)color;
 - (id)initWithDOMElement:(id)arg1 parent:(id)arg2 elementFactory:(id)arg3;
 - (int)maxLines;
-- (void)setTextBadges:(id)arg1;
 - (id)text;
-- (id)textAttributes;
-- (id)textBadges;
 - (unsigned int)textStyle;
+
+// Image: /System/Library/PrivateFrameworks/MediaPlayerUI.framework/MediaPlayerUI
+
+- (id)textAttributes;
 
 @end

@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray, UIImage;
-
 @interface _UIImageViewExtendedStorage : NSObject {
     double _animationDuration;
     NSArray *_animationImages;
@@ -20,7 +18,7 @@
     unsigned int _templateImageRenderingEffects;
 }
 
+- (void).cxx_destruct;
 - (void)animationDidStop:(id)arg1 finished:(BOOL)arg2;
-- (void)dealloc;
 
 @end

@@ -2,18 +2,16 @@
    Image: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
  */
 
-@class EKUIDividedGridViewController, UIView;
-
 @interface EKUIDividedGridViewTableViewCell : UITableViewCell {
     UIView *_bottomDivider;
     EKUIDividedGridViewController *_gridViewController;
     UIView *_topDivider;
 }
 
-@property(retain) UIView * bottomDivider;
-@property BOOL drawsTopDivider;
-@property(retain) EKUIDividedGridViewController * gridViewController;
-@property(retain) UIView * topDivider;
+@property (nonatomic, retain) UIView *bottomDivider;
+@property (nonatomic) BOOL drawsTopDivider;
+@property (retain) EKUIDividedGridViewController *gridViewController;
+@property (nonatomic, retain) UIView *topDivider;
 
 - (void).cxx_destruct;
 - (BOOL)_isWiderThanMaximum;
@@ -22,7 +20,7 @@
 - (BOOL)drawBottomDivider;
 - (BOOL)drawsTopDivider;
 - (id)gridViewController;
-- (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2 gridViewType:(int)arg3 buttonTitles:(id)arg4;
+- (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2 gridViewType:(int)arg3 buttonTitles:(id)arg4 cellBackgroundColor:(id)arg5;
 - (void)layoutSubviews;
 - (void)setBottomDivider:(id)arg1;
 - (void)setDrawBottomDivider:(BOOL)arg1;

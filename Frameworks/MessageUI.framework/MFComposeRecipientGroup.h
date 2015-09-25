@@ -2,11 +2,8 @@
    Image: /System/Library/Frameworks/MessageUI.framework/MessageUI
  */
 
-@class NSArray, NSString;
-
 @interface MFComposeRecipientGroup : MFComposeRecipient {
     NSArray *_children;
-    NSString *_displayString;
 }
 
 - (void)_populateSortedChildren;

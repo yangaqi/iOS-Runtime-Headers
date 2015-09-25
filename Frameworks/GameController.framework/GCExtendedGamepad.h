@@ -2,24 +2,21 @@
    Image: /System/Library/Frameworks/GameController.framework/GameController
  */
 
-@class GCController, GCControllerButtonInput, GCControllerDirectionPad;
+@interface GCExtendedGamepad : NSObject
 
-@interface GCExtendedGamepad : NSObject {
-}
-
-@property(readonly) GCControllerButtonInput * buttonA;
-@property(readonly) GCControllerButtonInput * buttonB;
-@property(readonly) GCControllerButtonInput * buttonX;
-@property(readonly) GCControllerButtonInput * buttonY;
-@property(readonly) GCController * controller;
-@property(readonly) GCControllerDirectionPad * dpad;
-@property(readonly) GCControllerButtonInput * leftShoulder;
-@property(readonly) GCControllerDirectionPad * leftThumbstick;
-@property(readonly) GCControllerButtonInput * leftTrigger;
-@property(readonly) GCControllerButtonInput * rightShoulder;
-@property(readonly) GCControllerDirectionPad * rightThumbstick;
-@property(readonly) GCControllerButtonInput * rightTrigger;
-@property(copy) id valueChangedHandler;
+@property (nonatomic, readonly) GCControllerButtonInput *buttonA;
+@property (nonatomic, readonly) GCControllerButtonInput *buttonB;
+@property (nonatomic, readonly) GCControllerButtonInput *buttonX;
+@property (nonatomic, readonly) GCControllerButtonInput *buttonY;
+@property (nonatomic, readonly) GCController *controller;
+@property (nonatomic, readonly) GCControllerDirectionPad *dpad;
+@property (nonatomic, readonly) GCControllerButtonInput *leftShoulder;
+@property (nonatomic, readonly) GCControllerDirectionPad *leftThumbstick;
+@property (nonatomic, readonly) GCControllerButtonInput *leftTrigger;
+@property (nonatomic, readonly) GCControllerButtonInput *rightShoulder;
+@property (nonatomic, readonly) GCControllerDirectionPad *rightThumbstick;
+@property (nonatomic, readonly) GCControllerButtonInput *rightTrigger;
+@property (nonatomic, copy) id /* block */ valueChangedHandler;
 
 + (BOOL)supportsUSBInterfaceProtocol:(unsigned char)arg1;
 
@@ -32,7 +29,6 @@
 - (id)buttonX;
 - (id)buttonY;
 - (id)controller;
-- (void)didChangeValueForElement:(id)arg1;
 - (id)dpad;
 - (id)initWithController:(id)arg1;
 - (id)inputForElement:(struct __IOHIDElement { }*)arg1;
@@ -46,7 +42,7 @@
 - (void)setButton:(id)arg1 pressed:(BOOL)arg2;
 - (void)setButton:(id)arg1 value:(double)arg2;
 - (void)setDpad:(id)arg1 x:(double)arg2 y:(double)arg3;
-- (void)setValueChangedHandler:(id)arg1;
-- (id)valueChangedHandler;
+- (void)setValueChangedHandler:(id /* block */)arg1;
+- (id /* block */)valueChangedHandler;
 
 @end

@@ -2,13 +2,12 @@
    Image: /System/Library/PrivateFrameworks/ChatKit.framework/ChatKit
  */
 
-@class CKComposition, CKMessageEntryRichTextView, CKMessageEntryTextView, NSString, UIView;
-
-@interface CKMessageEntryContentView : UIScrollView <UITextViewDelegate> {
+@interface CKMessageEntryContentView : UIScrollView <CKMessageEntryRichTextViewDelegate, UITextViewDelegate> {
     UIView *_activeView;
     CKComposition *_composition;
     UIView *_dividerLine;
     BOOL _ignoreEndEditing;
+    BOOL _isCompositionExpirable;
     BOOL _needsEnsureSelectionVisible;
     BOOL _needsTextLayout;
     float _placeholderHeight;
@@ -30,29 +29,30 @@
     CKMessageEntryRichTextView *_textView;
 }
 
-@property(getter=isActive,readonly) BOOL active;
-@property UIView * activeView;
-@property BOOL balloonColor;
-@property(retain) CKComposition * composition;
-@property(readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentTextAlignmentInsets;
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(retain) UIView * dividerLine;
-@property(readonly) unsigned int hash;
-@property BOOL ignoreEndEditing;
-@property BOOL needsEnsureSelectionVisible;
-@property BOOL needsTextLayout;
-@property float placeholderHeight;
-@property(copy) NSString * placeholderText;
-@property BOOL shouldShowCharacterCount;
-@property BOOL shouldShowSubject;
-@property(getter=isShowingDictationPlaceholder,readonly) BOOL showingDictationPlaceholder;
-@property(getter=isSingleLine,readonly) BOOL singleLine;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } subjectAlignmentInsets;
-@property(retain) CKMessageEntryTextView * subjectView;
-@property(readonly) Class superclass;
-@property struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textAlignmentInsets;
-@property(retain) CKMessageEntryRichTextView * textView;
+@property (getter=isActive, nonatomic, readonly) BOOL active;
+@property (nonatomic) UIView *activeView;
+@property (nonatomic) BOOL balloonColor;
+@property (nonatomic, retain) CKComposition *composition;
+@property (nonatomic, readonly) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } contentTextAlignmentInsets;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (nonatomic, retain) UIView *dividerLine;
+@property (readonly) unsigned int hash;
+@property (nonatomic) BOOL ignoreEndEditing;
+@property (nonatomic) BOOL isCompositionExpirable;
+@property (nonatomic) BOOL needsEnsureSelectionVisible;
+@property (nonatomic) BOOL needsTextLayout;
+@property (nonatomic) float placeholderHeight;
+@property (nonatomic, copy) NSString *placeholderText;
+@property (nonatomic) BOOL shouldShowCharacterCount;
+@property (nonatomic) BOOL shouldShowSubject;
+@property (getter=isShowingDictationPlaceholder, nonatomic, readonly) BOOL showingDictationPlaceholder;
+@property (getter=isSingleLine, nonatomic, readonly) BOOL singleLine;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } subjectAlignmentInsets;
+@property (nonatomic, retain) CKMessageEntryTextView *subjectView;
+@property (readonly) Class superclass;
+@property (nonatomic) struct UIEdgeInsets { float x1; float x2; float x3; float x4; } textAlignmentInsets;
+@property (nonatomic, retain) CKMessageEntryRichTextView *textView;
 
 - (void)acceptAutocorrection;
 - (id)activeView;
@@ -67,10 +67,12 @@
 - (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1 shouldShowSubject:(BOOL)arg2 shouldShowCharacterCount:(BOOL)arg3;
 - (void)invalidateComposition;
 - (BOOL)isActive;
+- (BOOL)isCompositionExpirable;
 - (BOOL)isShowingDictationPlaceholder;
 - (BOOL)isSingleLine;
 - (void)layoutSubviews;
 - (BOOL)makeActive;
+- (void)messageEntryRichTextView:(id)arg1 didTapMediaObject:(id)arg2;
 - (BOOL)messageEntryRichTextView:(id)arg1 shouldPasteMediaObjects:(id)arg2;
 - (BOOL)needsEnsureSelectionVisible;
 - (BOOL)needsTextLayout;
@@ -83,6 +85,7 @@
 - (void)setDividerLine:(id)arg1;
 - (void)setFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
 - (void)setIgnoreEndEditing:(BOOL)arg1;
+- (void)setIsCompositionExpirable:(BOOL)arg1;
 - (void)setNeedsEnsureSelectionVisible:(BOOL)arg1;
 - (void)setNeedsTextLayout:(BOOL)arg1;
 - (void)setPlaceholderHeight:(float)arg1;

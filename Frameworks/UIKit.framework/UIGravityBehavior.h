@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/UIKit.framework/UIKit
  */
 
-@class NSArray;
-
 @interface UIGravityBehavior : UIDynamicBehavior {
     struct CGPoint { 
         float x; 
@@ -11,14 +9,15 @@
     } _gravity;
 }
 
-@property float angle;
-@property struct CGVector { float x1; float x2; } gravityDirection;
-@property(copy,readonly) NSArray * items;
-@property float magnitude;
+@property (nonatomic) float angle;
+@property (nonatomic) struct CGVector { float x1; float x2; } gravityDirection;
+@property (nonatomic, readonly, copy) NSArray *items;
+@property (nonatomic) float magnitude;
+
++ (BOOL)_isPrimitiveBehavior;
 
 - (void)_addItem:(id)arg1;
 - (void)_associate;
-- (void)_commonInit;
 - (void)_dissociate;
 - (void)_setAngle:(float)arg1 magnitude:(float)arg2;
 - (void)addItem:(id)arg1;

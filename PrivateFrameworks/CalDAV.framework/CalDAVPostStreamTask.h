@@ -2,19 +2,17 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class NSString;
-
 @interface CalDAVPostStreamTask : CoreDAVPostTask {
     NSString *_filename;
     NSString *_previousScheduleTag;
 }
 
-@property(retain) NSString * filename;
-@property(retain) NSString * previousScheduleTag;
+@property (nonatomic, retain) NSString *filename;
+@property (nonatomic, retain) NSString *previousScheduleTag;
 
+- (void).cxx_destruct;
 - (id)additionalHeaderValues;
 - (id)copyDefaultParserForContentType:(id)arg1;
-- (void)dealloc;
 - (id)filename;
 - (id)lossyAsciiFilename;
 - (id)previousScheduleTag;

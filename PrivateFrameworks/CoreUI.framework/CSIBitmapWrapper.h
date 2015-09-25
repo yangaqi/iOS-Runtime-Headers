@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
  */
 
-@class NSData;
-
 @interface CSIBitmapWrapper : NSObject {
     BOOL _allowsMultiPassEncoding;
     struct CGContext { } *_bitmapContext;
@@ -17,7 +15,7 @@
 }
 
 @property BOOL allowsMultiPassEncoding;
-@property unsigned int pixelFormat;
+@property (nonatomic) unsigned int pixelFormat;
 
 - (BOOL)allowsMultiPassEncoding;
 - (struct CGContext { }*)bitmapContext;
@@ -33,7 +31,7 @@
 - (void)setPixelData:(id)arg1;
 - (void)setPixelFormat:(unsigned int)arg1;
 - (void)setSourceAlphaInfo:(unsigned int)arg1;
-- (unsigned int)sourceImageAlpha;
+- (unsigned int)sourceAlphaInfo;
 - (unsigned int)width;
 
 @end

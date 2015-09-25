@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/FMFUI.framework/FMFUI
  */
 
-@class FMFLocation, UILabel;
-
-@interface FMFTitleView : UIView {
+@interface FMFTitleView : FMTitleView {
     FMFLocation *_location;
     UILabel *_subtitleLabel;
     UILabel *_titleLabel;
 }
 
-@property(retain) FMFLocation * location;
-@property(retain) UILabel * subtitleLabel;
-@property(retain) UILabel * titleLabel;
+@property (nonatomic, retain) FMFLocation *location;
+@property (nonatomic, retain) UILabel *subtitleLabel;
+@property (nonatomic, retain) UILabel *titleLabel;
 
 - (void).cxx_destruct;
 - (void)_updateLabels:(id)arg1;
-- (id)initWithFrame:(struct CGRect { struct CGPoint { float x_1_1_1; float x_1_1_2; } x1; struct CGSize { float x_2_1_1; float x_2_1_2; } x2; })arg1;
+- (id)initFromNib;
 - (id)location;
 - (void)setLocation:(id)arg1;
 - (void)setSubtitleLabel:(id)arg1;

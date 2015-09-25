@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
  */
 
-@class GEOUserSessionEntity, NSLock;
-
 @interface GEOUserSession : NSObject {
     NSLock *_lock;
     GEOUserSessionEntity *_mapsUserSessionEntity;
@@ -19,17 +17,19 @@
         unsigned long long _low; 
     } _usageCollectionSessionID;
     double _usageSessionIDGenerationTime;
+    BOOL _zeroSessionIDMode;
 }
 
-@property(retain) GEOUserSessionEntity * mapsUserSessionEntity;
+@property (nonatomic, retain) GEOUserSessionEntity *mapsUserSessionEntity;
 @property BOOL shareSessionWithMaps;
-@property(readonly) struct { unsigned long long x1; unsigned long long x2; } usageCollectionSessionID;
+@property (readonly) struct { unsigned long long x1; unsigned long long x2; } usageCollectionSessionID;
+@property BOOL zeroSessionIDMode;
 
 + (void)setIsGeod;
 + (id)sharedInstance;
 
 - (id)_defaultForKey:(id)arg1;
-- (void)_mapsSessionEntityWithCallback:(id)arg1;
+- (void)_mapsSessionEntityWithCallback:(id /* block */)arg1;
 - (void)_renewUsageCollectionSessionID;
 - (void)_resetSessionID;
 - (void)_safe_renewUsageCollectionSessionID;
@@ -37,13 +37,16 @@
 - (void)_updateSessionID;
 - (void)_updateWithNewUUIDForSessionID:(struct { unsigned long long x1; unsigned long long x2; }*)arg1;
 - (void)dealloc;
+- (unsigned int)incrementSequenceNumber;
 - (id)init;
-- (void)mapsSessionEntityWithCallback:(id)arg1 shareSessionIDWithMaps:(BOOL)arg2 resetSession:(BOOL)arg3;
+- (void)mapsSessionEntityWithCallback:(id /* block */)arg1 shareSessionIDWithMaps:(BOOL)arg2 resetSession:(BOOL)arg3;
 - (id)mapsUserSessionEntity;
 - (void)setMapsUserSessionEntity:(id)arg1;
 - (void)setShareSessionWithMaps:(BOOL)arg1;
 - (void)setSharedMapsUserSessionEntity:(id)arg1 shareSessionIDWithMaps:(BOOL)arg2;
+- (void)setZeroSessionIDMode:(BOOL)arg1;
 - (BOOL)shareSessionWithMaps;
 - (struct { unsigned long long x1; unsigned long long x2; })usageCollectionSessionID;
+- (BOOL)zeroSessionIDMode;
 
 @end

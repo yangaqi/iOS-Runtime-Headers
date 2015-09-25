@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/CalDAV.framework/CalDAV
  */
 
-@class CoreDAVResponseItem, NSSet, NSURL;
-
 @interface CalDAVPropPatchWithFallbackTaskGroup : CoreDAVTaskGroup {
     NSSet *_fallbackElements;
     NSSet *_primaryElements;
@@ -11,10 +9,10 @@
     NSURL *_url;
 }
 
-@property(retain) CoreDAVResponseItem * responseItem;
+@property (nonatomic, retain) CoreDAVResponseItem *responseItem;
 
+- (void).cxx_destruct;
 - (void)_proppatchAfterFailureCount:(unsigned int)arg1;
-- (void)dealloc;
 - (id)initWithAccountInfoProvider:(id)arg1 taskManager:(id)arg2 primaryPropertiesToSet:(id)arg3 fallbackPropertiesToSet:(id)arg4 atURL:(id)arg5;
 - (id)responseItem;
 - (void)setResponseItem:(id)arg1;

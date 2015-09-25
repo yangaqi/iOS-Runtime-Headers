@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class EDCollection;
-
 @interface EDPivotItem : NSObject {
     EDCollection *mItemIndexes;
     unsigned int mRepeatedItemCounts;
@@ -13,6 +11,7 @@
 + (id)pivotItem;
 
 - (void)dealloc;
+- (id)description;
 - (id)init;
 - (id)itemIndexes;
 - (unsigned int)repeatedItemCounts;

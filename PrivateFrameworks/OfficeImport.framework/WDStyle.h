@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString, WDCharacterProperties, WDParagraphProperties, WDStyle, WDStyleSheet, WDTableCellProperties, WDTableRowProperties, WDTableStyleOverride;
-
 @interface WDStyle : NSObject <NSCopying> {
     WDStyle *mBaseStyle;
     WDCharacterProperties *mCharacterProperties;
@@ -16,13 +14,14 @@
     int mStyleType;
     WDTableCellProperties *mTableCellProperties;
     WDTableRowProperties *mTableRowProperties;
-    WDTableStyleOverride *mTableStyleOverrides[12];
+    WDTableStyleOverride *mTableStyleOverrides;
 }
 
 - (id)baseStyle;
 - (id)characterProperties;
 - (id)copyWithZone:(struct _NSZone { }*)arg1;
 - (void)dealloc;
+- (id)description;
 - (BOOL)hidden;
 - (id)id;
 - (id)initWithStyleSheet:(id)arg1 id:(id)arg2 type:(int)arg3;

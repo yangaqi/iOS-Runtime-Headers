@@ -2,33 +2,23 @@
    Image: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
  */
 
-@class PSSpecifier, UISwitch;
-
 @interface PSSearchResultsSwitchCell : PSSearchResultsCell {
-    SEL _getter;
-    SEL _setter;
+    PSSpecifierAction *_action;
     PSSpecifier *_specifier;
     UISwitch *_switch;
-    id _target;
 }
 
-@property SEL getter;
-@property SEL setter;
-@property(retain) PSSpecifier * specifier;
-@property id target;
+@property (nonatomic, copy) PSSpecifierAction *action;
+@property (nonatomic, retain) PSSpecifier *specifier;
 
+- (void).cxx_destruct;
 - (void)_switchValueChanged:(id)arg1;
-- (void)dealloc;
-- (SEL)getter;
+- (id)action;
 - (id)initWithStyle:(int)arg1 reuseIdentifier:(id)arg2;
 - (void)prepareForReuse;
 - (void)reloadValue:(BOOL)arg1;
-- (void)setGetter:(SEL)arg1;
-- (void)setSetter:(SEL)arg1;
+- (void)setAction:(id)arg1;
 - (void)setSpecifier:(id)arg1;
-- (void)setTarget:(id)arg1;
-- (SEL)setter;
 - (id)specifier;
-- (id)target;
 
 @end

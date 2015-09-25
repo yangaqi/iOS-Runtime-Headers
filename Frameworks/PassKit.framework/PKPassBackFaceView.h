@@ -2,9 +2,9 @@
    Image: /System/Library/Frameworks/PassKit.framework/PassKit
  */
 
-@class BluetoothManager, NSArray, NSMutableDictionary, NSString, NSTimer, PKLinkedAppView, PKSettingTableCell, UIButton, UILabel, UIRefreshControl, UITableView, UIView;
-
 @interface PKPassBackFaceView : PKPassFaceView <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate> {
+    PKSettingTableCell *_automaticSelection;
+    unsigned int _automaticSelectionSection;
     PKSettingTableCell *_automaticUpdates;
     UITableView *_bodyTable;
     BluetoothManager *_btManager;
@@ -30,20 +30,21 @@
     UILabel *_updateDateLabel;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property PKLinkedAppView * linkedApp;
-@property BOOL showsDelete;
-@property BOOL showsLinkedApp;
-@property BOOL showsLinks;
-@property BOOL showsSettings;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (nonatomic) PKLinkedAppView *linkedApp;
+@property (nonatomic) BOOL showsDelete;
+@property (nonatomic) BOOL showsLinkedApp;
+@property (nonatomic) BOOL showsLinks;
+@property (nonatomic) BOOL showsSettings;
+@property (readonly) Class superclass;
 
 + (id)_linkColor;
 + (id)_linkTextAttributes;
 + (BOOL)isWifiEnabled;
 
+- (id)_automaticSelectionCell;
 - (void)_bluetoothPowerChanged:(id)arg1;
 - (void)_deleteButtonPressed:(id)arg1;
 - (void)_doneButtonPressed:(id)arg1;
@@ -53,6 +54,7 @@
 - (BOOL)_linkedAppAvailable;
 - (id)_locationHelpViewForTableView:(id)arg1;
 - (id)_locationRelevancyHelpText;
+- (void)_passSettingsChanged:(id)arg1;
 - (void)_refreshTimeoutFired;
 - (id)_relevantBuckets;
 - (BOOL)_settingsAvailable;
@@ -91,6 +93,7 @@
 - (float)tableView:(id)arg1 heightForHeaderInSection:(int)arg2;
 - (float)tableView:(id)arg1 heightForRowAtIndexPath:(id)arg2;
 - (int)tableView:(id)arg1 numberOfRowsInSection:(int)arg2;
+- (id)tableView:(id)arg1 titleForFooterInSection:(int)arg2;
 - (id)tableView:(id)arg1 viewForFooterInSection:(int)arg2;
 - (BOOL)textView:(id)arg1 shouldInteractWithURL:(id)arg2 inRange:(struct _NSRange { unsigned int x1; unsigned int x2; })arg3;
 - (void)willMoveToSuperview:(id)arg1;

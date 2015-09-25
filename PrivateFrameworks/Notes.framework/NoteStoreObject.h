@@ -2,21 +2,19 @@
    Image: /System/Library/PrivateFrameworks/Notes.framework/Notes
  */
 
-@class NSSet, NSString, NoteAccountObject;
+@interface NoteStoreObject : NoteCollectionObject
 
-@interface NoteStoreObject : NoteCollectionObject {
-}
-
-@property(retain) NoteAccountObject * account;
-@property(retain) NSSet * changes;
-@property(retain) NSString * externalIdentifier;
-@property(retain) NSString * name;
-@property(retain) NSString * syncAnchor;
+@property (nonatomic, retain) NoteAccountObject *account;
+@property (nonatomic, retain) NSSet *changes;
+@property (nonatomic, retain) NSString *externalIdentifier;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *syncAnchor;
 
 - (id)basicAccountIdentifier;
 - (id)collectionInfo;
 - (unsigned int)maximumServerIntId;
 - (unsigned long long)minimumSequenceNumberForServerIntIds:(id)arg1;
+- (id)noteVisibilityTestingForSearchingAccount;
 - (id)notesForGUIDs:(id)arg1;
 - (id)notesForIntegerIds:(id)arg1;
 - (id)notesForServerIds:(id)arg1;

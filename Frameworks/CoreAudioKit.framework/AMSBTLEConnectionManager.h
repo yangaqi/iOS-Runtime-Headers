@@ -2,8 +2,6 @@
    Image: /System/Library/Frameworks/CoreAudioKit.framework/CoreAudioKit
  */
 
-@class <BTLEConnectionTable>, CBCentralManager, NSMutableArray, NSString, NSTimer;
-
 @interface AMSBTLEConnectionManager : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate> {
     CBCentralManager *centralManager;
     int centralState;
@@ -14,11 +12,11 @@
     NSTimer *refreshTimer;
 }
 
-@property(copy,readonly) NSString * debugDescription;
-@property(copy,readonly) NSString * description;
-@property(readonly) unsigned int hash;
-@property(readonly) NSMutableArray * peripheralList;
-@property(readonly) Class superclass;
+@property (readonly, copy) NSString *debugDescription;
+@property (readonly, copy) NSString *description;
+@property (readonly) unsigned int hash;
+@property (readonly) NSMutableArray *peripheralList;
+@property (readonly) Class superclass;
 
 - (id)amsPeripheralForCBPeripheral:(id)arg1;
 - (int)bluetoothState;
@@ -28,12 +26,13 @@
 - (void)centralManager:(id)arg1 didFailToConnectPeripheral:(id)arg2 error:(id)arg3;
 - (void)centralManager:(id)arg1 didRetrievePeripherals:(id)arg2;
 - (void)centralManagerDidUpdateState:(id)arg1;
+- (void)checkAlreadyConnectedPeripherals;
 - (void)createPeripheralList;
 - (void)dealloc;
 - (id)initWithUIController:(id)arg1;
 - (BOOL)isLECapableHardware;
 - (void)killTimer;
-- (struct OpaqueMIDIDevice { }*)midiDeviceForUUID:(id)arg1;
+- (unsigned long)midiDeviceForUUID:(id)arg1;
 - (void)peripheral:(id)arg1 didDiscoverCharacteristicsForService:(id)arg2 error:(id)arg3;
 - (void)peripheral:(id)arg1 didDiscoverServices:(id)arg2;
 - (void)peripheral:(id)arg1 didUpdateValueForCharacteristic:(id)arg2 error:(id)arg3;

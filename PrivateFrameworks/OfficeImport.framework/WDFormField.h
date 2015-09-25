@@ -2,8 +2,6 @@
    Image: /System/Library/PrivateFrameworks/OfficeImport.framework/OfficeImport
  */
 
-@class NSString;
-
 @interface WDFormField : WDRun {
     NSString *mDosName;
     BOOL mLinkAbsolute;
@@ -16,6 +14,7 @@
 
 - (id)URI;
 - (void)dealloc;
+- (id)description;
 - (id)dosName;
 - (id)initWithParagraph:(id)arg1;
 - (BOOL)linkAbsolute;
